@@ -1,0 +1,22 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.1.2] 
+- Lessons now contain example habits for you to try out
+- We made improvements to the Android Version
+- Nyxo now supports direct import from Fitbit. To use use this feature navigate to settings page and link your Fitbit account with Nyxo.
+- We updated some backend stuff
+- We added sections to lessons to they are now better grouped
+- We added ability rate the lesson so you can provide feedback lessons
+- You can now see how many days you have left of the week
+
+
+
+
+## [1.1.7] - 2019-10-16
+### Added
+- Functionality to manually add nights
+

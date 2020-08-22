@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:get-nyxo.app.link</string>
+		<string>applinks:get-nyxo-alternate.app.link</string>
+		<string>applinks:get-nyxo.test-app.link</string>
+		<string>applinks:get.nyxo.fi</string>
+		<string>applinks:get-nyxo.app.link</string>
+		<string>applinks:auth.nyxo.app</string>
+	</array>
+	<key>com.apple.developer.healthkit</key>
+	<true/>
+	<key>com.apple.developer.healthkit.access</key>
+	<array>
+		<string>health-records</string>
+	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)app.sleepcircle.application</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,37 @@
+import { toggleExplanationsModal } from '@actions/modal/modal-actions'
+import React, { memo } from 'react'
+import { useDispatch } from 'react-redux'
+import styled from 'styled-components/native'
+import colors from '../../styles/colors'
+import { IconBold } from '../iconRegular'
+
+const InfoButton = () => {
+  const dispatch = useDispatch()
+  const onPress = () => {
+    dispatch(toggleExplanationsModal(true))
+  }
+  return (
+    <Container>
+      <Touchable onPress={onPress}>
+        <IconBold
+          width={15}
+          height={15}
+          fill={colors.radiantBlue}
+          name="informationCircle"
+        />
+      </Touchable>
+    </Container>
+  )
+}
+
+export default memo(InfoButton)
+
+const Container = styled.View`
+  position: absolute;
+  bottom: 35px;
+  right: 35px;
+`
+
+const Touchable = styled.TouchableOpacity`
+  padding: 5px;
+`

@@ -1,0 +1,1682 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */; };
+		5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */; };
+		5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20692C224E434B00257043 /* StoreKit.framework */; };
+		5B33130921DFB5B800698A4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130121DFB5B800698A4A /* AppDelegate.m */; };
+		5B33130A21DFB5B800698A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130221DFB5B800698A4A /* main.m */; };
+		5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B40961E242BAE0000169B4C /* GoogleService-Info.plist */; };
+		5B5476582233C6650027A9A0 /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5476152233C6640027A9A0 /* Intercom.framework */; };
+		5B5476592233C6650027A9A0 /* Intercom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5476152233C6640027A9A0 /* Intercom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B70355823E998420068DB97 /* Nyxo (DEV).plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B70355723E998420068DB97 /* Nyxo (DEV).plist */; };
+		5B7820E024EEC2360074BAFC /* rnuc.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */; };
+		5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0F90521E2411B00D3D56E /* main.jsbundle */; };
+		5BA9115E22E1E2350098700A /* CommandStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9115D22E1E2350098700A /* CommandStatus.swift */; };
+		5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8622D71D7400D1CD2D /* Montserrat-LightItalic.ttf */; };
+		5BD58B9922D71D7600D1CD2D /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8722D71D7400D1CD2D /* Montserrat-ExtraBoldItalic.ttf */; };
+		5BD58B9A22D71D7600D1CD2D /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8822D71D7500D1CD2D /* Montserrat-SemiBoldItalic.ttf */; };
+		5BD58B9B22D71D7600D1CD2D /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8922D71D7500D1CD2D /* Montserrat-Black.ttf */; };
+		5BD58B9C22D71D7600D1CD2D /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8A22D71D7500D1CD2D /* Montserrat-Italic.ttf */; };
+		5BD58B9D22D71D7600D1CD2D /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8B22D71D7500D1CD2D /* Montserrat-ThinItalic.ttf */; };
+		5BD58B9E22D71D7600D1CD2D /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8C22D71D7500D1CD2D /* Montserrat-Medium.ttf */; };
+		5BD58B9F22D71D7600D1CD2D /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8D22D71D7500D1CD2D /* Montserrat-Regular.ttf */; };
+		5BD58BA022D71D7600D1CD2D /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8E22D71D7500D1CD2D /* Montserrat-MediumItalic.ttf */; };
+		5BD58BA122D71D7600D1CD2D /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8F22D71D7500D1CD2D /* Montserrat-ExtraLightItalic.ttf */; };
+		5BD58BA222D71D7600D1CD2D /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9022D71D7500D1CD2D /* Montserrat-BoldItalic.ttf */; };
+		5BD58BA322D71D7600D1CD2D /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9122D71D7500D1CD2D /* Montserrat-SemiBold.ttf */; };
+		5BD58BA422D71D7600D1CD2D /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9222D71D7500D1CD2D /* Montserrat-BlackItalic.ttf */; };
+		5BD58BA522D71D7600D1CD2D /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9322D71D7500D1CD2D /* Montserrat-ExtraLight.ttf */; };
+		5BD58BA622D71D7600D1CD2D /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9422D71D7600D1CD2D /* Montserrat-ExtraBold.ttf */; };
+		5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */; };
+		5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */; };
+		5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
+		5BE7E22E23E98F21000FC447 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130221DFB5B800698A4A /* main.m */; };
+		5BE7E22F23E98F21000FC447 /* CommandStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9115D22E1E2350098700A /* CommandStatus.swift */; };
+		5BE7E23023E98F21000FC447 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130121DFB5B800698A4A /* AppDelegate.m */; };
+		5BE7E23223E98F21000FC447 /* AppCenterReactNativeShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DCC82218829A0036DFDD /* AppCenterReactNativeShared.framework */; };
+		5BE7E23323E98F21000FC447 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DCC4221882830036DFDD /* AppCenterCrashes.framework */; };
+		5BE7E23423E98F21000FC447 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+		5BE7E23523E98F21000FC447 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20692C224E434B00257043 /* StoreKit.framework */; };
+		5BE7E23623E98F21000FC447 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CBA9B2099AEB300243A25 /* HealthKit.framework */; };
+		5BE7E23723E98F21000FC447 /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5476152233C6640027A9A0 /* Intercom.framework */; };
+		5BE7E23823E98F21000FC447 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B75EE392188A8920070EB69 /* Fabric.framework */; };
+		5BE7E23923E98F21000FC447 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DCC2221882830036DFDD /* AppCenterAnalytics.framework */; };
+		5BE7E23A23E98F21000FC447 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DCC3221882830036DFDD /* AppCenter.framework */; };
+		5BE7E23B23E98F21000FC447 /* AppCenterPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DD33221884EB0036DFDD /* AppCenterPush.framework */; };
+		5BE7E23D23E98F21000FC447 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */; };
+		5BE7E24023E98F21000FC447 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8622D71D7400D1CD2D /* Montserrat-LightItalic.ttf */; };
+		5BE7E24123E98F21000FC447 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8722D71D7400D1CD2D /* Montserrat-ExtraBoldItalic.ttf */; };
+		5BE7E24223E98F21000FC447 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8822D71D7500D1CD2D /* Montserrat-SemiBoldItalic.ttf */; };
+		5BE7E24323E98F21000FC447 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8922D71D7500D1CD2D /* Montserrat-Black.ttf */; };
+		5BE7E24423E98F21000FC447 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8A22D71D7500D1CD2D /* Montserrat-Italic.ttf */; };
+		5BE7E24523E98F21000FC447 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8B22D71D7500D1CD2D /* Montserrat-ThinItalic.ttf */; };
+		5BE7E24623E98F21000FC447 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8C22D71D7500D1CD2D /* Montserrat-Medium.ttf */; };
+		5BE7E24723E98F21000FC447 /* Domine-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */; };
+		5BE7E24823E98F21000FC447 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8D22D71D7500D1CD2D /* Montserrat-Regular.ttf */; };
+		5BE7E24923E98F21000FC447 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8E22D71D7500D1CD2D /* Montserrat-MediumItalic.ttf */; };
+		5BE7E24A23E98F21000FC447 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8F22D71D7500D1CD2D /* Montserrat-ExtraLightItalic.ttf */; };
+		5BE7E24B23E98F21000FC447 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9022D71D7500D1CD2D /* Montserrat-BoldItalic.ttf */; };
+		5BE7E24C23E98F21000FC447 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9122D71D7500D1CD2D /* Montserrat-SemiBold.ttf */; };
+		5BE7E24D23E98F21000FC447 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9222D71D7500D1CD2D /* Montserrat-BlackItalic.ttf */; };
+		5BE7E24E23E98F21000FC447 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9322D71D7500D1CD2D /* Montserrat-ExtraLight.ttf */; };
+		5BE7E24F23E98F21000FC447 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9422D71D7600D1CD2D /* Montserrat-ExtraBold.ttf */; };
+		5BE7E25023E98F21000FC447 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */; };
+		5BE7E25123E98F21000FC447 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */; };
+		5BE7E25223E98F21000FC447 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
+		5BE7E25323E98F21000FC447 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0F90521E2411B00D3D56E /* main.jsbundle */; };
+		5BE7E25423E98F21000FC447 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
+		5BE7E25523E98F21000FC447 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B3312FB21DFB5B700698A4A /* Images.xcassets */; };
+		5BE7E25623E98F21000FC447 /* Domine-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */; };
+		5BE7E25723E98F21000FC447 /* FontAwesome5_Pro_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */; };
+		5BE7E25823E98F21000FC447 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = B64D42BFD4E244D9863E00B7 /* AppCenter-Config.plist */; };
+		5BE7E25D23E98F21000FC447 /* Intercom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5476152233C6640027A9A0 /* Intercom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BF9816322D2052900509ED1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
+		5C56F98D642F4D5BA2168C40 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = B64D42BFD4E244D9863E00B7 /* AppCenter-Config.plist */; };
+		6EF70286CEF4580632B0E50F /* libPods-Nyxo Dev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */; };
+		B95CBA9C2099AEB300243A25 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CBA9B2099AEB300243A25 /* HealthKit.framework */; };
+		C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */; };
+		E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */; };
+		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = Nyxo;
+		};
+		5BB5735C21DE4024008895BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BB5733A21DE4024008895BB /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
+			remoteInfo = "RNDeviceInfo-tvOS";
+		};
+		5BB573A521DE40B8008895BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BB5733A21DE4024008895BB /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5B54765A2233C6650027A9A0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5B5476592233C6650027A9A0 /* Intercom.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B6E854A21406B9A0013E7B5 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE7E25A23E98F21000FC447 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE7E25C23E98F21000FC447 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5BE7E25D23E98F21000FC447 /* Intercom.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo.release.xcconfig"; path = "Target Support Files/Pods-Nyxo/Pods-Nyxo.release.xcconfig"; sourceTree = "<group>"; };
+		00E356EE1AD99517003FC87E /* NyxoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NyxoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Nyxo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nyxo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo Dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		4F61ADB20DA8429D927A20BC /* FontAwesome5_Pro_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Solid.ttf; path = ../assets/fonts/FontAwesome5_Pro_Solid.ttf; sourceTree = "<group>"; };
+		5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Domine-Bold.ttf"; path = "../assets/fonts/Domine-Bold.ttf"; sourceTree = "<group>"; };
+		5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Domine-Regular.ttf"; path = "../assets/fonts/Domine-Regular.ttf"; sourceTree = "<group>"; };
+		5B20692C224E434B00257043 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5B2069A4224FB24200257043 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		5B2B308921EF5C82007E2982 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		5B3312FB21DFB5B700698A4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
+		5B3312FE21DFB5B800698A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.old.xib; sourceTree = "<group>"; };
+		5B33130021DFB5B800698A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		5B33130121DFB5B800698A4A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Nyxo/AppDelegate.m; sourceTree = "<group>"; };
+		5B33130221DFB5B800698A4A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Nyxo/main.m; sourceTree = "<group>"; };
+		5B33130321DFB5B800698A4A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Nyxo/Info.plist; sourceTree = "<group>"; };
+		5B33130421DFB5B800698A4A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Nyxo/AppDelegate.h; sourceTree = "<group>"; };
+		5B33136421DFB73A00698A4A /* Nyxo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Nyxo.entitlements; path = Nyxo/Nyxo.entitlements; sourceTree = "<group>"; };
+		5B37A97122CE0B6700820944 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
+		5B37A97222CE0B6700820944 /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-HairlineItalic.ttf"; path = "../assets/fonts/Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		5B37A97322CE0B6700820944 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "../assets/fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
+		5B37A97422CE0B6700820944 /* Lato-Hairline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Hairline.ttf"; path = "../assets/fonts/Lato-Hairline.ttf"; sourceTree = "<group>"; };
+		5B37A97522CE0B6700820944 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BoldItalic.ttf"; path = "../assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5B37A97622CE0B6700820944 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		5B37A97722CE0B6700820944 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../assets/fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
+		5B37A97822CE0B6700820944 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-LightItalic.ttf"; path = "../assets/fonts/Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		5B37A97922CE0B6C00820944 /* Lato Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato Italic.ttf"; path = "../assets/fonts/Lato Italic.ttf"; sourceTree = "<group>"; };
+		5B37A97A22CE1A4700820944 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		5B37A97B22CE1A4800820944 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		5B37A97C22CE1A4800820944 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		5B37A97D22CE1A4800820944 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBoldItalic.ttf"; path = "../assets/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		5B37A97E22CE1A4800820944 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Italic.ttf"; path = "../assets/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		5B37A97F22CE1A4800820944 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-BoldItalic.ttf"; path = "../assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5B37A98022CE1A4800820944 /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraLightItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		5B37A98122CE1A4800820944 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		5B37A98222CE1A4800820944 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ThinItalic.ttf"; path = "../assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		5B37A98322CE1A4800820944 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		5B37A98422CE1A4900820944 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
+		5B37A98522CE1A4900820944 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		5B37A98622CE1A4900820944 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-LightItalic.ttf"; path = "../assets/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
+		5B37A98722CE1A4900820944 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		5B37A98822CE1A4900820944 /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-BlackItalic.ttf"; path = "../assets/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
+		5B37A98922CE1A4900820944 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Black.ttf"; path = "../assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		5B37A98A22CE1A4900820944 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		5B37A98B22CE1A4A00820944 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		5B40961E242BAE0000169B4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B48388421FA22EE003855DF /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = ../fi.lproj/LaunchScreen.old.strings; sourceTree = "<group>"; };
+		5B48388521FA22EE003855DF /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = ../fi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B50DCC2221882830036DFDD /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
+		5B50DCC3221882830036DFDD /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenter.framework"; sourceTree = "<group>"; };
+		5B50DCC4221882830036DFDD /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
+		5B50DCC82218829A0036DFDD /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = Vendor/AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
+		5B50DD33221884EB0036DFDD /* AppCenterPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterPush.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenterPush.framework"; sourceTree = "<group>"; };
+		5B5476152233C6640027A9A0 /* Intercom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Intercom.framework; sourceTree = "<group>"; };
+		5B70355723E998420068DB97 /* Nyxo (DEV).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Nyxo (DEV).plist"; sourceTree = "<group>"; };
+		5B75EE392188A8920070EB69 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		5B75EE3A2188A8920070EB69 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = rnuc.xcconfig; sourceTree = "<group>"; };
+		5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5BA0F90521E2411B00D3D56E /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		5BA9115B22E1E2350098700A /* Nyxo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyxo-Bridging-Header.h"; sourceTree = "<group>"; };
+		5BA9115C22E1E2350098700A /* Nyxo Watch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyxo Watch-Bridging-Header.h"; sourceTree = "<group>"; };
+		5BA9115D22E1E2350098700A /* CommandStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandStatus.swift; sourceTree = "<group>"; };
+		5BB5732C21DE4024008895BB /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
+		5BB5732D21DE4024008895BB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5BB5732E21DE4024008895BB /* RNDeviceInfo.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = RNDeviceInfo.podspec; sourceTree = "<group>"; };
+		5BB5732F21DE4024008895BB /* deviceinfo.js.flow */ = {isa = PBXFileReference; lastKnownFileType = text; path = deviceinfo.js.flow; sourceTree = "<group>"; };
+		5BB5733021DE4024008895BB /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		5BB5733221DE4024008895BB /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		5BB5733321DE4024008895BB /* deviceinfo.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = deviceinfo.js; sourceTree = "<group>"; };
+		5BB5733621DE4024008895BB /* RNDeviceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNDeviceInfo.m; sourceTree = "<group>"; };
+		5BB5733721DE4024008895BB /* DeviceUID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceUID.h; sourceTree = "<group>"; };
+		5BB5733821DE4024008895BB /* DeviceUID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceUID.m; sourceTree = "<group>"; };
+		5BB5733921DE4024008895BB /* RNDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNDeviceInfo.h; sourceTree = "<group>"; };
+		5BB5733A21DE4024008895BB /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RNDeviceInfo.xcodeproj; sourceTree = "<group>"; };
+		5BB5733D21DE4024008895BB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5BB5733E21DE4024008895BB /* deviceinfo.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = deviceinfo.d.ts; sourceTree = "<group>"; };
+		5BB5733F21DE4024008895BB /* yarn.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = yarn.lock; sourceTree = "<group>"; };
+		5BB5734021DE4024008895BB /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		5BB5734121DE4024008895BB /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
+		5BB5734321DE4024008895BB /* build.gradle */ = {isa = PBXFileReference; lastKnownFileType = text; path = build.gradle; sourceTree = "<group>"; };
+		5BB5734621DE4024008895BB /* AndroidManifest.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AndroidManifest.xml; sourceTree = "<group>"; };
+		5BB5734B21DE4024008895BB /* RNDeviceReceiver.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = RNDeviceReceiver.java; sourceTree = "<group>"; };
+		5BB5734C21DE4024008895BB /* RNDeviceInfo.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = RNDeviceInfo.java; sourceTree = "<group>"; };
+		5BB5734D21DE4024008895BB /* RNDeviceModule.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = RNDeviceModule.java; sourceTree = "<group>"; };
+		5BB5735021DE4024008895BB /* RNDeviceInfoModule.cs */ = {isa = PBXFileReference; lastKnownFileType = text; path = RNDeviceInfoModule.cs; sourceTree = "<group>"; };
+		5BB5735221DE4024008895BB /* AssemblyInfo.cs */ = {isa = PBXFileReference; lastKnownFileType = text; path = AssemblyInfo.cs; sourceTree = "<group>"; };
+		5BB5735321DE4024008895BB /* RNDeviceInfo.rd.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RNDeviceInfo.rd.xml; sourceTree = "<group>"; };
+		5BB5735421DE4024008895BB /* RNDeviceInfo.csproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RNDeviceInfo.csproj; sourceTree = "<group>"; };
+		5BB5735521DE4024008895BB /* RNDeviceInfoPackage.cs */ = {isa = PBXFileReference; lastKnownFileType = text; path = RNDeviceInfoPackage.cs; sourceTree = "<group>"; };
+		5BB5735621DE4024008895BB /* RNDeviceInfo.sln */ = {isa = PBXFileReference; lastKnownFileType = text; path = RNDeviceInfo.sln; sourceTree = "<group>"; };
+		5BB5735721DE4024008895BB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		5BD58B8622D71D7400D1CD2D /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-LightItalic.ttf"; path = "../assets/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
+		5BD58B8722D71D7400D1CD2D /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		5BD58B8822D71D7500D1CD2D /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBoldItalic.ttf"; path = "../assets/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		5BD58B8922D71D7500D1CD2D /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Black.ttf"; path = "../assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		5BD58B8A22D71D7500D1CD2D /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Italic.ttf"; path = "../assets/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		5BD58B8B22D71D7500D1CD2D /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ThinItalic.ttf"; path = "../assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		5BD58B8C22D71D7500D1CD2D /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		5BD58B8D22D71D7500D1CD2D /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		5BD58B8E22D71D7500D1CD2D /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
+		5BD58B8F22D71D7500D1CD2D /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraLightItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		5BD58B9022D71D7500D1CD2D /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-BoldItalic.ttf"; path = "../assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5BD58B9122D71D7500D1CD2D /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		5BD58B9222D71D7500D1CD2D /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-BlackItalic.ttf"; path = "../assets/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
+		5BD58B9322D71D7500D1CD2D /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		5BD58B9422D71D7600D1CD2D /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		5BE7E26423E98F21000FC447 /* Nyxo DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nyxo DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BF9811C22D2052900509ED1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
+		6CF46B6888304B68952AC827 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Dosis-Medium.ttf"; path = "../assets/fonts/Dosis-Medium.ttf"; sourceTree = "<group>"; };
+		796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Brands.ttf; path = ../assets/fonts/FontAwesome5_Pro_Brands.ttf; sourceTree = "<group>"; };
+		8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo/Pods-Nyxo.debug.xcconfig"; sourceTree = "<group>"; };
+		9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.debug.xcconfig"; sourceTree = "<group>"; };
+		B64D42BFD4E244D9863E00B7 /* AppCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Nyxo/AppCenter-Config.plist"; sourceTree = "<group>"; };
+		B959F1EA20BD3D8E00AC734C /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dosis-Bold.ttf"; path = "../assets/fonts/Dosis-Bold.ttf"; sourceTree = "<group>"; };
+		B959F21820BD455C00AC734C /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-regular-400.ttf"; sourceTree = "<group>"; };
+		B95CBA9B2099AEB300243A25 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		BC20C0ADAE8344ED9E90B05C /* FontAwesome5_Pro_Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Light.ttf; path = ../assets/fonts/FontAwesome5_Pro_Light.ttf; sourceTree = "<group>"; };
+		C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.release.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.release.xcconfig"; sourceTree = "<group>"; };
+		E28D9DBBB35A494F8B7F80E4 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
+		E763E2F2E04548318B376785 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EDBCD013F22D4256B775A881 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		F39D20A4A03A4E13BB614E17 /* FontAwesome5_Pro_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Regular.ttf; path = ../assets/fonts/FontAwesome5_Pro_Regular.ttf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00E356EB1AD99517003FC87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
+				5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */,
+				B95CBA9C2099AEB300243A25 /* HealthKit.framework in Frameworks */,
+				5B5476582233C6650027A9A0 /* Intercom.framework in Frameworks */,
+				C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */,
+				E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE7E23123E98F21000FC447 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE7E23223E98F21000FC447 /* AppCenterReactNativeShared.framework in Frameworks */,
+				5BE7E23323E98F21000FC447 /* AppCenterCrashes.framework in Frameworks */,
+				5BE7E23423E98F21000FC447 /* JavaScriptCore.framework in Frameworks */,
+				5BE7E23523E98F21000FC447 /* StoreKit.framework in Frameworks */,
+				5BE7E23623E98F21000FC447 /* HealthKit.framework in Frameworks */,
+				5BE7E23723E98F21000FC447 /* Intercom.framework in Frameworks */,
+				5BE7E23823E98F21000FC447 /* Fabric.framework in Frameworks */,
+				5BE7E23923E98F21000FC447 /* AppCenterAnalytics.framework in Frameworks */,
+				5BE7E23A23E98F21000FC447 /* AppCenter.framework in Frameworks */,
+				5BE7E23B23E98F21000FC447 /* AppCenterPush.framework in Frameworks */,
+				5BE7E23D23E98F21000FC447 /* libz.tbd in Frameworks */,
+				6EF70286CEF4580632B0E50F /* libPods-Nyxo Dev.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E356EF1AD99517003FC87E /* NyxoTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F01AD99517003FC87E /* Supporting Files */,
+			);
+			path = NyxoTests;
+			sourceTree = "<group>";
+		};
+		00E356F01AD99517003FC87E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F11AD99517003FC87E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B07FAE1A68108700A75B9A /* Nyxo */ = {
+			isa = PBXGroup;
+			children = (
+				5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */,
+				5B70355723E998420068DB97 /* Nyxo (DEV).plist */,
+				5B33130421DFB5B800698A4A /* AppDelegate.h */,
+				5B33130121DFB5B800698A4A /* AppDelegate.m */,
+				5B3312FC21DFB5B800698A4A /* Base.lproj */,
+				5B3312FB21DFB5B700698A4A /* Images.xcassets */,
+				5B33130321DFB5B800698A4A /* Info.plist */,
+				5BA0F90521E2411B00D3D56E /* main.jsbundle */,
+				5B33130221DFB5B800698A4A /* main.m */,
+				5B2B308921EF5C82007E2982 /* assets */,
+				5B33136421DFB73A00698A4A /* Nyxo.entitlements */,
+			);
+			name = Nyxo;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B20692C224E434B00257043 /* StoreKit.framework */,
+				5BB5732B21DE4024008895BB /* react-native-device-info */,
+				B95CBA9B2099AEB300243A25 /* HealthKit.framework */,
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
+				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */,
+				140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */,
+				E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B3312FC21DFB5B800698A4A /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				5B3312FD21DFB5B800698A4A /* LaunchScreen.old.xib */,
+				5B3312FF21DFB5B800698A4A /* LaunchScreen.xib */,
+			);
+			name = Base.lproj;
+			path = Nyxo/Base.lproj;
+			sourceTree = "<group>";
+		};
+		5B50DCC1221882130036DFDD /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				5B50DD33221884EB0036DFDD /* AppCenterPush.framework */,
+				5B50DCC82218829A0036DFDD /* AppCenterReactNativeShared.framework */,
+				5B50DCC3221882830036DFDD /* AppCenter.framework */,
+				5B50DCC2221882830036DFDD /* AppCenterAnalytics.framework */,
+				5B50DCC4221882830036DFDD /* AppCenterCrashes.framework */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		5BA9115A22E1E2070098700A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5BA9115D22E1E2350098700A /* CommandStatus.swift */,
+				5BA9115B22E1E2350098700A /* Nyxo-Bridging-Header.h */,
+				5BA9115C22E1E2350098700A /* Nyxo Watch-Bridging-Header.h */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		5BB5732B21DE4024008895BB /* react-native-device-info */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5732C21DE4024008895BB /* CODE_OF_CONDUCT.md */,
+				5BB5732D21DE4024008895BB /* LICENSE */,
+				5BB5732E21DE4024008895BB /* RNDeviceInfo.podspec */,
+				5BB5732F21DE4024008895BB /* deviceinfo.js.flow */,
+				5BB5733021DE4024008895BB /* CHANGELOG.md */,
+				5BB5733121DE4024008895BB /* web */,
+				5BB5733321DE4024008895BB /* deviceinfo.js */,
+				5BB5733421DE4024008895BB /* ios */,
+				5BB5733D21DE4024008895BB /* README.md */,
+				5BB5733E21DE4024008895BB /* deviceinfo.d.ts */,
+				5BB5733F21DE4024008895BB /* yarn.lock */,
+				5BB5734021DE4024008895BB /* package.json */,
+				5BB5734121DE4024008895BB /* CONTRIBUTING.md */,
+				5BB5734221DE4024008895BB /* android */,
+				5BB5734E21DE4024008895BB /* windows */,
+			);
+			name = "react-native-device-info";
+			path = "../react-native-device-info";
+			sourceTree = "<group>";
+		};
+		5BB5733121DE4024008895BB /* web */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5733221DE4024008895BB /* index.js */,
+			);
+			path = web;
+			sourceTree = "<group>";
+		};
+		5BB5733421DE4024008895BB /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5733521DE4024008895BB /* RNDeviceInfo */,
+				5BB5733A21DE4024008895BB /* RNDeviceInfo.xcodeproj */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		5BB5733521DE4024008895BB /* RNDeviceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5733621DE4024008895BB /* RNDeviceInfo.m */,
+				5BB5733721DE4024008895BB /* DeviceUID.h */,
+				5BB5733821DE4024008895BB /* DeviceUID.m */,
+				5BB5733921DE4024008895BB /* RNDeviceInfo.h */,
+			);
+			path = RNDeviceInfo;
+			sourceTree = "<group>";
+		};
+		5BB5733B21DE4024008895BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BB573A621DE40B8008895BB /* libRNDeviceInfo.a */,
+				5BB5735D21DE4024008895BB /* libRNDeviceInfo-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BB5734221DE4024008895BB /* android */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5734321DE4024008895BB /* build.gradle */,
+				5BB5734421DE4024008895BB /* src */,
+			);
+			path = android;
+			sourceTree = "<group>";
+		};
+		5BB5734421DE4024008895BB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5734521DE4024008895BB /* main */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		5BB5734521DE4024008895BB /* main */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5734621DE4024008895BB /* AndroidManifest.xml */,
+				5BB5734721DE4024008895BB /* java */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		5BB5734721DE4024008895BB /* java */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5734821DE4024008895BB /* com */,
+			);
+			path = java;
+			sourceTree = "<group>";
+		};
+		5BB5734821DE4024008895BB /* com */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5734921DE4024008895BB /* learnium */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		5BB5734921DE4024008895BB /* learnium */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5734A21DE4024008895BB /* RNDeviceInfo */,
+			);
+			path = learnium;
+			sourceTree = "<group>";
+		};
+		5BB5734A21DE4024008895BB /* RNDeviceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5734B21DE4024008895BB /* RNDeviceReceiver.java */,
+				5BB5734C21DE4024008895BB /* RNDeviceInfo.java */,
+				5BB5734D21DE4024008895BB /* RNDeviceModule.java */,
+			);
+			path = RNDeviceInfo;
+			sourceTree = "<group>";
+		};
+		5BB5734E21DE4024008895BB /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5734F21DE4024008895BB /* RNDeviceInfo */,
+				5BB5735721DE4024008895BB /* .gitignore */,
+			);
+			path = windows;
+			sourceTree = "<group>";
+		};
+		5BB5734F21DE4024008895BB /* RNDeviceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5735021DE4024008895BB /* RNDeviceInfoModule.cs */,
+				5BB5735121DE4024008895BB /* Properties */,
+				5BB5735421DE4024008895BB /* RNDeviceInfo.csproj */,
+				5BB5735521DE4024008895BB /* RNDeviceInfoPackage.cs */,
+				5BB5735621DE4024008895BB /* RNDeviceInfo.sln */,
+			);
+			path = RNDeviceInfo;
+			sourceTree = "<group>";
+		};
+		5BB5735121DE4024008895BB /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				5BB5735221DE4024008895BB /* AssemblyInfo.cs */,
+				5BB5735321DE4024008895BB /* RNDeviceInfo.rd.xml */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */,
+				5B40961E242BAE0000169B4C /* GoogleService-Info.plist */,
+				5BA9115A22E1E2070098700A /* Shared */,
+				5BD58B8922D71D7500D1CD2D /* Montserrat-Black.ttf */,
+				5BD58B9222D71D7500D1CD2D /* Montserrat-BlackItalic.ttf */,
+				5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */,
+				5BD58B9022D71D7500D1CD2D /* Montserrat-BoldItalic.ttf */,
+				5BD58B9422D71D7600D1CD2D /* Montserrat-ExtraBold.ttf */,
+				5BD58B8722D71D7400D1CD2D /* Montserrat-ExtraBoldItalic.ttf */,
+				5BD58B9322D71D7500D1CD2D /* Montserrat-ExtraLight.ttf */,
+				5BD58B8F22D71D7500D1CD2D /* Montserrat-ExtraLightItalic.ttf */,
+				5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */,
+				5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */,
+				5BD58B8A22D71D7500D1CD2D /* Montserrat-Italic.ttf */,
+				5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */,
+				5BD58B8622D71D7400D1CD2D /* Montserrat-LightItalic.ttf */,
+				5BD58B8C22D71D7500D1CD2D /* Montserrat-Medium.ttf */,
+				5BD58B8E22D71D7500D1CD2D /* Montserrat-MediumItalic.ttf */,
+				5BD58B8D22D71D7500D1CD2D /* Montserrat-Regular.ttf */,
+				5BD58B9122D71D7500D1CD2D /* Montserrat-SemiBold.ttf */,
+				5BD58B8822D71D7500D1CD2D /* Montserrat-SemiBoldItalic.ttf */,
+				5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */,
+				5BD58B8B22D71D7500D1CD2D /* Montserrat-ThinItalic.ttf */,
+				5BF9811C22D2052900509ED1 /* Images.xcassets */,
+				5B5476152233C6640027A9A0 /* Intercom.framework */,
+				5B50DCC1221882130036DFDD /* Vendor */,
+				13B07FAE1A68108700A75B9A /* Nyxo */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				00E356EF1AD99517003FC87E /* NyxoTests */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				B95CBA5D2099AE3200243A25 /* Recovered References */,
+				94F1E8A8CFBD46088A2BB76D /* Resources */,
+				B64D42BFD4E244D9863E00B7 /* AppCenter-Config.plist */,
+				A166C399641673F389718B26 /* Pods */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* Nyxo.app */,
+				00E356EE1AD99517003FC87E /* NyxoTests.xctest */,
+				5BE7E26423E98F21000FC447 /* Nyxo DEV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94F1E8A8CFBD46088A2BB76D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5B75EE3A2188A8920070EB69 /* Crashlytics.framework */,
+				5B75EE392188A8920070EB69 /* Fabric.framework */,
+				B959F1EA20BD3D8E00AC734C /* Dosis-Bold.ttf */,
+				B959F21820BD455C00AC734C /* fa-regular-400.ttf */,
+				EDBCD013F22D4256B775A881 /* FontAwesome.ttf */,
+				5B2069A4224FB24200257043 /* Lato-Regular.ttf */,
+				E763E2F2E04548318B376785 /* Ionicons.ttf */,
+				5B37A98922CE1A4900820944 /* Montserrat-Black.ttf */,
+				5B37A98822CE1A4900820944 /* Montserrat-BlackItalic.ttf */,
+				5B37A98522CE1A4900820944 /* Montserrat-Bold.ttf */,
+				5B37A97F22CE1A4800820944 /* Montserrat-BoldItalic.ttf */,
+				5B37A98722CE1A4900820944 /* Montserrat-ExtraBold.ttf */,
+				5B37A97C22CE1A4800820944 /* Montserrat-ExtraBoldItalic.ttf */,
+				5B37A97B22CE1A4800820944 /* Montserrat-ExtraLight.ttf */,
+				5B37A98022CE1A4800820944 /* Montserrat-ExtraLightItalic.ttf */,
+				5B37A97E22CE1A4800820944 /* Montserrat-Italic.ttf */,
+				5B37A98322CE1A4800820944 /* Montserrat-Light.ttf */,
+				5B37A98622CE1A4900820944 /* Montserrat-LightItalic.ttf */,
+				5B37A98A22CE1A4900820944 /* Montserrat-Medium.ttf */,
+				5B37A98422CE1A4900820944 /* Montserrat-MediumItalic.ttf */,
+				5B37A98B22CE1A4A00820944 /* Montserrat-Regular.ttf */,
+				5B37A98122CE1A4800820944 /* Montserrat-SemiBold.ttf */,
+				5B37A97D22CE1A4800820944 /* Montserrat-SemiBoldItalic.ttf */,
+				5B37A97A22CE1A4700820944 /* Montserrat-Thin.ttf */,
+				5B37A98222CE1A4800820944 /* Montserrat-ThinItalic.ttf */,
+				6CF46B6888304B68952AC827 /* Dosis-Medium.ttf */,
+				796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */,
+				BC20C0ADAE8344ED9E90B05C /* FontAwesome5_Pro_Light.ttf */,
+				5B37A97122CE0B6700820944 /* Lato-Black.ttf */,
+				5B37A97322CE0B6700820944 /* Lato-BlackItalic.ttf */,
+				5B37A97922CE0B6C00820944 /* Lato Italic.ttf */,
+				5B37A97622CE0B6700820944 /* Lato-Bold.ttf */,
+				5B37A97522CE0B6700820944 /* Lato-BoldItalic.ttf */,
+				5B37A97422CE0B6700820944 /* Lato-Hairline.ttf */,
+				5B37A97222CE0B6700820944 /* Lato-HairlineItalic.ttf */,
+				5B37A97722CE0B6700820944 /* Lato-Light.ttf */,
+				5B37A97822CE0B6700820944 /* Lato-LightItalic.ttf */,
+				F39D20A4A03A4E13BB614E17 /* FontAwesome5_Pro_Regular.ttf */,
+				4F61ADB20DA8429D927A20BC /* FontAwesome5_Pro_Solid.ttf */,
+				E28D9DBBB35A494F8B7F80E4 /* FontAwesome.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A166C399641673F389718B26 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */,
+				00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */,
+				9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */,
+				C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B95CBA5D2099AE3200243A25 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00E356ED1AD99517003FC87E /* NyxoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NyxoTests" */;
+			buildPhases = (
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+			);
+			name = NyxoTests;
+			productName = NyxoTests;
+			productReference = 00E356EE1AD99517003FC87E /* NyxoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13B07F861A680F5B00A75B9A /* Nyxo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Nyxo" */;
+			buildPhases = (
+				BF842D7B9E4CC79A1B9C718D /* [CP] Check Pods Manifest.lock */,
+				5BBCCCD22472B0940047CD86 /* ShellScript */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				5B6E854A21406B9A0013E7B5 /* Embed Watch Content */,
+				5B54765A2233C6650027A9A0 /* Embed Frameworks */,
+				5B5476C22233EC8A0027A9A0 /* Run Script */,
+				6C3BA05A2308A4078CE786D2 /* [CP] Copy Pods Resources */,
+				DED22F96C89D448186375252 /* Upload Debug Symbols to Sentry */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nyxo;
+			productName = "Hello World";
+			productReference = 13B07F961A680F5B00A75B9A /* Nyxo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5BE7E22B23E98F21000FC447 /* Nyxo Dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BE7E26123E98F21000FC447 /* Build configuration list for PBXNativeTarget "Nyxo Dev" */;
+			buildPhases = (
+				882FBEE2C42D54BF5ABCD2A6 /* [CP] Check Pods Manifest.lock */,
+				5BE7E22D23E98F21000FC447 /* Sources */,
+				5BE7E23123E98F21000FC447 /* Frameworks */,
+				5BE7E23F23E98F21000FC447 /* Resources */,
+				5BE7E25923E98F21000FC447 /* Bundle React Native code and images */,
+				5BE7E25A23E98F21000FC447 /* Embed Watch Content */,
+				5BE7E25B23E98F21000FC447 /* ShellScript */,
+				5BE7E25C23E98F21000FC447 /* Embed Frameworks */,
+				5BE7E25E23E98F21000FC447 /* Run Script */,
+				5BE7E26023E98F21000FC447 /* Upload Debug Symbols to Sentry */,
+				BFBB280D8235AFF843AC9293 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Nyxo Dev";
+			productName = "Hello World";
+			productReference = 5BE7E26423E98F21000FC447 /* Nyxo DEV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 940;
+				ORGANIZATIONNAME = Facebook;
+				TargetAttributes = {
+					00E356ED1AD99517003FC87E = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = RPKZ2YP3VZ;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = RPKZ2YP3VZ;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					5BE7E22B23E98F21000FC447 = {
+						DevelopmentTeam = RPKZ2YP3VZ;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Nyxo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+				fi,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5BB5733B21DE4024008895BB /* Products */;
+					ProjectRef = 5BB5733A21DE4024008895BB /* RNDeviceInfo.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* Nyxo */,
+				00E356ED1AD99517003FC87E /* NyxoTests */,
+				5BE7E22B23E98F21000FC447 /* Nyxo Dev */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5BB5735D21DE4024008895BB /* libRNDeviceInfo-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNDeviceInfo-tvOS.a";
+			remoteRef = 5BB5735C21DE4024008895BB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BB573A621DE40B8008895BB /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = 5BB573A521DE40B8008895BB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */,
+				5BD58B9922D71D7600D1CD2D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				5BD58B9A22D71D7600D1CD2D /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				5BD58B9B22D71D7600D1CD2D /* Montserrat-Black.ttf in Resources */,
+				5BD58B9C22D71D7600D1CD2D /* Montserrat-Italic.ttf in Resources */,
+				5BD58B9D22D71D7600D1CD2D /* Montserrat-ThinItalic.ttf in Resources */,
+				5BD58B9E22D71D7600D1CD2D /* Montserrat-Medium.ttf in Resources */,
+				5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */,
+				5BD58B9F22D71D7600D1CD2D /* Montserrat-Regular.ttf in Resources */,
+				5BD58BA022D71D7600D1CD2D /* Montserrat-MediumItalic.ttf in Resources */,
+				5BD58BA122D71D7600D1CD2D /* Montserrat-ExtraLightItalic.ttf in Resources */,
+				5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */,
+				5BD58BA222D71D7600D1CD2D /* Montserrat-BoldItalic.ttf in Resources */,
+				5BD58BA322D71D7600D1CD2D /* Montserrat-SemiBold.ttf in Resources */,
+				5BD58BA422D71D7600D1CD2D /* Montserrat-BlackItalic.ttf in Resources */,
+				5BD58BA522D71D7600D1CD2D /* Montserrat-ExtraLight.ttf in Resources */,
+				5BD58BA622D71D7600D1CD2D /* Montserrat-ExtraBold.ttf in Resources */,
+				5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */,
+				5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */,
+				5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */,
+				5B7820E024EEC2360074BAFC /* rnuc.xcconfig in Resources */,
+				5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */,
+				5BF9816322D2052900509ED1 /* Images.xcassets in Resources */,
+				5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */,
+				5C56F98D642F4D5BA2168C40 /* AppCenter-Config.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE7E23F23E98F21000FC447 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B70355823E998420068DB97 /* Nyxo (DEV).plist in Resources */,
+				5BE7E24023E98F21000FC447 /* Montserrat-LightItalic.ttf in Resources */,
+				5BE7E24123E98F21000FC447 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				5BE7E24223E98F21000FC447 /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				5BE7E24323E98F21000FC447 /* Montserrat-Black.ttf in Resources */,
+				5BE7E24423E98F21000FC447 /* Montserrat-Italic.ttf in Resources */,
+				5BE7E24523E98F21000FC447 /* Montserrat-ThinItalic.ttf in Resources */,
+				5BE7E24623E98F21000FC447 /* Montserrat-Medium.ttf in Resources */,
+				5BE7E24723E98F21000FC447 /* Domine-Regular.ttf in Resources */,
+				5BE7E24823E98F21000FC447 /* Montserrat-Regular.ttf in Resources */,
+				5BE7E24923E98F21000FC447 /* Montserrat-MediumItalic.ttf in Resources */,
+				5BE7E24A23E98F21000FC447 /* Montserrat-ExtraLightItalic.ttf in Resources */,
+				5BE7E24B23E98F21000FC447 /* Montserrat-BoldItalic.ttf in Resources */,
+				5BE7E24C23E98F21000FC447 /* Montserrat-SemiBold.ttf in Resources */,
+				5BE7E24D23E98F21000FC447 /* Montserrat-BlackItalic.ttf in Resources */,
+				5BE7E24E23E98F21000FC447 /* Montserrat-ExtraLight.ttf in Resources */,
+				5BE7E24F23E98F21000FC447 /* Montserrat-ExtraBold.ttf in Resources */,
+				5BE7E25023E98F21000FC447 /* Montserrat-Light.ttf in Resources */,
+				5BE7E25123E98F21000FC447 /* Montserrat-Thin.ttf in Resources */,
+				5BE7E25223E98F21000FC447 /* Montserrat-Bold.ttf in Resources */,
+				5BE7E25323E98F21000FC447 /* main.jsbundle in Resources */,
+				5BE7E25423E98F21000FC447 /* Images.xcassets in Resources */,
+				5BE7E25523E98F21000FC447 /* Images.xcassets in Resources */,
+				5BE7E25623E98F21000FC447 /* Domine-Bold.ttf in Resources */,
+				5BE7E25723E98F21000FC447 /* FontAwesome5_Pro_Brands.ttf in Resources */,
+				5BE7E25823E98F21000FC447 /* AppCenter-Config.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=NODE\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		5B5476C22233EC8A0027A9A0 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nbash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Intercom.framework/strip-frameworks.sh\"\n";
+		};
+		5BBCCCD22472B0940047CD86 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+		};
+		5BE7E25923E98F21000FC447 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		5BE7E25B23E98F21000FC447 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 421e3a33c9d2fd64e229fdc00d5238c59e9b66fa 2e33ae811ee810ee4ea132096a6d77d57066444e3fbb1a29d1d98bce60d8c19e\n";
+		};
+		5BE7E25E23E98F21000FC447 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nbash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Intercom.framework/strip-frameworks.sh\"\n";
+		};
+		5BE7E26023E98F21000FC447 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
+		};
+		6C3BA05A2308A4078CE786D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-resources.sh",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/Intercom.bundle",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/IntercomTranslations.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Intercom.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IntercomTranslations.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		882FBEE2C42D54BF5ABCD2A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nyxo Dev-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF842D7B9E4CC79A1B9C718D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nyxo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFBB280D8235AFF843AC9293 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev-resources.sh",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/Intercom.bundle",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/IntercomTranslations.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Intercom.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IntercomTranslations.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DED22F96C89D448186375252 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00E356EA1AD99517003FC87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B33130A21DFB5B800698A4A /* main.m in Sources */,
+				5BA9115E22E1E2350098700A /* CommandStatus.swift in Sources */,
+				5B33130921DFB5B800698A4A /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE7E22D23E98F21000FC447 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE7E22E23E98F21000FC447 /* main.m in Sources */,
+				5BE7E22F23E98F21000FC447 /* CommandStatus.swift in Sources */,
+				5BE7E23023E98F21000FC447 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* Nyxo */;
+			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5B3312FD21DFB5B800698A4A /* LaunchScreen.old.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B3312FE21DFB5B800698A4A /* Base */,
+				5B48388421FA22EE003855DF /* fi */,
+			);
+			name = LaunchScreen.old.xib;
+			sourceTree = "<group>";
+		};
+		5B3312FF21DFB5B800698A4A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B33130021DFB5B800698A4A /* Base */,
+				5B48388521FA22EE003855DF /* fi */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00E356F61AD99517003FC87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/rn-apple-healthkit/RCTAppleHealthKit",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-haptic-feedback/ios",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
+					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
+					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
+					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-screens/ios",
+				);
+				INFOPLIST_FILE = NyxoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DFB_SONARKIT_ENABLED=1",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nyxo.app/Nyxo";
+			};
+			name = Debug;
+		};
+		00E356F71AD99517003FC87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/rn-apple-healthkit/RCTAppleHealthKit",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-haptic-feedback/ios",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
+					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
+					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
+					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-screens/ios",
+				);
+				INFOPLIST_FILE = NyxoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DFB_SONARKIT_ENABLED=1",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d1d3a31a-831f-44c7-be9d-541c01656f20";
+				PROVISIONING_PROFILE_SPECIFIER = "app.sleepcircle.application AppStore";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nyxo.app/Nyxo";
+			};
+			name = Release;
+		};
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 41;
+				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../node_modules/react-native/React",
+					"$(SRCROOT)/../node_modules/react-native/Libraries",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Nyxo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4.0;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DFB_SONARKIT_ENABLED=1",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application;
+				PRODUCT_NAME = Nyxo;
+				PROVISIONING_PROFILE_SPECIFIER = "match Development app.sleepcircle.application";
+				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Nyxo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 41;
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../node_modules/react-native/React",
+					"$(SRCROOT)/../node_modules/react-native/Libraries",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Nyxo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4.0;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DFB_SONARKIT_ENABLED=1",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application;
+				PRODUCT_NAME = Nyxo;
+				PROVISIONING_PROFILE = "d1d3a31a-831f-44c7-be9d-541c01656f20";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore app.sleepcircle.application";
+				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Nyxo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		5BE7E26223E98F21000FC447 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 41;
+				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor/AppCenter-SDK-Apple/iOS",
+					"$(PROJECT_DIR)/Vendor/AppCenterReactNativeShared",
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../node_modules/react-native/React",
+					"$(SRCROOT)/../node_modules/react-native/Libraries",
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
+					"$(SRCROOT)/../node_modules/react-native-haptic-feedback/ios",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/amazon-cognito-identity-js/ios",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
+					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
+					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-screens/ios",
+					"$(SRCROOT)/../node_modules/react-native-healthkit/RCTAppleHealthKit",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Nyxo (DEV).plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4.0;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DFB_SONARKIT_ENABLED=1",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application.dev;
+				PRODUCT_NAME = "Nyxo DEV";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Nyxo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		5BE7E26323E98F21000FC447 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 41;
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor/AppCenter-SDK-Apple/iOS",
+					"$(PROJECT_DIR)/Vendor/AppCenterReactNativeShared",
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../node_modules/react-native/React",
+					"$(SRCROOT)/../node_modules/react-native/Libraries",
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
+					"$(SRCROOT)/../node_modules/react-native-haptic-feedback/ios",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/amazon-cognito-identity-js/ios",
+					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
+					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
+					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
+					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
+					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
+					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
+					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-screens/ios",
+					"$(SRCROOT)/../node_modules/react-native-healthkit/RCTAppleHealthKit",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Nyxo (DEV).plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4.0;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DFB_SONARKIT_ENABLED=1",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application.dev;
+				PRODUCT_NAME = "Nyxo DEV";
+				PROVISIONING_PROFILE = "d1d3a31a-831f-44c7-be9d-541c01656f20";
+				PROVISIONING_PROFILE_SPECIFIER = "app.sleepcircle.application AppStore";
+				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Nyxo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NyxoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E356F61AD99517003FC87E /* Debug */,
+				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Nyxo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BE7E26123E98F21000FC447 /* Build configuration list for PBXNativeTarget "Nyxo Dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BE7E26223E98F21000FC447 /* Debug */,
+				5BE7E26323E98F21000FC447 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Nyxo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}
