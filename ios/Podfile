@@ -30,6 +30,8 @@ pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/React
 pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga', :modular_headers => true
 pod 'RNPurchases', :path => '../node_modules/react-native-purchases', :inhibit_warnings => true
   
+pod 'RNSha256', :path => '../node_modules/react-native-sha256'
+
 pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
 pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
 pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'

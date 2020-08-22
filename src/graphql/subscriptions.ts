@@ -322,3 +322,114 @@ export const onDeleteHabit = /* GraphQL */ `
     }
   }
 `
+export const onCreateNight = /* GraphQL */ `
+  subscription OnCreateNight($owner: String!) {
+    onCreateNight(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      sourceId
+      sourceName
+      source
+      value
+      startDate
+      endDate
+      totalDuration
+      owner
+    }
+  }
+`
+export const onUpdateNight = /* GraphQL */ `
+  subscription OnUpdateNight($owner: String!) {
+    onUpdateNight(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      sourceId
+      sourceName
+      source
+      value
+      startDate
+      endDate
+      totalDuration
+      owner
+    }
+  }
+`
+export const onDeleteNight = /* GraphQL */ `
+  subscription OnDeleteNight($owner: String) {
+    onDeleteNight(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      sourceId
+      sourceName
+      source
+      value
+      startDate
+      endDate
+      totalDuration
+      owner
+    }
+  }
+`
+export const onCreateLikedContent = /* GraphQL */ `
+  subscription OnCreateLikedContent($owner: String) {
+    onCreateLikedContent(owner: $owner) {
+      id
+      name
+      type
+      slug
+      cover
+      excerpt
+      owner
+    }
+  }
+`
+export const onUpdateLikedContent = /* GraphQL */ `
+  subscription OnUpdateLikedContent($owner: String) {
+    onUpdateLikedContent(owner: $owner) {
+      id
+      name
+      type
+      slug
+      cover
+      excerpt
+      owner
+    }
+  }
+`
+export const onDeleteLikedContent = /* GraphQL */ `
+  subscription OnDeleteLikedContent($owner: String) {
+    onDeleteLikedContent(owner: $owner) {
+      id
+      name
+      type
+      slug
+      cover
+      excerpt
+      owner
+    }
+  }
+`

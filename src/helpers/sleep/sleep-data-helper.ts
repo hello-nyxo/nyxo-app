@@ -1,16 +1,10 @@
 import moment, { MomentInput } from 'moment'
-import {
-  Day,
-  HealthKitSleepResponse,
-  Night,
-  Value
-} from '../../Types/Sleepdata'
+import { SleepSample } from 'react-native-healthkit'
+import { Day, Night, Value } from '../../Types/Sleepdata'
 import { getNightDuration } from '../sleep'
 import { nearestMinutes } from '../time'
 
-export function formatHealthKitResponse(
-  hkSample: HealthKitSleepResponse
-): Night {
+export const formatHealthKitResponse = (hkSample: SleepSample): Night => {
   const startDate = moment(hkSample.startDate, 'YYYY-MM-DD kk:mm:SS ZZ')
   const endDate = moment(hkSample.endDate, 'YYYY-MM-DD kk:mm:SS ZZ')
   let minutes = endDate.diff(startDate, 'minutes')
@@ -23,6 +17,7 @@ export function formatHealthKitResponse(
   const totalDuration = getNightDuration(isoStartDate, isoEndDate)
 
   return {
+    id: hkSample.uuid,
     sourceId: hkSample.sourceId,
     sourceName: hkSample.sourceName,
     value: healthKitSampleToValue(hkSample.value),
@@ -46,7 +41,7 @@ export const healthKitSampleToValue = (healthKitSample: string): Value => {
 }
 
 // Find the starting time of the night
-export function findStartTime(nights: Night[], value: Value) {
+export function findStartTime(nights: Night[], value: Value): string {
   const filteredNightData = nights.filter((n: Night) => n.value === value)
 
   const nightStartTime = filteredNightData.reduce(
@@ -58,7 +53,7 @@ export function findStartTime(nights: Night[], value: Value) {
   return moment(nightStartTime.startDate).toISOString()
 }
 // Find the endit time of the night
-export function findEndTime(night: Night[], value: Value) {
+export function findEndTime(night: Night[], value: Value): string {
   const filteredNightData = night.filter((n) => n.value === value)
 
   const nightStartTime = filteredNightData.reduce(
@@ -70,7 +65,13 @@ export function findEndTime(night: Night[], value: Value) {
   return moment(nightStartTime.endDate).toISOString()
 }
 
-export function calculateBedtimeWindow(lastSevenDays: Day[]) {
+export function calculateBedtimeWindow(
+  lastSevenDays: Day[]
+): {
+  goToSleepWindowStart: string
+  goToSleepWindowCenter: string
+  goToSleepWindowEnd: string
+} {
   let averageBedTime = 0
   let divideBy = 0
   lastSevenDays.forEach((day) => {
@@ -117,7 +118,7 @@ export function calculateBedtimeWindow(lastSevenDays: Day[]) {
   return insights
 }
 
-export function getAverageOfTimes(days: Day[]) {
+export function getAverageOfTimes(days: Day[]): number {
   let averageBedTime = 0
   let divideBy = 0
   days.forEach((day) => {
@@ -145,12 +146,17 @@ export function getAverageOfTimes(days: Day[]) {
   return averageBedTime
 }
 
-export function calculateSocialJetlag(lastSevenDays: Day[]) {
+export function calculateSocialJetlag(
+  lastSevenDays: Day[]
+): {
+  weekDayAverage: string
+  weekendDayAverage: string
+} {
   const weekdays = lastSevenDays.filter(
-    (day: Day) => moment(day.date).day < 6 && moment(day.date).day > 0
+    (day: Day) => moment(day.date).day() < 6 && moment(day.date).day() > 0
   )
   const weekendDays = lastSevenDays.filter(
-    (day: Day) => moment(day.date).day === 0 || moment(day.date).day === 6
+    (day: Day) => moment(day.date).day() === 0 || moment(day.date).day() === 6
   )
 
   const weekDayAverage = moment()
@@ -170,7 +176,9 @@ export function calculateSocialJetlag(lastSevenDays: Day[]) {
   return insights
 }
 
-export function calculateAverages(lastSevenDays: Day[]) {
+export const calculateAverages = (
+  lastSevenDays: Day[]
+): { averageBedTime: number; averageSleepTime: number } => {
   const insights = { averageBedTime: 8, averageSleepTime: 8 }
   return insights
 }
@@ -179,7 +187,7 @@ export function calculateAverages(lastSevenDays: Day[]) {
  * @param {array} night all night values
  * @param {*} value value for filtering, e.g. INBED, ASLEEP
  */
-export function calculateTotalSleep(night: Night[], value: Value) {
+export function calculateTotalSleep(night: Night[], value: Value): number {
   const filteredNightData = night.filter((n: Night) => n.value === value)
 
   const totalDuration = filteredNightData.reduce(
@@ -191,7 +199,7 @@ export function calculateTotalSleep(night: Night[], value: Value) {
 }
 
 // Used to match sleep samples to date
-export function matchDayAndNight(night: string, day: string) {
+export function matchDayAndNight(night: string, day: string): boolean {
   const nightmomentFormat = moment(night, 'YYYY-MM-DD HH:mm:SS ZZ')
   const nightStart = moment(day, 'YYYY-MM-DD HH:mm:SS ZZ')
     .startOf('day')
@@ -209,6 +217,6 @@ export function getDaysBetweenDates(
   startDate: MomentInput,
   endDate: MomentInput,
   days: Day[]
-) {
+): Day[] {
   return days.filter((d: Day) => moment(d.date).isBetween(startDate, endDate))
 }

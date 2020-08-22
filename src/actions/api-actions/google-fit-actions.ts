@@ -13,17 +13,16 @@ import { formatGoogleFitData } from 'helpers/sleep/google-fit-helper'
 import moment from 'moment'
 import { Platform } from 'react-native'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
-import {
-  getGoogleFitEnabled,
-  getGoogleFitToken
-} from 'store/Selectors/api-selectors/api-selectors'
+import { getGoogleFitEnabled } from 'store/Selectors/api-selectors/api-selectors'
 import { getGoogleFitSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
 import { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SleepDataSource } from 'Types/SleepClockState'
 import { Night } from 'Types/Sleepdata'
 import { SOURCE, SUB_SOURCE } from 'typings/state/sleep-source-state'
 import { GetState } from '../../Types/GetState'
-import { GoogleFitResponse } from '../../Types/State/api-state'
+import { syncNightsToCloud } from 'actions/sleep/night-cloud-actions'
+import { GoogleFitResponse, ResponseBase } from '../../Types/State/api-state'
+import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
 /* ACTION TYPES */
 
 export const GOOGLE_FIT_AUTHORIZE_SUCCESS = 'GOOGLE_FIT_AUTHORIZE_SUCCESS'
@@ -34,9 +33,10 @@ export const FETCH_GOOGLE_FIT_START = 'FETCH_GOOGLE_FIT_START'
 export const FETCH_GOOGLE_FIT_SUCCESS = 'FETCH_GOOGLE_FIT_SUCCESS'
 export const FETCH_GOOGLE_FIT_FAILURE = 'FETCH_GOOGLE_FIT_FAILURE'
 
+export const GOOGLE_FIT_KEYCHAIN_SERVICE = 'service.fit.google.customized'
 /* ACTIONS */
 
-export const googleFitAuthorizeSuccess = (payload: GoogleFitResponse) => ({
+export const googleFitAuthorizeSuccess = (payload: ResponseBase) => ({
   type: GOOGLE_FIT_AUTHORIZE_SUCCESS,
   payload
 })
@@ -45,7 +45,7 @@ export const googleFitRevokeSuccess = () => ({
   type: GOOGLE_FIT_REVOKE_SUCCESS
 })
 
-export const googleFitUpdateToken = (payload: GoogleFitResponse) => ({
+export const googleFitUpdateToken = (payload: ResponseBase) => ({
   type: GOOGLE_FIT_UPDATE_TOKEN,
   payload
 })
@@ -80,12 +80,19 @@ export const authorizeGoogleFit = () => async (dispatch: Function) => {
   try {
     const response = await authorize(config)
     const { accessTokenExpirationDate, refreshToken, accessToken } = response
+
+    const key = GOOGLE_FIT_KEYCHAIN_SERVICE
+    const value = JSON.stringify({
+      accessTokenExpirationDate,
+      refreshToken,
+      accessToken
+    })
+
+    await SetKeychainKeyValue(key, value, GOOGLE_FIT_KEYCHAIN_SERVICE)
+
     dispatch(
       googleFitAuthorizeSuccess({
-        enabled: true,
-        accessTokenExpirationDate,
-        refreshToken,
-        accessToken
+        enabled: true
       })
     )
 
@@ -96,11 +103,10 @@ export const authorizeGoogleFit = () => async (dispatch: Function) => {
   }
 }
 
-export const refreshGoogleFitToken = () => async (
-  dispatch: Function,
-  getState: GetState
-) => {
-  const { refreshToken: oldToken } = getGoogleFitToken(getState())
+export const refreshGoogleFitToken = () => async (dispatch: Function) => {
+  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+    GOOGLE_FIT_KEYCHAIN_SERVICE
+  )) as GoogleFitResponse
   const config =
     Platform.OS === 'android'
       ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
@@ -112,17 +118,19 @@ export const refreshGoogleFitToken = () => async (
         refreshToken: oldToken as string
       })
 
-      const updateData = {
-        ...response,
+      const { accessTokenExpirationDate, refreshToken, accessToken } = response
+
+      const key = GOOGLE_FIT_KEYCHAIN_SERVICE
+      const value = JSON.stringify({
+        accessTokenExpirationDate,
         refreshToken:
-          response.refreshToken && response.refreshToken.length > 0
-            ? response.refreshToken
-            : oldToken
-      }
+          refreshToken && refreshToken.length > 0 ? refreshToken : oldToken,
+        accessToken
+      })
 
-      dispatch(googleFitUpdateToken({ ...updateData, enabled: true }))
+      await SetKeychainKeyValue(key, value, GOOGLE_FIT_KEYCHAIN_SERVICE)
 
-      return response.accessToken
+      return accessToken
     } catch (error) {
       // If the refresh token is not working, handle it by revoking the current user.
       // The saved refresh token in the state tree will be guaranteed to always be the latest.
@@ -138,10 +146,12 @@ export const refreshGoogleFitToken = () => async (
 }
 
 export const revokeGoogleFitAccess = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+  dispatch: Dispatch
 ) => {
-  const { refreshToken: oldToken } = getGoogleFitToken(getState())
+  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+    GOOGLE_FIT_KEYCHAIN_SERVICE
+  )) as GoogleFitResponse
+
   const config =
     Platform.OS === 'android'
       ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
@@ -159,13 +169,14 @@ export const revokeGoogleFitAccess = (): Thunk => async (
   dispatch(googleFitRevokeSuccess())
 }
 
-export const readGoogleFitSleep = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
-  const { accessToken, accessTokenExpirationDate } = getGoogleFitToken(
-    getState()
-  )
+export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
+  const {
+    accessToken,
+    accessTokenExpirationDate
+  } = (await GetKeychainParsedValue(
+    GOOGLE_FIT_KEYCHAIN_SERVICE
+  )) as GoogleFitResponse
+
   const startDate = moment().subtract(1, 'week').toISOString()
   const endDate = moment().toISOString()
 
@@ -185,8 +196,9 @@ export const readGoogleFitSleep = (): Thunk => async (
         const response = await googleApiCall.json()
 
         const formatted = await formatGoogleFitData(response.session)
-        dispatch(createGoogleFitSources(formatted))
-        dispatch(formatSleepData(formatted))
+        await dispatch(syncNightsToCloud(formatted))
+        await dispatch(createGoogleFitSources(formatted))
+        await dispatch(formatSleepData(formatted))
       } else {
         const newAccessToken = await dispatch(refreshGoogleFitToken())
 
@@ -203,8 +215,9 @@ export const readGoogleFitSleep = (): Thunk => async (
           )
           const response = await googleApiCall.json()
           const formatted = await formatGoogleFitData(response.session)
-          dispatch(createGoogleFitSources(formatted))
-          dispatch(formatSleepData(formatted))
+          await dispatch(syncNightsToCloud(formatted))
+          await dispatch(createGoogleFitSources(formatted))
+          await dispatch(formatSleepData(formatted))
         }
       }
     } catch (error) {
@@ -217,11 +230,11 @@ export const writeGoogleFitSleep = (date?: string) => async (
   dispatch: Function,
   getState: GetState
 ) => {
-  const {
-    apis: { googleFit }
-  } = getState()
-  if (googleFit) {
-    const { accessToken } = googleFit
+  const { accessToken } = (await GetKeychainParsedValue(
+    GOOGLE_FIT_KEYCHAIN_SERVICE
+  )) as GoogleFitResponse
+
+  if (accessToken) {
     try {
       const formattedDate = moment(date).toISOString()
       const googleApiCall = await fetch(

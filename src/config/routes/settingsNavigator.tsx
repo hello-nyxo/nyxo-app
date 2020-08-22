@@ -9,7 +9,7 @@ import ManageSubscription from '../../screens/settings/ManageSubscription'
 import CoachingSettings from '../../screens/settings/CoachingSettings'
 import DevelopmentMenu from '../../screens/settings/DevelopmentMenu'
 import ROUTE from './Routes'
-
+import GarminScreen from 'screens/settings/GarminScreen'
 const Stack = createNativeStackNavigator()
 
 const SettingsNavigator = () => {
@@ -48,6 +48,11 @@ const SettingsNavigator = () => {
       <Stack.Screen
         name="DevelopmentMenu"
         component={DevelopmentMenu}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Garmin"
+        component={GarminScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -1,20 +1,17 @@
-import { authorizeOura } from '@actions/api-actions/oura-actions'
 import TranslatedText from 'components/TranslatedText'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOuraEnabled } from 'store/Selectors/api-selectors/api-selectors'
-import { getIsOuraMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
+import { getIsPolarMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
-import colors from 'styles/colors'
 import { constants } from 'styles/themes'
+import { togglePolar } from 'actions/api-actions/polar-actions'
 
-const OuraSection = () => {
+const PolarSection = () => {
   const dispatch = useDispatch()
-  const isOuraMainSource = useSelector(getIsOuraMainSource)
-  const ouraAuthorized = useSelector(getOuraEnabled)
+  const isPolarMainSource = useSelector(getIsPolarMainSource)
 
-  const setOuraAsSource = () => {
-    dispatch(toggleOura())
+  const setPolarAsSource = () => {
+    dispatch(togglePolar())
   }
 
   return (
@@ -22,18 +19,20 @@ const OuraSection = () => {
       <TitleRow>
         <Column>
           <LogoAndTitle>
-            <OuraLogo source={require('../../../assets/appIcons/oura.jpg')} />
-            <Title>SOURCE.OURA</Title>
+            <Logo
+              source={require('../../../assets/appIcons/polar-app-icon.png')}
+            />
+            <Title>SOURCE.POLAR</Title>
           </LogoAndTitle>
-          <Description>SOURCE.OURA_DESCRIPTION</Description>
+          <Description>SOURCE.POLAR_DESCRIPTION</Description>
         </Column>
-        <Switch value={isOuraMainSource} onValueChange={setOuraAsSource} />
+        <Switch value={isPolarMainSource} onValueChange={setPolarAsSource} />
       </TitleRow>
     </Container>
   )
 }
 
-export default OuraSection
+export default PolarSection
 
 const Container = styled.View`
   padding: 20px;
@@ -65,10 +64,10 @@ const Title = styled(TranslatedText)`
 
 const Switch = styled.Switch``
 
-const OuraLogo = styled.Image`
+const Logo = styled.Image`
   height: 25px;
-  width: 25px;
   border-radius: 5px;
+  width: 25px;
   margin-right: 10px;
 `
 

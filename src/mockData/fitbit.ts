@@ -8,7 +8,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 558,
-    value: 'INBED'
+    value: Value.InBed
   },
   {
     endDate: '2020-02-29T21:28:00.300Z',
@@ -16,7 +16,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 5,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.710Z',
@@ -24,7 +24,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 28,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.710Z',
@@ -32,7 +32,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 28,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:02.910Z',
@@ -40,7 +40,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 48,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.650Z',
@@ -48,7 +48,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 27,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:00.930Z',
@@ -56,7 +56,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 15,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:02.010Z',
@@ -64,7 +64,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 33,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.080Z',
@@ -72,7 +72,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 18,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.020Z',
@@ -80,7 +80,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 17,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.020Z',
@@ -88,7 +88,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 17,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:00.240Z',
@@ -96,7 +96,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 4,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:00.780Z',
@@ -104,7 +104,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 13,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:00.900Z',
@@ -112,7 +112,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 15,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.650Z',
@@ -120,7 +120,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 27,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:02.130Z',
@@ -128,7 +128,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 35,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.620Z',
@@ -136,7 +136,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 27,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:00.480Z',
@@ -144,7 +144,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 8,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:02.340Z',
@@ -152,7 +152,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 39,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.410Z',
@@ -160,7 +160,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 23,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.860Z',
@@ -168,7 +168,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 31,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:00.270Z',
@@ -176,7 +176,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 4,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:02.130Z',
@@ -184,7 +184,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 35,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:01.980Z',
@@ -192,7 +192,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 33,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:00.810Z',
@@ -200,7 +200,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 13,
-    value: 'ASLEEP'
+    value: Value.Asleep
   },
   {
     endDate: '2020-02-29T21:28:00.570Z',
@@ -208,7 +208,7 @@ export const expectedNight: Night[] = [
     sourceName: 'Fitbit',
     startDate: '2020-02-29T21:28:00.000Z',
     totalDuration: 9,
-    value: 'ASLEEP'
+    value: Value.Asleep
   }
 ]
 

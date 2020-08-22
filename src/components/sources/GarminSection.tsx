@@ -1,20 +1,21 @@
-import { authorizeOura } from '@actions/api-actions/oura-actions'
 import TranslatedText from 'components/TranslatedText'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOuraEnabled } from 'store/Selectors/api-selectors/api-selectors'
-import { getIsOuraMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
+import {
+  getFitbitEnabled,
+} from 'store/Selectors/api-selectors/api-selectors'
+import { getIsGarminMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
-import colors from 'styles/colors'
 import { constants } from 'styles/themes'
+import { toggleGarmin } from 'actions/api-actions/garmin-actions'
 
-const OuraSection = () => {
+const GarminSection = () => {
   const dispatch = useDispatch()
-  const isOuraMainSource = useSelector(getIsOuraMainSource)
-  const ouraAuthorized = useSelector(getOuraEnabled)
+  const isGarminMainSource = useSelector(getIsGarminMainSource)
+  const fitbitAuthorized = useSelector(getFitbitEnabled)
 
-  const setOuraAsSource = () => {
-    dispatch(toggleOura())
+  const setGarminAsSource = async () => {
+    await dispatch(toggleGarmin())
   }
 
   return (
@@ -22,18 +23,20 @@ const OuraSection = () => {
       <TitleRow>
         <Column>
           <LogoAndTitle>
-            <OuraLogo source={require('../../../assets/appIcons/oura.jpg')} />
-            <Title>SOURCE.OURA</Title>
+            <Logo
+              source={require('../../../assets/appIcons/garmin-icon.png')}
+            />
+            <Title>SOURCE.GARMIN</Title>
           </LogoAndTitle>
-          <Description>SOURCE.OURA_DESCRIPTION</Description>
+          <Description>SOURCE.GARMIN_DESCRIPTION</Description>
         </Column>
-        <Switch value={isOuraMainSource} onValueChange={setOuraAsSource} />
+        <Switch value={isGarminMainSource} onValueChange={setGarminAsSource} />
       </TitleRow>
     </Container>
   )
 }
 
-export default OuraSection
+export default GarminSection
 
 const Container = styled.View`
   padding: 20px;
@@ -65,10 +68,10 @@ const Title = styled(TranslatedText)`
 
 const Switch = styled.Switch``
 
-const OuraLogo = styled.Image`
+const Logo = styled.Image`
   height: 25px;
-  width: 25px;
   border-radius: 5px;
+  width: 25px;
   margin-right: 10px;
 `
 

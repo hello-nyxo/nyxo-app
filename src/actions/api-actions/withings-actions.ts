@@ -5,19 +5,14 @@ import { formatSleepData } from '@actions/sleep/sleep-data-actions'
 import CONFIG from 'config/Config'
 import { formatWithingsSamples } from 'helpers/sleep/withings-helper'
 import moment from 'moment'
-import {
-  authorize,
-  AuthorizeResult,
-  refresh,
-  RefreshResult
-} from 'react-native-app-auth'
+import { authorize, refresh, RefreshResult } from 'react-native-app-auth'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SOURCE } from 'typings/state/sleep-source-state'
-import {
-  getWithingsEnabled,
-  getWithingsToken
-} from '../../store/Selectors/api-selectors/api-selectors'
+import { getWithingsEnabled } from '../../store/Selectors/api-selectors/api-selectors'
 import { GetState } from '../../Types/GetState'
+import { syncNightsToCloud } from 'actions/sleep/night-cloud-actions'
+import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
+import { ResponseBase, WithingsAuthorizeResult } from 'Types/State/api-state'
 
 export const WITHINGS_AUTHORIZE_SUCCESS = 'WITHINGS_AUTHORIZE_SUCCESS'
 export const WITHINGS_REVOKE_SUCCESS = 'WITHINGS_REVOKE_SUCCESS'
@@ -28,7 +23,7 @@ export const FETCH_SLEEP_WITHINGS_SUCCESS = 'FETCH_SLEEP_WITHINGS_SUCCESS'
 export const FETCH_SLEEP_WITHINGS_FAILURE = 'FETCH_SLEEP_WITHINGS_FAILURE'
 
 export const withingsAuthorizeSuccess = (
-  payload: WithingAuthResponse
+  payload: ResponseBase
 ): ReduxAction => ({
   type: WITHINGS_AUTHORIZE_SUCCESS,
   payload
@@ -38,9 +33,7 @@ export const withingsRevokeSuccess = (): ReduxAction => ({
   type: WITHINGS_REVOKE_SUCCESS
 })
 
-export const withingsUpdateToken = (
-  payload: WithingAuthResponse
-): ReduxAction => ({
+export const withingsUpdateToken = (payload: ResponseBase): ReduxAction => ({
   type: WITHINGS_UPDATE_TOKEN,
   payload
 })
@@ -81,15 +74,21 @@ export const authorizeWithings = (): Thunk => async (dispatch: Dispatch) => {
       accessTokenExpirationDate,
       refreshToken,
       accessToken,
-      tokenAdditionalParameters: { userid: user_id }
+      tokenAdditionalParameters: { userid }
     } = response
+
+    const key = CONFIG.WITHINGS_CONFIG.bundleId
+    const value = JSON.stringify({
+      accessTokenExpirationDate,
+      refreshToken,
+      accessToken,
+      tokenAdditionalParameters: { userid }
+    })
+
+    await SetKeychainKeyValue(key, value, CONFIG.WITHINGS_CONFIG.bundleId)
 
     dispatch(
       withingsAuthorizeSuccess({
-        accessTokenExpirationDate,
-        refreshToken,
-        accessToken,
-        user_id,
         enabled: true
       })
     )
@@ -99,11 +98,10 @@ export const authorizeWithings = (): Thunk => async (dispatch: Dispatch) => {
   }
 }
 
-export const refreshWithingsToken = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
-  const { refreshToken: oldToken } = getWithingsToken(getState())
+export const refreshWithingsToken = (): Thunk => async (dispatch: Dispatch) => {
+  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+    CONFIG.WITHINGS_CONFIG.bundleId
+  )) as WithingsAuthorizeResult
 
   if (oldToken) {
     try {
@@ -118,20 +116,30 @@ export const refreshWithingsToken = (): Thunk => async (
         additionalParameters: { userid: user_id }
       } = response
 
+      const key = CONFIG.WITHINGS_CONFIG.bundleId
+      const value = JSON.stringify({
+        accessTokenExpirationDate,
+        refreshToken:
+          refreshToken && refreshToken.length > 0 ? refreshToken : oldToken,
+        accessToken,
+        additionalParameters: { userid: user_id }
+      })
+
+      await SetKeychainKeyValue(key, value, CONFIG.WITHINGS_CONFIG.bundleId)
+
       dispatch(
         withingsAuthorizeSuccess({
-          accessTokenExpirationDate,
-          refreshToken:
-            refreshToken && refreshToken.length > 0 ? refreshToken : oldToken,
-          accessToken,
-          user_id,
           enabled: true
         })
       )
+
+      return accessToken
     } catch (error) {
       captureException(error)
     }
   }
+
+  return null
 }
 
 export const revokeWithingsAccess = (): Thunk => async (dispatch: Dispatch) => {
@@ -143,9 +151,13 @@ export const getWithingsSleep = (
   startDate?: string,
   endDate?: string
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
-  const { accessToken, accessTokenExpirationDate } = getWithingsToken(
-    getState()
-  )
+  const {
+    accessToken,
+    accessTokenExpirationDate
+  } = (await GetKeychainParsedValue(
+    CONFIG.WITHINGS_CONFIG.bundleId
+  )) as WithingsAuthorizeResult
+
   dispatch(fetchSleepWithingsStart())
 
   const start = startDate || moment().subtract(1, 'week').format('YYYY-MM-DD')
@@ -169,12 +181,11 @@ export const getWithingsSleep = (
 
         const response = await withingsApiCall.json()
         const formattedResponse = formatWithingsSamples(response.body.series)
-        console.log(response)
-
-        dispatch(formatSleepData(formattedResponse))
-        dispatch(fetchSleepWithingsSuccess())
+        await dispatch(syncNightsToCloud(formattedResponse))
+        await dispatch(formatSleepData(formattedResponse))
+        await dispatch(fetchSleepWithingsSuccess())
       } else {
-        await dispatch(refreshWithingsToken())
+        const accessToken = await dispatch(refreshWithingsToken())
 
         const withingsApiCall = await fetch(
           `https://wbsapi.withings.net/v2/sleep?action=getsummary&startdateymd=${start}&enddateymd=${end}&data_fields=${dataFields}`,
@@ -188,9 +199,9 @@ export const getWithingsSleep = (
 
         const response = await withingsApiCall.json()
         const formattedResponse = formatWithingsSamples(response.body.series)
-        console.log(response)
-        dispatch(formatSleepData(formattedResponse))
-        dispatch(fetchSleepWithingsSuccess())
+        await dispatch(syncNightsToCloud(formattedResponse))
+        await dispatch(formatSleepData(formattedResponse))
+        await dispatch(fetchSleepWithingsSuccess())
       }
     } catch (error) {
       dispatch(fetchSleepWithingsFailure())
@@ -204,19 +215,4 @@ interface WithingsRefreshResult extends RefreshResult {
   additionalParameters: {
     userid: string
   }
-}
-
-interface WithingsAuthorizeResult extends AuthorizeResult {
-  refreshToken: string
-  tokenAdditionalParameters: {
-    userid: string
-  }
-}
-
-export type WithingAuthResponse = {
-  accessTokenExpirationDate: string
-  refreshToken: string
-  accessToken: string
-  user_id: string
-  enabled: boolean
 }

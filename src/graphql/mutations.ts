@@ -322,3 +322,114 @@ export const deleteHabit = /* GraphQL */ `
     }
   }
 `
+export const createNight = /* GraphQL */ `
+  mutation CreateNight($input: CreateNightInput!) {
+    createNight(input: $input) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      sourceId
+      sourceName
+      source
+      value
+      startDate
+      endDate
+      totalDuration
+      owner
+    }
+  }
+`
+export const updateNight = /* GraphQL */ `
+  mutation UpdateNight($input: UpdateNightInput!) {
+    updateNight(input: $input) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      sourceId
+      sourceName
+      source
+      value
+      startDate
+      endDate
+      totalDuration
+      owner
+    }
+  }
+`
+export const deleteNight = /* GraphQL */ `
+  mutation DeleteNight($input: DeleteNightInput!) {
+    deleteNight(input: $input) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      sourceId
+      sourceName
+      source
+      value
+      startDate
+      endDate
+      totalDuration
+      owner
+    }
+  }
+`
+export const createLikedContent = /* GraphQL */ `
+  mutation CreateLikedContent($input: CreateLikedContentInput!) {
+    createLikedContent(input: $input) {
+      id
+      name
+      type
+      slug
+      cover
+      excerpt
+      owner
+    }
+  }
+`
+export const updateLikedContent = /* GraphQL */ `
+  mutation UpdateLikedContent($input: UpdateLikedContentInput!) {
+    updateLikedContent(input: $input) {
+      id
+      name
+      type
+      slug
+      cover
+      excerpt
+      owner
+    }
+  }
+`
+export const deleteLikedContent = /* GraphQL */ `
+  mutation DeleteLikedContent($input: DeleteLikedContentInput!) {
+    deleteLikedContent(input: $input) {
+      id
+      name
+      type
+      slug
+      cover
+      excerpt
+      owner
+    }
+  }
+`

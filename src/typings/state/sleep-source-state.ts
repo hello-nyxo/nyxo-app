@@ -5,6 +5,7 @@ export enum SOURCE {
   FITBIT = 'FITBIT',
   WITHINGS = 'WITHINGS',
   OURA = 'OURA',
+  POLAR = 'POLAR',
   NO_SOURCE = 'NO_SOURCE'
 }
 

@@ -16,7 +16,6 @@ import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
 import org.unimodules.core.interfaces.SingletonModule;
 import fi.nyxo.app.R;
-import com.reactnative.googlefit.GoogleFitPackage;
 import io.intercom.android.sdk.Intercom;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
@@ -26,7 +25,6 @@ import java.util.Arrays;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage; 
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage; 
 import com.reactnativeultimateconfig.UltimateConfigModule;
-
 public class MainApplication extends Application implements ReactApplication {
   private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
       new BasePackageList().getPackageList(), Arrays.<SingletonModule>asList());
@@ -35,9 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     public boolean getUseDeveloperSupport() {
-      // return true;
       return BuildConfig.DEBUG;
-      // return BuildConfig.DEBUG; THERES something wrong here
     }
 
     @Override
@@ -47,24 +43,10 @@ public class MainApplication extends Application implements ReactApplication {
 
       @SuppressWarnings("UnnecessaryLocalVariable")
       List<ReactPackage> packages = new PackageList(this).getPackages();
-      // packages.add(new CodePush("Y26psKSBIfzb2ta6JgrEC_ZXlxeIHJ4jvmmMB",
-      // getApplicationContext(), BuildConfig.DEBUG));
-      // packages.add(new RNBackgroundFetchPackage());
-      packages.add(new GoogleFitPackage(BuildConfig.APPLICATION_ID));
       packages.add(new ModuleRegistryAdapter(mModuleRegistryProvider));
-      packages.add(new RNFirebaseMessagingPackage()); // <-- Add this line
-      packages.add(new RNFirebaseNotificationsPackage()); // <-- Add this line
-      // packages.add(new RNSentryPackage());
-
-      // packages.add(new GFPackage());
-      // packages.addAll(unimodules);
-
-      // packages.add(new IntercomPackage());
-      // Packages that cannot be autolinked yet can be added manually here, for
-      // example: Y26psKSBIfzb2ta6JgrEC_ZXlxeIHJ4jvmmMB
-      // packages.add(new MyReactNativePackage());
+      packages.add(new RNFirebaseMessagingPackage()); 
+      packages.add(new RNFirebaseNotificationsPackage()); 
       return packages;
-
     }
 
     @Override
@@ -80,7 +62,7 @@ public class MainApplication extends Application implements ReactApplication {
 
   @Override
   public void onCreate() {
-		super.onCreate();
+    super.onCreate();
 		UltimateConfigModule.setBuildConfig(BuildConfig.class);
     SoLoader.init(this, /* native exopackage */ false);
     Intercom.initialize(this, BuildConfig.INTERCOM_KEY_ANDROID, BuildConfig.INTERCOM_ID);

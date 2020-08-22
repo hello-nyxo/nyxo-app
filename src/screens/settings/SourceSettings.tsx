@@ -3,6 +3,7 @@ import GoogleFitSection from 'components/sources/GoogleFitSection'
 import HealthKitSection from 'components/sources/HealthKitSection'
 import OuraSection from 'components/sources/OuraSection'
 import WithingsSection from 'components/sources/WithingsSection'
+import GarminSection from 'components/sources/GarminSection'
 import ROUTE from 'config/routes/Routes'
 import React, { memo } from 'react'
 import { Platform, ScrollView } from 'react-native'
@@ -14,6 +15,7 @@ import {
   P,
   SafeAreaView
 } from '../../components/Primitives/Primitives'
+import PolarSection from 'components/sources/PolarSection'
 
 const SetSourceScreen = () => {
   return (
@@ -31,6 +33,8 @@ const SetSourceScreen = () => {
         <GoogleFitSection />
         <OuraSection />
         <WithingsSection />
+        <PolarSection />
+        <GarminSection />
         <FitbitSection />
 
         <Spacer />
