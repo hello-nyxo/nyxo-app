@@ -389,6 +389,8 @@ PODS:
     - React
   - react-native-splash-screen (3.2.0):
     - React
+  - react-native-ultimate-config (3.2.3):
+    - React
   - react-native-webview (9.4.0):
     - React
   - React-RCTActionSheet (0.62.2):
@@ -591,6 +593,7 @@ DEPENDENCIES:
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
+  - react-native-ultimate-config (from `../node_modules/react-native-ultimate-config`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -746,6 +749,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
     :path: "../node_modules/react-native-splash-screen"
+  react-native-ultimate-config:
+    :path: "../node_modules/react-native-ultimate-config"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-RCTActionSheet:
@@ -906,6 +911,7 @@ SPEC CHECKSUMS:
   react-native-netinfo: cd479ab1b67cdd1cb1403a99ecdb24190a6dd7ef
   react-native-safe-area-context: 9d9640a9085014864052e38496fc1dfde0b93974
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
+  react-native-ultimate-config: 429433ed406d1c0d18b72b169dc99702d7180214
   react-native-webview: cf5527893252b3b036eea024a1da6996f7344c74
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
@@ -958,4 +964,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 69d4b796a13846a6d156837906659198ee9aa4f6
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
