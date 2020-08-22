@@ -17,7 +17,7 @@ module.exports = {
     'prettier'
   ],
   plugins: ['react', 'react-native', '@typescript-eslint', 'prettier'],
-  ignorePatterns: ['node_modules/'],
+  ignorePatterns: ['node_modules/', 'aws-exports.js'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -26,7 +26,10 @@ module.exports = {
   rules: {
     semi: [2, 'never'],
     'comma-dangle': 'off',
-    'max-len': ['error', { ignoreComments: true, code: 120, ignoreStrings: true }],
+    'max-len': [
+      'error',
+      { ignoreComments: true, code: 120, ignoreStrings: true }
+    ],
     'prettier/prettier': ['error'],
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
@@ -44,12 +47,18 @@ module.exports = {
     'react-native/no-color-literals': 'error',
     'react/jsx-closing-bracket-location': 'off',
     'react/require-default-props': 'off',
-    'react-native/no-raw-text': 'off', //  This does not currently work with styled components
+    'react-native/no-raw-text': 'off',
     'react-native/no-single-element-style-arrays': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
 
-    '@typescript-eslint/member-delimiter-style': ['error', { multiline: { delimiter: 'none' } }],
-    'react/jsx-wrap-multilines': ['error', { declaration: false, assignment: false }]
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
+      { multiline: { delimiter: 'none' } }
+    ],
+    'react/jsx-wrap-multilines': [
+      'error',
+      { declaration: false, assignment: false }
+    ]
   },
   settings: {
     'import/resolver': {
