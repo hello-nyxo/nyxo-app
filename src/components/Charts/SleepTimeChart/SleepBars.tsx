@@ -1,6 +1,6 @@
 import { ScaleTime } from 'd3'
 import moment from 'moment'
-import React, { memo, useMemo } from 'react'
+import React, { FC, memo, useMemo } from 'react'
 import { G, Rect } from 'react-native-svg'
 import { Day, Night, Value } from 'Types/Sleepdata'
 import colors from '../../../styles/colors'
@@ -8,36 +8,31 @@ import colors from '../../../styles/colors'
 interface Props {
   data: Day[]
   type: Value
-  scaleX: ScaleTime<any, any>
-  scaleY: ScaleTime<any, any>
+  scaleX: ScaleTime<number, number>
+  scaleY: ScaleTime<number, number>
   barWidth: number
-  select: Function
 }
 
-const SleepBars = (props: Props) => {
-  const color =
-    props.type === Value.Asleep ? colors.radiantBlue : colors.inBedColor
+const SleepBars: FC<Props> = ({ data, type, scaleX, scaleY, barWidth }) => {
+  const color = type === Value.Asleep ? colors.radiantBlue : colors.inBedColor
 
   const { bars } = useMemo(
     () => ({
-      bars: props.data.map((datum, index) => {
-        const select = () => {
-          props.select(datum)
-        }
-
+      bars: data.map((datum) => {
         const dayBars = datum.night
-          .filter((night) => night.value === props.type)
-          .map((item: Night, i: number) => {
-            const y = props.scaleY(moment(item.startDate).valueOf())
+          .filter((night) => night.value === type)
+          .map((item: Night) => {
+            const y = scaleY(moment(item.startDate).valueOf())
+            const x = scaleX(new Date(datum.date))
             const height =
-              props.scaleY(moment(item.endDate).valueOf()) -
-              props.scaleY(moment(item.startDate).valueOf())
+              scaleY(moment(item.endDate).valueOf()) -
+              scaleY(moment(item.startDate).valueOf())
 
             return (
-              <G key={i} onPress={select}>
+              <G key={item.startDate}>
                 <Rect
-                  x={props.scaleX(new Date(datum.date))}
-                  width={props.barWidth}
+                  x={x}
+                  width={barWidth}
                   fillOpacity={0.7}
                   rx={5}
                   y={y}
@@ -48,13 +43,13 @@ const SleepBars = (props: Props) => {
             )
           })
 
-        return <G key={index}>{dayBars}</G>
+        return <G key={datum.date}>{dayBars}</G>
       })
     }),
-    [props.data]
+    [data]
   )
 
   return <G>{bars}</G>
 }
 
-export default memo(SleepBars)
+export default SleepBars

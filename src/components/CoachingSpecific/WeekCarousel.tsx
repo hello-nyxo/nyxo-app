@@ -57,7 +57,6 @@ const WeekCarousel: FC = () => {
         directionalLockEnabled
         initialScrollIndex={activeWeekIndex}
         snapToOffsets={snapOffets}
-        debug
         getItemLayout={(_: CombinedWeek[], index: number) => ({
           index,
           length: cardWidth,

@@ -8,7 +8,7 @@ import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/
 import {
   disableCoaching,
   purchaseCoachingForAWeek
-} from '../../actions/subscription/subscription-actions'
+} from '@actions/subscription/subscription-actions'
 
 const DevelopmentMenu = () => {
   const dispatch = useDispatch()

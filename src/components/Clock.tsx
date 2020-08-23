@@ -10,21 +10,20 @@ import {
   getGoToSleepWindowStart
 } from '../store/Selectors/insight-selectors/Insights'
 import { getEditMode } from '../store/Selectors/ManualDataSelectors'
-import { getSelectedItem } from '../store/Selectors/SleepDataSelectors'
-import { getIsDarkMode } from '../store/Selectors/UserSelectors'
+import { getSelectedDay } from '../store/Selectors/SleepDataSelectors'
 import colors from '../styles/colors'
-import { Day, Value } from '../Types/Sleepdata'
-import ClockTimes from './sleepClock/clockTimes'
-import CurvedEditButton from './sleepClock/CurvedEditButton'
-import Date from './sleepClock/Date'
-import FallAsleepWindow from './sleepClock/FallAsleepWindow'
-import InfoButton from './sleepClock/InfoButton'
-import MinuteSticks from './sleepClock/MinuteSticks'
-import NightRating from './sleepClock/NightRating'
-import SleepArc from './sleepClock/SleepArc'
-import SleepTime from './sleepClock/SleepTime'
-import Bedtime from './sleepClock/Slider'
-import TrackerName from './sleepClock/TrackerName'
+import { Value } from '../Types/Sleepdata'
+import AddNightButton from './clock/AddNightButton'
+import ClockTimes from './clock/ClockTimes'
+import Date from './clock/Date'
+import FallAsleepWindow from './clock/FallAsleepWindow'
+import InfoButton from './clock/InfoButton'
+import MinuteSticks from './clock/MinuteSticks'
+import NightRating from './clock/NightRating'
+import SleepArc from './clock/SleepArc'
+import SleepTime from './clock/SleepTime'
+import Bedtime from './clock/Slider'
+import TrackerName from './clock/TrackerName'
 
 const { width } = Dimensions.get('window')
 const clockSize = width - 40
@@ -34,15 +33,10 @@ const radius: number = clockSize / 2 - 10
 const inBedRadius: number = clockSize / 2 - 15
 const fallAsleepRadius: number = clockSize / 2 - 5
 
-type Props = {
-  selectedDay: Day
-  shouldAnimate: boolean
-}
-
-const Clock: FC<Props> = ({ selectedDay, shouldAnimate }: Props) => {
+const Clock: FC = () => {
   const goToSleepWindowStart = useSelector(getGoToSleepWindowStart)
   const goToSleepWindowEnd = useSelector(getGoToSleepWindowEnd)
-  const selectedItem = useSelector(getSelectedItem)
+  const selectedDay = useSelector(getSelectedDay)
   const editMode = useSelector(getEditMode)
   const dispatch = useDispatch()
 
@@ -52,21 +46,17 @@ const Clock: FC<Props> = ({ selectedDay, shouldAnimate }: Props) => {
 
   const hasData = selectedDay.night ? selectedDay.night.length !== 0 : false
 
-  const isDarkMode = useSelector(getIsDarkMode)
-
   return (
     <ClockContainer style={{ height: clockSize + 15, width: clockSize + 15 }}>
       <Svg width={clockSize} height={clockSize}>
         <MinuteSticks x={x} y={y} radius={radius} />
-        <ClockTimes x={x} y={y} radius={radius} shouldAnimate={shouldAnimate} />
+        <ClockTimes x={x} y={y} radius={radius} />
         <FallAsleepWindow
           goToSleepWindowStart={goToSleepWindowStart}
           goToSleepWindowEnd={goToSleepWindowEnd}
-          selected={Number(selectedItem) === 2}
           x={x}
           y={y}
           radius={fallAsleepRadius}
-          darkTheme={isDarkMode}
         />
         <SleepArc
           day={selectedDay}
@@ -95,14 +85,8 @@ const Clock: FC<Props> = ({ selectedDay, shouldAnimate }: Props) => {
           y={y}
           radius={inBedRadius}
         />
-        <Date
-          hasData={hasData}
-          date={selectedDay.date}
-          x={x}
-          y={y}
-          darkTheme={isDarkMode}
-        />
-        <TrackerName x={x} y={y} radius={radius} darkTheme={isDarkMode} />
+        <Date hasData={hasData} date={selectedDay.date} x={x} y={y} />
+        <TrackerName x={x} y={y} />
 
         {!editMode && (
           <SleepTime
@@ -126,19 +110,7 @@ const Clock: FC<Props> = ({ selectedDay, shouldAnimate }: Props) => {
           date={selectedDay.date}
         />
       )}
-
-      <StyledSvg width={clockSize} height={clockSize}>
-        {!editMode && (
-          <CurvedEditButton
-            hasData={hasData}
-            darkMode={isDarkMode}
-            toggleEdit={toggleEditNightMode}
-            x={x}
-            y={y}
-            radius={radius}
-          />
-        )}
-      </StyledSvg>
+      <AddNightButton />
       <InfoButton />
     </ClockContainer>
   )
@@ -150,9 +122,11 @@ const ClockContainer = styled(Animated.View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 300px;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   padding: 5px;
+  border-radius: 7px;
+  flex: 1;
+  margin-top: 8px;
 `
 
 const StyledSvg = styled(Svg)`

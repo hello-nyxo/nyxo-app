@@ -1,25 +1,23 @@
-import React, { memo } from 'react'
-import { SectionList, Text } from 'react-native'
+import React, { FC } from 'react'
+import { SectionList } from 'react-native'
 import { useSelector } from 'react-redux'
 import {
   getActiveHabits,
   getArchivedHabits
 } from 'store/Selectors/habit-selectors/habit-selectors'
 import { Habit } from 'Types/State/habit-state'
-import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
 import CoachingSectionHeader from '../../components/CoachingSpecific/CoachingSectionHeader'
 import EmptyState from '../../components/EmptyState'
 import HabitCard from '../../components/HabitCard/HabitCard'
 import EditHabitModal from '../../components/modals/HabitModal/EditHabitModal'
 import {
   Container,
-  H1,
   P,
+  PageTitle,
   SafeAreaView
 } from '../../components/Primitives/Primitives'
-import keyExtractor from '../../helpers/KeyExtractor'
 
-const HabitView = () => {
+const HabitView: FC = () => {
   const activeHabits = useSelector(getActiveHabits)
   const archivedHabits = useSelector(getArchivedHabits)
 
@@ -32,7 +30,7 @@ const HabitView = () => {
     { title: 'HABIT.ARCHIVED', data: archivedHabits }
   ]
 
-  const habitKeyExtractor = (item: Habit, index: number) => {
+  const habitKeyExtractor = (item: Habit) => {
     return item.id
   }
 
@@ -41,11 +39,8 @@ const HabitView = () => {
       <SectionList
         ListHeaderComponent={() => (
           <>
-            <GoBackContainer>
-              <GoBack />
-            </GoBackContainer>
+            <PageTitle adjustsFontSizeToFit>HABIT.HABIT_TITLE</PageTitle>
             <Container>
-              <H1 adjustsFontSizeToFit>HABIT.HABIT_TITLE</H1>
               <P>HABIT.EXPLANATION_1</P>
               <P>HABIT.EXPLANATION_2</P>
             </Container>

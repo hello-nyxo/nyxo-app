@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 import {
   addManualDataToNight,
   toggleEditMode
-} from '../../actions/manual-sleep/manual-sleep-actions'
+} from '@actions/manual-sleep/manual-sleep-actions'
 import { SMART_TOP_PADDING } from '../../helpers/Dimensions'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'

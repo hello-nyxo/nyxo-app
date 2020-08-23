@@ -1,7 +1,7 @@
 import { CREATE_SUCCESS } from '@actions/sleep/sleep-to-cloud-actions'
 import moment from 'moment'
 import ReduxAction from 'Types/ReduxActions'
-import { RESET_APP } from '../../actions/shared'
+import { RESET_APP } from '@actions/shared'
 import {
   CREATE_NEW_CALENDAR,
   PUSH_NEW_DAYS_TO_CALENDAR,
@@ -13,7 +13,7 @@ import {
   SET_TODAY_AS_SELECTED,
   UPDATE_DAY,
   UPDATE_SLEEP_DATA
-} from '../../actions/sleep/sleep-data-actions'
+} from '@actions/sleep/sleep-data-actions'
 import { sortDays } from '../../helpers/sleep'
 import { sameDay } from '../../helpers/time'
 import { SleepClockState } from '../../Types/SleepClockState'

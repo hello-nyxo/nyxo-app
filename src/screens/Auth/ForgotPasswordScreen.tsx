@@ -6,7 +6,7 @@ import { ConfirmationSchema } from 'config/Validation'
 import {
   requestNewPassword,
   submitNewPassword
-} from '../../actions/auth/auth-actions'
+} from '@actions/auth/auth-actions'
 import BottomButton from '../../components/Buttons/BottomButton'
 import TextButton from '../../components/Buttons/TextButton'
 import { Container, H1, H4 } from '../../components/Primitives/Primitives'

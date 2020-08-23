@@ -11,10 +11,6 @@
   "HealthKit Connected": "HealthKit Connected!",
   "Enable notifications": "Allow notifications",
 
-  "HeadsUpIntro": "Heads up!",
-  "HeadsUpText": "Your bed time is approaching. We have prepared a relaxing breathing exercise just for you for tonight.",
-  "HeadsUpStart": "Start exercise",
-
   "Allow reading Apple Health": "Allow reading from Apple Health",
   "EnableHealthKit": "Allow",
 
@@ -667,5 +663,13 @@
     "WINDOW_EXPLANATION": "The Bedtime window is an estimate of your circadian homeostatic rhythm's 'optimal period falling asleep', which is calculated from your last seven nights. To minimize the time spent in bed awake, and fall asleep faster, aim to fall asleep during your bedtime window.",
     "RATING": "Rating",
     "RATING_EXPLANATION": "Your rating for the night."
+  },
+
+  "TAB": {
+    "SLEEP": "Sleep",
+    "COACHING": "Coaching",
+    "HABITS": "Habits",
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings"
   }
 }

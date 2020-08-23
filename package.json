@@ -175,7 +175,7 @@
     "contentful": "^7.13.1",
     "countdown": "^2.6.0",
     "d3": "^5.12.0",
-    "d3-interpolate": "^1.3.2",
+    "date-fns": "^2.15.0",
     "debug": "^4.1.1",
     "escape-string-regexp": "^4.0.0",
     "expo-blur": "^8.1.0",

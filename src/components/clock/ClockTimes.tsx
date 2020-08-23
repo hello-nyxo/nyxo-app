@@ -1,5 +1,5 @@
 import range from 'lodash/range'
-import React, { memo } from 'react'
+import React, { memo, FC } from 'react'
 import { G, Line, Text as SVGText } from 'react-native-svg'
 import styled from 'styled-components/native'
 import { polarToCartesian } from '../../helpers/geometry'
@@ -8,19 +8,17 @@ type Props = {
   x: number
   y: number
   radius: number
-  shouldAnimate: boolean
 }
 
-const ClockTimes = ({ x, y, radius, shouldAnimate }: Props) => {
-  const sticks = range(12).map((hour, index) => {
+const ClockTimes: FC<Props> = ({ x, y, radius }) => {
+  const sticks = range(12).map((hour) => {
     const stickStart = polarToCartesian(x, y, radius - 20, hour * 30)
     const stickEnd = polarToCartesian(x, y, radius, hour * 30)
     const time = polarToCartesian(x, y, radius - 35, hour * 30)
 
     return (
-      <G key={index}>
+      <G key={hour}>
         <ThemedLine
-          key={index}
           x1={stickStart.x}
           x2={stickEnd.x}
           y1={stickStart.y}

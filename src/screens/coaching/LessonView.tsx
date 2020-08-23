@@ -15,7 +15,7 @@ import Tags from 'components/LessonComponents/Tags'
 import {
   popFromIncompleteLessons,
   pushInteractedLesson
-} from '../../actions/CoachingNotification/CoachingNotificationActions'
+} from '@actions/CoachingNotification/CoachingNotificationActions'
 import Authors from '../../components/CoachingSpecific/Authors'
 import TopHeader from '../../components/CoachingSpecific/TopHeader'
 import WeekViewHeader from '../../components/CoachingSpecific/WeekViewHeader'

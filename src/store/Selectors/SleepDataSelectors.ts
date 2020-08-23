@@ -1,4 +1,5 @@
-import { deviation, min, max, mean } from 'd3'
+import { deviation, max, mean, min } from 'd3'
+import { clockTimeToAngle } from 'helpers/geometry'
 import Moment from 'moment'
 import { createSelector } from 'reselect'
 import { SleepClockState } from '../../Types/SleepClockState'
@@ -8,7 +9,6 @@ import { State } from '../../Types/State'
 const getState = (state: State) => state.sleepclock
 const getDays = (state: State) => state.sleepclock.days
 const getToday = (state: State) => state.sleepclock.today
-const activeIndex = (state: State) => state.sleepclock.activeIndex
 
 export const getInsights = createSelector(
   getState,
@@ -30,30 +30,35 @@ export const getSelectedDayRating = createSelector(
   (state: SleepClockState) => state.selectedDay.rating
 )
 
-export const getTotalTrackedNights = createSelector(getDays, (days: Day[]) =>
-  days ? days.filter((day: Day) => day.night.length !== 0) : []
+export const getTotalTrackedNights = createSelector(
+  getDays,
+  (daysWithNights: Day[]) =>
+    daysWithNights
+      ? daysWithNights.filter((day: Day) => day.night.length !== 0)
+      : []
 )
 
 export const getBedTimeNights = createSelector(
   getTotalTrackedNights,
-  (days: Day[]) =>
-    days ? days.filter((day: Day) => day.inBedDuration > 0) : []
+  (daysWithNights: Day[]) =>
+    daysWithNights
+      ? daysWithNights.filter((day: Day) => day.inBedDuration > 0)
+      : []
 )
 
 export const getAsleepNights = createSelector(
   getTotalTrackedNights,
-  (days: Day[]) =>
-    days ? days.filter((day: Day) => day?.asleepDuration > 0) : []
+  (daysWithNights: Day[]) =>
+    daysWithNights
+      ? daysWithNights.filter((day: Day) => day.asleepDuration > 0)
+      : []
 )
 
 export const getAverageBedTime = createSelector(
   getBedTimeNights,
   (longestNight: Day[]) =>
-    longestNight.reduce(
-      (currentValue, night) =>
-        currentValue + night?.inBedDuration ? night?.inBedDuration : 0,
-      0
-    ) / longestNight.length
+    longestNight.reduce((acc, n) => acc + n.inBedDuration, 0) /
+    longestNight.length
 )
 
 export const getAverageSleepTime = createSelector(
@@ -73,18 +78,17 @@ export const deviationSleep = createSelector(getAsleepNights, (days: Day[]) =>
 
 export const getShortestBedTime = createSelector(
   getBedTimeNights,
-  (shortestNight: Day[]) =>
-    min(shortestNight, (item: Day) => item.inBedDuration)
+  (days: Day[]) => min(days, (item: Day) => item.inBedDuration)
 )
 
 export const getShortestSleepTime = createSelector(
   getAsleepNights,
-  (shortestNight: Day[]) =>
-    min(shortestNight, (item: Day) => item.asleepDuration)
+  (days: Day[]) => min(days, (item: Day) => item.asleepDuration)
 )
 
-export const getLongestBedTime = createSelector(getBedTimeNights, (days) =>
-  max(days, (day) => day.inBedDuration)
+export const getLongestBedTime = createSelector(
+  getBedTimeNights,
+  (longestNight) => max(longestNight, (item) => item.inBedDuration)
 )
 
 export const getLongestSleepTime = createSelector(
@@ -94,21 +98,47 @@ export const getLongestSleepTime = createSelector(
 
 export const getNightsWithOver8HoursBedTime = createSelector(
   getBedTimeNights,
-  (days: Day[]) => days.filter((day: Day) => day.inBedDuration >= 480)
+  (nightsOver8: Day[]) =>
+    nightsOver8.filter((night: Day) => night.inBedDuration >= 480)
 )
 
 export const getNightsWithOver8HoursSleep = createSelector(
   getAsleepNights,
-  (days: Day[]) => days.filter((day: Day) => day.asleepDuration >= 480)
+  (nightsOver8: Day[]) =>
+    nightsOver8.filter((night: Day) => night.asleepDuration >= 480)
 )
 
-export const getWeek = createSelector(getDays, (days: Day[]) =>
-  days.filter((day: Day) => day.night.length !== 0)
+export const getWeek = createSelector(getDays, (daysWithNights: Day[]) =>
+  daysWithNights.filter((day: Day) => day.night.length !== 0)
 )
 
 export const getAllDays = createSelector(getDays, (days: Day[]) => {
   return days
 })
+
+export const getAllDaysInMonthSections = createSelector(
+  getAllDays,
+  (allDays) => {
+    const sections: { title: number; data: Array<Day> }[] = []
+
+    allDays.forEach((day) => {
+      const month = Moment(day.date).month()
+      const existingSectionIndex = sections.findIndex(
+        (section) => section.title === month
+      )
+      if (existingSectionIndex !== -1) {
+        sections[existingSectionIndex].data = [
+          ...sections[existingSectionIndex].data,
+          day
+        ]
+      } else {
+        sections.push({ title: month, data: [day] })
+      }
+    })
+
+    return sections
+  }
+)
 
 export const getWeekSelector = createSelector(
   [getDays, getToday],
@@ -127,8 +157,8 @@ export const getWeekSelector = createSelector(
 )
 
 export const getActiveIndex = createSelector(
-  activeIndex,
-  (index: number | null) => index
+  getState,
+  (state) => state.activeIndex
 )
 
 export const getWakeUpTime = createSelector(
@@ -203,11 +233,6 @@ export const getSelectedDayAsleepDuration = createSelector(
   (selectedDay) => selectedDay.asleepDuration
 )
 
-// export const getSelectedDayEfficiency = createSelector(
-//   getSday,
-//   selectedDay =>( selectedDay.asleepDuration / selectedDay.inBedDuration)
-// );
-
 export const getSleepDataUpdated = createSelector(
   getSleepclock,
   (updated) => updated.sleepDataUpdated
@@ -222,3 +247,22 @@ export const getStartDate = createSelector(
   getSleepclock,
   (sleepclock: SleepClockState) => sleepclock.startDate
 )
+
+export const getNightInAngles = createSelector(getSelectedDay, (day) => {
+  if (day.bedEnd && day.bedStart) {
+    return {
+      startAngle: clockTimeToAngle(day.bedStart),
+      endAngle: clockTimeToAngle(day.bedEnd)
+    }
+  }
+  if (day.sleepEnd && day.sleepStart) {
+    return {
+      startAngle: clockTimeToAngle(day.sleepStart),
+      endAngle: clockTimeToAngle(day.sleepEnd)
+    }
+  }
+  return {
+    startAngle: 0,
+    endAngle: 0
+  }
+})

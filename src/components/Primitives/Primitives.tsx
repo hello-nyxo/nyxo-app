@@ -36,6 +36,10 @@ export const Row = styled.View`
   justify-content: space-between;
 `
 
+export const Column = styled.View`
+  flex-direction: column;
+`
+
 export const BGContainer = styled.View`
   flex: 1;
   background-color: ${(props: StyleProps) =>
@@ -209,7 +213,7 @@ interface CheckBoxProps {
   readonly checked: boolean
   size: number | string
 }
-export const CheckBox = ({ checked, size }: CheckBoxProps) => {
+export const CheckBox: FC<CheckBoxProps> = ({ checked, size }) => {
   return (
     <CheckBoxContainer>
       <IconBold

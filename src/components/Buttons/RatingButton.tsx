@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
-import { rateDay } from '../../actions/sleep/sleep-data-actions'
+import { rateDay } from '@actions/sleep/sleep-data-actions'
 import { fonts } from '../../styles/themes'
 import IconBold from '../iconBold'
 import TranslatedText from '../TranslatedText'

@@ -15,11 +15,11 @@ import {
 } from 'store/Selectors/insight-selectors/Insights'
 import { getExplanationsModal } from 'store/Selectors/ModalSelectors'
 import {
+  getSelectedDay,
   getSelectedDayAsleepDuration,
   getSelectedDayInBedDuration,
   getSelectedDayRating
 } from 'store/Selectors/SleepDataSelectors'
-import { getSelectedDay } from 'store/Selectors/SmartActionsSelectors'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
 import { fonts } from 'styles/themes'

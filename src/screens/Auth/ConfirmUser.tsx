@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { resendEmail } from '../../actions/auth/auth-actions'
+import { resendEmail } from '@actions/auth/auth-actions'
 import BackToAppButton from '../../components/Buttons/BackToAppButton'
 import BottomButton from '../../components/Buttons/BottomButton'
 import { PrimaryButton } from '../../components/Buttons/PrimaryButton'

@@ -9,10 +9,6 @@
   "IntroSlideText4": "Salli Nyxon lähettää ilmoituksia esimerkiksi uni-ikkunaan liittyen.",
   "Enable notifications": "Salli ilmoitukset",
 
-  "HeadsUpIntro": "Heads up!",
-  "HeadsUpText": "Uni-ikkunasi lähestyy. Olemme valmistelleet sinulle rentouttavan hengitysharjoituksen tälle illalle.",
-  "HeadsUpStart": "Aloita harjoitus",
-
   "Allow reading Apple Health": "Salli yhdistäminen Apple Terveyteen",
   "EnableHealthKit": "Salli",
 
@@ -661,5 +657,13 @@
     "WINDOW_EXPLANATION": "Uni-ikkuna on arvio sirkkadiaanisen ja homeostaattisen rytmisi määrittelemästä 'optimaalisesta nukahtamisajasta'. Uni-ikkuna lasketaan seitsemän viimeisen yön perusteella. Nukahtaaksesi helpommin, pyri ajoittamaan nukahtaminen uni-ikkunan sisälle.",
     "RATING": "Oma arvio",
     "RATING_EXPLANATION": "Oma arviosi viime yön unen laadusta. "
+  },
+
+  "TAB": {
+    "SLEEP": "Uni",
+    "COACHING": "Valmennus",
+    "HABITS": "Tavoitteet",
+    "PROFILE": "Profiili",
+    "SETTINGS": "Asetukset"
   }
 }

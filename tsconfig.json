@@ -17,7 +17,10 @@
     "baseUrl": ".",
     "paths": {
       "*": ["./src/*"],
-      "@actions/*": ["./src/actions/*"]
+      "@actions/*": ["./src/actions/*"],
+      "@reducers/*": ["./src/store/Reducers/*"],
+      "@selectors/*": ["./src/store/selectors/*"],
+      "@components/*": ["./src/components/*"]
     }
   },
   "exclude": [

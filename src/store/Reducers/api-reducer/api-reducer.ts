@@ -5,7 +5,15 @@ import {
   FITBIT_AUTHORIZE_SUCCESS,
   FITBIT_REVOKE_SUCCESS,
   FITBIT_UPDATE_TOKEN
-} from '../../../actions/api-actions/fitbit-actions'
+} from '@actions/api-actions/fitbit-actions'
+import {
+  FETCH_SLEEP_GARMIN_FAILURE,
+  FETCH_SLEEP_GARMIN_START,
+  FETCH_SLEEP_GARMIN_SUCCESS,
+  GARMIN_AUTHORIZE_SUCCESS,
+  GARMIN_REVOKE_SUCCESS,
+  GARMIN_UPDATE_TOKEN
+} from '@actions/api-actions/garmin-actions'
 import {
   FETCH_GOOGLE_FIT_FAILURE,
   FETCH_GOOGLE_FIT_START,
@@ -13,42 +21,33 @@ import {
   GOOGLE_FIT_AUTHORIZE_SUCCESS,
   GOOGLE_FIT_REVOKE_SUCCESS,
   GOOGLE_FIT_UPDATE_TOKEN
-} from '../../../actions/api-actions/google-fit-actions'
-import ReduxAction from '../../../Types/ReduxActions'
-import { ApiState } from '../../../Types/State/api-state'
+} from '@actions/api-actions/google-fit-actions'
 import {
-  OURA_AUTHORIZE_SUCCESS,
-  OURA_UPDATE_TOKEN,
-  OURA_REVOKE_SUCCESS,
+  FETCH_SLEEP_OURA_FAILURE,
   FETCH_SLEEP_OURA_START,
   FETCH_SLEEP_OURA_SUCCESS,
-  FETCH_SLEEP_OURA_FAILURE
+  OURA_AUTHORIZE_SUCCESS,
+  OURA_REVOKE_SUCCESS,
+  OURA_UPDATE_TOKEN
 } from '@actions/api-actions/oura-actions'
 import {
-  WITHINGS_AUTHORIZE_SUCCESS,
-  WITHINGS_REVOKE_SUCCESS,
-  FETCH_SLEEP_WITHINGS_START,
-  FETCH_SLEEP_WITHINGS_SUCCESS,
-  FETCH_SLEEP_WITHINGS_FAILURE,
-  WITHINGS_UPDATE_TOKEN
-} from '@actions/api-actions/withings-actions'
-
-import {
-  GARMIN_AUTHORIZE_SUCCESS,
-  GARMIN_REVOKE_SUCCESS,
-  GARMIN_UPDATE_TOKEN,
-  FETCH_SLEEP_GARMIN_SUCCESS,
-  FETCH_SLEEP_GARMIN_FAILURE,
-  FETCH_SLEEP_GARMIN_START
-} from '@actions/api-actions/garmin-actions'
-import {
-  POLAR_AUTHORIZE_SUCCESS,
-  POLAR_UPDATE_TOKEN,
-  POLAR_REVOKE_SUCCESS,
+  FETCH_SLEEP_POLAR_FAILURE,
   FETCH_SLEEP_POLAR_START,
   FETCH_SLEEP_POLAR_SUCCESS,
-  FETCH_SLEEP_POLAR_FAILURE
+  POLAR_AUTHORIZE_SUCCESS,
+  POLAR_REVOKE_SUCCESS,
+  POLAR_UPDATE_TOKEN
 } from '@actions/api-actions/polar-actions'
+import {
+  FETCH_SLEEP_WITHINGS_FAILURE,
+  FETCH_SLEEP_WITHINGS_START,
+  FETCH_SLEEP_WITHINGS_SUCCESS,
+  WITHINGS_AUTHORIZE_SUCCESS,
+  WITHINGS_REVOKE_SUCCESS,
+  WITHINGS_UPDATE_TOKEN
+} from '@actions/api-actions/withings-actions'
+import ReduxAction from '../../../Types/ReduxActions'
+import { ApiState } from '../../../Types/State/api-state'
 
 export const initialState: ApiState = {
   loadingFitbit: false,
@@ -97,9 +96,10 @@ const reducer = (state = initialState, action: ReduxAction): ApiState => {
     case OURA_UPDATE_TOKEN:
       return { ...state, oura: payload }
 
-    case OURA_REVOKE_SUCCESS:
+    case OURA_REVOKE_SUCCESS: {
       const oura = state.oura && { ...state.oura, enabled: false }
       return { ...state, oura }
+    }
 
     case WITHINGS_AUTHORIZE_SUCCESS:
       return { ...state, withings: payload }
@@ -107,19 +107,20 @@ const reducer = (state = initialState, action: ReduxAction): ApiState => {
     case WITHINGS_UPDATE_TOKEN:
       return { ...state, withings: payload }
 
-    case WITHINGS_REVOKE_SUCCESS:
+    case WITHINGS_REVOKE_SUCCESS: {
       const withings = state.withings && { ...state.withings, enabled: false }
       return { ...state, withings }
-
+    }
     case GARMIN_AUTHORIZE_SUCCESS:
       return { ...state, garmin: payload }
 
     case GARMIN_UPDATE_TOKEN:
       return { ...state, garmin: payload }
 
-    case GARMIN_REVOKE_SUCCESS:
+    case GARMIN_REVOKE_SUCCESS: {
       const garmin = state.garmin && { ...state.garmin, enabled: false }
       return { ...state, garmin }
+    }
 
     case POLAR_AUTHORIZE_SUCCESS:
       return { ...state, polar: payload }
@@ -127,10 +128,10 @@ const reducer = (state = initialState, action: ReduxAction): ApiState => {
     case POLAR_UPDATE_TOKEN:
       return { ...state, polar: payload }
 
-    case POLAR_REVOKE_SUCCESS:
+    case POLAR_REVOKE_SUCCESS: {
       const polar = state.polar && { ...state.polar, enabled: false }
       return { ...state, polar }
-
+    }
     case FETCH_SLEEP_FITBIT_START:
       return { ...state, loadingFitbit: true }
     case FETCH_SLEEP_FITBIT_SUCCESS:

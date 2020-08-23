@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useDispatch } from 'react-redux'
-import { setValues } from '../../actions/manual-sleep/manual-sleep-actions'
+import { setValues } from '@actions/manual-sleep/manual-sleep-actions'
 import { icons } from '../../../assets/svgs'
 import {
   calculateEndTimeFromAngle,

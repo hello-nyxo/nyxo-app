@@ -1,4 +1,4 @@
-import { interpolateHcl as interpolateGradient } from 'd3-interpolate'
+import { interpolateHcl as interpolateGradient } from 'd3'
 import range from 'lodash/range'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
@@ -256,7 +256,8 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
               fill={gradientColorTo}
               transform={{ translate: `${stop.toX}, ${stop.toY}` }}
               onPressIn={() =>
-                this.setState({ angleLength: angleLength + Math.PI / 2 })}
+                this.setState({ angleLength: angleLength + Math.PI / 2 })
+              }
               {...this._wakePanResponder.panHandlers}>
               <Circle
                 r={(strokeWidth - 1) / 2}

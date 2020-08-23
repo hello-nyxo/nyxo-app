@@ -1,7 +1,7 @@
 import {
   FITBIT_AUTHORIZE_SUCCESS,
   FITBIT_REVOKE_SUCCESS
-} from '../../../actions/api-actions/fitbit-actions'
+} from '@actions/api-actions/fitbit-actions'
 import reducer, { initialState } from './api-reducer'
 import { ResponseBase } from '../../../Types/State/api-state'
 

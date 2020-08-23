@@ -14,8 +14,8 @@ import { getHealthKitLoading } from 'store/Selectors/health-kit-selectors/health
 import {
   fetchSleepData,
   updateCalendar
-} from '../../actions/sleep/sleep-data-actions'
-import { backgroundAction, startup } from '../../actions/StartupActions'
+} from '@actions/sleep/sleep-data-actions'
+import { backgroundAction, startup } from '@actions/StartupActions'
 import DayStrip from '../../components/DayStrip'
 import Habits from '../../components/HabitList/HabitList'
 import ClockCarousel from '../../components/MainScreenSpecific/ClockCarousel'
@@ -28,6 +28,7 @@ import TopInfo from '../../components/TopInfo'
 import useBackgroundFetch from '../../Hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from '../../Hooks/UseNotificationEventHandlers'
 import colors from '../../styles/colors'
+import SleepTimeChart from 'components/Charts/sleepTimeChart'
 
 const MainScreen = () => {
   const isLoadingSleepData = useSelector(getHealthKitLoading)
@@ -64,6 +65,7 @@ const MainScreen = () => {
             <TodayView />
           </View>
         }
+        footer={<SleepTimeChart />}
         refreshControl={
           <RefreshControl
             refreshing={isLoadingSleepData}

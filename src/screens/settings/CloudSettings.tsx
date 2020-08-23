@@ -3,7 +3,7 @@ import { RefreshControl, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { getLoading as getCodeLoading } from 'store/Selectors/linking-selectors'
 import { getConnectionId } from '@actions/linking/linking-actions'
-import { logout } from '../../actions/auth/auth-actions'
+import { logout } from '@actions/auth/auth-actions'
 import GoBack, {
   GoBackContainer,
   Spacer

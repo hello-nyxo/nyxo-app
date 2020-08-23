@@ -1,3 +1,4 @@
+import { clockTimeToAngle } from 'helpers/geometry'
 import { createSelector } from 'reselect'
 import { InsightState } from 'Types/State/insight-state'
 import { State } from 'Types/State'
@@ -39,3 +40,11 @@ export const getGoToSleepWindowEnd = createSelector(getInsights, (insights) => {
   }
   return insights.bedTimeWindow.end
 })
+
+export const getBedtimeWindowArc = createSelector(
+  [getGoToSleepWindowStart, getGoToSleepWindowEnd],
+  (start, end) => ({
+    startAngle: clockTimeToAngle(start),
+    endAngle: clockTimeToAngle(end)
+  })
+)

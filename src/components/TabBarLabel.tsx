@@ -1,18 +1,18 @@
-import * as React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import translate from '../config/i18n'
 import colors from '../styles/colors'
-import { fonts, StyleProps } from '../styles/themes'
+import { StyleProps } from '../styles/themes'
 
-export interface TabBarLabelProps {
+type Props = {
   focused: boolean
   tintColor: string
-  children: any
+  label: string
 }
 
-const TabBarLabel = (props: TabBarLabelProps) => (
-  <Text adjustsFontSizeToFit focused={props.focused} {...props}>
-    {translate(props.children)}
+const TabBarLabel: FC<Props> = ({ focused, label }) => (
+  <Text adjustsFontSizeToFit focused={focused}>
+    {translate(label.toUpperCase())}
   </Text>
 )
 
@@ -25,8 +25,7 @@ interface TextProps extends StyleProps {
 const Text = styled.Text<TextProps>`
   font-size: 12px;
   text-align: center;
-  color: ${(props: TextProps) =>
-    props.focused ? colors.radiantBlue : props.theme.PRIMARY_TEXT_COLOR};
-  font-family: ${(props: TextProps) =>
-    props.focused ? fonts.bold : fonts.medium};
+  color: ${({ focused, theme }) =>
+    focused ? colors.radiantBlue : theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
 `

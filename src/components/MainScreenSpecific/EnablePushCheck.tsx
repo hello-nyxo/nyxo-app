@@ -1,7 +1,7 @@
 import NotificationCard from 'components/NotificationCenter/NotificationCard'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { askForPush } from '../../actions/NotificationActions'
+import { askForPush } from '@actions/NotificationActions'
 import { actionCreators } from '../../store/Reducers/NotificationReducer'
 import { getShouldAskForPermission } from '../../store/Selectors/NotificationSelectors'
 

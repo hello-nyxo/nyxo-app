@@ -502,8 +502,6 @@ PODS:
     - React
   - RNSVG (12.1.0):
     - React
-  - RNWatch (0.2.0):
-    - React
   - SDWebImage (5.8.2):
     - SDWebImage/Core (= 5.8.2)
   - SDWebImage/Core (5.8.2)
@@ -625,7 +623,6 @@ DEPENDENCIES:
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSha256 (from `../node_modules/react-native-sha256`)
   - RNSVG (from `../node_modules/react-native-svg`)
-  - RNWatch (from `../node_modules/react-native-watch-connectivity`)
   - UMAppLoader (from `../node_modules/unimodules-app-loader/ios`)
   - UMBarCodeScannerInterface (from `../node_modules/unimodules-barcode-scanner-interface/ios`)
   - UMCameraInterface (from `../node_modules/unimodules-camera-interface/ios`)
@@ -811,8 +808,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-sha256"
   RNSVG:
     :path: "../node_modules/react-native-svg"
-  RNWatch:
-    :path: "../node_modules/react-native-watch-connectivity"
   UMAppLoader:
     :path: "../node_modules/unimodules-app-loader/ios"
   UMBarCodeScannerInterface:
@@ -942,7 +937,6 @@ SPEC CHECKSUMS:
   RNSentry: edba19169f665609fb092ba5eaf4be3c0776f50a
   RNSha256: c6f68c850bf8315c95e2508667e8c908bd9f8487
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
-  RNWatch: 58e446b663580d84c8b7e98fec7f06da35ff7547
   SDWebImage: f923a89d7344af399ba77b87a523ae747408207a
   SDWebImageWebPCoder: 36f8f47bd9879a8aea6044765c1351120fd8e3a8
   Sentry: e5796ec31a481474d2f94553213278470f9e302d

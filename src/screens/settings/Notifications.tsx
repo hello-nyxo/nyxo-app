@@ -20,7 +20,7 @@ import {
   getScheduledNotifications
 } from '../../store/Selectors/NotificationSelectors'
 import { State } from '../../Types/State'
-import { setNotification } from '../../actions/NotificationActions'
+import { setNotification } from '@actions/NotificationActions'
 
 export interface NotificationDataItemProps {
   enabled: boolean
