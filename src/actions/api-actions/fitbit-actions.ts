@@ -14,7 +14,7 @@ import {
   FitbitRefreshResult,
   ResponseBase
 } from '../../Types/State/api-state'
-import { syncNightsToCloud } from 'actions/sleep/night-cloud-actions'
+import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
 import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
 
 export const FITBIT_AUTHORIZE_SUCCESS = 'FITBIT_AUTHORIZE_SUCCESS'

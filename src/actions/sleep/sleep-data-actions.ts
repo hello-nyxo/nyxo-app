@@ -21,8 +21,8 @@ import { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SOURCE } from 'typings/state/sleep-source-state'
 import { Day, Night, Value } from '../../Types/Sleepdata'
 import { fetchSleepFromHealthKit } from './health-kit-actions'
-import { getGarminSleep } from 'actions/api-actions/garmin-actions'
-import { getPolarSleep } from 'actions/api-actions/polar-actions'
+import { getGarminSleep } from '@actions/api-actions/garmin-actions'
+import { getPolarSleep } from '@actions/api-actions/polar-actions'
 
 /* ACTION TYPES */
 

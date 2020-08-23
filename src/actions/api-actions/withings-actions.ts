@@ -10,7 +10,7 @@ import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SOURCE } from 'typings/state/sleep-source-state'
 import { getWithingsEnabled } from '../../store/Selectors/api-selectors/api-selectors'
 import { GetState } from '../../Types/GetState'
-import { syncNightsToCloud } from 'actions/sleep/night-cloud-actions'
+import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
 import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
 import { ResponseBase, WithingsAuthorizeResult } from 'Types/State/api-state'
 

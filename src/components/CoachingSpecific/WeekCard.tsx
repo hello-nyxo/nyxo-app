@@ -1,33 +1,29 @@
+import { selectWeek } from '@actions/coaching/coaching-actions'
 import { useNavigation } from '@react-navigation/native'
-import React, { memo } from 'react'
+import { IconBold } from 'components/iconRegular'
+import TranslatedText from 'components/TranslatedText'
+import ROUTE from 'config/routes/Routes'
+import React, { FC, memo } from 'react'
 import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
 import { useDispatch } from 'react-redux'
-import styled from 'styled-components/native'
 import { CombinedWeek } from 'store/Selectors/coaching-selectors/coaching-selectors'
-import { IconBold } from 'components/iconRegular'
-import ROUTE from 'config/routes/Routes'
-import { selectWeek } from '@actions/coaching/coaching-actions'
-import TranslatedText from 'components/TranslatedText'
-import WeekCardTitle from './WeekCardTitle'
-import ScalingButton from '../Buttons/ScalingButton'
-import { constants, fonts, StyleProps } from '../../styles/themes'
+import styled from 'styled-components/native'
 import colors from '../../styles/colors'
+import { constants, fonts } from '../../styles/themes'
+import ScalingButton from '../Buttons/ScalingButton'
+import WeekCardTitle from './WeekCardTitle'
 
-interface WeekCardProps {
+type Props = {
   week: CombinedWeek
   cardWidth: number
   cardMargin: number
-  xOffset: any
 }
 
-const WeekCard = (props: WeekCardProps) => {
-  const { cardWidth, cardMargin, week } = props
+const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week }) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
-
-  const locked = week.locked !== undefined ? week.locked : week.defaultLocked
 
   const handlePress = () => {
     dispatch(selectWeek(week.slug))
@@ -54,13 +50,11 @@ const WeekCard = (props: WeekCardProps) => {
             />
 
             <GradientContainer>
-              <LinearGradient
-                style={{ paddingHorizontal: 10, paddingVertical: 10 }}
-                colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.5)']}>
+              <Gradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.5)']}>
                 <Animated.View>
                   <Intro>{formatedIntro}</Intro>
                 </Animated.View>
-              </LinearGradient>
+              </Gradient>
             </GradientContainer>
           </CoverPhotoContainer>
         </Card>
@@ -86,6 +80,9 @@ const WeekCard = (props: WeekCardProps) => {
 
 export default memo(WeekCard)
 
+const Gradient = styled(LinearGradient)`
+  padding: 10px;
+`
 const Info = styled(TranslatedText)`
   margin-left: 10px;
   font-family: ${fonts.medium};

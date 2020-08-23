@@ -5,10 +5,10 @@ import { toggleFitbit } from '@actions/api-actions/fitbit-actions'
 import { Thunk, Dispatch } from 'Types/ReduxActions'
 import { GetState } from 'Types/GetState'
 import { getMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
-import { toggleOura } from 'actions/api-actions/oura-actions'
-import { toggleWithings } from 'actions/api-actions/withings-actions'
-import { toggleGarmin } from 'actions/api-actions/garmin-actions'
-import { togglePolar } from 'actions/api-actions/polar-actions'
+import { toggleOura } from '@actions/api-actions/oura-actions'
+import { toggleWithings } from '@actions/api-actions/withings-actions'
+import { toggleGarmin } from '@actions/api-actions/garmin-actions'
+import { togglePolar } from '@actions/api-actions/polar-actions'
 
 export const revokePreviousSource = (): Thunk => async (
   dispatch: Dispatch,

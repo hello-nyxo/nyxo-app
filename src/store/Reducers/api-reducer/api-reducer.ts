@@ -31,7 +31,7 @@ import {
   FETCH_SLEEP_WITHINGS_SUCCESS,
   FETCH_SLEEP_WITHINGS_FAILURE,
   WITHINGS_UPDATE_TOKEN
-} from 'actions/api-actions/withings-actions'
+} from '@actions/api-actions/withings-actions'
 
 import {
   GARMIN_AUTHORIZE_SUCCESS,
@@ -40,7 +40,7 @@ import {
   FETCH_SLEEP_GARMIN_SUCCESS,
   FETCH_SLEEP_GARMIN_FAILURE,
   FETCH_SLEEP_GARMIN_START
-} from 'actions/api-actions/garmin-actions'
+} from '@actions/api-actions/garmin-actions'
 import {
   POLAR_AUTHORIZE_SUCCESS,
   POLAR_UPDATE_TOKEN,
@@ -48,7 +48,7 @@ import {
   FETCH_SLEEP_POLAR_START,
   FETCH_SLEEP_POLAR_SUCCESS,
   FETCH_SLEEP_POLAR_FAILURE
-} from 'actions/api-actions/polar-actions'
+} from '@actions/api-actions/polar-actions'
 
 export const initialState: ApiState = {
   loadingFitbit: false,

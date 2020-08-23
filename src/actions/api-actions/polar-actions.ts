@@ -1,19 +1,18 @@
-import { captureException } from '@sentry/react-native'
-import { revokePreviousSource } from 'actions/sleep-source-actions/revoke-previous-source'
-import { setMainSource } from 'actions/sleep-source-actions/sleep-source-actions'
-import { formatSleepData } from 'actions/sleep/sleep-data-actions'
+import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
+import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
+import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
+import { formatSleepData } from '@actions/sleep/sleep-data-actions'
 import CONFIG from 'config/Config'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from 'helpers/Keychain'
+import { formatPolarSamples } from 'helpers/sleep/polar-helper'
 import moment from 'moment'
-import { authorize, revoke } from 'react-native-app-auth'
+import { authorize } from 'react-native-app-auth'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
+import { PolarSleepObject } from 'Types/Sleep/Polar'
+import { PolarAuthorizeResult, ResponseBase } from 'Types/State/api-state'
 import { SOURCE } from 'typings/state/sleep-source-state'
 import { getPolarEnabled } from '../../store/Selectors/api-selectors/api-selectors'
 import { GetState } from '../../Types/GetState'
-import { syncNightsToCloud } from 'actions/sleep/night-cloud-actions'
-import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
-import { ResponseBase, PolarAuthorizeResult } from 'Types/State/api-state'
-import { formatPolarSamples } from 'helpers/sleep/polar-helper'
-import { PolarSleepObject } from 'Types/Sleep/Polar'
 
 export const POLAR_AUTHORIZE_SUCCESS = 'POLAR_AUTHORIZE_SUCCESS'
 export const POLAR_REVOKE_SUCCESS = 'POLAR_REVOKE_SUCCESS'
@@ -90,9 +89,7 @@ export const authorizePolar = (): Thunk => async (dispatch: Dispatch) => {
       })
     )
     dispatch(setMainSource(SOURCE.POLAR))
-  } catch (error) {
-    console.log('authorizePolar', authorizePolar)
-  }
+  } catch (error) {}
 }
 
 export const revokePolarAccess = (): Thunk => async (dispatch: Dispatch) => {
@@ -104,26 +101,21 @@ export const revokePolarAccess = (): Thunk => async (dispatch: Dispatch) => {
       CONFIG.POLAR_CONFIG.bundleId
     )) as PolarAuthorizeResult
 
-    const response = await fetch(
-      `https://www.polaraccesslink.com/v3/users/${userid}`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
+    await fetch(`https://www.polaraccesslink.com/v3/users/${userid}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${accessToken}`
       }
-    )
+    })
   } catch (err) {
     console.log('revokePolarAccess', err)
   }
+
   dispatch(polarRevokeSuccess())
   dispatch(setMainSource(SOURCE.NO_SOURCE))
 }
 
-export const getPolarSleep = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+export const getPolarSleep = (): Thunk => async (dispatch: Dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
@@ -156,14 +148,14 @@ export const getPolarSleep = (): Thunk => async (
         await dispatch(formatSleepData(formattedResponse))
         await dispatch(fetchSleepPolarSuccess())
       } else {
-        const accessToken = await dispatch(authorizePolar())
+        const newAccessToken = await dispatch(authorizePolar())
 
         const polarListNightsApiCall = await fetch(
           `https://www.polaraccesslink.com/v3/users/sleep`,
           {
             method: 'GET',
             headers: {
-              Authorization: `Bearer ${accessToken}`
+              Authorization: `Bearer ${newAccessToken}`
             }
           }
         )
@@ -180,7 +172,6 @@ export const getPolarSleep = (): Thunk => async (
       }
     } catch (error) {
       dispatch(fetchSleepPolarFailure())
-      console.log('getPolarSleep', getPolarSleep)
     }
   }
 }

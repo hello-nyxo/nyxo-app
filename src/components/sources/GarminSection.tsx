@@ -1,13 +1,11 @@
 import TranslatedText from 'components/TranslatedText'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getFitbitEnabled,
-} from 'store/Selectors/api-selectors/api-selectors'
+import { getFitbitEnabled } from 'store/Selectors/api-selectors/api-selectors'
 import { getIsGarminMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { constants } from 'styles/themes'
-import { toggleGarmin } from 'actions/api-actions/garmin-actions'
+import { toggleGarmin } from '@actions/api-actions/garmin-actions'
 
 const GarminSection = () => {
   const dispatch = useDispatch()
