@@ -11,7 +11,7 @@ import {
 } from 'components/Primitives/Primitives'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { getStaticNotificationsCount } from 'store/Selectors/notification-selectors/notification-selectors'
+import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
 import styled from 'styled-components/native'
 
 const NotificationCenter = () => {

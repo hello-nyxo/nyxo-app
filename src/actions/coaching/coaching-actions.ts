@@ -8,13 +8,13 @@ import { Auth } from 'aws-amplify'
 import { createCoachingData, updateCoachingData } from 'graphql/mutations'
 import { listCoachingDatas } from 'graphql/queries'
 import moment from 'moment'
-import { getAuthState } from 'store/Selectors/auth-selectors/auth-selectors'
+import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import {
   getActiveWeekWithContent,
   getCoachingMonth,
   getCurrentWeekAll,
   WEEK_STAGE
-} from 'store/Selectors/coaching-selectors'
+} from '@selectors/coaching-selectors'
 import { GetState } from 'Types/GetState'
 import { CoachingMonth, STAGE, StateWeek } from 'typings/state/coaching-state'
 import { v4 } from 'uuid'

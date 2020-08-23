@@ -21,7 +21,7 @@ import {
   CoachingMonth,
   StateWeek
 } from 'typings/state/coaching-state'
-import { WEEK_STAGE } from 'store/Selectors/coaching-selectors'
+import { WEEK_STAGE } from '@selectors/coaching-selectors'
 
 const initialState: CoachingState = {
   stage: STAGE.NOT_ALLOWED,

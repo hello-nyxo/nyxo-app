@@ -1,3 +1,6 @@
+import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
+import { getEditMode } from '@selectors/ManualDataSelectors'
+import { getSelectedDay } from '@selectors/SleepDataSelectors'
 import {
   fetchSleepData,
   updateCalendar
@@ -20,14 +23,14 @@ import moment from 'moment'
 import React, { FC, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
-import { getEditMode } from 'store/Selectors/ManualDataSelectors'
-import { getSelectedDay } from 'store/Selectors/SleepDataSelectors'
 import styled from 'styled-components/native'
 import { SafeAreaView } from '../../components/Primitives/Primitives'
 
 const Sleep: FC = () => {
   const today = useSelector(getSelectedDay)
   const editModeOn = useSelector(getEditMode)
+  const isLoadingSleepData = useSelector(getHealthKitLoading)
+
   const dispatch = useDispatch()
 
   useNotificationEventHandlers()
@@ -50,7 +53,12 @@ const Sleep: FC = () => {
       <EditNightHeader />
       <ScrollView
         scrollEnabled={!editModeOn}
-        refreshControl={<RefreshControl onRefresh={checkSleepData} />}>
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoadingSleepData}
+            onRefresh={checkSleepData}
+          />
+        }>
         <DayStrip />
         <TitleRow>
           <Title>{moment(today.date).format('dddd')}</Title>

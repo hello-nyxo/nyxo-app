@@ -1,6 +1,6 @@
 import { Platform } from 'react-native'
-import { getIsHealthKitMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
-import { getWeek } from 'store/Selectors/SleepDataSelectors'
+import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import { getWeek } from '@selectors/SleepDataSelectors'
 import { Dispatch, Thunk } from 'Types/ReduxActions'
 import { getAuthState } from '../store/Selectors/auth-selectors/auth-selectors'
 import { GetState } from '../Types/GetState'

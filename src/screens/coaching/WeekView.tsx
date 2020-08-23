@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
-import { CombinedWeek } from 'store/Selectors/coaching-selectors'
+import { CombinedWeek } from '@selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import Copyright from '../../components/CoachingSpecific/Copyright'
 import StartCoaching from '../../components/CoachingSpecific/StartCoaching'

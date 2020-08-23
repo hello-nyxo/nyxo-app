@@ -1,4 +1,4 @@
-import { WEEK_STAGE } from 'store/Selectors/coaching-selectors'
+import { WEEK_STAGE } from '@selectors/coaching-selectors'
 
 export enum STAGE {
   NOT_ALLOWED = 'NOT_ALLOWED',

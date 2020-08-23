@@ -4,7 +4,7 @@ import { IconBold } from 'components/iconRegular'
 import { useNavigation } from '@react-navigation/core'
 import ROUTE from 'config/routes/Routes'
 import colors from 'styles/colors'
-import { getStaticNotificationsCount } from 'store/Selectors/notification-selectors/notification-selectors'
+import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
 import { useSelector } from 'react-redux'
 
 const NotificationCenterLink = () => {

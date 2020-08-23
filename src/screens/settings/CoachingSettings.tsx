@@ -7,7 +7,7 @@ import {
   getActiveCoachingMonth,
   getCoachingMonths,
   getCoachingStage
-} from 'store/Selectors/coaching-selectors/coaching-selectors'
+} from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
 import TextButton from '../../components/Buttons/TextButton'

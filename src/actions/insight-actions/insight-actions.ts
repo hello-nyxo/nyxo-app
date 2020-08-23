@@ -1,4 +1,4 @@
-import { getWeek } from 'store/Selectors/SleepDataSelectors'
+import { getWeek } from '@selectors/SleepDataSelectors'
 import { Day } from 'Types/Sleepdata'
 import { GetState } from 'Types/GetState'
 import moment from 'moment'

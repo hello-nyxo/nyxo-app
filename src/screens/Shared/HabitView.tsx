@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import {
   getActiveHabits,
   getArchivedHabits
-} from 'store/Selectors/habit-selectors/habit-selectors'
+} from '@selectors/habit-selectors/habit-selectors'
 import { Habit } from 'Types/State/habit-state'
 import CoachingSectionHeader from '../../components/CoachingSpecific/CoachingSectionHeader'
 import EmptyState from '../../components/EmptyState'

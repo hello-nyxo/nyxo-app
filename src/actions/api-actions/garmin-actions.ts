@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { getGarminEnabled } from 'store/Selectors/api-selectors/api-selectors'
+import { getGarminEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from 'config/Config'
 import moment from 'moment'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'

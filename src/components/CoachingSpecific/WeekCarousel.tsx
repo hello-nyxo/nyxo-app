@@ -6,7 +6,7 @@ import {
   CombinedWeek,
   getCombinedWeeks,
   getCurrentWeek
-} from 'store/Selectors/coaching-selectors'
+} from '@selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import { WIDTH } from '../../helpers/Dimensions'
 import { H3 } from '../Primitives/Primitives'

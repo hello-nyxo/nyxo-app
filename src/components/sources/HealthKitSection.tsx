@@ -11,7 +11,7 @@ import {
   getAllHealthKitSources,
   getHealthKitSource,
   getIsHealthKitMainSource
-} from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
+} from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { constants } from 'styles/themes'
 
@@ -35,11 +35,11 @@ const HealthKitSection = () => {
   const mapped = sources
     ? sources.map((item, key) => (
         <SourceRow
-        key={key}
-        sourceId={item.sourceId}
-        sourceName={item.sourceName}
-        selectedSourceId={healthKitSource?.sourceId}
-        switchSource={onPress}
+          key={key}
+          sourceId={item.sourceId}
+          sourceName={item.sourceName}
+          selectedSourceId={healthKitSource?.sourceId}
+          switchSource={onPress}
         />
       ))
     : []

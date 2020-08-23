@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getLoadingFitbit,
   getLoadingGoogleFit
-} from 'store/Selectors/api-selectors/api-selectors'
-import { getHealthKitLoading } from 'store/Selectors/health-kit-selectors/health-kit-selectors'
+} from '@selectors/api-selectors/api-selectors'
+import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import {
   fetchSleepData,
   updateCalendar

@@ -8,7 +8,7 @@ import {
   CombinedLessonArray,
   getCoachingLessonsForCurrentWeek,
   getCoachingLessonsForWeek
-} from 'store/Selectors/coaching-selectors/coaching-selectors'
+} from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import LessonListItem from '../../components/LessonComponents/LessonListItem'
 import SectionFooter from '../../components/LessonComponents/SectionFooter'
