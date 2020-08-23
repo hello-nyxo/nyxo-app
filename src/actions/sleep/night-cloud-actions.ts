@@ -7,24 +7,22 @@ import { getAuthState } from 'store/Selectors/auth-selectors/auth-selectors'
 import { CreateNightInput, NightValue } from 'API'
 import * as Sentry from '@sentry/react-native'
 import { createNight } from 'graphql/mutations'
+import { Action } from 'redux'
 
 export const syncNightsToCloud = (nights: Night[]): Thunk => async (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-  console.log('syncing')
   try {
     const username = getUsername(getState())
     const loggedIn = getAuthState(getState())
 
     if (loggedIn) {
-      console.log('asdasd')
-      const promises: Promise<void>[] = []
+      const promises: Promise<Action<void>>[] = []
       nights.forEach((night) => {
-        promises.push(dispatch(syncNight(<string>username, night)))
+        promises.push(dispatch(syncNight(username, night)))
       })
 
-      console.log(nights)
       await Promise.all(promises)
     }
   } catch (err) {
@@ -43,7 +41,6 @@ const syncNight = async (username: string, night: Night) => {
     startDate,
     value
   } = night
-  console.log('Am i run?', night)
   try {
     const syncingNight: CreateNightInput = {
       id,
@@ -59,8 +56,6 @@ const syncNight = async (username: string, night: Night) => {
     const response = await API.graphql(
       graphqlOperation(createNight, { input: syncingNight })
     )
-
-    console.log(response)
   } catch (err) {
     console.log(err)
     Sentry.captureException(`syncNightsToCloud ${err}`)
