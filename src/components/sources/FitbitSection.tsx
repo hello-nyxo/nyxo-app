@@ -37,7 +37,7 @@ const FitbitSection = () => {
 export default FitbitSection
 
 const Container = styled.View`
-  padding: 0px 20px;
+  padding: 20px;
 `
 
 const TitleRow = styled.View`

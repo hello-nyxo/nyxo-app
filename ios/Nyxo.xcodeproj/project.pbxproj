@@ -15,8 +15,8 @@
 		5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B40961E242BAE0000169B4C /* GoogleService-Info.plist */; };
 		5B5476582233C6650027A9A0 /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5476152233C6640027A9A0 /* Intercom.framework */; };
 		5B5476592233C6650027A9A0 /* Intercom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5476152233C6640027A9A0 /* Intercom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5B70355823E998420068DB97 /* Nyxo (DEV).plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B70355723E998420068DB97 /* Nyxo (DEV).plist */; };
-		5B7820E024EEC2360074BAFC /* rnuc.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */; };
+		5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
+		5B96275F24F16E4C00C7FFDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */; };
 		5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0F90521E2411B00D3D56E /* main.jsbundle */; };
 		5BA9115E22E1E2350098700A /* CommandStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9115D22E1E2350098700A /* CommandStatus.swift */; };
 		5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8622D71D7400D1CD2D /* Montserrat-LightItalic.ttf */; };
@@ -37,49 +37,7 @@
 		5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */; };
 		5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */; };
 		5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
-		5BE7E22E23E98F21000FC447 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130221DFB5B800698A4A /* main.m */; };
-		5BE7E22F23E98F21000FC447 /* CommandStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9115D22E1E2350098700A /* CommandStatus.swift */; };
-		5BE7E23023E98F21000FC447 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130121DFB5B800698A4A /* AppDelegate.m */; };
-		5BE7E23223E98F21000FC447 /* AppCenterReactNativeShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DCC82218829A0036DFDD /* AppCenterReactNativeShared.framework */; };
-		5BE7E23323E98F21000FC447 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DCC4221882830036DFDD /* AppCenterCrashes.framework */; };
-		5BE7E23423E98F21000FC447 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
-		5BE7E23523E98F21000FC447 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20692C224E434B00257043 /* StoreKit.framework */; };
-		5BE7E23623E98F21000FC447 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CBA9B2099AEB300243A25 /* HealthKit.framework */; };
-		5BE7E23723E98F21000FC447 /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5476152233C6640027A9A0 /* Intercom.framework */; };
-		5BE7E23823E98F21000FC447 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B75EE392188A8920070EB69 /* Fabric.framework */; };
-		5BE7E23923E98F21000FC447 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DCC2221882830036DFDD /* AppCenterAnalytics.framework */; };
-		5BE7E23A23E98F21000FC447 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DCC3221882830036DFDD /* AppCenter.framework */; };
-		5BE7E23B23E98F21000FC447 /* AppCenterPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B50DD33221884EB0036DFDD /* AppCenterPush.framework */; };
-		5BE7E23D23E98F21000FC447 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */; };
-		5BE7E24023E98F21000FC447 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8622D71D7400D1CD2D /* Montserrat-LightItalic.ttf */; };
-		5BE7E24123E98F21000FC447 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8722D71D7400D1CD2D /* Montserrat-ExtraBoldItalic.ttf */; };
-		5BE7E24223E98F21000FC447 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8822D71D7500D1CD2D /* Montserrat-SemiBoldItalic.ttf */; };
-		5BE7E24323E98F21000FC447 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8922D71D7500D1CD2D /* Montserrat-Black.ttf */; };
-		5BE7E24423E98F21000FC447 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8A22D71D7500D1CD2D /* Montserrat-Italic.ttf */; };
-		5BE7E24523E98F21000FC447 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8B22D71D7500D1CD2D /* Montserrat-ThinItalic.ttf */; };
-		5BE7E24623E98F21000FC447 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8C22D71D7500D1CD2D /* Montserrat-Medium.ttf */; };
-		5BE7E24723E98F21000FC447 /* Domine-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */; };
-		5BE7E24823E98F21000FC447 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8D22D71D7500D1CD2D /* Montserrat-Regular.ttf */; };
-		5BE7E24923E98F21000FC447 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8E22D71D7500D1CD2D /* Montserrat-MediumItalic.ttf */; };
-		5BE7E24A23E98F21000FC447 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8F22D71D7500D1CD2D /* Montserrat-ExtraLightItalic.ttf */; };
-		5BE7E24B23E98F21000FC447 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9022D71D7500D1CD2D /* Montserrat-BoldItalic.ttf */; };
-		5BE7E24C23E98F21000FC447 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9122D71D7500D1CD2D /* Montserrat-SemiBold.ttf */; };
-		5BE7E24D23E98F21000FC447 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9222D71D7500D1CD2D /* Montserrat-BlackItalic.ttf */; };
-		5BE7E24E23E98F21000FC447 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9322D71D7500D1CD2D /* Montserrat-ExtraLight.ttf */; };
-		5BE7E24F23E98F21000FC447 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9422D71D7600D1CD2D /* Montserrat-ExtraBold.ttf */; };
-		5BE7E25023E98F21000FC447 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */; };
-		5BE7E25123E98F21000FC447 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */; };
-		5BE7E25223E98F21000FC447 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
-		5BE7E25323E98F21000FC447 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0F90521E2411B00D3D56E /* main.jsbundle */; };
-		5BE7E25423E98F21000FC447 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
-		5BE7E25523E98F21000FC447 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B3312FB21DFB5B700698A4A /* Images.xcassets */; };
-		5BE7E25623E98F21000FC447 /* Domine-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */; };
-		5BE7E25723E98F21000FC447 /* FontAwesome5_Pro_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */; };
-		5BE7E25823E98F21000FC447 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = B64D42BFD4E244D9863E00B7 /* AppCenter-Config.plist */; };
-		5BE7E25D23E98F21000FC447 /* Intercom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5476152233C6640027A9A0 /* Intercom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5BF9816322D2052900509ED1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
 		5C56F98D642F4D5BA2168C40 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = B64D42BFD4E244D9863E00B7 /* AppCenter-Config.plist */; };
-		6EF70286CEF4580632B0E50F /* libPods-Nyxo Dev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */; };
 		B95CBA9C2099AEB300243A25 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CBA9B2099AEB300243A25 /* HealthKit.framework */; };
 		C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */; };
 		E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */; };
@@ -130,27 +88,6 @@
 			files = (
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5BE7E25A23E98F21000FC447 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5BE7E25C23E98F21000FC447 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				5BE7E25D23E98F21000FC447 /* Intercom.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -212,12 +149,13 @@
 		5B50DCC4221882830036DFDD /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
 		5B50DCC82218829A0036DFDD /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = Vendor/AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
 		5B50DD33221884EB0036DFDD /* AppCenterPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterPush.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenterPush.framework"; sourceTree = "<group>"; };
+		5B5220FA24F29CA50039E226 /* rnuc.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = rnuc.xcconfig; sourceTree = "<group>"; };
 		5B5476152233C6640027A9A0 /* Intercom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Intercom.framework; sourceTree = "<group>"; };
 		5B70355723E998420068DB97 /* Nyxo (DEV).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Nyxo (DEV).plist"; sourceTree = "<group>"; };
 		5B75EE392188A8920070EB69 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		5B75EE3A2188A8920070EB69 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = rnuc.xcconfig; sourceTree = "<group>"; };
 		5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BA0F90521E2411B00D3D56E /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		5BA9115B22E1E2350098700A /* Nyxo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyxo-Bridging-Header.h"; sourceTree = "<group>"; };
 		5BA9115C22E1E2350098700A /* Nyxo Watch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyxo Watch-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -269,7 +207,6 @@
 		5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		5BE7E26423E98F21000FC447 /* Nyxo DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nyxo DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BF9811C22D2052900509ED1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
 		6CF46B6888304B68952AC827 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Dosis-Medium.ttf"; path = "../assets/fonts/Dosis-Medium.ttf"; sourceTree = "<group>"; };
 		796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Brands.ttf; path = ../assets/fonts/FontAwesome5_Pro_Brands.ttf; sourceTree = "<group>"; };
@@ -311,25 +248,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5BE7E23123E98F21000FC447 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BE7E23223E98F21000FC447 /* AppCenterReactNativeShared.framework in Frameworks */,
-				5BE7E23323E98F21000FC447 /* AppCenterCrashes.framework in Frameworks */,
-				5BE7E23423E98F21000FC447 /* JavaScriptCore.framework in Frameworks */,
-				5BE7E23523E98F21000FC447 /* StoreKit.framework in Frameworks */,
-				5BE7E23623E98F21000FC447 /* HealthKit.framework in Frameworks */,
-				5BE7E23723E98F21000FC447 /* Intercom.framework in Frameworks */,
-				5BE7E23823E98F21000FC447 /* Fabric.framework in Frameworks */,
-				5BE7E23923E98F21000FC447 /* AppCenterAnalytics.framework in Frameworks */,
-				5BE7E23A23E98F21000FC447 /* AppCenter.framework in Frameworks */,
-				5BE7E23B23E98F21000FC447 /* AppCenterPush.framework in Frameworks */,
-				5BE7E23D23E98F21000FC447 /* libz.tbd in Frameworks */,
-				6EF70286CEF4580632B0E50F /* libPods-Nyxo Dev.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -354,6 +272,7 @@
 			children = (
 				5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */,
 				5B70355723E998420068DB97 /* Nyxo (DEV).plist */,
+				5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */,
 				5B33130421DFB5B800698A4A /* AppDelegate.h */,
 				5B33130121DFB5B800698A4A /* AppDelegate.m */,
 				5B3312FC21DFB5B800698A4A /* Base.lproj */,
@@ -575,7 +494,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */,
+				5B5220FA24F29CA50039E226 /* rnuc.xcconfig */,
 				5B40961E242BAE0000169B4C /* GoogleService-Info.plist */,
 				5BA9115A22E1E2070098700A /* Shared */,
 				5BD58B8922D71D7500D1CD2D /* Montserrat-Black.ttf */,
@@ -606,7 +525,6 @@
 				00E356EF1AD99517003FC87E /* NyxoTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				B95CBA5D2099AE3200243A25 /* Recovered References */,
 				94F1E8A8CFBD46088A2BB76D /* Resources */,
 				B64D42BFD4E244D9863E00B7 /* AppCenter-Config.plist */,
 				A166C399641673F389718B26 /* Pods */,
@@ -621,7 +539,6 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Nyxo.app */,
 				00E356EE1AD99517003FC87E /* NyxoTests.xctest */,
-				5BE7E26423E98F21000FC447 /* Nyxo DEV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -684,13 +601,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		B95CBA5D2099AE3200243A25 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -737,31 +647,6 @@
 			productReference = 13B07F961A680F5B00A75B9A /* Nyxo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5BE7E22B23E98F21000FC447 /* Nyxo Dev */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5BE7E26123E98F21000FC447 /* Build configuration list for PBXNativeTarget "Nyxo Dev" */;
-			buildPhases = (
-				882FBEE2C42D54BF5ABCD2A6 /* [CP] Check Pods Manifest.lock */,
-				5BE7E22D23E98F21000FC447 /* Sources */,
-				5BE7E23123E98F21000FC447 /* Frameworks */,
-				5BE7E23F23E98F21000FC447 /* Resources */,
-				5BE7E25923E98F21000FC447 /* Bundle React Native code and images */,
-				5BE7E25A23E98F21000FC447 /* Embed Watch Content */,
-				5BE7E25B23E98F21000FC447 /* ShellScript */,
-				5BE7E25C23E98F21000FC447 /* Embed Frameworks */,
-				5BE7E25E23E98F21000FC447 /* Run Script */,
-				5BE7E26023E98F21000FC447 /* Upload Debug Symbols to Sentry */,
-				BFBB280D8235AFF843AC9293 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Nyxo Dev";
-			productName = "Hello World";
-			productReference = 5BE7E26423E98F21000FC447 /* Nyxo DEV.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -797,10 +682,6 @@
 							};
 						};
 					};
-					5BE7E22B23E98F21000FC447 = {
-						DevelopmentTeam = RPKZ2YP3VZ;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Nyxo" */;
@@ -826,7 +707,6 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* Nyxo */,
 				00E356ED1AD99517003FC87E /* NyxoTests */,
-				5BE7E22B23E98F21000FC447 /* Nyxo Dev */,
 			);
 		};
 /* End PBXProject section */
@@ -860,6 +740,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */,
 				5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */,
 				5BD58B9922D71D7600D1CD2D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				5BD58B9A22D71D7600D1CD2D /* Montserrat-SemiBoldItalic.ttf in Resources */,
@@ -867,6 +748,7 @@
 				5BD58B9C22D71D7600D1CD2D /* Montserrat-Italic.ttf in Resources */,
 				5BD58B9D22D71D7600D1CD2D /* Montserrat-ThinItalic.ttf in Resources */,
 				5BD58B9E22D71D7600D1CD2D /* Montserrat-Medium.ttf in Resources */,
+				5B96275F24F16E4C00C7FFDF /* LaunchScreen.storyboard in Resources */,
 				5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */,
 				5BD58B9F22D71D7600D1CD2D /* Montserrat-Regular.ttf in Resources */,
 				5BD58BA022D71D7600D1CD2D /* Montserrat-MediumItalic.ttf in Resources */,
@@ -880,44 +762,9 @@
 				5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */,
 				5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */,
 				5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */,
-				5B7820E024EEC2360074BAFC /* rnuc.xcconfig in Resources */,
 				5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */,
-				5BF9816322D2052900509ED1 /* Images.xcassets in Resources */,
 				5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */,
 				5C56F98D642F4D5BA2168C40 /* AppCenter-Config.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5BE7E23F23E98F21000FC447 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5B70355823E998420068DB97 /* Nyxo (DEV).plist in Resources */,
-				5BE7E24023E98F21000FC447 /* Montserrat-LightItalic.ttf in Resources */,
-				5BE7E24123E98F21000FC447 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
-				5BE7E24223E98F21000FC447 /* Montserrat-SemiBoldItalic.ttf in Resources */,
-				5BE7E24323E98F21000FC447 /* Montserrat-Black.ttf in Resources */,
-				5BE7E24423E98F21000FC447 /* Montserrat-Italic.ttf in Resources */,
-				5BE7E24523E98F21000FC447 /* Montserrat-ThinItalic.ttf in Resources */,
-				5BE7E24623E98F21000FC447 /* Montserrat-Medium.ttf in Resources */,
-				5BE7E24723E98F21000FC447 /* Domine-Regular.ttf in Resources */,
-				5BE7E24823E98F21000FC447 /* Montserrat-Regular.ttf in Resources */,
-				5BE7E24923E98F21000FC447 /* Montserrat-MediumItalic.ttf in Resources */,
-				5BE7E24A23E98F21000FC447 /* Montserrat-ExtraLightItalic.ttf in Resources */,
-				5BE7E24B23E98F21000FC447 /* Montserrat-BoldItalic.ttf in Resources */,
-				5BE7E24C23E98F21000FC447 /* Montserrat-SemiBold.ttf in Resources */,
-				5BE7E24D23E98F21000FC447 /* Montserrat-BlackItalic.ttf in Resources */,
-				5BE7E24E23E98F21000FC447 /* Montserrat-ExtraLight.ttf in Resources */,
-				5BE7E24F23E98F21000FC447 /* Montserrat-ExtraBold.ttf in Resources */,
-				5BE7E25023E98F21000FC447 /* Montserrat-Light.ttf in Resources */,
-				5BE7E25123E98F21000FC447 /* Montserrat-Thin.ttf in Resources */,
-				5BE7E25223E98F21000FC447 /* Montserrat-Bold.ttf in Resources */,
-				5BE7E25323E98F21000FC447 /* main.jsbundle in Resources */,
-				5BE7E25423E98F21000FC447 /* Images.xcassets in Resources */,
-				5BE7E25523E98F21000FC447 /* Images.xcassets in Resources */,
-				5BE7E25623E98F21000FC447 /* Domine-Bold.ttf in Resources */,
-				5BE7E25723E98F21000FC447 /* FontAwesome5_Pro_Brands.ttf in Resources */,
-				5BE7E25823E98F21000FC447 /* AppCenter-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -973,69 +820,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 		};
-		5BE7E25923E98F21000FC447 /* Bundle React Native code and images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native code and images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
-		5BE7E25B23E98F21000FC447 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 421e3a33c9d2fd64e229fdc00d5238c59e9b66fa 2e33ae811ee810ee4ea132096a6d77d57066444e3fbb1a29d1d98bce60d8c19e\n";
-		};
-		5BE7E25E23E98F21000FC447 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nbash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Intercom.framework/strip-frameworks.sh\"\n";
-		};
-		5BE7E26023E98F21000FC447 /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Debug Symbols to Sentry";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
-		};
 		6C3BA05A2308A4078CE786D2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1054,28 +838,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		882FBEE2C42D54BF5ABCD2A6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Nyxo Dev-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BF842D7B9E4CC79A1B9C718D /* [CP] Check Pods Manifest.lock */ = {
@@ -1100,26 +862,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BFBB280D8235AFF843AC9293 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev-resources.sh",
-				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/Intercom.bundle",
-				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/IntercomTranslations.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Intercom.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IntercomTranslations.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DED22F96C89D448186375252 /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1132,7 +874,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1151,16 +893,6 @@
 				5B33130A21DFB5B800698A4A /* main.m in Sources */,
 				5BA9115E22E1E2350098700A /* CommandStatus.swift in Sources */,
 				5B33130921DFB5B800698A4A /* AppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5BE7E22D23E98F21000FC447 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BE7E22E23E98F21000FC447 /* main.m in Sources */,
-				5BE7E22F23E98F21000FC447 /* CommandStatus.swift in Sources */,
-				5BE7E23023E98F21000FC447 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1305,7 +1037,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
@@ -1322,7 +1054,7 @@
 				INFOPLIST_FILE = Nyxo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-DFB_SONARKIT_ENABLED=1",
@@ -1354,7 +1086,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1370,7 +1102,7 @@
 				INFOPLIST_FILE = Nyxo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-DFB_SONARKIT_ENABLED=1",
@@ -1391,151 +1123,9 @@
 			};
 			name = Release;
 		};
-		5BE7E26223E98F21000FC447 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
-				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Vendor/AppCenter-SDK-Apple/iOS",
-					"$(PROJECT_DIR)/Vendor/AppCenterReactNativeShared",
-					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../node_modules/react-native/React",
-					"$(SRCROOT)/../node_modules/react-native/Libraries",
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
-					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
-					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
-					"$(SRCROOT)/../node_modules/react-native-haptic-feedback/ios",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/amazon-cognito-identity-js/ios",
-					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
-					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
-					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
-					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
-					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
-					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-screens/ios",
-					"$(SRCROOT)/../node_modules/react-native-healthkit/RCTAppleHealthKit",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/Nyxo (DEV).plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4.0;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-DFB_SONARKIT_ENABLED=1",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application.dev;
-				PRODUCT_NAME = "Nyxo DEV";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Nyxo-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
-		5BE7E26323E98F21000FC447 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
-				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Vendor/AppCenter-SDK-Apple/iOS",
-					"$(PROJECT_DIR)/Vendor/AppCenterReactNativeShared",
-					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../node_modules/react-native/React",
-					"$(SRCROOT)/../node_modules/react-native/Libraries",
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
-					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
-					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
-					"$(SRCROOT)/../node_modules/react-native-haptic-feedback/ios",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/amazon-cognito-identity-js/ios",
-					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
-					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
-					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios",
-					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
-					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
-					"$(SRCROOT)/../node_modules/react-native-intercom/iOS",
-					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-screens/ios",
-					"$(SRCROOT)/../node_modules/react-native-healthkit/RCTAppleHealthKit",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/Nyxo (DEV).plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4.0;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-DFB_SONARKIT_ENABLED=1",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application.dev;
-				PRODUCT_NAME = "Nyxo DEV";
-				PROVISIONING_PROFILE = "d1d3a31a-831f-44c7-be9d-541c01656f20";
-				PROVISIONING_PROFILE_SPECIFIER = "app.sleepcircle.application AppStore";
-				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Nyxo-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */;
+			baseConfigurationReference = 5B5220FA24F29CA50039E226 /* rnuc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1590,7 +1180,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7820DF24EEC2360074BAFC /* rnuc.xcconfig */;
+			baseConfigurationReference = 5B5220FA24F29CA50039E226 /* rnuc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1654,15 +1244,6 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5BE7E26123E98F21000FC447 /* Build configuration list for PBXNativeTarget "Nyxo Dev" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5BE7E26223E98F21000FC447 /* Debug */,
-				5BE7E26323E98F21000FC447 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -39,7 +39,9 @@ export const formatGoogleFitData = (
       const endDate = new Date(
         parseInt(session.endTimeMillis, 10)
       ).toISOString()
+
       const night: Night = {
+        id: `google-fit-${session.id}`,
         sourceId: session.application.packageName,
         sourceName: 'Google Fit',
         startDate,

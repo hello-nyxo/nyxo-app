@@ -1,5 +1,4 @@
 export interface WithingsSleepObject {
-  id: number | string
   timezone: string
   model: number
   startdate: number

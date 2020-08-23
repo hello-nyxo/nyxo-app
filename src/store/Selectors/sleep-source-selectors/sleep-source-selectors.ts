@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 import { State } from 'Types/State'
 import { SleepSourceState, SOURCE } from 'typings/state/sleep-source-state'
+import CONFIG from 'config/Config'
 
 const getSleepSourcesState = (state: State) => state.sleepSources
 
@@ -34,6 +35,16 @@ export const getIsWithingsMainSource = createSelector(
   (source) => source === SOURCE.WITHINGS
 )
 
+export const getIsGarminMainSource = createSelector(
+  getMainSource,
+  (source) => source === SOURCE.GARMIN
+)
+
+export const getIsPolarMainSource = createSelector(
+  getMainSource,
+  (source) => source === SOURCE.POLAR
+)
+
 export const getHealthKitSource = createSelector(
   getSleepSourcesState,
   (state: SleepSourceState) => state.healthKitSource
@@ -56,12 +67,15 @@ export const getSharedSource = createSelector(
       case SOURCE.GOOGLE_FIT:
         return googleFitSource
       case SOURCE.FITBIT:
-        return { sourceName: 'Fitbit', sourceId: 'com.fitbit.FitbitMobilet' }
+        return { sourceName: 'Fitbit', sourceId: CONFIG.FITBIT_CONFIG.bundleId }
       case SOURCE.OURA:
-        return { sourceName: 'Oura', sourceId: 'com.ouraring.oura' }
+        return { sourceName: 'Oura', sourceId: CONFIG.OURA_CONFIG.bundleId }
 
       case SOURCE.WITHINGS:
-        return { sourceName: 'Withings', sourceId: 'com.withings.wiScaleNG' }
+        return {
+          sourceName: 'Withings',
+          sourceId: CONFIG.WITHINGS_CONFIG.bundleId
+        }
       default:
         return healthKitSource
     }

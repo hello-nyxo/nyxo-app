@@ -565,7 +565,11 @@
     "OURA": "Oura",
     "OURA_DESCRIPTION": "Enabling synchronization with Oura will allow Nyxo to synchronize your sleep records from Oura.",
     "WITHINGS": "Withings",
-    "WITHINGS_DESCRIPTION": "Enabling synchronization with Withings will allow Nyxo to synchronize your sleep records from Withings."
+    "WITHINGS_DESCRIPTION": "Enabling synchronization with Withings will allow Nyxo to synchronize your sleep records from Withings.",
+    "GARMIN": "Garmin",
+    "GARMIN_DESCRIPTION": "Enabling synchronization with Garmin will allow Nyxo to synchronize your sleep records from Garmin.",
+    "POLAR": "Polar",
+    "POLAR_DESCRIPTION": "Enabling synchronization with Polar will allow Nyxo to synchronize your sleep records from Polar."
   },
 
   "ERROR": {

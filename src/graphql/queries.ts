@@ -209,6 +209,86 @@ export const listHabits = /* GraphQL */ `
     }
   }
 `
+export const getNight = /* GraphQL */ `
+  query GetNight($id: ID!) {
+    getNight(id: $id) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      sourceId
+      sourceName
+      source
+      value
+      startDate
+      endDate
+      totalDuration
+      owner
+    }
+  }
+`
+export const listNights = /* GraphQL */ `
+  query ListNights(
+    $filter: ModelNightFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNights(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userId
+        sourceId
+        sourceName
+        source
+        value
+        startDate
+        endDate
+        totalDuration
+        owner
+      }
+      nextToken
+    }
+  }
+`
+export const getLikedContent = /* GraphQL */ `
+  query GetLikedContent($id: ID!) {
+    getLikedContent(id: $id) {
+      id
+      name
+      type
+      slug
+      cover
+      excerpt
+      owner
+    }
+  }
+`
+export const listLikedContents = /* GraphQL */ `
+  query ListLikedContents(
+    $filter: ModelLikedContentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLikedContents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        type
+        slug
+        cover
+        excerpt
+        owner
+      }
+      nextToken
+    }
+  }
+`
 export const userByConnectionId = /* GraphQL */ `
   query UserByConnectionId(
     $connectionId: String

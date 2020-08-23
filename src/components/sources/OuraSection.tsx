@@ -13,8 +13,8 @@ const OuraSection = () => {
   const isOuraMainSource = useSelector(getIsOuraMainSource)
   const ouraAuthorized = useSelector(getOuraEnabled)
 
-  const setFitbitAsSource = () => {
-    dispatch(authorizeOura())
+  const setOuraAsSource = () => {
+    dispatch(toggleOura())
   }
 
   return (
@@ -27,7 +27,7 @@ const OuraSection = () => {
           </LogoAndTitle>
           <Description>SOURCE.OURA_DESCRIPTION</Description>
         </Column>
-        <Switch value={isOuraMainSource} onValueChange={setFitbitAsSource} />
+        <Switch value={isOuraMainSource} onValueChange={setOuraAsSource} />
       </TitleRow>
     </Container>
   )

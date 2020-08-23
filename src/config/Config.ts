@@ -8,6 +8,7 @@ export const CONFIG = {
   CONTENTFUL_SPACE_ACCESS_TOKEN: config.CONTENTFUL_ACCESS_TOKEN,
 
   FITBIT_CONFIG: {
+    bundleId: 'com.fitbit.FitbitMobilet',
     clientId: config.FITBIT_ID,
     clientSecret: '',
     redirectUrl: 'nyxo://callback',
@@ -20,6 +21,7 @@ export const CONFIG = {
   },
 
   OURA_CONFIG: {
+    bundleId: 'com.ouraring.oura',
     clientId: config.OURA_ID,
     clientSecret: '',
     redirectUrl: 'nyxo://callback',
@@ -59,6 +61,7 @@ export const CONFIG = {
   },
 
   WITHINGS_CONFIG: {
+    bundleId: 'com.withings.wiScaleNG',
     clientId: config.WITHINGS_ID,
     clientSecret: '',
     redirectUrl: 'nyxo://callback',
@@ -68,6 +71,26 @@ export const CONFIG = {
         'https://account.withings.com/oauth2_user/authorize2',
       tokenEndpoint: config.WITHINGS_TOKEN_ENDPOINT,
       revocationEndpoint: config.WITHINGS_REVOCATION_ENDPOINT
+    }
+  },
+
+  GARMIN_CONFIG: {
+    bundleId: 'com.garmin.connect.mobile',
+    redirectUrl: 'nyxo://callback',
+    REQUEST_TOKEN_ENDPOINT: config.GARMIN_REQUEST_TOKEN_ENDPOINT,
+    ACCESS_TOKEN_ENDPOINT: config.GARMIN_ACCESS_TOKEN_ENDPOINT,
+    GET_SLEEP_ENDPOINT: config.GARMIN_GET_SLEEP_ENDPOINT
+  },
+
+  POLAR_CONFIG: {
+    bundleId: 'com.polar.mobile',
+    clientId: config.POLAR_ID,
+    clientSecret: '',
+    redirectUrl: 'nyxo://callback',
+    scopes: ['accesslink.read_all'],
+    serviceConfiguration: {
+      authorizationEndpoint: 'https://flow.polar.com/oauth2/authorization',
+      tokenEndpoint: config.POLAR_REVOCATION_ENDPOINT
     }
   },
 

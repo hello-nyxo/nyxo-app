@@ -1,21 +1,17 @@
 import {
   FITBIT_AUTHORIZE_SUCCESS,
   FITBIT_REVOKE_SUCCESS
-} from '@actions/api-actions/fitbit-actions'
-import { FitbitAuthResponse } from 'Types/State/api-state'
+} from '../../../actions/api-actions/fitbit-actions'
 import reducer, { initialState } from './api-reducer'
+import { ResponseBase } from '../../../Types/State/api-state'
 
-const fitbitMock: FitbitAuthResponse = {
-  user_id: 'test_id',
-  accessTokenExpirationDate: 'test_expire',
-  accessToken: 'accessToken',
-  refreshToken: 'refreshToken',
+const fitbitMock: ResponseBase = {
   enabled: true
 }
 
 describe('Api reducer', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(initialState)
+    expect(reducer(undefined, { type: '' })).toEqual(initialState)
   })
 
   it(`should handle ${FITBIT_AUTHORIZE_SUCCESS}`, () => {

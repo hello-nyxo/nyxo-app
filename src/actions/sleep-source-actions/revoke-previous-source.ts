@@ -7,6 +7,8 @@ import { GetState } from 'Types/GetState'
 import { getMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
 import { toggleOura } from '@actions/api-actions/oura-actions'
 import { toggleWithings } from '@actions/api-actions/withings-actions'
+import { toggleGarmin } from '@actions/api-actions/garmin-actions'
+import { togglePolar } from '@actions/api-actions/polar-actions'
 
 export const revokePreviousSource = (): Thunk => async (
   dispatch: Dispatch,
@@ -26,9 +28,17 @@ export const revokePreviousSource = (): Thunk => async (
       break
     case SOURCE.OURA:
       await dispatch(toggleOura())
+      break
     case SOURCE.WITHINGS:
       await dispatch(toggleWithings())
       break
+    case SOURCE.GARMIN:
+      await dispatch(toggleGarmin())
+      break
+    case SOURCE.POLAR:
+      await dispatch(togglePolar())
+      break
+
     default:
       break
   }

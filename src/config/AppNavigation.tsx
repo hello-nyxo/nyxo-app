@@ -55,11 +55,17 @@ const Routes = () => {
           path: 'settings',
           [ROUTE.CLOUD_SETTINGS]: {
             path: 'cloud'
+          },
+          [ROUTE.GARMIN]: {
+            path: 'garmin'
+          },
+          [ROUTE.SOURCE_SETTINGS]: {
+            path: 'callback'
           }
         }
       }
     },
-    getStateFromPath
+    getStateFromPath: getStateFromPath
   })
 
   const [isReady, setIsReady] = useState(false)

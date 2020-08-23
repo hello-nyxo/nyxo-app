@@ -159,28 +159,25 @@ android {
         debug {
 					storeFile file(keystoreProperties['NYXO_UPLOAD_STORE_FILE'])
 					storePassword keystoreProperties['NYXO_UPLOAD_STORE_PASSWORD']
-					keyAlias keystoreProperties['MYAPP_RELEASE_KEY_ALIAS']
+					keyAlias keystoreProperties['NYXO_RELEASE_KEY_ALIAS']
 					keyPassword keystoreProperties['NYXO_UPLOAD_KEY_ALIAS']
         }
         release {
          	storeFile file(keystoreProperties['NYXO_UPLOAD_STORE_FILE'])
 					storePassword keystoreProperties['NYXO_UPLOAD_STORE_PASSWORD']
-					keyAlias keystoreProperties['MYAPP_RELEASE_KEY_ALIAS']
+					keyAlias keystoreProperties['NYXO_RELEASE_KEY_ALIAS']
 					keyPassword keystoreProperties['NYXO_UPLOAD_KEY_ALIAS']
         }
     }
     buildTypes {
-        debug {
-            buildConfigField "String", "CODEPUSH_KEY", '"Y26psKSBIfzb2ta6JgrEC_ZXlxeIHJ4jvmmMB"'
+				debug {
             signingConfig signingConfigs.debug
         }
         release {
-            buildConfigField "String", "CODEPUSH_KEY", '"Y26psKSBIfzb2ta6JgrEC_ZXlxeIHJ4jvmmMB"'
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-
-        }
+						signingConfig signingConfigs.release
+				}
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
@@ -224,13 +221,8 @@ dependencies {
     implementation project(':react-native-firebase')
     implementation 'com.google.firebase:firebase-messaging:9.2.1'
     implementation 'io.intercom.android:intercom-sdk-base:5.+'
-    implementation ("com.google.android.gms:play-services-fitness:+")
-    implementation ("com.google.android.gms:play-services-auth:+")
-    implementation project(':react-native-google-fit')
     implementation project(':@sentry')
-    implementation (project(':react-native-google-fit'), {
-        exclude group: "com.google.android.gms"
-    })
+
     implementation "com.google.firebase:firebase-messaging:18.0.0"
     implementation 'me.leolin:ShortcutBadger:1.1.21@aar' // <-- Add this line if you wish to use badge on Android
 

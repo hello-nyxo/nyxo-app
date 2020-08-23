@@ -20,6 +20,14 @@ export const getOuraEnabled = createSelector(getApi, (state: ApiState) =>
   state.oura ? state.oura?.enabled : false
 )
 
+export const getGarminEnabled = createSelector(getApi, (state: ApiState) =>
+  state.garmin ? state.garmin?.enabled : false
+)
+
+export const getPolarEnabled = createSelector(getApi, (state: ApiState) =>
+  state.polar ? state.polar?.enabled : false
+)
+
 export const getLoadingGoogleFit = createSelector(
   getApi,
   (state: ApiState) => state.loadingGoogleFit
@@ -29,29 +37,3 @@ export const getLoadingFitbit = createSelector(
   getApi,
   (state: ApiState) => state.loadingFitbit
 )
-
-export const getFitbitToken = createSelector(getApi, (state) => ({
-  user_id: state.fitbit?.user_id,
-  accessToken: state.fitbit?.accessToken,
-  accessTokenExpirationDate: state.fitbit?.accessTokenExpirationDate,
-  refreshToken: state.fitbit?.refreshToken
-}))
-
-export const getOuraToken = createSelector(getApi, (state) => ({
-  accessToken: state.oura?.accessToken,
-  accessTokenExpirationDate: state.oura?.accessTokenExpirationDate,
-  refreshToken: state.oura?.refreshToken
-}))
-
-export const getGoogleFitToken = createSelector(getApi, (state) => ({
-  accessToken: state.googleFit?.accessToken,
-  accessTokenExpirationDate: state.googleFit?.accessTokenExpirationDate,
-  refreshToken: state.googleFit?.refreshToken
-}))
-
-export const getWithingsToken = createSelector(getApi, (state) => ({
-  user_id: state.withings?.user_id,
-  accessToken: state.withings?.accessToken,
-  accessTokenExpirationDate: state.withings?.accessTokenExpirationDate,
-  refreshToken: state.withings?.refreshToken
-}))

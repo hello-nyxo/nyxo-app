@@ -556,7 +556,11 @@
     "WITHINGS": "Withings",
     "WITHINGS_DESCRIPTION": "Sallimalla Withings-synkronoinnin annat Nyxolle luvan hakea unidataa Withingsin laitteista.",
     "OURA": "Oura",
-    "OURA_DESCRIPTION": "Sallimalla Oura-synkronoinnin annat Nyxolle luvan hakea unidataa Ourasta."
+    "OURA_DESCRIPTION": "Sallimalla Oura-synkronoinnin annat Nyxolle luvan hakea unidataa Ourasta.",
+    "GARMIN": "Garmin",
+    "GARMIN_DESCRIPTION": "Sallimalla Garmin-synkronoinnin annat Nyxolle luvan hakea unidataa Garmin laitteista ja sovelluksista.",
+    "POLAR": "Polar",
+    "POLAR_DESCRIPTION": "Enabling synchronization with Polar will allow Nyxo to synchronize your sleep records from Polar."
   },
 
   "ERROR": {

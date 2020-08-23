@@ -1,5 +1,5 @@
-import React from 'react'
-import { View } from 'react-native'
+import React, { FC } from 'react'
+import { View, FlatList } from 'react-native'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import {
@@ -9,14 +9,14 @@ import {
 } from 'store/Selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import { WIDTH } from '../../helpers/Dimensions'
-import { AnimatedFlatList, H3 } from '../Primitives/Primitives'
+import { H3 } from '../Primitives/Primitives'
 import WeekCard from './WeekCard'
 
 export const cardWidth = WIDTH - 40
 export const cardMargin = 5
 const xOffset = new Animated.Value(0)
 
-const WeekCarousel = () => {
+const WeekCarousel: FC = () => {
   const currentWeek = useSelector(getCurrentWeek)
   const combined = useSelector(getCombinedWeeks)
   const ongoing = combined
@@ -46,7 +46,7 @@ const WeekCarousel = () => {
       <Container>
         <H3>COACHING_WEEKS</H3>
       </Container>
-      <AnimatedFlatList
+      <FlatList
         contentContainerStyle={{
           paddingLeft: inset,
           paddingRight: inset
@@ -57,17 +57,12 @@ const WeekCarousel = () => {
         directionalLockEnabled
         initialScrollIndex={activeWeekIndex}
         snapToOffsets={snapOffets}
-        getItemLayout={(data: any, index: number) => ({
+        debug
+        getItemLayout={(_: CombinedWeek[], index: number) => ({
           index,
           length: cardWidth,
           offset: (cardWidth + cardMargin) * index
         })}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: xOffset } } }],
-          {
-            useNativeDriver: true
-          }
-        )}
         snapToAlignment="center"
         snapToEnd={false}
         data={ongoing}

@@ -1,9 +1,5 @@
 // react-native.config.js
 module.exports = {
-  dependencies: {
-    'react-native-google-fit': {
-      platforms: { android: null }
-    }
-  },
+  dependencies: {},
   assets: ['./assets/fonts']
 }

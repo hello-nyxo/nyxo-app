@@ -26,7 +26,9 @@ enum ROUTE {
 
   PURCHASE = 'PurchaseView',
 
-  TERVEYSTALO = 'Terveystalo'
+  TERVEYSTALO = 'Terveystalo',
+
+  GARMIN = 'Garmin'
 }
 
 export default ROUTE

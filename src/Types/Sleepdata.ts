@@ -47,6 +47,7 @@ export interface HealthKitSleepResponse {
 }
 
 export type Night = {
+  id: string
   source?: string
   sourceId: string
   sourceName: string

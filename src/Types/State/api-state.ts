@@ -1,45 +1,40 @@
 import { RefreshResult, AuthorizeResult } from 'react-native-app-auth'
 
 export interface ApiState {
-  fitbit?: FitbitAuthResponse
-  googleFit?: GoogleFitResponse
-  garmin?: GarminResponse
-  polar?: PolarResponse
-  oura?: OuraResponse
-  suunto?: SuuntoResponse
-  withings?: WithingsResponse
+  fitbit?: ResponseBase
+  googleFit?: ResponseBase
+  garmin?: ResponseBase
+  polar?: ResponseBase
+  oura?: ResponseBase
+  suunto?: ResponseBase
+  withings?: ResponseBase
 
   loadingFitbit: boolean
   loadingGoogleFit: boolean
   loadingOura: boolean
+  loadingGarmin: boolean
+  loadingWithings: boolean
+  loadingPolar: boolean
 }
 
 export interface ResponseBase {
   enabled: boolean
+}
+
+export interface GoogleFitResponse extends ResponseBase {
   accessTokenExpirationDate: string
   refreshToken: string
   accessToken: string
 }
 
-export interface FitbitAuthResponse extends ResponseBase {
-  user_id?: string
-}
+export interface SuuntoResponse extends ResponseBase {}
 
-export type GoogleFitResponse = ResponseBase
-
-export type SuuntoResponse = ResponseBase
-
+export interface GarminResponse extends ResponseBase {}
 export interface OuraResponse extends ResponseBase {
   user_id?: string
 }
 
-export type GarminResponse = ResponseBase
-
-export type PolarResponse = ResponseBase
-
-export interface WithingsResponse extends ResponseBase {
-  user_id?: string
-}
+export interface PolarResponse extends ResponseBase {}
 
 export interface FitbitRefreshResult extends RefreshResult {
   refreshToken: string
@@ -55,4 +50,22 @@ export interface FitbitAuthorizeResult extends AuthorizeResult {
   }
 }
 
-export type OuraAuthorizeResult = AuthorizeResult
+export interface OuraAuthorizeResult extends AuthorizeResult {}
+
+export interface WithingsAuthorizeResult extends AuthorizeResult {
+  tokenAdditionalParameters: {
+    userid: string
+  }
+}
+
+export interface GarminAuthorizeResult {
+  accessToken: string
+  accessTokenSecret: string
+  oauthTokenSecret: string
+}
+
+export interface PolarAuthorizeResult extends AuthorizeResult {
+  tokenAdditionalParameters: {
+    x_user_id: string
+  }
+}
