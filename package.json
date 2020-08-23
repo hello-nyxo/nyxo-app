@@ -245,7 +245,6 @@
     "react-native-ultimate-config": "^3.2.3",
     "react-native-unimodules": "^0.9.1",
     "react-native-view-overflow": "0.0.5",
-    "react-native-watch-connectivity": "git+https://github.com/plahteenlahti/react-native-watch-connectivity.git",
     "react-native-webview": "^9.4.0",
     "react-redux": "^7.1.3",
     "reading-time": "^1.2.0",
