@@ -1,6 +1,7 @@
 import { ScaleTime } from 'd3'
 import moment from 'moment'
 import React, { FC, useMemo } from 'react'
+import { GestureResponderEvent } from 'react-native'
 import { G, Rect } from 'react-native-svg'
 import { Day, Night, Value } from 'Types/Sleepdata'
 import colors from '../../../styles/colors'
@@ -11,9 +12,17 @@ interface Props {
   scaleX: ScaleTime<number, number>
   scaleY: ScaleTime<number, number>
   barWidth: number
+  onPress: (day: Day) => void
 }
 
-const SleepBars: FC<Props> = ({ data, type, scaleX, scaleY, barWidth }) => {
+const SleepBars: FC<Props> = ({
+  data,
+  type,
+  scaleX,
+  scaleY,
+  barWidth,
+  onPress
+}) => {
   const color = type === Value.Asleep ? colors.radiantBlue : colors.inBedColor
 
   const { bars } = useMemo(
@@ -29,7 +38,7 @@ const SleepBars: FC<Props> = ({ data, type, scaleX, scaleY, barWidth }) => {
               scaleY(moment(item.startDate).valueOf())
 
             return (
-              <G key={item.startDate}>
+              <G onPress={() => onPress(datum)} key={item.startDate}>
                 <Rect
                   x={x}
                   width={barWidth}

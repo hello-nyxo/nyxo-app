@@ -1,3 +1,4 @@
+import SleepTimeChart from '@components/Charts/SleepChart'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import { getSelectedDay } from '@selectors/SleepDataSelectors'
@@ -6,7 +7,6 @@ import {
   updateCalendar
 } from 'actions/sleep/sleep-data-actions'
 import { backgroundAction, startup } from 'actions/StartupActions'
-import SleepTimeChart from 'components/Charts/sleepTimeChart'
 import Clock from 'components/Clock'
 import DayStrip from 'components/DayStrip'
 import { EditNightHeader } from 'components/MainScreenSpecific/EditNightHeader'
@@ -16,7 +16,6 @@ import EditHabitModal from 'components/modals/HabitModal/EditHabitModal'
 import NewHabitModal from 'components/modals/HabitModal/NewHabitModal'
 import MergeHabitsModal from 'components/modals/MergeHabitsModal/MergeHabitsModal'
 import RatingModal from 'components/RatingModal'
-import InsightsCard from 'components/sleep/InsightsCard'
 import useBackgroundFetch from 'Hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from 'Hooks/UseNotificationEventHandlers'
 import moment from 'moment'
@@ -68,9 +67,8 @@ const Sleep: FC = () => {
         <Row>
           <Clock />
         </Row>
-        <Row>
-          <InitializeSource />
-        </Row>
+        <InitializeSource />
+        {/* <Row></Row> */}
         {/* <Row>
           <InsightsCard />
         </Row> */}

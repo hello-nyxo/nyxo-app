@@ -8,11 +8,13 @@ import { ScrollView } from 'react-native-gesture-handler'
 import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { getAllDays } from '../../store/Selectors/SleepDataSelectors'
+import { getAllDays } from '@selectors/SleepDataSelectors'
+import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
 import { Day, Night, Value } from '../../Types/Sleepdata'
 import SleepBars from './SleepTimeChart/SleepBars'
 import XTicks from './SleepTimeChart/XTicks'
 import YTicks from './SleepTimeChart/YTicks'
+import TargetBars from './SleepTimeChart/TargetBars'
 
 const { height, width } = Dimensions.get('window')
 
@@ -25,6 +27,7 @@ const SleepTimeChart: FC = () => {
   const days = useSelector(getAllDays)
   const dispatch = useDispatch()
   const chartWidth = (barWidth + 10) * days.length + paddingLeft + paddingRight
+  const bedtimeWindow = useSelector(getGoToSleepWindowCenter)
 
   const { normalizedSleepData } = useMemo(
     () => ({
@@ -64,6 +67,8 @@ const SleepTimeChart: FC = () => {
   const yTicks = scaleY.ticks(5)
   const xTicks = scaleX.ticks(days.length)
 
+  console.log(normalizedSleepData)
+
   return (
     <Card>
       <Title>Sleep Goal Trend</Title>
@@ -75,7 +80,16 @@ const SleepTimeChart: FC = () => {
           showsHorizontalScrollIndicator={false}>
           <View style={{ transform: [{ scaleX: -1 }] }}>
             <Svg width={chartWidth} height={chartHeight}>
+              <TargetBars
+                start={bedtimeWindow}
+                onPress={select}
+                barWidth={barWidth}
+                scaleX={scaleX}
+                scaleY={scaleY}
+                data={normalizedSleepData}
+              />
               <SleepBars
+                onPress={select}
                 barWidth={barWidth}
                 type={Value.InBed}
                 scaleX={scaleX}
@@ -83,6 +97,7 @@ const SleepTimeChart: FC = () => {
                 data={normalizedSleepData}
               />
               <SleepBars
+                onPress={select}
                 barWidth={barWidth}
                 type={Value.Asleep}
                 scaleX={scaleX}

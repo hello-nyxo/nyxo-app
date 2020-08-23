@@ -128,7 +128,3 @@ const ClockContainer = styled(Animated.View)`
   flex: 1;
   margin-top: 8px;
 `
-
-const StyledSvg = styled(Svg)`
-  position: absolute;
-`
