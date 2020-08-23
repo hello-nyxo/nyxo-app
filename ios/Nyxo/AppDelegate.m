@@ -48,7 +48,6 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
-#import <react-native-ultimate-config/ConfigValues.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -63,43 +62,44 @@ static void InitializeFlipper(UIApplication *application) {
 
 
 
+#import <react-native-ultimate-config/ConfigValues.h>
+
+
 @implementation AppDelegate
 
-/* react-native-community/push-notification-ios */
-// Required to register for notifications
+
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
   [RNCPushNotificationIOS didRegisterUserNotificationSettings:notificationSettings];
 }
  
-// Required for the register event.
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
   [RNCPushNotificationIOS didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-  // Intercom
   [Intercom setDeviceToken:deviceToken];
 }
  
-// Required for the notification event. You must call the completion handler after handling the remote notification.
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
   [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
 }
  
-// Required for the registrationError event.
+
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
   [RNCPushNotificationIOS didFailToRegisterForRemoteNotificationsWithError:error];
 }
  
-// Required for the localNotification event.
+
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
 //  [RNCPushNotificationIOS didReceiveLocalNotification:notification];
   [[RNFirebaseNotifications instance] didReceiveLocalNotification:notification];
 }
-/* react-native-community/push-notification-ios */
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -118,16 +118,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
                                             initialProperties:nil];
 
   
-  NSURL *jsCodeLocation;
-  // Initialize BackgroundFetch
   [[TSBackgroundFetch sharedInstance] didFinishLaunching];
   
-  [AppCenterReactNative register];  // Initialize AppCenter
-  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];  // Initialize AppCenter crashes
-  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];  // Initialize AppCenter analytics
+  [AppCenterReactNative register];
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];
   
-  
-  [Intercom setApiKey:INTERCOM_KEY_IOS forAppId:INTERCOM_ID]; // Initialize Intercom
+    
+  [Intercom setApiKey:INTERCOM_KEY_IOS forAppId:INTERCOM_ID];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
   
@@ -139,15 +137,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   [self.window makeKeyAndVisible];
   [RNSplashScreen show];
   
-  /* react-native-community/push-notification-ios */
-  // Define UNUserNotificationCenter
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
-  /* react-native-community/push-notification-ios */
-  
-  
 
-  
+
   return YES;
 
 }
@@ -171,7 +164,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 #endif
 }
 
-// Add this above `@end`:
+
 - (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity
  restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
 {
