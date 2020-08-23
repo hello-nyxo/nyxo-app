@@ -15,7 +15,7 @@ import {
   getCoachingNotStarted
 } from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
-import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { PrimaryButton } from '../Buttons/PrimaryButton'
 import BuyCoachingButton from './BuyCoachingButton'
 import WeekCompleted from './WeekCompleted'

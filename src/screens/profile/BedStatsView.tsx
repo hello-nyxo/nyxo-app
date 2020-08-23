@@ -10,7 +10,7 @@ import {
   getShortestBedTime,
   getLongestBedTime,
   getNightsWithOver8HoursBedTime
-} from '../../store/Selectors/SleepDataSelectors'
+} from '@selectors/SleepDataSelectors'
 import { H3, P, Container } from '../../components/Primitives/Primitives'
 
 const { width } = Dimensions.get('window')

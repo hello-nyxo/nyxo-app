@@ -1,4 +1,4 @@
-import { toggleExplanationsModal } from '@actions/modal/modal-actions'
+import { toggleExplanationsModal } from 'actions/modal/modal-actions'
 import React, { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
@@ -14,8 +14,8 @@ const InfoButton = () => {
     <Container>
       <Touchable onPress={onPress}>
         <IconBold
-          width={15}
-          height={15}
+          width={20}
+          height={20}
           fill={colors.radiantBlue}
           name="informationCircle"
         />
@@ -28,7 +28,7 @@ export default memo(InfoButton)
 
 const Container = styled.View`
   position: absolute;
-  bottom: 35px;
+  bottom: 25px;
   right: 35px;
 `
 

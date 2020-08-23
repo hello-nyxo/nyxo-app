@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import { useSelector } from 'react-redux'
 import { H2, P, Container, Bordered } from '../Primitives/Primitives'
-import { getCurrentDaySuggestOtherSource } from '../../store/Selectors/SmartActionsSelectors'
+import { getCurrentDaySuggestOtherSource } from '@selectors/SmartActionsSelectors'
 import { getTitle } from '../../helpers/time'
 
 export const TodayView = () => {

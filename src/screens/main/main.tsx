@@ -1,3 +1,13 @@
+import {
+  fetchSleepData,
+  updateCalendar
+} from '@actions/sleep/sleep-data-actions'
+import { backgroundAction, startup } from '@actions/StartupActions'
+import {
+  getLoadingFitbit,
+  getLoadingGoogleFit
+} from '@selectors/api-selectors/api-selectors'
+import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import InitializeSource from 'components/MainScreenSpecific/InitializeSources'
 import ExplanationsModal from 'components/modals/ExplanationsModal'
 import MergeHabitsModal from 'components/modals/MergeHabitsModal/MergeHabitsModal'
@@ -6,16 +16,6 @@ import RatingModal from 'components/RatingModal'
 import React, { memo, useEffect } from 'react'
 import { RefreshControl, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getLoadingFitbit,
-  getLoadingGoogleFit
-} from '@selectors/api-selectors/api-selectors'
-import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
-import {
-  fetchSleepData,
-  updateCalendar
-} from '@actions/sleep/sleep-data-actions'
-import { backgroundAction, startup } from '@actions/StartupActions'
 import DayStrip from '../../components/DayStrip'
 import Habits from '../../components/HabitList/HabitList'
 import ClockCarousel from '../../components/MainScreenSpecific/ClockCarousel'
@@ -28,7 +28,6 @@ import TopInfo from '../../components/TopInfo'
 import useBackgroundFetch from '../../Hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from '../../Hooks/UseNotificationEventHandlers'
 import colors from '../../styles/colors'
-import SleepTimeChart from 'components/Charts/sleepTimeChart'
 
 const MainScreen = () => {
   const isLoadingSleepData = useSelector(getHealthKitLoading)
@@ -65,7 +64,6 @@ const MainScreen = () => {
             <TodayView />
           </View>
         }
-        footer={<SleepTimeChart />}
         refreshControl={
           <RefreshControl
             refreshing={isLoadingSleepData}

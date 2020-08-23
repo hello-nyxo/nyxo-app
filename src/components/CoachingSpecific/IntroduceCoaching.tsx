@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { fonts, StyleProps } from '../../styles/themes'
-import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { Container } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 

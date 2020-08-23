@@ -8,11 +8,11 @@ import {
 } from '@actions/sleep/sleep-data-actions'
 import { WIDTH } from '../../helpers/Dimensions'
 import keyExtractor from '../../helpers/KeyExtractor'
-import { getEditMode } from '../../store/Selectors/ManualDataSelectors'
+import { getEditMode } from '@selectors/ManualDataSelectors'
 import {
   getActiveIndex,
   getWeekReversedSelector
-} from '../../store/Selectors/SleepDataSelectors'
+} from '@selectors/SleepDataSelectors'
 import SCClock from '../Clock'
 import ClockEmpty from '../clock/ClockEmpty'
 

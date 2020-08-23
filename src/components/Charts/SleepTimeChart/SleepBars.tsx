@@ -1,6 +1,6 @@
 import { ScaleTime } from 'd3'
 import moment from 'moment'
-import React, { FC, memo, useMemo } from 'react'
+import React, { FC, useMemo } from 'react'
 import { G, Rect } from 'react-native-svg'
 import { Day, Night, Value } from 'Types/Sleepdata'
 import colors from '../../../styles/colors'

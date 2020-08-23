@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { FC } from 'react'
 import NotificationCenter from 'screens/main/NotificationCenter'
+import Sleep from 'screens/sleep/SleepView'
 import { JournalStackParamList } from 'Types/navigation/navigation'
-import Main from '../../screens/main/main'
 import Habits from '../../screens/Shared/HabitView'
 import ROUTE from './Routes'
 
@@ -13,7 +13,7 @@ const JournalNavigator: FC = () => {
     <Stack.Navigator screenOptions={{ gestureEnabled: true }}>
       <Stack.Screen
         name={ROUTE.SLEEP}
-        component={Main}
+        component={Sleep}
         options={{ headerShown: false }}
       />
 

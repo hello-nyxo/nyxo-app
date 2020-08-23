@@ -1,16 +1,16 @@
+import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
+import {
+  getGoToSleepWindowEnd,
+  getGoToSleepWindowStart
+} from '@selectors/insight-selectors/Insights'
+import { getEditMode } from '@selectors/ManualDataSelectors'
+import { getSelectedDay } from '@selectors/SleepDataSelectors'
 import React, { FC } from 'react'
 import { Dimensions } from 'react-native'
 import Animated from 'react-native-reanimated'
 import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { toggleEditMode } from '../actions/manual-sleep/manual-sleep-actions'
-import {
-  getGoToSleepWindowEnd,
-  getGoToSleepWindowStart
-} from '../store/Selectors/insight-selectors/Insights'
-import { getEditMode } from '../store/Selectors/ManualDataSelectors'
-import { getSelectedDay } from '../store/Selectors/SleepDataSelectors'
 import colors from '../styles/colors'
 import { Value } from '../Types/Sleepdata'
 import AddNightButton from './clock/AddNightButton'

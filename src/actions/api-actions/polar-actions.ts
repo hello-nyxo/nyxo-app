@@ -11,7 +11,7 @@ import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { PolarSleepObject } from 'Types/Sleep/Polar'
 import { PolarAuthorizeResult, ResponseBase } from 'Types/State/api-state'
 import { SOURCE } from 'typings/state/sleep-source-state'
-import { getPolarEnabled } from '../../store/Selectors/api-selectors/api-selectors'
+import { getPolarEnabled } from '@selectors/api-selectors/api-selectors'
 import { GetState } from '../../Types/GetState'
 
 export const POLAR_AUTHORIZE_SUCCESS = 'POLAR_AUTHORIZE_SUCCESS'

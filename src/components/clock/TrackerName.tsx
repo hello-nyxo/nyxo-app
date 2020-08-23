@@ -1,30 +1,30 @@
-import React from 'react'
-import { Text, G, TextPath, Defs, Path } from 'react-native-svg'
+import React, { FC } from 'react'
+import { Text } from 'react-native-svg'
+import styled from 'styled-components/native'
 import { fonts } from '../../styles/themes'
 
-interface TrackerNameProps {
+type Props = {
   x: number
   y: number
-  darkTheme: boolean
-  radius: number
 }
 
-const TrackerName = (props: TrackerNameProps) => {
-  const color = props.darkTheme ? 'white' : 'black'
-
+const TrackerName: FC<Props> = ({ x, y }) => {
   return (
-    <Text
+    <ThemedText
       textAnchor="middle"
       fontSize="13"
       fontFamily={fonts.bold}
       fontWeight="500"
-      fill={color}
       alignmentBaseline="mathematical"
-      x={props.x}
-      y={props.y + 90}>
+      x={x}
+      y={y + 90}>
       Nyxo
-    </Text>
+    </ThemedText>
   )
 }
 
 export default React.memo(TrackerName)
+
+const ThemedText = styled(Text).attrs(({ theme }) => ({
+  fill: theme.SECONDARY_TEXT_COLOR
+}))``

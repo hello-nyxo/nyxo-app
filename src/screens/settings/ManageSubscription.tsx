@@ -22,7 +22,7 @@ import CONFIG from '../../config/Config'
 import {
   getActiveCoaching,
   getLoadingPurchase
-} from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+} from '@selectors/subscription-selectors/SubscriptionSelectors'
 
 const ManageSubscription = () => {
   const isCoachingActive = useSelector(getActiveCoaching)

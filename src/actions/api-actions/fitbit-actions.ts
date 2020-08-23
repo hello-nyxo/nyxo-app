@@ -7,7 +7,7 @@ import moment from 'moment'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SOURCE } from 'typings/state/sleep-source-state'
-import { getFitbitEnabled } from '../../store/Selectors/api-selectors/api-selectors'
+import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import { GetState } from '../../Types/GetState'
 import {
   FitbitAuthorizeResult,

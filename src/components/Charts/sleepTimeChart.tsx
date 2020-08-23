@@ -1,14 +1,15 @@
+import TranslatedText from '@components/TranslatedText'
+import { setSelectedDay } from '@actions/sleep/sleep-data-actions'
 import { extent, max, min, scaleTime } from 'd3'
 import moment from 'moment'
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, FC } from 'react'
 import { Dimensions, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Svg from 'react-native-svg'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { getAllDays } from '../../store/Selectors/SleepDataSelectors'
-import { Day, Value } from '../../Types/Sleepdata'
-import { Container, H3 } from '../Primitives/Primitives'
+import { Day, Night, Value } from '../../Types/Sleepdata'
 import SleepBars from './SleepTimeChart/SleepBars'
 import XTicks from './SleepTimeChart/XTicks'
 import YTicks from './SleepTimeChart/YTicks'
@@ -20,21 +21,20 @@ export const paddingLeft = 100
 export const paddingRight = 100
 export const chartHeight = height / 3
 
-const SleepTimeChart = () => {
+const SleepTimeChart: FC = () => {
   const days = useSelector(getAllDays)
-  const [selectedDay, setSelectedDay] = useState()
-
+  const dispatch = useDispatch()
   const chartWidth = (barWidth + 10) * days.length + paddingLeft + paddingRight
 
   const { normalizedSleepData } = useMemo(
     () => ({
-      normalizedSleepData: normalizeSleepData(days, Value.InBed)
+      normalizedSleepData: normalizeSleepData(days)
     }),
     [days]
   )
 
   const select = (day: Day) => {
-    setSelectedDay(day)
+    dispatch(setSelectedDay(day))
   }
 
   const xDomain: Date[] = extent(
@@ -66,9 +66,8 @@ const SleepTimeChart = () => {
 
   return (
     <Card>
-      <Container>
-        <H3>Sleep Goal Trend</H3>
-      </Container>
+      <Title>Sleep Goal Trend</Title>
+
       <ScrollContainer>
         <ScrollView
           style={{ transform: [{ scaleX: -1 }] }}
@@ -110,6 +109,13 @@ const SleepTimeChart = () => {
 export default SleepTimeChart
 
 const ScrollContainer = styled.View``
+
+const Title = styled(TranslatedText)`
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-size: 15px;
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  margin-bottom: 10px;
+`
 
 const YTicksContainer = styled(Svg)`
   position: absolute;

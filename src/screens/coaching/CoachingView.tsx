@@ -11,7 +11,7 @@ import NewHabitModal from '../../components/modals/HabitModal/NewHabitModal'
 import { SafeAreaView } from '../../components/Primitives/Primitives'
 import TopInfo from '../../components/TopInfo'
 import { WIDTH } from '../../helpers/Dimensions'
-import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import colors from '../../styles/colors'
 import Lessons from './Lessons'
 

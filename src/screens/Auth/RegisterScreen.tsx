@@ -17,7 +17,7 @@ import SCTextInput from '../../components/TextField'
 import TopInfo from '../../components/TopInfo'
 import TranslatedText from '../../components/TranslatedText'
 import { RegisterSchema } from '../../config/Validation'
-import { getLoading } from '../../store/Selectors/auth-selectors/auth-selectors'
+import { getLoading } from '@selectors/auth-selectors/auth-selectors'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'
 

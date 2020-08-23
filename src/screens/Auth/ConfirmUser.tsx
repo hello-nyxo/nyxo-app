@@ -13,7 +13,7 @@ import {
   StyledScrollView
 } from '../../components/Primitives/Primitives'
 import TopInfo from '../../components/TopInfo'
-import { getEmail } from '../../store/Selectors/UserSelectors'
+import { getEmail } from '@selectors/UserSelectors'
 
 interface ConfirmationScreenProps {
   navigation: any

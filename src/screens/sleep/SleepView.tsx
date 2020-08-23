@@ -71,9 +71,9 @@ const Sleep: FC = () => {
         <Row>
           <InitializeSource />
         </Row>
-        <Row>
+        {/* <Row>
           <InsightsCard />
-        </Row>
+        </Row> */}
         <SleepTimeChart />
       </ScrollView>
       <RatingModal />

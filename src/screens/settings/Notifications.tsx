@@ -18,7 +18,7 @@ import {
 import {
   makeGetNotificationEnabled,
   getScheduledNotifications
-} from '../../store/Selectors/NotificationSelectors'
+} from '@selectors/NotificationSelectors'
 import { State } from '../../Types/State'
 import { setNotification } from '@actions/NotificationActions'
 

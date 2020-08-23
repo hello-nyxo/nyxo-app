@@ -11,7 +11,7 @@ import WeekIntro from '../../components/CoachingSpecific/WeekIntro'
 import WeekViewHeader from '../../components/CoachingSpecific/WeekViewHeader'
 import NewHabitModal from '../../components/modals/HabitModal/NewHabitModal'
 import { BGContainer } from '../../components/Primitives/Primitives'
-import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import Lessons from './Lessons'
 
 const yOffset = new Animated.Value(0)

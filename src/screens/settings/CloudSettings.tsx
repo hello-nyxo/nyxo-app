@@ -22,7 +22,7 @@ import ROUTE from '../../config/routes/Routes'
 import {
   getAuthState,
   getLoading
-} from '../../store/Selectors/auth-selectors/auth-selectors'
+} from '@selectors/auth-selectors/auth-selectors'
 import colors from '../../styles/colors'
 
 const CloudView = ({ navigation, route }) => {

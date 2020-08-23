@@ -18,9 +18,9 @@ import VersionInformation from '../../components/SettingsSpecific/versionInforma
 import TopInfo from '../../components/TopInfo'
 import CONFIG from '../../config/Config'
 import keyExtractor from '../../helpers/KeyExtractor'
-import { getIntercomNotificationCount } from '../../store/Selectors/NotificationSelectors'
-import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
-import { getTheme } from '../../store/Selectors/UserSelectors'
+import { getIntercomNotificationCount } from '@selectors/NotificationSelectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
+import { getTheme } from '@selectors/UserSelectors'
 import {
   darkTheme,
   lightTheme,

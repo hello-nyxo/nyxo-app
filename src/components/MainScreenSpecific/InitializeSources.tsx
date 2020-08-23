@@ -7,19 +7,20 @@ import { useNavigation } from '@react-navigation/core'
 import ROUTE from 'config/routes/Routes'
 import { IconBold } from 'components/iconRegular'
 import { useSelector, useDispatch } from 'react-redux'
-import { getDataOnboardingCompleted } from '@selectors/OnboardingSelectors'
-import { markDataOnboardingCompleted } from '@actions/onboarding/onboarding-actions'
+import { getDataOnboardingCompleted } from 'store/Selectors/OnboardingSelectors'
+import { markDataOnboardingCompleted } from 'actions/onboarding/onboarding-actions'
 
-const InitializeSource: FC<{}> = () => {
+const InitializeSource: FC = () => {
   const { navigate } = useNavigation()
   const dispatch = useDispatch()
   const onboardingCompleted = useSelector(getDataOnboardingCompleted)
+
   const handlePress = () => {
     navigate(ROUTE.SETTINGS, { screen: ROUTE.SOURCE_SETTINGS })
     dispatch(markDataOnboardingCompleted())
   }
 
-  if (onboardingCompleted) return <></>
+  if (onboardingCompleted) return null
 
   return (
     <Container>
@@ -44,12 +45,9 @@ const InitializeSource: FC<{}> = () => {
 export default InitializeSource
 
 const Container = styled.View`
+  margin: 8px 0px;
   padding: 20px 20px;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  background-color: ${colors.evening};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   border-radius: 5px;
   box-shadow: ${({ theme }) => theme.SHADOW};
 `

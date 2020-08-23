@@ -5,11 +5,11 @@ import styled from 'styled-components/native'
 import { minutesToHoursString } from '../../helpers/time'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'
-import { getGoToSleepWindowCenter } from '../../store/Selectors/insight-selectors/Insights'
+import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
 import {
   getSelectedDayAsleepDuration,
   getSelectedDayInBedDuration
-} from '../../store/Selectors/SleepDataSelectors'
+} from '@selectors/SleepDataSelectors'
 
 const Explanations = () => {
   const inbed = minutesToHoursString(useSelector(getSelectedDayInBedDuration))
