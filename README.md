@@ -2,7 +2,7 @@
 
 
 <p align="center">
-<h1 align=center>Nyxo App – Better Sleep 💤💤💤<h1/>
+<h1 align=center>Nyxo App – Better Sleep 💤💤💤</h1>
 </p>
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -33,6 +33,15 @@ Nyxo is a mobile application for improving your sleep. Its built with React Nati
 - And more
 
 The plan is to develop Nyxo further and allow contributions from everyone. If you want to for example build a new sleep visualization or add support for new sleep tracker, we will gladly welcome a pull request of that :)
+
+## Can I help?
+Always!
+
+If you like the app, go give it 5 stars and a review! It helps more people find the app, and makes the developer very happy 😊
+
+
+
+If you know a language other than English, help us translate the app!
 
 
 ## Getting started
