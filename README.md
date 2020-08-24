@@ -4,16 +4,18 @@
 <p align="center">
 <h1 align=center>Nyxo App – Better Sleep 💤💤💤<h1/>
 </p>
-<p align="center">
-  <a href="https://apps.apple.com/us/app/nyxo-sleep-coaching/id1440417031">Download iOS</a> • <a href="https://play.google.com/store/apps/details?id=fi.nyxo.app">Download Android</a> • <a href="mailto:hello+github@nyxo.fi">Contact</a> • <a href="http://eepurl.com/g-0zKD">Nyxo Newsletter</a>
-<br><br>
-</p>
-
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![commit activity](https://img.shields.io/github/commit-activity/w/hello-nyxo/nyxo-app)
 ![release](https://img.shields.io/github/v/release/hello-nyxo/nyxo-app)
 ![license](https://img.shields.io/github/license/hello-nyxo/nyxo-app)
+
+--- 
+
+<p align="center">
+  <a href="https://apps.apple.com/us/app/nyxo-sleep-coaching/id1440417031">Download iOS</a> • <a href="https://play.google.com/store/apps/details?id=fi.nyxo.app">Download Android</a> • <a href="mailto:hello+github@nyxo.fi">Contact</a> • <a href="http://eepurl.com/g-0zKD">Nyxo Newsletter</a>
+<br><br>
+</p>
 
 ## What is Nyxo App
 Nyxo is a mobile application for improving your sleep. Its built with React Native, AWS Amplify, styled-components, and Redux. Nyxo provides the following features:
