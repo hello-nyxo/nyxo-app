@@ -28,7 +28,6 @@ const WeekCarousel: FC = () => {
         week={item}
         cardMargin={cardMargin}
         cardWidth={cardWidth}
-        xOffset={xOffset}
       />
     )
   }
