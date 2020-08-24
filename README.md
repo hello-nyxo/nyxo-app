@@ -1,4 +1,6 @@
-# Nyxo App
+![Nyxo App](https://github.com/hello-nyxo/nyxo-website/blob/master/static/images/cover.png)
+
+<h1 align=center>Nyxo App<h1/>
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![commit activity](https://img.shields.io/github/commit-activity/w/hello-nyxo/nyxo-app)
