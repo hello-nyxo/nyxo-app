@@ -52,7 +52,7 @@ const InsightsCard: FC = () => {
           />
           <Column>
             <Value>{wokeUp}</Value>
-            <Description>Woke up</Description>
+            <Description>STAT.WOKE_UP</Description>
           </Column>
         </Figure>
       </Row>

@@ -1,4 +1,5 @@
 import SleepTimeChart from '@components/Charts/SleepChart'
+import NotificationCenterLink from '@components/NotificationCenter/NotificationCenterLink'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import { getSelectedDay } from '@selectors/SleepDataSelectors'
@@ -7,15 +8,15 @@ import {
   updateCalendar
 } from 'actions/sleep/sleep-data-actions'
 import { backgroundAction, startup } from 'actions/StartupActions'
-import Clock from 'components/Clock'
-import DayStrip from 'components/DayStrip'
-import { EditNightHeader } from 'components/MainScreenSpecific/EditNightHeader'
-import InitializeSource from 'components/MainScreenSpecific/InitializeSources'
-import ExplanationsModal from 'components/modals/ExplanationsModal'
-import EditHabitModal from 'components/modals/HabitModal/EditHabitModal'
-import NewHabitModal from 'components/modals/HabitModal/NewHabitModal'
-import MergeHabitsModal from 'components/modals/MergeHabitsModal/MergeHabitsModal'
-import RatingModal from 'components/RatingModal'
+import Clock from '@components/Clock'
+import DayStrip from '@components/DayStrip'
+import { EditNightHeader } from '@components/MainScreenSpecific/EditNightHeader'
+import InitializeSource from '@components/MainScreenSpecific/InitializeSources'
+import ExplanationsModal from '@components/modals/ExplanationsModal'
+import EditHabitModal from '@components/modals/HabitModal/EditHabitModal'
+import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
+import MergeHabitsModal from '@components/modals/MergeHabitsModal/MergeHabitsModal'
+import RatingModal from '@components/RatingModal'
 import useBackgroundFetch from 'Hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from 'Hooks/UseNotificationEventHandlers'
 import moment from 'moment'
@@ -24,6 +25,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { SafeAreaView } from '../../components/Primitives/Primitives'
+import InsightsCard from 'components/sleep/InsightsCard'
 
 const Sleep: FC = () => {
   const today = useSelector(getSelectedDay)
@@ -60,18 +62,20 @@ const Sleep: FC = () => {
         }>
         <DayStrip />
         <TitleRow>
-          <Title>{moment(today.date).format('dddd')}</Title>
-          <Subtitle>{moment(today.date).format('DD MMMM yyyy')}</Subtitle>
+          <TitleContainer>
+            <Title>{moment(today.date).format('dddd')}</Title>
+            <Subtitle>{moment(today.date).format('DD MMMM yyyy')}</Subtitle>
+          </TitleContainer>
+          <NotificationCenterLink />
         </TitleRow>
 
         <Row>
           <Clock />
         </Row>
         <InitializeSource />
-        {/* <Row></Row> */}
-        {/* <Row>
+        <Row>
           <InsightsCard />
-        </Row> */}
+        </Row>
         <SleepTimeChart />
       </ScrollView>
       <RatingModal />
@@ -109,8 +113,12 @@ const Subtitle = styled.Text`
 const TitleRow = styled.View`
   padding: 16px;
   margin-bottom: 20px;
+  flex-direction: row;
+  justify-content: space-between;
 `
 
 const RefreshControl = styled.RefreshControl.attrs(({ theme }) => ({
   tintColor: theme.SECONDARY_TEXT_COLOR
 }))``
+
+const TitleContainer = styled.View``

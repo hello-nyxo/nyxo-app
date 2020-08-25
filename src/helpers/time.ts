@@ -202,12 +202,12 @@ export function roundAngleToFives(angle: number): number {
   return Math.round(angle / fiveMinuteAngle) * fiveMinuteAngle
 }
 
-export function padMinutes(min: number): number {
+export function padMinutes(min: number): string {
   if (`${min}`.length < 2) {
     return `0${min}`
   }
 
-  return min
+  return `${min}`
 }
 
 export const getFormattedDateOrPlaceholder = (

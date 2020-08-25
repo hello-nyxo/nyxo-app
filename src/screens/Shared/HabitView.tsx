@@ -1,3 +1,4 @@
+import { toggleNewHabitModal } from '@actions/modal/modal-actions'
 import CoachingSectionHeader from '@components/CoachingSpecific/CoachingSectionHeader'
 import EmptyState from '@components/EmptyState'
 import HabitCard from '@components/HabitCard/HabitCard'
@@ -13,16 +14,13 @@ import {
   getActiveHabits,
   getArchivedHabits
 } from '@selectors/habit-selectors/habit-selectors'
-import TranslatedText from 'components/TranslatedText'
+import NewHabitModal from 'components/modals/HabitModal/NewHabitModal'
 import React, { FC } from 'react'
 import { SectionList } from 'react-native'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
-import { fonts } from 'styles/themes'
 import { Habit } from 'Types/State/habit-state'
-import { toggleNewHabitModal } from '@actions/modal/modal-actions'
-import NewHabitModal from 'components/modals/HabitModal/NewHabitModal'
 
 const HabitView: FC = () => {
   const activeHabits = useSelector(getActiveHabits)
@@ -38,8 +36,16 @@ const HabitView: FC = () => {
   }
 
   const sections = [
-    { title: 'HABIT.ACTIVE', data: activeHabits },
-    { title: 'HABIT.ARCHIVED', data: archivedHabits }
+    {
+      title: 'HABIT.ACTIVE',
+      subtitle: 'HABIT.ACTIVE_SUBTITLE',
+      data: activeHabits
+    },
+    {
+      title: 'HABIT.ARCHIVED',
+      subtitle: 'HABIT.ARCHIVED_SUBTITLE',
+      data: archivedHabits
+    }
   ]
 
   const habitKeyExtractor = (item: Habit) => {
@@ -69,8 +75,12 @@ const HabitView: FC = () => {
             </Container>
           </>
         )}
-        renderSectionHeader={({ section: { title, data } }) => (
-          <CoachingSectionHeader data={data} title={title} />
+        renderSectionHeader={({ section: { title, data, subtitle } }) => (
+          <CoachingSectionHeader
+            data={data}
+            title={title}
+            subtitle={subtitle}
+          />
         )}
         sections={sections}
         ListEmptyComponent={<EmptyState />}
@@ -99,4 +109,14 @@ const NewHabitButton = styled.TouchableOpacity`
   border-radius: 50px;
   justify-content: center;
   align-items: center;
+`
+
+const ActiveHabits = styled.View`
+  margin: 20px;
+`
+
+const Text = styled.Text`
+  font-size: 15px;
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `

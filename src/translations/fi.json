@@ -444,8 +444,8 @@
   "PLEASE_SELECT_DATE": "Saadaksesi lisätietoa yksittäisistä öistä valitse se painamalla kyseisen yön palkkia.",
 
   "CLOCK_SLEEP": "Uni",
-  "CLOCK_NO_DATA_TITLE": "Hassua",
-  "CLOCK_NO_DATA_SUBTITLE": "Tämän ei pitäisi olla tyhjä.",
+  "CLOCK_NO_DATA_TITLE": "Ei tietoja",
+  "CLOCK_NO_DATA_SUBTITLE": "Tältä yöltä ei ole saatavissa unitietoja.",
   "SEE_ALL": "Näytä kaikki",
   "MARK_COMPLETE": "Suorita",
 
@@ -589,7 +589,9 @@
 
     "HABITS": "Tavoitteet",
     "ACTIVE": "Aktiiviset",
+    "ACTIVE_SUBTITLE": "Tällä hetkellä aktiiviset tavoitteet.",
     "ARCHIVED": "Arkistoidut",
+    "ARCHIVED_SUBTITLE": "Aikaisemmin arkistoidut tavoitteet.",
 
     "NEW_HABIT_BUTTON": "Luo tavoite",
     "TIME_OF_DAY": "Ajankohta",
@@ -626,7 +628,7 @@
     "LONGEST_STREAK": "Pisin sarja",
     "CURRENT_STREAK": "Nykyinen sarja",
     "HABIT_TITLE_EXISTS": "Tällä nimellä oleva tavoite on jo olemssa",
-    "EXPLANATION_1": "",
+    "EXPLANATION_1": "Täällä voit seurata ja hallita asettamisia tavoitteita. Voit luoda uusia tavoitteita oikean yläkulman painikkeesta. Pyyhkäisemällä vasemmalle tai oikealle tavoitteen kohdalla, voit suorittaa tavoitteen tältä päivältä, arkistoida, tai poistaa sen.",
     "EXPLANATION_2": ""
   },
 
