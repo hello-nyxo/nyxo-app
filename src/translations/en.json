@@ -619,8 +619,8 @@
     "LONGEST_STREAK": "Longest streak",
     "CURRENT_STREAK": "Current streak",
     "WARNING_TITLE_EXISTS": "Habit with this title already exists.",
-    "EXPLANATION_1": "",
-    "EXPLANATION_2": "",
+    "EXPLANATION_1": "TODO",
+    "EXPLANATION_2": "TODO",
 
     "MORNING": "Morning",
     "AFTERNOON": "Afternoon",
