@@ -13,6 +13,7 @@ import { IconBold } from '../iconRegular'
 import { Container, StyledModal } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 import { getIcon } from './TopRow'
+import { ScrollView } from 'react-native'
 
 interface Props {
   title?: string
@@ -64,18 +65,12 @@ const ExampleHabit = (props: Props) => {
           </AddHabit>
         </Buttons>
       </Habit>
-      <StyledModal
-        backdropTransitionOutTiming={0}
-        hideModalContentWhileAnimating
-        swipeThreshold={50}
-        isVisible={show}
-        useNativeDriver={false}
-        onSwipeComplete={toggleModal}
-        swipeDirection="down"
-        onBackdropPress={toggleModal}>
+      <StyledModal hideModalContentWhileAnimating isVisible={show}>
         <Container>
           <ModalTitle>{title}</ModalTitle>
-          <RichText content={description} />
+          <ScrollView>
+            <RichText content={description} />
+          </ScrollView>
         </Container>
       </StyledModal>
     </>

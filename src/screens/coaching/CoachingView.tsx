@@ -28,7 +28,7 @@ const CoachingScreen = () => {
   }
 
   useEffect(() => {
-    fetchCoaching()
+    // fetchCoaching() // -> This will not return coaching materials quickly enough for children to render -> error
   }, [])
 
   const refreshContent = async () => {

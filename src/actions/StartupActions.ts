@@ -23,6 +23,7 @@ import {
 import { prepareSleepDataFetching } from './sleep/health-kit-actions'
 import { fetchSleepData, updateCalendar } from './sleep/sleep-data-actions'
 import { updateSubscriptionStatus } from './subscription/subscription-actions'
+import { getAllWeeks } from './coaching/content-actions'
 
 export const startup = (): Thunk => async (
   dispatch: Dispatch,
@@ -44,6 +45,9 @@ export const startup = (): Thunk => async (
   if (isUsingHealthKit) {
     await dispatch(prepareSleepDataFetching())
   }
+
+  // Get Coaching Materials
+  await dispatch(getAllWeeks())
 
   await dispatch(fetchSleepData())
 
