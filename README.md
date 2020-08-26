@@ -54,7 +54,7 @@ cd nyxo-app
 yarn
 ```
 
-_Link assets ()_
+__Link assets__
 
 ```shell
 react-native link
@@ -78,18 +78,18 @@ Set up Sentry for React Native by executing the command. More Sentry-related inf
 sentry-wizard
 ```
 
-__Intercom__
-Unlink React Native Intercom and follow its manually installation instruction: https://developers.intercom.com/installing-intercom/docs/ios-installation#section-option-3-install-intercom-manually.
+#### AWS-amplify
+We use aws-amplify for our api and authentication. We will most likely simplify the process of setting up Amplify in fresh project at some point. At the moment the worfklow for getting everything to run is following:
 
-```shell
-react-native unlink react-native-intercom
-```
+- Get AWS account
+- See the instructions for installing amplify-cli
+- Do the following setup
+
+
 
 ### Setting up enviroment variables
 
-Nyxo configurations keys are placed in config.ts file, which then references the requirement enviroment variables from local `.env`file. Head to `root/env-structure.md` file to learn more. The way the project is structured you should need to provide keys for all the services to make the app work. 
-
-#### 
+Nyxo configurations keys are placed in config.ts file, which then references the requirement enviroment variables from local `.env`file. Head to `docs/env-structure.md` file to learn more. The way the project is structured you should need to provide keys for all the services to make the app work. 
 
 ```
 //.env contents
@@ -115,9 +115,9 @@ GARMIN_ACCESS_TOKEN_ENDPOINT=YOUR_KEY
 GARMIN_GET_SLEEP_ENDPOINT=YOUR_KEY
 POLAR_ID=YOUR_KEY
 POLAR_TOKEN_ENDPOINT=YOUR_KEY
-INTERCOM_KEY_IOS=YOUR_KEY
-INTERCOM_KEY_ANDROID=YOUR_KEY
-INTERCOM_ID=YOUR_KEY
+INTERCOM_KEY_IOS=YOUR_KEY  // or use the key provided in env-structure.md
+INTERCOM_KEY_ANDROID=YOUR_KEY // or use the key provided in env-structure.md
+INTERCOM_ID=YOUR_KEY // or use the key provided in env-structure.md
 LINK_CODE_URL=YOUR_KEY
 ```
 
