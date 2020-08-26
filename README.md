@@ -46,7 +46,7 @@ If you know a language other than English, help us translate the app!
 
 ## Getting started
 
-Clone repository
+Start by cloning repository and installing dependencies using yarn
 
 ```shell
 git clone
@@ -54,7 +54,7 @@ cd nyxo-app
 yarn
 ```
 
-Link modules
+_Link assets ()_
 
 ```shell
 react-native link
@@ -66,35 +66,65 @@ For iOS, install Cocoapods and run command
 cd ios && pod install
 ```
 
-or
+### Setting up the environment and services
 
-```shell
-yarn run pod-install
-```
-
-
+__App Center__
 Set up Microsoft's Visual Studio App Center for event analytics & crash reports: https://docs.microsoft.com/en-us/appcenter/sdk/getting-started/react-native
 
+__Sentry__
 Set up Sentry for React Native by executing the command. More Sentry-related information can be found at: https://docs.sentry.io/platforms/react-native/
 
 ```shell 
 sentry-wizard
 ```
-or
 
-```shell 
-react-native link @sentry/react-native
-```
-
+__Intercom__
 Unlink React Native Intercom and follow its manually installation instruction: https://developers.intercom.com/installing-intercom/docs/ios-installation#section-option-3-install-intercom-manually.
 
-```shel
+```shell
 react-native unlink react-native-intercom
 ```
 
 ### Setting up enviroment variables
 
-Nyxo configurations keys are placed in config.ts file, which then references the requirement enviroment variables from local `.env`file. Head to `root/env-structure.md` file to see the required structure. 
+Nyxo configurations keys are placed in config.ts file, which then references the requirement enviroment variables from local `.env`file. Head to `root/env-structure.md` file to learn more. The way the project is structured you should need to provide keys for all the services to make the app work. 
+
+#### 
+
+```
+//.env contents
+REVENUE_CAT=YOUR_KEY
+SENTRY_DSN=YOUR_KEY
+CONTENTFUL_SPACE=YOUR_KEY
+CONTENTFUL_ACCESS_TOKEN=YOUR_KEY
+FITBIT_ID=YOUR_KEY
+FITBIT_TOKEN_ENDPOINT=YOUR_KEY
+FITBIT_REVOCATION_ENDPOINT=YOUR_KEY
+WITHINGS_ID=YOUR_KEY
+WITHINGS_TOKEN_ENDPOINT=YOUR_KEY
+WITHINGS_REVOCATION_ENDPOINT=YOUR_KEY
+OURA_ID=YOUR_KEY
+OURA_TOKEN_ENDPOINT=YOUR_KEY
+GOOGLE_FIT_URL_ANDROID=YOUR_KEY
+GOOGLE_FIT_ID_ANDROID=YOUR_KEY
+GOOGLE_FIT_ID_IOS=YOUR_KEY
+GOOGLE_FIT_ID_IOS=YOUR_KEY
+GARMIN_ID=YOUR_KEY
+GARMIN_REQUEST_TOKEN_ENDPOINT=YOUR_KEY
+GARMIN_ACCESS_TOKEN_ENDPOINT=YOUR_KEY
+GARMIN_GET_SLEEP_ENDPOINT=YOUR_KEY
+POLAR_ID=YOUR_KEY
+POLAR_TOKEN_ENDPOINT=YOUR_KEY
+INTERCOM_KEY_IOS=YOUR_KEY
+INTERCOM_KEY_ANDROID=YOUR_KEY
+INTERCOM_ID=YOUR_KEY
+LINK_CODE_URL=YOUR_KEY
+```
+
+After creating the .env file, run `yarn rnuc .env` to generate variable files.
+
+
+
 
 ## Troubleshooting
 
