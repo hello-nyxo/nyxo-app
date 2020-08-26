@@ -30,6 +30,7 @@ ios/Intercom.framework
 ios/fastlane/
 ios/GoogleService-Info
 ios/AppCenter-Config.plist
+ios/assets
 
 # Android/IntelliJ
 #

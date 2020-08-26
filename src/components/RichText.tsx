@@ -71,8 +71,38 @@ const options = {
     ),
     [INLINES.HYPERLINK]: (node: ReactNode, children: string) => {
       return <HyperLink href={node?.data?.uri}>{children}</HyperLink>
-    }
+    },
+    [INLINES.EMBEDDED_ENTRY]: (node: ReactNode) =>
+      defaultInline(INLINES.EMBEDDED_ENTRY, node as Inline)
   }
+}
+
+const getContentType = (
+  node: Inline
+): { type: string; path: string; title: string } => {
+  switch (node.data.target.sys.contentType.sys.id) {
+    case 'habit': {
+      const path = node?.data?.target?.fields?.slug
+      const name = node?.data?.target?.fields?.title
+      return { type: 'habit', path: `/habit/${path}`, title: name }
+    }
+    case 'lesson': {
+      const path = node?.data?.target?.fields?.slug
+      const name = node?.data?.target?.fields?.lessonName
+      return { type: 'lesson', path: `/lesson/${path}`, title: name }
+    }
+    default:
+      return { type: 'unknown', path: '', title: '' }
+  }
+}
+
+const defaultInline: (type: string, node: Inline) => ReactNode = (
+  type,
+  node: Inline
+) => {
+  const contentType = getContentType(node)
+
+  return <Underline>{contentType.title}</Underline>
 }
 
 interface Props {

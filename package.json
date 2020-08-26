@@ -213,7 +213,7 @@
     "react-native-get-random-values": "^1.4.0",
     "react-native-haptic-feedback": "^1.8.2",
     "react-native-healthkit": "git+https://github.com/plahteenlahti/rn-apple-healthkit.git",
-    "react-native-intercom": "^15.0.0",
+    "react-native-intercom": "^17.0.0",
     "react-native-iphone-x-helper": "^1.2.1",
     "react-native-keychain": "^6.1.1",
     "react-native-linear-gradient": "^2.5.6",
