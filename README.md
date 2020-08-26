@@ -54,15 +54,43 @@ cd nyxo-app
 yarn
 ```
 
+Link modules
+
+```shell
+react-native link
+```
+
+For iOS, install Cocoapods and run command
+
+```shell
+cd ios && pod install
+```
+
+or
+
+```shell
+yarn run pod-install
+```
+
+
 Set up Microsoft's Visual Studio App Center for event analytics & crash reports: https://docs.microsoft.com/en-us/appcenter/sdk/getting-started/react-native
 
 Set up Sentry for React Native by executing the command. More Sentry-related information can be found at: https://docs.sentry.io/platforms/react-native/
 
 ```shell 
+sentry-wizard
+```
+or
+
+```shell 
 react-native link @sentry/react-native
 ```
 
-Configure React Native Intercom by following the manually installation instruction: https://developers.intercom.com/installing-intercom/docs/ios-installation#section-option-3-install-intercom-manually
+Unlink React Native Intercom and follow its manually installation instruction: https://developers.intercom.com/installing-intercom/docs/ios-installation#section-option-3-install-intercom-manually.
+
+```shel
+react-native unlink react-native-intercom
+```
 
 ### Setting up enviroment variables
 
