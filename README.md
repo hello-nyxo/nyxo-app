@@ -46,7 +46,7 @@ If you know a language other than English, help us translate the app!
 
 ## Getting started
 
-_Clone repository_
+Clone repository
 
 ```shell
 git clone
@@ -54,9 +54,19 @@ cd nyxo-app
 yarn
 ```
 
+Set up Microsoft's Visual Studio App Center for event analytics & crash reports: https://docs.microsoft.com/en-us/appcenter/sdk/getting-started/react-native
+
+Set up Sentry for React Native by executing the command. More Sentry-related information can be found at: https://docs.sentry.io/platforms/react-native/
+
+```shell 
+react-native link @sentry/react-native
+```
+
+Configure React Native Intercom by following the manually installation instruction: https://developers.intercom.com/installing-intercom/docs/ios-installation#section-option-3-install-intercom-manually
+
 ### Setting up enviroment variables
 
-Nyxo configurations keys are placed in config.ts file, which then references the requirement enviroment variables from local `.env`file.
+Nyxo configurations keys are placed in config.ts file, which then references the requirement enviroment variables from local `.env`file. Head to `root/env-structure.md` file to see the required structure. 
 
 ## Troubleshooting
 
@@ -72,6 +82,14 @@ If you see something like this:
 `Undefined symbols for architecture x86_64: "_OBJC_CLASS_$_RCTReconnectingWebSocket", referenced from: objc-class-ref in libReact.a(RCTPackagerConnection.o) ld: symbol(s) not found for architecture x86_64 clang: error: linker command failed with exit code 1 (use -v to see invocation)`
 
 Delete your Derived data
+
+## If you run into an Xcode build input file error
+
+If you see a build error like this:
+
+`error: Build input file cannot be found: '/...path/Nyxo.app/PlugIns/NyxoTests.xctest/NyxoTests' (in target 'NyxoTests' from project 'Nyxo')`
+
+Switch your XCode Build System to `Legacy Build System`
 
 ## Resetting bundlers etc.
 
