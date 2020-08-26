@@ -51,7 +51,7 @@ export const CONFIG = {
   GOOOGLE_FIT_GONFIG_IOS: {
     issuer: 'https://accounts.google.com',
     clientId: config.GOOGLE_FIT_ID_IOS,
-    redirectUrl: config.GOOGLE_FIT_ID_IOS,
+    redirectUrl: config.GOOGLE_FIT_URL_IOS,
     scopes: [
       'openid',
       'profile',
@@ -90,7 +90,7 @@ export const CONFIG = {
     scopes: ['accesslink.read_all'],
     serviceConfiguration: {
       authorizationEndpoint: 'https://flow.polar.com/oauth2/authorization',
-      tokenEndpoint: config.POLAR_REVOCATION_ENDPOINT
+      tokenEndpoint: config.POLAR_TOKEN_ENDPOINT
     }
   },
 
