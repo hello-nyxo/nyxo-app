@@ -23,14 +23,6 @@ const CoachingScreen = () => {
   const loadingContent = useSelector(getLoadingContent) as boolean
   const dispatch = useDispatch()
 
-  const fetchCoaching = async () => {
-    await dispatch(getAllWeeks())
-  }
-
-  useEffect(() => {
-    // fetchCoaching() // -> This will not return coaching materials quickly enough for children to render -> error
-  }, [])
-
   const refreshContent = async () => {
     dispatch(getAllWeeks())
   }
