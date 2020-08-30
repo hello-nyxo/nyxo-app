@@ -649,6 +649,7 @@
     "INVALID_PASSWORD_EXCEPTION": "Väärä salasana"
   },
   "STAT": {
+    "STATISTICS": "Tunnuslukuja",
     "TITLE": "Uni",
     "NIGHT": "Yö: {{night}}",
     "BED": "Sängyssä",
@@ -658,7 +659,9 @@
     "WINDOW": "Uni-ikkuna",
     "WINDOW_EXPLANATION": "Uni-ikkuna on arvio sirkkadiaanisen ja homeostaattisen rytmisi määrittelemästä 'optimaalisesta nukahtamisajasta'. Uni-ikkuna lasketaan seitsemän viimeisen yön perusteella. Nukahtaaksesi helpommin, pyri ajoittamaan nukahtaminen uni-ikkunan sisälle.",
     "RATING": "Oma arvio",
-    "RATING_EXPLANATION": "Oma arviosi viime yön unen laadusta. "
+    "RATING_EXPLANATION": "Oma arviosi viime yön unen laadusta.",
+    "WENT_TO_BED": "Uni alkoi",
+    "WOKE_UP": "Herääminen"
   },
 
   "TAB": {

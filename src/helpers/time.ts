@@ -214,8 +214,10 @@ export const getFormattedDateOrPlaceholder = (
   value: string | null | undefined,
   formatter: string
 ): string => {
-  if (value && isValid(value)) {
-    return format(parseISO(value), formatter)
+  if (value) {
+    const asdasd = parseISO(value)
+    console.log(asdasd)
+    return format(asdasd, formatter)
   }
 
   return '-'

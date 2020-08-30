@@ -25,8 +25,8 @@ declare module 'styled-components' {
 
 export const lightTheme: DefaultTheme = {
   mode: 'light',
-  PRIMARY_BACKGROUND_COLOR: 'white',
-  SECONDARY_BACKGROUND_COLOR: '#f7f7f7',
+  PRIMARY_BACKGROUND_COLOR: '#F6F6F9',
+  SECONDARY_BACKGROUND_COLOR: '#FFFFFF',
   PRIMARY_TEXT_COLOR: '#202125',
   SECONDARY_TEXT_COLOR: '#5e6267',
   ICON_COLOR: '#f7f8fb',

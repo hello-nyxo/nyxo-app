@@ -17,6 +17,7 @@ import HabitModalStreak from './HabitModalStreak'
 import HabitModalTimeSection from './HabitModalTimeSection'
 import HabitModalTopRow from './HabitModalTopRow'
 import { descriptionMaxLength, titleMaxLength } from './NewHabitModal'
+import { revertLineBreaks } from 'helpers/habits'
 
 const EditHabitModal = () => {
   const show = useSelector(getEditHabitModal)
@@ -92,7 +93,7 @@ const EditHabitModal = () => {
                   indicatorText="HABIT.DESCRIPTION_FIELD_INDICATOR"
                   placeholder="HABIT.DESCRIPTION_PLACEHOLDER"
                   inputMaxLength={descriptionMaxLength}
-                  value={values.description}
+                  value={revertLineBreaks(values.description)}
                   isTitle={false}
                 />
 

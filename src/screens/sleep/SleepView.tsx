@@ -1,13 +1,4 @@
 import SleepTimeChart from '@components/Charts/SleepChart'
-import NotificationCenterLink from '@components/NotificationCenter/NotificationCenterLink'
-import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
-import { getEditMode } from '@selectors/ManualDataSelectors'
-import { getSelectedDay } from '@selectors/SleepDataSelectors'
-import {
-  fetchSleepData,
-  updateCalendar
-} from 'actions/sleep/sleep-data-actions'
-import { backgroundAction, startup } from 'actions/StartupActions'
 import Clock from '@components/Clock'
 import DayStrip from '@components/DayStrip'
 import { EditNightHeader } from '@components/MainScreenSpecific/EditNightHeader'
@@ -16,7 +7,17 @@ import ExplanationsModal from '@components/modals/ExplanationsModal'
 import EditHabitModal from '@components/modals/HabitModal/EditHabitModal'
 import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import MergeHabitsModal from '@components/modals/MergeHabitsModal/MergeHabitsModal'
+import NotificationCenterLink from '@components/NotificationCenter/NotificationCenterLink'
 import RatingModal from '@components/RatingModal'
+import InsightsCard from '@components/sleep/InsightsCard'
+import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
+import { getEditMode } from '@selectors/ManualDataSelectors'
+import { getSelectedDay } from '@selectors/SleepDataSelectors'
+import {
+  fetchSleepData,
+  updateCalendar
+} from 'actions/sleep/sleep-data-actions'
+import { backgroundAction, startup } from 'actions/StartupActions'
 import useBackgroundFetch from 'Hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from 'Hooks/UseNotificationEventHandlers'
 import moment from 'moment'
@@ -25,7 +26,6 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { SafeAreaView } from '../../components/Primitives/Primitives'
-import InsightsCard from 'components/sleep/InsightsCard'
 
 const Sleep: FC = () => {
   const today = useSelector(getSelectedDay)
@@ -60,7 +60,7 @@ const Sleep: FC = () => {
             onRefresh={checkSleepData}
           />
         }>
-        <DayStrip />
+        {/* <DayStrip /> */}
         <TitleRow>
           <TitleContainer>
             <Title>{moment(today.date).format('dddd')}</Title>
@@ -92,7 +92,7 @@ export default Sleep
 const Row = styled.View`
   flex: 1;
   flex-direction: row;
-  padding: 0px 8px;
+  padding: 0px 16px;
 `
 
 const Title = styled.Text`

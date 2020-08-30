@@ -12464,10 +12464,10 @@ react-native-haptic-feedback@^1.8.2:
   version "0.6.7"
   resolved "git+https://github.com/plahteenlahti/rn-apple-healthkit.git#ea0feeaf65e0492358fdcba936956fc8b62bb3f4"
 
-react-native-intercom@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-intercom/-/react-native-intercom-15.0.0.tgz#570b64f33420d580deff274fb185533808c65e09"
-  integrity sha512-P+cIF3OADvlfg2S217SBGh4eKYd3OE7vr7q1irawMoKygOFZ6KyoSsPTjihgoZWFSSoHbyaIIRzTrjV5hylZ+w==
+react-native-intercom@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-intercom/-/react-native-intercom-17.0.0.tgz#b1fad906dbe6469c728629fd5a290abbed58c7ba"
+  integrity sha512-2Ctw7DZf934ZNlkP9fsz8EpF9nGb5ks/9R0B3cYJcvSU+rUdHIXfi0MPmHKk0FVDz7kCXY+nDWR4HGsViVlPFQ==
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"

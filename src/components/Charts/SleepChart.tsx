@@ -67,8 +67,6 @@ const SleepTimeChart: FC = () => {
   const yTicks = scaleY.ticks(5)
   const xTicks = scaleX.ticks(days.length)
 
-  console.log(normalizedSleepData)
-
   return (
     <Card>
       <Title>Sleep Goal Trend</Title>
@@ -140,7 +138,7 @@ const Card = styled.View`
   margin-top: 10px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   padding: 10px;
-  margin: 8px;
+  margin: 8px 16px;
   border-radius: 7px;
 `
 
