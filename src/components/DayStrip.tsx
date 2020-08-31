@@ -21,7 +21,7 @@ const DayStrip: FC = () => {
     const isToday = moment(item.date).isSame(new Date(), 'day')
 
     const handleOnPress = () => {
-      dispatch(setSelectedDay(item))
+      dispatch(setSelectedDay(item.date))
     }
 
     return (

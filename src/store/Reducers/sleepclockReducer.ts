@@ -32,12 +32,7 @@ const reducer = (
       return { ...state, today: payload }
 
     case SET_SELECTED_DAY: {
-      const selectedDay = state.days.find((d: Day) =>
-        sameDay(payload.date, d.date)
-      )
-      const day = selectedDay || state.selectedDay
-
-      return { ...state, selectedDay: day }
+      return { ...state, selectedDay: payload }
     }
 
     case SET_TODAY_AS_SELECTED: {

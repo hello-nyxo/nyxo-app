@@ -11,7 +11,7 @@ interface Props {
   scaleY: ScaleTime<number, number>
   barWidth: number
   onPress: (day: Day) => void
-  start: string
+  start?: string
 }
 
 const TargetBars: FC<Props> = ({
@@ -23,6 +23,7 @@ const TargetBars: FC<Props> = ({
   start
 }) => {
   const end = moment(start).add(8, 'hours')
+  if (!start && typeof start !== 'string') return null
 
   const { bars } = useMemo(
     () => ({
@@ -30,6 +31,8 @@ const TargetBars: FC<Props> = ({
         const y = scaleY(moment(start).valueOf())
         const x = scaleX(new Date(datum.date))
         const height = scaleY(end.valueOf()) - scaleY(moment(start).valueOf())
+
+        if (Number.isNaN(y)) return null
 
         return (
           <G onPress={() => onPress(datum)} key={datum.date}>

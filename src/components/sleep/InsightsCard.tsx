@@ -11,14 +11,21 @@ import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
+import { WIDTH } from 'helpers/Dimensions'
+
+const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
 const InsightsCard: FC = () => {
-  const { bedStart, bedEnd } = useSelector(getSelectedDay)
+  const { bedStart, bedEnd, sleepStart, sleepEnd } = useSelector(getSelectedDay)
   const goToSleepWindowStart = useSelector(getGoToSleepWindowStart)
   const goToSleepWindowEnd = useSelector(getGoToSleepWindowEnd)
 
   const wentToBed = getFormattedDateOrPlaceholder(bedStart, 'H:mm')
-  const wokeUp = getFormattedDateOrPlaceholder(bedEnd, 'H:mm')
+  const gotUp = getFormattedDateOrPlaceholder(bedEnd, 'H:mm')
+
+  const fellAsleep = getFormattedDateOrPlaceholder(sleepStart, 'H:mm')
+  const wokeUp = getFormattedDateOrPlaceholder(sleepEnd, 'H:mm')
+
   const windowStart = getFormattedDateOrPlaceholder(
     goToSleepWindowStart,
     'H:mm'
@@ -38,7 +45,7 @@ const InsightsCard: FC = () => {
                 name="nightMoonBegin"
                 height="30"
                 width="30"
-                stroke="black"
+                stroke={colors.inBedColor}
               />
               <Column>
                 <Value>{wentToBed}</Value>
@@ -52,11 +59,11 @@ const InsightsCard: FC = () => {
                 name="nightMoonEnd"
                 height="30"
                 width="30"
-                stroke="black"
+                stroke={colors.inBedColor}
               />
               <Column>
-                <Value>{wokeUp}</Value>
-                <Description>STAT.WOKE_UP</Description>
+                <Value>{gotUp}</Value>
+                <Description>STAT.GOT_UP</Description>
               </Column>
             </Figure>
           </Row>
@@ -68,27 +75,25 @@ const InsightsCard: FC = () => {
                 name="nightMoonEnd"
                 height="30"
                 width="30"
-                stroke="black"
+                stroke={colors.asleepColor}
               />
               <Column>
-                <Value>4:00</Value>
-                <Description>STAT.WOKE_UP</Description>
+                <Value>{fellAsleep}</Value>
+                <Description>STAT.FELL_ASLEEP</Description>
               </Column>
             </Figure>
 
             <Figure>
               <Icon
                 fill="none"
-                name="bedWindow"
+                name="nightMoonEnd"
                 height="30"
                 width="30"
-                stroke={colors.bedTimeColor}
+                stroke={colors.asleepColor}
               />
               <Column>
-                <Value>
-                  {windowStart} - {windowEnd}
-                </Value>
-                <Description>STAT.WINDOW</Description>
+                <Value>{wokeUp}</Value>
+                <Description>STAT.WOKE_UP</Description>
               </Column>
             </Figure>
           </Row>
@@ -157,32 +162,36 @@ const InsightsCard: FC = () => {
           </Row>
         </Page>
       </ScrollView>
-			<Paging>
-				<
-			</Paging>
+      {/* <Paging></Paging> */}
     </Container>
   )
 }
 
 export default InsightsCard
 
-const ScrollView = styled.ScrollView``
+const ScrollView = styled.ScrollView`
+  flex: 1;
+`
 
 const Row = styled.View`
   flex-direction: row;
+  flex: 1;
+  width: 100%;
   margin: 15px 0px;
 `
 
 const Page = styled.View`
   flex: 1;
+  width: ${pageWidth}px;
 `
 
 const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   border-radius: 7px;
-  margin-top: 8px;
-  padding: 10px 20px;
+  margin: 8px 0px;
+  padding: 10px 16px;
+  box-shadow: ${({ theme }) => theme.SHADOW};
 `
 
 const Title = styled(TranslatedText)`
@@ -196,6 +205,7 @@ const Figure = styled.View`
   flex-direction: row;
   align-items: center;
   flex: 1;
+  width: 100%;
   margin-right: 30px;
 `
 

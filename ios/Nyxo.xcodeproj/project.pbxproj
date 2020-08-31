@@ -10,6 +10,7 @@
 		5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */; };
 		5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */; };
 		5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20692C224E434B00257043 /* StoreKit.framework */; };
+		5B2D63A824FC1942002E853B /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D63A724FC1941002E853B /* AppCenter-Config.plist */; };
 		5B33130921DFB5B800698A4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130121DFB5B800698A4A /* AppDelegate.m */; };
 		5B33130A21DFB5B800698A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130221DFB5B800698A4A /* main.m */; };
 		5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B40961E242BAE0000169B4C /* GoogleService-Info.plist */; };
@@ -35,10 +36,6 @@
 		5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */; };
 		5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */; };
 		5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
-		8A51C39624F5334200DF3C83 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A51C39524F5334200DF3C83 /* AppCenter-Config.plist */; };
-		8A51C43B24F554C100DF3C83 /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A51C43824F552B400DF3C83 /* Intercom.framework */; };
-		8A51C43C24F554C100DF3C83 /* Intercom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A51C43824F552B400DF3C83 /* Intercom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B95CBA9C2099AEB300243A25 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CBA9B2099AEB300243A25 /* HealthKit.framework */; };
 		C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */; };
 		E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -69,17 +66,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		5B54765A2233C6650027A9A0 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8A51C43C24F554C100DF3C83 /* Intercom.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5B6E854A21406B9A0013E7B5 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -106,6 +92,7 @@
 		5B20692C224E434B00257043 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5B2069A4224FB24200257043 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		5B2B308921EF5C82007E2982 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		5B2D63A724FC1941002E853B /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Nyxo/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		5B3312FB21DFB5B700698A4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
 		5B3312FE21DFB5B800698A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.old.xib; sourceTree = "<group>"; };
 		5B33130021DFB5B800698A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -210,8 +197,6 @@
 		6CF46B6888304B68952AC827 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Dosis-Medium.ttf"; path = "../assets/fonts/Dosis-Medium.ttf"; sourceTree = "<group>"; };
 		796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Brands.ttf; path = ../assets/fonts/FontAwesome5_Pro_Brands.ttf; sourceTree = "<group>"; };
 		8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo/Pods-Nyxo.debug.xcconfig"; sourceTree = "<group>"; };
-		8A51C39524F5334200DF3C83 /* AppCenter-Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
-		8A51C43824F552B400DF3C83 /* Intercom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Intercom.framework; sourceTree = "<group>"; };
 		9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		B959F1EA20BD3D8E00AC734C /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dosis-Bold.ttf"; path = "../assets/fonts/Dosis-Bold.ttf"; sourceTree = "<group>"; };
 		B959F21820BD455C00AC734C /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-regular-400.ttf"; sourceTree = "<group>"; };
@@ -241,10 +226,8 @@
 			files = (
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */,
-				B95CBA9C2099AEB300243A25 /* HealthKit.framework in Frameworks */,
 				C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */,
 				E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */,
-				8A51C43B24F554C100DF3C83 /* Intercom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,8 +477,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				8A51C43824F552B400DF3C83 /* Intercom.framework */,
-				8A51C39524F5334200DF3C83 /* AppCenter-Config.plist */,
+				5B2D63A724FC1941002E853B /* AppCenter-Config.plist */,
 				5B5220FA24F29CA50039E226 /* rnuc.xcconfig */,
 				5B40961E242BAE0000169B4C /* GoogleService-Info.plist */,
 				5BA9115A22E1E2070098700A /* Shared */,
@@ -633,10 +615,9 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				5B6E854A21406B9A0013E7B5 /* Embed Watch Content */,
-				5B54765A2233C6650027A9A0 /* Embed Frameworks */,
 				6C3BA05A2308A4078CE786D2 /* [CP] Copy Pods Resources */,
 				DED22F96C89D448186375252 /* Upload Debug Symbols to Sentry */,
-				8A51C43A24F553DC00DF3C83 /* ShellScript */,
+				8A51C43A24F553DC00DF3C83 /* Strip frameworks */,
 			);
 			buildRules = (
 			);
@@ -755,7 +736,7 @@
 				5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */,
 				5BD58BA222D71D7600D1CD2D /* Montserrat-BoldItalic.ttf in Resources */,
 				5BD58BA322D71D7600D1CD2D /* Montserrat-SemiBold.ttf in Resources */,
-				8A51C39624F5334200DF3C83 /* AppCenter-Config.plist in Resources */,
+				5B2D63A824FC1942002E853B /* AppCenter-Config.plist in Resources */,
 				5BD58BA422D71D7600D1CD2D /* Montserrat-BlackItalic.ttf in Resources */,
 				5BD58BA522D71D7600D1CD2D /* Montserrat-ExtraLight.ttf in Resources */,
 				5BD58BA622D71D7600D1CD2D /* Montserrat-ExtraBold.ttf in Resources */,
@@ -821,7 +802,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8A51C43A24F553DC00DF3C83 /* ShellScript */ = {
+		8A51C43A24F553DC00DF3C83 /* Strip frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -830,13 +811,14 @@
 			);
 			inputPaths = (
 			);
+			name = "Strip frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Intercom.framework/strip-frameworks.sh\"\n";
+			shellScript = "\"${PROJECT_DIR}/../node_modules/react-native-purchases/ios/strip-frameworks.sh\"\n";
 		};
 		BF842D7B9E4CC79A1B9C718D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1040,7 +1022,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-					"$(PROJECT_DIR)/intercom-ios-master",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native/React",
@@ -1088,7 +1069,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-					"$(PROJECT_DIR)/intercom-ios-master",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native/React",

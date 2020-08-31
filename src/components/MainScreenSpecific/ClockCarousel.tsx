@@ -41,7 +41,7 @@ const ClockCarousel = () => {
       dispatch(setActiveIndex(newIndex))
 
       const day = info.viewableItems[0].item
-      dispatch(setSelectedDay(day))
+      dispatch(setSelectedDay(day.date))
     }
   }
 

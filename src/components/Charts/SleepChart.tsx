@@ -37,7 +37,7 @@ const SleepTimeChart: FC = () => {
   )
 
   const select = (day: Day) => {
-    dispatch(setSelectedDay(day))
+    dispatch(setSelectedDay(day.date))
   }
 
   const xDomain: Date[] = extent(
@@ -67,6 +67,7 @@ const SleepTimeChart: FC = () => {
   const yTicks = scaleY.ticks(5)
   const xTicks = scaleX.ticks(days.length)
 
+  console.log(normalizedSleepData, bedtimeWindow)
   return (
     <Card>
       <Title>Sleep Goal Trend</Title>
@@ -135,8 +136,9 @@ const YTicksContainer = styled(Svg)`
 `
 
 const Card = styled.View`
-  margin-top: 10px;
+  margin-top: 8px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  box-shadow: ${({ theme }) => theme.SHADOW};
   padding: 10px;
   margin: 8px 16px;
   border-radius: 7px;

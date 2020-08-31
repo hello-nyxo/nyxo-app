@@ -123,6 +123,7 @@ const ClockContainer = styled(Animated.View)`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  box-shadow: ${({ theme }) => theme.SHADOW};
   padding: 5px;
   border-radius: 7px;
   flex: 1;

@@ -45,7 +45,7 @@ const InitializeSource: FC = () => {
 export default InitializeSource
 
 const Container = styled.View`
-  margin: 8px 0px;
+  margin: 16px 16px;
   padding: 20px 20px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   border-radius: 5px;

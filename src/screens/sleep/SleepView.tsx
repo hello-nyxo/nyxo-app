@@ -60,7 +60,7 @@ const Sleep: FC = () => {
             onRefresh={checkSleepData}
           />
         }>
-        {/* <DayStrip /> */}
+        <DayStrip />
         <TitleRow>
           <TitleContainer>
             <Title>{moment(today.date).format('dddd')}</Title>
@@ -99,7 +99,7 @@ const Title = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-  font-size: 28px;
+  font-size: 34px;
   margin-bottom: 5px;
 `
 
@@ -112,7 +112,7 @@ const Subtitle = styled.Text`
 
 const TitleRow = styled.View`
   padding: 16px;
-  margin-bottom: 20px;
+  margin: 40px 0px 20px;
   flex-direction: row;
   justify-content: space-between;
 `
