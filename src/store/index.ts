@@ -37,6 +37,7 @@ import HealthKitReducer from './Reducers/sleep/health-kit-reducer'
 import sleepclock from './Reducers/sleepclockReducer'
 import SubscriptionReducer from './Reducers/subscription/subscription-reducer'
 import user from './Reducers/user/user-reducer'
+import NightQuality from './Reducers/sleep/night-quality-reducer'
 
 enableES5()
 enableMapSet()
@@ -92,7 +93,10 @@ const rootReducer = combineReducers({
   linking: makePersisted('linking', LinkingReducer, undefined),
   sleepSources: makePersisted('sleepSources', SleepSourceReducer, undefined),
   healthKit: makePersisted('healthKit', HealthKitReducer, undefined),
-  insights: makePersisted('insights', InsightsReducer, undefined)
+  insights: makePersisted('insights', InsightsReducer, undefined),
+  nightQuality: makePersisted('nightQuality', NightQuality, undefined, [
+    serializeTransform
+  ])
 })
 
 const middleware = applyMiddleware(thunk, batchDispatchMiddleware)

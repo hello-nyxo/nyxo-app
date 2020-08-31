@@ -1,7 +1,10 @@
 import React, { FC, memo } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
-import { toggleRatingModal } from '../../actions/modal/modal-actions'
+import {
+  toggleRatingModal,
+  updateRatingDate
+} from '../../actions/modal/modal-actions'
 import getRating from '../../helpers/rating'
 import { Day } from '../../Types/Sleepdata'
 import ScalingButton from '../Buttons/ScalingButton'
@@ -9,21 +12,32 @@ import { IconBold } from '../iconRegular'
 
 type Props = {
   day: Day
-  x: number
+  height: number
+  width: number
+  unClickable?: boolean
 }
 
-const NightRating: FC<Props> = ({ day: { rating = 0 }, x }) => {
+const NightRating: FC<Props> = ({
+  day: { rating = 0, date },
+  unClickable,
+  height,
+  width
+}) => {
   const { icon, color } = getRating(rating)
   const dispatch = useDispatch()
 
   const openModal = () => {
+    dispatch(updateRatingDate(date))
     dispatch(toggleRatingModal())
   }
   return (
-    <Container x={x}>
-      <ScalingButton analyticsEvent="Pressed rating button" onPress={openModal}>
+    <Container>
+      <ScalingButton
+        analyticsEvent="Pressed rating button"
+        onPress={openModal}
+        disabled={unClickable}>
         <ButtonContainer color={color}>
-          <Icon name={icon} height={30} width={30} />
+          <Icon name={icon} height={height} width={width} />
         </ButtonContainer>
       </ScalingButton>
     </Container>
@@ -32,16 +46,7 @@ const NightRating: FC<Props> = ({ day: { rating = 0 }, x }) => {
 
 export default memo(NightRating)
 
-type ContainerProps = {
-  readonly x: number
-}
-
-const Container = styled.View<ContainerProps>`
-  position: absolute;
-  top: 90px;
-  right: ${({ x }) => x - 5}px;
-  z-index: 20;
-`
+const Container = styled.View``
 interface RatingButtonProps {
   readonly color?: string
 }

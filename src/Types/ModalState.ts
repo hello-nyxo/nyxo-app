@@ -4,4 +4,5 @@ export interface ModalState {
   newHabitModal: boolean
   editHabitModal: boolean
   explanationsModal: boolean
+  ratingDate?: string
 }

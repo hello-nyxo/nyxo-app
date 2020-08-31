@@ -51,7 +51,6 @@ const Clock: FC<Props> = ({ selectedDay, shouldAnimate }: Props) => {
   }
 
   const hasData = selectedDay.night ? selectedDay.night.length !== 0 : false
-
   const isDarkMode = useSelector(getIsDarkMode)
 
   return (
@@ -118,7 +117,9 @@ const Clock: FC<Props> = ({ selectedDay, shouldAnimate }: Props) => {
           />
         )}
       </Svg>
-      <NightRating day={selectedDay} x={x} />
+      <NightRatingHolder x={x}>
+        <NightRating day={selectedDay} height={30} width={30} />
+      </NightRatingHolder>
       {editMode && (
         <Bedtime
           clockSize={clockSize}
@@ -157,4 +158,16 @@ const ClockContainer = styled(Animated.View)`
 
 const StyledSvg = styled(Svg)`
   position: absolute;
+`
+interface NightRatingHolderProps {
+  readonly x: number
+}
+
+const NightRatingHolder = styled.View<NightRatingHolderProps>`
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 90px;
+  right: ${({ x }) => x - 5}px;
+  z-index: 20;
 `

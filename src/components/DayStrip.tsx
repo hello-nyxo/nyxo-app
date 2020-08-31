@@ -12,8 +12,10 @@ import {
   getWeekSelector
 } from '../store/Selectors/SleepDataSelectors'
 import { Day } from '../Types/Sleepdata'
+import NightRating from './sleepClock/NightRating'
 
 const dayWidth = WIDTH / 7
+const spacerHeight = 7
 const cardMargin = 5
 
 const DayStrip = () => {
@@ -23,24 +25,30 @@ const DayStrip = () => {
 
   const renderItem = ({ item, index }: { item: any; index: number }) => {
     const isToday = moment(item.date).isSame(new Date(), 'day')
-
     const handleOnPress = () => {
       dispatch(setActiveIndex(index))
     }
 
     return (
-      <Segment
-        today={isToday}
-        active={index === activeIndex}
-        key={index}
-        onPress={handleOnPress}>
-        <DateText active={index === activeIndex}>
-          {Moment(item.date).format('ddd')}
-        </DateText>
-        <DateNumber active={index === activeIndex}>
-          {Moment(item.date).format('DD')}
-        </DateNumber>
-      </Segment>
+      <Container>
+        <Segment
+          today={isToday}
+          active={index === activeIndex}
+          key={index}
+          onPress={handleOnPress}>
+          <DateText active={index === activeIndex}>
+            {Moment(item.date).format('ddd')}
+          </DateText>
+          <DateNumber active={index === activeIndex}>
+            {Moment(item.date).format('DD')}
+          </DateNumber>
+        </Segment>
+
+        <Spacer />
+        <NightRatingHolder>
+          <NightRating day={item} height={15} width={15} unClickable={true} />
+        </NightRatingHolder>
+      </Container>
     )
   }
 
@@ -78,10 +86,13 @@ const DayStrip = () => {
 
 export default memo(DayStrip)
 
+const Container = styled.View`
+  flex-direction: column;
+`
+
 const Segments = styled(SectionList)`
-  width: ${WIDTH}px;
-  height: ${dayWidth}px;
   margin: 20px 0px;
+  padding: 10px 0px;
 `
 
 interface SegmentProps extends StyleProps {
@@ -123,4 +134,12 @@ const DateNumber = styled.Text<SegmentProps>`
     props.active
       ? props.theme.PRIMARY_BACKGROUND_COLOR
       : props.theme.SECONDARY_TEXT_COLOR};
+`
+
+const Spacer = styled.View`
+  height: ${spacerHeight}px;
+`
+const NightRatingHolder = styled.View`
+  justify-content: center;
+  align-items: center;
 `

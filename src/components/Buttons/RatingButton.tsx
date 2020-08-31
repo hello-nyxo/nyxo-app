@@ -1,11 +1,14 @@
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { rateDay } from '../../actions/sleep/sleep-data-actions'
 import { fonts } from '../../styles/themes'
 import IconBold from '../iconBold'
 import TranslatedText from '../TranslatedText'
 import ScalingButton from './ScalingButton'
+import { updateNightQuality } from 'actions/sleep/night-quality-actions'
+import { NightQuality } from 'Types/Sleep/NightQuality'
+import { getRatingDate } from 'store/Selectors/ModalSelectors'
 
 type Props = {
   selected: boolean
@@ -17,9 +20,15 @@ type Props = {
 
 const RatingButton: FC<Props> = ({ selected, value, title, icon, color }) => {
   const dispatch = useDispatch()
+  const ratingDate = useSelector(getRatingDate)
 
   const handlePress = () => {
     dispatch(rateDay(value))
+    const nightQuality: NightQuality = {
+      id: ratingDate,
+      quality: value
+    }
+    dispatch(updateNightQuality(nightQuality))
   }
 
   return (
