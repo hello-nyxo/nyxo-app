@@ -12,14 +12,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getGoToSleepWindowEnd,
   getGoToSleepWindowStart
-} from 'store/Selectors/insight-selectors/Insights'
-import { getExplanationsModal } from 'store/Selectors/ModalSelectors'
+} from '@selectors/insight-selectors/Insights'
+import { getExplanationsModal } from '@selectors/ModalSelectors'
 import {
+  getSelectedDay,
   getSelectedDayAsleepDuration,
   getSelectedDayInBedDuration,
   getSelectedDayRating
-} from 'store/Selectors/SleepDataSelectors'
-import { getSelectedDay } from 'store/Selectors/SmartActionsSelectors'
+} from '@selectors/SleepDataSelectors'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
 import { fonts } from 'styles/themes'

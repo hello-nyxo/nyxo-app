@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getFitbitSleep,
   toggleFitbit
-} from '../../../actions/api-actions/fitbit-actions'
+} from '@actions/api-actions/fitbit-actions'
 
-import { toggleWithings } from '../../../actions/api-actions/withings-actions'
+import { toggleWithings } from '@actions/api-actions/withings-actions'
 import {
   authorizeGoogleFit,
   readGoogleFitSleep
-} from '../../../actions/api-actions/google-fit-actions'
+} from '@actions/api-actions/google-fit-actions'
 import {
   getFitbitEnabled,
   getWithingsEnabled
@@ -21,7 +21,7 @@ import sources from '../../../../assets/source-images/SourceImages'
 import {
   authorizeGarmin,
   toggleGarmin
-} from '../../../actions/api-actions/garmin-actions'
+} from '@actions/api-actions/garmin-actions'
 
 const AddSources = () => {
   const dispatch = useDispatch()

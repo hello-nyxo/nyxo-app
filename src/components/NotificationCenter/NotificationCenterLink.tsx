@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { IconBold } from 'components/iconRegular'
 import { useNavigation } from '@react-navigation/core'
 import ROUTE from 'config/routes/Routes'
 import colors from 'styles/colors'
-import { getStaticNotificationsCount } from 'store/Selectors/notification-selectors/notification-selectors'
+import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
 import { useSelector } from 'react-redux'
 
-const NotificationCenterLink = () => {
+const NotificationCenterLink: FC = () => {
   const { navigate } = useNavigation()
   const notificationCount = useSelector(getStaticNotificationsCount)
 
@@ -16,33 +16,28 @@ const NotificationCenterLink = () => {
   }
 
   return (
-    <Container>
-      <Button onPress={handlePress}>
-        <IconBold name="alarmBell" fill="black" height="25" width="25" />
-        {notificationCount > 0 && (
-          <NotificationCountContainer>
-            <NotificationCount adjustsFontSizeToFit>
-              {notificationCount}
-            </NotificationCount>
-          </NotificationCountContainer>
-        )}
-      </Button>
-    </Container>
+    <Button onPress={handlePress}>
+      <IconBold name="alarmBell" fill="black" height="25" width="25" />
+      {notificationCount > 0 && (
+        <NotificationCountContainer>
+          <NotificationCount adjustsFontSizeToFit>
+            {notificationCount}
+          </NotificationCount>
+        </NotificationCountContainer>
+      )}
+    </Button>
   )
 }
 
 export default NotificationCenterLink
 
-const Container = styled.View`
-  flex-direction: row;
-  justify-content: flex-end;
-  margin: 0px 20px;
-`
-
 const Button = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  padding: 10px;
+  width: 50px;
+  height: 50px;
   border-radius: 50px;
+  align-items: center;
+  justify-content: center;
 `
 
 const NotificationCountContainer = styled.View`

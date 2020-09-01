@@ -1,28 +1,29 @@
+import TabBarIcon, { TabBarIconProps } from '@components/TabBarIcon'
+import TabBarLabel from '@components/TabBarLabel'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { RouteConfig, RouteProp, ParamListBase } from '@react-navigation/native'
-import * as React from 'react'
+import { ParamListBase, RouteProp } from '@react-navigation/native'
+import { getIntercomNotificationCount } from '@selectors/NotificationSelectors'
+import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
-import SCTabBarIcon, { TabBarIconProps } from '../../components/TabBarIcon'
-import TabBarLabel from '../../components/TabBarLabel'
-import { getIntercomNotificationCount } from '../../store/Selectors/NotificationSelectors'
-import CircleNavigator from './JournalNavigator'
+import Habits from '../../screens/Shared/HabitView'
 import CoachingNavigator from './coachingNavigator'
+import CircleNavigator from './JournalNavigator'
 import ProfileNavigator from './profileNavigator'
-import SettingsNavigator from './settingsNavigator'
 import ROUTE from './Routes'
+import SettingsNavigator from './settingsNavigator'
 
 const Tab = createBottomTabNavigator()
 
-const TabNavigator = () => {
+const TabNavigator: FC = () => {
   const intercomNotifications = useSelector(getIntercomNotificationCount)
 
   return (
     <Tab.Navigator
-      screenOptions={({ route }: any) => ({
+      screenOptions={({ route }) => ({
         tabBarLabel: ({ focused, tintColor }: TabBarIconProps) => {
           return (
             <TabBarLabel
-              children={route.name}
+              label={`TAB.${route.name.toUpperCase()}`}
               focused={focused}
               tintColor={tintColor}
             />
@@ -30,7 +31,7 @@ const TabNavigator = () => {
         },
         tabBarIcon: ({ focused, tintColor }: TabBarIconProps) => {
           return (
-            <SCTabBarIcon
+            <TabBarIcon
               badgeCount={
                 route.name === ROUTE.SETTINGS
                   ? intercomNotifications
@@ -42,10 +43,7 @@ const TabNavigator = () => {
             />
           )
         }
-      })}
-      tabBarOptions={{
-        inactiveTintColor: 'gray'
-      }}>
+      })}>
       <Tab.Screen name={ROUTE.JOURNAL} component={CircleNavigator} />
       <Tab.Screen
         name={ROUTE.COACHING}
@@ -54,6 +52,7 @@ const TabNavigator = () => {
           tabBarVisible: getTabBarVisible(route)
         })}
       />
+      <Tab.Screen name={ROUTE.HABITS} component={Habits} />
       <Tab.Screen name={ROUTE.PROFILE} component={ProfileNavigator} />
       <Tab.Screen name={ROUTE.SETTINGS} component={SettingsNavigator} />
     </Tab.Navigator>
@@ -71,6 +70,8 @@ const getTabBarVisible = (route: RouteProp<ParamListBase, RouteName>) => {
       return false
     case ROUTE.LESSON:
       return false
+    default:
+      return true
   }
 }
 

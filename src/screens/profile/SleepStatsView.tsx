@@ -11,7 +11,7 @@ import {
   getShortestSleepTime,
   getLongestSleepTime,
   getNightsWithOver8HoursSleep
-} from '../../store/Selectors/SleepDataSelectors'
+} from '@selectors/SleepDataSelectors'
 import { H3, Container, P } from '../../components/Primitives/Primitives'
 
 const BedStatsView = () => {

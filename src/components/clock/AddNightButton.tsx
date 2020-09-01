@@ -1,35 +1,35 @@
-import { toggleExplanationsModal } from '@actions/modal/modal-actions'
-import React, { memo } from 'react'
+import React, { FC } from 'react'
+import { toggleEditMode } from 'actions/manual-sleep/manual-sleep-actions'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
-import colors from '../../styles/colors'
-import { IconBold } from '../iconRegular'
+import colors from 'styles/colors'
+import { IconBold } from 'components/iconRegular'
 
-const InfoButton = () => {
+const AddNightButton: FC = () => {
   const dispatch = useDispatch()
   const onPress = () => {
-    dispatch(toggleExplanationsModal(true))
+    dispatch(toggleEditMode())
   }
   return (
     <Container>
       <Touchable onPress={onPress}>
         <IconBold
-          width={15}
-          height={15}
+          width={20}
+          height={20}
           fill={colors.radiantBlue}
-          name="informationCircle"
+          name="doubleBedAdd"
         />
       </Touchable>
     </Container>
   )
 }
 
-export default memo(InfoButton)
+export default AddNightButton
 
 const Container = styled.View`
   position: absolute;
-  bottom: 35px;
-  right: 35px;
+  bottom: 25px;
+  left: 35px;
 `
 
 const Touchable = styled.TouchableOpacity`

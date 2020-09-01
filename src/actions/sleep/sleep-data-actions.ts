@@ -14,10 +14,10 @@ import moment from 'moment'
 import {
   getMainSource,
   getSharedSource
-} from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
-import { getAllDays } from 'store/Selectors/SleepDataSelectors'
+} from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import { getAllDays } from '@selectors/SleepDataSelectors'
 import { GetState } from 'Types/GetState'
-import { Dispatch, Thunk } from 'Types/ReduxActions'
+import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SOURCE } from 'typings/state/sleep-source-state'
 import { Day, Night, Value } from '../../Types/Sleepdata'
 import { fetchSleepFromHealthKit } from './health-kit-actions'
@@ -61,12 +61,15 @@ export const updateDay = (day: Day) => ({
   payload: day
 })
 
-export const updateSleepData = (data: { days: Day[]; nights: Night[] }) => ({
+export const updateSleepData = (data: {
+  days: Day[]
+  nights: Night[]
+}): ReduxAction => ({
   type: UPDATE_SLEEP_DATA,
   payload: data
 })
 
-export const setSelectedDay = (day: Day) => ({
+export const setSelectedDay = (day: string): ReduxAction => ({
   type: SET_SELECTED_DAY,
   payload: day
 })
@@ -120,6 +123,7 @@ export const fetchSleepData = (): Thunk => async (
       break
     case SOURCE.POLAR:
       dispatch(getPolarSleep())
+      break
 
     default:
       break

@@ -1,4 +1,4 @@
-import { getStateWeeks } from 'store/Selectors/coaching-selectors'
+import { getStateWeeks } from '@selectors/coaching-selectors'
 import { InteractedLesson } from '../../Types/CoachingNotificationState'
 import { GetState } from '../../Types/GetState'
 

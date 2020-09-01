@@ -1,6 +1,7 @@
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 import { ContentfulClientApi, Entry } from 'contentful'
 import I18n from 'i18n-js'
+import { Dispatch, Thunk } from 'Types/ReduxActions'
 import CONFIG from '../../config/Config'
 import { actionCreators as contentActions } from '../../store/Reducers/content-reducer/content-reducer'
 import {
@@ -27,7 +28,7 @@ const getFieldValue = (
   entry: Entry<any>,
   fieldToGet: string,
   object: any,
-  callback?: Function,
+  callback?: (args: any) => void,
   fieldToSet?: string
 ) => {
   if (entry.fields[fieldToGet]) {
@@ -37,7 +38,7 @@ const getFieldValue = (
   }
 }
 
-export const getAllWeeks = () => async (dispatch: Function) => {
+export const getAllWeeks = (): Thunk => async (dispatch: Dispatch) => {
   const locale = I18n.locale === 'en' ? 'en-US' : 'fi-FI'
   const weeks: ContentWeek[] = []
   const lessons: any = []
@@ -45,10 +46,12 @@ export const getAllWeeks = () => async (dispatch: Function) => {
   const exampleHabits: ExampleHabit[] = []
 
   await dispatch(contentActions.updateContentStart())
+
   try {
     const coachingWeeks: any = await client.getEntries({
       locale,
       content_type: 'coachingWeek',
+      // 'fields.slug[ne]': 'introduction',
       include: 3
     })
 
@@ -83,7 +86,7 @@ export const getAllWeeks = () => async (dispatch: Function) => {
       )
 
       if (coachingWeek.fields.lessons) {
-        const weekLessons: any = []
+        const weekLessons: string[] = []
 
         coachingWeek.fields.lessons.forEach((lesson: Entry<ILessonFields>) => {
           const lessonObject: ContentLesson = { contentId: lesson.sys.id }
@@ -113,7 +116,7 @@ export const getAllWeeks = () => async (dispatch: Function) => {
             const section: Section = {
               title: lesson.fields.section.fields.title,
               order: lesson.fields.section.fields.order,
-              description: lesson.fields!.section!.fields!.description!
+              description: lesson.fields?.section?.fields?.description
             }
             lessonObject.section = section
             sections.push(section)

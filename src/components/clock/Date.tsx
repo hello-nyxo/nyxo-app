@@ -1,17 +1,16 @@
 import Moment from 'moment'
-import React, { memo } from 'react'
+import React, { memo, FC } from 'react'
 import { G, Text as SVGText } from 'react-native-svg'
 import styled from 'styled-components/native'
 
-interface DateProps {
+type Props = {
   date: string
-  darkTheme: boolean
   x: number
   y: number
   hasData: boolean
 }
 
-const Date = ({ x, y, hasData, date }: DateProps) => {
+const Date: FC<Props> = ({ x, y, hasData, date }) => {
   if (!hasData) {
     return <G />
   }

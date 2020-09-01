@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, FC } from 'react'
 import { NativeSyntheticEvent, TextInputProps } from 'react-native'
 import styled from 'styled-components/native'
 import translate from '../config/i18n'
@@ -7,7 +7,7 @@ import { constants, fonts, StyleProps } from '../styles/themes'
 import { IconBold } from './iconRegular'
 import TranslatedText from './TranslatedText'
 
-interface SCTextInputProps extends TextInputProps {
+interface Props extends TextInputProps {
   value?: string
   error?: string
   fieldName: string
@@ -15,38 +15,40 @@ interface SCTextInputProps extends TextInputProps {
   ref?: any
 }
 
-const TextField = (props: SCTextInputProps) => {
-  const {
-    value,
-    onBlur,
-    onEndEditing,
-    onSubmitEditing,
-    error,
-    fieldName,
-    icon,
-    ref,
-    keyboardType,
-    autoCorrect,
-    autoCompleteType,
-    textContentType,
-    autoCapitalize,
-    returnKeyType,
-    enablesReturnKeyAutomatically,
-    placeholder,
-    secureTextEntry
-  } = props
-
+const TextField: FC<Props> = ({
+  value,
+  onBlur,
+  onEndEditing,
+  onSubmitEditing,
+  error,
+  fieldName,
+  icon,
+  ref,
+  keyboardType,
+  autoCorrect,
+  autoCompleteType,
+  textContentType,
+  autoCapitalize,
+  returnKeyType,
+  enablesReturnKeyAutomatically,
+  placeholder,
+  secureTextEntry
+}) => {
   const inputRef: any = useRef(ref)
 
   const onFocus = () => {
     inputRef.current.focus()
   }
 
-  const handleOnBlur = (event: NativeSyntheticEvent<any>) => {
+  const handleOnBlur = (
+    event: NativeSyntheticEvent<TextInputFocusEventData>
+  ) => {
     onBlur && onBlur(event)
   }
 
-  const handleOnEndEditing = (event: NativeSyntheticEvent<any>) => {
+  const handleOnEndEditing = (
+    event: NativeSyntheticEvent<TextInputEndEditingEventData>
+  ) => {
     onEndEditing && onEndEditing(event)
   }
 
@@ -59,10 +61,9 @@ const TextField = (props: SCTextInputProps) => {
       <InputContainer error={!!error}>
         <LabelContainer>
           <Icon icon={icon} fill={colors.red} width={15} height={15} />
-          <Label error={!!error}>{error || fieldName}</Label>
+          <Label error={!!error}>{error ? error : fieldName}</Label>
         </LabelContainer>
         <InputField
-          {...props}
           keyboardType={keyboardType}
           ref={inputRef}
           autoCorrect={autoCorrect}

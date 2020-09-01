@@ -3,13 +3,13 @@ import produce from 'immer'
 import moment from 'moment'
 import 'react-native-get-random-values'
 import * as Sentry from '@sentry/react-native'
-import { getAuthState } from 'store/Selectors/auth-selectors/auth-selectors'
+import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import {
   getHabits,
   getUnsyncedHabits,
   getHabitsMap
-} from 'store/Selectors/habit-selectors/habit-selectors'
-import { getUsername } from 'store/Selectors/UserSelectors'
+} from '@selectors/habit-selectors/habit-selectors'
+import { getUsername } from '@selectors/UserSelectors'
 import { GetState } from 'Types/GetState'
 import ReduxAction, { Thunk, ThunkResult, Dispatch } from 'Types/ReduxActions'
 import { Habit, MutationType, UnsyncedHabit } from 'Types/State/habit-state'

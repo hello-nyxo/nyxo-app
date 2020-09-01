@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native'
 import { useSelector } from 'react-redux'
 import Achievement from './Components/Achievement'
 import TranslatedText from '../../components/TranslatedText'
-import { getVisibleChallenges } from '../../store/Selectors/ChallengeSelectors'
+import { getVisibleChallenges } from '@selectors/ChallengeSelectors'
 import { H2, P } from '../../components/Primitives/Primitives'
 
 interface ChallengesProps {}

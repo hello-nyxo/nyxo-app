@@ -1,25 +1,26 @@
-import React, { memo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components/native'
 import {
   addManualDataToNight,
   toggleEditMode
-} from '../../actions/manual-sleep/manual-sleep-actions'
-import { SMART_TOP_PADDING } from '../../helpers/Dimensions'
-import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
+} from '@actions/manual-sleep/manual-sleep-actions'
 import {
   getEditMode,
   getEndTime,
   getStartTime
-} from '../../store/Selectors/ManualDataSelectors'
-import { getSelectedDay } from '../../store/Selectors/SleepDataSelectors'
+} from '@selectors/ManualDataSelectors'
+import { getSelectedDay } from '@selectors/SleepDataSelectors'
+import React, { memo, FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components/native'
+import { SMART_TOP_PADDING } from '../../helpers/Dimensions'
+import colors from '../../styles/colors'
+import { fonts, StyleProps } from '../../styles/themes'
 import { P } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 
-export const EditNightHeader = () => {
-  const editMode = useSelector(getEditMode)
+export const EditNightHeader: FC = () => {
   const dispatch = useDispatch()
+
+  const editMode = useSelector(getEditMode)
   const currentDay = useSelector(getSelectedDay)
   const startTime = useSelector(getStartTime)
   const endTime = useSelector(getEndTime)
@@ -34,9 +35,10 @@ export const EditNightHeader = () => {
   }
 
   if (!editMode) return null
+
   return (
     <Header>
-      {editMode ? (
+      {editMode && (
         <>
           <LeftButton onPress={handleCancel}>
             <Text>Cancel</Text>
@@ -46,7 +48,7 @@ export const EditNightHeader = () => {
             <Text>Save</Text>
           </RightButton>
         </>
-      ) : null}
+      )}
     </Header>
   )
 }
@@ -59,14 +61,13 @@ const Header = styled.View`
     props.theme.SECONDARY_BACKGROUND_COLOR};
   left: 0px;
   right: 0px;
-  top: ${SMART_TOP_PADDING}px;
-  height: 80px;
+  top: 0;
   z-index: 30;
   box-shadow: ${(props: StyleProps) => props.theme.SHADOW};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 20px 0px;
+  padding: ${SMART_TOP_PADDING}px 20px 0px;
 `
 
 const Text = styled(P)`

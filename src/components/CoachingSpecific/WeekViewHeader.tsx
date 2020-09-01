@@ -6,15 +6,15 @@ import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '../../helpers/Dimensions'
 import { fonts, StyleProps } from '../../styles/themes'
 
 interface Props {
-  yOffset: any
+  yOffset: Animated.Value<number>
   title?: string
 }
 
 const WeekViewHeader = (props: Props) => {
   const { yOffset, title } = props
 
-  const titleSize = (yOffset: any) => ({
-    opacity: yOffset.interpolate({
+  const titleSize = (offset: Animated.Value<number>) => ({
+    opacity: offset.interpolate({
       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
       outputRange: [1, 0.2],
       extrapolateRight: Animated.Extrapolate.CLAMP,

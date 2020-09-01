@@ -8,14 +8,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   CombinedLesson,
   getContentForSelectedLesson
-} from 'store/Selectors/coaching-selectors/coaching-selectors'
+} from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import { completeLesson } from '@actions/coaching/coaching-actions'
 import Tags from 'components/LessonComponents/Tags'
 import {
   popFromIncompleteLessons,
   pushInteractedLesson
-} from '../../actions/CoachingNotification/CoachingNotificationActions'
+} from '@actions/CoachingNotification/CoachingNotificationActions'
 import Authors from '../../components/CoachingSpecific/Authors'
 import TopHeader from '../../components/CoachingSpecific/TopHeader'
 import WeekViewHeader from '../../components/CoachingSpecific/WeekViewHeader'

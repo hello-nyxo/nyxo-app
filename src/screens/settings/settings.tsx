@@ -1,32 +1,32 @@
+import ROUTE from 'config/routes/Routes'
 import React, { memo, useMemo } from 'react'
 import { Linking, SectionList } from 'react-native'
 import Intercom from 'react-native-intercom'
 import Rate, { AndroidMarket } from 'react-native-rate'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import ROUTE from 'config/routes/Routes'
-import { setTheme } from '../../actions/user/user-actions'
+import { setTheme } from '@actions/user/user-actions'
 import { Title } from '../../components/InfoRow'
-import IntercomProfilePictures from '../../components/SettingsSpecific/IntercomProfilePictures'
 import {
   H2,
   PageTitle,
   SafeAreaView
 } from '../../components/Primitives/Primitives'
+import IntercomProfilePictures from '../../components/SettingsSpecific/IntercomProfilePictures'
 import SettingRow from '../../components/SettingsSpecific/settingRow'
 import VersionInformation from '../../components/SettingsSpecific/versionInformation'
 import TopInfo from '../../components/TopInfo'
+import CONFIG from '../../config/Config'
 import keyExtractor from '../../helpers/KeyExtractor'
+import { getIntercomNotificationCount } from '@selectors/NotificationSelectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
+import { getTheme } from '@selectors/UserSelectors'
 import {
   darkTheme,
   lightTheme,
   StyleProps,
   ThemeProps
 } from '../../styles/themes'
-import { getIntercomNotificationCount } from '../../store/Selectors/NotificationSelectors'
-import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
-import { getTheme } from '../../store/Selectors/UserSelectors'
-import CONFIG from '../../config/Config'
 
 const options = {
   AppleAppID: '1440417031',

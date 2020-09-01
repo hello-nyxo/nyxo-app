@@ -8,14 +8,14 @@ import {
   CombinedLessonArray,
   getCoachingLessonsForCurrentWeek,
   getCoachingLessonsForWeek
-} from 'store/Selectors/coaching-selectors/coaching-selectors'
+} from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import LessonListItem from '../../components/LessonComponents/LessonListItem'
 import SectionFooter from '../../components/LessonComponents/SectionFooter'
 import SectionHeader from '../../components/LessonComponents/SectionHeader'
 import Separator from '../../components/LessonComponents/Separator'
 import keyExtractor from '../../helpers/KeyExtractor'
-import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { StyleProps } from '../../styles/themes'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)

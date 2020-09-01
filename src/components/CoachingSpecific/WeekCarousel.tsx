@@ -6,7 +6,7 @@ import {
   CombinedWeek,
   getCombinedWeeks,
   getCurrentWeek
-} from 'store/Selectors/coaching-selectors'
+} from '@selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import { WIDTH } from '../../helpers/Dimensions'
 import { H3 } from '../Primitives/Primitives'
@@ -28,7 +28,6 @@ const WeekCarousel: FC = () => {
         week={item}
         cardMargin={cardMargin}
         cardWidth={cardWidth}
-        xOffset={xOffset}
       />
     )
   }
@@ -57,7 +56,6 @@ const WeekCarousel: FC = () => {
         directionalLockEnabled
         initialScrollIndex={activeWeekIndex}
         snapToOffsets={snapOffets}
-        debug
         getItemLayout={(_: CombinedWeek[], index: number) => ({
           index,
           length: cardWidth,

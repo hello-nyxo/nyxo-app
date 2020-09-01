@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
-import { toggleRatingModal } from '../../actions/modal/modal-actions'
+import { toggleRatingModal } from '@actions/modal/modal-actions'
 import getRating from '../../helpers/rating'
 import { Day } from '../../Types/Sleepdata'
 import ScalingButton from '../Buttons/ScalingButton'

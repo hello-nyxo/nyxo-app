@@ -7,7 +7,7 @@ import Purchases, { PurchasesEntitlementInfos } from 'react-native-purchases'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
-import { restorePurchase } from '../../actions/subscription/subscription-actions'
+import { restorePurchase } from '@actions/subscription/subscription-actions'
 import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
 import TextButton from '../../components/Buttons/TextButton'
 import {
@@ -22,7 +22,7 @@ import CONFIG from '../../config/Config'
 import {
   getActiveCoaching,
   getLoadingPurchase
-} from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+} from '@selectors/subscription-selectors/SubscriptionSelectors'
 
 const ManageSubscription = () => {
   const isCoachingActive = useSelector(getActiveCoaching)

@@ -10,6 +10,7 @@ import {
 import { GetState } from '../../Types/GetState'
 import { Day, Value, Night } from '../../Types/Sleepdata'
 import { updateSleepData } from '../sleep/sleep-data-actions'
+import { Dispatch, Thunk } from 'Types/ReduxActions'
 
 export const SET_VALUES = 'SET_VALUES'
 export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE'
@@ -30,7 +31,7 @@ export const addManualDataToNight = (
   date: string,
   nightStart: { h: number; m: number },
   nightEnd: { h: number; m: number }
-) => async (dispatch: Function, getState: GetState) => {
+): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   const {
     sleepclock: { days, nights }
   } = getState()
@@ -102,14 +103,23 @@ export const createNight = async (
       value: Value.Asleep
     }
 
-    await AppleHealthKit.saveSleep(
-      newNightBed,
-      (error: any, response: any) => {}
-    )
+    await AppleHealthKit.saveSleep(newNightBed, (error: any, response: any) => {
+      if (error) {
+        throw error
+      } else {
+        return response
+      }
+    })
 
     await AppleHealthKit.saveSleep(
       newNightSleep,
-      (error: any, response: any) => {}
+      (error: any, response: any) => {
+        if (error) {
+          throw error
+        } else {
+          return response
+        }
+      }
     )
   } else {
     const newNight = {
@@ -117,6 +127,12 @@ export const createNight = async (
       startDate: startTime,
       endDate: endTime
     }
-    await AppleHealthKit.saveSleep(newNight, (error: any, response: any) => {})
+    await AppleHealthKit.saveSleep(newNight, (error: any, response: any) => {
+      if (error) {
+        throw error
+      } else {
+        return response
+      }
+    })
   }
 }

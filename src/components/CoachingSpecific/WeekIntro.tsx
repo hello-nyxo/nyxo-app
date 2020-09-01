@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import moment from 'moment'
 import { PN } from '../Primitives/Primitives'
 import { StyleProps, fonts, constants } from '../../styles/themes'
+import { IconBold } from 'components/iconRegular'
 
 interface Props {
   intro: string
@@ -29,14 +30,22 @@ const WeekIntro = ({
 
   return (
     <Container>
-      <Intro>{intro}</Intro>
-      <PN secondary>{description}</PN>
       <Information>
-        <Habits variables={{ count: habitCount }}>WEEK_VIEW.HABIT_COUNT</Habits>
+        {habitCount > 0 && (
+          <>
+            <HabitIcon />
+            <Habits variables={{ count: habitCount }}>
+              WEEK_VIEW.HABIT_COUNT
+            </Habits>
+          </>
+        )}
         {lessonCount > 0 && (
-          <Habits variables={{ count: lessonCount }}>
-            WEEK_VIEW.LESSON_COUNT
-          </Habits>
+          <>
+            <LessonIcon />
+            <Habits variables={{ count: lessonCount }}>
+              WEEK_VIEW.LESSON_COUNT
+            </Habits>
+          </>
         )}
       </Information>
       <DurationRow>
@@ -49,6 +58,9 @@ const WeekIntro = ({
           <Ended variables={{ ended: endTime }}>WEEK_VIEW.END_DATE</Ended>
         )}
       </DurationRow>
+
+      <Intro>{intro}</Intro>
+      <PN secondary>{description}</PN>
     </Container>
   )
 }
@@ -58,7 +70,7 @@ export default memo(WeekIntro)
 const Container = styled.View`
   background-color: ${(props: StyleProps) =>
     props.theme.PRIMARY_BACKGROUND_COLOR};
-  padding: 10px 20px 30px;
+  padding: 20px 20px 30px;
 `
 
 const Intro = styled.Text`
@@ -70,16 +82,14 @@ const Intro = styled.Text`
 
 const Information = styled.View`
   flex-direction: row;
-  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
   padding: 10px 0px 5px;
-  border-bottom-width: ${constants.hairlineWidth}px;
 `
 
 const Habits = styled(TranslatedText)`
   font-size: 13px;
   margin-right: 10px;
   font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const DurationRow = styled.View`
@@ -99,4 +109,22 @@ const Ended = styled(TranslatedText)`
   margin-right: 10px;
   font-family: ${fonts.medium};
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+`
+
+const LessonIcon = styled(IconBold).attrs(({ theme }) => ({
+  height: 15,
+  width: 15,
+  fill: theme.SECONDARY_TEXT_COLOR,
+  name: 'bookLamp'
+}))`
+  margin-right: 10px;
+`
+
+const HabitIcon = styled(IconBold).attrs(({ theme }) => ({
+  height: 15,
+  width: 15,
+  fill: theme.SECONDARY_TEXT_COLOR,
+  name: 'checklist'
+}))`
+  margin-right: 10px;
 `

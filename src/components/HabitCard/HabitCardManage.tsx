@@ -8,7 +8,7 @@ import {
   archiveMicrotask,
   deleteMicroTaskById,
   markTodayAsCompleted
-} from '../../actions/habit/habit-actions'
+} from '@actions/habit/habit-actions'
 import { fonts, StyleProps } from '../../styles/themes'
 import { MicroTask } from '../../Types/Microtask'
 import TranslatedText from '../TranslatedText'

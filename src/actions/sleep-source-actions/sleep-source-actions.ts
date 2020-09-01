@@ -2,7 +2,7 @@ import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previ
 import { setHealthKitStatus } from '@actions/sleep/health-kit-actions'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
 import AppleHealthKit from 'react-native-healthkit'
-import { getIsHealthKitMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
+import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { GetState } from 'Types/GetState'
 import { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SOURCE, SUB_SOURCE } from 'typings/state/sleep-source-state'

@@ -1,21 +1,20 @@
-import * as d3 from 'd3'
+import TranslatedText from '@components/TranslatedText'
+import { setSelectedDay } from '@actions/sleep/sleep-data-actions'
+import { extent, max, min, scaleTime } from 'd3'
 import moment from 'moment'
-import React, { memo, useMemo, useState } from 'react'
+import React, { useMemo, FC } from 'react'
 import { Dimensions, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Svg from 'react-native-svg'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { constants, StyleProps } from '../../styles/themes'
-import { getAllDays } from '../../store/Selectors/SleepDataSelectors'
-import { getIsDarkMode } from '../../store/Selectors/UserSelectors'
-import { Day, Value } from '../../Types/Sleepdata'
-import { Container, H3 } from '../Primitives/Primitives'
-import BottomInfo from './SleepTimeChart/BottomInfo'
-import DayInfo from './SleepTimeChart/DayInfo'
+import { getAllDays } from '@selectors/SleepDataSelectors'
+import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
+import { Day, Night, Value } from '../../Types/Sleepdata'
 import SleepBars from './SleepTimeChart/SleepBars'
 import XTicks from './SleepTimeChart/XTicks'
 import YTicks from './SleepTimeChart/YTicks'
+import TargetBars from './SleepTimeChart/TargetBars'
 
 const { height, width } = Dimensions.get('window')
 
@@ -24,55 +23,54 @@ export const paddingLeft = 100
 export const paddingRight = 100
 export const chartHeight = height / 3
 
-const SleepTimeChart = () => {
+const SleepTimeChart: FC = () => {
   const days = useSelector(getAllDays)
-  const [selectedDay, setSelectedDay] = useState()
-
+  const dispatch = useDispatch()
   const chartWidth = (barWidth + 10) * days.length + paddingLeft + paddingRight
+  const bedtimeWindow = useSelector(getGoToSleepWindowCenter)
 
-  const { normalizedSleepData }: any = useMemo(
+  const { normalizedSleepData } = useMemo(
     () => ({
-      normalizedSleepData: normalizeSleepData(days, Value.InBed)
+      normalizedSleepData: normalizeSleepData(days)
     }),
-    []
+    [days]
   )
 
   const select = (day: Day) => {
-    setSelectedDay(day)
+    dispatch(setSelectedDay(day.date))
   }
 
-  const xDomain = d3.extent(
+  const xDomain: Date[] = extent(
     normalizedSleepData,
     (day: Day) => new Date(day.date)
-  )
-  const yDomain: any = [
-    d3.min(normalizedSleepData, (datum: Day) =>
-      d3.min(datum.night, (night) =>
+  ) as Date[]
+
+  const yDomain: number[] = [
+    min(normalizedSleepData, (datum: Day) =>
+      min(datum.night, (night) =>
         moment(night.startDate).subtract(1, 'hour').valueOf()
       )
-    ),
-    d3.max(normalizedSleepData, (datum: Day) =>
-      d3.max(datum.night, (night) =>
+    ) as number,
+    max(normalizedSleepData, (datum: Day) =>
+      max(datum.night, (night) =>
         moment(night.endDate).add(1, 'hour').valueOf()
       )
-    )
+    ) as number
   ]
+  const scaleX = scaleTime().domain(xDomain).range([paddingLeft, chartWidth])
 
-  const scaleX = d3.scaleTime().domain(xDomain).range([paddingLeft, chartWidth])
-
-  const scaleY = d3
-    .scaleTime()
+  const scaleY = scaleTime()
     .domain(yDomain)
     .nice()
-    .range([0, chartHeight - 50])
-  const yTicks = scaleY.ticks(4)
-  const xTicks = scaleX.ticks(d3.timeDay.every(1))
+    .range([10, chartHeight - 80])
+
+  const yTicks = scaleY.ticks(5)
+  const xTicks = scaleX.ticks(days.length)
 
   return (
-    <>
-      <Container>
-        <H3>Sleep Goal Trend</H3>
-      </Container>
+    <Card>
+      <Title>Sleep Goal Trend</Title>
+
       <ScrollContainer>
         <ScrollView
           style={{ transform: [{ scaleX: -1 }] }}
@@ -80,8 +78,16 @@ const SleepTimeChart = () => {
           showsHorizontalScrollIndicator={false}>
           <View style={{ transform: [{ scaleX: -1 }] }}>
             <Svg width={chartWidth} height={chartHeight}>
+              <TargetBars
+                start={bedtimeWindow}
+                onPress={select}
+                barWidth={barWidth}
+                scaleX={scaleX}
+                scaleY={scaleY}
+                data={normalizedSleepData}
+              />
               <SleepBars
-                select={select}
+                onPress={select}
                 barWidth={barWidth}
                 type={Value.InBed}
                 scaleX={scaleX}
@@ -89,7 +95,7 @@ const SleepTimeChart = () => {
                 data={normalizedSleepData}
               />
               <SleepBars
-                select={select}
+                onPress={select}
                 barWidth={barWidth}
                 type={Value.Asleep}
                 scaleX={scaleX}
@@ -109,31 +115,42 @@ const SleepTimeChart = () => {
           <YTicks scaleY={scaleY} chartWidth={chartWidth} ticks={yTicks} />
         </YTicksContainer>
       </ScrollContainer>
-      <Stats>
-        {selectedDay ? <DayInfo selectedDay={selectedDay} /> : <BottomInfo />}
-      </Stats>
-    </>
+    </Card>
   )
 }
 
-export default memo(SleepTimeChart)
-
-const Stats = styled.View`
-  padding: 10px 20px;
-  height: 60px;
-  border-top-color: ${(props: StyleProps) => props.theme.HAIRLINE_COLOR};
-  border-top-width: ${constants.hairlineWidth}px;
-  border-bottom-color: ${(props: StyleProps) => props.theme.HAIRLINE_COLOR};
-  border-bottom-width: ${constants.hairlineWidth}px;
-`
+export default SleepTimeChart
 
 const ScrollContainer = styled.View``
+
+const Title = styled(TranslatedText)`
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-size: 15px;
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  margin-bottom: 10px;
+`
 
 const YTicksContainer = styled(Svg)`
   position: absolute;
 `
 
-const normalizeSleepData = (days: Day[], value: Value) => {
+const Card = styled.View`
+  margin-top: 8px;
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  box-shadow: ${({ theme }) => theme.SHADOW};
+  padding: 10px;
+  margin: 8px 16px;
+  border-radius: 7px;
+`
+
+type NormalizedDay = Day & {
+  night: Night & {
+    startDate: number
+    endDate: number
+  }
+}
+
+const normalizeSleepData = (days: Day[]): NormalizedDay[] => {
   const normalized = days.map((day) => {
     const normalizedNights = day.night.map((night) => {
       const trueDate = moment(day.date)

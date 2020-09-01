@@ -25,7 +25,9 @@ module.exports = {
         ],
         alias: {
           '@actions': './src/actions/',
-          '@reducers': './src/store/Reducers'
+          '@reducers': './src/store/Reducers',
+          '@selectors': './src/store/Selectors',
+          '@components': './src/components'
         }
       }
     ]
