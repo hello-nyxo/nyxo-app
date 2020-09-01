@@ -67,7 +67,6 @@ const SleepTimeChart: FC = () => {
   const yTicks = scaleY.ticks(5)
   const xTicks = scaleX.ticks(days.length)
 
-  console.log(normalizedSleepData, bedtimeWindow)
   return (
     <Card>
       <Title>Sleep Goal Trend</Title>

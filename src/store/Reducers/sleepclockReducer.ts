@@ -1,6 +1,3 @@
-import { CREATE_SUCCESS } from '@actions/sleep/sleep-to-cloud-actions'
-import moment from 'moment'
-import ReduxAction from 'Types/ReduxActions'
 import { RESET_APP } from '@actions/shared'
 import {
   CREATE_NEW_CALENDAR,
@@ -14,8 +11,10 @@ import {
   UPDATE_DAY,
   UPDATE_SLEEP_DATA
 } from '@actions/sleep/sleep-data-actions'
+import { CREATE_SUCCESS } from '@actions/sleep/sleep-to-cloud-actions'
+import moment from 'moment'
+import ReduxAction from 'Types/ReduxActions'
 import { sortDays } from '../../helpers/sleep'
-import { sameDay } from '../../helpers/time'
 import { SleepClockState } from '../../Types/SleepClockState'
 import { Day } from '../../Types/Sleepdata'
 import { initialState } from '../InitialStates/SleepClock'
@@ -36,12 +35,7 @@ const reducer = (
     }
 
     case SET_TODAY_AS_SELECTED: {
-      const selectedDay = state.days.find((day: Day) =>
-        sameDay(payload, day.date)
-      )
-      const day = selectedDay || state.selectedDay
-
-      return { ...state, selectedDay: day }
+      return { ...state, selectedDay: payload }
     }
 
     case CREATE_NEW_CALENDAR:
@@ -78,9 +72,12 @@ const reducer = (
 
     case RATE_NIGHT: {
       const filteredDays = state.days.filter(
-        (item: Day) => item.date !== state.selectedDay.date
+        (item: Day) => item.date !== state.selectedDay
       )
-      const newDay = { ...state.selectedDay, rating: payload }
+      const day = state.days.find(
+        (item: Day) => item.date === state.selectedDay
+      )
+      const newDay = { ...(day as Day), rating: payload }
       const daysArray = [...filteredDays, newDay]
       const sorted = sortDays(daysArray)
       return { ...state, days: sorted }

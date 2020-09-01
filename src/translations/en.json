@@ -79,7 +79,7 @@
   "Time asleep": "Time asleep",
 
   "ClockNotLoading": "Something went wrong in loading data",
-  "Sleep Goal Trend": "Sleep Goal Trend",
+  "Sleep Goal Trend": "Sleep Trend",
 
   "NEED_HELP": {
     "TITLE": "Need Help?",
@@ -602,7 +602,10 @@
 
     "HABITS": "Habits",
     "ACTIVE": "Active Habits",
+    "ACTIVE_SUBTITLE": "Habits that are currently active.",
     "ARCHIVED": "Archived Habits",
+    "ARCHIVED_SUBTITLE": "Habits that have been archived previously.",
+
     "COMPLETED_HABITS": "{{completedCount}}/{{taskCount}} habits completed",
     "NEW_HABIT": "New Habit",
     "HABIT_STREAK": "{{dayStreak}}-day streak",
@@ -618,9 +621,10 @@
     "DESCRIPTION_FIELD": "Description",
     "LONGEST_STREAK": "Longest streak",
     "CURRENT_STREAK": "Current streak",
+
     "WARNING_TITLE_EXISTS": "Habit with this title already exists.",
-    "EXPLANATION_1": "TODO",
-    "EXPLANATION_2": "TODO",
+    "EXPLANATION_1": "Here you manage your Habits. You can  create new ones from the top right corner. By swiping left or right on the Habit card, you can mark it as completed, archive it, or delete it.",
+    "EXPLANATION_2": "",
 
     "MORNING": "Morning",
     "AFTERNOON": "Afternoon",

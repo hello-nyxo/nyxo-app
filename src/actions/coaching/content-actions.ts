@@ -28,7 +28,7 @@ const getFieldValue = (
   entry: Entry<any>,
   fieldToGet: string,
   object: any,
-  callback?: () => void,
+  callback?: (args: any) => void,
   fieldToSet?: string
 ) => {
   if (entry.fields[fieldToGet]) {
@@ -51,7 +51,7 @@ export const getAllWeeks = (): Thunk => async (dispatch: Dispatch) => {
     const coachingWeeks: any = await client.getEntries({
       locale,
       content_type: 'coachingWeek',
-      'fields.slug[ne]': 'introduction',
+      // 'fields.slug[ne]': 'introduction',
       include: 3
     })
 

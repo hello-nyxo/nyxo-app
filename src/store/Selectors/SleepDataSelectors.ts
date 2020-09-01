@@ -3,7 +3,7 @@ import { clockTimeToAngle } from 'helpers/geometry'
 import Moment from 'moment'
 import { createSelector } from 'reselect'
 import { SleepClockState } from '../../Types/SleepClockState'
-import { Day } from '../../Types/Sleepdata'
+import { Day, Days } from '../../Types/Sleepdata'
 import { State } from '../../Types/State'
 
 const getState = (state: State) => state.sleepclock
@@ -209,7 +209,7 @@ const dummyDay: Day = {
 }
 
 const getSday = (state: State) =>
-  state.sleepclock.selectedDay ? state.sleepclock.selectedDay : dummyDay
+  state.sleepclock.selectedDay ? state.sleepclock.selectedDay : dummyDay.date
 
 const getSleepclock = (state: State) => state.sleepclock
 
@@ -219,18 +219,22 @@ export const getSleepTrackerName = createSelector(
 )
 
 export const getSelectedDay = createSelector(
-  (state: State) => state.sleepclock.selectedDay,
-  (selectedDay) => selectedDay
+  [getDays, getSday],
+  (days, selectedDay) => {
+    const fromState = days.find((day) => day.date === selectedDay)
+    const day = fromState ?? { ...dummyDay, date: selectedDay }
+    return day
+  }
 )
 
 export const getSelectedDayInBedDuration = createSelector(
-  getSday,
-  (selectedDay) => selectedDay.inBedDuration
+  getSelectedDay,
+  (selectedDay) => (selectedDay ? selectedDay.inBedDuration : 0)
 )
 
 export const getSelectedDayAsleepDuration = createSelector(
-  getSday,
-  (selectedDay) => selectedDay.asleepDuration
+  getSelectedDay,
+  (selectedDay) => (selectedDay ? selectedDay.asleepDuration : 0)
 )
 
 export const getSleepDataUpdated = createSelector(
@@ -249,13 +253,13 @@ export const getStartDate = createSelector(
 )
 
 export const getNightInAngles = createSelector(getSelectedDay, (day) => {
-  if (day.bedEnd && day.bedStart) {
+  if (day?.bedEnd && day?.bedStart) {
     return {
       startAngle: clockTimeToAngle(day.bedStart),
       endAngle: clockTimeToAngle(day.bedEnd)
     }
   }
-  if (day.sleepEnd && day.sleepStart) {
+  if (day?.sleepEnd && day?.sleepStart) {
     return {
       startAngle: clockTimeToAngle(day.sleepStart),
       endAngle: clockTimeToAngle(day.sleepEnd)

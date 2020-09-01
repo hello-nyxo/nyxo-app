@@ -61,7 +61,10 @@ export const updateDay = (day: Day) => ({
   payload: day
 })
 
-export const updateSleepData = (data: { days: Day[]; nights: Night[] }) => ({
+export const updateSleepData = (data: {
+  days: Day[]
+  nights: Night[]
+}): ReduxAction => ({
   type: UPDATE_SLEEP_DATA,
   payload: data
 })
