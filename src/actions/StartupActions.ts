@@ -24,6 +24,7 @@ import { prepareSleepDataFetching } from './sleep/health-kit-actions'
 import { fetchSleepData, updateCalendar } from './sleep/sleep-data-actions'
 import { updateSubscriptionStatus } from './subscription/subscription-actions'
 import { getAllWeeks } from './coaching/content-actions'
+import { getNightRatingsFromCloud } from './sleep/night-quality-actions'
 
 export const startup = (): Thunk => async (
   dispatch: Dispatch,
@@ -66,6 +67,9 @@ export const startup = (): Thunk => async (
   await dispatch(handleBedtimeApproachNotifications())
   await dispatch(handleCoachingUncompletedLessonNotifications())
   await dispatch(handleCoachingLessonsInWeekNotifications())
+
+  // Get Night Ratings from Cloud
+  await dispatch(getNightRatingsFromCloud())
 }
 
 export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {

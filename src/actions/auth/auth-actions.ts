@@ -14,6 +14,7 @@ import ROUTE from '../../config/routes/Routes'
 import { actionCreators as notificationActions } from '../../store/Reducers/NotificationReducer'
 import { NotificationType } from '../../Types/NotificationState'
 import { updateEmail } from '../user/user-actions'
+import { getNightRatingsFromCloud } from 'actions/sleep/night-quality-actions'
 
 /* ACTION TYPES */
 
@@ -163,6 +164,7 @@ export const login = (loginEmail: string, loginPassword: string) => async (
       await NavigationService.navigate(ROUTE.SLEEP, {})
     }
 
+    await dispatch(getNightRatingsFromCloud())
     await dispatch(loginSuccess(true, email, username))
   } catch (error) {
     console.warn(error)

@@ -6,9 +6,11 @@ import { fonts } from '../../styles/themes'
 import IconBold from '../iconBold'
 import TranslatedText from '../TranslatedText'
 import ScalingButton from './ScalingButton'
-import { updateNightQuality } from 'actions/sleep/night-quality-actions'
+import { rateNight } from 'actions/sleep/night-quality-actions'
 import { NightQuality } from 'Types/Sleep/NightQuality'
 import { getRatingDate } from 'store/Selectors/ModalSelectors'
+import { v4 } from 'uuid'
+import moment from 'moment'
 
 type Props = {
   selected: boolean
@@ -18,17 +20,18 @@ type Props = {
   color: string
 }
 
-const RatingButton: FC<Props> = ({ selected, value, title, icon, color }) => {
+const RatingButton: FC<Props> = ({ value, title, icon, color }) => {
   const dispatch = useDispatch()
   const ratingDate = useSelector(getRatingDate)
 
   const handlePress = () => {
     dispatch(rateDay(value))
     const nightQuality: NightQuality = {
-      id: ratingDate,
-      quality: value
+      id: v4(),
+      rating: value,
+      date: ratingDate && ratingDate.length > 0 ? ratingDate : 'unknown'
     }
-    dispatch(updateNightQuality(nightQuality))
+    dispatch(rateNight(nightQuality))
   }
 
   return (
