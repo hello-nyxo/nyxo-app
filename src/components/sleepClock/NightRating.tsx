@@ -1,5 +1,5 @@
-import React, { FC, memo } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { FC, memo, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import {
   toggleRatingModal,
@@ -9,6 +9,8 @@ import getRating from '../../helpers/rating'
 import { Day } from '../../Types/Sleepdata'
 import ScalingButton from '../Buttons/ScalingButton'
 import { IconBold } from '../iconRegular'
+import { makeGetRatingOnDate } from 'store/Selectors/night-quality-selectors/night-quality-selector'
+import { State } from 'Types/State'
 
 type Props = {
   day: Day
@@ -17,13 +19,14 @@ type Props = {
   unClickable?: boolean
 }
 
-const NightRating: FC<Props> = ({
-  day: { rating = 0, date },
-  unClickable,
-  height,
-  width
-}) => {
-  const { icon, color } = getRating(rating)
+const NightRating: FC<Props> = ({ day, unClickable, height, width }) => {
+  const { date } = day
+  const getRatingOnDate = useMemo(makeGetRatingOnDate, [])
+  const ratingDate = useSelector((state: State) =>
+    getRatingOnDate(state, { day })
+  )
+
+  const { icon, color } = getRating(ratingDate?.rating)
   const dispatch = useDispatch()
 
   const openModal = () => {

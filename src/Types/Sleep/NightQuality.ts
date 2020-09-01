@@ -1,5 +1,6 @@
-export interface NightQualityGeneral {
+export interface NightQualityState {
   records: Map<string, NightQuality>
+  localRecords: Map<string, NightQuality>
 }
 
 export interface NightQuality {

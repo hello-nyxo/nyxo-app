@@ -61,15 +61,15 @@ export const startup = (): Thunk => async (
 
   if (isAuthenticated) {
     await dispatch(updateCoachingInCloud())
+
+    // Get Night Ratings from Cloud
+    await dispatch(getNightRatingsFromCloud())
   }
   await dispatch(calculateInsights())
 
   await dispatch(handleBedtimeApproachNotifications())
   await dispatch(handleCoachingUncompletedLessonNotifications())
   await dispatch(handleCoachingLessonsInWeekNotifications())
-
-  // Get Night Ratings from Cloud
-  await dispatch(getNightRatingsFromCloud())
 }
 
 export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {

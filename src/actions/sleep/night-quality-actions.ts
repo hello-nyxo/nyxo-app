@@ -1,4 +1,4 @@
-import { NightQuality, NightQualityGeneral } from 'Types/Sleep/NightQuality'
+import { NightQuality, NightQualityState } from 'Types/Sleep/NightQuality'
 import { Dispatch } from 'redux'
 import { GetState } from 'Types/GetState'
 import { API, graphqlOperation } from 'aws-amplify'
@@ -12,10 +12,14 @@ import {
 } from 'API'
 import { dispatch } from 'd3'
 import { listNightRatings } from 'graphql/queries'
+import RatingModal from 'components/RatingModal'
 
 export const UPDATE_NIGHT_QUALITY = 'UPDATE_NIGHT_QUALITY'
 export const PUSH_NIGHT_QUALITY = 'PUSH_NIGHT_QUALITY'
-export const POP_NIGHT_QUALITY = 'POP_NIGHT_QUALITY'
+export const LOAD_NIGHT_QUALITY_FROM_CLOUD = 'LOAD_NIGHT_QUALITY_FROM_CLOUD'
+export const UPDATE_NIGHT_QUALITY_LOCAL = 'UPDATE_NIGHT_QUALITY_LOCAL'
+export const PUSH_NIGHT_QUALITY_LOCAL = 'PUSH_NIGHT_QUALITY_LOCAL'
+export const POP_NIGHT_QUALITY_LOCAL = 'POP_NIGHT_QUALITY_LOCAL'
 
 export const updateNightQuality = (nightQuality: NightQuality) => ({
   type: UPDATE_NIGHT_QUALITY,
@@ -27,46 +31,80 @@ export const pushNightQuality = (nightQuality: NightQuality) => ({
   payload: nightQuality
 })
 
-export const popNightQuality = () => ({
-  type: POP_NIGHT_QUALITY
+export const updateNightQualityLocally = (nightQuality: NightQuality) => ({
+  type: UPDATE_NIGHT_QUALITY_LOCAL,
+  payload: nightQuality
 })
 
-export const getNightRatingsFromCloud = () => async (
+export const pushNightQualityLocally = (nightQuality: NightQuality) => ({
+  type: PUSH_NIGHT_QUALITY_LOCAL,
+  payload: nightQuality
+})
+
+export const popNightQualityLocally = () => ({
+  type: POP_NIGHT_QUALITY_LOCAL
+})
+
+export const loadNightQualityFromCloud = (
+  nightQualityFromCloud: Map<string, NightQuality>
+) => ({
+  type: LOAD_NIGHT_QUALITY_FROM_CLOUD,
+  payload: nightQualityFromCloud
+})
+
+export const getNightRatingsFromCloud = (username?: string) => async (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-  const {
-    user: { loggedIn }
-  } = getState()
-
   try {
-    if (loggedIn) {
+    if (!username) {
       const {
-        user: { username }
+        user: { authenticated }
       } = getState()
 
-      const variables: {
-        filter: ModelNightRatingFilterInput
-        limit?: number
-        nextToken?: string
-      } = {
-        filter: {
-          userId: {
-            eq: username
-          }
+      if (authenticated)
+        username = getState().user.username as string | undefined
+      else username = 'unknown'
+    }
+
+    const variables: {
+      filter: ModelNightRatingFilterInput
+      limit?: number
+      nextToken?: string
+    } = {
+      filter: {
+        userId: {
+          eq: username
         }
       }
-      const response = (await API.graphql(
-        graphqlOperation(listNightRatings, variables)
-      )) as any
-
-      // const cloudNightRatings = response
-
-      console.log('at getNightRatingsFromCloud ', response)
     }
+    const response = (await API.graphql(
+      graphqlOperation(listNightRatings, variables)
+    )) as any
+
+    const cloudNightRatings: Array<NightQuality> =
+      response.data.listNightRatings.items
+
+    await dispatch(
+      loadNightQualityFromCloud(
+        convertNightQualityFromCloudToMap(cloudNightRatings)
+      )
+    )
   } catch (err) {
     console.log('getNightRatingsFromCloud', err)
   }
+}
+
+const convertNightQualityFromCloudToMap = (
+  cloudNightRatings: Array<NightQuality>
+) => {
+  const map = new Map<string, NightQuality>()
+
+  cloudNightRatings.forEach((rating) => {
+    map.set(rating.date, rating)
+  })
+
+  return map
 }
 
 export const rateNight = ({ id, rating, date }: NightQuality) => async (
@@ -124,17 +162,17 @@ export const rateNight = ({ id, rating, date }: NightQuality) => async (
     } else {
       // If record already exists, we update it
       if (checkRecordExists(nightQuality, date)) {
-        await dispatch(updateNightQuality(newNightRating))
+        await dispatch(updateNightQualityLocally(newNightRating))
       }
       // If not, we handle it as local data
       else {
         // If the new night rating will break the size, we pop the 1st element (the oldest night rating) so the array always remains 31 elements
         if (checkIfWillExceedQuantity(nightQuality)) {
-          await dispatch(popNightQuality())
+          await dispatch(popNightQualityLocally())
         }
 
         // Push the new one in as the 31st element
-        await dispatch(pushNightQuality(newNightRating))
+        await dispatch(pushNightQualityLocally(newNightRating))
       }
     }
   } catch (err) {
@@ -142,14 +180,14 @@ export const rateNight = ({ id, rating, date }: NightQuality) => async (
   }
 }
 
-const checkRecordExists = ({ records }: NightQualityGeneral, date: string) => {
+const checkRecordExists = ({ records }: NightQualityState, date: string) => {
   // const index = records.findIndex((nightQuality) => (nightQuality.id = date))
 
   // return index !== -1
   return records.has(date)
 }
 
-const checkIfWillExceedQuantity = ({ records }: NightQualityGeneral) => {
+const checkIfWillExceedQuantity = ({ records }: NightQualityState) => {
   // return records.length === 31
   return records.size === 31
 }

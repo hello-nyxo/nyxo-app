@@ -164,7 +164,7 @@ export const login = (loginEmail: string, loginPassword: string) => async (
       await NavigationService.navigate(ROUTE.SLEEP, {})
     }
 
-    await dispatch(getNightRatingsFromCloud())
+    await dispatch(getNightRatingsFromCloud(username))
     await dispatch(loginSuccess(true, email, username))
   } catch (error) {
     console.warn(error)

@@ -31,7 +31,7 @@ import { TrackingState, TrackingState } from './TrackingState'
 import { UserState, UserState } from './UserState'
 
 import { InsightState } from './State/insight-state'
-import { NightQualityGeneral } from './Sleep/NightQuality'
+import { NightQualityState } from './Sleep/NightQuality'
 
 export interface State {
   // User
@@ -54,7 +54,7 @@ export interface State {
   calendar: CalendarState
   sleepclock: SleepClockState
   sleepscore: any
-  nightQuality: NightQualityGeneral
+  nightQuality: NightQualityState
   // heartRate: any;
   tracking: TrackingState
   manualData: ManualDataState
