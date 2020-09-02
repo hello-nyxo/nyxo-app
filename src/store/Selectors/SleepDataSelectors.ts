@@ -2,9 +2,9 @@ import { deviation, max, mean, min } from 'd3'
 import { clockTimeToAngle } from 'helpers/geometry'
 import Moment from 'moment'
 import { createSelector } from 'reselect'
-import { SleepClockState } from '../../Types/SleepClockState'
-import { Day, Days } from '../../Types/Sleepdata'
-import { State } from '../../Types/State'
+import { SleepClockState } from 'Types/SleepClockState'
+import { Day, Days } from 'Types/Sleepdata'
+import { State } from 'Types/State'
 
 const getState = (state: State) => state.sleepclock
 const getDays = (state: State) => state.sleepclock.days

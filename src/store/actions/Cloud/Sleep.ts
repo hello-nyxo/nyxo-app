@@ -8,9 +8,9 @@ import {
   UpdateSleepDataInput,
   UpdateSleepDataMutation
 } from '../../API'
-import { createSleepData, updateSleepData } from '../../graphql/mutations'
-import { GetState } from '../../Types/GetState'
-import { Day, Night } from '../../Types/Sleepdata'
+import { createSleepData, updateSleepData } from '@graphql/mutations'
+import { GetState } from 'Types/GetState'
+import { Day, Night } from 'Types/Sleepdata'
 import { updateDay } from '../sleep/sleep-data-actions'
 
 export const updateSleepDataInCloud = () => async (

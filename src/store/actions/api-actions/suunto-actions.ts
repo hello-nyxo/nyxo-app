@@ -1,5 +1,5 @@
 import { authorize, refresh, revoke } from 'react-native-app-auth'
-import { GetState } from '../../Types/GetState'
+import { GetState } from 'Types/GetState'
 
 const config = {}
 

@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react'
 import { View, Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
 import InfoRow from '../../components/InfoRow'
-import { minutesToHoursString } from @helpers/time'
+import { minutesToHoursString } from '@helpers/time'
 
 import {
   getAsleepNights,

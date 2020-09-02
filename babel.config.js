@@ -28,8 +28,8 @@ module.exports = {
           '@reducers': './src/store/Reducers',
           '@selectors': './src/store/Selectors',
           '@components': './src/components',
-          '@helpers/*': './src/helpers',
-          '@graphql/*': './src/graphql'
+          '@helpers': './src/helpers/',
+          '@graphql': './src/graphql/'
         }
       }
     ]

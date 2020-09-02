@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'
-import { Day } from '../../Types/Sleepdata'
+import { Day } from 'Types/Sleepdata'
 import TranslatedText from '../TranslatedText'
 
 interface NoDataInfoProps {

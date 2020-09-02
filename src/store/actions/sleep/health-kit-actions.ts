@@ -10,8 +10,8 @@ import { getHealthKitSource } from '@selectors/sleep-source-selectors/sleep-sour
 import { SUB_SOURCE } from 'typings/state/sleep-source-state'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { GetState } from 'Types/GetState'
-import { SleepDataSource } from '../../Types/SleepClockState'
-import { HealthKitSleepResponse, Night } from '../../Types/Sleepdata'
+import { SleepDataSource } from 'Types/SleepClockState'
+import { HealthKitSleepResponse, Night } from 'Types/Sleepdata'
 import { fetchSleepData, formatSleepData } from './sleep-data-actions'
 import { syncNightsToCloud } from './night-cloud-actions'
 

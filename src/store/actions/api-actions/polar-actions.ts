@@ -12,7 +12,7 @@ import { PolarSleepObject } from 'Types/Sleep/Polar'
 import { PolarAuthorizeResult, ResponseBase } from 'Types/State/api-state'
 import { SOURCE } from 'typings/state/sleep-source-state'
 import { getPolarEnabled } from '@selectors/api-selectors/api-selectors'
-import { GetState } from '../../Types/GetState'
+import { GetState } from 'Types/GetState'
 
 export const POLAR_AUTHORIZE_SUCCESS = 'POLAR_AUTHORIZE_SUCCESS'
 export const POLAR_REVOKE_SUCCESS = 'POLAR_REVOKE_SUCCESS'

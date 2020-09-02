@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import { darkTheme, lightTheme } from '../../styles/themes'
-import { State } from '../../Types/State'
-import { UserState } from '../../Types/UserState'
+import { State } from 'Types/State'
+import { UserState } from 'Types/UserState'
 
 const getUserState = (state: State) => state.user
 

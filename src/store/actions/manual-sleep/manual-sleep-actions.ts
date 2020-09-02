@@ -6,9 +6,9 @@ import {
   getNightDuration,
   sortDays,
   sortNights
-} from @helpers/sleep'
-import { GetState } from '../../Types/GetState'
-import { Day, Value, Night } from '../../Types/Sleepdata'
+} from '@helpers/sleep'
+import { GetState } from 'Types/GetState'
+import { Day, Value, Night } from 'Types/Sleepdata'
 import { updateSleepData } from '../sleep/sleep-data-actions'
 import { Dispatch, Thunk } from 'Types/ReduxActions'
 

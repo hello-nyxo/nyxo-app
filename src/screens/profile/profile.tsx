@@ -27,8 +27,8 @@ import {
 import UserInfo from '../../components/ProfileSpecific/Userinfo'
 import SignupBottomButton from '../../components/Signup/SignupBottomButton'
 import TopInfo from '../../components/TopInfo'
-import keyExtractor from @helpers/KeyExtractor'
-import { minutesToHoursString } from @helpers/time'
+import keyExtractor from '@helpers/KeyExtractor'
+import { minutesToHoursString } from '@helpers/time'
 import { StyleProps } from '../../styles/themes'
 
 const ProfileScreen = () => {

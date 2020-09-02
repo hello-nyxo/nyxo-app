@@ -2,7 +2,7 @@ import { getFitbitSleep } from '@actions/api-actions/fitbit-actions'
 import { readGoogleFitSleep } from '@actions/api-actions/google-fit-actions'
 import { getOuraSleep } from '@actions/api-actions/oura-actions'
 import { getWithingsSleep } from '@actions/api-actions/withings-actions'
-import { sendError } from '@actions/NotificationActions'
+import { sendError } from '@actions/notifications'
 import {
   calculateTotalSleep,
   findEndTime,
@@ -19,8 +19,8 @@ import { getAllDays } from '@selectors/SleepDataSelectors'
 import { GetState } from 'Types/GetState'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SOURCE } from 'typings/state/sleep-source-state'
-import { Day, Night, Value } from '../../Types/Sleepdata'
-import { fetchSleepFromHealthKit } from './health-kit-actions'
+import { Day, Night, Value } from 'Types/Sleepdata'
+import { fetchSleepFromHealthKit } from '@actions/sleep/health-kit-actions'
 import { getGarminSleep } from '@actions/api-actions/garmin-actions'
 import { getPolarSleep } from '@actions/api-actions/polar-actions'
 

@@ -6,7 +6,7 @@ import {
   HEADER_MAX_HEIGHT,
   HEADER_MIN_HEIGHT,
   SMART_TOP_PADDING
-} from @helpers/Dimensions'
+} from '@helpers/Dimensions'
 import { fonts } from '../../styles/themes'
 import GoBack from '../Buttons/GoBack'
 

@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { State } from '../../Types/State'
+import { State } from 'Types/State'
 import { getSelectedDay } from './SleepDataSelectors'
 
 export const getCurrentDaySuggestOtherSource = createSelector(

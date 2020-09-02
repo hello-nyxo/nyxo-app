@@ -16,8 +16,8 @@ import { getSelectedDay } from '@selectors/SleepDataSelectors'
 import {
   fetchSleepData,
   updateCalendar
-} from 'actions/sleep/sleep-data-actions'
-import { backgroundAction, startup } from 'actions/StartupActions'
+} from '@actions/sleep/sleep-data-actions'
+import { backgroundAction, startup } from '@actions/StartupActions'
 import useBackgroundFetch from 'Hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from 'Hooks/UseNotificationEventHandlers'
 import moment from 'moment'

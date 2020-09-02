@@ -6,7 +6,7 @@ import {
   HEADER_MAX_HEIGHT,
   HEADER_MIN_HEIGHT,
   WIDTH
-} from @helpers/Dimensions'
+} from '@helpers/Dimensions'
 import { StyleProps } from '../../styles/themes'
 import AnimatedFastImage from '../AnimatedFastImage/AnimatedFastImage'
 

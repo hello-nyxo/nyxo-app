@@ -19,9 +19,9 @@ import { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SleepDataSource } from 'Types/SleepClockState'
 import { Night } from 'Types/Sleepdata'
 import { SOURCE, SUB_SOURCE } from 'typings/state/sleep-source-state'
-import { GetState } from '../../Types/GetState'
+import { GetState } from 'Types/GetState'
 import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { GoogleFitResponse, ResponseBase } from '../../Types/State/api-state'
+import { GoogleFitResponse, ResponseBase } from 'Types/State/api-state'
 import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
 /* ACTION TYPES */
 

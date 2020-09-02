@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Animated, Dimensions, Easing, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import translate from '../config/i18n'
-import { getTitle } from @helpers/time'
+import { getTitle } from '@helpers/time'
 import colors from '../styles/colors'
 
 const { height } = Dimensions.get('window')

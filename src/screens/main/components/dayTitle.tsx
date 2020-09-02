@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 import TranslatedText, {
   AnimatedTranslatedText
 } from '../../../components/TranslatedText'
-import { getTitle } from @helpers/time'
+import { getTitle } from '@helpers/time'
 
 import { getSelectedDay } from '../../../store/Selectors/SleepDataSelectors'
 import ScalingButton from '../../../components/Buttons/ScalingButton'

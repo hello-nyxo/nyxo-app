@@ -12,7 +12,7 @@ import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previ
 import { formatGarminSamples } from 'helpers/sleep/garmin-helper'
 import { formatSleepData } from '@actions/sleep/sleep-data-actions'
 import { GarminSleepObject } from 'Types/Sleep/Garmin'
-import { GetState } from '../../Types/GetState'
+import { GetState } from 'Types/GetState'
 import { Linking, Platform } from 'react-native'
 import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
 

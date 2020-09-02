@@ -1,7 +1,7 @@
 import React from 'react'
 import { Circle } from 'react-native-svg'
-import { polarToCartesian } from @helpers/geometry'
-import { to12hClock } from @helpers/time'
+import { polarToCartesian } from '@helpers/geometry'
+import { to12hClock } from '@helpers/time'
 import colors from '../../styles/colors'
 
 interface MinuteSticksProps {

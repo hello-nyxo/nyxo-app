@@ -1,7 +1,7 @@
 import 'react-native'
 import React from 'react'
 import TranslatedText from '../TranslatedText'
-import { matchComponentToSnapshot } from @helpers/snapshot'
+import { matchComponentToSnapshot } from '@helpers/snapshot'
 
 jest.mock('moment', () => ({
   format: () => '2018–01–30T12:34:56+00:00',

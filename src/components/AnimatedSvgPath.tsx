@@ -1,7 +1,7 @@
 import React, { useState, useRef, Component, useEffect, memo } from 'react'
 import Animated, { Easing } from 'react-native-reanimated'
 import { Path } from 'react-native-svg'
-import { describeArc } from @helpers/geometry'
+import { describeArc } from '@helpers/geometry'
 
 const {
   Value,

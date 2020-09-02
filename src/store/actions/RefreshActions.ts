@@ -1,5 +1,5 @@
 import { getSleepDataUpdated } from '../store/Selectors/SleepDataSelectors'
-import { GetState } from '../Types/GetState'
+import { GetState } from 'Types/GetState'
 import { fetchSleepData } from './sleep/sleep-data-actions'
 import { prepareSleepDataFetching } from './sleep/health-kit-actions'
 

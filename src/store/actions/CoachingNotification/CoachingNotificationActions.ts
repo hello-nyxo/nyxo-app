@@ -1,6 +1,6 @@
 import { getStateWeeks } from '@selectors/coaching-selectors'
-import { InteractedLesson } from '../../Types/CoachingNotificationState'
-import { GetState } from '../../Types/GetState'
+import { InteractedLesson } from 'Types/CoachingNotificationState'
+import { GetState } from 'Types/GetState'
 
 export const PUSH_TO_INCOMPLETE_LESSONS = 'PUSH_TO_INCOMPLETE_LESSONS'
 export const POP_FROM_INCOMPLETE_LESSONS = 'POP_FROM_INCOMPLETE_LESSONS'

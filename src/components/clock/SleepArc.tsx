@@ -2,9 +2,9 @@ import React from 'react'
 import { Path, G } from 'react-native-svg'
 import Reanimated from 'react-native-reanimated'
 import AnimatedSvgPath from '../AnimatedSvgPath'
-import { Value, Day, Night } from '../../Types/Sleepdata'
-import { describeArc } from @helpers/geometry'
-import { getAngleAM } from @helpers/sleep'
+import { Value, Day, Night } from 'Types/Sleepdata'
+import { describeArc } from '@helpers/geometry'
+import { getAngleAM } from '@helpers/sleep'
 
 interface SleepArcProps {
   day: Day

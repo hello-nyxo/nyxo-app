@@ -5,9 +5,9 @@ import { getUsername } from '@selectors/UserSelectors'
 import { GetState } from 'Types/GetState'
 import { v4 } from 'uuid'
 import { ListSleepDatasQuery, UpdateSleepDataInput } from '../../API'
-import { createSleepData, updateSleepData } from '../../graphql/mutations'
-import { listSleepDatas } from '../../graphql/queries'
-import { Day } from '../../Types/Sleepdata'
+import { createSleepData, updateSleepData } from '@graphql/mutations'
+import { listSleepDatas } from '@graphql/queries'
+import { Day } from 'Types/Sleepdata'
 
 /* ACTION TYPES */
 

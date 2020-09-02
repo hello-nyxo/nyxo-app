@@ -4,7 +4,7 @@ import Reanimated from 'react-native-reanimated'
 import { Defs, G, Path, Text, TextPath, TSpan } from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import translate from '../../config/i18n'
-import { describeArc } from @helpers/geometry'
+import { describeArc } from '@helpers/geometry'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'
 

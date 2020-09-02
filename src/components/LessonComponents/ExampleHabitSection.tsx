@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import { FlatList } from 'react-native'
-import { ExampleHabit as ExampleHabitType } from '../../Types/CoachingContentState'
+import { ExampleHabit as ExampleHabitType } from 'Types/CoachingContentState'
 import { H3Margin } from '../Primitives/Primitives'
 import { fonts, StyleProps } from '../../styles/themes'
 import ExampleHabit from '../HabitCard/ExampleHabit'
 import TranslatedText from '../TranslatedText'
-import keyExtractor from @helpers/KeyExtractor'
+import keyExtractor from '@helpers/KeyExtractor'
 
 const ExampleHabitSection = ({
   habits

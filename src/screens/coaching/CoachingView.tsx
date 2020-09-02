@@ -10,7 +10,7 @@ import CoachingNotStarted from '../../components/CoachingSpecific/CoachingNotSta
 import NewHabitModal from '../../components/modals/HabitModal/NewHabitModal'
 import { SafeAreaView } from '../../components/Primitives/Primitives'
 import TopInfo from '../../components/TopInfo'
-import { WIDTH } from @helpers/Dimensions'
+import { WIDTH } from '@helpers/Dimensions'
 import colors from '../../styles/colors'
 import Lessons from './Lessons'
 

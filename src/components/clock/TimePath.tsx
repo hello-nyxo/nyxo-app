@@ -1,7 +1,7 @@
 import React from 'react'
 import { Path } from 'react-native-svg'
 
-import { describeArc } from @helpers/geometry'
+import { describeArc } from '@helpers/geometry'
 
 interface TimePathProps {
   strokeWidth: number

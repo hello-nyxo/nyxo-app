@@ -1,30 +1,28 @@
-import React, { memo, useMemo, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { setNotification } from '@actions/notifications'
+import {
+  getScheduledNotifications,
+  makeGetNotificationEnabled
+} from '@selectors/NotificationSelectors'
+import React, { memo, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  NotificationPermissionType,
+  UpdateNotificationPermissionType
+} from 'Types/NotificationState'
+import { State } from 'Types/State'
+import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
 import {
   Container,
   H2,
-  H3,
-  PN,
   P,
   SafeAreaView,
   StyledScrollView
 } from '../../components/Primitives/Primitives'
-import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
 import NotificationRow from '../../components/SettingsSpecific/NotificationRow'
-import {
-  NotificationPermissionType,
-  UpdateNotificationPermissionType
-} from '../../Types/NotificationState'
-import {
-  makeGetNotificationEnabled,
-  getScheduledNotifications
-} from '@selectors/NotificationSelectors'
-import { State } from '../../Types/State'
-import { setNotification } from '@actions/NotificationActions'
 
 export interface NotificationDataItemProps {
   enabled: boolean
-  pressSwitch: Function
+  pressSwitch: () => void
   title: NotificationPermissionType
   actionType: UpdateNotificationPermissionType
 }

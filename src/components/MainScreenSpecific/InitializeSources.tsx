@@ -8,7 +8,7 @@ import ROUTE from 'config/routes/Routes'
 import { IconBold } from 'components/iconRegular'
 import { useSelector, useDispatch } from 'react-redux'
 import { getDataOnboardingCompleted } from 'store/Selectors/OnboardingSelectors'
-import { markDataOnboardingCompleted } from 'actions/onboarding/onboarding-actions'
+import { markDataOnboardingCompleted } from '@actions/onboarding/onboarding-actions'
 
 const InitializeSource: FC = () => {
   const { navigate } = useNavigation()
