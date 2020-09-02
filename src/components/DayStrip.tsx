@@ -1,49 +1,45 @@
-import { default as Moment, default as moment } from 'moment'
-import React, { memo } from 'react'
-import { SectionList, Text, View } from 'react-native'
+import { setSelectedDay } from '@actions/sleep/sleep-data-actions'
+import { getAllDays, getSelectedDay } from '@selectors/SleepDataSelectors'
+import moment from 'moment'
+import React, { FC } from 'react'
+import { FlatList } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { setActiveIndex } from '../actions/sleep/sleep-data-actions'
-import { WIDTH } from '../helpers/Dimensions'
-import keyExtractor from '../helpers/KeyExtractor'
+import { Day } from 'Types/Sleepdata'
+import { WIDTH } from '@helpers/Dimensions'
+import keyExtractor from '@helpers/KeyExtractor'
 import { fonts, StyleProps } from '../styles/themes'
-import {
-  getActiveIndex,
-  getWeekSelector
-} from '../store/Selectors/SleepDataSelectors'
-import { Day } from '../Types/Sleepdata'
-import NightRating from './sleepClock/NightRating'
+import NightRating from './clock/NightRating'
 
 const dayWidth = WIDTH / 7
 const spacerHeight = 7
 const cardMargin = 5
 
-const DayStrip = () => {
-  const days: Day[] = useSelector(getWeekSelector)
-  const activeIndex = useSelector(getActiveIndex)
+const DayStrip: FC = () => {
+  const days = useSelector(getAllDays)
   const dispatch = useDispatch()
+  const { date } = useSelector(getSelectedDay)
 
-  const renderItem = ({ item, index }: { item: any; index: number }) => {
+  const renderItem = ({ item }: { item: Day }) => {
     const isToday = moment(item.date).isSame(new Date(), 'day')
     const handleOnPress = () => {
-      dispatch(setActiveIndex(index))
+      dispatch(setSelectedDay(item.date))
     }
 
     return (
       <Container>
         <Segment
+          key={item.date}
           today={isToday}
-          active={index === activeIndex}
-          key={index}
+          active={item.date === date}
           onPress={handleOnPress}>
-          <DateText active={index === activeIndex}>
-            {Moment(item.date).format('ddd')}
+          <DateText active={item.date === date}>
+            {moment(item.date).format('ddd')}
           </DateText>
-          <DateNumber active={index === activeIndex}>
-            {Moment(item.date).format('DD')}
+          <DateNumber active={item.date === date}>
+            {moment(item.date).format('DD.MM.')}
           </DateNumber>
         </Segment>
-
         <Spacer />
         <NightRatingHolder>
           <NightRating
@@ -57,30 +53,19 @@ const DayStrip = () => {
     )
   }
 
-  const snapOffets: number[] = days.map(
-    (item, index) => index * (dayWidth + cardMargin * 2)
-  )
-
-  const renderSectionHeader = ({ index, section }: any) => {
-    return (
-      <View style={{ position: 'absolute', top: -20 }}>
-        <Text>{section.title}</Text>
-      </View>
-    )
-  }
+  const snapOffets: number[] = days.map((_, index) => index * 30)
 
   return (
     <Segments
-      stickySectionHeadersEnabled
-      sections={[{ title: 'November', data: days }]}
+      data={days}
+      decelerationRate="fast"
+      snapToStart
       snapToOffsets={snapOffets}
-      getItemLayout={(data, index) => ({
+      getItemLayout={(_, index) => ({
         index,
         length: dayWidth,
         offset: (dayWidth + cardMargin) * index
       })}
-      snapToAlignment="center"
-      snapToEnd={false}
       keyExtractor={keyExtractor}
       showsHorizontalScrollIndicator={false}
       renderItem={renderItem}
@@ -89,13 +74,15 @@ const DayStrip = () => {
   )
 }
 
-export default memo(DayStrip)
+export default DayStrip
 
 const Container = styled.View`
   flex-direction: column;
 `
 
-const Segments = styled(SectionList)`
+const Segments = styled(FlatList)`
+  width: ${WIDTH}px;
+  height: ${dayWidth + 30}px;
   margin: 20px 0px;
   padding: 10px 0px;
 `
@@ -112,6 +99,7 @@ const Segment = styled.TouchableOpacity<SegmentProps>`
   justify-content: center;
   align-items: center;
   z-index: 5;
+  margin-top: 30px;
   border-radius: 5px;
   background-color: ${(props: SegmentProps) =>
     props.active
@@ -127,13 +115,13 @@ const DateText = styled.Text<SegmentProps>`
       : props.theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.bold};
   margin-bottom: 5px;
+  text-transform: uppercase;
   text-align: center;
 `
 
 const DateNumber = styled.Text<SegmentProps>`
-  font-size: 15px;
-  font-weight: bold;
-  font-family: ${fonts.bold};
+  font-size: 13px;
+  font-family: ${fonts.medium};
   text-align: center;
   color: ${(props: SegmentProps) =>
     props.active

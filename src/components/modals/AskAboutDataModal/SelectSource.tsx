@@ -5,10 +5,7 @@ import styled from 'styled-components/native'
 import { changeHealthKitSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import { markIntroductionCompleted } from '@actions/user/user-actions'
 import { fonts, StyleProps } from '../../../styles/themes'
-import {
-  getPrimarySource,
-  getSources
-} from '../../../store/Selectors/SleepDataSelectors'
+import { getPrimarySource, getSources } from '@selectors/SleepDataSelectors'
 import { PrimaryButton } from '../../Buttons/PrimaryButton'
 import { P } from '../../Primitives/Primitives'
 import SourceRow from '../../SettingsSpecific/SourceRow'

@@ -11,10 +11,6 @@
   "HealthKit Connected": "HealthKit Connected!",
   "Enable notifications": "Allow notifications",
 
-  "HeadsUpIntro": "Heads up!",
-  "HeadsUpText": "Your bed time is approaching. We have prepared a relaxing breathing exercise just for you for tonight.",
-  "HeadsUpStart": "Start exercise",
-
   "Allow reading Apple Health": "Allow reading from Apple Health",
   "EnableHealthKit": "Allow",
 
@@ -83,7 +79,7 @@
   "Time asleep": "Time asleep",
 
   "ClockNotLoading": "Something went wrong in loading data",
-  "Sleep Goal Trend": "Sleep Goal Trend",
+  "Sleep Goal Trend": "Sleep Trend",
 
   "NEED_HELP": {
     "TITLE": "Need Help?",
@@ -606,7 +602,10 @@
 
     "HABITS": "Habits",
     "ACTIVE": "Active Habits",
+    "ACTIVE_SUBTITLE": "Habits that are currently active.",
     "ARCHIVED": "Archived Habits",
+    "ARCHIVED_SUBTITLE": "Habits that have been archived previously.",
+
     "COMPLETED_HABITS": "{{completedCount}}/{{taskCount}} habits completed",
     "NEW_HABIT": "New Habit",
     "HABIT_STREAK": "{{dayStreak}}-day streak",
@@ -622,8 +621,9 @@
     "DESCRIPTION_FIELD": "Description",
     "LONGEST_STREAK": "Longest streak",
     "CURRENT_STREAK": "Current streak",
+
     "WARNING_TITLE_EXISTS": "Habit with this title already exists.",
-    "EXPLANATION_1": "",
+    "EXPLANATION_1": "Here you manage your Habits. You can  create new ones from the top right corner. By swiping left or right on the Habit card, you can mark it as completed, archive it, or delete it.",
     "EXPLANATION_2": "",
 
     "MORNING": "Morning",
@@ -666,6 +666,19 @@
     "WINDOW": "Bedtime window",
     "WINDOW_EXPLANATION": "The Bedtime window is an estimate of your circadian homeostatic rhythm's 'optimal period falling asleep', which is calculated from your last seven nights. To minimize the time spent in bed awake, and fall asleep faster, aim to fall asleep during your bedtime window.",
     "RATING": "Rating",
-    "RATING_EXPLANATION": "Your rating for the night."
+    "RATING_EXPLANATION": "Your rating for the night.",
+    "WENT_TO_BED": "Went to bed",
+    "WOKE_UP": "Woke up",
+    "FELL_ASLEEP": "Fell  asleep",
+    "GOT_UP": "Got up",
+    "STATISTICS": "Insights"
+  },
+
+  "TAB": {
+    "SLEEP": "Sleep",
+    "COACHING": "Coaching",
+    "HABITS": "Habits",
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings"
   }
 }

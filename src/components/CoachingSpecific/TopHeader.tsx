@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, FC } from 'react'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 import {
@@ -6,16 +6,16 @@ import {
   HEADER_MAX_HEIGHT,
   HEADER_MIN_HEIGHT,
   SMART_TOP_PADDING
-} from '../../helpers/Dimensions'
+} from '@helpers/Dimensions'
 import { fonts } from '../../styles/themes'
 import GoBack from '../Buttons/GoBack'
 
 interface Props {
-  yOffset: any
+  yOffset: Animated.Value<number>
   title: string
 }
 
-const TopHeader = ({ yOffset, title }: Props) => {
+const TopHeader: FC<Props> = ({ yOffset, title }) => {
   const fadeIn = () => ({
     opacity: yOffset.interpolate({
       inputRange: [HEADER_HALF, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
@@ -53,7 +53,7 @@ const BackButtonContainer = styled(Animated.View)`
   position: absolute;
   z-index: 10;
   top: 0;
-  padding: ${parseInt(SMART_TOP_PADDING)}px 20px 0px;
+  padding: ${parseInt(SMART_TOP_PADDING, 0)}px 20px 0px;
   flex-direction: row;
   align-items: center;
   width: 100%;

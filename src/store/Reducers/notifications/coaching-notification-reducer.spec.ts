@@ -20,7 +20,7 @@ const secondLesson: InteractedLesson = {
   latestInteractTimestamp: 22222
 }
 
-describe('actions', () => {
+describe('@actions', () => {
   it('should create an action to push lesson', () => {
     const expectedAction = {
       type: PUSH_TO_INCOMPLETE_LESSONS,

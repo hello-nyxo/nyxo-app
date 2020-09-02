@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { IconBold } from 'components/iconRegular'
-import TranslatedText from 'components/TranslatedText'
+import { IconBold } from '@components/iconRegular'
+import TranslatedText from '@components/TranslatedText'
 import colors from 'styles/colors'
 import { H5, P } from '../Primitives/Primitives'
 

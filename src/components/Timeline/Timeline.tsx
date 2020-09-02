@@ -5,8 +5,8 @@ import { SectionList, StyleSheet, Text, View } from 'react-native'
 import { useSelector } from 'react-redux'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'
-import { getGoToSleepWindowStart } from '../../store/Selectors/insight-selectors/Insights'
-import { MicroTask } from '../../Types/Microtask'
+import { getGoToSleepWindowStart } from '@selectors/insight-selectors/Insights'
+import { MicroTask } from 'Types/Microtask'
 import MicrotaskCard from '../HabitCard/HabitCard'
 
 const moment = extendMoment(Moment)

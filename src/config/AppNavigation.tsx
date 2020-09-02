@@ -1,20 +1,20 @@
+import { registerIntercomUser } from '@actions/IntercomActions'
+import getStateFromPath from '@helpers/GetPathFromState'
+import useLinking from '@hooks/useLinking'
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native'
 import Analytics from 'appcenter-analytics'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { Linking } from 'react-native'
 import Intercom from 'react-native-intercom'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { registerIntercomUser } from '../actions/IntercomActions'
-import getStateFromPath from '../helpers/GetPathFromState'
-import useLinking from '../Hooks/useLinking'
+import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
+import { getIsDarkMode } from '@selectors/UserSelectors'
 import { StyleProps } from '../styles/themes'
-import { actionCreators as notificationActions } from '../store/Reducers/NotificationReducer'
-import { getIsDarkMode } from '../store/Selectors/UserSelectors'
 import { navigationRef } from './NavigationHelper'
 // Navigators
 import Root from './routes/RootNavigator'
@@ -30,7 +30,7 @@ function getActiveRouteName(state: any): string {
   return route.name
 }
 
-const Routes = () => {
+const Routes: FC = () => {
   const dispatch = useDispatch()
   const isDarkMode = useSelector(getIsDarkMode)
 
@@ -65,7 +65,7 @@ const Routes = () => {
         }
       }
     },
-    getStateFromPath: getStateFromPath
+    getStateFromPath
   })
 
   const [isReady, setIsReady] = useState(false)
@@ -75,7 +75,7 @@ const Routes = () => {
     .then((url) => {})
     .catch((err) => console.error('An error occurred', err))
   useEffect(() => {
-    const _onUnreadChange = ({ count }: { count: number }) => {
+    const onUnreadChange = ({ count }: { count: number }) => {
       dispatch(notificationActions.updateIntercomNotificationCount(count))
     }
 
@@ -95,13 +95,13 @@ const Routes = () => {
 
     Intercom.addEventListener(
       Intercom.Notifications.UNREAD_COUNT,
-      _onUnreadChange
+      onUnreadChange
     )
 
     return () => {
       Intercom.removeEventListener(
         Intercom.Notifications.UNREAD_COUNT,
-        _onUnreadChange
+        onUnreadChange
       )
     }
   }, [getInitialState])

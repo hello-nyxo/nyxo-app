@@ -1,37 +1,33 @@
 import { ScaleTime } from 'd3'
 import moment from 'moment'
-import React, { memo } from 'react'
 import { View } from 'react-native'
+import React, { memo, FC } from 'react'
 import { G, Text } from 'react-native-svg'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { getTextColorOnTheme } from '../../../store/Selectors/UserSelectors'
 import { fonts } from '../../../styles/themes'
-import NightRating from 'components/sleepClock/NightRating'
+import NightRating from 'components/clock/NightRating'
 
 type Props = {
-  scaleX: ScaleTime<any, any>
+  scaleX: ScaleTime<number, number>
   chartHeight: number
   barWidth: number
   ticks: Date[]
 }
 
-const XTicks = ({ scaleX, chartHeight, barWidth, ticks }: Props) => {
-  const color = useSelector(getTextColorOnTheme)
-
-  const tickElements = ticks.map((tick, index) => {
-    const date = moment(tick).toISOString()
+const XTicks: FC<Props> = ({ scaleX, chartHeight, barWidth, ticks }) => {
+  const tickElements = ticks.map((tick) => {
     const x = scaleX(tick) + barWidth / 2
+    const date = moment(tick).toISOString()
 
     return (
-      <G key={`tick_${moment(tick).format('DD')}`}>
-        <DayText
+      <G key={`tick_${moment(tick).toISOString()}`}>
+        <Day
           fontFamily={fonts.medium}
           textAnchor="middle"
           x={x}
           y={chartHeight - 35}>
           {moment(tick).format('ddd')}
-        </DayText>
+        </Day>
         <LongDate
           fontFamily={fonts.bold}
           fontWeight="bold"
@@ -54,7 +50,7 @@ const XTicks = ({ scaleX, chartHeight, barWidth, ticks }: Props) => {
   return <G>{tickElements}</G>
 }
 
-const DayText = styled(Text).attrs(({ theme }) => ({
+const Day = styled(Text).attrs(({ theme }) => ({
   fill: theme.PRIMARY_TEXT_COLOR
 }))``
 

@@ -1,33 +1,29 @@
+import { completeLesson } from '@actions/coaching/coaching-actions'
+import { interpolateColors } from '@helpers/animated'
+import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
+import useOnMount from '@hooks/UseOnMount'
 import { useNavigation } from '@react-navigation/native'
-import Copyright from 'components/CoachingSpecific/Copyright'
+import {
+  CombinedLesson,
+  getContentForSelectedLesson
+} from '@selectors/coaching-selectors/coaching-selectors'
+import Copyright from '@components/CoachingSpecific/Copyright'
+import Tags from '@components/LessonComponents/Tags'
 import React, { memo, useState } from 'react'
 import { LayoutChangeEvent } from 'react-native'
 import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
 import Animated from 'react-native-reanimated'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  CombinedLesson,
-  getContentForSelectedLesson
-} from 'store/Selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
-import { completeLesson } from '@actions/coaching/coaching-actions'
-import Tags from 'components/LessonComponents/Tags'
-import {
-  popFromIncompleteLessons,
-  pushInteractedLesson
-} from '../../actions/CoachingNotification/CoachingNotificationActions'
-import Authors from '../../components/CoachingSpecific/Authors'
-import TopHeader from '../../components/CoachingSpecific/TopHeader'
-import WeekViewHeader from '../../components/CoachingSpecific/WeekViewHeader'
-import ExtraInfo from '../../components/Lesson/ExtraInfo'
-import LessonContent from '../../components/Lesson/LessonContent'
-import LessonCover from '../../components/Lesson/LessonCover'
-import ExampleHabitSection from '../../components/LessonComponents/ExampleHabitSection'
-import ReadingTime from '../../components/LessonComponents/ReadingTime'
-import { ReAnimatedTranslatedText } from '../../components/TranslatedText'
-import { interpolateColors } from '../../helpers/animated'
-import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '../../helpers/Dimensions'
-import useOnMount from '../../Hooks/UseOnMount'
+import Authors from '@components/CoachingSpecific/Authors'
+import TopHeader from '@components/CoachingSpecific/TopHeader'
+import WeekViewHeader from '@components/CoachingSpecific/WeekViewHeader'
+import ExtraInfo from '@components/Lesson/ExtraInfo'
+import LessonContent from '@components/Lesson/LessonContent'
+import LessonCover from '@components/Lesson/LessonCover'
+import ExampleHabitSection from '@components/LessonComponents/ExampleHabitSection'
+import ReadingTime from '@components/LessonComponents/ReadingTime'
+import { ReAnimatedTranslatedText } from '@components/TranslatedText'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'
 

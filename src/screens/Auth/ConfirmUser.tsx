@@ -1,19 +1,19 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { resendEmail } from '../../actions/auth/auth-actions'
-import BackToAppButton from '../../components/Buttons/BackToAppButton'
-import BottomButton from '../../components/Buttons/BottomButton'
-import { PrimaryButton } from '../../components/Buttons/PrimaryButton'
+import { resendEmail } from '@actions/auth/auth-actions'
+import BackToAppButton from '@components/Buttons/BackToAppButton'
+import BottomButton from '@components/Buttons/BottomButton'
+import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import {
   Container,
   H1,
   P,
   SafeAreaView,
   StyledScrollView
-} from '../../components/Primitives/Primitives'
-import TopInfo from '../../components/TopInfo'
-import { getEmail } from '../../store/Selectors/UserSelectors'
+} from '@components/Primitives/Primitives'
+import TopInfo from '@components/TopInfo'
+import { getEmail } from '@selectors/UserSelectors'
 
 interface ConfirmationScreenProps {
   navigation: any

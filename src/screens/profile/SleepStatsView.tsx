@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from 'react'
 import { View, Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
-import InfoRow from '../../components/InfoRow'
-import { minutesToHoursString } from '../../helpers/time'
+import InfoRow from '@components/InfoRow'
+import { minutesToHoursString } from '@helpers/time'
 
 import {
   getAsleepNights,
@@ -11,8 +11,8 @@ import {
   getShortestSleepTime,
   getLongestSleepTime,
   getNightsWithOver8HoursSleep
-} from '../../store/Selectors/SleepDataSelectors'
-import { H3, Container, P } from '../../components/Primitives/Primitives'
+} from '@selectors/SleepDataSelectors'
+import { H3, Container, P } from '@components/Primitives/Primitives'
 
 const BedStatsView = () => {
   const nights = useSelector(getAsleepNights)

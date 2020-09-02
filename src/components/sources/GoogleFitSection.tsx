@@ -1,16 +1,16 @@
 import { toggleGoogleFit } from '@actions/api-actions/google-fit-actions'
 import { changeGoogleFitSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import EmptyState from 'components/EmptyState'
-import SourceRow from 'components/SettingsSpecific/SourceRow'
-import TranslatedText from 'components/TranslatedText'
+import EmptyState from '@components/EmptyState'
+import SourceRow from '@components/SettingsSpecific/SourceRow'
+import TranslatedText from '@components/TranslatedText'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getGoogleFitEnabled } from 'store/Selectors/api-selectors/api-selectors'
+import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
 import {
   getAllGoogleFitSources,
   getGoogleFitSource,
   getIsGoogleFitMainSource
-} from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
+} from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
 import { constants } from 'styles/themes'
@@ -36,11 +36,11 @@ const GoogleFitSection = () => {
   const mapped = sources
     ? sources.map((item, key) => (
         <SourceRow
-        key={key}
-        sourceId={item.sourceId}
-        sourceName={item.sourceName}
-        selectedSourceId={healthKitSource?.sourceId}
-        switchSource={onPress}
+          key={key}
+          sourceId={item.sourceId}
+          sourceName={item.sourceName}
+          selectedSourceId={healthKitSource?.sourceId}
+          switchSource={onPress}
         />
       ))
     : []

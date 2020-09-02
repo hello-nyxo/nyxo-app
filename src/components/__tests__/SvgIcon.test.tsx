@@ -1,7 +1,7 @@
 import 'react-native'
 import * as React from 'react'
 import SvgIcon from '../SvgIcon'
-import { matchComponentToSnapshot } from '../../helpers/snapshot'
+import { matchComponentToSnapshot } from '@helpers/snapshot'
 
 describe('<SvgIcon/>', () => {
   it('it renders correctly', () => {

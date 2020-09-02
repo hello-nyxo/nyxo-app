@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { getAuthState } from '../../store/Selectors/auth-selectors/auth-selectors'
+import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { constants, fonts, StyleProps } from '../../styles/themes'
 import TranslatedText from '../TranslatedText'
 

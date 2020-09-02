@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
@@ -7,22 +7,18 @@ import {
   HEADER_MAX_HEIGHT,
   HEADER_MIN_HEIGHT,
   WIDTH
-} from '../../helpers/Dimensions'
+} from '@helpers/Dimensions'
 import { StyleProps } from '../../styles/themes'
 import AnimatedFastImage from '../AnimatedFastImage/AnimatedFastImage'
 
-const Cover = ({ cover, yOffset }: { cover: string; yOffset: any }) => {
-  const headerHeight = (yOffset: any) => ({
-    // transform: [
-    //   {
-    //     scale: yOffset.interpolate({
-    //       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-    //       outputRange: [2, 1],
-    //       extrapolateRight: Animated.Extrapolate.CLAMP,
-    //     }),
-    //   },
-    // ],
-    opacity: yOffset.interpolate({
+type Props = {
+  cover: string
+  yOffset: Animated.Value<number>
+}
+
+const Cover: FC<Props> = ({ cover, yOffset }) => {
+  const headerHeight = (offset: Animated.Value<number>) => ({
+    opacity: offset.interpolate({
       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
       outputRange: [1, 0],
       extrapolateRight: Animated.Extrapolate.CLAMP,

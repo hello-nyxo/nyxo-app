@@ -5,17 +5,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import Intercom from 'react-native-intercom'
 import { Alert, Button } from 'react-native'
 import { linkAccount } from '@actions/linking/linking-actions'
-import { getLinkingCode, getLoading } from 'store/Selectors/linking-selectors'
+import { getLinkingCode, getLoading } from '@selectors/linking-selectors'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { JournalStackParamList } from 'Types/navigation/navigation'
-import LinkingButton from 'components/Buttons/LinkingButton'
-import LoginButton from '../../components/Buttons/LoginButton'
+import LinkingButton from '@components/Buttons/LinkingButton'
+import LoginButton from '@components/Buttons/LoginButton'
 import TerveystaloLogo from '../../../assets/terveystalo-logo.svg'
-import TerveystaloButton from '../../components/Buttons/TerveystaloButton'
-import { getAuthState } from '../../store/Selectors/auth-selectors/auth-selectors'
+import TerveystaloButton from '@components/Buttons/TerveystaloButton'
+import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import translate from '../../config/i18n'
-import { PrimaryButton } from '../../components/Buttons/PrimaryButton'
-import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
+import { PrimaryButton } from '@components/Buttons/PrimaryButton'
+import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
 import ROUTE from '../../config/routes/Routes'
 import {
   H2,
@@ -24,7 +24,7 @@ import {
   P,
   CheckBox,
   Container
-} from '../../components/Primitives/Primitives'
+} from '@components/Primitives/Primitives'
 
 type TerveystaloNavigationProp = NativeStackNavigationProp<
   JournalStackParamList,

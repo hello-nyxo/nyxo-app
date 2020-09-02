@@ -1,17 +1,17 @@
-import GoBack, { GoBackContainer } from 'components/Buttons/GoBack'
-import EmptyState from 'components/EmptyState'
-import EnablePushCheck from 'components/MainScreenSpecific/EnablePushCheck'
-import HelpInfo from 'components/MainScreenSpecific/HelpInfo'
+import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
+import EmptyState from '@components/EmptyState'
+import EnablePushCheck from '@components/MainScreenSpecific/EnablePushCheck'
+import HelpInfo from '@components/MainScreenSpecific/HelpInfo'
 import {
   Container,
   H1,
   Row,
   SafeAreaView,
   StyledScrollView
-} from 'components/Primitives/Primitives'
+} from '@components/Primitives/Primitives'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { getStaticNotificationsCount } from 'store/Selectors/notification-selectors/notification-selectors'
+import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
 import styled from 'styled-components/native'
 
 const NotificationCenter = () => {

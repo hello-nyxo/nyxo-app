@@ -1,11 +1,11 @@
-import NotificationCard from 'components/NotificationCenter/NotificationCard'
-import React from 'react'
+import { askForPush } from '@actions/notifications'
+import { getShouldAskForPermission } from '@selectors/NotificationSelectors'
+import NotificationCard from '@components/NotificationCenter/NotificationCard'
+import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { askForPush } from '../../actions/NotificationActions'
-import { actionCreators } from '../../store/Reducers/NotificationReducer'
-import { getShouldAskForPermission } from '../../store/Selectors/NotificationSelectors'
+import { actionCreators } from '@reducers/NotificationReducer'
 
-const EnablePushCheck = () => {
+const EnablePushCheck: FC = () => {
   const show = useSelector(getShouldAskForPermission)
   const dispatch = useDispatch()
 

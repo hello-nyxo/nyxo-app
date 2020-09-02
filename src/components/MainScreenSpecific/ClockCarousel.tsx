@@ -5,17 +5,16 @@ import styled from 'styled-components/native'
 import {
   setActiveIndex,
   setSelectedDay
-} from '../../actions/sleep/sleep-data-actions'
-import { WIDTH } from '../../helpers/Dimensions'
-import keyExtractor from '../../helpers/KeyExtractor'
-import { StyleProps } from '../../src/styles/themes'
-import { getEditMode } from '../../store/Selectors/ManualDataSelectors'
+} from '@actions/sleep/sleep-data-actions'
+import { WIDTH } from '@helpers/Dimensions'
+import keyExtractor from '@helpers/KeyExtractor'
+import { getEditMode } from '@selectors/ManualDataSelectors'
 import {
   getActiveIndex,
   getWeekReversedSelector
-} from '../../store/Selectors/SleepDataSelectors'
-import SCClock from '../sleepclock'
-import ClockEmpty from '../sleepClock/ClockEmpty'
+} from '@selectors/SleepDataSelectors'
+import SCClock from '../Clock'
+import ClockEmpty from '../clock/ClockEmpty'
 
 const ClockCarousel = () => {
   const dispatch = useDispatch()
@@ -42,7 +41,7 @@ const ClockCarousel = () => {
       dispatch(setActiveIndex(newIndex))
 
       const day = info.viewableItems[0].item
-      dispatch(setSelectedDay(day))
+      dispatch(setSelectedDay(day.date))
     }
   }
 
@@ -135,10 +134,9 @@ const transitionAnimation = (index: number) => ({
   ]
 })
 
-const Clocks = styled(Animated.FlatList).attrs((props: StyleProps) => ({
+const Clocks = styled(Animated.FlatList).attrs(() => ({
   contentContainerStyle: {}
 }))`
   height: ${WIDTH}px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `

@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { Period } from 'Types/State/Periods'
 import { Period as APIPeriod, DayCompletionRecordInput } from 'API'
-import { Habit } from '../Types/State/habit-state'
+import { Habit } from 'Types/State/habit-state'
 
 const lineBreakReplacer = '::line-break::'
 export const convertLineBreaks = (text: string): string =>

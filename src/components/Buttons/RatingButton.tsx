@@ -1,16 +1,15 @@
 import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { rateDay } from '../../actions/sleep/sleep-data-actions'
+import { rateDay } from '@actions/sleep/sleep-data-actions'
 import { fonts } from '../../styles/themes'
 import IconBold from '../iconBold'
 import TranslatedText from '../TranslatedText'
 import ScalingButton from './ScalingButton'
-import { rateNight } from 'actions/sleep/night-quality-actions'
+import { rateNight } from 'store/actions/sleep/night-quality-actions'
 import { NightQuality } from 'Types/Sleep/NightQuality'
 import { getRatingDate } from 'store/Selectors/ModalSelectors'
 import { v4 } from 'uuid'
-import moment from 'moment'
 
 type Props = {
   selected: boolean

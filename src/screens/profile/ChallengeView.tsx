@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text, View, FlatList } from 'react-native'
 import { useSelector } from 'react-redux'
-import { getVisibleChallenges } from '../../store/Selectors/ChallengeSelectors'
+import { getVisibleChallenges } from '@selectors/ChallengeSelectors'
 import { Challenges } from '../../store/Coaching/Challenges'
-import ChallengeItem from '../../components/Challenge/ChallengeItem'
+import ChallengeItem from '@components/Challenge/ChallengeItem'
 
 const ChallengeView = () => {
   const visibleAchievements = useSelector(getVisibleChallenges)

@@ -2,7 +2,7 @@ import React from 'react'
 import { Dimensions, Text, View } from 'react-native'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'
-import { Challenge } from '../../Types/ChallengeState'
+import { Challenge } from 'Types/ChallengeState'
 import ScalingButton from '../Buttons/ScalingButton'
 import { IconBold } from '../iconRegular'
 

@@ -2,9 +2,9 @@ import React, { memo } from 'react'
 import { View, FlatList } from 'react-native'
 import { useSelector } from 'react-redux'
 import Achievement from './Components/Achievement'
-import TranslatedText from '../../components/TranslatedText'
-import { getVisibleChallenges } from '../../store/Selectors/ChallengeSelectors'
-import { H2, P } from '../../components/Primitives/Primitives'
+import TranslatedText from '@components/TranslatedText'
+import { getVisibleChallenges } from '@selectors/ChallengeSelectors'
+import { H2, P } from '@components/Primitives/Primitives'
 
 interface ChallengesProps {}
 

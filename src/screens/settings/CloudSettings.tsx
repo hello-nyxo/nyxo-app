@@ -1,28 +1,25 @@
 import React, { memo, useState } from 'react'
 import { RefreshControl, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { getLoading as getCodeLoading } from 'store/Selectors/linking-selectors'
+import { getLoading as getCodeLoading } from '@selectors/linking-selectors'
 import { getConnectionId } from '@actions/linking/linking-actions'
-import { logout } from '../../actions/auth/auth-actions'
-import GoBack, {
-  GoBackContainer,
-  Spacer
-} from '../../components/Buttons/GoBack'
-import { PrimaryButton } from '../../components/Buttons/PrimaryButton'
+import { logout } from '@actions/auth/auth-actions'
+import GoBack, { GoBackContainer, Spacer } from '@components/Buttons/GoBack'
+import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import {
   Container,
   H2,
   P,
   Row,
   SafeAreaView
-} from '../../components/Primitives/Primitives'
-import CodeDisclaimer from '../../components/SettingsSpecific/CodeDisclaimer'
-import LinkModule from '../../components/SettingsSpecific/LinkModule'
+} from '@components/Primitives/Primitives'
+import CodeDisclaimer from '@components/SettingsSpecific/CodeDisclaimer'
+import LinkModule from '@components/SettingsSpecific/LinkModule'
 import ROUTE from '../../config/routes/Routes'
 import {
   getAuthState,
   getLoading
-} from '../../store/Selectors/auth-selectors/auth-selectors'
+} from '@selectors/auth-selectors/auth-selectors'
 import colors from '../../styles/colors'
 
 const CloudView = ({ navigation, route }) => {

@@ -1,15 +1,15 @@
-import { IconBold } from 'components/iconRegular'
-import SubscriptionCard from 'components/subscriptions/SubscriptionCard'
-import TranslatedText from 'components/TranslatedText'
+import { IconBold } from '@components/iconRegular'
+import SubscriptionCard from '@components/subscriptions/SubscriptionCard'
+import TranslatedText from '@components/TranslatedText'
 import React, { memo, useEffect, useState } from 'react'
 import { Linking, Platform, RefreshControl, ScrollView } from 'react-native'
 import Purchases, { PurchasesEntitlementInfos } from 'react-native-purchases'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
-import { restorePurchase } from '../../actions/subscription/subscription-actions'
-import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
-import TextButton from '../../components/Buttons/TextButton'
+import { restorePurchase } from '@actions/subscription/subscription-actions'
+import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
+import TextButton from '@components/Buttons/TextButton'
 import {
   Container,
   H1,
@@ -17,12 +17,12 @@ import {
   H3,
   P,
   SafeAreaView
-} from '../../components/Primitives/Primitives'
+} from '@components/Primitives/Primitives'
 import CONFIG from '../../config/Config'
 import {
   getActiveCoaching,
   getLoadingPurchase
-} from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+} from '@selectors/subscription-selectors/SubscriptionSelectors'
 
 const ManageSubscription = () => {
   const isCoachingActive = useSelector(getActiveCoaching)

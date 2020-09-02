@@ -1,9 +1,9 @@
 import { toggleFitbit } from '@actions/api-actions/fitbit-actions'
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFitbitEnabled } from 'store/Selectors/api-selectors/api-selectors'
-import { getIsFitbitMainSource } from 'store/Selectors/sleep-source-selectors/sleep-source-selectors'
+import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
+import { getIsFitbitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
 

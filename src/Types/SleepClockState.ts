@@ -17,7 +17,7 @@ export interface SleepClockState {
   sleepDataUpdated: string
   today: string
   current_day: Day
-  selectedDay: Day
+  selectedDay: string
   activeIndex: number | null
   ratings: []
   days: Day[] | []

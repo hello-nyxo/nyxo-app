@@ -1,14 +1,15 @@
 import Moment from 'moment'
+import { format, parseISO, isValid } from 'date-fns'
 import translate from '../config/i18n'
-import { Day } from '../Types/Sleepdata'
+import { Day } from 'Types/Sleepdata'
 
 type Moment = typeof Moment
 
-export function to12hClock(hour: number) {
+export function to12hClock(hour: number): number {
   return hour > 12 ? hour - 12 : hour
 }
 
-export function momentTimeToPolar(time: string) {
+export function momentTimeToPolar(time: string): number {
   const momentTime = Moment(time)
   const angle =
     ((to12hClock(momentTime.hour()) + momentTime.minute() / 60) / 12) * 360
@@ -19,7 +20,7 @@ export function momentTimeToPolar(time: string) {
 export function minutesToHoursString(
   minutes: number | undefined,
   longFormat?: boolean
-) {
+): string {
   if (!minutes) {
     return '-'
   }
@@ -34,7 +35,7 @@ export function minutesToHoursString(
   return `${(minutes / 60).toFixed(1)} h`
 }
 
-export function getTimeInString(minutes: number) {
+export function getTimeInString(minutes: number): string {
   if (!minutes) {
     return '-'
   }
@@ -43,22 +44,22 @@ export function getTimeInString(minutes: number) {
   return `${time.format('H')} h ${time.format('mm')} `
 }
 
-export function returnNightString(date: string) {
+export function returnNightString(date: string): string {
   const startDate = Moment(date)
   const endDate = startDate.add(1, 'day')
 }
 
-export function formatDate(date: string) {
+export function formatDate(date: string): string {
   return Moment(date).format('dddd Do MMMM')
 }
 
-export function formatMinutesToHours(minutes: number) {
+export function formatMinutesToHours(minutes: number): number {
   const value = Moment.duration(minutes, 'minutes').humanize()
 
   return value
 }
 
-export function isWeekend(day: Day) {
+export function isWeekend(day: Day): boolean {
   if (Moment(day.date).day() === 0 || Moment(day.date).day() === 6) {
     return true
   }
@@ -69,7 +70,7 @@ export function isWeekend(day: Day) {
  *
  * @param {*} dateString
  */
-export function getStartTimeInMinutes(date: string) {
+export function getStartTimeInMinutes(date: string): number {
   const timeMoment = Moment(date)
   const timeInPureMinutes = timeMoment.hours() * 60 + timeMoment.minutes()
   const periodEnd = 360 // 6 in the morning
@@ -82,7 +83,7 @@ export function getStartTimeInMinutes(date: string) {
   return timeInPureMinutes
 }
 
-export function toNightTime(date: string) {
+export function toNightTime(date: string): string {
   const nightEnd = Moment(date)
   const nightStart = Moment(nightEnd).subtract(1, 'days').startOf('day')
   return `${nightStart.format('DD.MM.')} – ${nightEnd.format('DD.MM.')}`
@@ -103,13 +104,13 @@ export const getTitle = () => {
   return { title: 'Good Night', subtitle: 'NIGHT_SUBTITLE' }
 }
 
-export function nearestMinutes(interval: number, someMoment: any) {
+export function nearestMinutes(interval: number, someMoment: any): string {
   const roundedMinutes =
     Math.round(someMoment.clone().minute() / interval) * interval
   return someMoment.clone().minute(roundedMinutes).second(0)
 }
 
-export const formatTimer = (numberOfSeconds: number) => {
+export const formatTimer = (numberOfSeconds: number): number => {
   const hours = Math.floor(numberOfSeconds / 3600)
   const minutes = Math.floor((numberOfSeconds - hours * 3600) / 60)
   const seconds = numberOfSeconds - hours * 3600 - minutes * 60
@@ -143,11 +144,14 @@ export function sameDay(
   return s1.isSame(s2, 'day')
 }
 
-export function calculateMinutesFromAngle(angle: number) {
+export function calculateMinutesFromAngle(angle: number): number {
   return Math.round(angle / ((2 * Math.PI) / (12 * 12))) * 5
 }
 
-export function calculateTimeFromAngle(angle: number, start: boolean) {
+export function calculateTimeFromAngle(
+  angle: number,
+  start: boolean
+): { h: number; m: number } {
   if (start) {
     const minutes = calculateMinutesFromAngle(angle)
     const h = Math.floor(minutes / 60)
@@ -166,7 +170,7 @@ export function calculateTimeFromAngle(angle: number, start: boolean) {
 export function calculateEndTimeFromAngle(
   startAngle: number,
   endAngle: number
-) {
+): { h: number; m: number } {
   const startMinutes = calculateMinutesFromAngle(startAngle)
   const startHours = Math.floor(startMinutes / 60)
   const startCorrected = startHours >= 6 ? startHours + 12 : startHours
@@ -182,7 +186,9 @@ export function calculateEndTimeFromAngle(
   return { m, h: endCorrected }
 }
 
-export function calculateTimeFromAngleAM(angle: number) {
+export function calculateTimeFromAngleAM(
+  angle: number
+): { h: number; m: number } {
   const minutes = calculateMinutesFromAngle(angle)
   const h = Math.floor(minutes / 60) + 12
   const m = minutes - h * 60
@@ -190,16 +196,27 @@ export function calculateTimeFromAngleAM(angle: number) {
   return { h, m }
 }
 
-export function roundAngleToFives(angle: number) {
+export function roundAngleToFives(angle: number): number {
   const fiveMinuteAngle = (2 * Math.PI) / 144
 
   return Math.round(angle / fiveMinuteAngle) * fiveMinuteAngle
 }
 
-export function padMinutes(min: number) {
+export function padMinutes(min: number): string {
   if (`${min}`.length < 2) {
     return `0${min}`
   }
 
-  return min
+  return `${min}`
+}
+
+export const getFormattedDateOrPlaceholder = (
+  value: string | null | undefined,
+  formatter: string
+): string => {
+  if (value) {
+    return format(parseISO(value), formatter)
+  }
+
+  return '-'
 }

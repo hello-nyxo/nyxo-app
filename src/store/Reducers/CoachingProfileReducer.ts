@@ -1,5 +1,5 @@
-import ReduxAction from '../../Types/ReduxActions'
-import CoachingProfile, { Chronotype } from '../../Types/CoachingProfile'
+import ReduxAction from 'Types/ReduxActions'
+import CoachingProfile, { Chronotype } from 'Types/CoachingProfile'
 
 export const types = {
   UPDATE_CHRONOTYPE: 'UPDATE_CHRONOTYPE'

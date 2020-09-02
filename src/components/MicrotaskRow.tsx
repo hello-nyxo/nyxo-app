@@ -10,7 +10,7 @@ import { RectButton } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import colors from '../styles/colors'
 import { fonts } from '../styles/themes'
-import { MicroTask } from '../Types/Microtask'
+import { MicroTask } from 'Types/Microtask'
 import { IconBold } from './iconRegular'
 
 interface MicroTaskRowProps {

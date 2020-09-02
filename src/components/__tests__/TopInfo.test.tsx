@@ -2,10 +2,7 @@ import 'jest-styled-components'
 import 'react-native'
 import { Middleware } from 'redux'
 import configureStore from 'redux-mock-store'
-import {
-  NotificationState,
-  NotificationType
-} from '../../Types/NotificationState'
+import { NotificationState, NotificationType } from 'Types/NotificationState'
 
 const middlewares: Middleware[] = []
 const mockStore = configureStore(middlewares)

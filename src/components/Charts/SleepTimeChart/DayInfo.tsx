@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import { Day } from 'Types/Sleepdata'
 import translate from '../../../config/i18n'
-import { minutesToHoursString } from '../../../helpers/time'
+import { minutesToHoursString } from '@helpers/time'
 import colors from '../../../styles/colors'
 import { fonts, StyleProps } from '../../../styles/themes'
 

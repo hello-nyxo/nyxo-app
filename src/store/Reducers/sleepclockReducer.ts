@@ -1,7 +1,4 @@
-import { CREATE_SUCCESS } from '@actions/sleep/sleep-to-cloud-actions'
-import moment from 'moment'
-import ReduxAction from 'Types/ReduxActions'
-import { RESET_APP } from '../../actions/shared'
+import { RESET_APP } from '@actions/shared'
 import {
   CREATE_NEW_CALENDAR,
   PUSH_NEW_DAYS_TO_CALENDAR,
@@ -13,11 +10,13 @@ import {
   SET_TODAY_AS_SELECTED,
   UPDATE_DAY,
   UPDATE_SLEEP_DATA
-} from '../../actions/sleep/sleep-data-actions'
-import { sortDays } from '../../helpers/sleep'
-import { sameDay } from '../../helpers/time'
-import { SleepClockState } from '../../Types/SleepClockState'
-import { Day } from '../../Types/Sleepdata'
+} from '@actions/sleep/sleep-data-actions'
+import { CREATE_SUCCESS } from '@actions/sleep/sleep-to-cloud-actions'
+import moment from 'moment'
+import ReduxAction from 'Types/ReduxActions'
+import { sortDays } from '@helpers/sleep'
+import { SleepClockState } from 'Types/SleepClockState'
+import { Day } from 'Types/Sleepdata'
 import { initialState } from '../InitialStates/SleepClock'
 
 const reducer = (
@@ -32,21 +31,11 @@ const reducer = (
       return { ...state, today: payload }
 
     case SET_SELECTED_DAY: {
-      const selectedDay = state.days.find((d: Day) =>
-        sameDay(payload.date, d.date)
-      )
-      const day = selectedDay || state.selectedDay
-
-      return { ...state, selectedDay: day }
+      return { ...state, selectedDay: payload }
     }
 
     case SET_TODAY_AS_SELECTED: {
-      const selectedDay = state.days.find((day: Day) =>
-        sameDay(payload, day.date)
-      )
-      const day = selectedDay || state.selectedDay
-
-      return { ...state, selectedDay: day }
+      return { ...state, selectedDay: payload }
     }
 
     case CREATE_NEW_CALENDAR:
@@ -83,9 +72,12 @@ const reducer = (
 
     case RATE_NIGHT: {
       const filteredDays = state.days.filter(
-        (item: Day) => item.date !== state.selectedDay.date
+        (item: Day) => item.date !== state.selectedDay
       )
-      const newDay = { ...state.selectedDay, rating: payload }
+      const day = state.days.find(
+        (item: Day) => item.date === state.selectedDay
+      )
+      const newDay = { ...(day as Day), rating: payload }
       const daysArray = [...filteredDays, newDay]
       const sorted = sortDays(daysArray)
       return { ...state, days: sorted }

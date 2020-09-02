@@ -1,21 +1,4 @@
-import React, { memo } from 'react'
-import { SectionList } from 'react-native'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components/native'
-import SleepTimeChart from '../../components/Charts/sleepTimeChart'
-import Inforow from '../../components/InfoRow'
-import {
-  H3,
-  P,
-  PageTitle,
-  SafeAreaView
-} from '../../components/Primitives/Primitives'
-import UserInfo from '../../components/ProfileSpecific/Userinfo'
-import SignupBottomButton from '../../components/Signup/SignupBottomButton'
-import TopInfo from '../../components/TopInfo'
-import keyExtractor from '../../helpers/KeyExtractor'
-import { minutesToHoursString } from '../../helpers/time'
-import { StyleProps } from '../../styles/themes'
+import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import {
   deviationBedTime,
   deviationSleep,
@@ -29,8 +12,24 @@ import {
   getNightsWithOver8HoursSleep,
   getShortestBedTime,
   getShortestSleepTime
-} from '../../store/Selectors/SleepDataSelectors'
-import { getAuthState } from '../../store/Selectors/auth-selectors/auth-selectors'
+} from '@selectors/SleepDataSelectors'
+import React, { memo } from 'react'
+import { SectionList } from 'react-native'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components/native'
+import Inforow from '@components/InfoRow'
+import {
+  H3,
+  P,
+  PageTitle,
+  SafeAreaView
+} from '@components/Primitives/Primitives'
+import UserInfo from '@components/ProfileSpecific/Userinfo'
+import SignupBottomButton from '@components/Signup/SignupBottomButton'
+import TopInfo from '@components/TopInfo'
+import keyExtractor from '@helpers/KeyExtractor'
+import { minutesToHoursString } from '@helpers/time'
+import { StyleProps } from '../../styles/themes'
 
 const ProfileScreen = () => {
   const nights = useSelector(getBedTimeNights)
@@ -122,7 +121,6 @@ const ProfileScreen = () => {
         renderSectionHeader={renderSectionHeader}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        ListFooterComponent={<SleepTimeChart />}
       />
     </SafeAreaView>
   )

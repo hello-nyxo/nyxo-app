@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { G, Line, Text as SvgText } from 'react-native-svg'
-import { minutesToHoursString } from '../../../helpers/time'
+import { minutesToHoursString } from '@helpers/time'
 import colors from '../../../styles/colors'
 
 interface SleepTimeChartAverageProps {

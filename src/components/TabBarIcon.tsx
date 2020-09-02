@@ -1,11 +1,11 @@
-import React, { memo } from 'react'
+import React, { memo, FC } from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
 import colors from '../styles/colors'
 import { fonts } from '../styles/themes'
 import { IconBold } from './iconRegular'
 
-export interface TabBarIconProps {
+export type TabBarIconProps = {
   focused: boolean
   tintColor: string
   routeName: string
@@ -15,12 +15,13 @@ export interface TabBarIconProps {
 const tabBarIcons = {
   Sleep: 'clockBold',
   Coaching: 'schoolPhysicalBold',
+  Habits: 'checklist',
   Feed: 'multiUsers',
   Profile: 'userBold',
   Settings: 'settingsBold'
 }
 
-const SCTabBarIcon = ({
+const TabBarIcon: FC<TabBarIconProps> = ({
   focused,
   tintColor,
   routeName,
@@ -43,7 +44,7 @@ const SCTabBarIcon = ({
   )
 }
 
-export default memo(SCTabBarIcon)
+export default TabBarIcon
 
 const Badge = styled.View`
   position: absolute;

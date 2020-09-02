@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { Linking } from 'react-native'
 import {
   getActionFromState,
   getStateFromPath as getStateFromPathDefault,
   NavigationContainerRef
 } from '@react-navigation/core'
-import { LinkingOptions } from '../../typings/react-navigation'
+import * as React from 'react'
+import { Linking } from 'react-native'
+import { LinkingOptions } from 'typings/react-navigation'
 
 let isUsingLinking = false
 

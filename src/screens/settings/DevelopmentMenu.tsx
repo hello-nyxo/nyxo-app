@@ -1,14 +1,14 @@
 import React, { memo } from 'react'
 import { SafeAreaView, Switch } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import IconButton from '../../components/Buttons/IconButton'
-import { Container, H1, P, Row } from '../../components/Primitives/Primitives'
+import IconButton from '@components/Buttons/IconButton'
+import { Container, H1, P, Row } from '@components/Primitives/Primitives'
 import colors from '../../styles/colors'
-import { getActiveCoaching } from '../../store/Selectors/subscription-selectors/SubscriptionSelectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import {
   disableCoaching,
   purchaseCoachingForAWeek
-} from '../../actions/subscription/subscription-actions'
+} from '@actions/subscription/subscription-actions'
 
 const DevelopmentMenu = () => {
   const dispatch = useDispatch()
