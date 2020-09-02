@@ -1,7 +1,7 @@
 import { Document } from '@contentful/rich-text-types'
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { getReadingTime } from '../../helpers/reading-time'
+import { getReadingTime } from @helpers/reading-time'
 import { fonts, StyleProps } from '../../styles/themes'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'

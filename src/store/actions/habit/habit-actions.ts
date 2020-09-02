@@ -1,34 +1,30 @@
-import { API, graphqlOperation } from 'aws-amplify'
-import produce from 'immer'
-import moment from 'moment'
-import 'react-native-get-random-values'
-import * as Sentry from '@sentry/react-native'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import {
   getHabits,
-  getUnsyncedHabits,
-  getHabitsMap
+  getHabitsMap,
+  getUnsyncedHabits
 } from '@selectors/habit-selectors/habit-selectors'
 import { getUsername } from '@selectors/UserSelectors'
-import { GetState } from 'Types/GetState'
-import ReduxAction, { Thunk, ThunkResult, Dispatch } from 'Types/ReduxActions'
-import { Habit, MutationType, UnsyncedHabit } from 'Types/State/habit-state'
-import { Period } from 'Types/State/Periods'
-import { v4 } from 'uuid'
-import {
-  CreateHabitInput,
-  ListHabitsQuery,
-  ModelHabitFilterInput
-} from '../../API'
-import { createHabit, deleteHabit, updateHabit } from '../../graphql/mutations'
-import { listHabits } from '../../graphql/custom/queries'
+import * as Sentry from '@sentry/react-native'
+import { CreateHabitInput, ListHabitsQuery, ModelHabitFilterInput } from 'API'
+import { API, graphqlOperation } from 'aws-amplify'
+import { listHabits } from 'graphql/custom/queries'
+import { createHabit, deleteHabit, updateHabit } from 'graphql/mutations'
 import {
   convertDaysToFitGraphQL,
   convertLineBreaks,
   convertPeriodType,
   convertRemoteHabitsToLocalHabits,
   shouldResetDayStreak
-} from '../../helpers/habits'
+} from 'helpers/habits'
+import produce from 'immer'
+import moment from 'moment'
+import 'react-native-get-random-values'
+import { GetState } from 'Types/GetState'
+import ReduxAction, { Dispatch, Thunk, ThunkResult } from 'Types/ReduxActions'
+import { Habit, MutationType, UnsyncedHabit } from 'Types/State/habit-state'
+import { Period } from 'Types/State/Periods'
+import { v4 } from 'uuid'
 
 /* ACTION TYPES */
 

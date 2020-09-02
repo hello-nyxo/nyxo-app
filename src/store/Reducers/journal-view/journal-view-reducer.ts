@@ -8,7 +8,7 @@ import {
 } from '@actions/sleep/sleep-data-actions'
 import { SleepClockState } from 'Types/SleepClockState'
 import { Day } from 'Types/Sleepdata'
-import { sameDay } from '../../../helpers/time'
+import { sameDay } from @helpers/time'
 import { initialState } from '../../InitialStates/SleepClock'
 
 const reducer = (

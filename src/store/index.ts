@@ -18,7 +18,7 @@ import {
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 import thunk from 'redux-thunk'
 import { State } from 'Types/State'
-import serializeTransform from '../helpers/serializeTransform'
+import serializeTransform from @helpers/serializeTransform'
 import ApiReducer from './Reducers/api-reducer/api-reducer'
 import AuthReducer from './Reducers/auth-reducer/auth-reducer'
 import ChallengeReducer from './Reducers/challenges/challenge-reducer'

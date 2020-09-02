@@ -1,26 +1,27 @@
 import PushNotificationIOS, {
   PushNotificationPermissions
 } from '@react-native-community/push-notification-ios'
+import { Night } from 'Types/Sleepdata'
+import translate from 'config/i18n'
+import {
+  androidChannels,
+  BEDTIME_APPROACH,
+  COACHING_INCOMPLETE_LESSON,
+  COACHING_REMIND_LESSONS_IN_WEEK,
+  NotificationObject
+} from 'config/PushNotifications'
 import moment from 'moment'
 import { Platform } from 'react-native'
 import Firebase from 'react-native-firebase'
 import Intercom from 'react-native-intercom'
-import translate from 'config/i18n'
-import { actionCreators } from '../store/Reducers/NotificationReducer'
-import { GetState } from '../Types/GetState'
+import { actionCreators } from 'store/Reducers/NotificationReducer'
+import { GetState } from 'Types/GetState'
 import {
   NotificationType,
-  UpdateNotificationPermissionType,
-  ScheduledNotification
-} from '../Types/NotificationState'
-import { Night } from '../Types/Sleepdata'
-import {
-  androidChannels,
-  BEDTIME_APPROACH,
-  COACHING_REMIND_LESSONS_IN_WEEK,
-  COACHING_INCOMPLETE_LESSON,
-  NotificationObject
-} from '../config/PushNotifications'
+  ScheduledNotification,
+  UpdateNotificationPermissionType
+} from 'Types/NotificationState'
+import { Thunk, Dispatch } from 'Types/ReduxActions'
 
 const { notifications: firebaseNotifications } = Firebase
 const {
@@ -31,7 +32,7 @@ const {
   removeScheduledNotification
 } = actionCreators
 
-export const askForPush = () => async (dispatch: Function) => {
+export const askForPush = (): Thunk => async (dispatch: Dispatch) => {
   if (Platform.OS === 'ios') {
     const permissions: PushNotificationPermissions = await PushNotificationIOS.requestPermissions(
       {

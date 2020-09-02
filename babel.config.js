@@ -24,10 +24,12 @@ module.exports = {
           '.json'
         ],
         alias: {
-          '@actions': './src/store/actions/',
+          '@actions': './src/store/actions',
           '@reducers': './src/store/Reducers',
           '@selectors': './src/store/Selectors',
-          '@components': './src/components'
+          '@components': './src/components',
+          '@helpers/*': './src/helpers',
+          '@graphql/*': './src/graphql'
         }
       }
     ]

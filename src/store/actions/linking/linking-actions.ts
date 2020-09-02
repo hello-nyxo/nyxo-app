@@ -1,12 +1,9 @@
+import { API, graphqlOperation } from '@aws-amplify/api'
 import Auth from '@aws-amplify/auth'
-import { API, graphqlOperation, GraphQLResult } from '@aws-amplify/api'
 import { UpdateConnectionIDMutation } from 'API'
-import CONFIG from '../../config/Config'
-import { updateConnectionId } from '../../graphql/custom/mutations'
-import {
-  updateSubscriptionStatus,
-  restorePurchase
-} from '../subscription/subscription-actions'
+import CONFIG from 'config/Config'
+import { updateConnectionId } from 'graphql/custom/mutations'
+import { restorePurchase } from '../subscription/subscription-actions'
 
 /* ACTIONS TYPES */
 export const LINKING_START = 'LINKING_START'

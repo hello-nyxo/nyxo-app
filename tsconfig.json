@@ -20,7 +20,9 @@
       "@actions/*": ["./src/store/actions/*"],
       "@reducers/*": ["./src/store/Reducers/*"],
       "@selectors/*": ["./src/store/selectors/*"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@graphql/*": ["./src/graphql/*"]
     }
   },
   "exclude": [

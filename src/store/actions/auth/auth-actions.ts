@@ -1,18 +1,18 @@
-import Auth from '@aws-amplify/auth'
 import {
   handleHabitsFromCloudWhenLoggingIn,
   handleHabitsWhenloggingOut,
   toggleMergingDialog
 } from '@actions/habit/habit-actions'
+import Auth from '@aws-amplify/auth'
+import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
 import translate from 'config/i18n'
+import * as NavigationService from 'config/NavigationHelper'
+import ROUTE from 'config/routes/Routes'
 import { areThereChangesInLocal } from 'helpers/habits'
 import Intercom from 'react-native-intercom'
 import Purchases from 'react-native-purchases'
 import { GetState } from 'Types/GetState'
-import * as NavigationService from '../../config/NavigationHelper'
-import ROUTE from '../../config/routes/Routes'
-import { actionCreators as notificationActions } from '../../store/Reducers/NotificationReducer'
-import { NotificationType } from '../../Types/NotificationState'
+import { NotificationType } from 'Types/NotificationState'
 import { updateEmail } from '../user/user-actions'
 
 /* ACTION TYPES */

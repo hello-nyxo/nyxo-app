@@ -9,7 +9,7 @@ import {
   calculateTimeFromAngle,
   padMinutes,
   roundAngleToFives
-} from '../../helpers/time'
+} from @helpers/time'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'
 import CircularSlider from './CircularSlider'

@@ -14,7 +14,7 @@ import {
 import { CREATE_SUCCESS } from '@actions/sleep/sleep-to-cloud-actions'
 import moment from 'moment'
 import ReduxAction from 'Types/ReduxActions'
-import { sortDays } from '../../helpers/sleep'
+import { sortDays } from @helpers/sleep'
 import { SleepClockState } from '../../Types/SleepClockState'
 import { Day } from '../../Types/Sleepdata'
 import { initialState } from '../InitialStates/SleepClock'

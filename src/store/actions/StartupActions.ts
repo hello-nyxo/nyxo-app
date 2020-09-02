@@ -1,14 +1,14 @@
-import { Platform } from 'react-native'
+import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { getWeek } from '@selectors/SleepDataSelectors'
+import { Platform } from 'react-native'
+import { GetState } from 'Types/GetState'
 import { Dispatch, Thunk } from 'Types/ReduxActions'
-import { getAuthState } from '../store/Selectors/auth-selectors/auth-selectors'
-import { GetState } from '../Types/GetState'
 import { refreshAuthStatus } from './auth/auth-actions'
 import {
   updateCoachingInCloud,
   validateWeeklyProgress
 } from './coaching/coaching-actions'
+import { getAllWeeks } from './coaching/content-actions'
 import {
   handleUnsyncedHabitsThenRetrieveHabitsFromCloud,
   updateDayStreaks
@@ -19,11 +19,10 @@ import {
   handleBedtimeApproachNotifications,
   handleCoachingLessonsInWeekNotifications,
   handleCoachingUncompletedLessonNotifications
-} from './NotificationActions'
+} from './notifications'
 import { prepareSleepDataFetching } from './sleep/health-kit-actions'
 import { fetchSleepData, updateCalendar } from './sleep/sleep-data-actions'
 import { updateSubscriptionStatus } from './subscription/subscription-actions'
-import { getAllWeeks } from './coaching/content-actions'
 
 export const startup = (): Thunk => async (
   dispatch: Dispatch,

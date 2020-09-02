@@ -6,7 +6,7 @@ import { H3Margin } from '../Primitives/Primitives'
 import { fonts, StyleProps } from '../../styles/themes'
 import ExampleHabit from '../HabitCard/ExampleHabit'
 import TranslatedText from '../TranslatedText'
-import keyExtractor from '../../helpers/KeyExtractor'
+import keyExtractor from @helpers/KeyExtractor'
 
 const ExampleHabitSection = ({
   habits

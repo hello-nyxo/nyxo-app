@@ -9,7 +9,7 @@ import PerkList from '../../components/IAPComponents/PerkList'
 import SubscriptionItem from '../../components/IAPComponents/SubscriptionItem'
 import TranslatedText from '../../components/TranslatedText'
 import CONFIG from '../../config/Config'
-import { HEIGHT, SMART_TOP_PADDING } from '../../helpers/Dimensions'
+import { HEIGHT, SMART_TOP_PADDING } from @helpers/Dimensions'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'
 

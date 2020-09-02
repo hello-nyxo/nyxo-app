@@ -14,7 +14,7 @@ import LessonListItem from '../../components/LessonComponents/LessonListItem'
 import SectionFooter from '../../components/LessonComponents/SectionFooter'
 import SectionHeader from '../../components/LessonComponents/SectionHeader'
 import Separator from '../../components/LessonComponents/Separator'
-import keyExtractor from '../../helpers/KeyExtractor'
+import keyExtractor from @helpers/KeyExtractor'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { StyleProps } from '../../styles/themes'
 

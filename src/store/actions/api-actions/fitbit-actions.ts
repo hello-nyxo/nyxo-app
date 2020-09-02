@@ -1,21 +1,21 @@
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
+import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
 import { formatSleepData } from '@actions/sleep/sleep-data-actions'
+import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from 'config/Config'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from 'helpers/Keychain'
 import { formatFitbitSamples } from 'helpers/sleep/fitbit-helper'
 import moment from 'moment'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
+import { GetState } from 'Types/GetState'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
-import { SOURCE } from 'typings/state/sleep-source-state'
-import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
-import { GetState } from '../../Types/GetState'
 import {
   FitbitAuthorizeResult,
   FitbitRefreshResult,
   ResponseBase
-} from '../../Types/State/api-state'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
+} from 'Types/State/api-state'
+import { SOURCE } from 'typings/state/sleep-source-state'
 
 export const FITBIT_AUTHORIZE_SUCCESS = 'FITBIT_AUTHORIZE_SUCCESS'
 export const FITBIT_REVOKE_SUCCESS = 'FITBIT_REVOKE_SUCCESS'

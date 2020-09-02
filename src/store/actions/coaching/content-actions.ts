@@ -1,21 +1,18 @@
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
+import { actionCreators as contentActions } from '@reducers/content-reducer/content-reducer'
+import CONFIG from 'config/Config'
 import { ContentfulClientApi, Entry } from 'contentful'
 import I18n from 'i18n-js'
-import { Dispatch, Thunk } from 'Types/ReduxActions'
-import CONFIG from '../../config/Config'
-import { actionCreators as contentActions } from '../../store/Reducers/content-reducer/content-reducer'
 import {
   AuthorCard,
   ContentLesson,
   ContentWeek,
   ExampleHabit,
   Section
-} from '../../Types/CoachingContentState'
-import {
-  ICoachingWeekFields,
-  ILessonFields
-} from '../../Types/generated/contentful'
-import { sendError } from '../NotificationActions'
+} from 'Types/CoachingContentState'
+import { ICoachingWeekFields, ILessonFields } from 'Types/generated/contentful'
+import { Dispatch, Thunk } from 'Types/ReduxActions'
+import { sendError } from '../notifications'
 
 const { createClient } = require('contentful/dist/contentful.browser.min.js')
 

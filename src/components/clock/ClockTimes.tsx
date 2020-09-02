@@ -2,7 +2,7 @@ import range from 'lodash/range'
 import React, { memo, FC } from 'react'
 import { G, Line, Text as SVGText } from 'react-native-svg'
 import styled from 'styled-components/native'
-import { polarToCartesian } from '../../helpers/geometry'
+import { polarToCartesian } from @helpers/geometry'
 
 type Props = {
   x: number

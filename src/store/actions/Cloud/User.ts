@@ -1,9 +1,6 @@
-import { API, graphqlOperation, Auth } from 'aws-amplify'
-import { getUser } from '../../graphql/queries'
-import { updateUser } from '../../graphql/mutations'
-import { sendError } from '../NotificationActions'
-import { GetState } from '../../Types/GetState'
-import { setAuthStatus, updateUserFromCloud } from '../user/user-actions'
+import { setAuthStatus, updateUserFromCloud } from '@actions/user/user-actions'
+import { API, Auth, graphqlOperation } from 'aws-amplify'
+import { getUser } from 'graphql/queries'
 
 export const checkAuthStatus = () => async (dispatch: Function) => {
   const user = await Auth.currentUserInfo()
