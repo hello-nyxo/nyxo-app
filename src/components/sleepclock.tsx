@@ -118,7 +118,7 @@ const Clock: FC<Props> = ({ selectedDay, shouldAnimate }: Props) => {
         )}
       </Svg>
       <NightRatingHolder x={x}>
-        <NightRating day={selectedDay} height={30} width={30} />
+        <NightRating date={selectedDay.date} height={30} width={30} />
       </NightRatingHolder>
       {editMode && (
         <Bedtime

@@ -6,24 +6,22 @@ import {
   updateRatingDate
 } from '../../actions/modal/modal-actions'
 import getRating from '../../helpers/rating'
-import { Day } from '../../Types/Sleepdata'
 import ScalingButton from '../Buttons/ScalingButton'
 import { IconBold } from '../iconRegular'
 import { makeGetRatingOnDate } from 'store/Selectors/night-quality-selectors/night-quality-selector'
 import { State } from 'Types/State'
 
 type Props = {
-  day: Day
+  date: string
   height: number
   width: number
   unClickable?: boolean
 }
 
-const NightRating: FC<Props> = ({ day, unClickable, height, width }) => {
-  const { date } = day
+const NightRating: FC<Props> = ({ date, unClickable, height, width }) => {
   const getRatingOnDate = useMemo(makeGetRatingOnDate, [])
   const ratingDate = useSelector((state: State) =>
-    getRatingOnDate(state, { day })
+    getRatingOnDate(state, { date })
   )
 
   const { icon, color } = getRating(ratingDate?.rating)

@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import moment from 'moment'
 import React, { memo, useMemo, useState } from 'react'
-import { Dimensions, View } from 'react-native'
+import { Dimensions, View, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Svg from 'react-native-svg'
 import { useSelector } from 'react-redux'
@@ -58,7 +58,7 @@ const SleepTimeChart = () => {
     )
   ]
 
-  const scaleX = d3.scaleTime().domain(xDomain).range([paddingLeft, chartWidth])
+  const scaleX = d3.scaleTime().domain(xDomain).range([paddingLeft, chartWidth - paddingRight])
 
   const scaleY = d3
     .scaleTime()

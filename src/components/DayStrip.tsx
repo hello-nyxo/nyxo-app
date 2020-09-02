@@ -46,7 +46,12 @@ const DayStrip = () => {
 
         <Spacer />
         <NightRatingHolder>
-          <NightRating day={item} height={15} width={15} unClickable={true} />
+          <NightRating
+            height={15}
+            width={15}
+            unClickable={true}
+            date={item.date}
+          />
         </NightRatingHolder>
       </Container>
     )
