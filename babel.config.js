@@ -29,7 +29,8 @@ module.exports = {
           '@selectors': './src/store/Selectors',
           '@components': './src/components',
           '@helpers': './src/helpers/',
-          '@graphql': './src/graphql/'
+          '@graphql': './src/graphql/',
+          '@hooks': './src/hooks'
         }
       }
     ]

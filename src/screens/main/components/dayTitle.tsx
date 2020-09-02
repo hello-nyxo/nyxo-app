@@ -8,15 +8,15 @@ import styled from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native'
 import TranslatedText, {
   AnimatedTranslatedText
-} from '../../../components/TranslatedText'
+} from '@components/TranslatedText'
 import { getTitle } from '@helpers/time'
 
 import { getSelectedDay } from '../../../store/Selectors/SleepDataSelectors'
-import ScalingButton from '../../../components/Buttons/ScalingButton'
-import IconBold from '../../../components/iconBold'
+import ScalingButton from '@components/Buttons/ScalingButton'
+import IconBold from '@components/iconBold'
 import colors from '../../../styles/colors'
-import IconButton from '../../../components/Buttons/IconButton'
-import { H1 } from '../../../components/Primitives/Primitives'
+import IconButton from '@components/Buttons/IconButton'
+import { H1 } from '@components/Primitives/Primitives'
 import { fonts, StyleProps } from '../../../styles/themes'
 
 interface DayTitleProps {

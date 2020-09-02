@@ -6,16 +6,12 @@ import Rate, { AndroidMarket } from 'react-native-rate'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { setTheme } from '@actions/user/user-actions'
-import { Title } from '../../components/InfoRow'
-import {
-  H2,
-  PageTitle,
-  SafeAreaView
-} from '../../components/Primitives/Primitives'
-import IntercomProfilePictures from '../../components/SettingsSpecific/IntercomProfilePictures'
-import SettingRow from '../../components/SettingsSpecific/settingRow'
-import VersionInformation from '../../components/SettingsSpecific/versionInformation'
-import TopInfo from '../../components/TopInfo'
+import { Title } from '@components/InfoRow'
+import { H2, PageTitle, SafeAreaView } from '@components/Primitives/Primitives'
+import IntercomProfilePictures from '@components/SettingsSpecific/IntercomProfilePictures'
+import SettingRow from '@components/SettingsSpecific/settingRow'
+import VersionInformation from '@components/SettingsSpecific/versionInformation'
+import TopInfo from '@components/TopInfo'
 import CONFIG from '../../config/Config'
 import keyExtractor from '@helpers/KeyExtractor'
 import { getIntercomNotificationCount } from '@selectors/NotificationSelectors'

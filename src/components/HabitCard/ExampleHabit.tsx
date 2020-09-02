@@ -1,5 +1,5 @@
 import { Document } from '@contentful/rich-text-types'
-import RichText from 'components/RichText'
+import RichText from '@components/RichText'
 import React, { memo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'

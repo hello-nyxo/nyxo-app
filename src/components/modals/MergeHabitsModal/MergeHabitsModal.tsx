@@ -12,7 +12,7 @@ import { getMergingDialogDisplayed } from '@selectors/habit-selectors/habit-sele
 import { getUsername } from '@selectors/UserSelectors'
 import styled from 'styled-components/native'
 import ROUTE from 'config/routes/Routes'
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import translate from '../../../config/i18n'
 import { fonts, StyleProps } from '../../../styles/themes'
 

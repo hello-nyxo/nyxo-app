@@ -1,5 +1,5 @@
 import { toggleFitbit } from '@actions/api-actions/fitbit-actions'
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'

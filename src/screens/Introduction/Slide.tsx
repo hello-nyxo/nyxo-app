@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
-import TranslatedText from '../../components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import { fonts } from '../../styles/themes'
 
 interface SlideProps {

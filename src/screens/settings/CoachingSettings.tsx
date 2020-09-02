@@ -1,5 +1,5 @@
 import { resetCoaching } from '@actions/coaching/coaching-actions'
-import CoachingMonthCard from 'components/CoachingMonthCard/CoachingMonthCard'
+import CoachingMonthCard from '@components/CoachingMonthCard/CoachingMonthCard'
 import React, { memo } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,15 +9,15 @@ import {
   getCoachingStage
 } from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
-import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
-import TextButton from '../../components/Buttons/TextButton'
+import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
+import TextButton from '@components/Buttons/TextButton'
 import {
   Container,
   H2,
   H3,
   P,
   SafeAreaView
-} from '../../components/Primitives/Primitives'
+} from '@components/Primitives/Primitives'
 
 const CoachingSettings = () => {
   const coachingStage = useSelector(getCoachingStage)

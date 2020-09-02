@@ -17,16 +17,16 @@ import React, { memo } from 'react'
 import { SectionList } from 'react-native'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import Inforow from '../../components/InfoRow'
+import Inforow from '@components/InfoRow'
 import {
   H3,
   P,
   PageTitle,
   SafeAreaView
-} from '../../components/Primitives/Primitives'
-import UserInfo from '../../components/ProfileSpecific/Userinfo'
-import SignupBottomButton from '../../components/Signup/SignupBottomButton'
-import TopInfo from '../../components/TopInfo'
+} from '@components/Primitives/Primitives'
+import UserInfo from '@components/ProfileSpecific/Userinfo'
+import SignupBottomButton from '@components/Signup/SignupBottomButton'
+import TopInfo from '@components/TopInfo'
 import keyExtractor from '@helpers/KeyExtractor'
 import { minutesToHoursString } from '@helpers/time'
 import { StyleProps } from '../../styles/themes'

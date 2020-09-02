@@ -22,7 +22,8 @@
       "@selectors/*": ["./src/store/selectors/*"],
       "@components/*": ["./src/components/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@graphql/*": ["./src/graphql/*"]
+      "@graphql/*": ["./src/graphql/*"],
+      "@hooks/*": ["./src/hooks/*"]
     }
   },
   "exclude": [

@@ -3,7 +3,7 @@ import { CoachingMonth } from 'typings/state/coaching-state'
 import styled from 'styled-components/native'
 import moment from 'moment'
 import { fonts } from 'styles/themes'
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 
 type Props = {
   month: CoachingMonth

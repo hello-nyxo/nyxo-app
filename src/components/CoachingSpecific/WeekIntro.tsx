@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import { completeWeek } from '@actions/coaching/coaching-actions'
 import { useDispatch } from 'react-redux'
 import moment from 'moment'
 import { PN } from '../Primitives/Primitives'
 import { StyleProps, fonts, constants } from '../../styles/themes'
-import { IconBold } from 'components/iconRegular'
+import { IconBold } from '@components/iconRegular'
 
 interface Props {
   intro: string

@@ -10,15 +10,15 @@ import {
   UpdateNotificationPermissionType
 } from 'Types/NotificationState'
 import { State } from 'Types/State'
-import GoBack, { GoBackContainer } from '../../components/Buttons/GoBack'
+import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
 import {
   Container,
   H2,
   P,
   SafeAreaView,
   StyledScrollView
-} from '../../components/Primitives/Primitives'
-import NotificationRow from '../../components/SettingsSpecific/NotificationRow'
+} from '@components/Primitives/Primitives'
+import NotificationRow from '@components/SettingsSpecific/NotificationRow'
 
 export interface NotificationDataItemProps {
   enabled: boolean
