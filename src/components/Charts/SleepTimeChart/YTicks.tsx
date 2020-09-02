@@ -5,7 +5,7 @@ import { G, Line, Text } from 'react-native-svg'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { StyleProps } from '../../../styles/themes'
-import { getTextColorOnTheme } from '../../../store/Selectors/UserSelectors'
+import { getTextColorOnTheme } from '@selectors/UserSelectors'
 
 interface Props {
   chartWidth: number

@@ -1,6 +1,6 @@
 import moment from 'moment'
-import { Night, Value } from '../../Types/Sleepdata'
-import { FitbitSleepObject } from '../../Types/Sleep/Fitbit'
+import { Night, Value } from 'Types/Sleepdata'
+import { FitbitSleepObject } from 'Types/Sleep/Fitbit'
 import { generateNightId } from './night-id-generator'
 import CONFIG from 'config/Config'
 

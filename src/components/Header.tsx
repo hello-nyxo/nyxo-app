@@ -2,7 +2,7 @@ import React from 'react'
 import { Animated, StyleSheet } from 'react-native'
 import { ifIphoneX, getStatusBarHeight } from 'react-native-iphone-x-helper'
 import TranslatedText from './TranslatedText'
-import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '../helpers/Dimensions'
+import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
 
 const c = StyleSheet.create({
   header: {

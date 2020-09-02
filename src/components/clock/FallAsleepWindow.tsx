@@ -6,7 +6,7 @@ import {
   clockTimeToAngle,
   describeArc,
   describeReverseArc
-} from '../../helpers/geometry'
+} from '@helpers/geometry'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'
 

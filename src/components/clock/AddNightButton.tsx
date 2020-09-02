@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
-import { toggleEditMode } from 'actions/manual-sleep/manual-sleep-actions'
+import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
-import { IconBold } from 'components/iconRegular'
+import { IconBold } from '@components/iconRegular'
 
 const AddNightButton: FC = () => {
   const dispatch = useDispatch()

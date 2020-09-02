@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { IconBold } from 'components/iconRegular'
+import { IconBold } from '@components/iconRegular'
 import colors from 'styles/colors'
 import { PurchasesEntitlementInfo } from 'react-native-purchases'
 import moment from 'moment'

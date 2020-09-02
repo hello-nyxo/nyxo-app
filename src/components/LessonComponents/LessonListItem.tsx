@@ -13,7 +13,7 @@ import { CombinedLesson } from '@selectors/coaching-selectors/coaching-selectors
 import styled from 'styled-components/native'
 import ROUTE from 'config/routes/Routes'
 import { useNavigation } from '@react-navigation/core'
-import { getReadingTime } from '../../helpers/reading-time'
+import { getReadingTime } from '@helpers/reading-time'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'

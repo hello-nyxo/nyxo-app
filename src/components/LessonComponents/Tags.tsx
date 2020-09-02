@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import { fonts } from 'styles/themes'
-import { IconBold } from 'components/iconRegular'
+import { IconBold } from '@components/iconRegular'
 
 type Props = {
   tags?: string[]

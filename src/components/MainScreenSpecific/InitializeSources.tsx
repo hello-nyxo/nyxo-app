@@ -1,14 +1,14 @@
-import { P } from 'components/Primitives/Primitives'
-import TranslatedText from 'components/TranslatedText'
+import { P } from '@components/Primitives/Primitives'
+import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
 import { useNavigation } from '@react-navigation/core'
 import ROUTE from 'config/routes/Routes'
-import { IconBold } from 'components/iconRegular'
+import { IconBold } from '@components/iconRegular'
 import { useSelector, useDispatch } from 'react-redux'
-import { getDataOnboardingCompleted } from 'store/Selectors/OnboardingSelectors'
-import { markDataOnboardingCompleted } from 'actions/onboarding/onboarding-actions'
+import { getDataOnboardingCompleted } from '@selectors/OnboardingSelectors'
+import { markDataOnboardingCompleted } from '@actions/onboarding/onboarding-actions'
 
 const InitializeSource: FC = () => {
   const { navigate } = useNavigation()

@@ -4,11 +4,11 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import Modal from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { actionCreators } from '../store/Reducers/NotificationReducer'
+import { actionCreators } from '@reducers/NotificationReducer'
 import {
   getNotificationMessage,
   getNotificationType
-} from '../store/Selectors/NotificationSelectors'
+} from '@selectors/NotificationSelectors'
 import { fonts, StyleProps } from '../styles/themes'
 import { IconBold } from './iconRegular'
 

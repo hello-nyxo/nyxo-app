@@ -1,4 +1,4 @@
-import { toggleExplanationsModal } from 'actions/modal/modal-actions'
+import { toggleExplanationsModal } from '@actions/modal/modal-actions'
 import React, { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'

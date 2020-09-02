@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Firebase from 'react-native-firebase'
 import Intercom from 'react-native-intercom'
-import TranslatedText from '../../../components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import colors from '../../../styles/colors'
 
 const Notification = () => {

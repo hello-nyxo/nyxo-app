@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { IconBold } from 'components/iconRegular'
+import { IconBold } from '@components/iconRegular'
 import { useNavigation } from '@react-navigation/core'
 import ROUTE from 'config/routes/Routes'
 import colors from 'styles/colors'

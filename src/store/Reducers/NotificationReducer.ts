@@ -3,8 +3,8 @@ import {
   NotificationType,
   ScheduledNotification,
   UpdateNotificationPermissionType
-} from '../../Types/NotificationState'
-import ReduxAction from '../../Types/ReduxActions'
+} from 'Types/NotificationState'
+import ReduxAction from 'Types/ReduxActions'
 
 export const NEW_NOTIFICATION = 'NEW_NOTIFICATION'
 export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION'

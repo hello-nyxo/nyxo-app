@@ -3,7 +3,7 @@ import {
   healthKitSampleToValue,
   formatHealthKitResponse
 } from './sleep-data-helper'
-import { Value, HealthKitSleepResponse, Night } from '../../Types/Sleepdata'
+import { Value, HealthKitSleepResponse, Night } from 'Types/Sleepdata'
 
 jest.mock('moment', () => {
   return () => jest.requireActual('moment')('2020-02-29T21:28:00.000')

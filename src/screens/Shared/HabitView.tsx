@@ -14,7 +14,7 @@ import {
   getActiveHabits,
   getArchivedHabits
 } from '@selectors/habit-selectors/habit-selectors'
-import NewHabitModal from 'components/modals/HabitModal/NewHabitModal'
+import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import React, { FC } from 'react'
 import { SectionList } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'

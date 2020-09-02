@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { PanGestureHandler, State } from 'react-native-gesture-handler'
 import Animated from 'react-native-reanimated'
 import { onGestureEvent } from 'react-native-redash'
-import { atan2 } from '../../helpers/animated'
+import { atan2 } from '@helpers/animated'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 

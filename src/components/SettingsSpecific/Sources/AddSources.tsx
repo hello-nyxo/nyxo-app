@@ -13,7 +13,7 @@ import {
 import {
   getFitbitEnabled,
   getWithingsEnabled
-} from '../../../store/Selectors/api-selectors/api-selectors'
+} from '@selectors/api-selectors/api-selectors'
 import { Container, H3 } from '../../Primitives/Primitives'
 import EnableSource from './EnableSource'
 import GoogleFit from './GoogleFit'

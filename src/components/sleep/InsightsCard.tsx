@@ -3,9 +3,9 @@ import {
   getGoToSleepWindowStart
 } from '@selectors/insight-selectors/Insights'
 import { getSelectedDay } from '@selectors/SleepDataSelectors'
-import { IconBold } from 'components/iconRegular'
-import { Column } from 'components/Primitives/Primitives'
-import TranslatedText from 'components/TranslatedText'
+import { IconBold } from '@components/iconRegular'
+import { Column } from '@components/Primitives/Primitives'
+import TranslatedText from '@components/TranslatedText'
 import { getFormattedDateOrPlaceholder } from 'helpers/time'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'

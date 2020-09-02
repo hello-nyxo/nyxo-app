@@ -10,7 +10,7 @@ import {
   markTodayAsCompleted
 } from '@actions/habit/habit-actions'
 import { fonts, StyleProps } from '../../styles/themes'
-import { MicroTask } from '../../Types/Microtask'
+import { MicroTask } from 'Types/Microtask'
 import TranslatedText from '../TranslatedText'
 import ActionComplete from './ActionComplete'
 import TopRow from './TopRow'

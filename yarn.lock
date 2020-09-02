@@ -12994,6 +12994,11 @@ react-proxy@^1.1.7:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
 
+react-query@^2.13.1:
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-2.13.1.tgz#1232dadcfded18d7bd886f421a4a4662f0992830"
+  integrity sha512-PosCQJ3ENaT6+vVaN79rGtpZ0BOeaREQuM/iiuNMQi+XWQVWMJBmDiZin4yk046CjbSTQy6lm7kS8QI5XiuivA==
+
 react-redux@^7.0.0, react-redux@^7.1.3:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.1.tgz#8dedf784901014db2feca1ab633864dee68ad985"

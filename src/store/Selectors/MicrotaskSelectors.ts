@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect'
 import Moment from 'moment'
-import { State } from '../../Types/State'
-import { MicroTaskState, MicroTask } from '../../Types/MicroTask'
-import { Period } from '../../Types/State/Periods'
+import { State } from 'Types/State'
+import { MicroTaskState, MicroTask } from 'Types/MicroTask'
+import { Period } from 'Types/State/Periods'
 
 const getAllTasks = (state: State) => state.microtask
 const today = Moment()

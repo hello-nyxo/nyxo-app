@@ -6,8 +6,8 @@ import {
   setActiveIndex,
   setSelectedDay
 } from '@actions/sleep/sleep-data-actions'
-import { WIDTH } from '../../helpers/Dimensions'
-import keyExtractor from '../../helpers/KeyExtractor'
+import { WIDTH } from '@helpers/Dimensions'
+import keyExtractor from '@helpers/KeyExtractor'
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import {
   getActiveIndex,

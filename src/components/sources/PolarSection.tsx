@@ -1,4 +1,4 @@
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIsPolarMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'

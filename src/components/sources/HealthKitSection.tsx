@@ -2,9 +2,9 @@ import {
   changeHealthKitSource,
   toggleHealthKit
 } from '@actions/sleep-source-actions/sleep-source-actions'
-import EmptyState from 'components/EmptyState'
-import SourceRow from 'components/SettingsSpecific/SourceRow'
-import TranslatedText from 'components/TranslatedText'
+import EmptyState from '@components/EmptyState'
+import SourceRow from '@components/SettingsSpecific/SourceRow'
+import TranslatedText from '@components/TranslatedText'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {

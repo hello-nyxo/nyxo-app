@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View } from 'react-native'
-import IconBold from '../../../components/iconBold'
-import TranslatedText from '../../../components/TranslatedText'
+import IconBold from '@components/iconBold'
+import TranslatedText from '@components/TranslatedText'
 import colors from '../../../styles/colors'
 
 const SleepBetter = () => {

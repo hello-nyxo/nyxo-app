@@ -3,7 +3,7 @@ import { Animated } from 'react-native'
 import PropTypes from 'prop-types'
 import { Path } from 'react-native-svg'
 
-import { describeArc } from '../helpers/geometry'
+import { describeArc } from '@helpers/geometry'
 
 class AnimatedPath extends Component {
   setNativeProps = (props) => {

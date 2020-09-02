@@ -2,7 +2,7 @@ import React from 'react'
 import 'react-native'
 import 'jest-styled-components'
 import VersionInformation from '../versionInformation'
-import { matchComponentToSnapshot } from '../../../helpers/snapshot'
+import { matchComponentToSnapshot } from '@helpers/snapshot'
 
 // We mock the useNavigation hook as currently it seems the only way to
 // test a screen component

@@ -6,8 +6,8 @@ import { FlatList } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { Day } from 'Types/Sleepdata'
-import { WIDTH } from '../helpers/Dimensions'
-import keyExtractor from '../helpers/KeyExtractor'
+import { WIDTH } from '@helpers/Dimensions'
+import keyExtractor from '@helpers/KeyExtractor'
 import { fonts, StyleProps } from '../styles/themes'
 
 const dayWidth = WIDTH / 7
