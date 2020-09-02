@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import TranslatedText from '@components/TranslatedText'
-import { getSleepDataUpdated } from '../../../store/Selectors/SleepDataSelectors'
+import { getSleepDataUpdated } from '@selectors/SleepDataSelectors'
 import colors from '../../../styles/colors'
 import { fonts } from '../../../styles/themes'
 

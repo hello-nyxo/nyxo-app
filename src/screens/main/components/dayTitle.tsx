@@ -11,7 +11,7 @@ import TranslatedText, {
 } from '@components/TranslatedText'
 import { getTitle } from '@helpers/time'
 
-import { getSelectedDay } from '../../../store/Selectors/SleepDataSelectors'
+import { getSelectedDay } from '@selectors/SleepDataSelectors'
 import ScalingButton from '@components/Buttons/ScalingButton'
 import IconBold from '@components/iconBold'
 import colors from '../../../styles/colors'

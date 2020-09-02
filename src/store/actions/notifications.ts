@@ -14,7 +14,7 @@ import moment from 'moment'
 import { Platform } from 'react-native'
 import Firebase from 'react-native-firebase'
 import Intercom from 'react-native-intercom'
-import { actionCreators } from 'store/Reducers/NotificationReducer'
+import { actionCreators } from '@reducers/NotificationReducer'
 import { GetState } from 'Types/GetState'
 import {
   NotificationType,
