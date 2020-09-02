@@ -10,16 +10,12 @@ import { RESET_APP } from '@actions/shared'
 import ReduxAction from 'Types/ReduxActions'
 import { Day } from 'Types/Sleepdata'
 import { DaysState } from 'Types/State/days-state'
+import { CREATE_DAYS_START } from '@actions/calendar-actions/calendar-actions'
 
 const initialState = {
   days: [],
   nights: [],
   loading: false
-}
-
-type ServerDays = {
-  id: string
-  date: string
 }
 
 const reducer = (state = initialState, action: ReduxAction): DaysState => {

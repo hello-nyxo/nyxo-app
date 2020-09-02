@@ -197,7 +197,7 @@ export const getPrimarySource = createSelector(
 )
 
 const dummyDay: Day = {
-  date: Moment().toISOString(),
+  date: Moment().startOf('day').toISOString(),
   night: [],
   unfilteredNight: [],
   bedStart: '',

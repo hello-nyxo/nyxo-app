@@ -1,13 +1,12 @@
-import React, { memo, FC } from 'react'
+import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import React, { FC, memo } from 'react'
 import Reanimated from 'react-native-reanimated'
 import { Defs, G, Path, Text, TextPath, TSpan } from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import translate from '../../config/i18n'
 import { describeArc } from '../../helpers/geometry'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'
-import { toggleManualButtons } from '../../store/Reducers/TrackingReducer'
 
 type Props = {
   x: number
@@ -24,7 +23,6 @@ const CurvedEditButton: FC<Props> = (props) => {
   const mainSource = useSelector(getIsHealthKitMainSource)
 
   const handlePress = () => {
-    dispatch(toggleManualButtons)
     props.toggleEdit()
   }
 

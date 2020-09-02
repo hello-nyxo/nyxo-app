@@ -24,7 +24,7 @@ module.exports = {
           '.json'
         ],
         alias: {
-          '@actions': './src/actions/',
+          '@actions': './src/store/actions/',
           '@reducers': './src/store/Reducers',
           '@selectors': './src/store/Selectors',
           '@components': './src/components'
