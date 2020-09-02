@@ -8,7 +8,7 @@ import {
   UPDATE_NIGHT_QUALITY_LOCAL,
   PUSH_NIGHT_QUALITY_LOCAL,
   POP_NIGHT_QUALITY_LOCAL
-} from 'actions/sleep/night-quality-actions'
+} from 'store/actions/sleep/night-quality-actions'
 
 const initialState: NightQualityState = {
   records: new Map(),
