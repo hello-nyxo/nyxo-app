@@ -2,17 +2,13 @@ import { NightQuality, NightQualityState } from 'Types/Sleep/NightQuality'
 import { Dispatch } from 'redux'
 import { GetState } from 'Types/GetState'
 import { API, graphqlOperation } from 'aws-amplify'
-import { v4 } from 'uuid'
 import { createNightRating, updateNightRating } from 'graphql/mutations'
 import {
   CreateNightRatingInput,
   ModelNightRatingFilterInput,
-  ListNightRatingsQuery,
   UpdateNightRatingInput
 } from 'API'
-import { dispatch } from 'd3'
 import { listNightRatings } from 'graphql/queries'
-import RatingModal from 'components/RatingModal'
 
 export const UPDATE_NIGHT_QUALITY = 'UPDATE_NIGHT_QUALITY'
 export const PUSH_NIGHT_QUALITY = 'PUSH_NIGHT_QUALITY'

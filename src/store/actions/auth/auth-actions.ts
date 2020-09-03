@@ -14,7 +14,7 @@ import Purchases from 'react-native-purchases'
 import { GetState } from 'Types/GetState'
 import { NotificationType } from 'Types/NotificationState'
 import { updateEmail } from '../user/user-actions'
-import { getNightRatingsFromCloud } from 'actions/sleep/night-quality-actions'
+import { getNightRatingsFromCloud } from '../sleep/night-quality-actions'
 
 /* ACTION TYPES */
 

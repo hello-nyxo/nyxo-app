@@ -184,7 +184,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
-  - Intercom (7.1.2)
+  - Intercom (7.1.3)
   - JKBigInteger2 (0.0.5)
   - libwebp (1.1.0):
     - libwebp/demux (= 1.1.0)
@@ -880,7 +880,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
-  Intercom: ce4923a73543fe70c805635846b6dadf03b0b847
+  Intercom: e44b10bbc38ccf6494c76f9bee4e2e3d7d007153
   JKBigInteger2: e91672035c42328c48b7dd015b66812ddf40ca9b
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -958,4 +958,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7bde1e2e4860e9ae214605a1416d0954a9c0af97
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1

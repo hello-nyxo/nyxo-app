@@ -1,5 +1,10 @@
 import React, { useRef, FC } from 'react'
-import { NativeSyntheticEvent, TextInputProps } from 'react-native'
+import {
+  NativeSyntheticEvent,
+  TextInputProps,
+  TextInputFocusEventData,
+  TextInputEndEditingEventData
+} from 'react-native'
 import styled from 'styled-components/native'
 import translate from '../config/i18n'
 import colors from '../styles/colors'
@@ -15,25 +20,27 @@ interface Props extends TextInputProps {
   ref?: any
 }
 
-const TextField: FC<Props> = ({
-  value,
-  onBlur,
-  onEndEditing,
-  onSubmitEditing,
-  error,
-  fieldName,
-  icon,
-  ref,
-  keyboardType,
-  autoCorrect,
-  autoCompleteType,
-  textContentType,
-  autoCapitalize,
-  returnKeyType,
-  enablesReturnKeyAutomatically,
-  placeholder,
-  secureTextEntry
-}) => {
+const TextField: FC<Props> = (props: Props) => {
+  const {
+    value,
+    onBlur,
+    onEndEditing,
+    onSubmitEditing,
+    error,
+    fieldName,
+    icon,
+    ref,
+    keyboardType,
+    autoCorrect,
+    autoCompleteType,
+    textContentType,
+    autoCapitalize,
+    returnKeyType,
+    enablesReturnKeyAutomatically,
+    placeholder,
+    secureTextEntry,
+    tvParallaxTiltAngle
+  } = props
   const inputRef: any = useRef(ref)
 
   const onFocus = () => {
@@ -64,6 +71,7 @@ const TextField: FC<Props> = ({
           <Label error={!!error}>{error ? error : fieldName}</Label>
         </LabelContainer>
         <InputField
+          {...props}
           keyboardType={keyboardType}
           ref={inputRef}
           autoCorrect={autoCorrect}
