@@ -32,7 +32,6 @@ const fallAsleepRadius: number = clockSize / 2 - 5
 
 const Clock: FC = () => {
   const { windowStart, windowEnd, night } = useSleep()
-  const selectedDay = useSelector(getSelectedDay)
   const editMode = useSelector(getEditMode)
   const dispatch = useDispatch()
 
@@ -81,10 +80,10 @@ const Clock: FC = () => {
           y={y}
           radius={inBedRadius}
         />
-        <Date hasData={!!night} date={selectedDay.date} x={x} y={y} />
+        {/* <Date hasData={!!night} date={date} x={x} y={y} /> */}
         <TrackerName x={x} y={y} />
 
-        {!editMode && (
+        {/* {!editMode && (
           <SleepTime
             y={y}
             x={x}
@@ -96,14 +95,14 @@ const Clock: FC = () => {
             bedStart={selectedDay.bedStart}
             bedEnd={selectedDay.bedEnd}
           />
-        )}
+        )} */}
       </Svg>
-      <NightRating day={selectedDay} x={x} />
+      {/* <NightRating day={selectedDay} x={x} /> */}
       {editMode && (
         <Bedtime
           clockSize={clockSize}
           toggleEditMode={toggleEditNightMode}
-          date={selectedDay.date}
+          date={date}
         />
       )}
       <AddNightButton />

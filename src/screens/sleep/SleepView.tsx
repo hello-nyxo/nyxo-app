@@ -30,6 +30,7 @@ import styled from 'styled-components/native'
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
 import { subDays, startOfDay, endOfDay, formatISO } from 'date-fns'
 import CalendarModal, { ThemedCalendar } from '@components/sleep/CalendarModal'
+import { setSelectedDate } from '@actions/calendar-actions/calendar-actions'
 
 const Sleep: FC = () => {
   const today = useSelector(getSelectedDay)
@@ -49,14 +50,13 @@ const Sleep: FC = () => {
   })
 
   const checkSleepData = async () => {
-    await dispatch(updateCalendar())
+    // await dispatch(updateCalendar())
   }
 
   const onDayPress = async ({ timestamp }) => {
     console.log(timestamp)
 
-    dispatch(setSelectedDay(moment(timestamp).toISOString()))
-
+    dispatch(setSelectedDate(new Date(timestamp).toISOString()))
     const startDate = startOfDay(subDays(timestamp, 1)).toISOString()
     const endDate = endOfDay(timestamp).toISOString()
 

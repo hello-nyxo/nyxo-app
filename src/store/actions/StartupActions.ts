@@ -38,7 +38,6 @@ export const startup = (): Thunk => async (
   await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
 
   // await dispatch(pullSleepFromCloud());
-  await dispatch(updateCalendar())
 
   // Actions related to sleep data
   if (isUsingHealthKit) {
@@ -48,7 +47,7 @@ export const startup = (): Thunk => async (
   // Get Coaching Materials
   await dispatch(getAllWeeks())
 
-  await dispatch(fetchSleepData())
+  // await dispatch(fetchSleepData())
 
   await dispatch(updateSubscriptionStatus())
   await dispatch(refreshAuthStatus())
@@ -68,7 +67,6 @@ export const startup = (): Thunk => async (
 }
 
 export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {
-  await dispatch(updateCalendar())
   await dispatch(handleBedtimeApproachNotifications())
   await dispatch(handleCoachingUncompletedLessonNotifications())
   await dispatch(handleCoachingLessonsInWeekNotifications())
