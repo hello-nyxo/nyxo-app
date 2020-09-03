@@ -2,7 +2,7 @@ import serializeTransform from '@helpers/serializeTransform'
 import AsyncStorage from '@react-native-community/async-storage'
 import ApiReducer from '@reducers/api-reducer/api-reducer'
 import AuthReducer from '@reducers/auth-reducer/auth-reducer'
-import ChallengeReducer from '@reducers/challenges/challenge-reducer'
+import CalendarReducer from '@reducers/calendar-reducer/calendar-reducer'
 import CoachingReducer from '@reducers/coaching-reducer/coaching-reducer'
 import ContentReducer from '@reducers/content-reducer/content-reducer'
 import HabitReducer from '@reducers/habit-reducer/habit-reducer'
@@ -37,6 +37,7 @@ import {
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 import thunk from 'redux-thunk'
 import { State } from 'Types/State'
+import NightReducer from '@reducers/night-reducer/night-reducer'
 
 enableES5()
 enableMapSet()
@@ -67,12 +68,7 @@ function makePersisted(
 }
 
 const rootReducer = combineReducers({
-  network,
-  user: makePersisted('user', user, hardSet),
-  sleepclock: makePersisted('sleepclock', sleepclock, undefined),
   notifications: makePersisted('notifications', NotificationReducer, undefined),
-  subscriptions: makePersisted('subscriptions', SubscriptionReducer, undefined),
-  onboarding: makePersisted('onboarding', OnboardingReducer, undefined),
   coachingContent: makePersisted('coachingContent', ContentReducer, undefined),
   coachingState: makePersisted('coachingState', CoachingReducer, undefined),
   coachingNotification: makePersisted(
@@ -84,15 +80,24 @@ const rootReducer = combineReducers({
     serializeTransform
   ]),
 
+  // TO BE REMOVED
+  sleepclock: makePersisted('sleepclock', sleepclock, undefined),
+
   apis: makePersisted('apis', ApiReducer, undefined),
-  challenge: makePersisted('challenge', ChallengeReducer, undefined),
   manualData: ManualDataReducer,
   modals: ModalReducer,
-  auth: makePersisted('auth', AuthReducer, undefined),
-  linking: makePersisted('linking', LinkingReducer, undefined),
+  nights: NightReducer,
+  calendar: CalendarReducer,
+  insights: makePersisted('insights', InsightsReducer, undefined),
   sleepSources: makePersisted('sleepSources', SleepSourceReducer, undefined),
   healthKit: makePersisted('healthKit', HealthKitReducer, undefined),
-  insights: makePersisted('insights', InsightsReducer, undefined)
+
+  auth: makePersisted('auth', AuthReducer, undefined),
+  linking: makePersisted('linking', LinkingReducer, undefined),
+  subscriptions: makePersisted('subscriptions', SubscriptionReducer, undefined),
+  onboarding: makePersisted('onboarding', OnboardingReducer, undefined),
+  network,
+  user: makePersisted('user', user, hardSet)
 })
 
 const middleware = applyMiddleware(thunk, batchDispatchMiddleware)

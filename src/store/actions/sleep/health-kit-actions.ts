@@ -20,6 +20,7 @@ import { syncNightsToCloud } from './night-cloud-actions'
 export const FETCH_SLEEP_HEALTH_KIT_START = 'FETCH_SLEEP_HEALTH_KIT_START'
 export const FETCH_SLEEP_HEALTH_KIT_SUCCESS = 'FETCH_SLEEP_HEALTH_KIT_SUCCESS'
 export const FETCH_SLEEP_HEALTH_KIT_FAILURE = 'FETCH_SLEEP_HEALTH_KIT_FAILURE'
+export const FETCH_SLEEP_SUCCESS = 'FETCH_SLEEP_SUCCESS'
 
 export const SWITCH_HEALTH_KIT_SOURCE = 'SWITCH_HEALTH_KIT_SOURCE'
 
@@ -40,6 +41,11 @@ export const fetchHKSleepStart = (): ReduxAction => ({
 
 export const fetchHKSleepSuccess = (): ReduxAction => ({
   type: FETCH_SLEEP_HEALTH_KIT_SUCCESS
+})
+
+export const fetchSleepSuccess = (night: Night[]): ReduxAction => ({
+  type: FETCH_SLEEP_SUCCESS,
+  payload: night
 })
 
 export const fetchHKSleepFailure = (): ReduxAction => ({
@@ -119,30 +125,37 @@ export const createHealthKitSources = (
   }
 }
 
-export const fetchSleepFromHealthKit = (): Thunk => async (
-  dispatch: Dispatch
-) => {
+export const fetchSleepFromHealthKit = (
+  startDate: string,
+  endDate: string
+): Thunk => async (dispatch: Dispatch) => {
   dispatch(fetchHKSleepStart())
-  const getDataFrom = moment().subtract(2, 'week').startOf('days').toISOString()
 
   const options = {
-    startDate: getDataFrom
+    startDate,
+    endDate
   }
+
+  console.log(options)
+
   try {
     await AppleHealthKit.getSleepSamples(
       options,
       async (error: string, response: Array<SleepSample>) => {
         if (error) {
+          console.log(error)
           dispatch(fetchHKSleepFailure())
         }
         dispatch(createHealthKitSources(response))
+
+        console.log('healthkit', response)
 
         const formattedData: Night[] = response?.map((nightObject) =>
           formatHealthKitResponse(nightObject)
         )
 
         await dispatch(syncNightsToCloud(formattedData))
-        await dispatch(formatSleepData(formattedData))
+        await dispatch(fetchSleepSuccess(formattedData))
         await dispatch(fetchHKSleepSuccess())
       }
     )

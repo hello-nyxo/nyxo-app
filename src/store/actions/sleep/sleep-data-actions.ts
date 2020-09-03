@@ -96,15 +96,15 @@ export const setActiveIndex = (index: number) => ({
 
 /* ASYNC ACTIONS */
 
-export const fetchSleepData = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+export const fetchSleepData = (
+  startDate: string,
+  endDate: string
+): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   const source = getMainSource(getState())
 
   switch (source) {
     case SOURCE.HEALTH_KIT:
-      dispatch(fetchSleepFromHealthKit())
+      dispatch(fetchSleepFromHealthKit(startDate, endDate))
       break
     case SOURCE.GOOGLE_FIT:
       dispatch(readGoogleFitSleep())
@@ -163,8 +163,8 @@ Making a change on 26.1.2020
 Calendar should always have at least seven days in it
 */
 
-export const updateCalendar = () => async (
-  dispatch: Function,
+export const updateCalendar = (): Thunk => async (
+  dispatch: Dispatch,
   getState: GetState
 ) => {
   const today = moment()

@@ -1,8 +1,5 @@
 import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
-import {
-  getGoToSleepWindowEnd,
-  getGoToSleepWindowStart
-} from '@selectors/insight-selectors/Insights'
+import useSleep from '@hooks/useSleep'
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import { getSelectedDay } from '@selectors/SleepDataSelectors'
 import React, { FC } from 'react'
@@ -11,8 +8,8 @@ import Animated from 'react-native-reanimated'
 import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import colors from '../styles/colors'
 import { Value } from 'Types/Sleepdata'
+import colors from '../styles/colors'
 import AddNightButton from './clock/AddNightButton'
 import ClockTimes from './clock/ClockTimes'
 import Date from './clock/Date'
@@ -34,8 +31,7 @@ const inBedRadius: number = clockSize / 2 - 15
 const fallAsleepRadius: number = clockSize / 2 - 5
 
 const Clock: FC = () => {
-  const goToSleepWindowStart = useSelector(getGoToSleepWindowStart)
-  const goToSleepWindowEnd = useSelector(getGoToSleepWindowEnd)
+  const { windowStart, windowEnd, night } = useSleep()
   const selectedDay = useSelector(getSelectedDay)
   const editMode = useSelector(getEditMode)
   const dispatch = useDispatch()
@@ -44,7 +40,7 @@ const Clock: FC = () => {
     dispatch(toggleEditMode())
   }
 
-  const hasData = selectedDay.night ? selectedDay.night.length !== 0 : false
+  console.log(night)
 
   return (
     <ClockContainer style={{ height: clockSize + 15, width: clockSize + 15 }}>
@@ -52,14 +48,14 @@ const Clock: FC = () => {
         <MinuteSticks x={x} y={y} radius={radius} />
         <ClockTimes x={x} y={y} radius={radius} />
         <FallAsleepWindow
-          goToSleepWindowStart={goToSleepWindowStart}
-          goToSleepWindowEnd={goToSleepWindowEnd}
+          goToSleepWindowStart={windowStart}
+          goToSleepWindowEnd={windowEnd}
           x={x}
           y={y}
           radius={fallAsleepRadius}
         />
         <SleepArc
-          day={selectedDay}
+          night={night}
           value={Value.InBed}
           strokeWidth={12}
           color={colors.inBedColor}
@@ -68,7 +64,7 @@ const Clock: FC = () => {
           radius={inBedRadius}
         />
         <SleepArc
-          day={selectedDay}
+          night={night}
           value={Value.Awake}
           strokeWidth={8}
           color={colors.afternoonAccent}
@@ -77,7 +73,7 @@ const Clock: FC = () => {
           radius={inBedRadius}
         />
         <SleepArc
-          day={selectedDay}
+          night={night}
           value={Value.Asleep}
           strokeWidth={8}
           color={colors.radiantBlue}
@@ -85,14 +81,14 @@ const Clock: FC = () => {
           y={y}
           radius={inBedRadius}
         />
-        <Date hasData={hasData} date={selectedDay.date} x={x} y={y} />
+        <Date hasData={!!night} date={selectedDay.date} x={x} y={y} />
         <TrackerName x={x} y={y} />
 
         {!editMode && (
           <SleepTime
             y={y}
             x={x}
-            hasData={hasData}
+            hasData={!!night}
             timeInBed={selectedDay.inBedDuration}
             timeAsleep={selectedDay.asleepDuration}
             sleepStart={selectedDay.sleepStart}

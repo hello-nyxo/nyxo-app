@@ -1,6 +1,7 @@
 import {
   fetchSleepData,
-  updateCalendar
+  updateCalendar,
+  setSelectedDay
 } from '@actions/sleep/sleep-data-actions'
 import { backgroundAction, startup } from '@actions/StartupActions'
 import SleepTimeChart from '@components/Charts/SleepChart'
@@ -26,6 +27,9 @@ import React, { FC, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
+import { subDays, startOfDay, endOfDay, formatISO } from 'date-fns'
+import CalendarModal, { ThemedCalendar } from '@components/sleep/CalendarModal'
 
 const Sleep: FC = () => {
   const today = useSelector(getSelectedDay)
@@ -45,8 +49,20 @@ const Sleep: FC = () => {
   })
 
   const checkSleepData = async () => {
-    await dispatch(fetchSleepData())
     await dispatch(updateCalendar())
+  }
+
+  const onDayPress = async ({ timestamp }) => {
+    console.log(timestamp)
+
+    dispatch(setSelectedDay(moment(timestamp).toISOString()))
+
+    const startDate = startOfDay(subDays(timestamp, 1)).toISOString()
+    const endDate = endOfDay(timestamp).toISOString()
+
+    console.log(`${startDate} –${endDate}`)
+
+    await dispatch(fetchSleepData(startDate, endDate))
   }
 
   return (
@@ -60,7 +76,6 @@ const Sleep: FC = () => {
             onRefresh={checkSleepData}
           />
         }>
-        <DayStrip />
         <TitleRow>
           <TitleContainer>
             <Title>{moment(today.date).format('dddd')}</Title>
@@ -72,12 +87,17 @@ const Sleep: FC = () => {
         <Row>
           <Clock />
         </Row>
+        <ThemedCalendar onDayPress={onDayPress} />
+
         <InitializeSource />
         <Row>
           <InsightsCard />
         </Row>
         <SleepTimeChart />
       </ScrollView>
+
+      <CalendarModal />
+
       <RatingModal />
       <ExplanationsModal />
       <NewHabitModal />

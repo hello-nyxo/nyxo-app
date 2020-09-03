@@ -208,7 +208,7 @@ const dummyDay: Day = {
   inBedDuration: 60
 }
 
-const getSday = (state: State) =>
+export const getSday = (state: State) =>
   state.sleepclock.selectedDay ? state.sleepclock.selectedDay : dummyDay.date
 
 const getSleepclock = (state: State) => state.sleepclock

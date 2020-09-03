@@ -1,50 +1,25 @@
-import {
-  CREATE_START,
-  CREATE_SUCCESS,
-  CREATE_FAILURE,
-  UPDATE_SUCCESS,
-  UPDATE_FAILURE,
-  UPDATE_START
-} from '@actions/sleep/sleep-to-cloud-actions'
 import { RESET_APP } from '@actions/shared'
+import { SET_SELECTED_DATE } from '@actions/calendar-actions/calendar-actions'
 import ReduxAction from 'Types/ReduxActions'
-import { Day } from 'Types/Sleepdata'
-import { DaysState } from 'Types/State/days-state'
-import { CREATE_DAYS_START } from '@actions/calendar-actions/calendar-actions'
 
 const initialState = {
-  days: [],
-  nights: [],
-  loading: false
+  selectedDay: new Date().toISOString()
 }
 
-const reducer = (state = initialState, action: ReduxAction): DaysState => {
-  const { type, payload, error } = action
+export type CalendarState = {
+  selectedDay: undefined | string
+}
+
+const reducer = (state = initialState, action: ReduxAction): CalendarState => {
+  const { type, payload } = action
 
   switch (type) {
     case RESET_APP:
       return initialState
 
-    case CREATE_DAYS_START:
-      return { ...state, loading: true }
-
-    case CREATE_START:
-      return { ...state, loading: true }
-
-    case CREATE_SUCCESS:
-      return { ...state, loading: false }
-
-    case CREATE_FAILURE:
-      return { ...state, loading: false }
-
-    case UPDATE_START:
-      return { ...state, loading: true }
-
-    case UPDATE_SUCCESS:
-      return { ...state, loading: false }
-
-    case UPDATE_FAILURE:
-      return { ...state, loading: false }
+    case SET_SELECTED_DATE:
+      // payload: isoString
+      return { ...state, selectedDay: payload }
 
     default:
       return state

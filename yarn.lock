@@ -4064,6 +4064,15 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
+"@types/react-native-calendars@^1.20.10":
+  version "1.20.10"
+  resolved "https://registry.yarnpkg.com/@types/react-native-calendars/-/react-native-calendars-1.20.10.tgz#d2a59384b6b11c9f031e191c86c483c9105ff4e0"
+  integrity sha512-bmWlkFa/6SNF98aM9rjKMGUOSDb15VBsfxBW5oo/iJ5tm5THf+eAGlxH72hGZFqJpr93plBs+ctkRVHQA7fx1w==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+    "@types/xdate" "*"
+
 "@types/react-native@*":
   version "0.63.11"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.11.tgz#0965552aa4cfe8a7c0c64f1afb1c101d2fa7510a"
@@ -4136,6 +4145,11 @@
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-7.0.4.tgz#00a5749810b4ad80bff73a61f9cc9d0d521feb3c"
   integrity sha512-WGZCqBZZ0mXN2RxvLHL6/7RCu+OWs28jgQMP04LWfpyJlQUMTR6YU9CNJAKDgbw+EV/u687INXuLUc7FuML/4g==
+
+"@types/xdate@*":
+  version "0.8.30"
+  resolved "https://registry.yarnpkg.com/@types/xdate/-/xdate-0.8.30.tgz#50ac1ce7d6e4c0d21a61e45d23653f494f2186bf"
+  integrity sha512-dEPW/RQBM7lyhcR0/3yG23aXkSfE26tR0AIB+DU/NmShnW5nv5rRffdJ2U+4FTTQyajz8wD9MQbPu4A/oKl/ig==
 
 "@types/yargs-parser@*":
   version "15.0.0"
@@ -12549,7 +12563,7 @@ react-native-base64@0.0.2:
   resolved "https://registry.yarnpkg.com/react-native-base64/-/react-native-base64-0.0.2.tgz#c28463c2c6779ac3ec5fdd12979ebc8c5f9b410a"
   integrity sha512-Fu/J1a2y0X22EJDWqJR2oEa1fpP4gTFjYxk8ElJdt1Yak3HOXmFJ7EohLVHU2DaQkgmKfw8qb7u/48gpzveRbg==
 
-react-native-calendars@^1.212.0:
+react-native-calendars@^1.343.0:
   version "1.343.0"
   resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.343.0.tgz#db6262202694486db5d6c1bfe4b39f867124ecc4"
   integrity sha512-wuBt/XyhCS1ycdmCWLRpXmRF2mXYBbfGjrjh7mKksrmame2DlW5jHX2sW3kvcMyLIsApuL6GEMxlzaPqgCB5Kw==
