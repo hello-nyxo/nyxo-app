@@ -10,6 +10,11 @@ const testValues = {
   end: { h: 12, m: 0 }
 }
 
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: jest.fn(),
+  isIphoneX: () => true
+}))
+
 describe('Manual sleep actions', () => {
   it('should create an action to set values', () => {
     const expectedAction = {

@@ -10,8 +10,24 @@ import {
 } from '@actions/auth/auth-actions'
 import reducer, { initialState } from './auth-reducer'
 
+jest.mock('react-native', () => ({
+  NativeModules: {
+    RNCNetInfo: jest.fn()
+  },
+  StyleSheet: {
+    hairlineWidth: 10
+  }
+}))
+
 NativeModules.RNCNetInfo = RNCNetInfoMock
+
 jest.mock('@react-native-community/netinfo', () => ({}))
+
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: jest.fn(),
+  ifIphoneX: jest.fn(),
+  isIphoneX: jest.fn()
+}))
 
 describe('Auth reducer', () => {
   it('should return the initial state', () => {
