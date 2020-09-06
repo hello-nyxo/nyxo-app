@@ -1,0 +1,244 @@
+type SleepData
+@model
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete]
+      queries: [get, list]
+    }
+    {
+      allow: owner
+      ownerField: "viewers"
+      mutations: null
+      queries: [get, list]
+    }
+  ]
+) {
+  id: ID!
+  userId: ID!
+  user: User! @connection(fields: ["userId"])
+  date: String!
+  rating: Int
+  night: [NightSegment]
+}
+
+type NightSegment {
+  value: String!
+  sourceName: String!
+  sourceId: String!
+  startDate: String!
+  endDate: String!
+}
+
+type Request
+@model
+@auth(
+  rules: [
+    {
+      allow: owner
+      ownerField: "owner"
+      mutations: [create]
+      queries: [get, list]
+    }
+    {
+      allow: owner
+      ownerField: "userId"
+      mutations: [delete, update]
+      queries: [get, list]
+    }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete]
+      queries: [get, list]
+    }
+  ]
+) {
+  id: ID!
+  requesterName: String!
+  requesterId: String!
+  userName: String!
+  userId: String!
+  accepted: Boolean!
+}
+
+type User
+@key(
+  name: "byConnectionId"
+  fields: ["connectionId"]
+  queryField: "userByConnectionId"
+)
+@model
+@auth(
+  rules: [
+    {
+      allow: owner
+      ownerField: "owner"
+      mutations: [update, delete]
+      queries: [get, list]
+    }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete]
+      queries: [get, list]
+    }
+    { allow: groups, groups: ["coach"], mutations: null, queries: [get, list] }
+  ]
+) {
+  connectionId: String
+  id: ID!
+  email: String!
+  nickname: String
+  darkMode: Boolean
+  intercomId: String
+  activeCoaching: CoachingData @connection(name: "ActiveCoachingMonth")
+}
+
+type CoachingData
+@key(name: "byUser", fields: ["userId"], queryField: "coachingByUser")
+@model
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete]
+      queries: [get, list]
+    }
+    {
+      allow: owner
+      ownerField: "viewers"
+      mutations: null
+      queries: [get, list]
+    }
+  ]
+) {
+  id: ID!
+  userId: ID!
+  user: User! @connection(fields: ["userId"])
+  stage: Stage
+  active: User @connection(name: "ActiveCoachingMonth")
+  activeWeek: String
+  started: String
+  ended: String
+  weeks: [Week]
+  lessons: [String]
+}
+
+enum Stage {
+  ONGOING
+  PAUSED
+  COMPLETED
+}
+
+type Week {
+  started: String
+  ended: String
+  locked: Boolean
+  slug: String
+}
+
+type Habit
+@model
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete]
+      queries: [get, list]
+    }
+    {
+      allow: owner
+      ownerField: "viewers"
+      mutations: null
+      queries: [get, list]
+    }
+  ]
+) {
+  id: ID!
+  userId: ID!
+  user: User! @connection(fields: ["userId"])
+  dayStreak: Int
+  longestDayStreak: Int
+  latestCompletedDate: String
+  title: String!
+  description: String
+  date: String!
+  days: [DayCompletionRecord]!
+  archived: Boolean
+  period: Period!
+}
+
+enum Period {
+  morning
+  afternoon
+  evening
+}
+
+type DayCompletionRecord {
+  key: String
+  value: Int
+}
+
+type Night
+@model
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete]
+      queries: [get, list]
+    }
+    {
+      allow: owner
+      ownerField: "viewers"
+      mutations: null
+      queries: [get, list]
+    }
+  ]
+) {
+  id: ID!
+  userId: ID!
+  user: User! @connection(fields: ["userId"])
+  sourceId: String!
+  sourceName: String!
+  value: NightValue!
+  startDate: String!
+  endDate: String!
+  totalDuration: Int!
+}
+
+enum NightValue {
+  InBed
+  Asleep
+  Awake
+}
+
+type LikedContent
+@model
+@key(name: "bySlug", fields: ["slug", "id"], queryField: "likedContentBySlug")
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete, update, create]
+      queries: [get, list]
+    }
+  ]
+) {
+  id: ID!
+  name: String
+  type: String
+  slug: String
+}
