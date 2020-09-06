@@ -28,3 +28,8 @@ export const getExplanationsModal = createSelector(
   getModalState,
   (modalState: ModalState) => modalState.explanationsModal
 )
+
+export const getCalendarModal = createSelector(
+  getModalState,
+  (modalState: ModalState) => modalState.calendarModal
+)

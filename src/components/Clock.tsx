@@ -1,8 +1,8 @@
 import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
 import useSleep from '@hooks/useSleep'
+import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
-import { getSelectedDay } from '@selectors/SleepDataSelectors'
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { Dimensions } from 'react-native'
 import Animated from 'react-native-reanimated'
 import Svg from 'react-native-svg'
@@ -12,15 +12,16 @@ import { Value } from 'Types/Sleepdata'
 import colors from '../styles/colors'
 import AddNightButton from './clock/AddNightButton'
 import ClockTimes from './clock/ClockTimes'
-import Date from './clock/Date'
 import FallAsleepWindow from './clock/FallAsleepWindow'
 import InfoButton from './clock/InfoButton'
 import MinuteSticks from './clock/MinuteSticks'
-import NightRating from './clock/NightRating'
 import SleepArc from './clock/SleepArc'
 import SleepTime from './clock/SleepTime'
 import Bedtime from './clock/Slider'
 import TrackerName from './clock/TrackerName'
+import Date from './clock/Date'
+import TranslatedText from './TranslatedText'
+import { StyledModal } from './Primitives/Primitives'
 
 const { width } = Dimensions.get('window')
 const clockSize = width - 40
@@ -31,7 +32,18 @@ const inBedRadius: number = clockSize / 2 - 15
 const fallAsleepRadius: number = clockSize / 2 - 5
 
 const Clock: FC = () => {
-  const { windowStart, windowEnd, night } = useSleep()
+  const {
+    windowStart,
+    windowEnd,
+    night,
+    inBedDuration,
+    asleepDuration,
+    sleepStart,
+    sleepEnd,
+    bedStart,
+    bedEnd
+  } = useSleep()
+  const date = useSelector(getSelectedDate)
   const editMode = useSelector(getEditMode)
   const dispatch = useDispatch()
 
@@ -42,85 +54,98 @@ const Clock: FC = () => {
   console.log(night)
 
   return (
-    <ClockContainer style={{ height: clockSize + 15, width: clockSize + 15 }}>
-      <Svg width={clockSize} height={clockSize}>
-        <MinuteSticks x={x} y={y} radius={radius} />
-        <ClockTimes x={x} y={y} radius={radius} />
-        <FallAsleepWindow
-          goToSleepWindowStart={windowStart}
-          goToSleepWindowEnd={windowEnd}
-          x={x}
-          y={y}
-          radius={fallAsleepRadius}
-        />
-        <SleepArc
-          night={night}
-          value={Value.InBed}
-          strokeWidth={12}
-          color={colors.inBedColor}
-          x={x}
-          y={y}
-          radius={inBedRadius}
-        />
-        <SleepArc
-          night={night}
-          value={Value.Awake}
-          strokeWidth={8}
-          color={colors.afternoonAccent}
-          x={x}
-          y={y}
-          radius={inBedRadius}
-        />
-        <SleepArc
-          night={night}
-          value={Value.Asleep}
-          strokeWidth={8}
-          color={colors.radiantBlue}
-          x={x}
-          y={y}
-          radius={inBedRadius}
-        />
-        {/* <Date hasData={!!night} date={date} x={x} y={y} /> */}
-        <TrackerName x={x} y={y} />
+    <Card>
+      <Title>STAT.STATISTICS</Title>
 
-        {/* {!editMode && (
-          <SleepTime
-            y={y}
+      <ClockContainer style={{ height: clockSize + 15, width: clockSize + 15 }}>
+        <Svg width={clockSize} height={clockSize}>
+          <MinuteSticks x={x} y={y} radius={radius} />
+          <ClockTimes x={x} y={y} radius={radius} />
+          <FallAsleepWindow
+            goToSleepWindowStart={windowStart}
+            goToSleepWindowEnd={windowEnd}
             x={x}
-            hasData={!!night}
-            timeInBed={selectedDay.inBedDuration}
-            timeAsleep={selectedDay.asleepDuration}
-            sleepStart={selectedDay.sleepStart}
-            sleepEnd={selectedDay.sleepEnd}
-            bedStart={selectedDay.bedStart}
-            bedEnd={selectedDay.bedEnd}
+            y={y}
+            radius={fallAsleepRadius}
           />
-        )} */}
-      </Svg>
-      {/* <NightRating day={selectedDay} x={x} /> */}
-      {editMode && (
-        <Bedtime
-          clockSize={clockSize}
-          toggleEditMode={toggleEditNightMode}
-          date={date}
-        />
-      )}
-      <AddNightButton />
-      <InfoButton />
-    </ClockContainer>
+          <SleepArc
+            night={night}
+            value={Value.InBed}
+            strokeWidth={12}
+            color={colors.inBedColor}
+            x={x}
+            y={y}
+            radius={inBedRadius}
+          />
+          <SleepArc
+            night={night}
+            value={Value.Awake}
+            strokeWidth={8}
+            color={colors.afternoonAccent}
+            x={x}
+            y={y}
+            radius={inBedRadius}
+          />
+          <SleepArc
+            night={night}
+            value={Value.Asleep}
+            strokeWidth={8}
+            color={colors.radiantBlue}
+            x={x}
+            y={y}
+            radius={inBedRadius}
+          />
+          <TrackerName x={x} y={y} />
+
+          {!editMode && (
+            <SleepTime
+              y={y}
+              x={x}
+              hasData={!!night}
+              timeInBed={inBedDuration}
+              timeAsleep={asleepDuration}
+              sleepStart={sleepStart}
+              sleepEnd={sleepEnd}
+              bedStart={bedStart}
+              bedEnd={bedEnd}
+            />
+          )}
+        </Svg>
+        {/* <NightRating day={selectedDay} x={x} /> */}
+        {editMode && (
+          <Bedtime
+            clockSize={clockSize}
+            toggleEditMode={toggleEditNightMode}
+            date={date}
+          />
+        )}
+        <AddNightButton />
+        <InfoButton />
+      </ClockContainer>
+    </Card>
   )
 }
 
-export default Clock
+export default memo(Clock)
 
-const ClockContainer = styled(Animated.View)`
+const Card = styled.View`
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  box-shadow: ${({ theme }) => theme.SHADOW};
+  border-radius: 7px;
+  margin-top: 8px;
+`
+
+const ClockContainer = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
   padding: 5px;
-  border-radius: 7px;
   flex: 1;
-  margin-top: 8px;
+`
+
+const Title = styled(TranslatedText)`
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-size: 15px;
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  margin-bottom: 10px;
 `

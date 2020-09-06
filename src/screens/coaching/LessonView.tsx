@@ -9,7 +9,7 @@ import {
 } from '@selectors/coaching-selectors/coaching-selectors'
 import Copyright from '@components/CoachingSpecific/Copyright'
 import Tags from '@components/LessonComponents/Tags'
-import React, { memo, useState } from 'react'
+import React, { memo, useState, FC } from 'react'
 import { LayoutChangeEvent } from 'react-native'
 import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
 import Animated from 'react-native-reanimated'
@@ -29,7 +29,7 @@ import { fonts, StyleProps } from '../../styles/themes'
 
 const yOffset = new Animated.Value(0)
 
-const LessonView = () => {
+const LessonView: FC = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation()
   const [height, setHeight] = useState(0)
@@ -53,28 +53,9 @@ const LessonView = () => {
     return null
   }
 
-  useOnMount(() => {
-    if (selectedLesson) {
-      // dispatch(
-      //   pushInteractedLesson({
-      //     lessonId: contentId,
-      //     weekId,
-      //     latestInteractTimestamp: Date.now(),
-      //   })
-      // );
-    }
-  })
-
   const markCompleted = async () => {
     await Promise.all([
       dispatch(completeLesson(slug)),
-      // dispatch(
-      //   popFromIncompleteLessons({
-      //     lessonId: contentId,
-      //     weekId,
-      //     latestInteractTimestamp: Date.now(),
-      //   })
-      // ),
       yOffset.setValue(0),
       navigation.goBack()
     ])
@@ -84,7 +65,7 @@ const LessonView = () => {
     setHeight(event.nativeEvent.layout.height)
   }
 
-  const ButtonAnimation = (yOffset: any) => {
+  const ButtonAnimation = (yOffset: Animated.Value<number>) => {
     return {
       padding: yOffset.interpolate({
         inputRange: [height * 0.5, height],
@@ -99,7 +80,7 @@ const LessonView = () => {
     }
   }
 
-  const textIn = (yOffset: any) => {
+  const textIn = (yOffset: Animated.Value<number>) => {
     return {
       opacity: yOffset.interpolate({
         inputRange: [height * 0.5, height],

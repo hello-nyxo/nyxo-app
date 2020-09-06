@@ -1,18 +1,17 @@
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { formatSleepData } from '@actions/sleep/sleep-data-actions'
+import { getPolarEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from 'config/Config'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from 'helpers/Keychain'
 import { formatPolarSamples } from 'helpers/sleep/polar-helper'
 import moment from 'moment'
 import { authorize } from 'react-native-app-auth'
+import { GetState } from 'Types/GetState'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { PolarSleepObject } from 'Types/Sleep/Polar'
 import { PolarAuthorizeResult, ResponseBase } from 'Types/State/api-state'
 import { SOURCE } from 'typings/state/sleep-source-state'
-import { getPolarEnabled } from '@selectors/api-selectors/api-selectors'
-import { GetState } from 'Types/GetState'
+import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 
 export const POLAR_AUTHORIZE_SUCCESS = 'POLAR_AUTHORIZE_SUCCESS'
 export const POLAR_REVOKE_SUCCESS = 'POLAR_REVOKE_SUCCESS'
@@ -144,8 +143,7 @@ export const getPolarSleep = (): Thunk => async (dispatch: Dispatch) => {
           .reverse()
           .slice(7)
         const formattedResponse = formatPolarSamples(sevenNightsSleepData)
-        await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+        await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepPolarSuccess())
       } else {
         const newAccessToken = await dispatch(authorizePolar())
@@ -166,8 +164,7 @@ export const getPolarSleep = (): Thunk => async (dispatch: Dispatch) => {
           .slice(7)
 
         const formattedResponse = formatPolarSamples(sevenNightsSleepData)
-        await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+        await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepPolarSuccess())
       }
     } catch (error) {

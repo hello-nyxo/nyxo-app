@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export type CalendarState = {
-  selectedDay: undefined | string
+  selectedDay: string
 }
 
 const reducer = (state = initialState, action: ReduxAction): CalendarState => {
@@ -19,6 +19,7 @@ const reducer = (state = initialState, action: ReduxAction): CalendarState => {
 
     case SET_SELECTED_DATE:
       // payload: isoString
+      console.log(state)
       return { ...state, selectedDay: payload }
 
     default:

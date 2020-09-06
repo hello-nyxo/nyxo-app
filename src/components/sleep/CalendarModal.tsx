@@ -1,21 +1,61 @@
-import React, { FC } from 'react'
-import { Calendar, DateObject } from 'react-native-calendars'
-import Modal from 'react-native-modal'
+import { toggleCalendarModal } from '@actions/modal/modal-actions'
+import { getCalendarModal } from '@selectors/ModalSelectors'
+import React, { FC, useMemo } from 'react'
+import { Calendar, DateCallbackHandler } from 'react-native-calendars'
+import Modal, { ReactNativeModal } from 'react-native-modal'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
+import { fetchSleepData } from 'store/actions/sleep/sleep-data-actions'
+import { startOfDay, format, subDays, subYears, endOfDay } from 'date-fns'
+import useCalendar from 'hooks/calendar'
 import colors from 'styles/colors'
 
+const minDate = subYears(new Date(), 1)
+
 const CalendarModal: FC = () => {
-  const onDayPress = ({ timeStamp }: DateObject) => {}
+  const isVisible = useSelector(getCalendarModal)
+  const dispatch = useDispatch()
+  const { selectedDate, selectDate } = useCalendar()
+
+  const onDayPress: DateCallbackHandler = async ({ timestamp }) => {
+    selectDate(new Date(timestamp))
+    const startDate = startOfDay(subDays(timestamp, 1)).toISOString()
+    const endDate = endOfDay(timestamp).toISOString()
+    dispatch(fetchSleepData(startDate, endDate))
+  }
+
+  const toggleModal = () => {
+    dispatch(toggleCalendarModal())
+  }
+
+  const { markedDates } = useMemo(
+    () => ({
+      markedDates: {
+        [format(new Date(selectedDate), 'yyyy-MM-dd')]: {
+          selected: true
+        }
+      }
+    }),
+    [selectedDate]
+  )
 
   return (
     <StyledModal
       backdropTransitionOutTiming={0}
       hideModalContentWhileAnimating
-      isVisible={false}
+      isVisible={isVisible}
       useNativeDriver={false}
-      onBackdropPress={() => {}}>
+      onBackdropPress={toggleModal}>
       <Container>
-        <ThemedCalendar onDayPress={onDayPress} enableSwipeMonths={true} />
+        <ThemedCalendar
+          hideExtraDays
+          minDate={minDate}
+          markedDates={markedDates}
+          showWeekNumbers
+          maxDate={new Date()}
+          enableSwipeMonths
+          onDayPress={onDayPress}
+        />
       </Container>
     </StyledModal>
   )
@@ -23,7 +63,7 @@ const CalendarModal: FC = () => {
 
 export default CalendarModal
 
-const StyledModal = styled(Modal)`
+const StyledModal = styled(Modal)<ReactNativeModal>`
   margin: 0px 0px;
   position: absolute;
   bottom: 0px;
@@ -45,7 +85,7 @@ export const ThemedCalendar = styled(Calendar).attrs(({ theme }) => ({
     calendarBackground: theme.SECONDARY_BACKGROUND_COLOR,
     textSectionTitleColor: '#b6c1cd',
     textSectionTitleDisabledColor: '#d9e1e8',
-    selectedDayBackgroundColor: '#00adf5',
+    selectedDayBackgroundColor: 'red',
     selectedDayTextColor: '#ffffff',
     todayTextColor: theme.PRIMARY_BUTTON_COLOR,
     dayTextColor: theme.SECONDARY_TEXT_COLOR,
@@ -53,7 +93,7 @@ export const ThemedCalendar = styled(Calendar).attrs(({ theme }) => ({
     dotColor: '#00adf5',
     selectedDotColor: '#ffffff',
     arrowColor: 'red',
-    disabledArrowColor: '#d9e1e8',
+    disabledArrowColor: theme.SECONDARY_BACKGROUND_COLOR,
     monthTextColor: theme.SECONDARY_TEXT_COLOR,
     indicatorColor: 'blue',
     textDayFontFamily: theme.FONT_MEDIUM,
@@ -65,6 +105,6 @@ export const ThemedCalendar = styled(Calendar).attrs(({ theme }) => ({
     textMonthFontSize: 16,
     textDayHeaderFontSize: 16
   }
-}))`
+}))<Calendar>`
   height: 350px;
 `

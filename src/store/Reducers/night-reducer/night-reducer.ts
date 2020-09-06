@@ -19,7 +19,7 @@ const reducer = (
     case FETCH_SLEEP_SUCCESS:
       return [...payload]
     default:
-      return initialState
+      return state
   }
 }
 

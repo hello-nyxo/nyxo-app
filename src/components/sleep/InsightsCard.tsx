@@ -2,7 +2,6 @@ import {
   getGoToSleepWindowEnd,
   getGoToSleepWindowStart
 } from '@selectors/insight-selectors/Insights'
-import { getSelectedDay } from '@selectors/SleepDataSelectors'
 import { IconBold } from '@components/iconRegular'
 import { Column } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
@@ -11,12 +10,13 @@ import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
-import { WIDTH } from 'helpers/Dimensions'
+import { WIDTH } from '@helpers/Dimensions'
+import useSleep from '@hooks/useSleep'
 
 const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
 const InsightsCard: FC = () => {
-  const { bedStart, bedEnd, sleepStart, sleepEnd } = useSelector(getSelectedDay)
+  const { bedStart, bedEnd, sleepStart, sleepEnd } = useSleep()
   const goToSleepWindowStart = useSelector(getGoToSleepWindowStart)
   const goToSleepWindowEnd = useSelector(getGoToSleepWindowEnd)
 

@@ -680,5 +680,10 @@
     "HABITS": "Habits",
     "PROFILE": "Profile",
     "SETTINGS": "Settings"
+  },
+
+  "COACHING": {
+    "WATCH_INTRO": "See introduction",
+    "START": "Start Coaching"
   }
 }

@@ -1,7 +1,7 @@
 import { resetCoaching } from '@actions/coaching/coaching-actions'
 import CoachingMonthCard from '@components/CoachingMonthCard/CoachingMonthCard'
 import React, { memo } from 'react'
-import { ScrollView } from 'react-native-gesture-handler'
+import { ScrollView, FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getActiveCoachingMonth,
@@ -18,17 +18,13 @@ import {
   P,
   SafeAreaView
 } from '@components/Primitives/Primitives'
+import { useListCoaching } from 'hooks/coaching/useCoaching'
 
 const CoachingSettings = () => {
-  const coachingStage = useSelector(getCoachingStage)
-  const coachingMonths = useSelector(getCoachingMonths)
-  const activeMonth = useSelector(getActiveCoachingMonth)
+  const handleCoachingReset = () => {}
 
-  const dispatch = useDispatch()
-
-  const handleCoachingReset = () => {
-    dispatch(resetCoaching())
-  }
+  const { data } = useListCoaching()
+  const months = data?.items
 
   return (
     <SafeAreaView>
@@ -40,23 +36,24 @@ const CoachingSettings = () => {
         <Container>
           <H2>Coaching settings</H2>
 
-          <P variables={{ coachingStage }}>CoachingResetText</P>
-
+          {/* <P variables={{ coachingStage }}>CoachingResetText</P> */}
+          {/* 
           <ResetButton center onPress={handleCoachingReset}>
             Reset coaching
-          </ResetButton>
+          </ResetButton> */}
 
-          <ActiveContainer>
+          {/* <ActiveContainer>
             {activeMonth && <H3>COACHING_SETTINGS.CURRENTLY_ACTIVE</H3>}
             {activeMonth && <CoachingMonthCard month={activeMonth} />}
-          </ActiveContainer>
+          </ActiveContainer> */}
 
-          {coachingMonths && coachingMonths.length > 0 && (
+          {/* {coachingMonths && coachingMonths.length > 0 && (
             <H3>COACHING_SETTINGS.OTHER_COACHING_MONTHS</H3>
-          )}
-          {coachingMonths &&
-            coachingMonths.map((coaching) => (
-              <CoachingMonthCard month={coaching} />
+          )} */}
+
+          {months &&
+            months.map((coaching) => (
+              <CoachingMonthCard key={`${coaching?.id}`} month={coaching} />
             ))}
         </Container>
       </ScrollView>

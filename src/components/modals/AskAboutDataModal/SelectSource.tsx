@@ -5,15 +5,15 @@ import styled from 'styled-components/native'
 import { changeHealthKitSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import { markIntroductionCompleted } from '@actions/user/user-actions'
 import { fonts, StyleProps } from '../../../styles/themes'
-import { getPrimarySource, getSources } from '@selectors/SleepDataSelectors'
+
 import { PrimaryButton } from '../../Buttons/PrimaryButton'
-import { P } from '../../Primitives/Primitives'
+import { P } from '@components/Primitives/Primitives'
 import SourceRow from '../../SettingsSpecific/SourceRow'
-import TranslatedText from '../../TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 
 const SelectSource = () => {
   const dispatch = useDispatch()
-  const sources = useSelector(getSources)
+  const sources = //useSelector(getSources)
   const primarySource = useSelector(getPrimarySource)
 
   const done = () => {
@@ -21,14 +21,14 @@ const SelectSource = () => {
   }
 
   const mappedSources = sources
-    ? sources.map((source, index) => {
+    ? sources.map((source) => {
         const switchSource = () => {
           dispatch(changeHealthKitSource(source))
         }
 
         return (
           <SourceRow
-            key={index}
+            key={source.sourceId}
             switchSource={switchSource}
             sourceId={source.sourceId}
             selectedSourceId={primarySource.sourceId}

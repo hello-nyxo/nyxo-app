@@ -1,24 +1,21 @@
-import React, { memo } from 'react'
-import { TouchableOpacity } from 'react-native'
+import React, { memo, FC } from 'react'
+import { TouchableOpacity, ViewStyle } from 'react-native'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
 import TranslatedText from '../TranslatedText'
 
-interface TextButtonProps {
+type Props = {
   center?: boolean
   children: any
-  style?: any
-  onPress: Function
+  style?: ViewStyle
+  onPress: () => void
 }
 
-const TextButton = (props: TextButtonProps) => {
-  const handlePress = () => {
-    props.onPress()
-  }
+const TextButton: FC<Props> = ({ onPress, children, style }) => {
   return (
-    <TouchableOpacity style={props.style} onPress={handlePress}>
+    <TouchableOpacity style={style} onPress={onPress}>
       <Container>
-        <Text center>{props.children}</Text>
+        <Text center>{children}</Text>
       </Container>
     </TouchableOpacity>
   )
@@ -37,7 +34,8 @@ interface TextProps {
 const Text = styled(TranslatedText)<TextProps>`
   font-size: 17px;
   color: ${colors.radiantBlue};
-  text-align: ${(props) => (props.center ? 'center' : 'left')};
+	font-family:${({ theme }) => theme.FONT_MEDIUM}
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 `
 
 export default memo(TextButton)

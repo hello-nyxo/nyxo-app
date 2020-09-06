@@ -1,18 +1,18 @@
-import { captureException } from '@sentry/react-native'
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { formatSleepData } from '@actions/sleep/sleep-data-actions'
+import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
+import { getWithingsEnabled } from '@selectors/api-selectors/api-selectors'
+import { captureException } from '@sentry/react-native'
 import CONFIG from 'config/Config'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from 'helpers/Keychain'
 import { formatWithingsSamples } from 'helpers/sleep/withings-helper'
 import moment from 'moment'
 import { authorize, refresh, RefreshResult } from 'react-native-app-auth'
-import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
-import { SOURCE } from 'typings/state/sleep-source-state'
-import { getWithingsEnabled } from '@selectors/api-selectors/api-selectors'
 import { GetState } from 'Types/GetState'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
+import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { ResponseBase, WithingsAuthorizeResult } from 'Types/State/api-state'
+import { SOURCE } from 'typings/state/sleep-source-state'
+import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 
 export const WITHINGS_AUTHORIZE_SUCCESS = 'WITHINGS_AUTHORIZE_SUCCESS'
 export const WITHINGS_REVOKE_SUCCESS = 'WITHINGS_REVOKE_SUCCESS'
@@ -182,7 +182,7 @@ export const getWithingsSleep = (
         const response = await withingsApiCall.json()
         const formattedResponse = formatWithingsSamples(response.body.series)
         await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+        await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepWithingsSuccess())
       } else {
         const accessToken = await dispatch(refreshWithingsToken())
@@ -200,7 +200,7 @@ export const getWithingsSleep = (
         const response = await withingsApiCall.json()
         const formattedResponse = formatWithingsSamples(response.body.series)
         await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+
         await dispatch(fetchSleepWithingsSuccess())
       }
     } catch (error) {

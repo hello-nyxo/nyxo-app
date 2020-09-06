@@ -1,20 +1,32 @@
-import React from 'react'
-import { CoachingMonth } from 'typings/state/coaching-state'
-import styled from 'styled-components/native'
-import moment from 'moment'
-import { fonts } from 'styles/themes'
 import TranslatedText from '@components/TranslatedText'
+import moment from 'moment'
+import React, { FC } from 'react'
+import styled from 'styled-components/native'
+import { fonts } from 'styles/themes'
+import { CoachingData } from 'typings/state/coaching-state'
+import { useUpdateUser } from 'hooks/user/useUser'
+import { Button } from 'react-native'
 
 type Props = {
-  month: CoachingMonth
+  month: CoachingData
 }
 
-const CoachingMonthCard = ({ month }: Props) => {
+const CoachingMonthCard: FC<Props> = ({ month }) => {
   const title = moment(month.started).format('MMMM')
   const startDate = moment(month.started).format('DD.MM.YYYY')
   const endDate = month.ended ? moment(month.ended).format('DD.MM.YYYY') : ''
-  const weeks = month.weeks.length
-  const lessons = month.lessons?.length
+  const weeks = month.weeks ? month.weeks.length : 0
+  const lessons = month.lessons ? month.lessons?.length : 0
+
+  const [mutate, { status, error, data }] = useUpdateUser()
+  console.log(status, error, data)
+  const setActive = () => {
+    mutate({
+      user: {
+        userActiveCoachingId: month.id
+      }
+    })
+  }
 
   return (
     <Container>
@@ -22,9 +34,9 @@ const CoachingMonthCard = ({ month }: Props) => {
       <Started>
         {startDate} – {endDate}
       </Started>
-
+      <Button onPress={setActive} title="Set Active" />
       <Row>
-        <Stat variables={{ weeks }}>COACHING_MONTH.WEEKS</Stat>
+        <Stat variables={{ weeks: 0 }}>COACHING_MONTH.WEEKS</Stat>
         <Stat variables={{ lessons }}>COACHING_MONTH.LESSONS</Stat>
       </Row>
     </Container>

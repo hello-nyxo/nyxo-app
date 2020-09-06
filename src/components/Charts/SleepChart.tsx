@@ -1,20 +1,19 @@
-import TranslatedText from '@components/TranslatedText'
 import { setSelectedDay } from '@actions/sleep/sleep-data-actions'
+import TranslatedText from '@components/TranslatedText'
+import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
 import { extent, max, min, scaleTime } from 'd3'
 import moment from 'moment'
-import React, { useMemo, FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import { Dimensions, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { getAllDays } from '@selectors/SleepDataSelectors'
-import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
 import { Day, Night, Value } from 'Types/Sleepdata'
 import SleepBars from './SleepTimeChart/SleepBars'
+import TargetBars from './SleepTimeChart/TargetBars'
 import XTicks from './SleepTimeChart/XTicks'
 import YTicks from './SleepTimeChart/YTicks'
-import TargetBars from './SleepTimeChart/TargetBars'
 
 const { height, width } = Dimensions.get('window')
 
@@ -24,7 +23,7 @@ export const paddingRight = 100
 export const chartHeight = height / 3
 
 const SleepTimeChart: FC = () => {
-  const days = useSelector(getAllDays)
+  const days: Day[] = []
   const dispatch = useDispatch()
   const chartWidth = (barWidth + 10) * days.length + paddingLeft + paddingRight
   const bedtimeWindow = useSelector(getGoToSleepWindowCenter)

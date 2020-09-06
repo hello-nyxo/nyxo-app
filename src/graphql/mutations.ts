@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const createSleepData = /* GraphQL */ `
@@ -13,6 +14,8 @@ export const createSleepData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       date
       rating
@@ -23,10 +26,12 @@ export const createSleepData = /* GraphQL */ `
         startDate
         endDate
       }
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const updateSleepData = /* GraphQL */ `
   mutation UpdateSleepData($input: UpdateSleepDataInput!) {
     updateSleepData(input: $input) {
@@ -39,6 +44,8 @@ export const updateSleepData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       date
       rating
@@ -49,10 +56,12 @@ export const updateSleepData = /* GraphQL */ `
         startDate
         endDate
       }
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const deleteSleepData = /* GraphQL */ `
   mutation DeleteSleepData($input: DeleteSleepDataInput!) {
     deleteSleepData(input: $input) {
@@ -65,6 +74,8 @@ export const deleteSleepData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       date
       rating
@@ -75,10 +86,12 @@ export const deleteSleepData = /* GraphQL */ `
         startDate
         endDate
       }
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const createRequest = /* GraphQL */ `
   mutation CreateRequest($input: CreateRequestInput!) {
     createRequest(input: $input) {
@@ -88,9 +101,11 @@ export const createRequest = /* GraphQL */ `
       userName
       userId
       accepted
+      createdAt
+      updatedAt
     }
   }
-`
+`;
 export const updateRequest = /* GraphQL */ `
   mutation UpdateRequest($input: UpdateRequestInput!) {
     updateRequest(input: $input) {
@@ -100,9 +115,11 @@ export const updateRequest = /* GraphQL */ `
       userName
       userId
       accepted
+      createdAt
+      updatedAt
     }
   }
-`
+`;
 export const deleteRequest = /* GraphQL */ `
   mutation DeleteRequest($input: DeleteRequestInput!) {
     deleteRequest(input: $input) {
@@ -112,9 +129,11 @@ export const deleteRequest = /* GraphQL */ `
       userName
       userId
       accepted
+      createdAt
+      updatedAt
     }
   }
-`
+`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser($input: CreateUserInput!) {
     createUser(input: $input) {
@@ -124,9 +143,23 @@ export const createUser = /* GraphQL */ `
       nickname
       darkMode
       intercomId
+      activeCoaching {
+        id
+        userId
+        stage
+        activeWeek
+        started
+        ended
+        lessons
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
     }
   }
-`
+`;
 export const updateUser = /* GraphQL */ `
   mutation UpdateUser($input: UpdateUserInput!) {
     updateUser(input: $input) {
@@ -136,9 +169,23 @@ export const updateUser = /* GraphQL */ `
       nickname
       darkMode
       intercomId
+      activeCoaching {
+        id
+        userId
+        stage
+        activeWeek
+        started
+        ended
+        lessons
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
     }
   }
-`
+`;
 export const deleteUser = /* GraphQL */ `
   mutation DeleteUser($input: DeleteUserInput!) {
     deleteUser(input: $input) {
@@ -148,22 +195,28 @@ export const deleteUser = /* GraphQL */ `
       nickname
       darkMode
       intercomId
+      activeCoaching {
+        id
+        userId
+        stage
+        activeWeek
+        started
+        ended
+        lessons
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
     }
   }
-`
+`;
 export const createCoachingData = /* GraphQL */ `
   mutation CreateCoachingData($input: CreateCoachingDataInput!) {
     createCoachingData(input: $input) {
       id
-      weeks {
-        started
-        ended
-        locked
-        slug
-      }
-      lessons
       userId
-      stage
       user {
         connectionId
         id
@@ -171,27 +224,41 @@ export const createCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
+      }
+      stage
+      active {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
       }
       activeWeek
       started
       ended
+      weeks {
+        started
+        ended
+        locked
+        slug
+      }
+      lessons
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const updateCoachingData = /* GraphQL */ `
   mutation UpdateCoachingData($input: UpdateCoachingDataInput!) {
     updateCoachingData(input: $input) {
       id
-      weeks {
-        started
-        ended
-        locked
-        slug
-      }
-      lessons
       userId
-      stage
       user {
         connectionId
         id
@@ -199,27 +266,41 @@ export const updateCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
+      }
+      stage
+      active {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
       }
       activeWeek
       started
       ended
+      weeks {
+        started
+        ended
+        locked
+        slug
+      }
+      lessons
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const deleteCoachingData = /* GraphQL */ `
   mutation DeleteCoachingData($input: DeleteCoachingDataInput!) {
     deleteCoachingData(input: $input) {
       id
-      weeks {
-        started
-        ended
-        locked
-        slug
-      }
-      lessons
       userId
-      stage
       user {
         connectionId
         id
@@ -227,14 +308,36 @@ export const deleteCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
+      }
+      stage
+      active {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
       }
       activeWeek
       started
       ended
+      weeks {
+        started
+        ended
+        locked
+        slug
+      }
+      lessons
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const createHabit = /* GraphQL */ `
   mutation CreateHabit($input: CreateHabitInput!) {
     createHabit(input: $input) {
@@ -247,6 +350,8 @@ export const createHabit = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       dayStreak
       longestDayStreak
@@ -260,10 +365,12 @@ export const createHabit = /* GraphQL */ `
       }
       archived
       period
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const updateHabit = /* GraphQL */ `
   mutation UpdateHabit($input: UpdateHabitInput!) {
     updateHabit(input: $input) {
@@ -276,6 +383,8 @@ export const updateHabit = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       dayStreak
       longestDayStreak
@@ -289,10 +398,12 @@ export const updateHabit = /* GraphQL */ `
       }
       archived
       period
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const deleteHabit = /* GraphQL */ `
   mutation DeleteHabit($input: DeleteHabitInput!) {
     deleteHabit(input: $input) {
@@ -305,6 +416,8 @@ export const deleteHabit = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       dayStreak
       longestDayStreak
@@ -318,10 +431,12 @@ export const deleteHabit = /* GraphQL */ `
       }
       archived
       period
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const createNight = /* GraphQL */ `
   mutation CreateNight($input: CreateNightInput!) {
     createNight(input: $input) {
@@ -334,18 +449,21 @@ export const createNight = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       sourceId
       sourceName
-      source
       value
       startDate
       endDate
       totalDuration
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const updateNight = /* GraphQL */ `
   mutation UpdateNight($input: UpdateNightInput!) {
     updateNight(input: $input) {
@@ -358,18 +476,21 @@ export const updateNight = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       sourceId
       sourceName
-      source
       value
       startDate
       endDate
       totalDuration
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const deleteNight = /* GraphQL */ `
   mutation DeleteNight($input: DeleteNightInput!) {
     deleteNight(input: $input) {
@@ -382,18 +503,21 @@ export const deleteNight = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       sourceId
       sourceName
-      source
       value
       startDate
       endDate
       totalDuration
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const createLikedContent = /* GraphQL */ `
   mutation CreateLikedContent($input: CreateLikedContentInput!) {
     createLikedContent(input: $input) {
@@ -401,12 +525,12 @@ export const createLikedContent = /* GraphQL */ `
       name
       type
       slug
-      cover
-      excerpt
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const updateLikedContent = /* GraphQL */ `
   mutation UpdateLikedContent($input: UpdateLikedContentInput!) {
     updateLikedContent(input: $input) {
@@ -414,12 +538,12 @@ export const updateLikedContent = /* GraphQL */ `
       name
       type
       slug
-      cover
-      excerpt
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const deleteLikedContent = /* GraphQL */ `
   mutation DeleteLikedContent($input: DeleteLikedContentInput!) {
     deleteLikedContent(input: $input) {
@@ -427,9 +551,9 @@ export const deleteLikedContent = /* GraphQL */ `
       name
       type
       slug
-      cover
-      excerpt
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;

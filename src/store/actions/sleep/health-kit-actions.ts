@@ -2,18 +2,16 @@ import {
   changeHealthKitSource,
   updateHealthKitSources
 } from '@actions/sleep-source-actions/sleep-source-actions'
+import { getHealthKitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { formatHealthKitResponse } from 'helpers/sleep/sleep-data-helper'
-import moment from 'moment'
 import { Platform } from 'react-native'
 import AppleHealthKit, { SleepSample } from 'react-native-healthkit'
-import { getHealthKitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { SUB_SOURCE } from 'typings/state/sleep-source-state'
-import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { GetState } from 'Types/GetState'
+import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SleepDataSource } from 'Types/SleepClockState'
-import { HealthKitSleepResponse, Night } from 'Types/Sleepdata'
-import { fetchSleepData, formatSleepData } from './sleep-data-actions'
-import { syncNightsToCloud } from './night-cloud-actions'
+import { Night } from 'Types/Sleepdata'
+import { SUB_SOURCE } from 'typings/state/sleep-source-state'
+import { fetchSleepData } from './sleep-data-actions'
 
 /* ACTION TYPES */
 
@@ -146,17 +144,18 @@ export const fetchSleepFromHealthKit = (
           console.log(error)
           dispatch(fetchHKSleepFailure())
         }
-        dispatch(createHealthKitSources(response))
+        // dispatch(createHealthKitSources(response))
 
         console.log('healthkit', response)
 
         const formattedData: Night[] = response?.map((nightObject) =>
           formatHealthKitResponse(nightObject)
         )
+        console.log('formattedData', formattedData)
 
-        await dispatch(syncNightsToCloud(formattedData))
+        // await dispatch(syncNightsToCloud(formattedData))
         await dispatch(fetchSleepSuccess(formattedData))
-        await dispatch(fetchHKSleepSuccess())
+        // await dispatch(fetchHKSleepSuccess())
       }
     )
   } catch (error) {

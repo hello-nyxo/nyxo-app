@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const getSleepData = /* GraphQL */ `
@@ -13,6 +14,8 @@ export const getSleepData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       date
       rating
@@ -23,10 +26,12 @@ export const getSleepData = /* GraphQL */ `
         startDate
         endDate
       }
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const listSleepDatas = /* GraphQL */ `
   query ListSleepDatas(
     $filter: ModelSleepDataFilterInput
@@ -39,12 +44,14 @@ export const listSleepDatas = /* GraphQL */ `
         userId
         date
         rating
+        createdAt
+        updatedAt
         owner
       }
       nextToken
     }
   }
-`
+`;
 export const getRequest = /* GraphQL */ `
   query GetRequest($id: ID!) {
     getRequest(id: $id) {
@@ -54,9 +61,11 @@ export const getRequest = /* GraphQL */ `
       userName
       userId
       accepted
+      createdAt
+      updatedAt
     }
   }
-`
+`;
 export const listRequests = /* GraphQL */ `
   query ListRequests(
     $filter: ModelRequestFilterInput
@@ -71,11 +80,13 @@ export const listRequests = /* GraphQL */ `
         userName
         userId
         accepted
+        createdAt
+        updatedAt
       }
       nextToken
     }
   }
-`
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -85,9 +96,23 @@ export const getUser = /* GraphQL */ `
       nickname
       darkMode
       intercomId
+      activeCoaching {
+        id
+        userId
+        stage
+        activeWeek
+        started
+        ended
+        lessons
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
     }
   }
-`
+`;
 export const listUsers = /* GraphQL */ `
   query ListUsers(
     $filter: ModelUserFilterInput
@@ -102,24 +127,18 @@ export const listUsers = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       nextToken
     }
   }
-`
+`;
 export const getCoachingData = /* GraphQL */ `
   query GetCoachingData($id: ID!) {
     getCoachingData(id: $id) {
       id
-      weeks {
-        started
-        ended
-        locked
-        slug
-      }
-      lessons
       userId
-      stage
       user {
         connectionId
         id
@@ -127,14 +146,36 @@ export const getCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
+      }
+      stage
+      active {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
       }
       activeWeek
       started
       ended
+      weeks {
+        started
+        ended
+        locked
+        slug
+      }
+      lessons
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const listCoachingDatas = /* GraphQL */ `
   query ListCoachingDatas(
     $filter: ModelCoachingDataFilterInput
@@ -144,18 +185,20 @@ export const listCoachingDatas = /* GraphQL */ `
     listCoachingDatas(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        lessons
         userId
         stage
         activeWeek
         started
         ended
+        lessons
+        createdAt
+        updatedAt
         owner
       }
       nextToken
     }
   }
-`
+`;
 export const getHabit = /* GraphQL */ `
   query GetHabit($id: ID!) {
     getHabit(id: $id) {
@@ -168,6 +211,8 @@ export const getHabit = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       dayStreak
       longestDayStreak
@@ -181,10 +226,12 @@ export const getHabit = /* GraphQL */ `
       }
       archived
       period
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const listHabits = /* GraphQL */ `
   query ListHabits(
     $filter: ModelHabitFilterInput
@@ -203,12 +250,14 @@ export const listHabits = /* GraphQL */ `
         date
         archived
         period
+        createdAt
+        updatedAt
         owner
       }
       nextToken
     }
   }
-`
+`;
 export const getNight = /* GraphQL */ `
   query GetNight($id: ID!) {
     getNight(id: $id) {
@@ -221,18 +270,21 @@ export const getNight = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       sourceId
       sourceName
-      source
       value
       startDate
       endDate
       totalDuration
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const listNights = /* GraphQL */ `
   query ListNights(
     $filter: ModelNightFilterInput
@@ -245,17 +297,18 @@ export const listNights = /* GraphQL */ `
         userId
         sourceId
         sourceName
-        source
         value
         startDate
         endDate
         totalDuration
+        createdAt
+        updatedAt
         owner
       }
       nextToken
     }
   }
-`
+`;
 export const getLikedContent = /* GraphQL */ `
   query GetLikedContent($id: ID!) {
     getLikedContent(id: $id) {
@@ -263,12 +316,12 @@ export const getLikedContent = /* GraphQL */ `
       name
       type
       slug
-      cover
-      excerpt
+      createdAt
+      updatedAt
       owner
     }
   }
-`
+`;
 export const listLikedContents = /* GraphQL */ `
   query ListLikedContents(
     $filter: ModelLikedContentFilterInput
@@ -281,14 +334,14 @@ export const listLikedContents = /* GraphQL */ `
         name
         type
         slug
-        cover
-        excerpt
+        createdAt
+        updatedAt
         owner
       }
       nextToken
     }
   }
-`
+`;
 export const userByConnectionId = /* GraphQL */ `
   query UserByConnectionId(
     $connectionId: String
@@ -311,11 +364,13 @@ export const userByConnectionId = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        createdAt
+        updatedAt
       }
       nextToken
     }
   }
-`
+`;
 export const coachingByUser = /* GraphQL */ `
   query CoachingByUser(
     $userId: ID
@@ -333,15 +388,47 @@ export const coachingByUser = /* GraphQL */ `
     ) {
       items {
         id
-        lessons
         userId
         stage
         activeWeek
         started
         ended
+        lessons
+        createdAt
+        updatedAt
         owner
       }
       nextToken
     }
   }
-`
+`;
+export const likedContentBySlug = /* GraphQL */ `
+  query LikedContentBySlug(
+    $slug: String
+    $id: ModelIDKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelLikedContentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    likedContentBySlug(
+      slug: $slug
+      id: $id
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        type
+        slug
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;

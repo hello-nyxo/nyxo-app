@@ -2,16 +2,16 @@ import {
   addManualDataToNight,
   toggleEditMode
 } from '@actions/manual-sleep/manual-sleep-actions'
+import { SMART_TOP_PADDING } from '@helpers/Dimensions'
+import { getSelectedDate } from '@selectors/calendar-selectors'
 import {
   getEditMode,
   getEndTime,
   getStartTime
 } from '@selectors/ManualDataSelectors'
-import { getSelectedDay } from '@selectors/SleepDataSelectors'
-import React, { memo, FC } from 'react'
+import React, { FC, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { SMART_TOP_PADDING } from '@helpers/Dimensions'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'
 import { P } from '../Primitives/Primitives'
@@ -21,12 +21,12 @@ export const EditNightHeader: FC = () => {
   const dispatch = useDispatch()
 
   const editMode = useSelector(getEditMode)
-  const currentDay = useSelector(getSelectedDay)
+  const selectedDate = useSelector(getSelectedDate)
   const startTime = useSelector(getStartTime)
   const endTime = useSelector(getEndTime)
 
   const handleSave = async () => {
-    await dispatch(addManualDataToNight(currentDay.date, startTime, endTime))
+    await dispatch(addManualDataToNight(selectedDate, startTime, endTime))
     await dispatch(toggleEditMode())
   }
 

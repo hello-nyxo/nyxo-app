@@ -1,7 +1,5 @@
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { formatSleepData } from '@actions/sleep/sleep-data-actions'
 import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from 'config/Config'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from 'helpers/Keychain'
@@ -16,6 +14,7 @@ import {
   ResponseBase
 } from 'Types/State/api-state'
 import { SOURCE } from 'typings/state/sleep-source-state'
+import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 
 export const FITBIT_AUTHORIZE_SUCCESS = 'FITBIT_AUTHORIZE_SUCCESS'
 export const FITBIT_REVOKE_SUCCESS = 'FITBIT_REVOKE_SUCCESS'
@@ -198,25 +197,23 @@ export const getFitbitSleep = (): Thunk => async (dispatch: Dispatch) => {
         )
         const response = await fitbitApiCall.json()
         const formattedResponse = formatFitbitSamples(response.sleep)
-        await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+        await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepFitbitSuccess())
       } else {
-        const accessToken = await dispatch(refreshFitbitToken())
+        const freshToken = await dispatch(refreshFitbitToken())
         const fitbitApiCall = await fetch(
           `https://api.fitbit.com/1.2/user/${user_id}/sleep/date/${startDate}/${endDate}.json`,
           {
             method: 'GET',
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+              Authorization: `Bearer ${freshToken}`,
               'Content-Type': 'application/json'
             }
           }
         )
         const response = await fitbitApiCall.json()
         const formattedResponse = formatFitbitSamples(response.sleep)
-        await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+        await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepFitbitSuccess())
       }
     } catch (error) {

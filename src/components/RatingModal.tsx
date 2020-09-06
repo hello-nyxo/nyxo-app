@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { toggleRatingModal } from '@actions/modal/modal-actions'
 import { getRatingModal } from '@selectors/ModalSelectors'
-import { getSelectedDayRating } from '@selectors/SleepDataSelectors'
 import { getIsDarkMode } from '@selectors/UserSelectors'
 import colors from '../styles/colors'
 import { StyleProps } from '../styles/themes'
@@ -43,14 +42,13 @@ const RatingModal = () => {
   const dispatch = useDispatch()
   const isVisible = useSelector(getRatingModal)
   const darkMode = useSelector(getIsDarkMode)
-  const selected = useSelector(getSelectedDayRating)
 
   const buttons = info.map((item) => (
     <RatingButton
       key={item.value}
       icon={item.icon}
       value={item.value}
-      selected={selected === item.value}
+      selected={item.value === 3} // FIXME
       color={item.color}
       title={item.title}
     />

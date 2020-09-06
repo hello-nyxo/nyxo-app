@@ -1,12 +1,6 @@
-import {
-  fetchSleepData,
-  updateCalendar,
-  setSelectedDay
-} from '@actions/sleep/sleep-data-actions'
+import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import { backgroundAction, startup } from '@actions/StartupActions'
-import SleepTimeChart from '@components/Charts/SleepChart'
 import Clock from '@components/Clock'
-import DayStrip from '@components/DayStrip'
 import { EditNightHeader } from '@components/MainScreenSpecific/EditNightHeader'
 import InitializeSource from '@components/MainScreenSpecific/InitializeSources'
 import ExplanationsModal from '@components/modals/ExplanationsModal'
@@ -16,24 +10,24 @@ import MergeHabitsModal from '@components/modals/MergeHabitsModal/MergeHabitsMod
 import NotificationCenterLink from '@components/NotificationCenter/NotificationCenterLink'
 import { SafeAreaView } from '@components/Primitives/Primitives'
 import RatingModal from '@components/RatingModal'
+import CalendarModal from '@components/sleep/CalendarModal'
 import InsightsCard from '@components/sleep/InsightsCard'
 import useBackgroundFetch from '@hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from '@hooks/UseNotificationEventHandlers'
+import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
-import { getSelectedDay } from '@selectors/SleepDataSelectors'
 import moment from 'moment'
 import React, { FC, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
-import { subDays, startOfDay, endOfDay, formatISO } from 'date-fns'
-import CalendarModal, { ThemedCalendar } from '@components/sleep/CalendarModal'
-import { setSelectedDate } from '@actions/calendar-actions/calendar-actions'
+import DayStrip from 'components/DayStrip'
+import { format } from 'date-fns'
+import { useGetSleep } from '@hooks/sleep/useSleep'
 
 const Sleep: FC = () => {
-  const today = useSelector(getSelectedDay)
+  const date = useSelector(getSelectedDate)
   const editModeOn = useSelector(getEditMode)
   const isLoadingSleepData = useSelector(getHealthKitLoading)
 
@@ -53,21 +47,17 @@ const Sleep: FC = () => {
     // await dispatch(updateCalendar())
   }
 
-  const onDayPress = async ({ timestamp }) => {
-    console.log(timestamp)
-
-    dispatch(setSelectedDate(new Date(timestamp).toISOString()))
-    const startDate = startOfDay(subDays(timestamp, 1)).toISOString()
-    const endDate = endOfDay(timestamp).toISOString()
-
-    console.log(`${startDate} –${endDate}`)
-
-    await dispatch(fetchSleepData(startDate, endDate))
+  const toggleCalendar = () => {
+    dispatch(toggleCalendarModal())
   }
+
+  const data = useGetSleep()
+  console.log(data)
 
   return (
     <SafeAreaView>
       <EditNightHeader />
+      <DayStrip />
       <ScrollView
         scrollEnabled={!editModeOn}
         refreshControl={
@@ -78,8 +68,10 @@ const Sleep: FC = () => {
         }>
         <TitleRow>
           <TitleContainer>
-            <Title>{moment(today.date).format('dddd')}</Title>
-            <Subtitle>{moment(today.date).format('DD MMMM yyyy')}</Subtitle>
+            <Title>{format(new Date(date), 'cccc')}</Title>
+            <Subtitle onPress={toggleCalendar}>
+              {format(new Date(date), 'dd MMMM yyyy')}
+            </Subtitle>
           </TitleContainer>
           <NotificationCenterLink />
         </TitleRow>
@@ -87,13 +79,12 @@ const Sleep: FC = () => {
         <Row>
           <Clock />
         </Row>
-        <ThemedCalendar onDayPress={onDayPress} />
 
         <InitializeSource />
         <Row>
           <InsightsCard />
         </Row>
-        <SleepTimeChart />
+        {/* <SleepTimeChart /> */}
       </ScrollView>
 
       <CalendarModal />

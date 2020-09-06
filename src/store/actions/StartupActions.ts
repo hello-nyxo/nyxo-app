@@ -13,7 +13,6 @@ import {
   handleUnsyncedHabitsThenRetrieveHabitsFromCloud,
   updateDayStreaks
 } from './habit/habit-actions'
-import { calculateInsights } from './insight-actions/insight-actions'
 import {
   createAndroidChannels,
   handleBedtimeApproachNotifications,
@@ -37,8 +36,6 @@ export const startup = (): Thunk => async (
 
   await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
 
-  // await dispatch(pullSleepFromCloud());
-
   // Actions related to sleep data
   if (isUsingHealthKit) {
     await dispatch(prepareSleepDataFetching())
@@ -51,7 +48,6 @@ export const startup = (): Thunk => async (
 
   await dispatch(updateSubscriptionStatus())
   await dispatch(refreshAuthStatus())
-  // // Action related to coaching
   await dispatch(validateWeeklyProgress())
 
   await dispatch(updateDayStreaks())
@@ -59,16 +55,16 @@ export const startup = (): Thunk => async (
   if (isAuthenticated) {
     await dispatch(updateCoachingInCloud())
   }
-  await dispatch(calculateInsights())
+  // await dispatch(calculateInsights())
 
-  await dispatch(handleBedtimeApproachNotifications())
-  await dispatch(handleCoachingUncompletedLessonNotifications())
-  await dispatch(handleCoachingLessonsInWeekNotifications())
+  // await dispatch(handleBedtimeApproachNotifications())
+  // await dispatch(handleCoachingUncompletedLessonNotifications())
+  // await dispatch(handleCoachingLessonsInWeekNotifications())
 }
 
 export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {
-  await dispatch(handleBedtimeApproachNotifications())
-  await dispatch(handleCoachingUncompletedLessonNotifications())
-  await dispatch(handleCoachingLessonsInWeekNotifications())
-  await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
+  // await dispatch(handleBedtimeApproachNotifications())
+  // await dispatch(handleCoachingUncompletedLessonNotifications())
+  // await dispatch(handleCoachingLessonsInWeekNotifications())
+  // await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
 }

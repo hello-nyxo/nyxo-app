@@ -1,28 +1,17 @@
 import { getFitbitSleep } from '@actions/api-actions/fitbit-actions'
+import { getGarminSleep } from '@actions/api-actions/garmin-actions'
 import { readGoogleFitSleep } from '@actions/api-actions/google-fit-actions'
 import { getOuraSleep } from '@actions/api-actions/oura-actions'
+import { getPolarSleep } from '@actions/api-actions/polar-actions'
 import { getWithingsSleep } from '@actions/api-actions/withings-actions'
-import { sendError } from '@actions/notifications'
-import {
-  calculateTotalSleep,
-  findEndTime,
-  findStartTime,
-  matchDayAndNight
-} from 'helpers/sleep/sleep-data-helper'
+import { fetchSleepFromHealthKit } from '@actions/sleep/health-kit-actions'
+import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { sameDay } from 'helpers/time'
 import moment from 'moment'
-import {
-  getMainSource,
-  getSharedSource
-} from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { getAllDays } from '@selectors/SleepDataSelectors'
 import { GetState } from 'Types/GetState'
 import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
+import { Day, Night } from 'Types/Sleepdata'
 import { SOURCE } from 'typings/state/sleep-source-state'
-import { Day, Night, Value } from 'Types/Sleepdata'
-import { fetchSleepFromHealthKit } from '@actions/sleep/health-kit-actions'
-import { getGarminSleep } from '@actions/api-actions/garmin-actions'
-import { getPolarSleep } from '@actions/api-actions/polar-actions'
 
 /* ACTION TYPES */
 
@@ -101,7 +90,7 @@ export const fetchSleepData = (
   endDate: string
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   const source = getMainSource(getState())
-
+  console.log('calling')
   switch (source) {
     case SOURCE.HEALTH_KIT:
       dispatch(fetchSleepFromHealthKit(startDate, endDate))
@@ -204,66 +193,5 @@ export const updateCalendar = (): Thunk => async (
 
   if (!sameDay(currentDayDate, todayISO)) {
     await dispatch(setTodayAsSelected(todayISO))
-  }
-}
-
-export const formatSleepData = (nights: Night[]): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
-  try {
-    const days = getAllDays(getState())
-    const hkSource = getSharedSource(getState())
-    // Filter data by the default
-    const filteredBySource = nights.filter(
-      (night: Night) => night.sourceId === hkSource?.sourceId
-    )
-    const unfilteredNights = nights.filter(
-      (night: Night) => night.sourceId !== hkSource?.sourceId
-    )
-
-    const updatedDays: Day[] = days.map((day: Day) => {
-      const night: Night[] = filteredBySource.filter((nightObject: Night) =>
-        matchDayAndNight(nightObject.startDate, day.date)
-      )
-      const unfilteredNight = unfilteredNights.filter((nightObject: Night) =>
-        matchDayAndNight(nightObject.startDate, day.date)
-      )
-
-      let sleepStart = day.sleepStart ? day.sleepStart : null
-      let sleepEnd = day.sleepEnd ? day.sleepEnd : null
-      let bedStart = day.bedStart ? day.bedStart : null
-      let bedEnd = day.bedEnd ? day.bedEnd : null
-
-      const inBedDuration = calculateTotalSleep(night, Value.InBed)
-      const asleepDuration = calculateTotalSleep(night, Value.Asleep)
-
-      // Start times for easier handling
-      if (inBedDuration !== 0) {
-        bedStart = findStartTime(night, Value.InBed)
-        bedEnd = findEndTime(night, Value.InBed)
-      }
-
-      if (asleepDuration !== 0) {
-        sleepStart = findStartTime(night, Value.Asleep)
-        sleepEnd = findEndTime(night, Value.Asleep)
-      }
-
-      return {
-        ...day,
-        night,
-        unfilteredNight,
-        asleepDuration,
-        inBedDuration,
-        sleepStart,
-        sleepEnd,
-        bedStart,
-        bedEnd
-      }
-    })
-
-    dispatch(updateSleepData({ days: updatedDays, nights }))
-  } catch (error) {
-    dispatch(sendError(error))
   }
 }

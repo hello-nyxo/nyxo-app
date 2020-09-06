@@ -80,9 +80,6 @@ const rootReducer = combineReducers({
     serializeTransform
   ]),
 
-  // TO BE REMOVED
-  sleepclock: makePersisted('sleepclock', sleepclock, undefined),
-
   apis: makePersisted('apis', ApiReducer, undefined),
   manualData: ManualDataReducer,
   modals: ModalReducer,

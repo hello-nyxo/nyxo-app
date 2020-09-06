@@ -3,7 +3,7 @@ import { State } from 'Types/State'
 
 const getCalendarState = (state: State) => state.calendar
 
-export const getSeletedDate = createSelector(
+export const getSelectedDate = createSelector(
   getCalendarState,
   (calendar) => calendar.selectedDay
 )

@@ -1,4 +1,5 @@
 import { WEEK_STAGE } from '@selectors/coaching-selectors'
+import { GetCoachingDataQuery } from 'API'
 
 export enum STAGE {
   NOT_ALLOWED = 'NOT_ALLOWED',
@@ -28,6 +29,11 @@ export type CoachingMonth = {
   ended?: string
   id: string
 }
+
+export type CoachingData = Omit<
+  Exclude<GetCoachingDataQuery['getCoachingData'], null>,
+  '__typename'
+>
 
 export interface CoachingState {
   stage: STAGE
