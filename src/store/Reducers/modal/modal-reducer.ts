@@ -6,7 +6,8 @@ import {
   TOGGLE_EDIT_HABIT_MODAL,
   TOGGLE_NEW_HABIT_MODAL,
   TOGGLE_RATING_MODAL,
-  TOGGLE_EXPLANATIONS_MODAL
+  TOGGLE_EXPLANATIONS_MODAL,
+  UPDATE_RATING_DATE
 } from '@actions/modal/modal-actions'
 
 export const initialState: ModalState = {
@@ -39,6 +40,9 @@ const ModalReducer = (
 
     case TOGGLE_NEW_HABIT_MODAL:
       return { ...state, newHabitModal: !state.newHabitModal }
+
+    case UPDATE_RATING_DATE:
+      return { ...state, ratingDate: payload }
 
     default:
       return state

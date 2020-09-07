@@ -23,6 +23,7 @@ import {
 import { prepareSleepDataFetching } from './sleep/health-kit-actions'
 import { fetchSleepData, updateCalendar } from './sleep/sleep-data-actions'
 import { updateSubscriptionStatus } from './subscription/subscription-actions'
+import { getNightRatingsFromCloud } from './sleep/night-quality-actions'
 
 export const startup = (): Thunk => async (
   dispatch: Dispatch,
@@ -59,6 +60,9 @@ export const startup = (): Thunk => async (
 
   if (isAuthenticated) {
     await dispatch(updateCoachingInCloud())
+
+    // Get Night Ratings from Cloud
+    await dispatch(getNightRatingsFromCloud())
   }
   await dispatch(calculateInsights())
 

@@ -1,4 +1,5 @@
 // tslint:disable
+// eslint-disable
 // this is an auto generated file. This will be overwritten
 
 export const onCreateSleepData = /* GraphQL */ `
@@ -26,7 +27,7 @@ export const onCreateSleepData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onUpdateSleepData = /* GraphQL */ `
   subscription OnUpdateSleepData($owner: String!) {
     onUpdateSleepData(owner: $owner) {
@@ -52,7 +53,7 @@ export const onUpdateSleepData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onDeleteSleepData = /* GraphQL */ `
   subscription OnDeleteSleepData($owner: String) {
     onDeleteSleepData(owner: $owner) {
@@ -78,7 +79,7 @@ export const onDeleteSleepData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onCreateRequest = /* GraphQL */ `
   subscription OnCreateRequest($owner: String!) {
     onCreateRequest(owner: $owner) {
@@ -90,7 +91,7 @@ export const onCreateRequest = /* GraphQL */ `
       accepted
     }
   }
-`
+`;
 export const onUpdateRequest = /* GraphQL */ `
   subscription OnUpdateRequest($userId: String!) {
     onUpdateRequest(userId: $userId) {
@@ -102,7 +103,7 @@ export const onUpdateRequest = /* GraphQL */ `
       accepted
     }
   }
-`
+`;
 export const onDeleteRequest = /* GraphQL */ `
   subscription OnDeleteRequest($userId: String) {
     onDeleteRequest(userId: $userId) {
@@ -114,7 +115,7 @@ export const onDeleteRequest = /* GraphQL */ `
       accepted
     }
   }
-`
+`;
 export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser {
     onCreateUser {
@@ -126,7 +127,7 @@ export const onCreateUser = /* GraphQL */ `
       intercomId
     }
   }
-`
+`;
 export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser($owner: String!) {
     onUpdateUser(owner: $owner) {
@@ -138,7 +139,7 @@ export const onUpdateUser = /* GraphQL */ `
       intercomId
     }
   }
-`
+`;
 export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser($owner: String) {
     onDeleteUser(owner: $owner) {
@@ -150,7 +151,7 @@ export const onDeleteUser = /* GraphQL */ `
       intercomId
     }
   }
-`
+`;
 export const onCreateCoachingData = /* GraphQL */ `
   subscription OnCreateCoachingData($owner: String!) {
     onCreateCoachingData(owner: $owner) {
@@ -178,7 +179,7 @@ export const onCreateCoachingData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onUpdateCoachingData = /* GraphQL */ `
   subscription OnUpdateCoachingData($owner: String!) {
     onUpdateCoachingData(owner: $owner) {
@@ -206,7 +207,7 @@ export const onUpdateCoachingData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onDeleteCoachingData = /* GraphQL */ `
   subscription OnDeleteCoachingData($owner: String) {
     onDeleteCoachingData(owner: $owner) {
@@ -234,7 +235,7 @@ export const onDeleteCoachingData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onCreateHabit = /* GraphQL */ `
   subscription OnCreateHabit($owner: String!) {
     onCreateHabit(owner: $owner) {
@@ -263,7 +264,7 @@ export const onCreateHabit = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onUpdateHabit = /* GraphQL */ `
   subscription OnUpdateHabit($owner: String!) {
     onUpdateHabit(owner: $owner) {
@@ -292,7 +293,7 @@ export const onUpdateHabit = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onDeleteHabit = /* GraphQL */ `
   subscription OnDeleteHabit($owner: String) {
     onDeleteHabit(owner: $owner) {
@@ -321,7 +322,7 @@ export const onDeleteHabit = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onCreateNight = /* GraphQL */ `
   subscription OnCreateNight($owner: String!) {
     onCreateNight(owner: $owner) {
@@ -345,7 +346,7 @@ export const onCreateNight = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onUpdateNight = /* GraphQL */ `
   subscription OnUpdateNight($owner: String!) {
     onUpdateNight(owner: $owner) {
@@ -369,7 +370,7 @@ export const onUpdateNight = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onDeleteNight = /* GraphQL */ `
   subscription OnDeleteNight($owner: String) {
     onDeleteNight(owner: $owner) {
@@ -393,7 +394,7 @@ export const onDeleteNight = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const onCreateLikedContent = /* GraphQL */ `
   subscription OnCreateLikedContent($owner: String) {
     onCreateLikedContent(owner: $owner) {
@@ -401,12 +402,11 @@ export const onCreateLikedContent = /* GraphQL */ `
       name
       type
       slug
-      cover
       excerpt
       owner
     }
   }
-`
+`;
 export const onUpdateLikedContent = /* GraphQL */ `
   subscription OnUpdateLikedContent($owner: String) {
     onUpdateLikedContent(owner: $owner) {
@@ -414,12 +414,11 @@ export const onUpdateLikedContent = /* GraphQL */ `
       name
       type
       slug
-      cover
       excerpt
       owner
     }
   }
-`
+`;
 export const onDeleteLikedContent = /* GraphQL */ `
   subscription OnDeleteLikedContent($owner: String) {
     onDeleteLikedContent(owner: $owner) {
@@ -427,9 +426,65 @@ export const onDeleteLikedContent = /* GraphQL */ `
       name
       type
       slug
-      cover
       excerpt
       owner
     }
   }
-`
+`;
+export const onCreateNightRating = /* GraphQL */ `
+  subscription OnCreateNightRating($owner: String!) {
+    onCreateNightRating(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      rating
+      date
+      owner
+    }
+  }
+`;
+export const onUpdateNightRating = /* GraphQL */ `
+  subscription OnUpdateNightRating($owner: String!) {
+    onUpdateNightRating(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      rating
+      date
+      owner
+    }
+  }
+`;
+export const onDeleteNightRating = /* GraphQL */ `
+  subscription OnDeleteNightRating($owner: String) {
+    onDeleteNightRating(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      rating
+      date
+      owner
+    }
+  }
+`;

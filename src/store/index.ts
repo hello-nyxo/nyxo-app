@@ -18,6 +18,7 @@ import HealthKitReducer from '@reducers/sleep/health-kit-reducer'
 import sleepclock from '@reducers/sleepclockReducer'
 import SubscriptionReducer from '@reducers/subscription/subscription-reducer'
 import user from '@reducers/user/user-reducer'
+import NightQuality from '@reducers/sleep/night-quality-reducer'
 import { enableES5, enableMapSet } from 'immer'
 import { reducer as network } from 'react-native-offline'
 import {
@@ -92,7 +93,10 @@ const rootReducer = combineReducers({
   linking: makePersisted('linking', LinkingReducer, undefined),
   sleepSources: makePersisted('sleepSources', SleepSourceReducer, undefined),
   healthKit: makePersisted('healthKit', HealthKitReducer, undefined),
-  insights: makePersisted('insights', InsightsReducer, undefined)
+  insights: makePersisted('insights', InsightsReducer, undefined),
+  nightQuality: makePersisted('nightQuality', NightQuality, undefined, [
+    serializeTransform
+  ])
 })
 
 const middleware = applyMiddleware(thunk, batchDispatchMiddleware)

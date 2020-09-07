@@ -8,6 +8,11 @@ jest.mock('moment', () => ({
   locale: () => {}
 }))
 
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: jest.fn(),
+  isIphoneX: () => true
+}))
+
 describe('<TranslatedText/>', () => {
   it('it renders correctly', () => {
     matchComponentToSnapshot(

@@ -1,4 +1,5 @@
 // tslint:disable
+// eslint-disable
 // this is an auto generated file. This will be overwritten
 
 export const getSleepData = /* GraphQL */ `
@@ -26,7 +27,7 @@ export const getSleepData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const listSleepDatas = /* GraphQL */ `
   query ListSleepDatas(
     $filter: ModelSleepDataFilterInput
@@ -44,7 +45,7 @@ export const listSleepDatas = /* GraphQL */ `
       nextToken
     }
   }
-`
+`;
 export const getRequest = /* GraphQL */ `
   query GetRequest($id: ID!) {
     getRequest(id: $id) {
@@ -56,7 +57,7 @@ export const getRequest = /* GraphQL */ `
       accepted
     }
   }
-`
+`;
 export const listRequests = /* GraphQL */ `
   query ListRequests(
     $filter: ModelRequestFilterInput
@@ -75,7 +76,7 @@ export const listRequests = /* GraphQL */ `
       nextToken
     }
   }
-`
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -87,7 +88,7 @@ export const getUser = /* GraphQL */ `
       intercomId
     }
   }
-`
+`;
 export const listUsers = /* GraphQL */ `
   query ListUsers(
     $filter: ModelUserFilterInput
@@ -106,7 +107,7 @@ export const listUsers = /* GraphQL */ `
       nextToken
     }
   }
-`
+`;
 export const getCoachingData = /* GraphQL */ `
   query GetCoachingData($id: ID!) {
     getCoachingData(id: $id) {
@@ -134,7 +135,7 @@ export const getCoachingData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const listCoachingDatas = /* GraphQL */ `
   query ListCoachingDatas(
     $filter: ModelCoachingDataFilterInput
@@ -155,7 +156,7 @@ export const listCoachingDatas = /* GraphQL */ `
       nextToken
     }
   }
-`
+`;
 export const getHabit = /* GraphQL */ `
   query GetHabit($id: ID!) {
     getHabit(id: $id) {
@@ -184,7 +185,7 @@ export const getHabit = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const listHabits = /* GraphQL */ `
   query ListHabits(
     $filter: ModelHabitFilterInput
@@ -208,7 +209,7 @@ export const listHabits = /* GraphQL */ `
       nextToken
     }
   }
-`
+`;
 export const getNight = /* GraphQL */ `
   query GetNight($id: ID!) {
     getNight(id: $id) {
@@ -232,7 +233,7 @@ export const getNight = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const listNights = /* GraphQL */ `
   query ListNights(
     $filter: ModelNightFilterInput
@@ -255,7 +256,7 @@ export const listNights = /* GraphQL */ `
       nextToken
     }
   }
-`
+`;
 export const getLikedContent = /* GraphQL */ `
   query GetLikedContent($id: ID!) {
     getLikedContent(id: $id) {
@@ -263,12 +264,11 @@ export const getLikedContent = /* GraphQL */ `
       name
       type
       slug
-      cover
       excerpt
       owner
     }
   }
-`
+`;
 export const listLikedContents = /* GraphQL */ `
   query ListLikedContents(
     $filter: ModelLikedContentFilterInput
@@ -281,14 +281,50 @@ export const listLikedContents = /* GraphQL */ `
         name
         type
         slug
-        cover
         excerpt
         owner
       }
       nextToken
     }
   }
-`
+`;
+export const getNightRating = /* GraphQL */ `
+  query GetNightRating($id: ID!) {
+    getNightRating(id: $id) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+      }
+      rating
+      date
+      owner
+    }
+  }
+`;
+export const listNightRatings = /* GraphQL */ `
+  query ListNightRatings(
+    $filter: ModelNightRatingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNightRatings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userId
+        rating
+        date
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const userByConnectionId = /* GraphQL */ `
   query UserByConnectionId(
     $connectionId: String
@@ -315,7 +351,7 @@ export const userByConnectionId = /* GraphQL */ `
       nextToken
     }
   }
-`
+`;
 export const coachingByUser = /* GraphQL */ `
   query CoachingByUser(
     $userId: ID
@@ -344,4 +380,33 @@ export const coachingByUser = /* GraphQL */ `
       nextToken
     }
   }
-`
+`;
+export const likedContentBySlug = /* GraphQL */ `
+  query LikedContentBySlug(
+    $slug: String
+    $id: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelLikedContentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    likedContentBySlug(
+      slug: $slug
+      id: $id
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        type
+        slug
+        excerpt
+        owner
+      }
+      nextToken
+    }
+  }
+`;

@@ -102,7 +102,9 @@ const Clock: FC = () => {
           />
         )}
       </Svg>
-      <NightRating day={selectedDay} x={x} />
+      <NightRatingHolder x={x}>
+        <NightRating date={selectedDay.date} height={30} width={30} />
+      </NightRatingHolder>
       {editMode && (
         <Bedtime
           clockSize={clockSize}
@@ -128,4 +130,16 @@ const ClockContainer = styled(Animated.View)`
   border-radius: 7px;
   flex: 1;
   margin-top: 8px;
+`
+interface NightRatingHolderProps {
+  readonly x: number
+}
+
+const NightRatingHolder = styled.View<NightRatingHolderProps>`
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 90px;
+  right: ${({ x }) => x - 5}px;
+  z-index: 20;
 `

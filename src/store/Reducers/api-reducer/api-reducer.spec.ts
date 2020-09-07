@@ -5,6 +5,12 @@ import {
 import reducer, { initialState } from './api-reducer'
 import { ResponseBase } from '../../../Types/State/api-state'
 
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: jest.fn(),
+  ifIphoneX: jest.fn(),
+  isIphoneX: jest.fn()
+}))
+
 const fitbitMock: ResponseBase = {
   enabled: true
 }
