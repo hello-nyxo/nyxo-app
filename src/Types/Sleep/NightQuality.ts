@@ -1,6 +1,6 @@
 export interface NightQualityState {
   records: Map<string, NightQuality>
-  localRecords: Map<string, NightQuality>
+  // localRecords: Map<string, NightQuality> // --- CAN DELETE ---
 }
 
 export interface NightQuality {

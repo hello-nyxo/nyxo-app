@@ -27,19 +27,22 @@ export const pushNightQuality = (nightQuality: NightQuality) => ({
   payload: nightQuality
 })
 
-export const updateNightQualityLocally = (nightQuality: NightQuality) => ({
-  type: UPDATE_NIGHT_QUALITY_LOCAL,
-  payload: nightQuality
-})
+// --- CAN DELETE ---
+// export const updateNightQualityLocally = (nightQuality: NightQuality) => ({
+//   type: UPDATE_NIGHT_QUALITY_LOCAL,
+//   payload: nightQuality
+// })
 
-export const pushNightQualityLocally = (nightQuality: NightQuality) => ({
-  type: PUSH_NIGHT_QUALITY_LOCAL,
-  payload: nightQuality
-})
+// --- CAN DELETE ---
+// export const pushNightQualityLocally = (nightQuality: NightQuality) => ({
+//   type: PUSH_NIGHT_QUALITY_LOCAL,
+//   payload: nightQuality
+// })
 
-export const popNightQualityLocally = () => ({
-  type: POP_NIGHT_QUALITY_LOCAL
-})
+// --- CAN DELETE ---
+// export const popNightQualityLocally = () => ({
+//   type: POP_NIGHT_QUALITY_LOCAL
+// })
 
 export const loadNightQualityFromCloud = (
   nightQualityFromCloud: Map<string, NightQuality>
@@ -91,7 +94,7 @@ export const getNightRatingsFromCloud = (username?: string) => async (
   }
 }
 
-const convertNightQualityFromCloudToMap = (
+export const convertNightQualityFromCloudToMap = (
   cloudNightRatings: Array<NightQuality>
 ) => {
   const map = new Map<string, NightQuality>()
@@ -112,7 +115,7 @@ export const rateNight = ({ id, rating, date }: NightQuality) => async (
     nightQuality
   } = getState()
 
-  date = date && date.length > 0 ? date : ''
+  date = date && date.length > 0 ? date : 'undefined' //Because aws doesn't accept empty string
 
   const newNightRating: NightQuality = {
     id,
@@ -155,22 +158,25 @@ export const rateNight = ({ id, rating, date }: NightQuality) => async (
 
         await dispatch(pushNightQuality(newNightRating))
       }
-    } else {
-      // If record already exists, we update it
-      if (checkRecordExists(nightQuality, date)) {
-        await dispatch(updateNightQualityLocally(newNightRating))
-      }
-      // If not, we handle it as local data
-      else {
-        // If the new night rating will break the size, we pop the 1st element (the oldest night rating) so the array always remains 31 elements
-        if (checkIfWillExceedQuantity(nightQuality)) {
-          await dispatch(popNightQualityLocally())
-        }
-
-        // Push the new one in as the 31st element
-        await dispatch(pushNightQualityLocally(newNightRating))
-      }
     }
+
+    // --- CAN DELETE ---
+    // else {
+    //   // If record already exists, we update it
+    //   if (checkRecordExists(nightQuality, date)) {
+    //     await dispatch(updateNightQualityLocally(newNightRating))
+    //   }
+    //   // If not, we handle it as local data
+    //   else {
+    //     // If the new night rating will break the size, we pop the 1st element (the oldest night rating) so the array always remains 31 elements
+    //     if (checkIfWillExceedQuantity(nightQuality)) {
+    //       await dispatch(popNightQualityLocally())
+    //     }
+
+    //     // Push the new one in as the 31st element
+    //     await dispatch(pushNightQualityLocally(newNightRating))
+    //   }
+    // }
   } catch (err) {
     console.log('rateNight', err)
   }
@@ -183,7 +189,8 @@ const checkRecordExists = ({ records }: NightQualityState, date: string) => {
   return records.has(date)
 }
 
-const checkIfWillExceedQuantity = ({ records }: NightQualityState) => {
-  // return records.length === 31
-  return records.size === 31
-}
+// --- CAN DELETE ---
+// const checkIfWillExceedQuantity = ({ records }: NightQualityState) => {
+//   // return records.length === 31
+//   return records.size === 31
+// }
