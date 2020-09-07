@@ -1,10 +1,5 @@
-import React, { useRef, FC } from 'react'
-import {
-  NativeSyntheticEvent,
-  TextInputProps,
-  TextInputFocusEventData,
-  TextInputEndEditingEventData
-} from 'react-native'
+import React, { FC, useRef } from 'react'
+import { TextInput, TextInputProps } from 'react-native'
 import styled from 'styled-components/native'
 import translate from '../config/i18n'
 import colors from '../styles/colors'
@@ -17,50 +12,33 @@ interface Props extends TextInputProps {
   error?: string
   fieldName: string
   icon: string
-  ref?: any
+  ref?: TextInput
 }
 
-const TextField: FC<Props> = (props: Props) => {
-  const {
-    value,
-    onBlur,
-    onEndEditing,
-    onSubmitEditing,
-    error,
-    fieldName,
-    icon,
-    ref,
-    keyboardType,
-    autoCorrect,
-    autoCompleteType,
-    textContentType,
-    autoCapitalize,
-    returnKeyType,
-    enablesReturnKeyAutomatically,
-    placeholder,
-    secureTextEntry,
-    tvParallaxTiltAngle
-  } = props
-  const inputRef: any = useRef(ref)
+const TextField: FC<Props> = ({
+  value,
+  onBlur,
+  onEndEditing,
+  onSubmitEditing,
+  error,
+  fieldName,
+  icon,
+  ref,
+  keyboardType,
+  autoCorrect,
+  onChangeText,
+  autoCompleteType,
+  textContentType,
+  autoCapitalize,
+  returnKeyType,
+  enablesReturnKeyAutomatically,
+  placeholder,
+  secureTextEntry
+}) => {
+  const inputRef = useRef<TextInput>(ref)
 
   const onFocus = () => {
     inputRef.current.focus()
-  }
-
-  const handleOnBlur = (
-    event: NativeSyntheticEvent<TextInputFocusEventData>
-  ) => {
-    onBlur && onBlur(event)
-  }
-
-  const handleOnEndEditing = (
-    event: NativeSyntheticEvent<TextInputEndEditingEventData>
-  ) => {
-    onEndEditing && onEndEditing(event)
-  }
-
-  const handleOnSubmitEditing = (event: any) => {
-    onSubmitEditing && onSubmitEditing(event)
   }
 
   return (
@@ -68,20 +46,20 @@ const TextField: FC<Props> = (props: Props) => {
       <InputContainer error={!!error}>
         <LabelContainer>
           <Icon icon={icon} fill={colors.red} width={15} height={15} />
-          <Label error={!!error}>{error ? error : fieldName}</Label>
+          <Label error={!!error}>{error ?? fieldName}</Label>
         </LabelContainer>
         <InputField
-          {...props}
           keyboardType={keyboardType}
           ref={inputRef}
+          onChangeText={onChangeText}
           autoCorrect={autoCorrect}
           autoCompleteType={autoCompleteType}
           textContentType={textContentType}
-          onBlur={handleOnBlur}
+          onBlur={onBlur}
           autoCapitalize={autoCapitalize}
-          onEndEditing={handleOnEndEditing}
+          onEndEditing={onEndEditing}
           returnKeyType={returnKeyType}
-          onSubmitEditing={handleOnSubmitEditing}
+          onSubmitEditing={onSubmitEditing}
           enablesReturnKeyAutomatically={enablesReturnKeyAutomatically}
           value={value}
           clearButtonMode="while-editing"
