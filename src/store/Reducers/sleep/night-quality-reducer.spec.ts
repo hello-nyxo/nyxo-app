@@ -8,7 +8,6 @@ import {
 
 const initialState: NightQualityState = {
   records: new Map()
-  // localRecords: new Map() // --- CAN DELETE ---
 }
 
 describe('Night Quality Reducer', () => {
@@ -17,7 +16,6 @@ describe('Night Quality Reducer', () => {
       NightQualityReducer(
         {
           records: new Map()
-          // localRecords: new Map() // --- CAN DELETE ---
         },
         { type: 'NOTHING' }
       )
@@ -39,14 +37,12 @@ describe('Night Quality Reducer', () => {
     }
     const expected: NightQualityState = {
       records: records.set(newInputPayload.date, newInputPayload)
-      // localRecords: new Map() // --- CAN DELETE ---
     }
 
     expect(
       NightQualityReducer(
         {
           records
-          // localRecords: new Map() // --- CAN DELETE ---
         },
         updateNightQuality(newInputPayload)
       )
@@ -56,14 +52,12 @@ describe('Night Quality Reducer', () => {
   it('should handle PUSH_NIGHT_QUALITY', () => {
     const expected: NightQualityState = {
       records: new Map().set(inputPayload.date, inputPayload)
-      // localRecords: new Map() // --- CAN DELETE ---
     }
 
     expect(
       NightQualityReducer(
         {
           records: new Map()
-          // localRecords: new Map() // --- CAN DELETE ---
         },
         pushNightQuality(inputPayload)
       )
@@ -75,14 +69,12 @@ describe('Night Quality Reducer', () => {
 
     const expected: NightQualityState = {
       records: payload
-      // localRecords: new Map() // --- CAN DELETE ---
     }
 
     expect(
       NightQualityReducer(
         {
           records: new Map()
-          // localRecords: new Map() // --- CAN DELETE ---
         },
         loadNightQualityFromCloud(payload)
       )

@@ -28,12 +28,15 @@ import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import { SafeAreaView } from '@components/Primitives/Primitives'
 import TopInfo from '@components/TopInfo'
 import colors from '../../styles/colors'
+import { getAuthState } from 'store/selectors/auth-selectors/auth-selectors'
+import { getNightRatingsFromCloud } from 'store/actions/sleep/night-quality-actions'
 
 const MainScreen = () => {
   const isLoadingSleepData = useSelector(getHealthKitLoading)
   const isLoadingFitbit = useSelector(getLoadingFitbit)
   const isLoadingGoogleFit = useSelector(getLoadingGoogleFit)
   const dispatch = useDispatch()
+  const authenticated = useSelector(getAuthState)
 
   useNotificationEventHandlers()
 
@@ -48,6 +51,9 @@ const MainScreen = () => {
   const checkSleepData = async () => {
     await dispatch(fetchSleepData())
     await dispatch(updateCalendar())
+    if (authenticated) {
+      await dispatch(getNightRatingsFromCloud())
+    }
   }
 
   return (

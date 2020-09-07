@@ -23,7 +23,6 @@ const NightRating: FC<Props> = ({ date, unClickable, height, width }) => {
   const ratingDate = useSelector((state: State) =>
     getRatingOnDate(state, { date })
   )
-
   const { icon, color } = getRating(ratingDate?.rating)
   const dispatch = useDispatch()
 

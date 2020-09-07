@@ -40,15 +40,16 @@ const DayStrip: FC = () => {
             {moment(item.date).format('DD.MM.')}
           </DateNumber>
         </Segment>
+
         <Spacer />
-        <NightRatingHolder>
+        <RatingSegment>
           <NightRating
             height={15}
             width={15}
             unClickable={true}
             date={item.date}
           />
-        </NightRatingHolder>
+        </RatingSegment>
       </Container>
     )
   }
@@ -82,7 +83,6 @@ const Container = styled.View`
 
 const Segments = styled(FlatList)`
   width: ${WIDTH}px;
-  height: ${dayWidth + 30}px;
   margin: 20px 0px;
   padding: 10px 0px;
 `
@@ -105,6 +105,13 @@ const Segment = styled.TouchableOpacity<SegmentProps>`
     props.active
       ? props.theme.PRIMARY_TEXT_COLOR
       : props.theme.PRIMARY_BACKGROUND_COLOR};
+`
+
+const RatingSegment = styled.View`
+  width: ${dayWidth}px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const DateText = styled.Text<SegmentProps>`
@@ -131,8 +138,4 @@ const DateNumber = styled.Text<SegmentProps>`
 
 const Spacer = styled.View`
   height: ${spacerHeight}px;
-`
-const NightRatingHolder = styled.View`
-  justify-content: center;
-  align-items: center;
 `

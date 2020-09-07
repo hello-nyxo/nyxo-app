@@ -154,6 +154,7 @@ type NormalizedDay = Day & {
 
 const normalizeSleepData = (days: Day[]): NormalizedDay[] => {
   const normalized = days.map((day) => {
+    day.night = day.night ? day.night : [] // Some nights return as undefined
     const normalizedNights = day.night.map((night) => {
       const trueDate = moment(day.date)
 

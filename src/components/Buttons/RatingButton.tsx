@@ -9,7 +9,6 @@ import ScalingButton from './ScalingButton'
 import { rateNight } from 'store/actions/sleep/night-quality-actions'
 import { NightQuality } from 'Types/Sleep/NightQuality'
 import { getRatingDate } from 'store/Selectors/ModalSelectors'
-import { v4 } from 'uuid'
 
 type Props = {
   selected: boolean
@@ -25,12 +24,7 @@ const RatingButton: FC<Props> = ({ value, title, icon, color }) => {
 
   const handlePress = () => {
     dispatch(rateDay(value))
-    const nightQuality: NightQuality = {
-      id: v4(),
-      rating: value,
-      date: ratingDate && ratingDate.length > 0 ? ratingDate : 'unknown'
-    }
-    dispatch(rateNight(nightQuality))
+    dispatch(rateNight({ rating: value, date: ratingDate }))
   }
 
   return (

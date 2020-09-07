@@ -9,6 +9,7 @@ import {
   UpdateNightRatingInput
 } from 'API'
 import { listNightRatings } from 'graphql/queries'
+import { v4 } from 'uuid'
 
 export const UPDATE_NIGHT_QUALITY = 'UPDATE_NIGHT_QUALITY'
 export const PUSH_NIGHT_QUALITY = 'PUSH_NIGHT_QUALITY'
@@ -26,23 +27,6 @@ export const pushNightQuality = (nightQuality: NightQuality) => ({
   type: PUSH_NIGHT_QUALITY,
   payload: nightQuality
 })
-
-// --- CAN DELETE ---
-// export const updateNightQualityLocally = (nightQuality: NightQuality) => ({
-//   type: UPDATE_NIGHT_QUALITY_LOCAL,
-//   payload: nightQuality
-// })
-
-// --- CAN DELETE ---
-// export const pushNightQualityLocally = (nightQuality: NightQuality) => ({
-//   type: PUSH_NIGHT_QUALITY_LOCAL,
-//   payload: nightQuality
-// })
-
-// --- CAN DELETE ---
-// export const popNightQualityLocally = () => ({
-//   type: POP_NIGHT_QUALITY_LOCAL
-// })
 
 export const loadNightQualityFromCloud = (
   nightQualityFromCloud: Map<string, NightQuality>
@@ -106,10 +90,13 @@ export const convertNightQualityFromCloudToMap = (
   return map
 }
 
-export const rateNight = ({ id, rating, date }: NightQuality) => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+export const rateNight = ({
+  rating,
+  date
+}: {
+  rating: number
+  date: string | undefined
+}) => async (dispatch: Dispatch, getState: GetState) => {
   const {
     user: { authenticated, username },
     nightQuality
@@ -117,18 +104,18 @@ export const rateNight = ({ id, rating, date }: NightQuality) => async (
 
   date = date && date.length > 0 ? date : 'undefined' //Because aws doesn't accept empty string
 
-  const newNightRating: NightQuality = {
-    id,
-    rating,
-    date
-  }
-
   try {
     // Handle cloud update if user is logged in
     if (authenticated) {
       // We check to see if the rating for date already exists
       // If it exists, we update its data in the cloud
       if (checkRecordExists(nightQuality, date)) {
+        const newNightRating: NightQuality = {
+          id: nightQuality.records.get(date)?.id as string,
+          rating,
+          date
+        }
+
         const updateNightRatingInput: UpdateNightRatingInput = {
           date,
           userId: username as string,
@@ -149,7 +136,13 @@ export const rateNight = ({ id, rating, date }: NightQuality) => async (
           date,
           userId: username as string,
           rating,
-          id
+          id: v4()
+        }
+
+        const newNightRating: NightQuality = {
+          id: createNightRatingInput.id as string,
+          rating,
+          date
         }
 
         await API.graphql(
@@ -159,38 +152,11 @@ export const rateNight = ({ id, rating, date }: NightQuality) => async (
         await dispatch(pushNightQuality(newNightRating))
       }
     }
-
-    // --- CAN DELETE ---
-    // else {
-    //   // If record already exists, we update it
-    //   if (checkRecordExists(nightQuality, date)) {
-    //     await dispatch(updateNightQualityLocally(newNightRating))
-    //   }
-    //   // If not, we handle it as local data
-    //   else {
-    //     // If the new night rating will break the size, we pop the 1st element (the oldest night rating) so the array always remains 31 elements
-    //     if (checkIfWillExceedQuantity(nightQuality)) {
-    //       await dispatch(popNightQualityLocally())
-    //     }
-
-    //     // Push the new one in as the 31st element
-    //     await dispatch(pushNightQualityLocally(newNightRating))
-    //   }
-    // }
   } catch (err) {
     console.log('rateNight', err)
   }
 }
 
 const checkRecordExists = ({ records }: NightQualityState, date: string) => {
-  // const index = records.findIndex((nightQuality) => (nightQuality.id = date))
-
-  // return index !== -1
   return records.has(date)
 }
-
-// --- CAN DELETE ---
-// const checkIfWillExceedQuantity = ({ records }: NightQualityState) => {
-//   // return records.length === 31
-//   return records.size === 31
-// }

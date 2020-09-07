@@ -42,7 +42,6 @@ describe('Night Quality Action', () => {
       },
       nightQuality: {
         records: new Map()
-        // localRecords: new Map() // --- CAN DELETE ---
       }
     })
 
@@ -79,18 +78,22 @@ describe('Night Quality Action', () => {
       },
       nightQuality: {
         records: records
-        // localRecords: new Map() // --- CAN DELETE ---
       }
     })
 
-    const updateNight: NightQuality = { ...inputNightQuality, rating: 3 }
+    const updateNight = {
+      date: inputNightQuality.date,
+      rating: inputNightQuality.rating
+    }
 
     return store
       .dispatch(<AnyAction>(<unknown>rateNight(updateNight)))
       .then(() => {
         const actions = store.getActions()
 
-        expect(actions[0]).toEqual(updateNightQuality(updateNight))
+        expect(actions[0]).toEqual(
+          updateNightQuality({ ...updateNight, id: inputNightQuality.id })
+        )
       })
   })
 })
