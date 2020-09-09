@@ -66,7 +66,7 @@ const SignInScreen = ({ navigation }: Props) => {
                   autoCompleteType="email"
                   returnKeyType="next"
                   value={values.email}
-                  error={touched.email ? errors.email : ''}
+                  error={touched.email && errors.email}
                   blurOnSubmit={false}
                   enablesReturnKeyAutomatically
                   autoCapitalize="none"
@@ -82,7 +82,7 @@ const SignInScreen = ({ navigation }: Props) => {
                   textContentType="password"
                   autoCompleteType="password"
                   value={values.password}
-                  error={touched.password ? errors.password : ''}
+                  error={touched.password && errors.password}
                   returnKeyType="done"
                   enablesReturnKeyAutomatically
                   placeholder="INPUT_PASSWORD"

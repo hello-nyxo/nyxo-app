@@ -14,7 +14,6 @@ import Purchases from 'react-native-purchases'
 import { GetState } from 'Types/GetState'
 import { NotificationType } from 'Types/NotificationState'
 import { updateEmail } from '../user/user-actions'
-import { getNightRatingsFromCloud } from '../sleep/night-quality-actions'
 
 /* ACTION TYPES */
 
@@ -164,7 +163,6 @@ export const login = (loginEmail: string, loginPassword: string) => async (
       await NavigationService.navigate(ROUTE.SLEEP, {})
     }
 
-    await dispatch(getNightRatingsFromCloud(username))
     await dispatch(loginSuccess(true, email, username))
   } catch (error) {
     console.warn(error)
