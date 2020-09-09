@@ -1,24 +1,28 @@
 import { useQuery } from 'react-query'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAuthState } from 'store/selectors/auth-selectors/auth-selectors'
 import { ModelNightRatingFilterInput } from 'API'
-import { getUsername } from 'store/selectors/UserSelectors'
 import { API, graphqlOperation } from 'aws-amplify'
 import { listNightRatings } from 'graphql/queries'
 import { NightQuality } from 'Types/Sleep/NightQuality'
-import { loadNightQualityFromCloud, convertNightQualityFromCloudToMap } from 'store/actions/sleep/night-quality-actions'
+import {
+  loadNightQualityFromCloud,
+  convertNightQualityFromCloudToMap
+} from 'store/actions/sleep/night-quality-actions'
 
-interface GetRatingsFromCloud {}
+import { actionCreators as newNotificationCreator } from 'store/Reducers/NotificationReducer'
+import { NotificationType } from 'Types/NotificationState'
+import { getAuthState } from 'store/Selectors/auth-selectors/auth-selectors'
+import { getUsername } from 'store/Selectors/UserSelectors'
 
-export const useGetRatingsFromCloud = (props: GetRatingsFromCloud) => {
+export const useGetRatingsFromCloud = () => {
   const authenticated = useSelector(getAuthState)
   const username = useSelector(getUsername)
   const dispatch = useDispatch()
 
-  if (authenticated) {
-    const { isLoading, isError, data, error } = useQuery(
-      ['getRatingsFromCloud'],
-      async () => {
+  const { isError, error } = useQuery(
+    ['getRatingsFromCloud', { username }],
+    async () => {
+      if (authenticated) {
         try {
           const variables: {
             filter: ModelNightRatingFilterInput
@@ -48,6 +52,15 @@ export const useGetRatingsFromCloud = (props: GetRatingsFromCloud) => {
           console.log('getRatingsFromCloud react query', err)
         }
       }
+    }
+  )
+
+  if (isError) {
+    dispatch(
+      newNotificationCreator.newNotification({
+        message: (<any>error).message as string,
+        type: NotificationType.ERROR
+      })
     )
   }
 }

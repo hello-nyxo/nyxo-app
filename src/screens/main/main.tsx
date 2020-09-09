@@ -28,17 +28,12 @@ import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import { SafeAreaView } from '@components/Primitives/Primitives'
 import TopInfo from '@components/TopInfo'
 import colors from '../../styles/colors'
-import { getAuthState } from 'store/selectors/auth-selectors/auth-selectors'
-import { useGetRatingsFromCloud } from 'queries/get-ratings-from-cloud'
 
 const MainScreen = () => {
   const isLoadingSleepData = useSelector(getHealthKitLoading)
   const isLoadingFitbit = useSelector(getLoadingFitbit)
   const isLoadingGoogleFit = useSelector(getLoadingGoogleFit)
   const dispatch = useDispatch()
-  const authenticated = useSelector(getAuthState)
-
-  useGetRatingsFromCloud()
 
   useNotificationEventHandlers()
 

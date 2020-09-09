@@ -26,13 +26,17 @@ import React, { FC, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
+import {
+  useGetRatingsFromCloud,
+} from 'queries/night-ratings/get-ratings-from-cloud'
 
 const Sleep: FC = () => {
   const today = useSelector(getSelectedDay)
   const editModeOn = useSelector(getEditMode)
   const isLoadingSleepData = useSelector(getHealthKitLoading)
-
   const dispatch = useDispatch()
+
+  useGetRatingsFromCloud()
 
   useNotificationEventHandlers()
 
