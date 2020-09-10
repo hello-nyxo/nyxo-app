@@ -46,8 +46,8 @@ export const completeLessonMutation = async ({
   try {
     const { username } = await Auth.currentUserInfo()
     const input: UpdateCoachingDataInput = {
-			...coaching,
-			lessons: 
+      ...coaching,
+
       userId: username
     }
 

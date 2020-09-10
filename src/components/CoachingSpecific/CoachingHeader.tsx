@@ -5,20 +5,18 @@ import WeekCarousel from './WeekCarousel'
 import IntroduceCoaching from './IntroduceCoaching'
 
 const CoachingHeader: FC = () => {
-	const activeCoaching = 
-	
-	return (
-  <>
-    <PageTitle>Coaching</PageTitle>
-    <Container>
+  // const activeCoaching =
 
+  return (
+    <>
+      <PageTitle>Coaching</PageTitle>
+      <Container></Container>
 
-		</Container>
-
-    <IntroduceCoaching />
-    <WeekCarousel />
-  </>
-)}
+      <IntroduceCoaching />
+      <WeekCarousel />
+    </>
+  )
+}
 
 export default CoachingHeader
 
