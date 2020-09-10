@@ -69,7 +69,9 @@ export const toggleGoogleFit = (): Thunk => async (
   }
 }
 
-export const authorizeGoogleFit = () => async (dispatch: Function) => {
+export const authorizeGoogleFit = () => async (
+  dispatch: Dispatch
+): Promise<void> => {
   const config =
     Platform.OS === 'android'
       ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
@@ -215,7 +217,7 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
           const formatted = await formatGoogleFitData(response.session)
           await dispatch(syncNightsToCloud(formatted))
           await dispatch(createGoogleFitSources(formatted))
-          await dispatch(fetchSleepSuccess(formattedResponse))
+          await dispatch(fetchSleepSuccess(formatted))
         }
       }
     } catch (error) {
@@ -260,9 +262,9 @@ export const switchGoogleFitSource = (googleFitSource: SUB_SOURCE) => async (
   dispatch(fetchSleepData())
 }
 
-export const createGoogleFitSources = (nights: Night[]) => async (
-  dispatch: Function,
-  getState: Function
+export const createGoogleFitSources = (nights: Night[]): Thunk => async (
+  dispatch: Dispatch,
+  getState: GetState
 ) => {
   const googleFitSource = getGoogleFitSource(getState())
   const sourceList: SUB_SOURCE[] = []

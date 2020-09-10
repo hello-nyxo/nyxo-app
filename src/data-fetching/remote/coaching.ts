@@ -1,4 +1,4 @@
-import { createCoachingData } from '@graphql/mutations'
+import { createCoachingData, updateCoachingData } from '@graphql/mutations'
 import { getCoachingData, listCoachingDatas } from '@graphql/queries'
 import {
   CreateCoachingDataInput,
@@ -6,14 +6,29 @@ import {
   GetCoachingDataQuery,
   ListCoachingDatasQuery,
   UpdateCoachingDataInput,
-  UpdateCoachingDataMutation
+  UpdateCoachingDataMutation,
+  Stage
 } from 'API'
 import { graphqlOperation, API, Auth } from 'aws-amplify'
 
-export const listCoaching = async (): Promise<
-  ListCoachingDatasQuery['listCoachingDatas']
-> => {
-  const filter: GetCoachingDataQuery = {}
+type CoachingData = {
+  id: string
+  userId: string
+  stage: Stage | null
+  activeWeek: string | null
+  started: string | null
+  ended: string | null
+  lessons: Array<string | null> | null
+  createdAt: string
+  updatedAt: string
+  owner: string | null
+}
+
+type Response = Exclude<
+  ListCoachingDatasQuery['listCoachingDatas'],
+  null
+>['items']
+export const listCoaching = async (): Promise<Response> => {
   try {
     const {
       data: { listCoachingDatas: data }
@@ -21,14 +36,14 @@ export const listCoaching = async (): Promise<
       data: ListCoachingDatasQuery
     }
 
-    return data
+    if (data?.items) {
+      return data?.items
+    }
+    return []
   } catch (error) {
     return error
   }
 }
-
-// type Todo = Omit<Exclude<APIt.GetTodoQuery['getTodo'], null>,
-//                  '__typename'>;
 
 export const getCoaching = async (
   key: string,
@@ -76,13 +91,23 @@ export const updateCoaching = async ({
   coaching: UpdateCoachingDataInput
 }): Promise<UpdateCoachingDataMutation> => {
   try {
+    const { username } = await Auth.currentUserInfo()
+
+    const input: UpdateCoachingDataInput = {
+      ...coaching,
+      userId: username
+    }
+
+    console.log(input)
+
     const { data } = (await API.graphql(
-      graphqlOperation(createCoachingData, { input: coaching })
+      graphqlOperation(updateCoachingData, { input })
     )) as {
       data: UpdateCoachingDataMutation
     }
     return data
   } catch (error) {
+    console.log(error)
     return error
   }
 }

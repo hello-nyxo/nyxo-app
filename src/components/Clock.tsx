@@ -4,7 +4,6 @@ import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import React, { FC, memo } from 'react'
 import { Dimensions } from 'react-native'
-import Animated from 'react-native-reanimated'
 import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
@@ -19,9 +18,7 @@ import SleepArc from './clock/SleepArc'
 import SleepTime from './clock/SleepTime'
 import Bedtime from './clock/Slider'
 import TrackerName from './clock/TrackerName'
-import Date from './clock/Date'
 import TranslatedText from './TranslatedText'
-import { StyledModal } from './Primitives/Primitives'
 
 const { width } = Dimensions.get('window')
 const clockSize = width - 40
@@ -51,11 +48,9 @@ const Clock: FC = () => {
     dispatch(toggleEditMode())
   }
 
-  console.log(night)
-
   return (
     <Card>
-      <Title>STAT.STATISTICS</Title>
+      <Title>STAT.TITLE</Title>
 
       <ClockContainer style={{ height: clockSize + 15, width: clockSize + 15 }}>
         <Svg width={clockSize} height={clockSize}>
@@ -133,6 +128,9 @@ const Card = styled.View`
   box-shadow: ${({ theme }) => theme.SHADOW};
   border-radius: 7px;
   margin-top: 8px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 `
 
 const ClockContainer = styled.View`
@@ -146,6 +144,8 @@ const ClockContainer = styled.View`
 const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   font-size: 15px;
+  position: absolute;
+  top: 10px;
+  left: 16px;
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-  margin-bottom: 10px;
 `

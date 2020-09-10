@@ -12,6 +12,8 @@ import { SleepDataSource } from 'Types/SleepClockState'
 import { Night } from 'Types/Sleepdata'
 import { SUB_SOURCE } from 'typings/state/sleep-source-state'
 import { fetchSleepData } from './sleep-data-actions'
+import { syncNightsToCloud } from './night-cloud-actions'
+import { subDays, startOfDay, endOfDay } from 'date-fns'
 
 /* ACTION TYPES */
 
@@ -130,18 +132,15 @@ export const fetchSleepFromHealthKit = (
   dispatch(fetchHKSleepStart())
 
   const options = {
-    startDate,
-    endDate
+    startDate: startOfDay(subDays(new Date(), 800)).toISOString(),
+    endDate: endOfDay(new Date()).toISOString()
   }
-
-  console.log(options)
 
   try {
     await AppleHealthKit.getSleepSamples(
       options,
       async (error: string, response: Array<SleepSample>) => {
         if (error) {
-          console.log(error)
           dispatch(fetchHKSleepFailure())
         }
         // dispatch(createHealthKitSources(response))
@@ -153,15 +152,13 @@ export const fetchSleepFromHealthKit = (
         )
         console.log('formattedData', formattedData)
 
-        // await dispatch(syncNightsToCloud(formattedData))
+        await dispatch(syncNightsToCloud(formattedData))
         await dispatch(fetchSleepSuccess(formattedData))
-        // await dispatch(fetchHKSleepSuccess())
       }
     )
   } catch (error) {
-    console.warn(error)
     dispatch(fetchHKSleepFailure())
   } finally {
-    await dispatch(fetchHKSleepSuccess())
+    dispatch(fetchHKSleepSuccess())
   }
 }

@@ -232,3 +232,7 @@ const CheckBoxContainer = styled.View`
 `
 
 export const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
+
+export const ThemedRefreshControl = styled.RefreshControl.attrs(() => ({
+  tintColor: colors.radiantBlue
+}))``

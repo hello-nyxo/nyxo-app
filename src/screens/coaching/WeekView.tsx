@@ -13,7 +13,6 @@ import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import Lessons from './Lessons'
-
 const yOffset = new Animated.Value(0)
 
 interface Props {
@@ -23,6 +22,7 @@ interface Props {
 const WeekView = ({ route }: Props) => {
   const { week }: { week: CombinedWeek } = route.params
   const hasCoaching = useSelector(getActiveCoaching)
+
   const locked = hasCoaching && week.locked !== undefined ? week.locked : true
 
   return (

@@ -3,24 +3,22 @@ import { changeGoogleFitSource } from '@actions/sleep-source-actions/sleep-sourc
 import EmptyState from '@components/EmptyState'
 import SourceRow from '@components/SettingsSpecific/SourceRow'
 import TranslatedText from '@components/TranslatedText'
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
 import {
   getAllGoogleFitSources,
   getGoogleFitSource,
   getIsGoogleFitMainSource
 } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import React, { FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
 import { constants } from 'styles/themes'
 
-const GoogleFitSection = () => {
+const GoogleFitSection: FC = () => {
   const dispatch = useDispatch()
   const sources = useSelector(getAllGoogleFitSources)
   const isGoogleFitMainSource = useSelector(getIsGoogleFitMainSource)
   const healthKitSource = useSelector(getGoogleFitSource)
-  const googleFitAuthorized = useSelector(getGoogleFitEnabled)
 
   const onPress = (sourceId: string) => {
     const source = sources?.find((s) => s.sourceId === sourceId)
@@ -33,17 +31,15 @@ const GoogleFitSection = () => {
     dispatch(toggleGoogleFit())
   }
 
-  const mapped = sources
-    ? sources.map((item, key) => (
-        <SourceRow
-          key={key}
-          sourceId={item.sourceId}
-          sourceName={item.sourceName}
-          selectedSourceId={healthKitSource?.sourceId}
-          switchSource={onPress}
-        />
-      ))
-    : []
+  const mapped = sources?.map((item, key) => (
+    <SourceRow
+      key={key}
+      sourceId={item.sourceId}
+      sourceName={item.sourceName}
+      selectedSourceId={healthKitSource?.sourceId}
+      switchSource={onPress}
+    />
+  ))
 
   return (
     <Container>
@@ -64,7 +60,7 @@ const GoogleFitSection = () => {
       </TitleRow>
 
       {isGoogleFitMainSource && (
-        <Sources>{mapped.length !== 0 ? mapped : <EmptyState />}</Sources>
+        <Sources>{mapped?.length !== 0 ? mapped : <EmptyState />}</Sources>
       )}
     </Container>
   )

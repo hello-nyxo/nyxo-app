@@ -671,7 +671,9 @@
     "WOKE_UP": "Woke up",
     "FELL_ASLEEP": "Fell  asleep",
     "GOT_UP": "Got up",
-    "STATISTICS": "Insights"
+    "STATISTICS": "Insights",
+    "TREND": "Sleep Trend",
+    "EFFICIENCY": "Efficiency"
   },
 
   "TAB": {
@@ -685,5 +687,11 @@
   "COACHING": {
     "WATCH_INTRO": "See introduction",
     "START": "Start Coaching"
+  },
+
+  "QUESTION": {
+    "TITLE": "Have a question your sleep?",
+    "TEXT": "Included in the Nyxo Coaching subscription is direct chat with our experts. If you have any questions related to sleep, Nyxo Coaching, or overall wellbeing our experts are more than willing to answer those.",
+    "OPEN_CHAT": "Ask a Question"
   }
 }

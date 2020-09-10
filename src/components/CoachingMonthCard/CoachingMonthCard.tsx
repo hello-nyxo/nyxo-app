@@ -34,7 +34,6 @@ const CoachingMonthCard: FC<Props> = ({ month }) => {
       <Started>
         {startDate} – {endDate}
       </Started>
-      <Button onPress={setActive} title="Set Active" />
       <Row>
         <Stat variables={{ weeks: 0 }}>COACHING_MONTH.WEEKS</Stat>
         <Stat variables={{ lessons }}>COACHING_MONTH.LESSONS</Stat>
@@ -49,7 +48,7 @@ const Container = styled.View`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   padding: 10px;
   border-radius: 10px;
-  margin: 10px 0px;
+  margin: 10px 16px;
 `
 
 const Row = styled.View`

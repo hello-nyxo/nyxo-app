@@ -1,21 +1,6 @@
 import { completeLesson } from '@actions/coaching/coaching-actions'
-import { interpolateColors } from '@helpers/animated'
-import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
-import useOnMount from '@hooks/UseOnMount'
-import { useNavigation } from '@react-navigation/native'
-import {
-  CombinedLesson,
-  getContentForSelectedLesson
-} from '@selectors/coaching-selectors/coaching-selectors'
-import Copyright from '@components/CoachingSpecific/Copyright'
-import Tags from '@components/LessonComponents/Tags'
-import React, { memo, useState, FC } from 'react'
-import { LayoutChangeEvent } from 'react-native'
-import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
-import Animated from 'react-native-reanimated'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components/native'
 import Authors from '@components/CoachingSpecific/Authors'
+import Copyright from '@components/CoachingSpecific/Copyright'
 import TopHeader from '@components/CoachingSpecific/TopHeader'
 import WeekViewHeader from '@components/CoachingSpecific/WeekViewHeader'
 import ExtraInfo from '@components/Lesson/ExtraInfo'
@@ -23,7 +8,25 @@ import LessonContent from '@components/Lesson/LessonContent'
 import LessonCover from '@components/Lesson/LessonCover'
 import ExampleHabitSection from '@components/LessonComponents/ExampleHabitSection'
 import ReadingTime from '@components/LessonComponents/ReadingTime'
+import Tags from '@components/LessonComponents/Tags'
 import { ReAnimatedTranslatedText } from '@components/TranslatedText'
+import { interpolateColors } from '@helpers/animated'
+import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
+import {
+  useGetActiveCoaching,
+  useUpdateCoaching
+} from '@hooks/coaching/useCoaching'
+import { useNavigation } from '@react-navigation/native'
+import {
+  CombinedLesson,
+  getContentForSelectedLesson
+} from '@selectors/coaching-selectors/coaching-selectors'
+import React, { FC, memo, useState } from 'react'
+import { LayoutChangeEvent, Button } from 'react-native'
+import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
+import Animated from 'react-native-reanimated'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'
 
@@ -33,12 +36,13 @@ const LessonView: FC = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation()
   const [height, setHeight] = useState(0)
+  const { data } = useGetActiveCoaching()
+  const [mutate] = useUpdateCoaching()
+
   const selectedLesson: CombinedLesson = useSelector(
     getContentForSelectedLesson
   )
   const {
-    contentId,
-    weekId = '',
     tags,
     cover = '',
     slug,
@@ -54,20 +58,26 @@ const LessonView: FC = () => {
   }
 
   const markCompleted = async () => {
-    await Promise.all([
-      dispatch(completeLesson(slug)),
-      yOffset.setValue(0),
-      navigation.goBack()
-    ])
+    mutate({
+      coaching: {
+        id: data?.activeCoaching?.id as string,
+        lessons: [...new Set([data?.activeCoaching?.lessons, slug])]
+      }
+    })
+
+    // await Promise.all([
+    //   yOffset.setValue(0),
+    //   navigation.goBack()
+    // ])
   }
 
   const handleOnLayout = (event: LayoutChangeEvent) => {
     setHeight(event.nativeEvent.layout.height)
   }
 
-  const ButtonAnimation = (yOffset: Animated.Value<number>) => {
+  const ButtonAnimation = (value: Animated.Value<number>) => {
     return {
-      padding: yOffset.interpolate({
+      padding: value.interpolate({
         inputRange: [height * 0.5, height],
         outputRange: [0, 20],
         extrapolate: Animated.Extrapolate.CLAMP
@@ -80,9 +90,9 @@ const LessonView: FC = () => {
     }
   }
 
-  const textIn = (yOffset: Animated.Value<number>) => {
+  const textIn = (value: Animated.Value<number>) => {
     return {
-      opacity: yOffset.interpolate({
+      opacity: value.interpolate({
         inputRange: [height * 0.5, height],
         outputRange: [0, 1],
         extrapolate: Animated.Extrapolate.CLAMP
@@ -90,9 +100,9 @@ const LessonView: FC = () => {
     }
   }
 
-  const textOut = (yOffset: any) => {
+  const textOut = (value: Animated.Value<number>) => {
     return {
-      opacity: yOffset.interpolate({
+      opacity: value.interpolate({
         inputRange: [height * 0.65, height],
         outputRange: [1, 0],
         extrapolate: Animated.Extrapolate.CLAMP
@@ -111,16 +121,15 @@ const LessonView: FC = () => {
         scrollEventThrottle={16}>
         <LessonCover yOffset={yOffset} cover={cover} />
         <WeekViewHeader yOffset={yOffset} title={lessonName} />
+
+        <Button title="complete" onPress={markCompleted} />
         <Authors authorCards={authorCards} />
         <ReadingTime
           content={lessonContent}
           habitCount={exampleHabit?.length}
         />
         <Tags tags={tags} />
-        <LessonContent
-          lessonContent={lessonContent}
-          handleOnLayout={handleOnLayout}
-        />
+        <LessonContent lessonContent={lessonContent} />
         <ExampleHabitSection habits={exampleHabit} />
         <ExtraInfo additionalInformation={additionalInformation} />
         <Copyright />

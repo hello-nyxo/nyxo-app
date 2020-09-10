@@ -3,7 +3,7 @@ import {
   selectLesson
 } from '@actions/coaching/coaching-actions'
 import Analytics from 'appcenter-analytics'
-import React, { memo } from 'react'
+import React, { memo, FC } from 'react'
 import { Animated } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { BorderlessButton } from 'react-native-gesture-handler'
@@ -20,19 +20,19 @@ import { fonts, StyleProps } from '../../styles/themes'
 import IconBold from '../iconBold'
 import TranslatedText, { AnimatedTranslatedText } from '../TranslatedText'
 
-interface Props {
+type Props = {
   lesson: CombinedLesson
   locked?: boolean
 }
 
-const LessonListItem = ({ lesson, locked }: Props) => {
+const LessonListItem: FC<Props> = ({ lesson, locked }) => {
   const dispatch = useDispatch()
   const { navigate } = useNavigation()
   const hasActiveCoaching = useSelector(getActiveCoaching)
   const time = getReadingTime(lesson.lessonContent)
 
   const handlePress = () => {
-    if (hasActiveCoaching) {
+    if (locked) {
       Analytics.trackEvent(`Open lesson ${lesson.lessonName}`)
       dispatch(selectLesson(lesson.slug))
       navigate(ROUTE.LESSON, {})
@@ -45,13 +45,16 @@ const LessonListItem = ({ lesson, locked }: Props) => {
 
   const author = lesson.authorCards
     ? {
-        name: lesson.authorCards[0]?.name
+        name: lesson?.authorCards[0]?.name
       }
     : {
         name: 'Pietari Nurmi'
       }
 
-  const renderRightActions = (progress: any, dragX: any) => {
+  const renderRightActions = (
+    progress: Animated.AnimatedInterpolation,
+    dragX: Animated.AnimatedInterpolation
+  ) => {
     if (!hasActiveCoaching) {
       return <NoAction />
     }

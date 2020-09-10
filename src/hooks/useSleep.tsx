@@ -8,7 +8,8 @@ import { Night, Value } from 'Types/Sleepdata'
 import {
   calculateTotalSleep,
   findStartTime,
-  findEndTime
+  findEndTime,
+  calculateEfficiency
 } from '@helpers/sleep/sleep-data-helper'
 
 type Hook = {
@@ -22,6 +23,8 @@ type Hook = {
   bedEnd?: string
   sleepStart?: string
   sleepEnd?: string
+
+  efficiency: string
 }
 
 const useSleep = (): Hook => {
@@ -31,6 +34,8 @@ const useSleep = (): Hook => {
 
   const inBedDuration = calculateTotalSleep(night, Value.InBed)
   const asleepDuration = calculateTotalSleep(night, Value.Asleep)
+
+  const efficiency = calculateEfficiency(inBedDuration, asleepDuration)
 
   let bedStart
   let bedEnd
@@ -57,7 +62,8 @@ const useSleep = (): Hook => {
     bedStart,
     bedEnd,
     sleepStart,
-    sleepEnd
+    sleepEnd,
+    efficiency
   }
 }
 

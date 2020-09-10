@@ -1,44 +1,46 @@
-import { useNavigation } from '@react-navigation/native'
-import { groupBy } from 'lodash'
-import React, { memo, ReactElement } from 'react'
-import { SectionList } from 'react-native'
-import Animated from 'react-native-reanimated'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  CombinedLessonArray,
-  getCoachingLessonsForCurrentWeek,
-  getCoachingLessonsForWeek
-} from '@selectors/coaching-selectors/coaching-selectors'
-import styled from 'styled-components/native'
 import LessonListItem from '@components/LessonComponents/LessonListItem'
-import SectionFooter from '@components/LessonComponents/SectionFooter'
 import SectionHeader from '@components/LessonComponents/SectionHeader'
 import Separator from '@components/LessonComponents/Separator'
 import keyExtractor from '@helpers/KeyExtractor'
+import {
+  CombinedLessonArray,
+  getCoachingLessonsForCurrentWeek,
+  getCoachingLessonsForWeek,
+  CombinedLesson
+} from '@selectors/coaching-selectors/coaching-selectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
-import { StyleProps } from '../../styles/themes'
+import { useGetActiveCoaching } from 'hooks/coaching/useCoaching'
+import { groupBy } from 'lodash'
+import React, { FC, memo, ReactElement } from 'react'
+import { SectionList, ListRenderItem } from 'react-native'
+import Animated from 'react-native-reanimated'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components/native'
+import { Section } from 'Types/CoachingContentState'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 
-interface LessonProps {
+type Props = {
   useCurrentWeek: boolean
   locked?: boolean
   header?: ReactElement
   footer?: ReactElement
-  onScroll?: Function
+  onScroll?: () => void
   refreshControl?: ReactElement
 }
 
-const LessonList = (props: LessonProps) => {
-  const {
-    useCurrentWeek,
-    locked,
-    header,
-    footer,
-    onScroll,
-    refreshControl
-  } = props
-  const hasActiveCoaching = useSelector(getActiveCoaching)
+const LessonList: FC<Props> = ({
+  useCurrentWeek,
+  locked,
+  header,
+  footer,
+  onScroll,
+  refreshControl
+}) => {
+  const { data } = useGetActiveCoaching()
+
+  console.log(data?.activeCoaching)
+
   const lessonsSelectedWeek: CombinedLessonArray = useSelector(
     getCoachingLessonsForWeek
   )
@@ -46,22 +48,19 @@ const LessonList = (props: LessonProps) => {
     getCoachingLessonsForCurrentWeek
   )
 
-  const renderCard = ({ item, index }: any) => (
-    <LessonListItem key={index} locked={locked} lesson={item} />
+  const renderCard: ListRenderItem<CombinedLesson> = ({ item }) => (
+    <LessonListItem key={item.slug} locked={locked} lesson={item} />
   )
 
-  const renderSectionHeader = ({ section, index }: any) => (
+  const renderSectionHeader = ({
+    section
+  }: {
+    section: { header: Section }
+  }) => (
     <SectionHeader
-      key={index}
+      key={`${section.header.title}`}
       description={section.header.description}
-      title={section.header.title}
-    />
-  )
-  const renderSectionFooter = ({ section, index }: any) => (
-    <SectionFooter
-      key={index}
-      description={section.header.description}
-      title={section.header.title}
+      title={`${section.header.title}`}
     />
   )
 
@@ -112,11 +111,9 @@ const LessonList = (props: LessonProps) => {
 
 export default memo(LessonList)
 
-const StyledSectionList = styled(AnimatedSectionList).attrs(
-  (props: StyleProps) => ({
-    contentContainerStyle: {}
-  })
-)``
+const StyledSectionList = styled(AnimatedSectionList).attrs(() => ({
+  contentContainerStyle: {}
+}))``
 
 const Spacer = styled.View`
   height: 100px;

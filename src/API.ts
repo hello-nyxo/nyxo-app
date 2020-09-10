@@ -315,6 +315,42 @@ export type DeleteLikedContentInput = {
   id?: string | null,
 };
 
+export type CreateNightRatingInput = {
+  id?: string | null,
+  userId: string,
+  rating: number,
+  date: string,
+};
+
+export type UpdateNightRatingInput = {
+  id: string,
+  userId?: string | null,
+  rating?: number | null,
+  date?: string | null,
+};
+
+export type DeleteNightRatingInput = {
+  id?: string | null,
+};
+
+export type CreateFeedbackContentInput = {
+  id?: string | null,
+  type?: string | null,
+  slug: string,
+  rating: number,
+};
+
+export type UpdateFeedbackContentInput = {
+  id: string,
+  type?: string | null,
+  slug?: string | null,
+  rating?: number | null,
+};
+
+export type DeleteFeedbackContentInput = {
+  id?: string | null,
+};
+
 export type ModelRequestFilterInput = {
   id?: ModelIDFilterInput | null,
   requesterName?: ModelStringFilterInput | null,
@@ -356,6 +392,26 @@ export type ModelLikedContentFilterInput = {
   not?: ModelLikedContentFilterInput | null,
 };
 
+export type ModelNightRatingFilterInput = {
+  id?: ModelIDFilterInput | null,
+  userId?: ModelIDFilterInput | null,
+  rating?: ModelIntFilterInput | null,
+  date?: ModelStringFilterInput | null,
+  and?: Array< ModelNightRatingFilterInput | null > | null,
+  or?: Array< ModelNightRatingFilterInput | null > | null,
+  not?: ModelNightRatingFilterInput | null,
+};
+
+export type ModelFeedbackContentFilterInput = {
+  id?: ModelStringFilterInput | null,
+  type?: ModelStringFilterInput | null,
+  slug?: ModelStringFilterInput | null,
+  rating?: ModelIntFilterInput | null,
+  and?: Array< ModelFeedbackContentFilterInput | null > | null,
+  or?: Array< ModelFeedbackContentFilterInput | null > | null,
+  not?: ModelFeedbackContentFilterInput | null,
+};
+
 export enum ModelSortDirection {
   ASC = "ASC",
   DESC = "DESC",
@@ -363,6 +419,16 @@ export enum ModelSortDirection {
 
 
 export type ModelIDKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export type ModelStringKeyConditionInput = {
   eq?: string | null,
   le?: string | null,
   lt?: string | null,
@@ -542,6 +608,29 @@ export type listHabitsWithDaysQuery = {
       owner: string | null,
     } | null > | null,
     nextToken: string | null,
+  } | null,
+};
+
+export type GetActiveCoachingQueryVariables = {
+  id: string,
+};
+
+export type GetActiveCoachingQuery = {
+  getUser:  {
+    __typename: "User",
+    activeCoaching:  {
+      __typename: "CoachingData",
+      id: string,
+      userId: string,
+      stage: Stage | null,
+      activeWeek: string | null,
+      started: string | null,
+      ended: string | null,
+      lessons: Array< string | null > | null,
+      createdAt: string,
+      updatedAt: string,
+      owner: string | null,
+    } | null,
   } | null,
 };
 
@@ -1211,6 +1300,141 @@ export type DeleteLikedContentMutation = {
   } | null,
 };
 
+export type CreateNightRatingMutationVariables = {
+  input: CreateNightRatingInput,
+};
+
+export type CreateNightRatingMutation = {
+  createNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    rating: number,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type UpdateNightRatingMutationVariables = {
+  input: UpdateNightRatingInput,
+};
+
+export type UpdateNightRatingMutation = {
+  updateNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    rating: number,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type DeleteNightRatingMutationVariables = {
+  input: DeleteNightRatingInput,
+};
+
+export type DeleteNightRatingMutation = {
+  deleteNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    rating: number,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type CreateFeedbackContentMutationVariables = {
+  input: CreateFeedbackContentInput,
+};
+
+export type CreateFeedbackContentMutation = {
+  createFeedbackContent:  {
+    __typename: "FeedbackContent",
+    id: string | null,
+    type: string | null,
+    slug: string,
+    rating: number,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type UpdateFeedbackContentMutationVariables = {
+  input: UpdateFeedbackContentInput,
+};
+
+export type UpdateFeedbackContentMutation = {
+  updateFeedbackContent:  {
+    __typename: "FeedbackContent",
+    id: string | null,
+    type: string | null,
+    slug: string,
+    rating: number,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type DeleteFeedbackContentMutationVariables = {
+  input: DeleteFeedbackContentInput,
+};
+
+export type DeleteFeedbackContentMutation = {
+  deleteFeedbackContent:  {
+    __typename: "FeedbackContent",
+    id: string | null,
+    type: string | null,
+    slug: string,
+    rating: number,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
 export type GetSleepDataQueryVariables = {
   id: string,
 };
@@ -1609,6 +1833,97 @@ export type ListLikedContentsQuery = {
   } | null,
 };
 
+export type GetNightRatingQueryVariables = {
+  id: string,
+};
+
+export type GetNightRatingQuery = {
+  getNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    rating: number,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type ListNightRatingsQueryVariables = {
+  filter?: ModelNightRatingFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListNightRatingsQuery = {
+  listNightRatings:  {
+    __typename: "ModelNightRatingConnection",
+    items:  Array< {
+      __typename: "NightRating",
+      id: string,
+      userId: string,
+      rating: number,
+      date: string,
+      createdAt: string,
+      updatedAt: string,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetFeedbackContentQueryVariables = {
+  id: string,
+};
+
+export type GetFeedbackContentQuery = {
+  getFeedbackContent:  {
+    __typename: "FeedbackContent",
+    id: string | null,
+    type: string | null,
+    slug: string,
+    rating: number,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type ListFeedbackContentsQueryVariables = {
+  filter?: ModelFeedbackContentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListFeedbackContentsQuery = {
+  listFeedbackContents:  {
+    __typename: "ModelFeedbackContentConnection",
+    items:  Array< {
+      __typename: "FeedbackContent",
+      id: string | null,
+      type: string | null,
+      slug: string,
+      rating: number,
+      createdAt: string,
+      updatedAt: string,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type UserByConnectionIdQueryVariables = {
   connectionId?: string | null,
   sortDirection?: ModelSortDirection | null,
@@ -1681,6 +1996,32 @@ export type LikedContentBySlugQuery = {
       name: string | null,
       type: string | null,
       slug: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type FeedbackContentBySlugQueryVariables = {
+  slug?: string | null,
+  id?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelFeedbackContentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type FeedbackContentBySlugQuery = {
+  feedbackContentBySlug:  {
+    __typename: "ModelFeedbackContentConnection",
+    items:  Array< {
+      __typename: "FeedbackContent",
+      id: string | null,
+      type: string | null,
+      slug: string,
+      rating: number,
       createdAt: string,
       updatedAt: string,
       owner: string | null,
@@ -2325,6 +2666,141 @@ export type OnDeleteLikedContentSubscription = {
     name: string | null,
     type: string | null,
     slug: string | null,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnCreateNightRatingSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnCreateNightRatingSubscription = {
+  onCreateNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    rating: number,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnUpdateNightRatingSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnUpdateNightRatingSubscription = {
+  onUpdateNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    rating: number,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnDeleteNightRatingSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnDeleteNightRatingSubscription = {
+  onDeleteNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    rating: number,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnCreateFeedbackContentSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnCreateFeedbackContentSubscription = {
+  onCreateFeedbackContent:  {
+    __typename: "FeedbackContent",
+    id: string | null,
+    type: string | null,
+    slug: string,
+    rating: number,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnUpdateFeedbackContentSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnUpdateFeedbackContentSubscription = {
+  onUpdateFeedbackContent:  {
+    __typename: "FeedbackContent",
+    id: string | null,
+    type: string | null,
+    slug: string,
+    rating: number,
+    createdAt: string,
+    updatedAt: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnDeleteFeedbackContentSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnDeleteFeedbackContentSubscription = {
+  onDeleteFeedbackContent:  {
+    __typename: "FeedbackContent",
+    id: string | null,
+    type: string | null,
+    slug: string,
+    rating: number,
     createdAt: string,
     updatedAt: string,
     owner: string | null,

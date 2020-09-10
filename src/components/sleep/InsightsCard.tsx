@@ -5,7 +5,10 @@ import {
 import { IconBold } from '@components/iconRegular'
 import { Column } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
-import { getFormattedDateOrPlaceholder } from 'helpers/time'
+import {
+  getFormattedDateOrPlaceholder,
+  minutesToHoursString
+} from 'helpers/time'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
@@ -16,7 +19,15 @@ import useSleep from '@hooks/useSleep'
 const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
 const InsightsCard: FC = () => {
-  const { bedStart, bedEnd, sleepStart, sleepEnd } = useSleep()
+  const {
+    bedStart,
+    bedEnd,
+    sleepStart,
+    sleepEnd,
+    efficiency,
+    inBedDuration,
+    asleepDuration
+  } = useSleep()
   const goToSleepWindowStart = useSelector(getGoToSleepWindowStart)
   const goToSleepWindowEnd = useSelector(getGoToSleepWindowEnd)
 
@@ -103,14 +114,14 @@ const InsightsCard: FC = () => {
             <Figure>
               <Icon
                 fill="none"
-                name="nightMoonBegin"
+                name="doubleBed"
                 height="30"
                 width="30"
                 stroke="black"
               />
               <Column>
-                <Value>{wentToBed}</Value>
-                <Description>STAT.WENT_TO_BED</Description>
+                <Value>{minutesToHoursString(inBedDuration)}</Value>
+                <Description>STAT.BED</Description>
               </Column>
             </Figure>
 
@@ -123,8 +134,8 @@ const InsightsCard: FC = () => {
                 stroke="black"
               />
               <Column>
-                <Value>{wokeUp}</Value>
-                <Description>STAT.WOKE_UP</Description>
+                <Value>{efficiency}</Value>
+                <Description>STAT.EFFICIENCY</Description>
               </Column>
             </Figure>
           </Row>
@@ -133,14 +144,14 @@ const InsightsCard: FC = () => {
             <Figure>
               <Icon
                 fill="none"
-                name="nightMoonEnd"
+                name="doubleBed"
                 height="30"
                 width="30"
                 stroke="black"
               />
               <Column>
-                <Value>4:00</Value>
-                <Description>STAT.WOKE_UP</Description>
+                <Value>{minutesToHoursString(asleepDuration)}</Value>
+                <Description>STAT.SLEEP</Description>
               </Column>
             </Figure>
 

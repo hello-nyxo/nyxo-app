@@ -242,3 +242,53 @@ type LikedContent
   type: String
   slug: String
 }
+
+type NightRating
+@model
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete]
+      queries: [get, list]
+    }
+    {
+      allow: owner
+      ownerField: "viewers"
+      mutations: null
+      queries: [get, list]
+    }
+  ]
+) {
+  id: ID!
+  userId: ID!
+  user: User! @connection(fields: ["userId"])
+  rating: Int!
+  date: String!
+}
+
+type FeedbackContent
+@model
+@key(
+  name: "bySlug"
+  fields: ["slug", "id"]
+  queryField: "feedbackContentBySlug"
+)
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete, update, create]
+      queries: [get, list]
+    }
+  ]
+) {
+  id: String
+  type: String
+  slug: String!
+  rating: Int!
+}

@@ -1,12 +1,12 @@
-import React, { memo } from 'react'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
+import React, { memo, FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { fonts, StyleProps } from '../../styles/themes'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { Container } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 
-const IntroduceCoaching = () => {
+const IntroduceCoaching: FC = () => {
   const hasActiveCoaching = useSelector(getActiveCoaching)
 
   if (hasActiveCoaching) return null

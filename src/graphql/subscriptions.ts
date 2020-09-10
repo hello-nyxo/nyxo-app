@@ -557,3 +557,111 @@ export const onDeleteLikedContent = /* GraphQL */ `
     }
   }
 `;
+export const onCreateNightRating = /* GraphQL */ `
+  subscription OnCreateNightRating($owner: String!) {
+    onCreateNightRating(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      rating
+      date
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateNightRating = /* GraphQL */ `
+  subscription OnUpdateNightRating($owner: String!) {
+    onUpdateNightRating(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      rating
+      date
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteNightRating = /* GraphQL */ `
+  subscription OnDeleteNightRating($owner: String!) {
+    onDeleteNightRating(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      rating
+      date
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateFeedbackContent = /* GraphQL */ `
+  subscription OnCreateFeedbackContent($owner: String!) {
+    onCreateFeedbackContent(owner: $owner) {
+      id
+      type
+      slug
+      rating
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateFeedbackContent = /* GraphQL */ `
+  subscription OnUpdateFeedbackContent($owner: String!) {
+    onUpdateFeedbackContent(owner: $owner) {
+      id
+      type
+      slug
+      rating
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteFeedbackContent = /* GraphQL */ `
+  subscription OnDeleteFeedbackContent($owner: String!) {
+    onDeleteFeedbackContent(owner: $owner) {
+      id
+      type
+      slug
+      rating
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

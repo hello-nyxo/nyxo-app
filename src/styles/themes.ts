@@ -50,7 +50,7 @@ export const darkTheme: DefaultTheme = {
   PRIMARY_BACKGROUND_COLOR: 'black',
   SECONDARY_BACKGROUND_COLOR: '#333',
   PRIMARY_TEXT_COLOR: 'white',
-  SECONDARY_TEXT_COLOR: 'rgba(255,255,255,0.87)',
+  SECONDARY_TEXT_COLOR: 'rgba(255,255,255,0.75)',
   ICON_COLOR: '#f7f8fb',
   PRIMARY_BUTTON_COLOR: 'white',
   SECONDARY_BUTTON_COLOR: 'white',

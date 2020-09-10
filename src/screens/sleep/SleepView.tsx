@@ -12,19 +12,21 @@ import { SafeAreaView } from '@components/Primitives/Primitives'
 import RatingModal from '@components/RatingModal'
 import CalendarModal from '@components/sleep/CalendarModal'
 import InsightsCard from '@components/sleep/InsightsCard'
+import { useGetSleep } from '@hooks/sleep/useSleep'
 import useBackgroundFetch from '@hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from '@hooks/UseNotificationEventHandlers'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
-import moment from 'moment'
+import DayStrip from 'components/DayStrip'
+import { format } from 'date-fns'
 import React, { FC, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import DayStrip from 'components/DayStrip'
-import { format } from 'date-fns'
-import { useGetSleep } from '@hooks/sleep/useSleep'
+import QuestionCard from 'components/sleep/QuestionCard'
+import { fetchSleepData } from '@actions/night-cloud/night-cloud'
+import SleepTimeChart from 'components/Charts/SleepChart'
 
 const Sleep: FC = () => {
   const date = useSelector(getSelectedDate)
@@ -37,6 +39,7 @@ const Sleep: FC = () => {
 
   useEffect(() => {
     dispatch(startup())
+    dispatch(fetchSleepData())
   }, [])
 
   useBackgroundFetch(15, async () => {
@@ -44,20 +47,16 @@ const Sleep: FC = () => {
   })
 
   const checkSleepData = async () => {
-    // await dispatch(updateCalendar())
+    await dispatch(fetchSleepData())
   }
 
   const toggleCalendar = () => {
     dispatch(toggleCalendarModal())
   }
 
-  const data = useGetSleep()
-  console.log(data)
-
   return (
     <SafeAreaView>
       <EditNightHeader />
-      <DayStrip />
       <ScrollView
         scrollEnabled={!editModeOn}
         refreshControl={
@@ -66,6 +65,8 @@ const Sleep: FC = () => {
             onRefresh={checkSleepData}
           />
         }>
+        <DayStrip />
+
         <TitleRow>
           <TitleContainer>
             <Title>{format(new Date(date), 'cccc')}</Title>
@@ -84,7 +85,10 @@ const Sleep: FC = () => {
         <Row>
           <InsightsCard />
         </Row>
-        {/* <SleepTimeChart /> */}
+        <Row>
+          <QuestionCard />
+        </Row>
+        <SleepTimeChart />
       </ScrollView>
 
       <CalendarModal />
@@ -102,6 +106,7 @@ export default Sleep
 
 const Row = styled.View`
   flex: 1;
+  width: 100%;
   flex-direction: row;
   padding: 0px 16px;
 `

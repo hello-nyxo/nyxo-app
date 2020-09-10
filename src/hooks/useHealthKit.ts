@@ -25,6 +25,6 @@ const getHealthKitData = async () => {
   return data
 }
 
-export const useHealthKit = (): QueryResult<Night[], any> => {
+export const useHealthKit = (): QueryResult<Night[]> => {
   return useQuery('healthKit', getHealthKitData)
 }

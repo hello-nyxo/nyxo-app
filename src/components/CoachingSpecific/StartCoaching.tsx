@@ -4,7 +4,7 @@ import {
   startCoachingWeek
 } from '@actions/coaching/coaching-actions'
 import moment from 'moment'
-import React from 'react'
+import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   CombinedWeek,
@@ -24,7 +24,7 @@ type Props = {
   week: CombinedWeek
 }
 
-const StartCoaching = ({ week }: Props) => {
+const StartCoaching: FC<Props> = ({ week }) => {
   const dispatch = useDispatch()
   const hasCoaching = useSelector(getActiveCoaching)
   const weekCompleted = useSelector(getSelectedWeekCompleted)

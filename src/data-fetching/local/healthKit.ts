@@ -3,9 +3,9 @@ import appleHealthKit, { SleepSample } from 'react-native-healthkit'
 import { formatHealthKitResponse } from '@helpers/sleep/sleep-data-helper'
 import { Night } from 'Types/Sleepdata'
 
-export const getHealthKitData = (): Night[] => {
+export const getHealthKitData = (startDate: string): Night[] => {
   const options = {
-    startDate: startOfDay(subDays(new Date(), 1)).toISOString(),
+    startDate: startOfDay(subDays(new Date(), 800)).toISOString(),
     endDate: endOfDay(new Date()).toISOString()
   }
 
@@ -18,9 +18,11 @@ export const getHealthKitData = (): Night[] => {
         return error
       }
       data = response.map((nightObject) => formatHealthKitResponse(nightObject))
+      console.log('getHealthKitData', data)
       return data
     }
   )
 
+  console.log('running thins', data)
   return data
 }

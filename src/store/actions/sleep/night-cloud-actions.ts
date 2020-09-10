@@ -6,26 +6,28 @@ import { getUsername } from '@selectors/UserSelectors'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { CreateNightInput, NightValue } from 'API'
 import * as Sentry from '@sentry/react-native'
-import { createNight } from 'graphql/mutations'
-import { Action } from 'redux'
+import { createNight } from '@graphql/mutations'
 
 export const syncNightsToCloud = (nights: Night[]): Thunk => async (
-  dispatch: Dispatch,
+  _: Dispatch,
   getState: GetState
 ) => {
   try {
     const username = getUsername(getState())
     const loggedIn = getAuthState(getState())
+    console.log('SYNC')
 
-    if (loggedIn) {
-      const promises: Promise<Action<void>>[] = []
+    if (loggedIn && username) {
+      const promises: Promise<void>[] = []
       nights.forEach((night) => {
-        promises.push(dispatch(syncNight(username, night)))
+        promises.push(syncNight(username, night))
       })
 
       await Promise.all(promises)
     }
   } catch (err) {
+    console.log(err)
+
     Sentry.captureException(`syncNightsToCloud ${err}`)
   }
 }
@@ -35,16 +37,14 @@ const syncNight = async (username: string, night: Night) => {
     id,
     sourceId,
     sourceName,
-    source = 'unknown',
     totalDuration,
     endDate,
     startDate,
     value
   } = night
   try {
-    const syncingNight: CreateNightInput = {
+    const input: CreateNightInput = {
       id,
-      source,
       sourceId,
       sourceName,
       startDate,
@@ -53,9 +53,9 @@ const syncNight = async (username: string, night: Night) => {
       userId: username,
       totalDuration
     }
-    const response = await API.graphql(
-      graphqlOperation(createNight, { input: syncingNight })
-    )
+
+    const res = await API.graphql(graphqlOperation(createNight, { input }))
+    console.log(res)
   } catch (err) {
     console.log(err)
     Sentry.captureException(`syncNightsToCloud ${err}`)

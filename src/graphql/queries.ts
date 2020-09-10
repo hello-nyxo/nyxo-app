@@ -342,6 +342,86 @@ export const listLikedContents = /* GraphQL */ `
     }
   }
 `;
+export const getNightRating = /* GraphQL */ `
+  query GetNightRating($id: ID!) {
+    getNightRating(id: $id) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      rating
+      date
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listNightRatings = /* GraphQL */ `
+  query ListNightRatings(
+    $filter: ModelNightRatingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNightRatings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userId
+        rating
+        date
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getFeedbackContent = /* GraphQL */ `
+  query GetFeedbackContent($id: ID!) {
+    getFeedbackContent(id: $id) {
+      id
+      type
+      slug
+      rating
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listFeedbackContents = /* GraphQL */ `
+  query ListFeedbackContents(
+    $filter: ModelFeedbackContentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFeedbackContents(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        type
+        slug
+        rating
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const userByConnectionId = /* GraphQL */ `
   query UserByConnectionId(
     $connectionId: String
@@ -424,6 +504,36 @@ export const likedContentBySlug = /* GraphQL */ `
         name
         type
         slug
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const feedbackContentBySlug = /* GraphQL */ `
+  query FeedbackContentBySlug(
+    $slug: String
+    $id: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelFeedbackContentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    feedbackContentBySlug(
+      slug: $slug
+      id: $id
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        type
+        slug
+        rating
         createdAt
         updatedAt
         owner
