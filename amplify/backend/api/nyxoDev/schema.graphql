@@ -292,3 +292,25 @@ type FeedbackContent
   slug: String!
   rating: Int!
 }
+
+type Comments
+@model
+@key(name: "bySlug", fields: ["slug", "id"], queryField: "commentsBySlug")
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete, update, create]
+      queries: [get, list]
+    }
+  ]
+) {
+  id: String
+  type: String
+  slug: String!
+  firstName: String
+  lastName: String
+  comment: String!
+}

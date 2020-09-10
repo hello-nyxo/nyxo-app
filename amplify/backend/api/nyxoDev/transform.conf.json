@@ -1,4 +1,7 @@
 {
     "Version": 4,
-    "ElasticsearchWarning": true
+    "ElasticsearchWarning": true,
+    "StackMapping": {
+        "QueryfeedbackContentBySlugResolver": "FeedbackContent"
+    }
 }
