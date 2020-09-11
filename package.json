@@ -262,7 +262,7 @@
     "reselect": "^4.0.0",
     "serialize-javascript": "^3.0.0",
     "styled-components": "^5.1.1",
-    "svg-path-properties": "^1.0.4",
+    "svg-path-properties": "^1.0.5",
     "uuid": "^8.0.0",
     "validate.js": "^0.13.1",
     "yarn": "^1.22.4",

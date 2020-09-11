@@ -690,8 +690,20 @@
   },
 
   "QUESTION": {
-    "TITLE": "Have a question your sleep?",
+    "TITLE": "Have a question about your sleep?",
     "TEXT": "Included in the Nyxo Coaching subscription is direct chat with our experts. If you have any questions related to sleep, Nyxo Coaching, or overall wellbeing our experts are more than willing to answer those.",
     "OPEN_CHAT": "Ask a Question"
+  },
+
+  "POINTS": {
+    "TITLE": "Sleep Points",
+    "EFFICIENCY": "Efficiency",
+    "EFFICIENCY_EXPLANATION": "Efficiency is the calculated by comparing your time in bed to time asleep. Less difference means more points.",
+    "DURATION": "Duration",
+    "DURATION_EXPLANATION": "The closer your total sleep time is to 8 hours, the more points you accumulate.",
+    "SOCIAL_JET_LAG": "Social Jet Lag",
+    "SOCIAL_JET_LAG_EXPLANATION": "Social Jet Lag is the difference between bedtimes on weekdays and weekends. Less difference = more points.",
+    "TIMING": "Timing",
+    "TIMING_EXPLANATION": "You accumulate points for timing by keeping a consistant bed time on all nights."
   }
 }

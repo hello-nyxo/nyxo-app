@@ -155,6 +155,12 @@ export const onCreateUser = /* GraphQL */ `
         updatedAt
         owner
       }
+      sleepPoints {
+        efficiency
+        duration
+        socialJetLag
+        timing
+      }
       createdAt
       updatedAt
     }
@@ -181,6 +187,12 @@ export const onUpdateUser = /* GraphQL */ `
         updatedAt
         owner
       }
+      sleepPoints {
+        efficiency
+        duration
+        socialJetLag
+        timing
+      }
       createdAt
       updatedAt
     }
@@ -206,6 +218,12 @@ export const onDeleteUser = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+      }
+      sleepPoints {
+        efficiency
+        duration
+        socialJetLag
+        timing
       }
       createdAt
       updatedAt
@@ -437,87 +455,6 @@ export const onDeleteHabit = /* GraphQL */ `
     }
   }
 `;
-export const onCreateNight = /* GraphQL */ `
-  subscription OnCreateNight($owner: String!) {
-    onCreateNight(owner: $owner) {
-      id
-      userId
-      user {
-        connectionId
-        id
-        email
-        nickname
-        darkMode
-        intercomId
-        createdAt
-        updatedAt
-      }
-      sourceId
-      sourceName
-      value
-      startDate
-      endDate
-      totalDuration
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdateNight = /* GraphQL */ `
-  subscription OnUpdateNight($owner: String!) {
-    onUpdateNight(owner: $owner) {
-      id
-      userId
-      user {
-        connectionId
-        id
-        email
-        nickname
-        darkMode
-        intercomId
-        createdAt
-        updatedAt
-      }
-      sourceId
-      sourceName
-      value
-      startDate
-      endDate
-      totalDuration
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeleteNight = /* GraphQL */ `
-  subscription OnDeleteNight($owner: String!) {
-    onDeleteNight(owner: $owner) {
-      id
-      userId
-      user {
-        connectionId
-        id
-        email
-        nickname
-        darkMode
-        intercomId
-        createdAt
-        updatedAt
-      }
-      sourceId
-      sourceName
-      value
-      startDate
-      endDate
-      totalDuration
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
 export const onCreateLikedContent = /* GraphQL */ `
   subscription OnCreateLikedContent($owner: String!) {
     onCreateLikedContent(owner: $owner) {
@@ -659,6 +596,132 @@ export const onDeleteFeedbackContent = /* GraphQL */ `
       type
       slug
       rating
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateComments = /* GraphQL */ `
+  subscription OnCreateComments($owner: String!) {
+    onCreateComments(owner: $owner) {
+      id
+      type
+      slug
+      firstName
+      lastName
+      comment
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateComments = /* GraphQL */ `
+  subscription OnUpdateComments($owner: String!) {
+    onUpdateComments(owner: $owner) {
+      id
+      type
+      slug
+      firstName
+      lastName
+      comment
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteComments = /* GraphQL */ `
+  subscription OnDeleteComments($owner: String!) {
+    onDeleteComments(owner: $owner) {
+      id
+      type
+      slug
+      firstName
+      lastName
+      comment
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateNight = /* GraphQL */ `
+  subscription OnCreateNight($owner: String) {
+    onCreateNight(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      sourceId
+      sourceName
+      value
+      startDate
+      endDate
+      totalDuration
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateNight = /* GraphQL */ `
+  subscription OnUpdateNight($owner: String) {
+    onUpdateNight(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      sourceId
+      sourceName
+      value
+      startDate
+      endDate
+      totalDuration
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteNight = /* GraphQL */ `
+  subscription OnDeleteNight($owner: String) {
+    onDeleteNight(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      sourceId
+      sourceName
+      value
+      startDate
+      endDate
+      totalDuration
       createdAt
       updatedAt
       owner

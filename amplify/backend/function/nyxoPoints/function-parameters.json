@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "api": {
+      "nyxoDev": [
+        "create",
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

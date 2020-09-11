@@ -14473,7 +14473,7 @@ svg-parser@^2.0.0:
   resolved "https://registry.yarnpkg.com/svg-parser/-/svg-parser-2.0.4.tgz#fdc2e29e13951736140b76cb122c8ee6630eb6b5"
   integrity sha512-e4hG1hRwoOdRb37cIMSgzNsxyzKfayW6VOflrwvR+/bzrkyxY/31WkbgnQpgtrNp1SdpJvpUAGTa/ZoiPNDuRQ==
 
-svg-path-properties@^1.0.4:
+svg-path-properties@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/svg-path-properties/-/svg-path-properties-1.0.5.tgz#8842811f79d722304a6ec6feb8084ba12257c54a"
   integrity sha512-Ip3ZJ2pPUAIIskbJKzfBVTssOhW6x8F1VFclm65DRNxi19YPZXedkN6Xe1lxqM/TvIoS2kxZtrZU7ixkoqASUQ==

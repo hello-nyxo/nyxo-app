@@ -96,6 +96,14 @@ type User
   darkMode: Boolean
   intercomId: String
   activeCoaching: CoachingData @connection(name: "ActiveCoachingMonth")
+  sleepPoints: SleepPoints
+}
+
+type SleepPoints {
+  efficiency: Int
+  duration: Int
+  socialJetLag: Int
+  timing: Int
 }
 
 type CoachingData
@@ -189,9 +197,11 @@ type DayCompletionRecord {
 
 type Night
 @model
+@aws_iam
 @auth(
   rules: [
     { allow: owner }
+    { allow: private, provider: iam, operations: [read] }
     {
       allow: groups
       groups: ["admin"]
