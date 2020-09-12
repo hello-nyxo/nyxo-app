@@ -33,8 +33,6 @@ import { fonts, StyleProps } from '../../styles/themes'
 const yOffset = new Animated.Value(0)
 
 const LessonView: FC = () => {
-  const dispatch = useDispatch()
-  const navigation = useNavigation()
   const [height, setHeight] = useState(0)
   const { data } = useGetActiveCoaching()
   const [mutate] = useUpdateCoaching()
@@ -60,15 +58,10 @@ const LessonView: FC = () => {
   const markCompleted = async () => {
     mutate({
       coaching: {
-        id: data?.activeCoaching?.id as string,
-        lessons: [...new Set([data?.activeCoaching?.lessons, slug])]
+        id: data?.id as string,
+        lessons: [...new Set([...data?.lessons, slug])]
       }
     })
-
-    // await Promise.all([
-    //   yOffset.setValue(0),
-    //   navigation.goBack()
-    // ])
   }
 
   const handleOnLayout = (event: LayoutChangeEvent) => {

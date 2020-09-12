@@ -1,4 +1,7 @@
-import { useCreateCoaching } from '@hooks/coaching/useCoaching'
+import {
+  useCreateCoaching,
+  useGetActiveCoaching
+} from '@hooks/coaching/useCoaching'
 import { getCoachingNotStarted } from '@selectors/coaching-selectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { PrimaryButton } from 'components/Buttons/PrimaryButton'
@@ -10,9 +13,8 @@ import { fonts } from '../../styles/themes'
 import TranslatedText from '../TranslatedText'
 
 const CoachingNotStarted: FC = () => {
-  const coachingNotStarted = useSelector(getCoachingNotStarted)
   const hasActiveCoaching = useSelector(getActiveCoaching)
-
+  const { data } = useGetActiveCoaching()
   const [mutate, { status, data: newData, error }] = useCreateCoaching()
 
   console.log(status, newData, error)
@@ -26,12 +28,13 @@ const CoachingNotStarted: FC = () => {
   const startCoaching = () => {
     mutate({
       coaching: {
+        userId: data?.activeCoaching?.userId,
         started: new Date().toISOString()
       }
     })
   }
 
-  if (coachingNotStarted) {
+  if (data?.activeCoaching?.started) {
     return (
       <Container>
         <Title>NOT_STARTED_TITLE</Title>

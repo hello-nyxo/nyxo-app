@@ -20,9 +20,10 @@ import { writeToStorage } from 'store/persist-queries'
 import { CoachingData } from 'typings/state/coaching-state'
 import { updateCoachingData } from 'graphql/mutations'
 
-export const getUserActiveCoaching = async (): Promise<
-  GetActiveCoachingQuery['getUser']
-> => {
+export const getUserActiveCoaching = async (): Promise<Exclude<
+  Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
+  null
+> | null> => {
   try {
     const { username } = await Auth.currentUserInfo()
     const {
@@ -32,7 +33,12 @@ export const getUserActiveCoaching = async (): Promise<
     )) as {
       data: GetActiveCoachingQuery
     }
-    return data
+
+    if (data?.activeCoaching) {
+      return data?.activeCoaching
+    }
+
+    return null
   } catch (error) {
     return error
   }
@@ -90,15 +96,17 @@ export const useUpdateCoaching = () => {
   return useMutation(updateCoaching)
 }
 
-export const useGetActiveCoaching = (): QueryResult<
-  GetActiveCoachingQuery['getUser']
-> => {
+export const useGetActiveCoaching = (): QueryResult<Exclude<
+  Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
+  null
+> | null> => {
   return useQuery('userActiveCoaching', getUserActiveCoaching)
 }
 
-export const useGetLesson = (): QueryResult<
-  GetActiveCoachingQuery['getUser']
-> => {
+export const useGetLesson = (): QueryResult<Exclude<
+  Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
+  null
+> | null> => {
   return useQuery('userActiveCoaching', getUserActiveCoaching)
 }
 
