@@ -2,21 +2,21 @@ import {
   completeLesson,
   selectLesson
 } from '@actions/coaching/coaching-actions'
+import { getReadingTime } from '@helpers/reading-time'
+import { useNavigation } from '@react-navigation/core'
+import { CombinedLesson } from '@selectors/coaching-selectors/coaching-selectors'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import Analytics from 'appcenter-analytics'
-import React, { memo, FC } from 'react'
+import ROUTE from 'config/routes/Routes'
+import React, { FC, memo } from 'react'
 import { Animated } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { useDispatch, useSelector } from 'react-redux'
-import { CombinedLesson } from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
-import ROUTE from 'config/routes/Routes'
-import { useNavigation } from '@react-navigation/core'
-import { getReadingTime } from '@helpers/reading-time'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
+import { fonts } from '../../styles/themes'
 import IconBold from '../iconBold'
 import TranslatedText, { AnimatedTranslatedText } from '../TranslatedText'
 
@@ -51,10 +51,7 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
         name: 'Pietari Nurmi'
       }
 
-  const renderRightActions = (
-    progress: Animated.AnimatedInterpolation,
-    dragX: Animated.AnimatedInterpolation
-  ) => {
+  const renderRightActions = (progress: Animated.AnimatedInterpolation) => {
     if (!hasActiveCoaching) {
       return <NoAction />
     }
@@ -144,29 +141,32 @@ const HabitCount = styled(TranslatedText)`
 `
 
 const Touchable = styled.TouchableOpacity`
-  padding: 15px 20px 15px 20px;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  padding: 16px;
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  box-shadow: ${({ theme }) => theme.SHADOW};
+  margin: 8px 16px;
+  border-radius: 8px;
 `
 
 const Container = styled.View`
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
 `
-const Author = styled.Text<StyleProps>`
+const Author = styled.Text`
   font-size: 13px;
   font-family: ${fonts.medium};
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
-const LessonName = styled.Text<StyleProps>`
+const LessonName = styled.Text`
   font-size: 15px;
   font-family: ${fonts.bold};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   margin-bottom: 5px;
 `
 
-const ReadingTime = styled(TranslatedText)<StyleProps>`
+const ReadingTime = styled(TranslatedText)`
   font-size: 12px;
   margin-right: 10px;
   font-family: ${fonts.medium};

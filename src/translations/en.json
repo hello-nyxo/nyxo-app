@@ -705,5 +705,9 @@
     "SOCIAL_JET_LAG_EXPLANATION": "Social Jet Lag is the difference between bedtimes on weekdays and weekends. Less difference = more points.",
     "TIMING": "Timing",
     "TIMING_EXPLANATION": "You accumulate points for timing by keeping a consistant bed time on all nights."
+  },
+
+  "WEEK": {
+    "BEGING": "Beging week"
   }
 }

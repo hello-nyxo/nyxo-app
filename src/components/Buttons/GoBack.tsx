@@ -34,13 +34,12 @@ export const Spacer = styled.View`
   flex: 2;
 `
 
-const Icon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.PRIMARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.PRIMARY_TEXT_COLOR
 }))``
 
 const Background = styled.View`
-  background-color: ${(props: StyleProps) =>
-    props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   padding: 20px;
   justify-content: center;
   align-items: center;
@@ -48,7 +47,7 @@ const Background = styled.View`
   overflow: hidden;
   max-width: 40px;
   max-height: 40px;
-  box-shadow: ${(props: StyleProps) => props.theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.SHADOW};
 `
 
 export const GoBackContainer = styled.View`

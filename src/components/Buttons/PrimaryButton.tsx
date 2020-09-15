@@ -39,21 +39,24 @@ interface ButtonProps {
 }
 
 const Button = styled.View<ButtonProps>`
-  border-radius: 5px;
+  border-radius: 8px;
   border-color: ${({ white }) => (white ? colors.radiantBlue : 'transparent')};
   border-width: 1px;
-  padding: 15px;
-  min-width: 150px;
+  padding: 16px;
+  min-width: 200px;
   margin-bottom: 10px;
-  width: auto;
   align-items: center;
   background-color: ${({ white }) =>
     white ? colors.white : colors.radiantBlue};
   opacity: ${({ disabled }) => (disabled ? 0.2 : 1)};
+  box-shadow: 1px 1px 5px rgba(74, 90, 239, 0.4);
+  align-self: center;
 `
 
 const ButtonText = styled(TranslatedText)<ButtonProps>`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+  text-transform: uppercase;
+  letter-spacing: 1px;
   color: ${({ white }) => (white ? colors.radiantBlue : colors.white)};
   font-size: 15px;
   text-align: center;

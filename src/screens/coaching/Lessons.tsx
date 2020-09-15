@@ -64,8 +64,6 @@ const LessonList: FC<Props> = ({
     />
   )
 
-  const renderItemSeparatorComponent = () => <Separator />
-
   const lessons: CombinedLessonArray = useCurrentWeek
     ? lessonsCurrentWeek
     : lessonsSelectedWeek
@@ -94,7 +92,6 @@ const LessonList: FC<Props> = ({
       refreshControl={refreshControl}
       ListHeaderComponent={header}
       stickySectionHeadersEnabled={false}
-      ItemSeparatorComponent={renderItemSeparatorComponent}
       ListFooterComponent={
         <>
           {footer}
@@ -111,8 +108,10 @@ const LessonList: FC<Props> = ({
 
 export default memo(LessonList)
 
-const StyledSectionList = styled(AnimatedSectionList).attrs(() => ({
-  contentContainerStyle: {}
+const StyledSectionList = styled(AnimatedSectionList).attrs(({ theme }) => ({
+  contentContainerStyle: {
+    backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
+  }
 }))``
 
 const Spacer = styled.View`

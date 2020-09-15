@@ -31,7 +31,7 @@ export const createSleepData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const updateSleepData = /* GraphQL */ `
   mutation UpdateSleepData($input: UpdateSleepDataInput!) {
     updateSleepData(input: $input) {
@@ -61,7 +61,7 @@ export const updateSleepData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const deleteSleepData = /* GraphQL */ `
   mutation DeleteSleepData($input: DeleteSleepDataInput!) {
     deleteSleepData(input: $input) {
@@ -91,7 +91,7 @@ export const deleteSleepData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const createRequest = /* GraphQL */ `
   mutation CreateRequest($input: CreateRequestInput!) {
     createRequest(input: $input) {
@@ -105,7 +105,7 @@ export const createRequest = /* GraphQL */ `
       updatedAt
     }
   }
-`
+`;
 export const updateRequest = /* GraphQL */ `
   mutation UpdateRequest($input: UpdateRequestInput!) {
     updateRequest(input: $input) {
@@ -119,7 +119,7 @@ export const updateRequest = /* GraphQL */ `
       updatedAt
     }
   }
-`
+`;
 export const deleteRequest = /* GraphQL */ `
   mutation DeleteRequest($input: DeleteRequestInput!) {
     deleteRequest(input: $input) {
@@ -133,7 +133,7 @@ export const deleteRequest = /* GraphQL */ `
       updatedAt
     }
   }
-`
+`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser($input: CreateUserInput!) {
     createUser(input: $input) {
@@ -165,7 +165,7 @@ export const createUser = /* GraphQL */ `
       updatedAt
     }
   }
-`
+`;
 export const updateUser = /* GraphQL */ `
   mutation UpdateUser($input: UpdateUserInput!) {
     updateUser(input: $input) {
@@ -197,7 +197,7 @@ export const updateUser = /* GraphQL */ `
       updatedAt
     }
   }
-`
+`;
 export const deleteUser = /* GraphQL */ `
   mutation DeleteUser($input: DeleteUserInput!) {
     deleteUser(input: $input) {
@@ -229,7 +229,7 @@ export const deleteUser = /* GraphQL */ `
       updatedAt
     }
   }
-`
+`;
 export const createCoachingData = /* GraphQL */ `
   mutation CreateCoachingData($input: CreateCoachingDataInput!) {
     createCoachingData(input: $input) {
@@ -271,7 +271,7 @@ export const createCoachingData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const updateCoachingData = /* GraphQL */ `
   mutation UpdateCoachingData($input: UpdateCoachingDataInput!) {
     updateCoachingData(input: $input) {
@@ -313,7 +313,7 @@ export const updateCoachingData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const deleteCoachingData = /* GraphQL */ `
   mutation DeleteCoachingData($input: DeleteCoachingDataInput!) {
     deleteCoachingData(input: $input) {
@@ -355,7 +355,7 @@ export const deleteCoachingData = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const createHabit = /* GraphQL */ `
   mutation CreateHabit($input: CreateHabitInput!) {
     createHabit(input: $input) {
@@ -388,7 +388,7 @@ export const createHabit = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const updateHabit = /* GraphQL */ `
   mutation UpdateHabit($input: UpdateHabitInput!) {
     updateHabit(input: $input) {
@@ -421,7 +421,7 @@ export const updateHabit = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const deleteHabit = /* GraphQL */ `
   mutation DeleteHabit($input: DeleteHabitInput!) {
     deleteHabit(input: $input) {
@@ -454,8 +454,7 @@ export const deleteHabit = /* GraphQL */ `
       owner
     }
   }
-`
-
+`;
 export const createNight = /* GraphQL */ `
   mutation CreateNight($input: CreateNightInput!) {
     createNight(input: $input) {
@@ -482,7 +481,7 @@ export const createNight = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const updateNight = /* GraphQL */ `
   mutation UpdateNight($input: UpdateNightInput!) {
     updateNight(input: $input) {
@@ -509,7 +508,7 @@ export const updateNight = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const deleteNight = /* GraphQL */ `
   mutation DeleteNight($input: DeleteNightInput!) {
     deleteNight(input: $input) {
@@ -536,7 +535,7 @@ export const deleteNight = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const createLikedContent = /* GraphQL */ `
   mutation CreateLikedContent($input: CreateLikedContentInput!) {
     createLikedContent(input: $input) {
@@ -549,7 +548,7 @@ export const createLikedContent = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const updateLikedContent = /* GraphQL */ `
   mutation UpdateLikedContent($input: UpdateLikedContentInput!) {
     updateLikedContent(input: $input) {
@@ -562,7 +561,7 @@ export const updateLikedContent = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const deleteLikedContent = /* GraphQL */ `
   mutation DeleteLikedContent($input: DeleteLikedContentInput!) {
     deleteLikedContent(input: $input) {
@@ -575,7 +574,7 @@ export const deleteLikedContent = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const createNightRating = /* GraphQL */ `
   mutation CreateNightRating($input: CreateNightRatingInput!) {
     createNightRating(input: $input) {
@@ -598,7 +597,7 @@ export const createNightRating = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const updateNightRating = /* GraphQL */ `
   mutation UpdateNightRating($input: UpdateNightRatingInput!) {
     updateNightRating(input: $input) {
@@ -621,7 +620,7 @@ export const updateNightRating = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const deleteNightRating = /* GraphQL */ `
   mutation DeleteNightRating($input: DeleteNightRatingInput!) {
     deleteNightRating(input: $input) {
@@ -644,7 +643,7 @@ export const deleteNightRating = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const createFeedbackContent = /* GraphQL */ `
   mutation CreateFeedbackContent($input: CreateFeedbackContentInput!) {
     createFeedbackContent(input: $input) {
@@ -657,7 +656,7 @@ export const createFeedbackContent = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const updateFeedbackContent = /* GraphQL */ `
   mutation UpdateFeedbackContent($input: UpdateFeedbackContentInput!) {
     updateFeedbackContent(input: $input) {
@@ -670,7 +669,7 @@ export const updateFeedbackContent = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const deleteFeedbackContent = /* GraphQL */ `
   mutation DeleteFeedbackContent($input: DeleteFeedbackContentInput!) {
     deleteFeedbackContent(input: $input) {
@@ -683,7 +682,7 @@ export const deleteFeedbackContent = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const createComments = /* GraphQL */ `
   mutation CreateComments($input: CreateCommentsInput!) {
     createComments(input: $input) {
@@ -698,7 +697,7 @@ export const createComments = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const updateComments = /* GraphQL */ `
   mutation UpdateComments($input: UpdateCommentsInput!) {
     updateComments(input: $input) {
@@ -713,7 +712,7 @@ export const updateComments = /* GraphQL */ `
       owner
     }
   }
-`
+`;
 export const deleteComments = /* GraphQL */ `
   mutation DeleteComments($input: DeleteCommentsInput!) {
     deleteComments(input: $input) {
@@ -728,4 +727,4 @@ export const deleteComments = /* GraphQL */ `
       owner
     }
   }
-`
+`;

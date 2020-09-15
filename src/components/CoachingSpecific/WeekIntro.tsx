@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
 import TranslatedText from '@components/TranslatedText'
 import { completeWeek } from '@actions/coaching/coaching-actions'
@@ -7,6 +7,7 @@ import moment from 'moment'
 import { PN } from '../Primitives/Primitives'
 import { StyleProps, fonts, constants } from '../../styles/themes'
 import { IconBold } from '@components/iconRegular'
+import { PrimaryButton } from 'components/Buttons/PrimaryButton'
 
 interface Props {
   intro: string
@@ -17,19 +18,20 @@ interface Props {
   ended?: string
 }
 
-const WeekIntro = ({
+const WeekIntro: FC<Props> = ({
   intro,
   description,
   habitCount,
   lessonCount,
   started,
   ended
-}: Props) => {
+}) => {
   const startTime = started ? moment(started).format('DD.MM.') : ''
   const endTime = ended ? moment(ended).format('DD.MM.') : ''
 
   return (
     <Container>
+      <Intro>{intro}</Intro>
       <Information>
         {habitCount > 0 && (
           <>
@@ -59,8 +61,9 @@ const WeekIntro = ({
         )}
       </DurationRow>
 
-      <Intro>{intro}</Intro>
       <PN secondary>{description}</PN>
+
+      <PrimaryButton title="WEEK.BEGING" onPress={() => {}} />
     </Container>
   )
 }
@@ -68,9 +71,11 @@ const WeekIntro = ({
 export default memo(WeekIntro)
 
 const Container = styled.View`
-  background-color: ${(props: StyleProps) =>
-    props.theme.PRIMARY_BACKGROUND_COLOR};
-  padding: 20px 20px 30px;
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  padding: 16px;
+  margin: 16px;
+  box-shadow: ${({ theme }) => theme.SHADOW};
+  border-radius: 8px;
 `
 
 const Intro = styled.Text`

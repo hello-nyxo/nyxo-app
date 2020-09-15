@@ -13,6 +13,7 @@ import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import Lessons from './Lessons'
+
 const yOffset = new Animated.Value(0)
 
 interface Props {
@@ -53,7 +54,6 @@ const WeekView = ({ route }: Props) => {
         />
       </Container>
       <NewHabitModal />
-      <StartCoaching week={week} />
     </BGContainer>
   )
 }
