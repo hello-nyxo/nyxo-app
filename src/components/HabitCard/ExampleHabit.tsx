@@ -15,6 +15,9 @@ import TranslatedText from '../TranslatedText'
 import { getIcon } from './TopRow'
 import { ScrollView } from 'react-native'
 
+export const EXAMPLE_HABIT_WIDTH = WIDTH - 60
+export const EXAMPLE_HABIT_MARGIN_LEFT = 20
+
 interface Props {
   title?: string
   period?: string
@@ -81,9 +84,9 @@ export default memo(ExampleHabit)
 
 const Habit = styled.View`
   padding: 20px;
-  margin: 0px 20px;
+  margin-left: 20px;
   flex: 1;
-  width: ${WIDTH - 40}px;
+  width: ${WIDTH - 60}px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: 1px 1px 15px rgba(32, 33, 37, 0.1);
   border-radius: 5px;

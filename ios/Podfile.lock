@@ -452,7 +452,7 @@ PODS:
     - React-cxxreact (= 0.62.2)
     - React-jsi (= 0.62.2)
     - ReactCommon/callinvoker (= 0.62.2)
-  - RNAWSCognito (4.3.4):
+  - RNAWSCognito (4.3.5):
     - JKBigInteger2 (= 0.0.5)
     - React
   - RNBackgroundFetch (3.1.0):
@@ -918,7 +918,7 @@ SPEC CHECKSUMS:
   React-RCTText: fae545b10cfdb3d247c36c56f61a94cfd6dba41d
   React-RCTVibration: 4356114dbcba4ce66991096e51a66e61eda51256
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
-  RNAWSCognito: c84eb1020796f0f9ae1112671b0cc775a72080dc
+  RNAWSCognito: 6fc816be86f34fdab359208948a2d6c6e4159b12
   RNBackgroundFetch: 8dbb63141792f1473e863a0797ffbd5d987af2fc
   RNCAsyncStorage: 2a692bcb9b69b76a2f1a95f33db057129700af64
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
@@ -958,4 +958,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7bde1e2e4860e9ae214605a1416d0954a9c0af97
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1
