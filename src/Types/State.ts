@@ -32,6 +32,8 @@ import { UserState, UserState } from './UserState'
 
 import { InsightState } from './State/insight-state'
 
+import { NightNoteState } from './NightNotes'
+
 export interface State {
   // User
   user: UserState
@@ -65,4 +67,6 @@ export interface State {
   sleepSources: SleepSourceState
   healthKit: HealthKitState
   insights: InsightState
+
+  nightNoteState: NightNoteState
 }
