@@ -12,7 +12,7 @@ export const getSubscriptionExpiryDate = createSelector(
 export const getActiveCoaching = createSelector(
   getSubscriptionState,
   (subscriptions: SubscriptionState) => {
-    return !subscriptions.isActive
+    return subscriptions.isActive
   }
 )
 
