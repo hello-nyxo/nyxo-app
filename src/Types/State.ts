@@ -32,7 +32,7 @@ import { UserState, UserState } from './UserState'
 
 import { InsightState } from './State/insight-state'
 
-import { NightNoteState } from './NightNotes'
+import { NightNoteState } from './NightNoteState'
 
 export interface State {
   // User

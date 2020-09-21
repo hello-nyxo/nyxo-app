@@ -21,6 +21,7 @@ import useNotificationEventHandlers from '@hooks/UseNotificationEventHandlers'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import { getSelectedDay } from '@selectors/SleepDataSelectors'
+import AddNoteModal from 'components/AddNoteComponents/AddNoteModal'
 import moment from 'moment'
 import React, { FC, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
@@ -82,6 +83,7 @@ const Sleep: FC = () => {
       <ExplanationsModal />
       <NewHabitModal />
       <EditHabitModal />
+      <AddNoteModal />
       <MergeHabitsModal />
     </SafeAreaView>
   )

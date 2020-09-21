@@ -1,5 +1,5 @@
 import { GetState } from 'Types/GetState'
-import { NightNote } from 'Types/NightNotes'
+import { NightNote } from 'Types/NightNoteState'
 import { Dispatch } from 'Types/ReduxActions'
 
 export const UPDATE_NIGHT_NOTE = 'UPDATE_NIGHT_NOTE'

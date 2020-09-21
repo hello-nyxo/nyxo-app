@@ -4,7 +4,7 @@ import {
   DELETE_NIGHT_NOTE,
   UPDATE_NIGHT_NOTE
 } from 'store/actions/night-note-actions/night-note-actions'
-import { NightNote, NightNoteState } from 'Types/NightNotes'
+import { NightNote, NightNoteState } from 'Types/NightNoteState'
 
 const initialState: NightNoteState = {
   nightNotes: new Map()

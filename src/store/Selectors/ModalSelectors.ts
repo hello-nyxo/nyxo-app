@@ -28,3 +28,13 @@ export const getExplanationsModal = createSelector(
   getModalState,
   (modalState: ModalState) => modalState.explanationsModal
 )
+
+export const getAddNoteModal = createSelector(
+  getModalState,
+  (modalState: ModalState) => modalState.addNoteModal
+)
+
+export const getDateTimeNoteModal = createSelector(
+  getModalState,
+  (modalState: ModalState) => modalState.dateTimeNoteModal
+)

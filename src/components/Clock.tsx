@@ -24,6 +24,7 @@ import SleepArc from './clock/SleepArc'
 import SleepTime from './clock/SleepTime'
 import Bedtime from './clock/Slider'
 import TrackerName from './clock/TrackerName'
+import AddNoteButton from './clock/AddNoteButton'
 
 const { width } = Dimensions.get('window')
 const clockSize = width - 40
@@ -47,7 +48,12 @@ const Clock: FC = () => {
   const hasData = selectedDay.night ? selectedDay.night.length !== 0 : false
 
   return (
-    <ClockContainer style={{ height: clockSize + 15, width: clockSize + 15 }}>
+    <ClockContainer
+      style={{
+        height: clockSize + 15,
+        width: clockSize + 15,
+        position: 'relative'
+      }}>
       <Svg width={clockSize} height={clockSize}>
         <MinuteSticks x={x} y={y} radius={radius} />
         <ClockTimes x={x} y={y} radius={radius} />
@@ -111,6 +117,7 @@ const Clock: FC = () => {
         />
       )}
       <AddNightButton />
+      <AddNoteButton />
       <InfoButton />
     </ClockContainer>
   )

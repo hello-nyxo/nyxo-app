@@ -680,5 +680,19 @@
     "HABITS": "Habits",
     "PROFILE": "Profile",
     "SETTINGS": "Settings"
+  },
+
+  "NIGHT_NOTE": {
+    "ADD_NOTE_TITLE": "New note",
+    "DATE_TIME_TEXT": "Date and time",
+    "ADD_NOTE_PLACEHOLDER": "Add notes",
+    "RETURN_TO_TODAY": "Return to today",
+    "TAGS_TITLE": "Tags",
+    "TAGS": {
+      "HOT_SHOWER": "Hot shower",
+      "BEER": "Beer",
+      "FEVER": "Fever",
+      "MEDITATE": "Meditate"
+    }
   }
 }
