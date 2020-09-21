@@ -1,25 +1,28 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { NightNoteTags } from 'Types/NightNoteState'
+import { NightNoteTagListProps } from './AddNoteModal'
 import NoteTag from './NoteTag'
-import { NoteTagsListProps } from './NoteTagsList'
 
-interface Props extends NoteTagsListProps {
-  addedTags: Array<string>
-}
+interface Props extends NightNoteTagListProps {}
 
 const AddedNoteTagsList = (props: Props) => {
-  const { addedTags, addTag, removeTag } = props
+  const { tags, chooseTag } = props
 
-  const tagComponents = addedTags.map((tag, index) => (
-    <NoteTag
-      removable
-      key={`added-note-tags-list-tag-${tag}-${index}`}
-      addTag={addTag}
-      removeTag={removeTag}
-      data={{ key: tag, value: Object(NightNoteTags)[tag] }}
-    />
-  ))
+  const tagComponents = tags.map((tag, index) => {
+    if (tag.chosen) {
+      return (
+        <NoteTag
+          removable
+          key={`added-note-tags-list-tag-${tag.data.key}-${index}`}
+          chooseTag={chooseTag}
+          data={tag.data}
+          chosen={tag.chosen}
+        />
+      )
+    }
+
+    return null
+  })
 
   return (
     <Container>

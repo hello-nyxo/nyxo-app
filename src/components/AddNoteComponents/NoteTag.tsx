@@ -1,35 +1,35 @@
 import TranslatedText from 'components/TranslatedText'
-import React, { useState } from 'react'
+import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import { fonts, StyleProps } from 'styles/themes'
-import { NoteTagsListProps } from './NoteTagsList'
 
-interface Props extends NoteTagsListProps {
+interface Props {
   removable?: boolean
   data: { key: string; value: string }
+  chooseTag: Function
+  chosen: boolean
 }
 
 const NoteTag = (props: Props) => {
   const {
     data: { key, value },
-    addTag,
-    removeTag,
+    chooseTag,
+    chosen,
     removable
   } = props
 
-  const [chosen, setChosen] = useState(false)
+  const opacity = removable ? 1 : chosen ? 0.35 : 1
 
-  const chooseTag = () => {
-    if (removable) removeTag(key)
-    else addTag(key)
-    setChosen(!chosen)
+  const onPress = () => {
+    chooseTag(key)
   }
 
   return (
     <TouchableOpacity
-      onPress={chooseTag}
-      style={{ opacity: chosen ? 0.35 : 1 }}>
+      onPress={onPress}
+      disabled={removable ? false : chosen}
+      style={{ opacity }}>
       <Container>
         <TagText>{value}</TagText>
       </Container>

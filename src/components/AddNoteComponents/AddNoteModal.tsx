@@ -13,14 +13,25 @@ import { ScrollView } from 'react-native'
 import moment from 'moment'
 import NoteTagsList from './NoteTagsList'
 import AddedNoteTagsList from './AddedNoteTagsList'
+import { NightNoteTags } from 'Types/NightNoteState'
 
 const numberOfLines = 15
+
+export interface NightNoteTagListProps {
+  tags: Array<{ data: { key: string; value: string }; chosen: boolean }>
+  chooseTag: Function
+}
 
 const AddNoteModal = () => {
   const isVisible = useSelector(getAddNoteModal)
   const dispatch = useDispatch()
 
-  const [tags, setTags] = useState<string[]>([])
+  const [tags, setTags] = useState(
+    Object.entries(NightNoteTags).map((entry) => ({
+      data: { key: entry[0], value: entry[1] },
+      chosen: false
+    }))
+  )
 
   const closeModal = () => {
     dispatch(toggleAddNoteModal())
@@ -30,13 +41,10 @@ const AddNoteModal = () => {
     dispatch(toggleAddNoteModal())
   }
 
-  const addTag = (key: string) => {
-    setTags([...tags, key])
-  }
-
-  const removeTag = (key: string) => {
-    const removedTagArray = tags.filter((tag) => tag !== key)
-    setTags(removedTagArray)
+  const chooseTag = (key: string) => {
+    const addedTagIndex = tags.findIndex((tag) => tag.data.key === key)
+    tags[addedTagIndex].chosen = !tags[addedTagIndex].chosen
+    setTags([...tags])
   }
 
   return (
@@ -85,13 +93,9 @@ const AddNoteModal = () => {
                   placeholder={translate('NIGHT_NOTE.ADD_NOTE_PLACEHOLDER')}
                 />
 
-                <AddedNoteTagsList
-                  addedTags={tags}
-                  addTag={addTag}
-                  removeTag={removeTag}
-                />
+                <AddedNoteTagsList tags={tags} chooseTag={chooseTag} />
 
-                <NoteTagsList addTag={addTag} removeTag={removeTag} />
+                <NoteTagsList tags={tags} chooseTag={chooseTag} />
               </BodyContainer>
             </ScrollView>
           </Container>

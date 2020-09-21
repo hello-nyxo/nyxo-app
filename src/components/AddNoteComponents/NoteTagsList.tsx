@@ -4,21 +4,19 @@ import styled from 'styled-components/native'
 import colors from 'styles/colors'
 import { fonts } from 'styles/themes'
 import { NightNoteTags } from 'Types/NightNoteState'
+import { NightNoteTagListProps } from './AddNoteModal'
 import NoteTag from './NoteTag'
 
-export interface NoteTagsListProps {
-  addTag: Function
-  removeTag: Function
-}
+interface Props extends NightNoteTagListProps {}
 
-const NoteTagsList = (props: NoteTagsListProps) => {
-  const { addTag, removeTag } = props
-  const tagComponents = Object.entries(NightNoteTags).map((entry, index) => (
+const NoteTagsList = (props: Props) => {
+  const { tags, chooseTag } = props
+  const tagComponents = tags.map((tag, index) => (
     <NoteTag
-      data={{ key: entry[0], value: entry[1] }}
-      key={`note-tags-list-tag-${entry[1]}-${index}`}
-      addTag={addTag}
-      removeTag={removeTag}
+      data={tag.data}
+      key={`note-tags-list-tag-${tag.data.key}-${index}`}
+      chooseTag={chooseTag}
+      chosen={tag.chosen}
     />
   ))
 
