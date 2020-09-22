@@ -19,7 +19,9 @@ export const deleteNightNote = (nightNote: NightNote) => ({
 export const addNightNote = (nightNote: NightNote) => (
   dispatch: Dispatch,
   getState: GetState
-) => {}
+) => {
+  dispatch(updateNightNote(nightNote))
+}
 
 export const editNightNote = (nightNote: NightNote) => (
   dispatch: Dispatch,

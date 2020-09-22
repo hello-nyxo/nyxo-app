@@ -14,7 +14,9 @@ export interface NightNote {
   meta: NightNoteMeta
 }
 
-export interface NightNoteMeta {}
+export interface NightNoteMeta {
+  tags: Array<string> // This will be NightNoteTags enum keys but is converted to strings. They can be extracted by using Object.keys(NightNoteTags)
+}
 
 export enum NightNoteTags {
   HOT_SHOWER = 'NIGHT_NOTE.TAGS.HOT_SHOWER',

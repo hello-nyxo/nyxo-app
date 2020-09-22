@@ -299,8 +299,7 @@ export type CreateLikedContentInput = {
   id?: string | null,
   name?: string | null,
   type?: string | null,
-  slug?: string | null,
-  cover?: string | null,
+  slug: string,
   excerpt?: string | null,
 };
 
@@ -309,11 +308,54 @@ export type UpdateLikedContentInput = {
   name?: string | null,
   type?: string | null,
   slug?: string | null,
-  cover?: string | null,
   excerpt?: string | null,
 };
 
 export type DeleteLikedContentInput = {
+  id?: string | null,
+};
+
+export type CreateNightRatingInput = {
+  id?: string | null,
+  userId: string,
+  rating: number,
+  date: string,
+};
+
+export type UpdateNightRatingInput = {
+  id: string,
+  userId?: string | null,
+  rating?: number | null,
+  date?: string | null,
+};
+
+export type DeleteNightRatingInput = {
+  id?: string | null,
+};
+
+export type CreateNightNoteInput = {
+  id?: string | null,
+  userId: string,
+  date: string,
+  dateTime: string,
+  content: string,
+  meta: NightNoteMetaInput,
+};
+
+export type NightNoteMetaInput = {
+  tags: Array< string | null >,
+};
+
+export type UpdateNightNoteInput = {
+  id: string,
+  userId?: string | null,
+  date?: string | null,
+  dateTime?: string | null,
+  content?: string | null,
+  meta?: NightNoteMetaInput | null,
+};
+
+export type DeleteNightNoteInput = {
   id?: string | null,
 };
 
@@ -354,11 +396,31 @@ export type ModelLikedContentFilterInput = {
   name?: ModelStringFilterInput | null,
   type?: ModelStringFilterInput | null,
   slug?: ModelStringFilterInput | null,
-  cover?: ModelStringFilterInput | null,
   excerpt?: ModelStringFilterInput | null,
   and?: Array< ModelLikedContentFilterInput | null > | null,
   or?: Array< ModelLikedContentFilterInput | null > | null,
   not?: ModelLikedContentFilterInput | null,
+};
+
+export type ModelNightRatingFilterInput = {
+  id?: ModelIDFilterInput | null,
+  userId?: ModelIDFilterInput | null,
+  rating?: ModelIntFilterInput | null,
+  date?: ModelStringFilterInput | null,
+  and?: Array< ModelNightRatingFilterInput | null > | null,
+  or?: Array< ModelNightRatingFilterInput | null > | null,
+  not?: ModelNightRatingFilterInput | null,
+};
+
+export type ModelNightNoteFilterInput = {
+  id?: ModelIDFilterInput | null,
+  userId?: ModelIDFilterInput | null,
+  date?: ModelStringFilterInput | null,
+  dateTime?: ModelStringFilterInput | null,
+  content?: ModelStringFilterInput | null,
+  and?: Array< ModelNightNoteFilterInput | null > | null,
+  or?: Array< ModelNightNoteFilterInput | null > | null,
+  not?: ModelNightNoteFilterInput | null,
 };
 
 export enum ModelSortDirection {
@@ -366,6 +428,16 @@ export enum ModelSortDirection {
   DESC = "DESC",
 }
 
+
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
 
 export type UpdateConnectionIDMutationVariables = {
   input: UpdateUserInput,
@@ -1036,8 +1108,7 @@ export type CreateLikedContentMutation = {
     id: string | null,
     name: string | null,
     type: string | null,
-    slug: string | null,
-    cover: string | null,
+    slug: string,
     excerpt: string | null,
     owner: string | null,
   } | null,
@@ -1053,8 +1124,7 @@ export type UpdateLikedContentMutation = {
     id: string | null,
     name: string | null,
     type: string | null,
-    slug: string | null,
-    cover: string | null,
+    slug: string,
     excerpt: string | null,
     owner: string | null,
   } | null,
@@ -1070,9 +1140,167 @@ export type DeleteLikedContentMutation = {
     id: string | null,
     name: string | null,
     type: string | null,
-    slug: string | null,
-    cover: string | null,
+    slug: string,
     excerpt: string | null,
+    owner: string | null,
+  } | null,
+};
+
+export type CreateNightRatingMutationVariables = {
+  input: CreateNightRatingInput,
+};
+
+export type CreateNightRatingMutation = {
+  createNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    rating: number,
+    date: string,
+    owner: string | null,
+  } | null,
+};
+
+export type UpdateNightRatingMutationVariables = {
+  input: UpdateNightRatingInput,
+};
+
+export type UpdateNightRatingMutation = {
+  updateNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    rating: number,
+    date: string,
+    owner: string | null,
+  } | null,
+};
+
+export type DeleteNightRatingMutationVariables = {
+  input: DeleteNightRatingInput,
+};
+
+export type DeleteNightRatingMutation = {
+  deleteNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    rating: number,
+    date: string,
+    owner: string | null,
+  } | null,
+};
+
+export type CreateNightNoteMutationVariables = {
+  input: CreateNightNoteInput,
+};
+
+export type CreateNightNoteMutation = {
+  createNightNote:  {
+    __typename: "NightNote",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    date: string,
+    dateTime: string,
+    content: string,
+    meta:  {
+      __typename: "NightNoteMeta",
+      tags: Array< string | null >,
+    },
+    owner: string | null,
+  } | null,
+};
+
+export type UpdateNightNoteMutationVariables = {
+  input: UpdateNightNoteInput,
+};
+
+export type UpdateNightNoteMutation = {
+  updateNightNote:  {
+    __typename: "NightNote",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    date: string,
+    dateTime: string,
+    content: string,
+    meta:  {
+      __typename: "NightNoteMeta",
+      tags: Array< string | null >,
+    },
+    owner: string | null,
+  } | null,
+};
+
+export type DeleteNightNoteMutationVariables = {
+  input: DeleteNightNoteInput,
+};
+
+export type DeleteNightNoteMutation = {
+  deleteNightNote:  {
+    __typename: "NightNote",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    date: string,
+    dateTime: string,
+    content: string,
+    meta:  {
+      __typename: "NightNoteMeta",
+      tags: Array< string | null >,
+    },
     owner: string | null,
   } | null,
 };
@@ -1391,8 +1619,7 @@ export type GetLikedContentQuery = {
     id: string | null,
     name: string | null,
     type: string | null,
-    slug: string | null,
-    cover: string | null,
+    slug: string,
     excerpt: string | null,
     owner: string | null,
   } | null,
@@ -1412,9 +1639,104 @@ export type ListLikedContentsQuery = {
       id: string | null,
       name: string | null,
       type: string | null,
-      slug: string | null,
-      cover: string | null,
+      slug: string,
       excerpt: string | null,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetNightRatingQueryVariables = {
+  id: string,
+};
+
+export type GetNightRatingQuery = {
+  getNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    rating: number,
+    date: string,
+    owner: string | null,
+  } | null,
+};
+
+export type ListNightRatingsQueryVariables = {
+  filter?: ModelNightRatingFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListNightRatingsQuery = {
+  listNightRatings:  {
+    __typename: "ModelNightRatingConnection",
+    items:  Array< {
+      __typename: "NightRating",
+      id: string,
+      userId: string,
+      rating: number,
+      date: string,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetNightNoteQueryVariables = {
+  id: string,
+};
+
+export type GetNightNoteQuery = {
+  getNightNote:  {
+    __typename: "NightNote",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    date: string,
+    dateTime: string,
+    content: string,
+    meta:  {
+      __typename: "NightNoteMeta",
+      tags: Array< string | null >,
+    },
+    owner: string | null,
+  } | null,
+};
+
+export type ListNightNotesQueryVariables = {
+  filter?: ModelNightNoteFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListNightNotesQuery = {
+  listNightNotes:  {
+    __typename: "ModelNightNoteConnection",
+    items:  Array< {
+      __typename: "NightNote",
+      id: string,
+      userId: string,
+      date: string,
+      dateTime: string,
+      content: string,
       owner: string | null,
     } | null > | null,
     nextToken: string | null,
@@ -1465,6 +1787,31 @@ export type CoachingByUserQuery = {
       activeWeek: string | null,
       started: string | null,
       ended: string | null,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type LikedContentBySlugQueryVariables = {
+  slug?: string | null,
+  id?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelLikedContentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type LikedContentBySlugQuery = {
+  likedContentBySlug:  {
+    __typename: "ModelLikedContentConnection",
+    items:  Array< {
+      __typename: "LikedContent",
+      id: string | null,
+      name: string | null,
+      type: string | null,
+      slug: string,
+      excerpt: string | null,
       owner: string | null,
     } | null > | null,
     nextToken: string | null,
@@ -1963,8 +2310,7 @@ export type OnCreateLikedContentSubscription = {
     id: string | null,
     name: string | null,
     type: string | null,
-    slug: string | null,
-    cover: string | null,
+    slug: string,
     excerpt: string | null,
     owner: string | null,
   } | null,
@@ -1980,8 +2326,7 @@ export type OnUpdateLikedContentSubscription = {
     id: string | null,
     name: string | null,
     type: string | null,
-    slug: string | null,
-    cover: string | null,
+    slug: string,
     excerpt: string | null,
     owner: string | null,
   } | null,
@@ -1997,9 +2342,167 @@ export type OnDeleteLikedContentSubscription = {
     id: string | null,
     name: string | null,
     type: string | null,
-    slug: string | null,
-    cover: string | null,
+    slug: string,
     excerpt: string | null,
+    owner: string | null,
+  } | null,
+};
+
+export type OnCreateNightRatingSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnCreateNightRatingSubscription = {
+  onCreateNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    rating: number,
+    date: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnUpdateNightRatingSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnUpdateNightRatingSubscription = {
+  onUpdateNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    rating: number,
+    date: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnDeleteNightRatingSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnDeleteNightRatingSubscription = {
+  onDeleteNightRating:  {
+    __typename: "NightRating",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    rating: number,
+    date: string,
+    owner: string | null,
+  } | null,
+};
+
+export type OnCreateNightNoteSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnCreateNightNoteSubscription = {
+  onCreateNightNote:  {
+    __typename: "NightNote",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    date: string,
+    dateTime: string,
+    content: string,
+    meta:  {
+      __typename: "NightNoteMeta",
+      tags: Array< string | null >,
+    },
+    owner: string | null,
+  } | null,
+};
+
+export type OnUpdateNightNoteSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnUpdateNightNoteSubscription = {
+  onUpdateNightNote:  {
+    __typename: "NightNote",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    date: string,
+    dateTime: string,
+    content: string,
+    meta:  {
+      __typename: "NightNoteMeta",
+      tags: Array< string | null >,
+    },
+    owner: string | null,
+  } | null,
+};
+
+export type OnDeleteNightNoteSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnDeleteNightNoteSubscription = {
+  onDeleteNightNote:  {
+    __typename: "NightNote",
+    id: string,
+    userId: string,
+    user:  {
+      __typename: "User",
+      connectionId: string | null,
+      id: string,
+      email: string,
+      nickname: string | null,
+      darkMode: boolean | null,
+      intercomId: string | null,
+    },
+    date: string,
+    dateTime: string,
+    content: string,
+    meta:  {
+      __typename: "NightNoteMeta",
+      tags: Array< string | null >,
+    },
     owner: string | null,
   } | null,
 };

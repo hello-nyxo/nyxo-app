@@ -31,3 +31,9 @@ export const HabitSchema = yup.object().shape({
   description: yup.string(),
   period: yup.string().required()
 })
+
+export const NightNoteSchema = yup.object().shape({
+  note: yup.string().min(3),
+  date: yup.string(),
+  dateTime: yup.string()
+})

@@ -13,7 +13,11 @@ import { ScrollView } from 'react-native'
 import moment from 'moment'
 import NoteTagsList from './NoteTagsList'
 import AddedNoteTagsList from './AddedNoteTagsList'
-import { NightNoteTags } from 'Types/NightNoteState'
+import { NightNote, NightNoteTags } from 'Types/NightNoteState'
+import { NightNoteSchema } from 'config/Validation'
+import 'react-native-get-random-values'
+import { v4 } from 'uuid'
+import { addNightNote } from 'store/actions/night-note-actions/night-note-actions'
 
 const numberOfLines = 15
 
@@ -37,7 +41,26 @@ const AddNoteModal = () => {
     dispatch(toggleAddNoteModal())
   }
 
-  const saveModal = () => {
+  const saveModal = ({
+    note,
+    date,
+    dateTime
+  }: {
+    note: string
+    date: string
+    dateTime: string
+  }) => {
+    const nightNote: NightNote = {
+      id: v4(),
+      date,
+      dateTime,
+      content: note,
+      meta: {
+        tags: tags.map((t) => t.data.key)
+      }
+    }
+
+    dispatch(addNightNote(nightNote))
     dispatch(toggleAddNoteModal())
   }
 
@@ -61,7 +84,8 @@ const AddNoteModal = () => {
             .toISOString(),
           dateTime: moment().toISOString()
         }}
-        onSubmit={saveModal}>
+        onSubmit={saveModal}
+        validationSchema={NightNoteSchema}>
         {({
           handleChange,
           values: { note, date, dateTime },
