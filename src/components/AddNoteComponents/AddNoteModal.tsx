@@ -17,7 +17,9 @@ import { NightNote, NightNoteTags } from 'Types/NightNoteState'
 import { NightNoteSchema } from 'config/Validation'
 import 'react-native-get-random-values'
 import { v4 } from 'uuid'
-import { addNightNote } from 'store/actions/night-note-actions/night-note-actions'
+import { saveNightNote } from 'store/actions/night-note-actions/night-note-actions'
+import { convertLineBreaks } from 'helpers/habits'
+import { useFetchNightNotes } from 'queries/night-note-queries'
 
 const numberOfLines = 15
 
@@ -29,6 +31,8 @@ export interface NightNoteTagListProps {
 const AddNoteModal = () => {
   const isVisible = useSelector(getAddNoteModal)
   const dispatch = useDispatch()
+
+  useFetchNightNotes("this is userid")
 
   const [tags, setTags] = useState(
     Object.entries(NightNoteTags).map((entry) => ({
@@ -51,16 +55,15 @@ const AddNoteModal = () => {
     dateTime: string
   }) => {
     const nightNote: NightNote = {
-      id: v4(),
+      content: convertLineBreaks(note),
       date,
       dateTime,
-      content: note,
+      id: v4(),
       meta: {
         tags: tags.map((t) => t.data.key)
       }
     }
-
-    dispatch(addNightNote(nightNote))
+    dispatch(saveNightNote(nightNote))
     dispatch(toggleAddNoteModal())
   }
 

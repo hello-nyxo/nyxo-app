@@ -1,9 +1,9 @@
 export interface NightNoteState {
-  nightNotes: Map<string, NightNotes>
+  nightNotes: Map<string, NightNotes> // key is the value of "date" key
 }
 
 export interface NightNotes {
-  notes: Map<string, NightNote>
+  notes: Map<string, NightNote> // key is the value of "id" key
 }
 
 export interface NightNote {

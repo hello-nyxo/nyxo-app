@@ -16,6 +16,7 @@ import { setI18nConfig } from './config/i18n'
 import { getTheme } from './store/Selectors/UserSelectors'
 import { darkTheme, lightTheme, ThemeProps } from './styles/themes'
 import { State } from './Types/State'
+import { ReactQueryCacheProvider, QueryCache } from 'react-query'
 
 if (!__DEV__) {
   Sentry.init({
@@ -65,7 +66,9 @@ class App extends React.Component<AppProps> {
 
     return (
       <ThemeProvider theme={appTheme}>
-        <AppWithNavigationState />
+        <ReactQueryCacheProvider>
+          <AppWithNavigationState />
+        </ReactQueryCacheProvider>
       </ThemeProvider>
     )
   }
