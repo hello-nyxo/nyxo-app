@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import { StyleProps } from '../../styles/themes'
-import IconBold from '../iconBold'
+import { IconBold } from '../iconRegular'
 
 interface Props {
   route?: string

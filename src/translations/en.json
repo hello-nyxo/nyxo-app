@@ -100,7 +100,6 @@
   "Challenges": "Achievements",
   "challenges-completed": "{{challengeCompleted}}/{{challengesLeft}} completed",
 
-  "GoalsTitle": "Lessons",
   "ChallengesExplanation": "Every week is filled with different achievements which you can try get by completing required Actions, reading the required goal materials and setting Actions for yourself.",
   "GoalsExplanation": "Every week you can try your hands at competing for different achievement. Press the achievement icon to learn more.",
   "Click to find out more": "Click to open",
@@ -237,8 +236,16 @@
   },
 
   "COACHING_MONTH": {
-    "WEEKS": "Completed weeks: {{weeks}}",
-    "LESSONS": "Completed lessons: {{lessons}}"
+    "SUBTITLE": "Coaching Period",
+    "WEEKS": {
+      "one": "{{count}} week",
+      "other": "{{count}} weeks"
+    },
+    "LESSONS": {
+      "one": "{{count}} lesson",
+      "other": "{{count}} lessons"
+    },
+    "PROGRESS": "Progress"
   },
 
   "TimeOnCharge": "Use time on charge and device usage to detect sleep.",
@@ -646,7 +653,7 @@
   "SUBSCRIPTION_MANAGEMENT": {
     "CURRENTLY_ACTIVE": "Active Subscription",
     "STARTED": "Subscription started ",
-    "THANK_YOU": "Thank you for being a subscriber 😍'\n' Your subscription will renew on ",
+    "THANK_YOU": "Thank you for being a subscriber 😍 \n Your subscription will renew on ",
     "SANDBOX": "Btw. this is a sandbox purchase"
   },
 
@@ -708,6 +715,8 @@
   },
 
   "WEEK": {
-    "BEGING": "Beging week"
+    "BEGING": "Beging week",
+    "COMPLETE": "Complete week",
+    "LESSONS": "Lessons"
   }
 }

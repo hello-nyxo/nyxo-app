@@ -1,27 +1,21 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'
 import TranslatedText from '../TranslatedText'
 
-interface BottomButtonProps {
+type Props = {
   disabled?: boolean
-  onPress: Function
+  onPress: () => void
   title: string
   loading?: boolean
 }
 
-const BottomButton = (props: BottomButtonProps) => {
-  const { loading, disabled, title, onPress } = props
-
-  const handlePress = () => {
-    onPress()
-  }
-
+const BottomButton: FC<Props> = ({ loading, disabled, title, onPress }) => {
   return (
     <Container>
-      <TouchableOpacity disabled={loading || disabled} onPress={handlePress}>
+      <TouchableOpacity disabled={loading || disabled} onPress={onPress}>
         <ButtonContainer disabled={loading || disabled}>
           {!loading && <ButtonText>{title}</ButtonText>}
           {loading && <Loader />}
@@ -42,14 +36,17 @@ const Container = styled.View`
 `
 
 const ButtonContainer = styled.View<ButtonProps>`
-  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   background-color: ${colors.radiantBlue};
   border-radius: 5px;
   padding: 15px;
+  box-shadow: 1px 1px 5px rgba(74, 90, 239, 0.4);
+  align-self: center;
+  min-width: 200px;
 `
 
 const ButtonText = styled(TranslatedText)<ButtonProps>`
-  opacity: ${(props) => (props.disabled ? 0.2 : 1)};
+  opacity: ${({ disabled }) => (disabled ? 0.2 : 1)};
   color: ${colors.white};
   font-family: ${fonts.medium};
   text-align: center;

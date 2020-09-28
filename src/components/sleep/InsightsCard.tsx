@@ -54,8 +54,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonBegin"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.inBedColor}
               />
               <Column>
@@ -68,8 +68,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonEnd"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.inBedColor}
               />
               <Column>
@@ -84,8 +84,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonEnd"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.asleepColor}
               />
               <Column>
@@ -98,8 +98,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonEnd"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.asleepColor}
               />
               <Column>
@@ -115,8 +115,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="doubleBed"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke="black"
               />
               <Column>
@@ -129,8 +129,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonEnd"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke="black"
               />
               <Column>
@@ -145,8 +145,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="doubleBed"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke="black"
               />
               <Column>
@@ -159,8 +159,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="bedWindow"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.bedTimeColor}
               />
               <Column>
@@ -217,7 +217,7 @@ const Figure = styled.View`
   align-items: center;
   flex: 1;
   width: 100%;
-  margin-right: 30px;
+  margin-right: 20px;
 `
 
 const Icon = styled(IconBold).attrs(() => ({}))`
@@ -227,7 +227,7 @@ const Icon = styled(IconBold).attrs(() => ({}))`
 const Value = styled.Text`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  font-size: 20px;
+  font-size: 15px;
 `
 
 const Description = styled(TranslatedText)`

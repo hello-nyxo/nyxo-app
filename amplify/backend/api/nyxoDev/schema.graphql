@@ -324,3 +324,35 @@ type Comments
   lastName: String
   comment: String!
 }
+
+type NightNote
+@model
+@auth(
+  rules: [
+    { allow: owner }
+    {
+      allow: groups
+      groups: ["admin"]
+      mutations: [delete]
+      queries: [get, list]
+    }
+    {
+      allow: owner
+      ownerField: "viewers"
+      mutations: null
+      queries: [get, list]
+    }
+  ]
+) {
+  id: ID!
+  userId: ID!
+  user: User! @connection(fields: ["userId"])
+  date: String!
+  dateTime: String!
+  content: String!
+  meta: NightNoteMeta!
+}
+
+type NightNoteMeta {
+  tags: [String]!
+}

@@ -16,7 +16,7 @@ import { sendError } from '../notifications'
 
 const { createClient } = require('contentful/dist/contentful.browser.min.js')
 
-const client: ContentfulClientApi = createClient({
+export const contentfulClient: ContentfulClientApi = createClient({
   space: CONFIG.CONTENTFUL_SPACE,
   accessToken: CONFIG.CONTENTFUL_SPACE_ACCESS_TOKEN
 })
@@ -45,10 +45,10 @@ export const getAllWeeks = (): Thunk => async (dispatch: Dispatch) => {
   await dispatch(contentActions.updateContentStart())
 
   try {
-    const coachingWeeks: any = await client.getEntries({
+    const coachingWeeks: any = await contentfulClient.getEntries({
       locale,
       content_type: 'coachingWeek',
-      // 'fields.slug[ne]': 'introduction',
+      'fields.slug[ne]': 'introduction',
       include: 3
     })
 

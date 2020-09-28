@@ -128,3 +128,4 @@ ios/Nyxo/AppCenter-Config.plist
 rnuc.xcconfig
 android/app/.project
 
+ios/GoogleService-Info.plist

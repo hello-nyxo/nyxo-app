@@ -1,14 +1,13 @@
 import { WIDTH } from '@helpers/Dimensions'
-import { describeArc, polarToCartesian } from '@helpers/geometry'
 import { GetUserQuery } from 'API'
 import TranslatedText from 'components/TranslatedText'
 import React, { FC } from 'react'
-import Svg, { Circle, Path } from 'react-native-svg'
+import { AnimatedCircularProgress } from 'react-native-circular-progress'
+import Svg, { Circle } from 'react-native-svg'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
-import { interpolate } from 'd3'
 
-const chartWidth = WIDTH - 16 * 2 - 2 * 8
+const chartWidth = WIDTH - 16 * 2 - 2 * 32
 const chartHeight = chartWidth * (9 / 16)
 
 type User = Exclude<GetUserQuery['getUser'], null>
@@ -34,64 +33,31 @@ const Points: FC<Props> = ({
   } = sleepPoints
   const average = (efficiency + duration + socialJetLag + timing) / 4
 
-  const outLinePath = describeArc(
-    chartWidth / 2,
-    chartHeight - 30,
-    (chartWidth / 2) * 0.8,
-    270,
-    90
-  )
-  const path = describeArc(
-    chartWidth / 2,
-    chartHeight - 30,
-    (chartWidth / 2) * 0.8,
-    270,
-    30
-  )
-
-  const { x: circleX, y: circleY } = polarToCartesian(
-    chartWidth / 2,
-    chartHeight - 30,
-    (chartWidth / 2) * 0.8,
-    30
-  )
-
   return (
     <Container>
       <ChartContainer>
-        <Svg width={chartWidth} height={chartHeight}>
-          <ThemedPath
-            id="pointsPath"
-            d={outLinePath}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-            strokeWidth="8"
-          />
-          <Path
-            id="pointsPath"
-            d={path}
-            strokeDashoffset="200"
-            stroke={colors.radiantBlue}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-            strokeWidth="12"
-          />
-          <ThemedCircle
-            x={circleX}
-            y={circleY}
-            r={10}
-            strokeWidth={4}
-            stroke={colors.radiantBlue}
-          />
-        </Svg>
+        <Progress
+          width={15}
+          size={chartWidth}
+          fill={average}
+          renderCap={({ center }) => {
+            return (
+              <ThemedCircle
+                x={center.x}
+                y={center.y}
+                r={10}
+                strokeWidth={4}
+                stroke={colors.radiantBlue}
+              />
+            )
+          }}
+        />
+
         <PointsContainer>
           <TotalPoints>{average}</TotalPoints>
+          <Title>POINTS.TITLE</Title>
         </PointsContainer>
       </ChartContainer>
-
-      <Title>POINTS.TITLE</Title>
 
       <Section>
         <ScoreContainer>
@@ -206,14 +172,21 @@ const TotalPoints = styled.Text`
 const ChartContainer = styled.View`
   align-items: center;
   justify-content: center;
+  height: ${chartWidth}px;
 `
-
-const ThemedPath = styled(Path).attrs(({ theme }) => ({
-  stroke: theme.PRIMARY_BACKGROUND_COLOR
-}))``
 
 const ThemedCircle = styled(Circle).attrs(({ theme }) => ({
   fill: theme.SECONDARY_BACKGROUND_COLOR
 }))``
 
 const ScoreContainer = styled.View``
+
+const Progress = styled(AnimatedCircularProgress).attrs(({ theme }) => ({
+  rotation: 250,
+  arcSweepAngle: 225,
+  tintColor: colors.radiantBlue,
+  backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
+  lineCap: 'round'
+}))`
+  position: absolute;
+`

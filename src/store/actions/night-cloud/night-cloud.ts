@@ -11,10 +11,11 @@ import { Dispatch, Thunk } from 'Types/ReduxActions'
 import { SOURCE } from 'typings/state/sleep-source-state'
 
 export const fetchSleepData = (
-  startDate: string,
-  endDate: string
+  startDate: string = new Date().toISOString(),
+  endDate: string = new Date().toISOString()
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   const source = getMainSource(getState())
+
   switch (source) {
     case SOURCE.HEALTH_KIT:
       dispatch(fetchSleepFromHealthKit(startDate, endDate))
@@ -26,7 +27,7 @@ export const fetchSleepData = (
       dispatch(getFitbitSleep())
       break
     case SOURCE.OURA:
-      dispatch(getOuraSleep())
+      dispatch(getOuraSleep(startDate, endDate))
       break
     case SOURCE.WITHINGS:
       dispatch(getWithingsSleep())

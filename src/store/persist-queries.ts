@@ -1,7 +1,6 @@
 import { queryCache } from 'react-query'
 import AsyncStorage from '@react-native-community/async-storage'
 
-// Persist to wherever using the super-secret object
 const writeToStorage = async (queryKey: string, data: any): Promise<void> => {
   let storageData = await AsyncStorage.getItem('queries')
 
@@ -12,10 +11,8 @@ const writeToStorage = async (queryKey: string, data: any): Promise<void> => {
   AsyncStorage.setItem('queries', JSON.stringify(storageData))
 }
 
-// Hydrate from localStorage
-
-const readFromStorage = async (): Promise<void> => {
-  const storageData = await AsyncStorage.getItem('queries')
+const readFromStorage = async (key: string): Promise<void> => {
+  const storageData = await AsyncStorage.getItem(key)
 
   if (storageData !== null) {
     const queriesWithData = JSON.parse(storageData)

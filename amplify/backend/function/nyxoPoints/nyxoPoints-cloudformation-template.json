@@ -83,7 +83,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "nyxocloud-dev-20190813125556-deployment",
-					"S3Key": "amplify-builds/nyxoPoints-31624f717941674b2f47-build.zip"
+					"S3Key": "amplify-builds/nyxoPoints-3268676d4c3831685364-build.zip"
 				}
 			}
 		},

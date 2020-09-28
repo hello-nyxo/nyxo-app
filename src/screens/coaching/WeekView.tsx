@@ -1,13 +1,17 @@
 import Copyright from '@components//CoachingSpecific/Copyright'
-import StartCoaching from '@components//CoachingSpecific/StartCoaching'
 import TopHeader from '@components//CoachingSpecific/TopHeader'
 import WeekCover from '@components//CoachingSpecific/Week.Cover'
 import WeekIntro from '@components//CoachingSpecific/WeekIntro'
 import WeekViewHeader from '@components//CoachingSpecific/WeekViewHeader'
 import NewHabitModal from '@components//modals/HabitModal/NewHabitModal'
-import { BGContainer } from '@components//Primitives/Primitives'
+import { BGContainer, H2 } from '@components//Primitives/Primitives'
 import { CombinedWeek } from '@selectors/coaching-selectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
+import {
+  useUpdateCoaching,
+  useGetActiveCoaching
+} from 'hooks/coaching/useCoaching'
+import { uniqBy } from 'lodash'
 import React, { memo } from 'react'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
@@ -23,8 +27,44 @@ interface Props {
 const WeekView = ({ route }: Props) => {
   const { week }: { week: CombinedWeek } = route.params
   const hasCoaching = useSelector(getActiveCoaching)
+  const [mutate] = useUpdateCoaching()
+  const { data } = useGetActiveCoaching()
 
   const locked = hasCoaching && week.locked !== undefined ? week.locked : true
+
+  const startWeek = () => {
+    const startedWeek = {
+      slug: week.slug,
+      started: new Date().toISOString()
+    }
+    const weeks = data?.weeks?.filter((w) => w?.slug !== week.slug)
+
+    mutate({
+      coaching: {
+        id: data?.id,
+        activeWeek: week.slug,
+        weeks: [...(weeks ?? []), startedWeek]
+      }
+    })
+  }
+
+  const endWeek = () => {
+    const completedWeek = {
+      slug: week.slug,
+      started: new Date().toISOString(),
+      ended: new Date().toISOString()
+    }
+    const weeks = data?.weeks?.filter((w) => w?.slug !== week.slug)
+    mutate({
+      coaching: {
+        id: data?.id,
+        activeWeek: week.slug,
+        weeks: [...(weeks ?? []), completedWeek]
+      }
+    })
+  }
+
+  const activeWeek = data?.weeks?.find((w) => w?.slug === week.slug)
 
   return (
     <BGContainer>
@@ -35,8 +75,7 @@ const WeekView = ({ route }: Props) => {
           onScroll={Animated.event([
             { nativeEvent: { contentOffset: { y: yOffset } } }
           ])}
-          locked={locked}
-          useCurrentWeek={false}
+          locked={false}
           header={
             <>
               <WeekViewHeader title={week.weekName} yOffset={yOffset} />
@@ -45,9 +84,16 @@ const WeekView = ({ route }: Props) => {
                 description={week.weekDescription}
                 habitCount={week.habitCount}
                 lessonCount={week.lessonCount}
-                started={week.started}
-                ended={week.ended}
+                started={activeWeek?.started}
+                ended={activeWeek?.ended}
+                isCurrentlyActive={week.slug === activeWeek?.slug}
+                // hasActiveCoaching={}
+                endWeek={endWeek}
+                startWeek={startWeek}
               />
+              <BGContainer>
+                <H2>WEEK.LESSONS</H2>
+              </BGContainer>
             </>
           }
           footer={<Copyright />}

@@ -19,6 +19,7 @@ import { navigationRef } from './NavigationHelper'
 // Navigators
 import Root from './routes/RootNavigator'
 import ROUTE from './routes/Routes'
+import { readFromStorage } from 'store/persist-queries'
 
 function getActiveRouteName(state: any): string {
   const route = state.routes[state.index]
@@ -70,11 +71,15 @@ const Routes: FC = () => {
 
   const [isReady, setIsReady] = useState(false)
   const [initialState, setInitialState] = useState()
-  const routeNameRef: any = useRef()
+  const routeNameRef = useRef<string>()
+
   Linking.getInitialURL()
     .then((url) => {})
     .catch((err) => console.error('An error occurred', err))
+
   useEffect(() => {
+    readQueries()
+
     const onUnreadChange = ({ count }: { count: number }) => {
       dispatch(notificationActions.updateIntercomNotificationCount(count))
     }
@@ -105,6 +110,13 @@ const Routes: FC = () => {
       )
     }
   }, [getInitialState])
+
+  const readQueries = async () => {
+    await Promise.all([
+      readFromStorage('user'),
+      readFromStorage('userActiveCoaching')
+    ])
+  }
 
   if (!isReady) {
     return null

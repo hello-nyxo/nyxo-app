@@ -414,6 +414,54 @@ export const listCommentss = /* GraphQL */ `
     }
   }
 `;
+export const getNightNote = /* GraphQL */ `
+  query GetNightNote($id: ID!) {
+    getNightNote(id: $id) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      date
+      dateTime
+      content
+      meta {
+        tags
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listNightNotes = /* GraphQL */ `
+  query ListNightNotes(
+    $filter: ModelNightNoteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNightNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userId
+        date
+        dateTime
+        content
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const userByConnectionId = /* GraphQL */ `
   query UserByConnectionId(
     $connectionId: String

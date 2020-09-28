@@ -728,3 +728,84 @@ export const deleteComments = /* GraphQL */ `
     }
   }
 `;
+export const createNightNote = /* GraphQL */ `
+  mutation CreateNightNote($input: CreateNightNoteInput!) {
+    createNightNote(input: $input) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      date
+      dateTime
+      content
+      meta {
+        tags
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateNightNote = /* GraphQL */ `
+  mutation UpdateNightNote($input: UpdateNightNoteInput!) {
+    updateNightNote(input: $input) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      date
+      dateTime
+      content
+      meta {
+        tags
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteNightNote = /* GraphQL */ `
+  mutation DeleteNightNote($input: DeleteNightNoteInput!) {
+    deleteNightNote(input: $input) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      date
+      dateTime
+      content
+      meta {
+        tags
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

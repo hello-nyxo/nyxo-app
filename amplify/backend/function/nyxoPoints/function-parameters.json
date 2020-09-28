@@ -2,8 +2,7 @@
   "permissions": {
     "api": {
       "nyxoDev": [
-        "create",
-        "read"
+        "create"
       ]
     }
   },

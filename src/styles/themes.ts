@@ -8,6 +8,9 @@ declare module 'styled-components' {
     mode?: string
     PRIMARY_BACKGROUND_COLOR?: string
     SECONDARY_BACKGROUND_COLOR?: string
+
+    SECONDARY_BACKGROUND_COLOR_TRANSPARENT?: string
+
     PRIMARY_TEXT_COLOR?: string
     SECONDARY_TEXT_COLOR?: string
     ICON_COLOR: string
@@ -27,6 +30,8 @@ export const lightTheme: DefaultTheme = {
   mode: 'light',
   PRIMARY_BACKGROUND_COLOR: '#F6F6F9',
   SECONDARY_BACKGROUND_COLOR: '#FFFFFF',
+  SECONDARY_BACKGROUND_COLOR_TRANSPARENT: 'rgba(255,255,255,0.3)',
+
   PRIMARY_TEXT_COLOR: '#202125',
   SECONDARY_TEXT_COLOR: '#5e6267',
   ICON_COLOR: '#f7f8fb',
@@ -49,6 +54,8 @@ export const darkTheme: DefaultTheme = {
   mode: 'dark',
   PRIMARY_BACKGROUND_COLOR: 'black',
   SECONDARY_BACKGROUND_COLOR: '#333',
+  SECONDARY_BACKGROUND_COLOR_TRANSPARENT: 'rgba(51,51,51,0.3)',
+
   PRIMARY_TEXT_COLOR: 'white',
   SECONDARY_TEXT_COLOR: 'rgba(255,255,255,0.75)',
   ICON_COLOR: '#f7f8fb',

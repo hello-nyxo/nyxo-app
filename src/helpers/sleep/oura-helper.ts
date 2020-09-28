@@ -1,44 +1,78 @@
+/* eslint-disable camelcase */
+import CONFIG from 'config/Config'
+import { addMinutes } from 'date-fns'
 import moment from 'moment'
 import { OuraSleepObject } from 'Types/Sleep/Oura'
-import { generateNightId } from './night-id-generator'
-import CONFIG from 'config/Config'
+import { Night, Value } from 'Types/Sleepdata'
+import { getNightDuration } from '../sleep'
 
 export const formatOuraSample = (ouraObject: OuraSleepObject): Night[] => {
-  const { hypnogram_5min } = ouraObject
-  const startDate = moment(ouraObject?.bedtime_start).toISOString()
-  const endDate = moment(ouraObject?.bedtime_end).toISOString()
+  const { hypnogram_5min: hypnogram } = ouraObject
   const totalDuration = ouraObject?.duration
-  const inBedNightId = generateNightId(
-    'oura',
-    `${ouraObject.period_id}`,
-    startDate,
-    endDate,
-    Value.InBed
-  )
 
   const inBedSample: Night = {
-    id: inBedNightId,
+    id: `${ouraObject.summary_date}_${ouraObject.period_id}_${ouraObject.period_id}`,
     sourceId: CONFIG.OURA_CONFIG.bundleId,
     sourceName: 'Oura',
     value: Value.InBed,
-    startDate: moment(startDate).toISOString(),
-    endDate: moment(endDate).toISOString(),
+    startDate: new Date(ouraObject?.bedtime_start).toISOString(),
+    endDate: new Date(ouraObject?.bedtime_end).toISOString(),
     totalDuration: Math.floor(totalDuration / 60) as number
   }
 
-  const asleepSamples: Night[] = []
-  const sleepPeriodMili = 5 * 60 * 1000
-  sleepPeriodRecursion(
-    ouraObject.period_id,
-    0,
-    hypnogram_5min.split(''),
-    asleepSamples,
-    startDate,
-    sleepPeriodMili,
-    0
+  const asleepSamples = calculateAsleepPeriods(
+    new Date(ouraObject?.bedtime_start).toISOString(),
+    hypnogram
   )
 
   return [inBedSample, ...asleepSamples]
+}
+
+const calculateAsleepPeriods = (start: string, hypnogram: string): Night[] => {
+  const asleepSamples: Night[] = []
+  let startTime = new Date(start)
+  let endTime = addMinutes(new Date(start), 5)
+  let asleep = false
+  let i
+
+  for (i = 0; i < hypnogram.length; i += 1) {
+    // if asleep and wakes up, add new sleep sample
+    if (asleep && hypnogram[i] === '4') {
+      asleepSamples.push({
+        id: `oura_${startTime.toISOString()}_${endTime.toISOString()}`,
+        totalDuration: getNightDuration(
+          startTime.toISOString(),
+          endTime.toISOString()
+        ),
+        sourceName: 'Oura',
+        sourceId: CONFIG.OURA_CONFIG.bundleId,
+        value: Value.Asleep,
+        startDate: startTime.toISOString(),
+        endDate: endTime.toISOString()
+      })
+
+      asleep = false
+    }
+
+    // if awake move both start and end time
+    else if (!asleep && hypnogram[i] === '4') {
+      asleep = false
+      startTime = addMinutes(startTime, 5)
+      endTime = addMinutes(startTime, 5)
+    }
+
+    // if awke and hyphogram shows sleep set asleep
+    else if (!asleep && hypnogram[i] !== '4') {
+      asleep = true
+    }
+
+    // is asleep and hypnogram shows sleep increment endTime
+    else if (asleep && hypnogram[i] !== '4') {
+      endTime = addMinutes(endTime, 5)
+    }
+  }
+
+  return asleepSamples
 }
 
 // The recursive function for separating sleep period.
@@ -76,16 +110,8 @@ const sleepPeriodRecursion = (
         moment(startSleepPeriodDate).valueOf() + sleepPeriodMili
       ).toISOString()
 
-      const asleepNightId = generateNightId(
-        'oura',
-        `${periodId}`,
-        startSleepPeriodDate,
-        endSleepPeriodDate,
-        Value.Asleep
-      )
-
       asleepSamples.push({
-        id: asleepNightId,
+        id: `${startSleepPeriodDate}_${Value.Asleep}_${startSleepPeriodDate}`,
         sourceId: CONFIG.OURA_CONFIG.bundleId,
         sourceName: 'Oura',
         endDate: endSleepPeriodDate,
@@ -113,20 +139,12 @@ const sleepPeriodRecursion = (
         moment(startDate).valueOf() + streakStartIndex * sleepPeriodMili
       ).toISOString()
 
-      const endSleepPeriodDate = moment(
-        moment(startSleepPeriodDate).valueOf() + sleepPeriodMili
+      const endSleepPeriodDate = new Date(
+        new Date(startSleepPeriodDate).valueOf() + sleepPeriodMili
       ).toISOString()
 
-      const asleepNightId = generateNightId(
-        'oura',
-        `${periodId}`,
-        startSleepPeriodDate,
-        endSleepPeriodDate,
-        Value.Asleep
-      )
-
       asleepSamples.push({
-        id: asleepNightId,
+        id: `${startSleepPeriodDate}_${Value.Asleep}_${startSleepPeriodDate}`,
         sourceId: CONFIG.OURA_CONFIG.bundleId,
         sourceName: 'Oura',
         endDate: endSleepPeriodDate,
@@ -153,7 +171,7 @@ const sleepPeriodRecursion = (
 
 export const formatOuraSamples = (samples: OuraSleepObject[]): Night[] => {
   const nights: Night[] = []
-
+  console.log(samples)
   samples.forEach((sample) => {
     nights.push(...formatOuraSample(sample))
   })

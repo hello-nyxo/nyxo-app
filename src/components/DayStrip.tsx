@@ -16,7 +16,7 @@ const CalendarStrip: FC = () => {
   const flatListRef = useRef<FlatList>(null)
   const dispatch = useDispatch()
   const startDate = new Date()
-  const days = Array.from(Array(365)).map((_, index) =>
+  const days = Array.from(Array(365 * 3)).map((_, index) =>
     startOfDay(sub(startDate, { days: index }))
   )
 
@@ -104,6 +104,7 @@ export default CalendarStrip
 
 const Container = styled.View`
   width: ${WIDTH}px;
+  height: 30px;
 `
 
 const Day = styled.View`

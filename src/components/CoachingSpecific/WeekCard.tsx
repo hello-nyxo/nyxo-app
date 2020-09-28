@@ -19,9 +19,10 @@ type Props = {
   week: CombinedWeek
   cardWidth: number
   cardMargin: number
+  completed?: boolean
 }
 
-const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week }) => {
+const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, completed }) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
@@ -35,6 +36,7 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week }) => {
   const formatedIntro = week.intro ? week.intro.replace('–', '\n – ') : ''
   const lessonCount = week.lessons.length
   const { habitCount } = week
+
   return (
     <CardContainer>
       <ScalingButton

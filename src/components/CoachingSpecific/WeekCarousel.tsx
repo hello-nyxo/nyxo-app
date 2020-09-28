@@ -1,23 +1,22 @@
-import React, { FC } from 'react'
-import { View, FlatList } from 'react-native'
-import Animated from 'react-native-reanimated'
-import { useSelector } from 'react-redux'
+import { WIDTH } from '@helpers/Dimensions'
 import {
   CombinedWeek,
   getCombinedWeeks,
   getCurrentWeek
 } from '@selectors/coaching-selectors'
+import { useGetActiveCoaching } from 'hooks/coaching/useCoaching'
+import React, { FC } from 'react'
+import { FlatList, View } from 'react-native'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { WIDTH } from '@helpers/Dimensions'
 import { H3 } from '../Primitives/Primitives'
 import WeekCard from './WeekCard'
 
 export const cardWidth = WIDTH - 40
 export const cardMargin = 5
-const xOffset = new Animated.Value(0)
 
 const WeekCarousel: FC = () => {
-  const currentWeek = useSelector(getCurrentWeek)
+  const { data } = useGetActiveCoaching()
   const combined = useSelector(getCombinedWeeks)
   const ongoing = combined
 
@@ -28,20 +27,21 @@ const WeekCarousel: FC = () => {
         week={item}
         cardMargin={cardMargin}
         cardWidth={cardWidth}
+        completed={true}
       />
     )
   }
 
   const activeWeekIndex = ongoing.findIndex(
-    (week: CombinedWeek) => week.contentId === currentWeek
+    (week: CombinedWeek) => week.slug === data?.activeWeek
   )
   const snapOffets: number[] = ongoing.map(
-    (item, index) => index * (cardWidth + cardMargin * 2)
+    (_, index) => index * (cardWidth + cardMargin * 2)
   )
   const inset = (WIDTH - cardWidth - cardMargin) / 2
 
   return (
-    <View>
+    <>
       <Container>
         <H3>COACHING_WEEKS</H3>
       </Container>
@@ -66,7 +66,7 @@ const WeekCarousel: FC = () => {
         data={ongoing}
         renderItem={renderWeekCard}
       />
-    </View>
+    </>
   )
 }
 

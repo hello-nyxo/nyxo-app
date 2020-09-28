@@ -9,6 +9,7 @@ import {
   CombinedLesson
 } from '@selectors/coaching-selectors/coaching-selectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
+import { listLikedContents } from 'graphql/queries'
 import { useGetActiveCoaching } from 'hooks/coaching/useCoaching'
 import { groupBy } from 'lodash'
 import React, { FC, memo, ReactElement } from 'react'
@@ -21,7 +22,6 @@ import { Section } from 'Types/CoachingContentState'
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 
 type Props = {
-  useCurrentWeek: boolean
   locked?: boolean
   header?: ReactElement
   footer?: ReactElement
@@ -30,7 +30,6 @@ type Props = {
 }
 
 const LessonList: FC<Props> = ({
-  useCurrentWeek,
   locked,
   header,
   footer,
@@ -38,16 +37,13 @@ const LessonList: FC<Props> = ({
   refreshControl
 }) => {
   const { data } = useGetActiveCoaching()
-
-  console.log(data?.activeCoaching)
-
-  const lessonsSelectedWeek: CombinedLessonArray = useSelector(
-    getCoachingLessonsForWeek
-  )
-  const lessonsCurrentWeek: CombinedLessonArray = useSelector(
-    getCoachingLessonsForCurrentWeek
-  )
-
+  const lessons: CombinedLessonArray = useSelector(getCoachingLessonsForWeek)
+  const withData = lessons.map((l) => {
+    return {
+      ...l,
+      completed: true
+    }
+  })
   const renderCard: ListRenderItem<CombinedLesson> = ({ item }) => (
     <LessonListItem key={item.slug} locked={locked} lesson={item} />
   )
@@ -64,10 +60,6 @@ const LessonList: FC<Props> = ({
     />
   )
 
-  const lessons: CombinedLessonArray = useCurrentWeek
-    ? lessonsCurrentWeek
-    : lessonsSelectedWeek
-
   const groupedLessons = groupBy(lessons, (lesson) => lesson.section?.title)
   const sectionData = lessons.map((item) => ({
     title: item.section?.title,
@@ -75,16 +67,16 @@ const LessonList: FC<Props> = ({
     order: item.section?.order
   }))
 
-  if (!sectionData) {
-    return null
-  }
-
   const sections = Object.entries(groupedLessons).map((group) => {
     return {
       header: { ...sectionData.find((item) => item.title === group[0]) },
       data: group[1]
     }
   })
+
+  if (!sectionData) {
+    return null
+  }
 
   return (
     <StyledSectionList
@@ -109,7 +101,7 @@ const LessonList: FC<Props> = ({
 export default memo(LessonList)
 
 const StyledSectionList = styled(AnimatedSectionList).attrs(({ theme }) => ({
-  contentContainerStyle: {
+  style: {
     backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
   }
 }))``

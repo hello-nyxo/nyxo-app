@@ -44,6 +44,8 @@ const Clock: FC = () => {
   const editMode = useSelector(getEditMode)
   const dispatch = useDispatch()
 
+  console.log(bedStart)
+
   const toggleEditNightMode = () => {
     dispatch(toggleEditMode())
   }

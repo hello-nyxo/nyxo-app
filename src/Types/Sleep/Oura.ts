@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export interface OuraSleepObject {
   summary_date: string
   period_id: number

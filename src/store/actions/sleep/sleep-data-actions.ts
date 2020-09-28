@@ -90,6 +90,7 @@ export const fetchSleepData = (
   endDate: string
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   const source = getMainSource(getState())
+  console.log(source)
   switch (source) {
     case SOURCE.HEALTH_KIT:
       dispatch(fetchSleepFromHealthKit(startDate, endDate))
@@ -101,7 +102,7 @@ export const fetchSleepData = (
       dispatch(getFitbitSleep())
       break
     case SOURCE.OURA:
-      dispatch(getOuraSleep())
+      dispatch(getOuraSleep(startDate, endDate))
       break
     case SOURCE.WITHINGS:
       dispatch(getWithingsSleep())

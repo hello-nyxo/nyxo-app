@@ -2,10 +2,12 @@ import {
   useCreateCoaching,
   useGetActiveCoaching
 } from '@hooks/coaching/useCoaching'
+import { useNavigation } from '@react-navigation/core'
 import { getCoachingNotStarted } from '@selectors/coaching-selectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { PrimaryButton } from 'components/Buttons/PrimaryButton'
 import TextButton from 'components/Buttons/TextButton'
+import ROUTE from 'config/routes/Routes'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
@@ -14,27 +16,26 @@ import TranslatedText from '../TranslatedText'
 
 const CoachingNotStarted: FC = () => {
   const hasActiveCoaching = useSelector(getActiveCoaching)
+  const { navigate } = useNavigation()
   const { data } = useGetActiveCoaching()
-  const [mutate, { status, data: newData, error }] = useCreateCoaching()
+  const [mutate, { isLoading }] = useCreateCoaching()
 
-  console.log(status, newData, error)
-
-  if (!hasActiveCoaching) return null
+  // if (!hasActiveCoaching) return null
 
   const openIntroduction = () => {
-    console.log('open ')
+    navigate(ROUTE.COACHING_INTRODUCTION)
   }
 
   const startCoaching = () => {
     mutate({
       coaching: {
-        userId: data?.activeCoaching?.userId,
+        userId: data?.userId,
         started: new Date().toISOString()
       }
     })
   }
 
-  if (data?.activeCoaching?.started) {
+  if (data?.started) {
     return (
       <Container>
         <Title>NOT_STARTED_TITLE</Title>
@@ -42,7 +43,11 @@ const CoachingNotStarted: FC = () => {
 
         <TextButton onPress={openIntroduction}>COACHING.WATCH_INTRO</TextButton>
         <Spacer />
-        <PrimaryButton title="COACHING.START" onPress={startCoaching} />
+        <PrimaryButton
+          loading={isLoading}
+          title="COACHING.START"
+          onPress={startCoaching}
+        />
       </Container>
     )
   }

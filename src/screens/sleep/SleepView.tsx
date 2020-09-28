@@ -27,13 +27,13 @@ import styled from 'styled-components/native'
 import QuestionCard from 'components/sleep/QuestionCard'
 import { fetchSleepData } from '@actions/night-cloud/night-cloud'
 import SleepTimeChart from 'components/Charts/SleepChart'
+import { IconBold } from 'components/iconRegular'
 
 const Sleep: FC = () => {
+  const dispatch = useDispatch()
   const date = useSelector(getSelectedDate)
   const editModeOn = useSelector(getEditMode)
   const isLoadingSleepData = useSelector(getHealthKitLoading)
-
-  const dispatch = useDispatch()
 
   useNotificationEventHandlers()
 
@@ -70,9 +70,12 @@ const Sleep: FC = () => {
         <TitleRow>
           <TitleContainer>
             <Title>{format(new Date(date), 'cccc')}</Title>
-            <Subtitle onPress={toggleCalendar}>
-              {format(new Date(date), 'dd MMMM yyyy')}
-            </Subtitle>
+            <SubRow>
+              <CalendarIcon />
+              <Subtitle onPress={toggleCalendar}>
+                {format(new Date(date), 'dd MMMM yyyy')}
+              </Subtitle>
+            </SubRow>
           </TitleContainer>
           <NotificationCenterLink />
         </TitleRow>
@@ -138,3 +141,17 @@ const RefreshControl = styled.RefreshControl.attrs(({ theme }) => ({
 }))``
 
 const TitleContainer = styled.View``
+
+const SubRow = styled.View`
+  flex-direction: row;
+  align-items: center;
+`
+
+const CalendarIcon = styled(IconBold).attrs(({ theme }) => ({
+  name: 'calendar',
+  height: 13,
+  width: 13,
+  fill: theme.SECONDARY_TEXT_COLOR
+}))`
+  margin-right: 4px;
+`

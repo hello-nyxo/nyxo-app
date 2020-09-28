@@ -1,15 +1,12 @@
-import { GetUserQuery, UpdateUserMutation } from 'API'
+import { GetUserQuery } from 'API'
 import { getUserData, updateUserData } from 'data-fetching/remote/user'
-import {
-  MutationResult,
-  QueryResult,
-  useMutation,
-  useQuery,
-  MutateFunction
-} from 'react-query'
+import { QueryResult, useMutation, useQuery } from 'react-query'
+import { writeToStorage } from 'store/persist-queries'
 
 export const useGetUser = (): QueryResult<GetUserQuery['getUser']> => {
-  return useQuery(['user'], getUserData)
+  return useQuery('user', getUserData, {
+    onSuccess: (data) => writeToStorage('user', data)
+  })
 }
 
 export const useUpdateUser = () => {

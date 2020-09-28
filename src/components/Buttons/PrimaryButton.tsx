@@ -13,8 +13,13 @@ type Props = {
   loading?: boolean
 }
 
-export const PrimaryButton: FC<Props> = (props) => {
-  const { loading, white, disabled, title, onPress } = props
+export const PrimaryButton: FC<Props> = ({
+  loading,
+  white,
+  disabled,
+  title,
+  onPress
+}) => {
   return (
     <ScalingButton
       disabled={loading || disabled}

@@ -1,4 +1,4 @@
-import RNCNetInfoMock from '@react-native-community/netinfo/jest/netinfo-mock.js'
+import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock.js'
 import React from 'react'
 import * as ReactNative from 'react-native'
 
@@ -9,7 +9,7 @@ global.React.useCallback = (f) => f
 
 jest.useFakeTimers()
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper')
-jest.mock('@react-native-community/netinfo', () => RNCNetInfoMock)
+jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo)
 
 export const alert = jest.fn()
 export const Alert = { alert }

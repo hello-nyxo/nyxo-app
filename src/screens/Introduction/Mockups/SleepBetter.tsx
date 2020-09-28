@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { View } from 'react-native'
-import IconBold from '@components/iconBold'
+import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
 import colors from '../../../styles/colors'
 

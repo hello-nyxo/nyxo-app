@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import { fonts, StyleProps } from '../../styles/themes'
 import ScalingButton from './ScalingButton'
-import IconBold from '../iconBold'
+import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 
 interface BackButtonInterface {

@@ -1,7 +1,11 @@
 import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import { getCalendarModal } from '@selectors/ModalSelectors'
 import React, { FC, useMemo } from 'react'
-import { Calendar, DateCallbackHandler } from 'react-native-calendars'
+import {
+  Calendar,
+  DateCallbackHandler,
+  CalendarProps
+} from 'react-native-calendars'
 import Modal, { ReactNativeModal } from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
@@ -10,7 +14,7 @@ import { startOfDay, format, subDays, subYears, endOfDay } from 'date-fns'
 import useCalendar from 'hooks/calendar'
 import colors from 'styles/colors'
 
-const minDate = subYears(new Date(), 1)
+const minDate = subYears(new Date(), 3)
 
 const CalendarModal: FC = () => {
   const isVisible = useSelector(getCalendarModal)
@@ -39,6 +43,20 @@ const CalendarModal: FC = () => {
     [selectedDate]
   )
 
+  const getMonthData: DateCallbackHandler = ({ month, year }) => {
+    console.log(
+      'getMonthData',
+      new Date(year, month - 1, 1).toISOString(),
+      new Date(year, month, 0).toISOString()
+    )
+    dispatch(
+      fetchSleepData(
+        new Date(year, month - 1, 1).toISOString(),
+        new Date(year, month - 1, 0).toISOString()
+      )
+    )
+  }
+
   return (
     <StyledModal
       backdropTransitionOutTiming={0}
@@ -48,6 +66,7 @@ const CalendarModal: FC = () => {
       onBackdropPress={toggleModal}>
       <Container>
         <ThemedCalendar
+          onMonthChange={getMonthData}
           hideExtraDays
           minDate={minDate}
           markedDates={markedDates}
@@ -85,14 +104,14 @@ export const ThemedCalendar = styled(Calendar).attrs(({ theme }) => ({
     calendarBackground: theme.SECONDARY_BACKGROUND_COLOR,
     textSectionTitleColor: '#b6c1cd',
     textSectionTitleDisabledColor: '#d9e1e8',
-    selectedDayBackgroundColor: 'red',
+    selectedDayBackgroundColor: theme.PRIMARY_BUTTON_COLOR,
     selectedDayTextColor: '#ffffff',
     todayTextColor: theme.PRIMARY_BUTTON_COLOR,
     dayTextColor: theme.SECONDARY_TEXT_COLOR,
     textDisabledColor: '#d9e1e8',
     dotColor: '#00adf5',
     selectedDotColor: '#ffffff',
-    arrowColor: 'red',
+    arrowColor: theme.PRIMARY_BUTTON_COLOR,
     disabledArrowColor: theme.SECONDARY_BACKGROUND_COLOR,
     monthTextColor: theme.SECONDARY_TEXT_COLOR,
     indicatorColor: 'blue',
@@ -105,6 +124,6 @@ export const ThemedCalendar = styled(Calendar).attrs(({ theme }) => ({
     textMonthFontSize: 16,
     textDayHeaderFontSize: 16
   }
-}))<Calendar>`
+}))<CalendarProps>`
   height: 350px;
 `

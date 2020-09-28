@@ -10,12 +10,12 @@ import InsightsReducer from '@reducers/insight-reducer/insight-reducer'
 import LinkingReducer from '@reducers/linking/linking-reducer'
 import ManualDataReducer from '@reducers/manual-sleep/manual-sleep-reducer'
 import ModalReducer from '@reducers/modal/modal-reducer'
+import NightReducer from '@reducers/night-reducer/night-reducer'
 import NotificationReducer from '@reducers/NotificationReducer'
 import CoachingNotificationReducer from '@reducers/notifications/coaching-notifications-reducer'
 import OnboardingReducer from '@reducers/onboarding/onboarding-reducer'
 import SleepSourceReducer from '@reducers/sleep-source-reducer/sleep-source-reducer'
 import HealthKitReducer from '@reducers/sleep/health-kit-reducer'
-import sleepclock from '@reducers/sleepclockReducer'
 import SubscriptionReducer from '@reducers/subscription/subscription-reducer'
 import user from '@reducers/user/user-reducer'
 import { enableES5, enableMapSet } from 'immer'
@@ -37,7 +37,6 @@ import {
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 import thunk from 'redux-thunk'
 import { State } from 'Types/State'
-import NightReducer from '@reducers/night-reducer/night-reducer'
 
 enableES5()
 enableMapSet()

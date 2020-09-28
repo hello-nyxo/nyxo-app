@@ -647,6 +647,87 @@ export const onDeleteComments = /* GraphQL */ `
     }
   }
 `;
+export const onCreateNightNote = /* GraphQL */ `
+  subscription OnCreateNightNote($owner: String!) {
+    onCreateNightNote(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      date
+      dateTime
+      content
+      meta {
+        tags
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateNightNote = /* GraphQL */ `
+  subscription OnUpdateNightNote($owner: String!) {
+    onUpdateNightNote(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      date
+      dateTime
+      content
+      meta {
+        tags
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteNightNote = /* GraphQL */ `
+  subscription OnDeleteNightNote($owner: String!) {
+    onDeleteNightNote(owner: $owner) {
+      id
+      userId
+      user {
+        connectionId
+        id
+        email
+        nickname
+        darkMode
+        intercomId
+        createdAt
+        updatedAt
+      }
+      date
+      dateTime
+      content
+      meta {
+        tags
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const onCreateNight = /* GraphQL */ `
   subscription OnCreateNight($owner: String) {
     onCreateNight(owner: $owner) {

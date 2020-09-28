@@ -26,7 +26,7 @@ module.exports = {
         alias: {
           '@actions': './src/store/actions',
           '@reducers': './src/store/Reducers',
-          '@selectors': './src/store/Selectors',
+          '@selectors': './src/store/selectors',
           '@components': './src/components',
           '@helpers': './src/helpers/',
           '@graphql': './src/graphql/',

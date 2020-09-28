@@ -126,13 +126,13 @@ export const createHealthKitSources = (
 }
 
 export const fetchSleepFromHealthKit = (
-  startDate: string,
-  endDate: string
+  startDate?: string,
+  endDate?: string
 ): Thunk => async (dispatch: Dispatch) => {
   dispatch(fetchHKSleepStart())
 
   const options = {
-    startDate: startOfDay(subDays(new Date(), 800)).toISOString(),
+    startDate: startOfDay(subDays(new Date(), 365)).toISOString(),
     endDate: endOfDay(new Date()).toISOString()
   }
 

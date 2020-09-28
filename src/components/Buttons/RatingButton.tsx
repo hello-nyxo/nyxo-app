@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import { rateDay } from '@actions/sleep/sleep-data-actions'
 import { fonts } from '../../styles/themes'
-import IconBold from '../iconBold'
+import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 import ScalingButton from './ScalingButton'
 

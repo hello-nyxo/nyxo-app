@@ -224,8 +224,16 @@
   },
 
   "COACHING_MONTH": {
-    "WEEKS": "Suoritetut viikot {{weeks}}",
-    "LESSONS": "Suoritetut oppitunnit {{lessons}}"
+    "SUBTITLE": "Valmennusjakso",
+    "WEEKS": {
+      "one": "{{count}} viikko",
+      "other": "{{count}} viikkoa"
+    },
+    "LESSONS": {
+      "one": "{{count}} oppitunti",
+      "other": "{{count}} oppituntia"
+    },
+    "PROGRESS": "Suoriutuminen"
   },
 
   "TimeOnCharge": "Käytä puhelimen lataus- ja käyttötietoja unen havaitsemiseen",
@@ -639,7 +647,7 @@
   "SUBSCRIPTION_MANAGEMENT": {
     "CURRENTLY_ACTIVE": "Aktiivinen tilaus",
     "STARTED": "Tilaus alkoi ",
-    "THANK_YOU": "Kiitos että olet tilaaja 😍'\n' Tilauksesi uusiutuu ",
+    "THANK_YOU": "Kiitos että olet tilaaja 😍 \n Tilauksesi uusiutuu ",
     "SANDBOX": "Tämä on testitilaus"
   },
 

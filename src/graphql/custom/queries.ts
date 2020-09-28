@@ -151,6 +151,11 @@ export const getActiveCoaching = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        weeks {
+          slug
+          started
+          ended
+        }
       }
     }
   }

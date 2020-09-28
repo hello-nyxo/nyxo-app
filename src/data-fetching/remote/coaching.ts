@@ -98,8 +98,6 @@ export const updateCoaching = async ({
       userId: username
     }
 
-    console.log(input)
-
     const { data } = (await API.graphql(
       graphqlOperation(updateCoachingData, { input })
     )) as {

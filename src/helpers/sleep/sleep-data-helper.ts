@@ -2,13 +2,9 @@ import {
   addHours,
   isAfter,
   isBefore,
-  startOfDay,
-  subHours,
   isWithinInterval,
-  eachDayOfInterval,
-  subDays,
-  min,
-  max
+  startOfDay,
+  subHours
 } from 'date-fns'
 import moment, { MomentInput } from 'moment'
 import { SleepSample } from 'react-native-healthkit'

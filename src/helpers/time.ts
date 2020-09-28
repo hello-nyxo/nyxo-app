@@ -1,5 +1,5 @@
 import Moment from 'moment'
-import { format, parseISO, isValid } from 'date-fns'
+import { format, parseISO, isValid, setHours, setMinutes } from 'date-fns'
 import translate from '../config/i18n'
 import { Day } from 'Types/Sleepdata'
 
@@ -25,38 +25,24 @@ export function minutesToHoursString(
     return '-'
   }
 
-  const h = Math.floor(minutes / 60)
-  const m = Math.floor(minutes - h * 60)
+  const time = setMinutes(setHours(new Date(), 0), minutes)
+
   if (longFormat) {
-    return `${h !== 0 ? h : ''} ${h !== 0 ? translate('Hours') : ''} ${
-      m !== 0 ? m : ''
-    } min`
+    return `${format(time, 'h')} ${translate('Hours')} ${format(
+      time,
+      'mm'
+    )}min `
   }
-  return `${(minutes / 60).toFixed(1)} h`
+  return `${format(time, 'h')} h ${format(time, 'mm')} min`
 }
 
 export function getTimeInString(minutes: number): string {
   if (!minutes) {
     return '-'
   }
-  const time = Moment().hours(0).minutes(minutes)
+  const time = setMinutes(setHours(new Date(), 0), minutes)
 
-  return `${time.format('H')} h ${time.format('mm')} `
-}
-
-export function returnNightString(date: string): string {
-  const startDate = Moment(date)
-  const endDate = startDate.add(1, 'day')
-}
-
-export function formatDate(date: string): string {
-  return Moment(date).format('dddd Do MMMM')
-}
-
-export function formatMinutesToHours(minutes: number): number {
-  const value = Moment.duration(minutes, 'minutes').humanize()
-
-  return value
+  return `${format(time, 'h')} h ${format(time, 'mm')}`
 }
 
 export function isWeekend(day: Day): boolean {

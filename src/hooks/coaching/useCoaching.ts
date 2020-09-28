@@ -1,24 +1,26 @@
-import { useQuery, useMutation, QueryResult, MutationResult } from 'react-query'
-import { getAllWeeks } from 'data-fetching/remote/content'
 import {
-  getCoaching,
-  createCoaching,
-  updateCoaching,
-  listCoaching
-} from 'data-fetching/remote/coaching'
-import {
-  CreateCoachingDataMutation,
-  ListCoachingDatasQuery,
   GetActiveCoachingQuery,
   GetCoachingDataQuery,
+  ListCoachingDatasQuery,
   UpdateCoachingDataInput,
   UpdateCoachingDataMutation
 } from 'API'
+import { API, Auth, graphqlOperation } from 'aws-amplify'
+import {
+  createCoaching,
+  getCoaching,
+  listCoaching,
+  updateCoaching
+} from 'data-fetching/remote/coaching'
 import { getActiveCoaching } from 'graphql/custom/queries'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
-import { writeToStorage } from 'store/persist-queries'
-import { CoachingData } from 'typings/state/coaching-state'
 import { updateCoachingData } from 'graphql/mutations'
+import { queryCache, QueryResult, useMutation, useQuery } from 'react-query'
+import { writeToStorage } from 'store/persist-queries'
+
+export type CoachingPeriod = Exclude<
+  Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
+  null
+>
 
 export const getUserActiveCoaching = async (): Promise<Exclude<
   Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
@@ -70,10 +72,6 @@ export const completeLessonMutation = async ({
 
 /* HOOKS */
 
-export const useCoachingContent = (): QueryResult<any, any> => {
-  return useQuery('content', getAllWeeks)
-}
-
 type Rese = Exclude<ListCoachingDatasQuery['listCoachingDatas'], null>
 type aa = Rese['items']
 export const useListCoaching = (): QueryResult<aa> => {
@@ -93,14 +91,20 @@ export const useCreateCoaching = () => {
 }
 
 export const useUpdateCoaching = () => {
-  return useMutation(updateCoaching)
+  return useMutation(updateCoaching, {
+    onSuccess: () => {
+      queryCache.invalidateQueries('userActiveCoaching')
+    }
+  })
 }
 
 export const useGetActiveCoaching = (): QueryResult<Exclude<
   Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
   null
 > | null> => {
-  return useQuery('userActiveCoaching', getUserActiveCoaching)
+  return useQuery('userActiveCoaching', getUserActiveCoaching, {
+    onSuccess: (data) => writeToStorage('userActiveCoaching', data)
+  })
 }
 
 export const useGetLesson = (): QueryResult<Exclude<
@@ -108,12 +112,4 @@ export const useGetLesson = (): QueryResult<Exclude<
   null
 > | null> => {
   return useQuery('userActiveCoaching', getUserActiveCoaching)
-}
-
-export const completeWeek = () => {
-  return useMutation(updateCoaching)
-}
-
-export const completeLesson = () => {
-  return useMutation(updateCoaching)
 }
