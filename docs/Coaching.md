@@ -1,46 +1,45 @@
 
 
-Nyxo coaching
+# Nyxo coaching
 
-You need to purchase coaching to see the lesson content.
+You need to purchase coaching to see the lesson content. Below are steps that describe how the Nyxo Coaching works.
+To access coaching, you need to navigate to Coaching tab in the main menu on the bottle of the main view.
 
+## Coaching overview
 
-Coaching overview
-you can scroll through the weeks (carousel)
-see the lessons of the current week
-
-
-
-1 start coaching 
-Press "begin coaching" to start coaching.
-
-Weeks 
-by clicking weeks, see the week
-shows number of lessons and habits
-lists the lesson contents in divisions of sections
+- Shows you the coaching weeks in a carousel
+- See the lesson content of the current week 
 
 
-lessons
-A written form content on certain area of sleep
-shows the lenght of the lesson
-shows the no of example habits
-shows tags of the said lesson content
+## To Start Coaching 
+Press "begin coaching" to start coaching. Coaching will atomatically begin.
 
-Lesson content
+### Weeks 
+The core content of the Coaching is divided into weeks; larger set of ideas & are grouped under broader topics
 
-
-Habits 
-example habits to try (see Habit documentation)
-Add your own Habit to lesson content.
-
-Additional information
- extra content in more depth of the lesson context.
+**The Week view:**
+- Shows number of Lessons and Habits
+- Divides the Lesson contents in sections
 
 
+### Lessons
+The core content of the coaching in written form.
 
-after reading text, the coachee can mark the lessomn completed (--> checkmarks the lesson in Weeks, Lesson views)
+- Shows the lenght of the lesson
+- Shows the no of example Habits
+- Shows tags of the said lesson content
+
+**To complete the Lesson**
+- Read (and scroll) the Lesson trough
+- Press "Mark completed"
 
 
+### Habits 
+Habits brings the Lesson content into actionable goals and facilitates the behaviour change
 
-Tags
-include
+**Example Habits to try:** suggested example lessons that you can take start completing right away
+**Add your own Habit:** You can draft and start completing your own Habits based on the Lesson content.
+To learn more about Habits, see Habit documentation.
+
+### Additional information
+Extra content and and reading list on the topic of Lesson
