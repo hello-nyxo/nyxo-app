@@ -1,6 +1,5 @@
-import React, { FC } from 'react'
-import { View } from 'react-native'
 import { WEEK_STAGE } from '@selectors/coaching-selectors'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
 import { fonts } from '../../styles/themes'

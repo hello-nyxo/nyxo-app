@@ -47,7 +47,7 @@ const Sleep: FC = () => {
   })
 
   const checkSleepData = async () => {
-    await dispatch(fetchSleepData())
+    await dispatch(fetchSleepData(date))
   }
 
   const toggleCalendar = () => {

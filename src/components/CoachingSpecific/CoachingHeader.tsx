@@ -1,15 +1,17 @@
 import { IconBold } from '@components/iconRegular'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
+import TranslatedText from 'components/TranslatedText'
 import { format } from 'date-fns'
 import React, { FC } from 'react'
-import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import styled from 'styled-components/native'
-import colors from 'styles/colors'
 import { PageTitle } from '../Primitives/Primitives'
 import IntroduceCoaching from './IntroduceCoaching'
 
 const CoachingHeader: FC = () => {
   const { data } = useGetActiveCoaching()
+
+  const weeks = data?.weeks?.length ?? 0
+  const lessons = data?.lessons?.length ?? 0
 
   return (
     <>
@@ -19,18 +21,19 @@ const CoachingHeader: FC = () => {
       <Container>
         <Column>
           {data?.started && (
-            <Text>Started: {format(new Date(data?.started), 'dd.mm.yy')}</Text>
+            <MonthTitle>
+              Started: {format(new Date(data?.started), 'dd.mm.yy')}
+            </MonthTitle>
           )}
           <Row>
             <Icon />
-            <Text>{data?.lessons?.length} lessons completed</Text>
+            <Text variables={{ count: lessons }}>COACHING_MONTH.LESSONS</Text>
           </Row>
           <Row>
             <Icon />
-            <Text>{data?.weeks?.length} weeks completed</Text>
+            <Text variables={{ count: weeks }}>COACHING_MONTH.WEEKS</Text>
           </Row>
         </Column>
-        <Progress rotation={0} size={50} fill={50} width={5} />
       </Container>
 
       <IntroduceCoaching />
@@ -49,12 +52,20 @@ const Container = styled.View`
   box-shadow: ${({ theme }) => theme.SHADOW};
 `
 
+const MonthTitle = styled.Text`
+  font-size: 17px;
+  text-transform: uppercase;
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  margin-bottom: 16px;
+`
+
 const Row = styled.View`
   flex-direction: row;
   align-items: center;
 `
 
-const Text = styled.Text`
+const Text = styled(TranslatedText)`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
 `
@@ -77,13 +88,3 @@ const Title = styled.Text`
 `
 
 const Column = styled.View``
-
-const Progress = styled(AnimatedCircularProgress).attrs(({ theme }) => ({
-  tintColor: colors.radiantBlue,
-  backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
-  lineCap: 'round'
-}))`
-  flex-direction: row;
-  justify-content: flex-end;
-  flex: 1;
-`

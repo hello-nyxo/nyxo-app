@@ -17,7 +17,7 @@ import TranslatedText from '../TranslatedText'
 const CoachingNotStarted: FC = () => {
   const hasActiveCoaching = useSelector(getActiveCoaching)
   const { navigate } = useNavigation()
-  const { data } = useGetActiveCoaching()
+  const { data: coaching } = useGetActiveCoaching()
   const [mutate, { isLoading }] = useCreateCoaching()
 
   // if (!hasActiveCoaching) return null
@@ -29,13 +29,13 @@ const CoachingNotStarted: FC = () => {
   const startCoaching = () => {
     mutate({
       coaching: {
-        userId: data?.userId,
+        userId: `${coaching?.userId}`,
         started: new Date().toISOString()
       }
     })
   }
 
-  if (data?.started) {
+  if (coaching?.started) {
     return (
       <Container>
         <Title>NOT_STARTED_TITLE</Title>

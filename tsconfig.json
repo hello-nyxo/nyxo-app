@@ -16,7 +16,6 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["./src/*"],
       "@actions/*": ["./src/store/actions/*"],
       "@reducers/*": ["./src/store/Reducers/*"],
       "@selectors/*": ["./src/store/selectors/*"],

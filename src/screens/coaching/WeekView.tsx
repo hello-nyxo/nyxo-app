@@ -30,8 +30,6 @@ const WeekView = ({ route }: Props) => {
   const [mutate] = useUpdateCoaching()
   const { data } = useGetActiveCoaching()
 
-  const locked = hasCoaching && week.locked !== undefined ? week.locked : true
-
   const startWeek = () => {
     const startedWeek = {
       slug: week.slug,

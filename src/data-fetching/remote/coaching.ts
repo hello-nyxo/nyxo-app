@@ -10,19 +10,7 @@ import {
   Stage
 } from 'API'
 import { graphqlOperation, API, Auth } from 'aws-amplify'
-
-type CoachingData = {
-  id: string
-  userId: string
-  stage: Stage | null
-  activeWeek: string | null
-  started: string | null
-  ended: string | null
-  lessons: Array<string | null> | null
-  createdAt: string
-  updatedAt: string
-  owner: string | null
-}
+import { updateUserData } from 'data-fetching/remote/user'
 
 type Response = Exclude<
   ListCoachingDatasQuery['listCoachingDatas'],
@@ -79,6 +67,34 @@ export const createCoaching = async ({
     )) as {
       data: CreateCoachingDataMutation
     }
+    return data
+  } catch (error) {
+    return error
+  }
+}
+
+export const createCoachingAndSetActive = async ({
+  coaching
+}: {
+  coaching: CreateCoachingDataInput
+}): Promise<CreateCoachingDataMutation> => {
+  try {
+    const { username } = await Auth.currentUserInfo()
+    const input: CreateCoachingDataInput = {
+      ...coaching,
+      userId: username
+    }
+
+    const { data } = (await API.graphql(
+      graphqlOperation(createCoachingData, { input })
+    )) as {
+      data: CreateCoachingDataMutation
+    }
+
+    await updateUserData({
+      user: { id: '', userActiveCoachingId: data.createCoachingData?.id }
+    })
+
     return data
   } catch (error) {
     return error

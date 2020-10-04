@@ -11,7 +11,6 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src/'],
         extensions: [
           '.ios.ts',
           '.android.ts',

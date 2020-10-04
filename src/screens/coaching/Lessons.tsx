@@ -21,6 +21,12 @@ import { Section } from 'Types/CoachingContentState'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 
+type RenderSectionHeader = ({
+  section: { header }
+}: {
+  section: { header: Section }
+}) => React.ReactElement | null
+
 type Props = {
   locked?: boolean
   header?: ReactElement
@@ -38,30 +44,15 @@ const LessonList: FC<Props> = ({
 }) => {
   const { data } = useGetActiveCoaching()
   const lessons: CombinedLessonArray = useSelector(getCoachingLessonsForWeek)
-  const withData = lessons.map((l) => {
+  const withData = lessons.map((lesson) => {
     return {
-      ...l,
-      completed: true
+      ...lesson,
+      completed: !!data?.lessons?.find((lssn) => lesson.slug === lssn)
     }
   })
-  const renderCard: ListRenderItem<CombinedLesson> = ({ item }) => (
-    <LessonListItem key={item.slug} locked={locked} lesson={item} />
-  )
 
-  const renderSectionHeader = ({
-    section
-  }: {
-    section: { header: Section }
-  }) => (
-    <SectionHeader
-      key={`${section.header.title}`}
-      description={section.header.description}
-      title={`${section.header.title}`}
-    />
-  )
-
-  const groupedLessons = groupBy(lessons, (lesson) => lesson.section?.title)
-  const sectionData = lessons.map((item) => ({
+  const groupedLessons = groupBy(withData, (lesson) => lesson.section?.title)
+  const sectionData = withData.map((item) => ({
     title: item.section?.title,
     description: item.section?.description,
     order: item.section?.order
@@ -77,6 +68,18 @@ const LessonList: FC<Props> = ({
   if (!sectionData) {
     return null
   }
+
+  const renderCard: ListRenderItem<CombinedLesson> = ({ item }) => (
+    <LessonListItem key={item.slug} locked={locked} lesson={item} />
+  )
+
+  const renderSectionHeader: RenderSectionHeader = ({ section }) => (
+    <SectionHeader
+      key={`${section.header.title}`}
+      description={section.header.description}
+      title={`${section.header.title}`}
+    />
+  )
 
   return (
     <StyledSectionList

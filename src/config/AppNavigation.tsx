@@ -6,20 +6,19 @@ import {
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native'
+import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
+import { getIsDarkMode } from '@selectors/UserSelectors'
+import { readFromStorage } from 'store/persist-queries'
 import Analytics from 'appcenter-analytics'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { Linking } from 'react-native'
 import Intercom from 'react-native-intercom'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
-import { getIsDarkMode } from '@selectors/UserSelectors'
 import { StyleProps } from '../styles/themes'
 import { navigationRef } from './NavigationHelper'
-// Navigators
 import Root from './routes/RootNavigator'
 import ROUTE from './routes/Routes'
-import { readFromStorage } from 'store/persist-queries'
 
 function getActiveRouteName(state: any): string {
   const route = state.routes[state.index]

@@ -18,7 +18,7 @@ import { queryCache, QueryResult, useMutation, useQuery } from 'react-query'
 import { writeToStorage } from 'store/persist-queries'
 
 export type CoachingPeriod = Exclude<
-  Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
+  Exclude<GetCoachingDataQuery['getCoachingData'], null>,
   null
 >
 

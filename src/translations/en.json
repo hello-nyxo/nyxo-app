@@ -693,7 +693,10 @@
 
   "COACHING": {
     "WATCH_INTRO": "See introduction",
-    "START": "Start Coaching"
+    "START": "Start Coaching",
+    "SETTINGS": "Coaching Settings",
+    "SET_ACTIVE": "Set active",
+    "DELETE": "Delete"
   },
 
   "QUESTION": {

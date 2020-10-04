@@ -42,10 +42,9 @@ const LessonView: FC = () => {
     authorCards
   } = selectedLesson
 
-  const [height, setHeight] = useState(0)
   const { data } = useGetActiveCoaching()
   const [mutate, { isLoading: completeLoading }] = useUpdateCoaching()
-  const completed = data?.lessons?.find((l) => slug)
+  const completed = data?.lessons?.find((l) => l === slug)
 
   if (!selectedLesson) {
     return null
@@ -60,15 +59,10 @@ const LessonView: FC = () => {
     })
   }
 
-  const handleOnLayout = (event: LayoutChangeEvent) => {
-    setHeight(event.nativeEvent.layout.height)
-  }
-
   return (
     <>
       <TopHeader yOffset={yOffset} title={lessonName} />
       <ScrollView
-        onLayout={handleOnLayout}
         onScroll={Animated.event([
           { nativeEvent: { contentOffset: { y: yOffset } } }
         ])}
