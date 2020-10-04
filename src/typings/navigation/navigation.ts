@@ -1,4 +1,4 @@
-import ROUTE from 'config/routes/Routes'
+import ROUTE from '@config/routes/Routes'
 
 export type RootStackParamList = {
   readonly [ROUTE.APP]: {

@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import { RootStackParamList } from 'Types/navigation/navigation'
+import { RootStackParamList } from '@typings/navigation/navigation'
 import LessonView from '../../screens/coaching/LessonView'
 import PurchaseView from '../../screens/coaching/PurchaseView'
 import CoachingWeek from '../../screens/coaching/WeekView'

@@ -1,9 +1,9 @@
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/ReduxActions'
 import {
   ChallengeState,
   Challenge,
   ChallengeStates
-} from 'Types/ChallengeState'
+} from '@typings/ChallengeState'
 import { RESET_APP } from '@actions/shared'
 import {
   ADD_CHALLENGES,

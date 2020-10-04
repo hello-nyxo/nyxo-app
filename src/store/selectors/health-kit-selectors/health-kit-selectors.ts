@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
-import HealthKitState from 'typings/state/health-kit-state'
+import { State } from '@typings/State'
+import HealthKitState from '@typings/state/health-kit-state'
 
 const getHealthKitState = (state: State) => state.healthKit
 

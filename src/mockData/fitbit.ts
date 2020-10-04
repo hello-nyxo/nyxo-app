@@ -1,5 +1,5 @@
 import { Night, Value } from '/Types/Sleepdata'
-import { fitbitResponse } from 'Types/Sleep/Fitbit'
+import { fitbitResponse } from '@typings/Sleep/Fitbit'
 
 export const expectedNight: Night[] = [
   {

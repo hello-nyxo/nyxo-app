@@ -1,11 +1,11 @@
 import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { getHealthKitData } from 'data-fetching/local/healthKit'
-import { readGoogleFitSleep } from 'data-fetching/remote/google-fit'
-import useCalendar from 'hooks/calendar'
+import { getHealthKitData } from '@data-fetching/local/healthKit'
+import { readGoogleFitSleep } from '@data-fetching/remote/google-fit'
+import useCalendar from '@hooks/calendar'
 import { QueryResult, useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
-import { Night } from 'Types/Sleepdata'
-import { SOURCE } from 'typings/state/sleep-source-state'
+import { Night } from '@typings/Sleepdata'
+import { SOURCE } from '@typings/state/sleep-source-state'
 
 const getSleepData = async (
   key: string,

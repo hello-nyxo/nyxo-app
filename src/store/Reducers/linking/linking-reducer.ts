@@ -6,8 +6,8 @@ import {
   REMOVE_LINK_SUCCESS,
   REMOVE_LINK_FAILURE
 } from '@actions/linking/linking-actions'
-import { LinkingState } from 'Types/State/linking-state'
-import ReduxAction from 'Types/ReduxActions'
+import { LinkingState } from '@typings/state/linking-state'
+import ReduxAction from '@typings/ReduxActions'
 
 const initialState = {
   linkCode: null,

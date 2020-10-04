@@ -1,4 +1,4 @@
-import ROUTE from 'config/routes/Routes'
+import ROUTE from '@config/routes/Routes'
 import React, { memo, useMemo } from 'react'
 import { Linking, SectionList } from 'react-native'
 import Intercom from 'react-native-intercom'

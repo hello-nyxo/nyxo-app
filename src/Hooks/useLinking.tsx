@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/core'
 import * as React from 'react'
 import { Linking } from 'react-native'
-import { LinkingOptions } from 'typings/react-navigation'
+import { LinkingOptions } from '@typings/react-navigation'
 
 let isUsingLinking = false
 

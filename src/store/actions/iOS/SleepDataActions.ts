@@ -1,6 +1,6 @@
 import Moment from 'moment'
 import AppleHealthKit from 'react-native-healthkit'
-import { Value } from 'Types/Sleepdata'
+import { Value } from '@typings/Sleepdata'
 
 export const updateData = () => async (dispatch: Function) => {}
 

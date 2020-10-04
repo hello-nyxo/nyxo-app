@@ -1,6 +1,6 @@
 import { updateUser } from '@graphql/mutations'
 import { getUser } from '@graphql/queries'
-import { UpdateUserMutation, GetUserQuery, UpdateUserInput } from 'API'
+import { UpdateUserMutation, GetUserQuery, UpdateUserInput } from '@API'
 import { API, graphqlOperation, Auth } from 'aws-amplify'
 
 export const updateUserData = async ({

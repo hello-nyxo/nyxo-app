@@ -1,6 +1,6 @@
 import { Entry } from 'contentful'
-import { AuthorCard } from 'Types/CoachingContentState'
-import { IAuthorFields, ILessonFields } from 'Types/generated/contentful'
+import { AuthorCard } from '@typings/CoachingContentState'
+import { IAuthorFields, ILessonFields } from '@typings/generated/contentful'
 
 export const mapAuthors = (lesson: Entry<ILessonFields>): AuthorCard[] => {
   const authorArray: AuthorCard[] = []

@@ -8,9 +8,9 @@ import {
   UpdateCoachingDataInput,
   UpdateCoachingDataMutation,
   Stage
-} from 'API'
+} from '@API'
 import { graphqlOperation, API, Auth } from 'aws-amplify'
-import { updateUserData } from 'data-fetching/remote/user'
+import { updateUserData } from '@data-fetching/remote/user'
 
 type Response = Exclude<
   ListCoachingDatasQuery['listCoachingDatas'],

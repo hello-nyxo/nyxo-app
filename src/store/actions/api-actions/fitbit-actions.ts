@@ -1,19 +1,19 @@
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
-import CONFIG from 'config/Config'
-import { GetKeychainParsedValue, SetKeychainKeyValue } from 'helpers/Keychain'
-import { formatFitbitSamples } from 'helpers/sleep/fitbit-helper'
+import CONFIG from '@config/Config'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { formatFitbitSamples } from '@helpers/sleep/fitbit-helper'
 import moment from 'moment'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
-import { GetState } from 'Types/GetState'
-import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
+import { GetState } from '@typings/GetState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
 import {
   FitbitAuthorizeResult,
   FitbitRefreshResult,
   ResponseBase
-} from 'Types/State/api-state'
-import { SOURCE } from 'typings/state/sleep-source-state'
+} from '@typings/state/api-state'
+import { SOURCE } from '@typings/state/sleep-source-state'
 import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 
 export const FITBIT_AUTHORIZE_SUCCESS = 'FITBIT_AUTHORIZE_SUCCESS'

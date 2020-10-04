@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import TranslatedText from '@components/TranslatedText'
-import colors from 'styles/colors'
-import { fonts } from 'styles/themes'
+import colors from '@styles/colors'
+import { fonts } from '@styles/themes'
 
 interface Props {
   navigate: Function

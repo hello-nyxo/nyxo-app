@@ -1,8 +1,8 @@
 import { getWeek } from '@selectors/SleepDataSelectors'
-import { Day } from 'Types/Sleepdata'
-import { GetState } from 'Types/GetState'
+import { Day } from '@typings/Sleepdata'
+import { GetState } from '@typings/GetState'
 import moment from 'moment'
-import { nearestMinutes } from 'helpers/time'
+import { nearestMinutes } from '@helpers/time'
 /* ACTION TYPES */
 
 export const CALCULATE_INSIGHT_START = 'CALCULATE_INSIGHT_START'

@@ -1,5 +1,5 @@
 import { WEEK_STAGE } from '@selectors/coaching-selectors'
-import { GetCoachingDataQuery } from 'API'
+import { GetCoachingDataQuery } from '@API'
 
 export enum STAGE {
   NOT_ALLOWED = 'NOT_ALLOWED',

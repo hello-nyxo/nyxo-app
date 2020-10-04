@@ -3,7 +3,7 @@ import { Document } from '@contentful/rich-text-types'
 import { Asset, Entry, EntryCollection } from 'contentful'
 import I18n from 'i18n-js'
 import { QueryResult, useQuery } from 'react-query'
-import { ILessonFields } from 'Types/generated/contentful'
+import { ILessonFields } from '@typings/generated/contentful'
 
 type Introduction = {
   title: string

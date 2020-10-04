@@ -1,7 +1,7 @@
 import moment from 'moment'
-import { Night, Value } from 'Types/Sleepdata'
-import { GarminSleepObject } from 'Types/Sleep/Garmin'
-import { getNightDuration } from 'helpers/sleep'
+import { Night, Value } from '@typings/Sleepdata'
+import { GarminSleepObject } from '@typings/Sleep/Garmin'
+import { getNightDuration } from '@helpers/sleep'
 
 export const formatGarminSample = (
   garminSleepObject: GarminSleepObject

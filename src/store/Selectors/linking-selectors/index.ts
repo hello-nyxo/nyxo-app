@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { LinkingState } from 'Types/State/linking-state'
-import { State } from 'Types/State'
+import { LinkingState } from '@typings/state/linking-state'
+import { State } from '@typings/State'
 
 const getLinking = (state: State) => state.linking
 

@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import { FlatList } from 'react-native'
-import { ExampleHabit as ExampleHabitType } from 'Types/CoachingContentState'
+import { ExampleHabit as ExampleHabitType } from '@typings/CoachingContentState'
 import { H3Margin } from '../Primitives/Primitives'
 import { fonts, StyleProps } from '../../styles/themes'
 import ExampleHabit from '../HabitCard/ExampleHabit'

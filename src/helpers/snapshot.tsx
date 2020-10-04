@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components/native'
-import { lightTheme } from 'styles/themes'
+import { lightTheme } from '@styles/themes'
 
 export function matchComponentToSnapshot(component: ReactElement) {
   const json = renderer

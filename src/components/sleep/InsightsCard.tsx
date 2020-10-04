@@ -8,11 +8,11 @@ import TranslatedText from '@components/TranslatedText'
 import {
   getFormattedDateOrPlaceholder,
   minutesToHoursString
-} from 'helpers/time'
+} from '@helpers/time'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import colors from 'styles/colors'
+import colors from '@styles/colors'
 import { WIDTH } from '@helpers/Dimensions'
 import useSleep from '@hooks/useSleep'
 

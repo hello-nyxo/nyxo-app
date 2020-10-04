@@ -1,7 +1,7 @@
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import Intercom from 'react-native-intercom'
-import CONFIG from 'config/Config'
-import { GetState } from 'Types/GetState'
+import CONFIG from '@config/Config'
+import { GetState } from '@typings/GetState'
 import { updateIntercomInformation } from '../IntercomActions'
 
 const key = CONFIG.SUBSCRIPTION_ENTITLEMENT_KEY as string

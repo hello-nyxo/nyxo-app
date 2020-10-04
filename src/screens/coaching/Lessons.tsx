@@ -9,15 +9,15 @@ import {
   CombinedLesson
 } from '@selectors/coaching-selectors/coaching-selectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
-import { listLikedContents } from 'graphql/queries'
-import { useGetActiveCoaching } from 'hooks/coaching/useCoaching'
+import { listLikedContents } from '@graphql/queries'
+import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
 import { groupBy } from 'lodash'
 import React, { FC, memo, ReactElement } from 'react'
 import { SectionList, ListRenderItem } from 'react-native'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { Section } from 'Types/CoachingContentState'
+import { Section } from '@typings/CoachingContentState'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 

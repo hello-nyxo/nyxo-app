@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
+import { State } from '@typings/State'
 import { matchDayAndNight } from '@helpers/sleep/sleep-data-helper'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getMainSource } from '@sleep-source-selectors/sleep-source-selectors'
-import { Night, Value } from 'Types/Sleepdata'
+import { Night, Value } from '@typings/Sleepdata'
 import {
   differenceInDays,
   min,

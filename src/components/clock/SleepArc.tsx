@@ -3,7 +3,7 @@ import { getAngleAM } from '@helpers/sleep'
 import React, { FC } from 'react'
 import Reanimated from 'react-native-reanimated'
 import { G, Path } from 'react-native-svg'
-import { Night, Value } from 'Types/Sleepdata'
+import { Night, Value } from '@typings/Sleepdata'
 
 type Props = {
   value: Value

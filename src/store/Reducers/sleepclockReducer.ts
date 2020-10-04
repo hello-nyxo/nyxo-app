@@ -13,10 +13,10 @@ import {
 } from '@actions/sleep/sleep-data-actions'
 
 import moment from 'moment'
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/ReduxActions'
 import { sortDays } from '@helpers/sleep'
-import { SleepClockState } from 'Types/SleepClockState'
-import { Day } from 'Types/Sleepdata'
+import { SleepClockState } from '@typings/SleepClockState'
+import { Day } from '@typings/Sleepdata'
 import { initialState } from '../InitialStates/SleepClock'
 
 const reducer = (

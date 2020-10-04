@@ -1,4 +1,4 @@
-import ROUTE from 'config/routes/Routes'
+import ROUTE from '@config/routes/Routes'
 import { Formik } from 'formik'
 import React, { memo } from 'react'
 import { ActivityIndicator, Dimensions, ScrollView } from 'react-native'

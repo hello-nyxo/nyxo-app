@@ -8,7 +8,7 @@ import {
 } from '@react-navigation/native'
 import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
 import { getIsDarkMode } from '@selectors/UserSelectors'
-import { readFromStorage } from 'store/persist-queries'
+import { readFromStorage } from 'persist-queries'
 import Analytics from 'appcenter-analytics'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { Linking } from 'react-native'

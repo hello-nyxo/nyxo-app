@@ -1,6 +1,6 @@
-import ReduxAction from 'Types/ReduxActions'
-import { Night } from 'Types/Sleepdata'
-import { FETCH_SLEEP_SUCCESS } from 'store/actions/sleep/health-kit-actions'
+import ReduxAction from '@typings/ReduxActions'
+import { Night } from '@typings/Sleepdata'
+import { FETCH_SLEEP_SUCCESS } from '@actions/sleep/health-kit-actions'
 
 export type NightState = Night[]
 

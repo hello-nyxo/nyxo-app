@@ -1,15 +1,18 @@
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import CONFIG from 'config/Config'
+import CONFIG from '@config/Config'
 import { ContentfulClientApi, Entry, EntryCollection } from 'contentful'
-import { getFieldValue, mapAuthors } from 'helpers/content'
+import { getFieldValue, mapAuthors } from '@helpers/content'
 import I18n from 'i18n-js'
 import {
   ContentLesson,
   ContentWeek,
   ExampleHabit,
   Section
-} from 'Types/CoachingContentState'
-import { ICoachingWeekFields, ILessonFields } from 'Types/generated/contentful'
+} from '@typings/CoachingContentState'
+import {
+  ICoachingWeekFields,
+  ILessonFields
+} from '@typings/generated/contentful'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { createClient } = require('contentful/dist/contentful.browser.min.js')

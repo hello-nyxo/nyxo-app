@@ -1,5 +1,5 @@
-import ReduxAction from 'Types/ReduxActions'
-import { SleepSourceState } from 'typings/state/sleep-source-state'
+import ReduxAction from '@typings/ReduxActions'
+import { SleepSourceState } from '@typings/state/sleep-source-state'
 import {
   SET_MAIN_SOURCE,
   CHANGE_HEALTH_KIT_SOURCE,

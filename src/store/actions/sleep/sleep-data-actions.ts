@@ -6,12 +6,12 @@ import { getPolarSleep } from '@actions/api-actions/polar-actions'
 import { getWithingsSleep } from '@actions/api-actions/withings-actions'
 import { fetchSleepFromHealthKit } from '@actions/sleep/health-kit-actions'
 import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { sameDay } from 'helpers/time'
+import { sameDay } from '@helpers/time'
 import moment from 'moment'
-import { GetState } from 'Types/GetState'
-import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
-import { Day, Night } from 'Types/Sleepdata'
-import { SOURCE } from 'typings/state/sleep-source-state'
+import { GetState } from '@typings/GetState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
+import { Day, Night } from '@typings/Sleepdata'
+import { SOURCE } from '@typings/state/sleep-source-state'
 
 /* ACTION TYPES */
 

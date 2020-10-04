@@ -1,9 +1,9 @@
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/ReduxActions'
 import {
   DATA_ONBOARDING_COMPLETED,
   INTERCOM_NEED_HELP_READ
 } from '@actions/onboarding/onboarding-actions'
-import { OnboardingState } from 'Types/OnboardingState'
+import { OnboardingState } from '@typings/OnboardingState'
 
 export const initialState: OnboardingState = {
   intercomNeedHelpRead: false,

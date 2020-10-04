@@ -4,18 +4,18 @@ import {
   ListCoachingDatasQuery,
   UpdateCoachingDataInput,
   UpdateCoachingDataMutation
-} from 'API'
+} from '@API'
 import { API, Auth, graphqlOperation } from 'aws-amplify'
 import {
   createCoaching,
   getCoaching,
   listCoaching,
   updateCoaching
-} from 'data-fetching/remote/coaching'
-import { getActiveCoaching } from 'graphql/custom/queries'
-import { updateCoachingData } from 'graphql/mutations'
+} from '@data-fetching/remote/coaching'
+import { getActiveCoaching } from '@graphql/custom/queries'
+import { updateCoachingData } from '@graphql/mutations'
 import { queryCache, QueryResult, useMutation, useQuery } from 'react-query'
-import { writeToStorage } from 'store/persist-queries'
+import { writeToStorage } from 'persist-queries'
 
 export type CoachingPeriod = Exclude<
   Exclude<GetCoachingDataQuery['getCoachingData'], null>,

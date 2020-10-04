@@ -1,6 +1,6 @@
 import { Auth, graphqlOperation, API } from 'aws-amplify'
-import { updateUser } from 'graphql/mutations'
-import { GetState } from 'Types/GetState'
+import { updateUser } from '@graphql/mutations'
+import { GetState } from '@typings/GetState'
 import { ThemeProps } from '../../styles/themes'
 
 /* ACTION TYPES */

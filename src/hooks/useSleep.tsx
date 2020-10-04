@@ -4,7 +4,7 @@ import {
   getGoToSleepWindowStart
 } from '@selectors/insight-selectors/Insights'
 import { getNightForSelectedDate } from '@selectors/night-selectors'
-import { Night, Value } from 'Types/Sleepdata'
+import { Night, Value } from '@typings/Sleepdata'
 import {
   calculateTotalSleep,
   findStartTime,

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
-import { SubscriptionState } from 'Types/SubscriptionState'
+import { State } from '@typings/State'
+import { SubscriptionState } from '@typings/SubscriptionState'
 
 const getSubscriptionState = (state: State) => state.subscriptions
 

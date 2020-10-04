@@ -7,10 +7,10 @@ import {
   sortDays,
   sortNights
 } from '@helpers/sleep'
-import { GetState } from 'Types/GetState'
-import { Day, Value, Night } from 'Types/Sleepdata'
+import { GetState } from '@typings/GetState'
+import { Day, Value, Night } from '@typings/Sleepdata'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
-import { Dispatch, Thunk } from 'Types/ReduxActions'
+import { Dispatch, Thunk } from '@typings/ReduxActions'
 
 export const SET_VALUES = 'SET_VALUES'
 export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE'

@@ -5,7 +5,7 @@ import { format, sub, startOfDay } from 'date-fns/esm'
 import { WIDTH } from '@helpers/Dimensions'
 import { useDispatch } from 'react-redux'
 import { toggleCalendarModal } from '@actions/modal/modal-actions'
-import useCalendar from 'hooks/calendar'
+import useCalendar from '@hooks/calendar'
 import { isSameDay } from 'date-fns'
 import LinearGradient from 'react-native-linear-gradient'
 

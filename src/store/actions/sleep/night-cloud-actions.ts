@@ -1,10 +1,10 @@
 import { API, graphqlOperation } from 'aws-amplify'
-import { Dispatch, Thunk } from 'Types/ReduxActions'
-import { GetState } from 'Types/GetState'
-import { Night, Value } from 'Types/Sleepdata'
+import { Dispatch, Thunk } from '@typings/ReduxActions'
+import { GetState } from '@typings/GetState'
+import { Night, Value } from '@typings/Sleepdata'
 import { getUsername } from '@selectors/UserSelectors'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
-import { CreateNightInput, NightValue } from 'API'
+import { CreateNightInput, NightValue } from '@API'
 import * as Sentry from '@sentry/react-native'
 import { createNight } from '@graphql/mutations'
 
@@ -15,7 +15,6 @@ export const syncNightsToCloud = (nights: Night[]): Thunk => async (
   try {
     const username = getUsername(getState())
     const loggedIn = getAuthState(getState())
-    console.log('SYNC')
 
     if (loggedIn && username) {
       const promises: Promise<void>[] = []

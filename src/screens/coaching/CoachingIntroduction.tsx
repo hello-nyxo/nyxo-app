@@ -8,7 +8,7 @@ import {
   useGetActiveCoaching,
   useUpdateCoaching
 } from '@hooks/coaching/useCoaching'
-import { useIntroduction } from 'hooks/coaching/useContent'
+import { useIntroduction } from '@hooks/coaching/useContent'
 import React, { FC, memo } from 'react'
 import { Button } from 'react-native'
 import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'

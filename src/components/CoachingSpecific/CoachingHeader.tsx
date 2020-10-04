@@ -1,6 +1,6 @@
 import { IconBold } from '@components/iconRegular'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import { format } from 'date-fns'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'

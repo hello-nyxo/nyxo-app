@@ -1,4 +1,4 @@
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import styled from 'styled-components'
 
 export const H2 = styled(TranslatedText)`

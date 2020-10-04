@@ -1,7 +1,7 @@
 import 'react-native-get-random-values'
 import { v4 } from 'uuid'
 import Intercom from 'react-native-intercom'
-import { GetState } from 'Types/GetState'
+import { GetState } from '@typings/GetState'
 import { setIntercomId } from './user/user-actions'
 
 export const registerIntercomUser = () => async (

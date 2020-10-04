@@ -6,9 +6,9 @@ import { getPolarSleep } from '@actions/api-actions/polar-actions'
 import { getWithingsSleep } from '@actions/api-actions/withings-actions'
 import { fetchSleepFromHealthKit } from '@actions/sleep/health-kit-actions'
 import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { GetState } from 'Types/GetState'
-import { Dispatch, Thunk } from 'Types/ReduxActions'
-import { SOURCE } from 'typings/state/sleep-source-state'
+import { GetState } from '@typings/GetState'
+import { Dispatch, Thunk } from '@typings/ReduxActions'
+import { SOURCE } from '@typings/state/sleep-source-state'
 
 export const fetchSleepData = (
   startDate: string = new Date().toISOString(),

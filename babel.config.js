@@ -29,7 +29,15 @@ module.exports = {
           '@components': './src/components',
           '@helpers': './src/helpers/',
           '@graphql': './src/graphql/',
-          '@hooks': './src/hooks'
+          '@screens': './src/screens/',
+          '@data-fetching': './src/data-fetching',
+          '@hooks': './src/hooks',
+          '@typings': './src/typings',
+          '@types': './src/Types',
+          '@config': './src/config',
+          '@styles': './src/styles',
+          '@API': './src/API',
+          'persist-queries': './src/store/persist-queries'
         }
       }
     ]

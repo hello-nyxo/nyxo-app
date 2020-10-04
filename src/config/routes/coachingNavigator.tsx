@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React, { FC } from 'react'
-import CoachingIntroduction from 'screens/coaching/CoachingIntroduction'
-import Coaching from 'screens/coaching/CoachingView'
+import CoachingIntroduction from '@screens/coaching/CoachingIntroduction'
+import Coaching from '@screens/coaching/CoachingView'
 import ROUTE from './Routes'
 
 const Stack = createStackNavigator()

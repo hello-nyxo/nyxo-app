@@ -1,4 +1,4 @@
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/ReduxActions'
 
 export const TOGGLE_NEW_HABIT_MODAL = 'TOGGLE_NEW_HABIT_MODAL'
 export const TOGGLE_EDIT_HABIT_MODAL = 'TOGGLE_EDIT_HABIT_MODAL'

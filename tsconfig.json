@@ -22,7 +22,15 @@
       "@components/*": ["./src/components/*"],
       "@helpers/*": ["./src/helpers/*"],
       "@graphql/*": ["./src/graphql/*"],
-      "@hooks/*": ["./src/hooks/*"]
+      "@screens/*": ["./src/screens/*"],
+      "@data-fetching/*": ["./src/data-fetching/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@typings/*": ["./src/typings/*"],
+      "@types/*": ["./src/Types/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@config/*": ["./src/config/*"],
+      "@API": ["./src/API.ts"],
+      "persist-queries": ["./src/store/persist-queries.ts"]
     }
   },
   "exclude": [

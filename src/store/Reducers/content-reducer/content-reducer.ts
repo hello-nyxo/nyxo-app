@@ -5,8 +5,8 @@ import {
   Section,
   ExampleHabit,
   ContentUpdate
-} from 'Types/CoachingContentState'
-import ReduxAction from 'Types/ReduxActions'
+} from '@typings/CoachingContentState'
+import ReduxAction from '@typings/ReduxActions'
 
 export const UPDATE_CONTENT_START = 'UPDATE_CONTENT_START'
 export const UPDATE_CONTENT_ERROR = 'UPDATE_CONTENT_ERROR'

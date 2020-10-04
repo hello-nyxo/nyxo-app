@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { WIDTH } from 'helpers/Dimensions'
+import { WIDTH } from '@helpers/Dimensions'
 import React, { memo } from 'react'
 import { ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'

@@ -16,7 +16,7 @@ import {
   CombinedLesson,
   getContentForSelectedLesson
 } from '@selectors/coaching-selectors/coaching-selectors'
-import { PrimaryButton } from 'components/Buttons/PrimaryButton'
+import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import React, { FC, memo, useState } from 'react'
 import { LayoutChangeEvent } from 'react-native'
 import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'

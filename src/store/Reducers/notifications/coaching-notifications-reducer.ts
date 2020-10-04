@@ -5,8 +5,8 @@ import {
 import {
   CoachingNotificationState,
   InteractedLesson
-} from 'Types/CoachingNotificationState'
-import ReduxAction from 'Types/ReduxActions'
+} from '@typings/CoachingNotificationState'
+import ReduxAction from '@typings/ReduxActions'
 
 export const initialState: CoachingNotificationState = {
   incompleteLessons: []

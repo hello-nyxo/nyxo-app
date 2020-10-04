@@ -1,4 +1,4 @@
-import TranslatedText from 'components/TranslatedText'
+import TranslatedText from '@components/TranslatedText'
 import React, { FC, useRef } from 'react'
 import { Animated } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'

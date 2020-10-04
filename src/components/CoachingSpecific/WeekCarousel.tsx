@@ -4,7 +4,7 @@ import {
   getCombinedWeeks,
   getCurrentWeek
 } from '@selectors/coaching-selectors'
-import { useGetActiveCoaching } from 'hooks/coaching/useCoaching'
+import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
 import React, { FC } from 'react'
 import { FlatList, View } from 'react-native'
 import { useSelector } from 'react-redux'

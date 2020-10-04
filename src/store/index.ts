@@ -36,7 +36,7 @@ import {
 } from 'redux-persist'
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 import thunk from 'redux-thunk'
-import { State } from 'Types/State'
+import { State } from '@typings/State'
 
 enableES5()
 enableMapSet()

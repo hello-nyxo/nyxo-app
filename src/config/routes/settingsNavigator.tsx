@@ -9,7 +9,7 @@ import ManageSubscription from '../../screens/settings/ManageSubscription'
 import CoachingSettings from '../../screens/settings/CoachingSettings'
 import DevelopmentMenu from '../../screens/settings/DevelopmentMenu'
 import ROUTE from './Routes'
-import GarminScreen from 'screens/settings/GarminScreen'
+import GarminScreen from '@screens/settings/GarminScreen'
 const Stack = createNativeStackNavigator()
 
 const SettingsNavigator = () => {

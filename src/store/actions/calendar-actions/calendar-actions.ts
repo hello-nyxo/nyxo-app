@@ -1,4 +1,4 @@
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/ReduxActions'
 
 /* ACTION TYPES */
 

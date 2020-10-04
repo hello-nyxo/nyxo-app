@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
 import { fonts, StyleProps } from '../../styles/themes'
-import { Period } from 'Types/State/Periods'
+import { Period } from '@typings/state/Periods'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 

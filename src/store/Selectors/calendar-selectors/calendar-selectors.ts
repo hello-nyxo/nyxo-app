@@ -1,5 +1,5 @@
 import reselect, { createSelector } from 'reselect'
-import { State } from 'Types/State'
+import { State } from '@typings/State'
 
 const getCalendarState = (state: State) => state.calendar
 

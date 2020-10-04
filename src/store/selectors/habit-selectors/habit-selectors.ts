@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
-import { HabitState, Habit } from 'Types/State/habit-state'
-import { State } from 'Types/State'
-import { Period } from 'Types/State/Periods'
+import { HabitState, Habit } from '@typings/state/habit-state'
+import { State } from '@typings/State'
+import { Period } from '@typings/state/Periods'
 
 const getHabitState = (state: State) => state.habitState
 

@@ -1,17 +1,17 @@
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
 import { format } from 'date-fns'
-import { CoachingPeriod } from 'hooks/coaching/useCoaching'
-import { useUpdateUser } from 'hooks/user/useUser'
+import { CoachingPeriod } from '@hooks/coaching/useCoaching'
+import { useUpdateUser } from '@hooks/user/useUser'
 import moment from 'moment'
 import React, { FC, useRef } from 'react'
 
-import { fonts } from 'styles/themes'
+import { fonts } from '@styles/themes'
 import { Animated } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import styled from 'styled-components/native'
-import { stringToColor } from 'helpers/style/color'
+import { stringToColor } from '@helpers/style/color'
 
 type Props = {
   month: CoachingPeriod

@@ -1,9 +1,9 @@
 import moment from 'moment'
-import { WithingsSleepObject } from 'Types/Sleep/Withings'
-import { Night, Value } from 'Types/Sleepdata'
-import { getNightDuration } from 'helpers/sleep'
+import { WithingsSleepObject } from '@typings/Sleep/Withings'
+import { Night, Value } from '@typings/Sleepdata'
+import { getNightDuration } from '@helpers/sleep'
 import { generateNightId } from './night-id-generator'
-import CONFIG from 'config/Config'
+import CONFIG from '@config/Config'
 
 export const formatWithingsSample = (
   withingsSleepObject: WithingsSleepObject

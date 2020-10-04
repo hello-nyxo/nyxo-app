@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
-import { constants, fonts, StyleProps } from 'styles/themes'
+import { constants, fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 

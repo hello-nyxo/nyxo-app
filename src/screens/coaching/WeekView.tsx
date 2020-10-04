@@ -10,7 +10,7 @@ import { getActiveCoaching } from '@selectors/subscription-selectors/Subscriptio
 import {
   useUpdateCoaching,
   useGetActiveCoaching
-} from 'hooks/coaching/useCoaching'
+} from '@hooks/coaching/useCoaching'
 import { uniqBy } from 'lodash'
 import React, { memo } from 'react'
 import Animated from 'react-native-reanimated'

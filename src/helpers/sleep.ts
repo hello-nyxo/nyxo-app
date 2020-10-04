@@ -1,6 +1,6 @@
 import Moment from 'moment'
 import { to12hClock } from './time'
-import { Day, Night } from 'Types/Sleepdata'
+import { Day, Night } from '@typings/Sleepdata'
 
 export function getAngleAM(dateTime: string): number {
   const time = Moment(dateTime)

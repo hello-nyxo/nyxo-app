@@ -1,7 +1,7 @@
 import Moment from 'moment'
 import { format, parseISO, isValid, setHours, setMinutes } from 'date-fns'
 import translate from '../config/i18n'
-import { Day } from 'Types/Sleepdata'
+import { Day } from '@typings/Sleepdata'
 
 type Moment = typeof Moment
 

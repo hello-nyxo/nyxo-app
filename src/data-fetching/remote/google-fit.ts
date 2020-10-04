@@ -1,12 +1,12 @@
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
-import CONFIG from 'config/Config'
+import CONFIG from '@config/Config'
 import { isAfter, subDays } from 'date-fns'
-import { formatGoogleFitData } from 'helpers/sleep/google-fit-helper'
+import { formatGoogleFitData } from '@helpers/sleep/google-fit-helper'
 import { Platform } from 'react-native'
 import { refresh } from 'react-native-app-auth'
-import { GOOGLE_FIT_KEYCHAIN_SERVICE } from 'store/actions/api-actions/google-fit-actions'
-import { Night } from 'Types/Sleepdata'
-import { GoogleFitResponse } from 'Types/State/api-state'
+import { GOOGLE_FIT_KEYCHAIN_SERVICE } from '@actions/api-actions/google-fit-actions'
+import { Night } from '@typings/Sleepdata'
+import { GoogleFitResponse } from '@typings/state/api-state'
 
 const GOOGLE_FIT_API = `https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=`
 

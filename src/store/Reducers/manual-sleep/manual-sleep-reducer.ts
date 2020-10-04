@@ -1,10 +1,10 @@
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/ReduxActions'
 import {
   SET_VALUES,
   TOGGLE_EDIT_MODE
 } from '@actions/manual-sleep/manual-sleep-actions'
 import { RESET_APP } from '@actions/shared'
-import { ManualDataState } from 'Types/State/ManualDataState'
+import { ManualDataState } from '@typings/state/ManualDataState'
 
 const initialState: ManualDataState = {
   editMode: false,

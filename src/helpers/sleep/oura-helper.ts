@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
-import CONFIG from 'config/Config'
+import CONFIG from '@config/Config'
 import { addMinutes } from 'date-fns'
 import moment from 'moment'
-import { OuraSleepObject } from 'Types/Sleep/Oura'
-import { Night, Value } from 'Types/Sleepdata'
+import { OuraSleepObject } from '@typings/Sleep/Oura'
+import { Night, Value } from '@typings/Sleepdata'
 import { getNightDuration } from '../sleep'
 
 export const formatOuraSample = (ouraObject: OuraSleepObject): Night[] => {

@@ -9,10 +9,10 @@ import {
 import Modal, { ReactNativeModal } from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { fetchSleepData } from 'store/actions/sleep/sleep-data-actions'
+import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
 import { startOfDay, format, subDays, subYears, endOfDay } from 'date-fns'
-import useCalendar from 'hooks/calendar'
-import colors from 'styles/colors'
+import useCalendar from '@hooks/calendar'
+import colors from '@styles/colors'
 
 const minDate = subYears(new Date(), 3)
 

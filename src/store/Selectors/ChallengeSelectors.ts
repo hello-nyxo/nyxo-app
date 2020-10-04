@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
+import { State } from '@typings/State'
 
 const getChallengeState = (state: State) => state.challenge.challenges
 

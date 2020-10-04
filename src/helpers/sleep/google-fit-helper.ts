@@ -1,5 +1,5 @@
-import { getNightDuration } from 'helpers/sleep'
-import { Night, Value } from 'Types/Sleepdata'
+import { getNightDuration } from '@helpers/sleep'
+import { Night, Value } from '@typings/Sleepdata'
 
 type GoogleFitSession = {
   id: string

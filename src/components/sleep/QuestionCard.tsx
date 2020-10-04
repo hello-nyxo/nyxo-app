@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import TranslatedText from '@components/TranslatedText'
-import TextButton from 'components/Buttons/TextButton'
+import TextButton from '@components/Buttons/TextButton'
 import { displayMessageComposer } from 'react-native-intercom'
 
 const QuestionCard: FC = () => {
