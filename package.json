@@ -112,40 +112,6 @@
     "beta:ios": "cd ios && fastlane beta",
     "beta:android": "cd android && fastlane beta"
   },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "jest-enzyme"
-    ],
-    "testEnvironment": "enzyme",
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "tsconfig.jest.json"
-      }
-    },
-    "moduleDirectories": [
-      "node_modules"
-    ],
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "transform": {
-      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "testPathIgnorePatterns": [
-      "\\.snap$",
-      "<rootDir>/node_modules/",
-      "<rootDir>/lib/"
-    ],
-    "cacheDirectory": ".jest/cache"
-  },
   "lint-staged": {
     "*.{js,json,css,md}": [
       "prettier --write",

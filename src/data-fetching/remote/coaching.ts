@@ -11,6 +11,7 @@ import {
 } from '@API'
 import { graphqlOperation, API, Auth } from 'aws-amplify'
 import { updateUserData } from '@data-fetching/remote/user'
+import { isLoggedIn } from '@helpers/auth'
 
 type Response = Exclude<
   ListCoachingDatasQuery['listCoachingDatas'],
@@ -18,14 +19,17 @@ type Response = Exclude<
 >['items']
 export const listCoaching = async (): Promise<Response> => {
   try {
-    const {
-      data: { listCoachingDatas: data }
-    } = (await API.graphql(graphqlOperation(listCoachingDatas))) as {
-      data: ListCoachingDatasQuery
-    }
+    if (await isLoggedIn()) {
+      const {
+        data: { listCoachingDatas: data }
+      } = (await API.graphql(graphqlOperation(listCoachingDatas))) as {
+        data: ListCoachingDatasQuery
+      }
 
-    if (data?.items) {
-      return data?.items
+      if (data?.items) {
+        return data?.items
+      }
+      return []
     }
     return []
   } catch (error) {

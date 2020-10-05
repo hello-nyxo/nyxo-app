@@ -6,7 +6,7 @@ import {
   getNightDuration,
   sortDays,
   sortNights
-} from '@helpers/sleep'
+} from '@helpers/sleep/sleep'
 import { GetState } from '@typings/GetState'
 import { Day, Value, Night } from '@typings/Sleepdata'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'

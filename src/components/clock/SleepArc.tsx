@@ -1,5 +1,5 @@
 import { describeArc } from '@helpers/geometry'
-import { getAngleAM } from '@helpers/sleep'
+import { getAngleAM } from '@helpers/sleep/sleep'
 import React, { FC } from 'react'
 import Reanimated from 'react-native-reanimated'
 import { G, Path } from 'react-native-svg'

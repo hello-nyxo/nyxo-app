@@ -12,6 +12,7 @@ import { PolarSleepObject } from '@typings/Sleep/Polar'
 import { PolarAuthorizeResult, ResponseBase } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
 import { fetchSleepSuccess } from '../sleep/health-kit-actions'
+import { format } from 'date-fns'
 
 export const POLAR_AUTHORIZE_SUCCESS = 'POLAR_AUTHORIZE_SUCCESS'
 export const POLAR_REVOKE_SUCCESS = 'POLAR_REVOKE_SUCCESS'
@@ -114,13 +115,18 @@ export const revokePolarAccess = (): Thunk => async (dispatch: Dispatch) => {
   dispatch(setMainSource(SOURCE.NO_SOURCE))
 }
 
-export const getPolarSleep = (): Thunk => async (dispatch: Dispatch) => {
+export const getPolarSleep = (
+  startDate: string,
+  endDate: string
+): Thunk => async (dispatch: Dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
   } = (await GetKeychainParsedValue(
     CONFIG.POLAR_CONFIG.bundleId
   )) as PolarAuthorizeResult
+
+  console.log(startDate)
 
   dispatch(fetchSleepPolarStart())
 
@@ -129,7 +135,7 @@ export const getPolarSleep = (): Thunk => async (dispatch: Dispatch) => {
       if (moment(accessTokenExpirationDate).isAfter(moment())) {
         // Gonna get the last 28 days
         const polarListNightsApiCall = await fetch(
-          `https://www.polaraccesslink.com/v3/users/sleep`,
+          `https://www.polaraccesslink.com/v3/users/sleep/2018-03-29T00:39:07+03:00`,
           {
             method: 'GET',
             headers: {
@@ -138,18 +144,26 @@ export const getPolarSleep = (): Thunk => async (dispatch: Dispatch) => {
           }
         )
 
+        console.log(polarListNightsApiCall)
+
         const response = await polarListNightsApiCall.json()
         const sevenNightsSleepData = (<Array<PolarSleepObject>>response.nights)
           .reverse()
           .slice(7)
         const formattedResponse = formatPolarSamples(sevenNightsSleepData)
+
+        console.log(response)
+
         await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepPolarSuccess())
       } else {
         const newAccessToken = await dispatch(authorizePolar())
 
         const polarListNightsApiCall = await fetch(
-          `https://www.polaraccesslink.com/v3/users/sleep`,
+          `https://www.polaraccesslink.com/v3/users/sleep/${format(
+            new Date(startDate),
+            'yyyy-MM-dd'
+          )}`,
           {
             method: 'GET',
             headers: {
@@ -159,6 +173,9 @@ export const getPolarSleep = (): Thunk => async (dispatch: Dispatch) => {
         )
 
         const response = await polarListNightsApiCall.json()
+
+        console.log(response)
+
         const sevenNightsSleepData = (<Array<PolarSleepObject>>response.nights)
           .reverse()
           .slice(7)
@@ -168,6 +185,7 @@ export const getPolarSleep = (): Thunk => async (dispatch: Dispatch) => {
         await dispatch(fetchSleepPolarSuccess())
       }
     } catch (error) {
+      console.log(error)
       dispatch(fetchSleepPolarFailure())
     }
   }

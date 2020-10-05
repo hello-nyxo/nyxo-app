@@ -1,7 +1,7 @@
-import Purchases, { PurchasesPackage } from 'react-native-purchases'
-import Intercom from 'react-native-intercom'
 import CONFIG from '@config/Config'
-import { GetState } from '@typings/GetState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
+import Intercom from 'react-native-intercom'
+import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import { updateIntercomInformation } from '../IntercomActions'
 
 const key = CONFIG.SUBSCRIPTION_ENTITLEMENT_KEY as string
@@ -20,48 +20,44 @@ export const DISABLE_COACHING = 'DISABLE_COACHING'
 
 /*  ACTIONS */
 
-export const purchaseStart = () => ({
+export const purchaseStart = (): ReduxAction => ({
   type: PURCHASE_SUBSCRIPTION_START
 })
 
 export const purchaseSuccess = (payload: {
   isActive: boolean
   expirationDate?: string | null
-}) => ({
+}): ReduxAction => ({
   type: PURCHASE_SUBSCRIPTION_SUCCESS,
   payload
 })
 
-export const purchaseFailure = (error: string) => ({
+export const purchaseFailure = (error: string): ReduxAction => ({
   type: PURCHASE_SUBSCRIPTION_FAILURE,
   payload: error
 })
 
-export const restoreStart = () => ({
+export const restoreStart = (): ReduxAction => ({
   type: RESTORE_START
 })
 
 export const restoreSuccess = (payload: {
   isActive: boolean
   expirationDate?: string | null
-}) => ({
+}): ReduxAction => ({
   type: RESTORE_SUCCESS,
   payload
 })
 
-export const restoreFailure = () => ({
+export const restoreFailure = (): ReduxAction => ({
   type: RESTORE_FAILURE
 })
 
-export const purchaseCoachingForAWeek = () => ({
+export const purchaseCoachingForAWeek = (): ReduxAction => ({
   type: RESTORE_START
 })
 
-export const purchaseCoachingForAYear = () => ({
-  type: RESTORE_START
-})
-
-export const disableCoaching = () => ({
+export const disableCoaching = (): ReduxAction => ({
   type: DISABLE_COACHING
 })
 
@@ -71,9 +67,8 @@ export const disableCoaching = () => ({
  * @async
  *  Run on every app start and updates subscription status
  */
-export const updateSubscriptionStatus = () => async (
-  dispatch: Function,
-  getState: GetState
+export const updateSubscriptionStatus = (): Thunk => async (
+  dispatch: Dispatch
 ) => {
   try {
     const {
@@ -102,9 +97,9 @@ export const updateSubscriptionStatus = () => async (
  * @async
  *  Purchases a new subscription for nyxo coaching and updates Intercom's user information to reflect this.
  */
-export const purchaseSubscription = (subscription: PurchasesPackage) => async (
-  dispatch: Function
-) => {
+export const purchaseSubscription = (
+  subscription: PurchasesPackage
+): Thunk => async (dispatch: Dispatch) => {
   dispatch(purchaseStart())
   try {
     const { purchaserInfo } = await Purchases.purchasePackage(subscription)
@@ -134,7 +129,7 @@ export const purchaseSubscription = (subscription: PurchasesPackage) => async (
  * @async
  * Restores a user's previous purchases and enables coaching for user
  */
-export const restorePurchase = () => async (dispatch: Function) => {
+export const restorePurchase = (): Thunk => async (dispatch: Dispatch) => {
   dispatch(restoreStart())
   try {
     const purchaserInfo = await Purchases.restoreTransactions()
@@ -149,7 +144,6 @@ export const restorePurchase = () => async (dispatch: Function) => {
       dispatch(restoreSuccess({ isActive: false }))
     }
   } catch (error) {
-    console.warn(error)
     dispatch(restoreFailure())
   }
 }

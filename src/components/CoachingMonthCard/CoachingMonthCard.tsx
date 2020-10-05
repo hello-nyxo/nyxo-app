@@ -22,9 +22,11 @@ const CoachingMonthCard: FC<Props> = ({ month }) => {
   const title = format(new Date(month?.started ?? new Date()), 'LLLL yyyy')
   const startDate = format(new Date(month?.started ?? new Date()), 'dd.mm.yyyy')
 
-  const endDate = month.ended ? moment(month.ended).format('DD.MM.YYYY') : ''
-  const weeks = month.weeks?.length ?? 0
-  const lessons = month.lessons?.length ?? 0
+  const endDate = month?.ended
+    ? format(new Date(month?.ended), 'dd.mm.yyyy')
+    : ''
+  const weeks = month?.weeks?.length ?? 0
+  const lessons = month?.lessons?.length ?? 0
 
   const [mutate] = useUpdateUser()
 

@@ -72,9 +72,12 @@ export const completeLessonMutation = async ({
 
 /* HOOKS */
 
-type Rese = Exclude<ListCoachingDatasQuery['listCoachingDatas'], null>
-type aa = Rese['items']
-export const useListCoaching = (): QueryResult<aa> => {
+type Result = Exclude<
+  ListCoachingDatasQuery['listCoachingDatas'],
+  null
+>['items']
+
+export const useListCoaching = (): QueryResult<Result> => {
   return useQuery('listCoaching', listCoaching)
 }
 

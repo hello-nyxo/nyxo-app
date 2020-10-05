@@ -16,7 +16,9 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@components(.*)$': '<rootDir>/src/components$1',
-    '^@constants(.*)$': '<rootDir>/src/constants$1'
+    '^@constants(.*)$': '<rootDir>/src/constants$1',
+    '^@helpers(.*)$': '<rootDir>/src/helpers$1',
+    '^@actions(.*)$': '<rootDir>/src/store/actions$1'
   },
   testEnvironment: 'jsdom',
   transform: {

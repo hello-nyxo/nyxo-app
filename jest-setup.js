@@ -5,6 +5,11 @@ import * as ReactNative from 'react-native'
 global.React = React
 global.ReactNative = ReactNative
 
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: jest.fn(() => 44),
+  isIphoneX: jest.fn(() => true)
+}))
+
 global.React.useCallback = (f) => f
 
 jest.useFakeTimers()

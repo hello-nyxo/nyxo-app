@@ -36,7 +36,7 @@ export const fetchSleepData = (
       dispatch(getGarminSleep())
       break
     case SOURCE.POLAR:
-      dispatch(getPolarSleep())
+      dispatch(getPolarSleep(startDate, endDate))
       break
 
     default:

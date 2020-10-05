@@ -1,5 +1,5 @@
 import Moment from 'moment'
-import { to12hClock } from './time'
+import { to12hClock } from '@helpers/time'
 import { Day, Night } from '@typings/Sleepdata'
 
 export function getAngleAM(dateTime: string): number {

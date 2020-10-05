@@ -1,4 +1,5 @@
-import { getNightDuration } from '@helpers/sleep'
+/* eslint-disable camelcase */
+import { getNightDuration } from '@helpers/sleep/sleep'
 import { Night, Value } from '@typings/Sleepdata'
 
 type GoogleFitSession = {

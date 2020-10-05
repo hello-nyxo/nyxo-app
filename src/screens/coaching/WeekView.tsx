@@ -77,6 +77,7 @@ const WeekView = ({ route }: Props) => {
           header={
             <>
               <WeekViewHeader title={week.weekName} yOffset={yOffset} />
+
               <WeekIntro
                 intro={week.intro}
                 description={week.weekDescription}
@@ -85,7 +86,6 @@ const WeekView = ({ route }: Props) => {
                 started={activeWeek?.started}
                 ended={activeWeek?.ended}
                 isCurrentlyActive={week.slug === activeWeek?.slug}
-                // hasActiveCoaching={}
                 endWeek={endWeek}
                 startWeek={startWeek}
               />

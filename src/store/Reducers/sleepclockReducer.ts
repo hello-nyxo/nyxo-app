@@ -14,7 +14,7 @@ import {
 
 import moment from 'moment'
 import ReduxAction from '@typings/ReduxActions'
-import { sortDays } from '@helpers/sleep'
+import { sortDays } from '@helpers/sleep/sleep'
 import { SleepClockState } from '@typings/SleepClockState'
 import { Day } from '@typings/Sleepdata'
 import { initialState } from '../InitialStates/SleepClock'

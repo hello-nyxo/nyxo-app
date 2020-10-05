@@ -1,14 +1,15 @@
+import ROUTE from '@config/routes/Routes'
 import { useNavigation } from '@react-navigation/core'
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import Purchases from 'react-native-purchases'
 import styled from 'styled-components/native'
 import { fonts, StyleProps } from '../../styles/themes'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 
-const BuyCoaching = () => {
+const BuyCoaching: FC = () => {
   const navigation = useNavigation()
-  const [price, setPrice]: any = useState(null)
+  const [price, setPrice] = useState('')
 
   const getProducts = async () => {
     try {
@@ -17,7 +18,8 @@ const BuyCoaching = () => {
         offerings.current !== null &&
         offerings.current.monthly !== undefined
       ) {
-        setPrice(offerings.current.monthly?.product.price_string)
+        // eslint-disable-next-line camelcase
+        setPrice(offerings.current.monthly?.product.price_string ?? '-')
       }
     } catch (e) {}
   }
@@ -27,7 +29,7 @@ const BuyCoaching = () => {
   }, [])
 
   const moveToPurchase = () => {
-    navigation.navigate('PurchaseView')
+    navigation.navigate(ROUTE.PURCHASE)
   }
 
   return (
@@ -75,11 +77,7 @@ const Icon = styled(IconBold).attrs((props: StyleProps) => ({
 }))``
 
 const Container = styled.View`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px 20px;
+  padding: 16px;
 `
 
 const AndroidContainer = styled.View`

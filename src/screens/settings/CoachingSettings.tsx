@@ -12,13 +12,11 @@ import { ListRenderItem } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
 const CoachingSettings: FC = () => {
-  const { data: months, isLoading, refetch } = useListCoaching()
+  const { data: months, isError, isLoading, refetch } = useListCoaching()
 
-  const renderItem: ListRenderItem<CoachingPeriod> = ({ item }) => (
-    <CoachingMonthCard key={`${item?.id}`} month={item} />
-  )
-
-  if (!months || months.length === 0) return null
+  const renderItem: ListRenderItem<CoachingPeriod> = ({ item }) => {
+    return <CoachingMonthCard key={`${item?.id}`} month={item} />
+  }
 
   return (
     <SafeAreaView>

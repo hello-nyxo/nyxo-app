@@ -1,14 +1,18 @@
+import BuyCoachingButton from '@components/CoachingSpecific/BuyCoachingButton'
 import { IconBold } from '@components/iconRegular'
-import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
 import TranslatedText from '@components/TranslatedText'
+import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { format } from 'date-fns'
 import React, { FC } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { PageTitle } from '../Primitives/Primitives'
-import IntroduceCoaching from './IntroduceCoaching'
+import { IntroduceCoaching } from './IntroduceCoaching'
 
 const CoachingHeader: FC = () => {
   const { data } = useGetActiveCoaching()
+  const hasActiveCoaching = useSelector(getActiveCoaching)
 
   const weeks = data?.weeks?.length ?? 0
   const lessons = data?.lessons?.length ?? 0
@@ -16,6 +20,9 @@ const CoachingHeader: FC = () => {
   return (
     <>
       <PageTitle>Coaching</PageTitle>
+
+      {!hasActiveCoaching && <BuyCoachingButton />}
+      {!hasActiveCoaching && <IntroduceCoaching />}
 
       <Title>Active Coaching Period</Title>
       <Container>
@@ -35,8 +42,6 @@ const CoachingHeader: FC = () => {
           </Row>
         </Column>
       </Container>
-
-      <IntroduceCoaching />
     </>
   )
 }

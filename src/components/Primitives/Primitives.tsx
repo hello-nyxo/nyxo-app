@@ -19,8 +19,8 @@ interface ContainerProps extends StyleProps {
 }
 
 export const Container = styled.View<ContainerProps>`
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-right: 16px;
+  margin-left: 16px;
   flex: 1;
   background-color: ${(props: ContainerProps) =>
     props.background ? props.theme.PRIMARY_BACKGROUND_COLOR : 'transparent'};

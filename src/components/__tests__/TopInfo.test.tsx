@@ -20,11 +20,6 @@ jest.mock('react-native-modal', () => {
   return Modal
 })
 
-jest.mock('react-native-iphone-x-helper', () => ({
-  getStatusBarHeight: () => 20,
-  isIphoneX: () => true
-}))
-
 jest.mock('react-native', () => ({
   Dimensions: {
     get: () => {

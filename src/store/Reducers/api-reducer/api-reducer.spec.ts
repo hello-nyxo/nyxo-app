@@ -2,8 +2,13 @@ import {
   FITBIT_AUTHORIZE_SUCCESS,
   FITBIT_REVOKE_SUCCESS
 } from '@actions/api-actions/fitbit-actions'
+import { ResponseBase } from '@typings/state/api-state'
 import reducer, { initialState } from './api-reducer'
-import { ResponseBase } from '../../../Types/State/api-state'
+
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: () => 20,
+  isIphoneX: jest.fn(() => true)
+}))
 
 const fitbitMock: ResponseBase = {
   enabled: true

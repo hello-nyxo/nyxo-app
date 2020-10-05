@@ -1,9 +1,8 @@
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
-import { format } from 'date-fns/esm'
 import { canEndCoaching } from '@helpers/coaching/coaching'
-import moment from 'moment'
+import { format } from 'date-fns/esm'
 import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
 import { fonts } from '../../styles/themes'
@@ -35,7 +34,7 @@ const WeekIntro: FC<Props> = ({
   const startTime = started ? format(new Date(started), 'dd.MM') : ''
   const endTime = ended ? format(new Date(ended), 'dd.MM') : ''
   const canEnd = canEndCoaching(started, 7)
-  console.log(canEnd, 'canEnd')
+
   return (
     <Container>
       <Card>

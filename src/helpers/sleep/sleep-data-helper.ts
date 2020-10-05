@@ -9,7 +9,7 @@ import {
 import moment, { MomentInput } from 'moment'
 import { SleepSample } from 'react-native-healthkit'
 import { Day, Night, Value } from '@typings/Sleepdata'
-import { getNightDuration } from '../sleep'
+import { getNightDuration } from './sleep'
 import { nearestMinutes } from '../time'
 
 export const formatHealthKitResponse = (hkSample: SleepSample): Night => {
