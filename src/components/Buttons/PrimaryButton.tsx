@@ -1,9 +1,8 @@
 import React, { FC } from 'react'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
 import TranslatedText from '../TranslatedText'
-import ScalingButton from './ScalingButton'
 
 type Props = {
   disabled?: boolean
@@ -21,10 +20,7 @@ export const PrimaryButton: FC<Props> = ({
   onPress
 }) => {
   return (
-    <ScalingButton
-      disabled={loading || disabled}
-      onPress={onPress}
-      analyticsEvent={`Button ${title} pressed`}>
+    <TouchableOpacity disabled={loading || disabled} onPress={onPress}>
       <Button white={white} disabled={loading || disabled}>
         {loading ? (
           <Loading />
@@ -34,7 +30,7 @@ export const PrimaryButton: FC<Props> = ({
           </ButtonText>
         )}
       </Button>
-    </ScalingButton>
+    </TouchableOpacity>
   )
 }
 

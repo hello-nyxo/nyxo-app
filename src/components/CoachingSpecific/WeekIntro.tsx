@@ -49,7 +49,7 @@ const WeekIntro: FC<Props> = ({
           )}
         </DurationRow>
         {!isCurrentlyActive && !started && (
-          <PrimaryButton title="WEEK.BEGING" onPress={startWeek} />
+          <PrimaryButton title="WEEK.BEGIN" onPress={startWeek} />
         )}
         {started && canEnd && !ended ? (
           <PrimaryButton title="WEEK.COMPLETE" onPress={endWeek} />

@@ -1,6 +1,6 @@
 import { useQuery, QueryResult } from 'react-query'
 import appleHealthKit, { SleepSample } from 'react-native-healthkit'
-import { formatHealthKitResponse } from '@helpers/sleep/sleep-data-helper'
+import { formatHealthKitResponse } from '@helpers/sleep/health-kit-helper'
 import { Night } from '@typings/Sleepdata'
 import { endOfDay, startOfDay, subDays } from 'date-fns'
 

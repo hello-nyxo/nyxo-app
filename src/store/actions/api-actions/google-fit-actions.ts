@@ -15,7 +15,7 @@ import moment from 'moment'
 import { Platform } from 'react-native'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
 import { GetState } from '@typings/GetState'
-import { Dispatch, Thunk } from '@typings/ReduxActions'
+import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
 import { SleepDataSource } from '@typings/SleepClockState'
 import { Night } from '@typings/Sleepdata'
 import { GoogleFitResponse, ResponseBase } from '@typings/state/api-state'
@@ -34,16 +34,18 @@ export const FETCH_GOOGLE_FIT_FAILURE = 'FETCH_GOOGLE_FIT_FAILURE'
 export const GOOGLE_FIT_KEYCHAIN_SERVICE = 'service.fit.google.customized'
 /* ACTIONS */
 
-export const googleFitAuthorizeSuccess = (payload: ResponseBase) => ({
+export const googleFitAuthorizeSuccess = (
+  payload: ResponseBase
+): ReduxAction => ({
   type: GOOGLE_FIT_AUTHORIZE_SUCCESS,
   payload
 })
 
-export const googleFitRevokeSuccess = () => ({
+export const googleFitRevokeSuccess = (): ReduxAction => ({
   type: GOOGLE_FIT_REVOKE_SUCCESS
 })
 
-export const googleFitUpdateToken = (payload: ResponseBase) => ({
+export const googleFitUpdateToken = (payload: ResponseBase): ReduxAction => ({
   type: GOOGLE_FIT_UPDATE_TOKEN,
   payload
 })
@@ -103,10 +105,13 @@ export const authorizeGoogleFit = () => async (
   }
 }
 
-export const refreshGoogleFitToken = () => async (dispatch: Function) => {
-  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+export const refreshGoogleFitToken = (): Thunk => async (
+  dispatch: Dispatch
+) => {
+  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
+  )) as unknown) as GoogleFitResponse
+
   const config =
     Platform.OS === 'android'
       ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
@@ -148,9 +153,9 @@ export const refreshGoogleFitToken = () => async (dispatch: Function) => {
 export const revokeGoogleFitAccess = (): Thunk => async (
   dispatch: Dispatch
 ) => {
-  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
+  )) as unknown) as GoogleFitResponse
 
   const config =
     Platform.OS === 'android'
@@ -158,7 +163,7 @@ export const revokeGoogleFitAccess = (): Thunk => async (
       : CONFIG.GOOOGLE_FIT_GONFIG_IOS
   if (oldToken) {
     try {
-      const response = await revoke(config, {
+      await revoke(config, {
         tokenToRevoke: oldToken
       })
       dispatch(googleFitRevokeSuccess())
@@ -173,12 +178,12 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
-  } = (await GetKeychainParsedValue(
+  } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
+  )) as unknown) as GoogleFitResponse
 
   const startDate = moment().subtract(1, 'week').toISOString()
-  const endDate = moment().toISOString()
+  const endDate = new Date().toISOString()
 
   if (accessToken) {
     try {
@@ -198,7 +203,7 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
         const formatted = await formatGoogleFitData(response.session)
         await dispatch(syncNightsToCloud(formatted))
         await dispatch(createGoogleFitSources(formatted))
-        await dispatch(fetchSleepSuccess(formattedResponse))
+        await dispatch(fetchSleepSuccess(formatted))
       } else {
         const newAccessToken = await dispatch(refreshGoogleFitToken())
 

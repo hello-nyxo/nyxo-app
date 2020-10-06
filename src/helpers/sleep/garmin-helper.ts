@@ -18,6 +18,7 @@ export const formatGarminSample = (
   const timeInBed = getNightDuration(startDate, endDate)
 
   const inBedSample: Night = {
+    id: `garming_${startDate}_${endDate}_${Value.InBed}`,
     sourceId: 'com.garmin.connect.mobile',
     sourceName: 'Garmin',
     value: Value.InBed,
@@ -29,22 +30,25 @@ export const formatGarminSample = (
   const asleepSamples: Night[] = []
 
   Object.values(garminSleepObject.sleepLevelsMap).forEach((value) => {
-    value?.forEach((level) => {
-      const asleepStartDate = moment
-        .unix(level.startTimeInSeconds)
-        .toISOString()
-      const asleepEndDate = moment.unix(level.endTimeInSeconds).toISOString()
-      const timeAsleep = getNightDuration(asleepStartDate, asleepEndDate)
+    if (value) {
+      value.forEach((level) => {
+        const asleepStartDate = moment
+          .unix(level.startTimeInSeconds)
+          .toISOString()
+        const asleepEndDate = moment.unix(level.endTimeInSeconds).toISOString()
+        const timeAsleep = getNightDuration(asleepStartDate, asleepEndDate)
 
-      asleepSamples.push({
-        sourceId: 'com.garmin.connect.mobile',
-        sourceName: 'Garmin',
-        value: Value.Asleep,
-        startDate: asleepStartDate,
-        endDate: asleepEndDate,
-        totalDuration: timeAsleep
+        asleepSamples.push({
+          id: `garming_${startDate}_${endDate}_${Value.Asleep}`,
+          sourceId: 'com.garmin.connect.mobile',
+          sourceName: 'Garmin',
+          value: Value.Asleep,
+          startDate: asleepStartDate,
+          endDate: asleepEndDate,
+          totalDuration: timeAsleep
+        })
       })
-    })
+    }
   })
 
   return [inBedSample, ...asleepSamples]

@@ -1,3 +1,4 @@
+import { Day, Night, Value } from '@typings/Sleepdata'
 import {
   addHours,
   isAfter,
@@ -7,46 +8,7 @@ import {
   subHours
 } from 'date-fns'
 import moment, { MomentInput } from 'moment'
-import { SleepSample } from 'react-native-healthkit'
-import { Day, Night, Value } from '@typings/Sleepdata'
-import { getNightDuration } from './sleep'
 import { nearestMinutes } from '../time'
-
-export const formatHealthKitResponse = (hkSample: SleepSample): Night => {
-  const startDate = moment(hkSample.startDate, 'YYYY-MM-DD kk:mm:SS ZZ')
-  const endDate = moment(hkSample.endDate, 'YYYY-MM-DD kk:mm:SS ZZ')
-  let minutes = endDate.diff(startDate, 'minutes')
-  const hours = Math.floor(minutes / 60)
-  minutes -= hours * 60
-
-  const isoStartDate = startDate.toISOString()
-  const isoEndDate = endDate.toISOString()
-
-  const totalDuration = getNightDuration(isoStartDate, isoEndDate)
-
-  return {
-    id: hkSample.uuid,
-    sourceId: hkSample.sourceId,
-    sourceName: hkSample.sourceName,
-    value: healthKitSampleToValue(hkSample.value),
-    startDate: isoStartDate,
-    endDate: isoEndDate,
-    totalDuration
-  }
-}
-
-export const healthKitSampleToValue = (healthKitSample: string): Value => {
-  switch (healthKitSample) {
-    case 'INBED':
-      return Value.InBed
-    case 'ASLEEP':
-      return Value.Asleep
-    case 'AWAKE':
-      return Value.Awake
-    default:
-      return Value.InBed
-  }
-}
 
 // Find the starting time of the night
 export function findStartTime(nights: Night[], value: Value): string {
@@ -182,13 +144,6 @@ export function calculateSocialJetlag(
     weekendDayAverage
   }
 
-  return insights
-}
-
-export const calculateAverages = (
-  lastSevenDays: Day[]
-): { averageBedTime: number; averageSleepTime: number } => {
-  const insights = { averageBedTime: 8, averageSleepTime: 8 }
   return insights
 }
 

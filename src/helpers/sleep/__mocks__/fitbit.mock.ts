@@ -1,8 +1,10 @@
-import { Night, Value } from '/Types/Sleepdata'
+import { Night, Value } from '@typings/Sleepdata'
 import { fitbitResponse } from '@typings/Sleep/Fitbit'
 
 export const expectedNight: Night[] = [
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.000Z_INBED',
     endDate: '2020-02-29T21:28:00.000Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -11,6 +13,8 @@ export const expectedNight: Night[] = [
     value: Value.InBed
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.300Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.300Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -19,6 +23,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.710Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.710Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -27,6 +33,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.710Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.710Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -35,6 +43,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:02.910Z_ASLEEP',
     endDate: '2020-02-29T21:28:02.910Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -43,6 +53,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.650Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.650Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -51,6 +63,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.930Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.930Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -59,6 +73,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:02.010Z_ASLEEP',
     endDate: '2020-02-29T21:28:02.010Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -67,6 +83,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.080Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.080Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -75,6 +93,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.020Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.020Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -83,6 +103,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.020Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.020Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -91,6 +113,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.240Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.240Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -99,6 +123,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.780Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.780Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -107,6 +133,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.900Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.900Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -115,6 +143,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.650Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.650Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -123,6 +153,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:02.130Z_ASLEEP',
     endDate: '2020-02-29T21:28:02.130Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -131,6 +163,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.620Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.620Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -139,6 +173,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.480Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.480Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -147,6 +183,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:02.340Z_ASLEEP',
     endDate: '2020-02-29T21:28:02.340Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -155,6 +193,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.410Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.410Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -163,6 +203,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.860Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.860Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -171,6 +213,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.270Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.270Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -179,6 +223,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:02.130Z_ASLEEP',
     endDate: '2020-02-29T21:28:02.130Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -187,6 +233,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:01.980Z_ASLEEP',
     endDate: '2020-02-29T21:28:01.980Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -195,6 +243,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.810Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.810Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',
@@ -203,6 +253,8 @@ export const expectedNight: Night[] = [
     value: Value.Asleep
   },
   {
+    id:
+      'fitbit_26137393320_2020-02-29T21:28:00.000Z_2020-02-29T21:28:00.570Z_ASLEEP',
     endDate: '2020-02-29T21:28:00.570Z',
     sourceId: 'com.fitbit.FitbitMobilet',
     sourceName: 'Fitbit',

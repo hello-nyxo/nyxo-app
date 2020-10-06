@@ -11,7 +11,7 @@ export const formatFitbitSample = (
   const totalDuration = fitbitObject.timeInBed
 
   const inBedSample: Night = {
-    id: `${fitbitObject.logId}_${Value.InBed}_${startDate}_${endDate}`,
+    id: `fitbit_${fitbitObject.logId}_${startDate}_${endDate}_${Value.InBed}`,
     sourceId: CONFIG.FITBIT_CONFIG.bundleId,
     sourceName: 'Fitbit',
     value: Value.InBed,
@@ -25,7 +25,7 @@ export const formatFitbitSample = (
     const end = moment(sample.dateTime).add(sample.seconds).toISOString()
 
     return {
-      id: `${fitbitObject.logId}_${Value.Asleep}_${start}_${end}`,
+      id: `fitbit_${fitbitObject.logId}_${start}_${end}_${Value.Asleep}`,
       sourceId: CONFIG.FITBIT_CONFIG.bundleId,
       sourceName: 'Fitbit',
       value: Value.Asleep,

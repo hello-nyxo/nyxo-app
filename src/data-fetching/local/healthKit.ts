@@ -1,6 +1,6 @@
 import { startOfDay, endOfDay, subDays } from 'date-fns'
 import appleHealthKit, { SleepSample } from 'react-native-healthkit'
-import { formatHealthKitResponse } from '@helpers/sleep/sleep-data-helper'
+import { formatHealthKitResponse } from '@helpers/sleep/health-kit-helper'
 import { Night } from '@typings/Sleepdata'
 
 export const getHealthKitData = (startDate: string): Night[] => {

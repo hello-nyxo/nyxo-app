@@ -40,7 +40,7 @@ export interface Day {
 export interface HealthKitSleepResponse {
   sourceId: string
   sourceName: string
-  id: string
+  uuid: string
   value: string
   startDate: string
   endDate: string

@@ -37,8 +37,6 @@ export const GetKeychainKeyValue = async (
     console.warn('GetKeychainValue err', error)
     return error
   }
-
-  return null
 }
 
 export const GetKeychainParsedValue = async (
