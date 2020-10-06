@@ -1,6 +1,11 @@
 import { TOGGLE_RATING_MODAL } from '@actions/modal/modal-actions'
 import reducer, { initialState } from './modal-reducer'
 
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: jest.fn(),
+  isIphoneX: () => true
+}))
+
 describe('Coaching notification reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState)

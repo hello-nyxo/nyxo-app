@@ -15,6 +15,11 @@ jest.mock('react-native-device-info', () => ({
   getDevice: jest.fn()
 }))
 
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: jest.fn(),
+  isIphoneX: () => true
+}))
+
 describe('<VersionInformation />', () => {
   it('Should render correctly', () => {
     matchComponentToSnapshot(<VersionInformation />)

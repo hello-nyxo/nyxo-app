@@ -9,34 +9,48 @@ import { Day } from 'Types/Sleepdata'
 import { WIDTH } from '@helpers/Dimensions'
 import keyExtractor from '@helpers/KeyExtractor'
 import { fonts, StyleProps } from '../styles/themes'
+import NightRating from './clock/NightRating'
 
 const dayWidth = WIDTH / 7
+const spacerHeight = 7
 const cardMargin = 5
 
 const DayStrip: FC = () => {
   const days = useSelector(getAllDays)
   const dispatch = useDispatch()
   const { date } = useSelector(getSelectedDay)
+
   const renderItem = ({ item }: { item: Day }) => {
     const isToday = moment(item.date).isSame(new Date(), 'day')
-
     const handleOnPress = () => {
       dispatch(setSelectedDay(item.date))
     }
 
     return (
-      <Segment
-        key={item.date}
-        today={isToday}
-        active={item.date === date}
-        onPress={handleOnPress}>
-        <DateText active={item.date === date}>
-          {moment(item.date).format('ddd')}
-        </DateText>
-        <DateNumber active={item.date === date}>
-          {moment(item.date).format('DD.MM.')}
-        </DateNumber>
-      </Segment>
+      <Container>
+        <Segment
+          key={item.date}
+          today={isToday}
+          active={item.date === date}
+          onPress={handleOnPress}>
+          <DateText active={item.date === date}>
+            {moment(item.date).format('ddd')}
+          </DateText>
+          <DateNumber active={item.date === date}>
+            {moment(item.date).format('DD.MM.')}
+          </DateNumber>
+        </Segment>
+
+        <Spacer />
+        <RatingSegment>
+          <NightRating
+            height={15}
+            width={15}
+            unClickable={true}
+            date={item.date}
+          />
+        </RatingSegment>
+      </Container>
     )
   }
 
@@ -63,10 +77,14 @@ const DayStrip: FC = () => {
 
 export default DayStrip
 
+const Container = styled.View`
+  flex-direction: column;
+`
+
 const Segments = styled(FlatList)`
   width: ${WIDTH}px;
-  height: ${dayWidth + 30}px;
   margin: 20px 0px;
+  padding: 10px 0px;
 `
 
 interface SegmentProps extends StyleProps {
@@ -89,6 +107,13 @@ const Segment = styled.TouchableOpacity<SegmentProps>`
       : props.theme.PRIMARY_BACKGROUND_COLOR};
 `
 
+const RatingSegment = styled.View`
+  width: ${dayWidth}px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
 const DateText = styled.Text<SegmentProps>`
   font-size: 12px;
   color: ${(props: SegmentProps) =>
@@ -109,4 +134,8 @@ const DateNumber = styled.Text<SegmentProps>`
     props.active
       ? props.theme.PRIMARY_BACKGROUND_COLOR
       : props.theme.SECONDARY_TEXT_COLOR};
+`
+
+const Spacer = styled.View`
+  height: ${spacerHeight}px;
 `

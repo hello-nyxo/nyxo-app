@@ -40,6 +40,12 @@ jest.mock('moment', () => () => ({
   toISOString: () => '2020-05-07T21:00:00.000Z'
 }))
 
+jest.mock('react-native-iphone-x-helper', () => ({
+  getStatusBarHeight: jest.fn(),
+  ifIphoneX: jest.fn(),
+  isIphoneX: jest.fn()
+}))
+
 const middlewares = [thunk]
 
 const startOfTodayString = '2020-05-07T21:00:00.000Z'
