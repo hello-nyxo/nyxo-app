@@ -61,12 +61,12 @@ describe('Oura helper', () => {
         value: 'ASLEEP'
       },
       {
-        id: 'oura_2017-11-06T00:33:19.000Z_2017-11-06T06:13:19.000Z',
+        id: 'oura_2017-11-06T00:33:19.000Z_2017-11-06T06:08:19.000Z',
         sourceId: 'com.ouraring.oura',
         sourceName: 'Oura',
         startDate: '2017-11-06T00:33:19.000Z',
-        endDate: '2017-11-06T06:13:19.000Z',
-        totalDuration: 340,
+        endDate: '2017-11-06T06:08:19.000Z',
+        totalDuration: 335,
         value: 'ASLEEP'
       }
     ])

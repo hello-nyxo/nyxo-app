@@ -1,3 +1,4 @@
+import { NightValue } from '@API'
 import { Day, Night, Value } from '@typings/Sleepdata'
 import {
   addHours,
@@ -209,3 +210,16 @@ export const calculateEfficiency = (
 // 	date:
 // }))
 // }
+
+export const convertNightValue = (value: Value): NightValue => {
+  switch (value) {
+    case Value.Asleep:
+      return NightValue.Asleep
+    case Value.Awake:
+      return NightValue.Awake
+    case Value.InBed:
+      return NightValue.InBed
+    default:
+      return NightValue.InBed
+  }
+}

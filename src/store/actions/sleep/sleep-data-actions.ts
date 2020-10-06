@@ -30,7 +30,7 @@ export const SET_ACTIVE_INDEX = 'SET_ACTIVE_INDEX'
 
 /* ACTIONS */
 
-export const createNewCalendar = (days: Day[]) => ({
+export const createNewCalendar = (days: Day[]): ReduxAction => ({
   type: CREATE_NEW_CALENDAR,
   payload: days
 })
@@ -90,7 +90,7 @@ export const fetchSleepData = (
   endDate: string
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   const source = getMainSource(getState())
-  console.log(source)
+
   switch (source) {
     case SOURCE.HEALTH_KIT:
       dispatch(fetchSleepFromHealthKit(startDate, endDate))

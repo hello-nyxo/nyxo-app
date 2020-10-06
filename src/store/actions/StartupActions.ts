@@ -1,8 +1,8 @@
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { Platform } from 'react-native'
 import { GetState } from '@typings/GetState'
 import { Dispatch, Thunk } from '@typings/ReduxActions'
+import { Platform } from 'react-native'
 import { refreshAuthStatus } from './auth/auth-actions'
 import {
   updateCoachingInCloud,
@@ -13,6 +13,7 @@ import {
   handleUnsyncedHabitsThenRetrieveHabitsFromCloud,
   updateDayStreaks
 } from './habit/habit-actions'
+import { calculateInsights } from './insight-actions/insight-actions'
 import {
   createAndroidChannels,
   handleBedtimeApproachNotifications,
@@ -20,7 +21,6 @@ import {
   handleCoachingUncompletedLessonNotifications
 } from './notifications'
 import { prepareSleepDataFetching } from './sleep/health-kit-actions'
-import { fetchSleepData, updateCalendar } from './sleep/sleep-data-actions'
 import { updateSubscriptionStatus } from './subscription/subscription-actions'
 
 export const startup = (): Thunk => async (
@@ -55,11 +55,11 @@ export const startup = (): Thunk => async (
   if (isAuthenticated) {
     await dispatch(updateCoachingInCloud())
   }
-  // await dispatch(calculateInsights())
+  await dispatch(calculateInsights())
 
-  // await dispatch(handleBedtimeApproachNotifications())
-  // await dispatch(handleCoachingUncompletedLessonNotifications())
-  // await dispatch(handleCoachingLessonsInWeekNotifications())
+  await dispatch(handleBedtimeApproachNotifications())
+  await dispatch(handleCoachingUncompletedLessonNotifications())
+  await dispatch(handleCoachingLessonsInWeekNotifications())
 }
 
 export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {

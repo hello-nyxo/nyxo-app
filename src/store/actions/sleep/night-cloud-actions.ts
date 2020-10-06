@@ -1,12 +1,13 @@
-import { API, graphqlOperation } from 'aws-amplify'
-import { Dispatch, Thunk } from '@typings/ReduxActions'
-import { GetState } from '@typings/GetState'
-import { Night, Value } from '@typings/Sleepdata'
-import { getUsername } from '@selectors/UserSelectors'
-import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
-import { CreateNightInput, NightValue } from '@API'
-import * as Sentry from '@sentry/react-native'
+import { CreateNightInput } from '@API'
 import { createNight } from '@graphql/mutations'
+import { convertNightValue } from '@helpers/sleep/sleep-data-helper'
+import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
+import { getUsername } from '@selectors/UserSelectors'
+import * as Sentry from '@sentry/react-native'
+import { GetState } from '@typings/GetState'
+import { Dispatch, Thunk } from '@typings/ReduxActions'
+import { Night } from '@typings/Sleepdata'
+import { API, graphqlOperation } from 'aws-amplify'
 
 export const syncNightsToCloud = (nights: Night[]): Thunk => async (
   _: Dispatch,
@@ -54,22 +55,7 @@ const syncNight = async (username: string, night: Night) => {
     }
 
     const res = await API.graphql(graphqlOperation(createNight, { input }))
-    console.log(res)
   } catch (err) {
-    console.log(err)
     Sentry.captureException(`syncNightsToCloud ${err}`)
-  }
-}
-
-const convertNightValue = (value: Value): NightValue => {
-  switch (value) {
-    case Value.Asleep:
-      return NightValue.Asleep
-    case Value.Awake:
-      return NightValue.Awake
-    case Value.InBed:
-      return NightValue.InBed
-    default:
-      return NightValue.InBed
   }
 }

@@ -99,9 +99,9 @@ export const authorizeWithings = (): Thunk => async (dispatch: Dispatch) => {
 }
 
 export const refreshWithingsToken = (): Thunk => async (dispatch: Dispatch) => {
-  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     CONFIG.WITHINGS_CONFIG.bundleId
-  )) as WithingsAuthorizeResult
+  )) as unknown) as WithingsAuthorizeResult
 
   if (oldToken) {
     try {
@@ -150,13 +150,13 @@ export const revokeWithingsAccess = (): Thunk => async (dispatch: Dispatch) => {
 export const getWithingsSleep = (
   startDate?: string,
   endDate?: string
-): Thunk => async (dispatch: Dispatch, getState: GetState) => {
+): Thunk => async (dispatch: Dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
-  } = (await GetKeychainParsedValue(
+  } = ((await GetKeychainParsedValue(
     CONFIG.WITHINGS_CONFIG.bundleId
-  )) as WithingsAuthorizeResult
+  )) as unknown) as WithingsAuthorizeResult
 
   dispatch(fetchSleepWithingsStart())
 
@@ -185,14 +185,14 @@ export const getWithingsSleep = (
         await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepWithingsSuccess())
       } else {
-        const accessToken = await dispatch(refreshWithingsToken())
+        const newAccessToken = await dispatch(refreshWithingsToken())
 
         const withingsApiCall = await fetch(
           `https://wbsapi.withings.net/v2/sleep?action=getsummary&startdateymd=${start}&enddateymd=${end}&data_fields=${dataFields}`,
           {
             method: 'GET',
             headers: {
-              Authorization: `Bearer ${accessToken}`
+              Authorization: `Bearer ${newAccessToken}`
             }
           }
         )

@@ -51,8 +51,11 @@ const calculateAsleepPeriods = (start: string, hypnogram: string): Night[] => {
       })
 
       asleep = false
+      startTime = addMinutes(endTime, 5)
+      endTime = addMinutes(startTime, 5)
     }
 
+    // 4 == awake
     // if awake move both start and end time
     else if (!asleep && hypnogram[i] === '4') {
       asleep = false

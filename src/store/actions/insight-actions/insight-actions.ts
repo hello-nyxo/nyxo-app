@@ -3,6 +3,7 @@ import { Day } from '@typings/Sleepdata'
 import { GetState } from '@typings/GetState'
 import moment from 'moment'
 import { nearestMinutes } from '@helpers/time'
+import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
 /* ACTION TYPES */
 
 export const CALCULATE_INSIGHT_START = 'CALCULATE_INSIGHT_START'
@@ -11,17 +12,18 @@ export const CALCULATE_INSIGHT_FAILURE = 'CALCULATE_INSIGHT_FAILURE'
 
 /* ACTIONS */
 
-export const calculationStart = () => ({
+export const calculationStart = (): ReduxAction => ({
   type: CALCULATE_INSIGHT_START
 })
 
-export const calculationSuccess = (insights: Insight) => ({
+export const calculationSuccess = (insights: Insight): ReduxAction => ({
   type: CALCULATE_INSIGHT_SUCCESS,
   payload: insights
 })
-export const calculationFailure = () => ({
+export const calculationFailure = (): ReduxAction => ({
   type: CALCULATE_INSIGHT_FAILURE
 })
+
 /* ASYNC ACTIONS */
 
 type BedTimeWindowInsight = {
@@ -80,8 +82,8 @@ export const calculateBedtimeWindow = (days: Day[]): BedTimeWindowInsight => {
   return insights
 }
 
-export const calculateInsights = () => async (
-  dispatch: Function,
+export const calculateInsights = (): Thunk => async (
+  dispatch: Dispatch,
   getState: GetState
 ) => {
   dispatch(calculationStart())
