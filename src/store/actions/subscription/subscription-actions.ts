@@ -1,5 +1,5 @@
 import CONFIG from '@config/Config'
-import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
 import Intercom from 'react-native-intercom'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import { updateIntercomInformation } from '../IntercomActions'

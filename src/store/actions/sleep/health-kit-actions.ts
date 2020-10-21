@@ -5,7 +5,7 @@ import {
 import { formatHealthKitResponse } from '@helpers/sleep/health-kit-helper'
 import { getHealthKitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
 import { SleepDataSource } from '@typings/SleepClockState'
 import { Night } from '@typings/Sleepdata'
 import { SUB_SOURCE } from '@typings/state/sleep-source-state'

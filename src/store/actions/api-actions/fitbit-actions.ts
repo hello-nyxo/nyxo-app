@@ -7,7 +7,7 @@ import { formatFitbitSamples } from '@helpers/sleep/fitbit-helper'
 import moment from 'moment'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
 import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
 import {
   FitbitAuthorizeResult,
   FitbitRefreshResult,

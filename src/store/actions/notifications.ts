@@ -21,7 +21,7 @@ import {
   ScheduledNotification,
   UpdateNotificationPermissionType
 } from '@typings/NotificationState'
-import { Thunk, Dispatch } from '@typings/ReduxActions'
+import { Thunk, Dispatch } from '@typings/redux-actions'
 
 const { notifications: firebaseNotifications } = Firebase
 const {

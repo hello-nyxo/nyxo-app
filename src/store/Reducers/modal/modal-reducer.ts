@@ -1,6 +1,6 @@
 import { RATE_NIGHT } from '@actions/sleep/sleep-data-actions'
 import { ModalState } from '@typings/ModalState'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 
 import {
   TOGGLE_EDIT_HABIT_MODAL,

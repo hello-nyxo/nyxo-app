@@ -72,8 +72,8 @@ const RightColumn = styled.View`
   justify-content: flex-end;
 `
 
-const Icon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.SECONDARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.SECONDARY_TEXT_COLOR
 }))``
 
 const Container = styled.View`
@@ -86,30 +86,28 @@ const AndroidContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   border-radius: 5px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
 `
 
 const Button = styled.TouchableOpacity`
   border-radius: 5px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
   padding: 20px;
-  box-shadow: ${(props: StyleProps) => props.theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.SHADOW};
   flex-direction: row;
 `
 
 const Text = styled(TranslatedText)`
   flex: 1;
   font-size: 18px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
 
 const MiniText = styled(TranslatedText)`
   flex: 1;
   font-size: 11px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
 const PriceContainer = styled.View`
@@ -118,13 +116,13 @@ const PriceContainer = styled.View`
 `
 
 const Price = styled.Text`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
   font-size: 20px;
 `
 
 const Monthly = styled(TranslatedText)`
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.bold};
   font-size: 11px;
 `

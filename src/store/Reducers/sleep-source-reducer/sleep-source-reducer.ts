@@ -1,4 +1,4 @@
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import { SleepSourceState } from '@typings/state/sleep-source-state'
 import {
   SET_MAIN_SOURCE,

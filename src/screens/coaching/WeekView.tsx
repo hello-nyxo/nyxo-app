@@ -17,6 +17,7 @@ import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import Lessons from './Lessons'
+import { WeekActions } from '@components/week/WeekActions'
 
 const yOffset = new Animated.Value(0)
 
@@ -77,17 +78,18 @@ const WeekView = ({ route }: Props) => {
           header={
             <>
               <WeekViewHeader title={week.weekName} yOffset={yOffset} />
-
-              <WeekIntro
-                intro={week.intro}
-                description={week.weekDescription}
-                habitCount={week.habitCount}
-                lessonCount={week.lessonCount}
+              <WeekActions
                 started={activeWeek?.started}
                 ended={activeWeek?.ended}
                 isCurrentlyActive={week.slug === activeWeek?.slug}
                 endWeek={endWeek}
                 startWeek={startWeek}
+              />
+              <WeekIntro
+                intro={week.intro}
+                description={week.weekDescription}
+                habitCount={week.habitCount}
+                lessonCount={week.lessonCount}
               />
               <BGContainer>
                 <H2>WEEK.LESSONS</H2>

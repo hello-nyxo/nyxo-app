@@ -1,4 +1,4 @@
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import { SubscriptionState } from '@typings/SubscriptionState'
 import {
   RESTORE_START,

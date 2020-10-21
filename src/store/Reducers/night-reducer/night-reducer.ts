@@ -1,4 +1,4 @@
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import { Night } from '@typings/Sleepdata'
 import { FETCH_SLEEP_SUCCESS } from '@actions/sleep/health-kit-actions'
 

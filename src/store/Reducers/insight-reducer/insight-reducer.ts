@@ -5,7 +5,7 @@ import {
 } from '@actions/insight-actions/insight-actions'
 import { InsightState } from '@typings/state/insight-state'
 import { RESET_APP } from '@actions/shared'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 
 const initialState: InsightState = {
   loading: false,

@@ -1,11 +1,12 @@
-import 'react-native-get-random-values'
-import { v4 } from 'uuid'
-import Intercom from 'react-native-intercom'
 import { GetState } from '@typings/GetState'
+import { Dispatch, Thunk } from '@typings/redux-actions'
+import 'react-native-get-random-values'
+import Intercom from 'react-native-intercom'
+import { v4 } from 'uuid'
 import { setIntercomId } from './user/user-actions'
 
-export const registerIntercomUser = () => async (
-  dispatch: Function,
+export const registerIntercomUser = (): Thunk => async (
+  dispatch: Dispatch,
   getState: GetState
 ) => {
   const {
@@ -20,10 +21,6 @@ export const registerIntercomUser = () => async (
   await dispatch(setIntercomId(id))
 }
 
-export const updateUnreadCount = (count: number) => async (
-  dispatch: Function
-) => {}
-
 interface IntercomSubscriptionStatus {
   subscription: 'active' | 'not active'
   latestPurchaseDate?: string
@@ -34,12 +31,16 @@ export const updateIntercomInformation = async ({
   subscription,
   latestPurchaseDate,
   expirationDate
-}: IntercomSubscriptionStatus) => {
-  await Intercom.updateUser({
-    custom_attributes: {
-      subscription,
-      purchase_date: latestPurchaseDate || '',
-      expiration_date: expirationDate || 'lifetime'
-    }
-  })
+}: IntercomSubscriptionStatus): Promise<void> => {
+  try {
+    await Intercom.updateUser({
+      custom_attributes: {
+        subscription,
+        purchase_date: latestPurchaseDate || '',
+        expiration_date: expirationDate || 'lifetime'
+      }
+    })
+  } catch (error) {
+    return error
+  }
 }

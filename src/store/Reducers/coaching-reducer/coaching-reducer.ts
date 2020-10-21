@@ -14,7 +14,7 @@ import {
 } from '@actions/coaching/coaching-actions'
 import { RESET_APP } from '@actions/shared'
 import moment from 'moment'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import {
   CoachingState,
   STAGE,

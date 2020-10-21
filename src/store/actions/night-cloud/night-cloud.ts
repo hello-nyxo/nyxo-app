@@ -7,7 +7,7 @@ import { getWithingsSleep } from '@actions/api-actions/withings-actions'
 import { fetchSleepFromHealthKit } from '@actions/sleep/health-kit-actions'
 import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { GetState } from '@typings/GetState'
-import { Dispatch, Thunk } from '@typings/ReduxActions'
+import { Dispatch, Thunk } from '@typings/redux-actions'
 import { SOURCE } from '@typings/state/sleep-source-state'
 
 export const fetchSleepData = (

@@ -1,4 +1,4 @@
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import {
   DATA_ONBOARDING_COMPLETED,
   INTERCOM_NEED_HELP_READ

@@ -10,7 +10,7 @@ import {
   UPDATE_HABIT
 } from '@actions/habit/habit-actions'
 import { enableMapSet, produce } from 'immer'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import { HabitState, UnsyncedHabit } from '@typings/state/habit-state'
 
 enableMapSet()

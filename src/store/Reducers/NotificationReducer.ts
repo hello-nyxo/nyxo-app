@@ -4,7 +4,7 @@ import {
   ScheduledNotification,
   UpdateNotificationPermissionType
 } from '@typings/NotificationState'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 
 export const NEW_NOTIFICATION = 'NEW_NOTIFICATION'
 export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION'

@@ -14,7 +14,7 @@ import {
   ICoachingWeekFields,
   ILessonFields
 } from '@typings/generated/contentful'
-import { Dispatch, Thunk } from '@typings/ReduxActions'
+import { Dispatch, Thunk } from '@typings/redux-actions'
 import { sendError } from '../notifications'
 
 const { createClient } = require('contentful/dist/contentful.browser.min.js')

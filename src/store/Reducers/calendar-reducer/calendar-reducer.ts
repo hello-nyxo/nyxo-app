@@ -1,6 +1,6 @@
 import { RESET_APP } from '@actions/shared'
 import { SET_SELECTED_DATE } from '@actions/calendar-actions/calendar-actions'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 
 const initialState = {
   selectedDay: new Date().toISOString()

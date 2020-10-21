@@ -5,7 +5,7 @@ import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getUsername } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
 import { GetState } from '@typings/GetState'
-import { Dispatch, Thunk } from '@typings/ReduxActions'
+import { Dispatch, Thunk } from '@typings/redux-actions'
 import { Night } from '@typings/Sleepdata'
 import { API, graphqlOperation } from 'aws-amplify'
 

@@ -21,7 +21,7 @@ import ReduxAction, {
   Dispatch,
   Thunk,
   ThunkResult
-} from '@typings/ReduxActions'
+} from '@typings/redux-actions'
 import { Habit, MutationType, UnsyncedHabit } from '@typings/state/habit-state'
 import { Period } from '@typings/state/Periods'
 import { API, graphqlOperation } from 'aws-amplify'

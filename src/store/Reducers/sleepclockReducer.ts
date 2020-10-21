@@ -13,7 +13,7 @@ import {
 } from '@actions/sleep/sleep-data-actions'
 
 import moment from 'moment'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import { sortDays } from '@helpers/sleep/sleep'
 import { SleepClockState } from '@typings/SleepClockState'
 import { Day } from '@typings/Sleepdata'

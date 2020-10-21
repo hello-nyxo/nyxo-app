@@ -1,22 +1,21 @@
-import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { GOOGLE_FIT_KEYCHAIN_SERVICE } from '@actions/api-actions/google-fit-actions'
 import CONFIG from '@config/Config'
-import { isAfter, subDays } from 'date-fns'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import { formatGoogleFitData } from '@helpers/sleep/google-fit-helper'
+import { GoogleFitResponse } from '@typings/state/api-state'
+import { isAfter, subDays } from 'date-fns'
 import { Platform } from 'react-native'
 import { refresh } from 'react-native-app-auth'
-import { GOOGLE_FIT_KEYCHAIN_SERVICE } from '@actions/api-actions/google-fit-actions'
-import { Night } from '@typings/Sleepdata'
-import { GoogleFitResponse } from '@typings/state/api-state'
 
 const GOOGLE_FIT_API = `https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=`
 
-export const readGoogleFitSleep = async (): Promise<Night[]> => {
+export const readGoogleFitSleep = async (): Promise<void> => {
   const {
     accessToken,
     accessTokenExpirationDate
-  } = (await GetKeychainParsedValue(
+  } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
+  )) as unknown) as GoogleFitResponse
 
   const startDate = subDays(new Date(), 1).toISOString()
   const endDate = new Date().toISOString()

@@ -1,4 +1,4 @@
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import HealthKitState from '@typings/state/health-kit-state'
 import {
   FETCH_SLEEP_HEALTH_KIT_FAILURE,

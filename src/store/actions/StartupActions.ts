@@ -1,7 +1,7 @@
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { GetState } from '@typings/GetState'
-import { Dispatch, Thunk } from '@typings/ReduxActions'
+import { Dispatch, Thunk } from '@typings/redux-actions'
 import { Platform } from 'react-native'
 import { refreshAuthStatus } from './auth/auth-actions'
 import {

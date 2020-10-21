@@ -13,49 +13,16 @@ type Props = {
   description: string
   habitCount: number
   lessonCount: number
-  started?: string | null
-  ended?: string | null
-  isCurrentlyActive?: boolean | null
-  startWeek: () => void
-  endWeek: () => void
 }
 
 const WeekIntro: FC<Props> = ({
   intro,
   description,
   habitCount,
-  lessonCount,
-  started,
-  ended,
-  startWeek,
-  endWeek,
-  isCurrentlyActive
+  lessonCount
 }) => {
-  const startTime = started ? format(new Date(started), 'dd.MM') : ''
-  const endTime = ended ? format(new Date(ended), 'dd.MM') : ''
-  const canEnd = canEndCoaching(started, 7)
-
   return (
     <Container>
-      <Card>
-        <DurationRow>
-          {started && (
-            <Started variables={{ started: startTime }}>
-              WEEK_VIEW.START_DATE
-            </Started>
-          )}
-          {ended && (
-            <Ended variables={{ ended: endTime }}>WEEK_VIEW.END_DATE</Ended>
-          )}
-        </DurationRow>
-        {!isCurrentlyActive && !started && (
-          <PrimaryButton title="WEEK.BEGIN" onPress={startWeek} />
-        )}
-        {started && canEnd && !ended ? (
-          <PrimaryButton title="WEEK.COMPLETE" onPress={endWeek} />
-        ) : null}
-      </Card>
-
       <Card>
         <Intro>{intro}</Intro>
         <Information>

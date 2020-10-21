@@ -1,7 +1,7 @@
-import Moment from 'moment'
-import { format, parseISO, isValid, setHours, setMinutes } from 'date-fns'
-import translate from '../config/i18n'
 import { Day } from '@typings/Sleepdata'
+import { format, parseISO, setHours, setMinutes } from 'date-fns'
+import Moment from 'moment'
+import translate from '../config/i18n'
 
 type Moment = typeof Moment
 
@@ -76,15 +76,30 @@ export function toNightTime(date: string): string {
 }
 
 export const getTitle = () => {
-  const format = 'hh:mm:ss'
+  const timeFormat = 'hh:mm:ss'
   const now = Moment()
-  if (now.isBetween(Moment('04:00:00', format), Moment('11:59:59', format))) {
+  if (
+    now.isBetween(
+      Moment('04:00:00', timeFormat),
+      Moment('11:59:59', timeFormat)
+    )
+  ) {
     return { title: 'Good Morning', subtitle: 'MORNING_SUBTITLE' }
   }
-  if (now.isBetween(Moment('12:00:00', format), Moment('16:59:59', format))) {
+  if (
+    now.isBetween(
+      Moment('12:00:00', timeFormat),
+      Moment('16:59:59', timeFormat)
+    )
+  ) {
     return { title: 'Good Afternoon', subtitle: 'AFTERNOON_SUBTITLE' }
   }
-  if (now.isBetween(Moment('17:00:00', format), Moment('20:59:59', format))) {
+  if (
+    now.isBetween(
+      Moment('17:00:00', timeFormat),
+      Moment('20:59:59', timeFormat)
+    )
+  ) {
     return { title: 'Good Evening', subtitle: 'EVENING_SUBTITLE' }
   }
   return { title: 'Good Night', subtitle: 'NIGHT_SUBTITLE' }

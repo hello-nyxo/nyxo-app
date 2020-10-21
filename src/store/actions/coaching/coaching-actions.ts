@@ -18,7 +18,7 @@ import {
 import { GetState } from '@typings/GetState'
 import { CoachingMonth, STAGE, StateWeek } from '@typings/state/coaching-state'
 import { v4 } from 'uuid'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 
 /* ACTION TYPES */
 

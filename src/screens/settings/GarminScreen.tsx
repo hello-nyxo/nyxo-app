@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { getGarminAccessTokenAndroid } from '@actions/api-actions/garmin-actions'
 import ROUTE from '@config/routes/Routes'
 
-const GarminScreen = () => {
+const GarminScreen: FC = () => {
   const route = useRoute()
   const navigation = useNavigation()
   const dispatch = useDispatch()

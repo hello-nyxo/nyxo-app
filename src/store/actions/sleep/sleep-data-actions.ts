@@ -9,7 +9,7 @@ import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-se
 import { sameDay } from '@helpers/time'
 import moment from 'moment'
 import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
 import { Day, Night } from '@typings/Sleepdata'
 import { SOURCE } from '@typings/state/sleep-source-state'
 

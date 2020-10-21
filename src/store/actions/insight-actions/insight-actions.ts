@@ -3,7 +3,7 @@ import { Day } from '@typings/Sleepdata'
 import { GetState } from '@typings/GetState'
 import moment from 'moment'
 import { nearestMinutes } from '@helpers/time'
-import ReduxAction, { Dispatch, Thunk } from '@typings/ReduxActions'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
 /* ACTION TYPES */
 
 export const CALCULATE_INSIGHT_START = 'CALCULATE_INSIGHT_START'

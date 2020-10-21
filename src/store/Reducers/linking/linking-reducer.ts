@@ -7,7 +7,7 @@ import {
   REMOVE_LINK_FAILURE
 } from '@actions/linking/linking-actions'
 import { LinkingState } from '@typings/state/linking-state'
-import ReduxAction from '@typings/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 
 const initialState = {
   linkCode: null,
