@@ -1,19 +1,22 @@
-import { Document } from '@contentful/rich-text-types'
+import { addHabit } from '@actions/habit/habit-actions'
 import RichText from '@components/RichText'
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
+import { Document } from '@contentful/rich-text-types'
+import { WIDTH } from '@helpers/Dimensions'
+import { fonts } from '@styles/themes'
+import { Period } from '@typings/state/Periods'
 import React, { memo, useState } from 'react'
+import { ScrollView } from 'react-native'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
-import { addHabit } from '@actions/habit/habit-actions'
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import { Period } from '@typings/state/Periods'
-import { WIDTH } from '@helpers/Dimensions'
-import { fonts, StyleProps } from '@styles/themes'
-import { ScrollView } from 'react-native'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import { Container, StyledModal } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 import { getIcon } from './TopRow'
+
+export const EXAMPLE_HABIT_WIDTH = WIDTH - 60
+export const EXAMPLE_HABIT_MARGIN_LEFT = 20
 
 interface Props {
   title?: string
@@ -81,9 +84,9 @@ export default memo(ExampleHabit)
 
 const Habit = styled.View`
   padding: 20px;
-  margin: 0px 20px;
+  margin-left: 20px;
   flex: 1;
-  width: ${WIDTH - 40}px;
+  width: ${WIDTH - 60}px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: 1px 1px 15px rgba(32, 33, 37, 0.1);
   border-radius: 5px;

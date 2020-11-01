@@ -1,11 +1,14 @@
-import React, { memo } from 'react'
-import styled from 'styled-components/native'
-import { FlatList } from 'react-native'
-import { ExampleHabit as ExampleHabitType } from '@typings/CoachingContentState'
-import { fonts, StyleProps } from '@styles/themes'
 import keyExtractor from '@helpers/KeyExtractor'
+import { fonts, StyleProps } from '@styles/themes'
+import { ExampleHabit as ExampleHabitType } from '@typings/CoachingContentState'
+import React, { memo } from 'react'
+import { FlatList } from 'react-native'
+import styled from 'styled-components/native'
+import ExampleHabit, {
+  EXAMPLE_HABIT_MARGIN_LEFT,
+  EXAMPLE_HABIT_WIDTH
+} from '../HabitCard/ExampleHabit'
 import { H3Margin } from '../Primitives/Primitives'
-import ExampleHabit from '../HabitCard/ExampleHabit'
 import TranslatedText from '../TranslatedText'
 
 const ExampleHabitSection = ({
@@ -15,6 +18,9 @@ const ExampleHabitSection = ({
 }) => {
   if (!habits) return null
 
+  const contentOffsets = habits.map(
+    (_, index) => (EXAMPLE_HABIT_WIDTH + EXAMPLE_HABIT_MARGIN_LEFT) * index
+  )
   const renderHabit = ({
     item: habit,
     index
@@ -40,10 +46,11 @@ const ExampleHabitSection = ({
         keyExtractor={keyExtractor}
         contentContainerStyle={{ paddingVertical: 20 }}
         centerContent
-        pagingEnabled
         horizontal
         data={habits}
         renderItem={renderHabit}
+        snapToOffsets={contentOffsets}
+        decelerationRate="fast"
       />
     </>
   )
