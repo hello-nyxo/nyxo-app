@@ -8,7 +8,6 @@ import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { PageTitle } from '../Primitives/Primitives'
-import { IntroduceCoaching } from './IntroduceCoaching'
 
 const CoachingHeader: FC = () => {
   const { data } = useGetActiveCoaching()
@@ -22,9 +21,8 @@ const CoachingHeader: FC = () => {
       <PageTitle>Coaching</PageTitle>
 
       {!hasActiveCoaching && <BuyCoachingButton />}
-      {!hasActiveCoaching && <IntroduceCoaching />}
 
-      <Title>Active Coaching</Title>
+      {/* <Title>Active Coaching</Title>
       <Container>
         <Column>
           {data?.started && (
@@ -41,7 +39,7 @@ const CoachingHeader: FC = () => {
             <Text variables={{ count: weeks }}>COACHING_MONTH.WEEKS</Text>
           </Row>
         </Column>
-      </Container>
+      </Container> */}
     </>
   )
 }
@@ -49,7 +47,7 @@ const CoachingHeader: FC = () => {
 export default CoachingHeader
 
 const Container = styled.View`
-  margin: 0px 16px 32px;
+  margin: 0px 0px 32px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   padding: 16px;
   border-radius: 8px;

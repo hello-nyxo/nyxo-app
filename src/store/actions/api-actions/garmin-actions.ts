@@ -153,9 +153,9 @@ export const getGarminOauthVerifierAndroid = (): Thunk => async (
       oauth_token_secret
     } = await getRequestTokenResponse.json()
 
-    const { accessToken, accessTokenSecret } = (await GetKeychainParsedValue(
+    const { accessToken, accessTokenSecret } = ((await GetKeychainParsedValue(
       CONFIG.GARMIN_CONFIG.bundleId
-    )) as GarminAuthorizeResult
+    )) as unknown) as GarminAuthorizeResult
 
     const key = CONFIG.GARMIN_CONFIG.bundleId
     const value = JSON.stringify({
@@ -225,13 +225,13 @@ export const getGarminAccessTokenAndroid = (
   }
 }
 
-export const getGarminSleep = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
-  const { accessToken, accessTokenSecret } = (await GetKeychainParsedValue(
+export const getGarminSleep = (
+  startDate?: string,
+  endDate?: string
+): Thunk => async (dispatch: Dispatch) => {
+  const { accessToken, accessTokenSecret } = ((await GetKeychainParsedValue(
     CONFIG.GARMIN_CONFIG.bundleId
-  )) as GarminAuthorizeResult
+  )) as unknown) as GarminAuthorizeResult
 
   dispatch(fetchSleepGarminStart())
 

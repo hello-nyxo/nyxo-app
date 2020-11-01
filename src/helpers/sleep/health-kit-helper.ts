@@ -1,16 +1,13 @@
 import { getNightDuration } from '@helpers/sleep/sleep'
 import { HealthKitSleepResponse, Night, Value } from '@typings/Sleepdata'
-import { differenceInMinutes, parse } from 'date-fns'
+import { differenceInMinutes, parse, parseISO } from 'date-fns'
 
 export const formatHealthKitResponse = (
   hkSample: HealthKitSleepResponse
 ): Night => {
-  const startDate = parse(
-    hkSample.startDate,
-    'yyyy-MM-dd kk:mm:SS XX',
-    new Date()
-  )
-  const endDate = parse(hkSample.endDate, 'yyyy-MM-dd kk:mm:SS XX', new Date())
+  console.log(hkSample)
+  const startDate = parseISO(hkSample.startDate)
+  const endDate = parseISO(hkSample.endDate)
   let minutes = differenceInMinutes(endDate, startDate)
   const hours = Math.floor(minutes / 60)
   minutes -= hours * 60

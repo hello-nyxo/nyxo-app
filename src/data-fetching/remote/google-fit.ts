@@ -60,9 +60,9 @@ export const readGoogleFitSleep = async (): Promise<void> => {
 }
 
 export const refreshGoogleFitToken = async () => {
-  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
+  )) as unknown) as GoogleFitResponse
 
   const config =
     Platform.OS === 'android'

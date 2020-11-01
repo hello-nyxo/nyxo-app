@@ -313,8 +313,8 @@
   "CURRENT_WEEK_COMPLETED": "New week not yet started",
 
   "READING_TIME": {
-    "SINGULAR": "{{readingTime}} minute.",
-    "PLURAL": "{{readingTime}} minutes."
+    "SINGULAR": "{{readingTime}} minute",
+    "PLURAL": "{{readingTime}} minutes"
   },
   "HABIT_COUNT": "{{habits}} example habit",
   "HABITS_COUNT": "{{habits}} example habits",

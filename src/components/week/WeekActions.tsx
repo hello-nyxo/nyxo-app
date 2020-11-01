@@ -8,8 +8,8 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 
 type Props = {
-  started?: string
-  ended?: string
+  started?: string | null
+  ended?: string | null
   isCurrentlyActive: boolean
   startWeek: () => void
   endWeek: () => void
@@ -24,6 +24,7 @@ export const WeekActions: FC<Props> = ({
   const startTime = started ? format(new Date(started), 'dd.MM') : ''
   const endTime = ended ? format(new Date(ended), 'dd.MM') : ''
   const canEnd = canEndCoaching(started, 7)
+
   return (
     <Container>
       <Card>
@@ -37,9 +38,9 @@ export const WeekActions: FC<Props> = ({
             <Ended variables={{ ended: endTime }}>WEEK_VIEW.END_DATE</Ended>
           )}
         </DurationRow>
-        {!isCurrentlyActive && !started && (
+        {!isCurrentlyActive && !started ? (
           <PrimaryButton title="WEEK.BEGIN" onPress={startWeek} />
-        )}
+        ) : null}
         {started && canEnd && !ended ? (
           <PrimaryButton title="WEEK.COMPLETE" onPress={endWeek} />
         ) : null}
@@ -50,8 +51,7 @@ export const WeekActions: FC<Props> = ({
 
 const Container = styled.View`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
-  border-radius: 8px;
-  padding: 0px 16px;
+  padding: 16px 16px 0px;
 `
 const DurationRow = styled.View`
   flex-direction: row;

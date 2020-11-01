@@ -78,7 +78,7 @@ const Icon = styled(IconBold).attrs(() => ({
 }))``
 
 const Container = styled.View`
-  padding: 16px;
+  padding: 16px 0px;
 `
 
 const AndroidContainer = styled.View`

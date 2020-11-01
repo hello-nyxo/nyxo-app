@@ -70,7 +70,6 @@ const ExplanationsModal: FC = () => {
 
   return (
     <StyledModal
-      on
       isVisible={isVisible}
       transparent={false}
       onSwipeComplete={closeModal}

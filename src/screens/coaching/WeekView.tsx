@@ -16,8 +16,9 @@ import React, { memo } from 'react'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import Lessons from './Lessons'
 import { WeekActions } from '@components/week/WeekActions'
+import BuyCoaching from '@components/CoachingSpecific/BuyCoachingButton'
+import Lessons from './Lessons'
 
 const yOffset = new Animated.Value(0)
 
@@ -78,22 +79,29 @@ const WeekView = ({ route }: Props) => {
           header={
             <>
               <WeekViewHeader title={week.weekName} yOffset={yOffset} />
-              <WeekActions
-                started={activeWeek?.started}
-                ended={activeWeek?.ended}
-                isCurrentlyActive={week.slug === activeWeek?.slug}
-                endWeek={endWeek}
-                startWeek={startWeek}
-              />
+              {hasCoaching ? (
+                <WeekActions
+                  started={activeWeek?.started}
+                  ended={activeWeek?.ended}
+                  isCurrentlyActive={week.slug === activeWeek?.slug}
+                  endWeek={endWeek}
+                  startWeek={startWeek}
+                />
+              ) : (
+                <BuyCoachingContainer>
+                  <BuyCoaching />
+                </BuyCoachingContainer>
+              )}
+
               <WeekIntro
                 intro={week.intro}
                 description={week.weekDescription}
                 habitCount={week.habitCount}
                 lessonCount={week.lessonCount}
               />
-              <BGContainer>
+              <TitleContainer>
                 <H2>WEEK.LESSONS</H2>
-              </BGContainer>
+              </TitleContainer>
             </>
           }
           footer={<Copyright />}
@@ -108,4 +116,13 @@ export default memo(WeekView)
 
 const Container = styled.View`
   margin-top: 30px;
+`
+const TitleContainer = styled.View`
+  padding: 0px 20px;
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+`
+
+const BuyCoachingContainer = styled.View`
+  padding: 0px 20px;
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `

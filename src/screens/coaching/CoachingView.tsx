@@ -22,17 +22,17 @@ const CoachingScreen: FC = () => {
   return (
     <SafeAreaView>
       <TopInfo />
-      <StyledScrollView
+
+      <WeekCarousel
+        ListHeaderComponent={<CoachingHeader />}
         refreshControl={
           <RefreshControl
             refreshing={isLoading}
             tintColor={colors.radiantBlue}
             onRefresh={refetch}
           />
-        }>
-        <CoachingHeader />
-        <WeekCarousel />
-      </StyledScrollView>
+        }
+      />
 
       <CoachingNotStarted />
       <NewHabitModal />
