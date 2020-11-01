@@ -3,8 +3,8 @@ import React, { memo, useState } from 'react'
 import Intercom from 'react-native-intercom'
 import { AirbnbRating, Rating } from 'react-native-ratings'
 import styled from 'styled-components/native'
+import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 import TranslatedText from '../TranslatedText'
 
 interface Props {

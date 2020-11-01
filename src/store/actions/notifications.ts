@@ -1,27 +1,27 @@
 import PushNotificationIOS, {
   PushNotificationPermissions
 } from '@react-native-community/push-notification-ios'
-import { Night } from 'Types/Sleepdata'
-import translate from 'config/i18n'
+import { Night } from '@typings/Sleepdata'
+import translate from '@config/i18n'
 import {
   androidChannels,
   BEDTIME_APPROACH,
   COACHING_INCOMPLETE_LESSON,
   COACHING_REMIND_LESSONS_IN_WEEK,
   NotificationObject
-} from 'config/PushNotifications'
+} from '@config/PushNotifications'
 import moment from 'moment'
 import { Platform } from 'react-native'
 import Firebase from 'react-native-firebase'
 import Intercom from 'react-native-intercom'
 import { actionCreators } from '@reducers/NotificationReducer'
-import { GetState } from 'Types/GetState'
+import { GetState } from '@typings/GetState'
 import {
   NotificationType,
   ScheduledNotification,
   UpdateNotificationPermissionType
-} from 'Types/NotificationState'
-import { Thunk, Dispatch } from 'Types/ReduxActions'
+} from '@typings/NotificationState'
+import { Thunk, Dispatch } from '@typings/redux-actions'
 
 const { notifications: firebaseNotifications } = Firebase
 const {

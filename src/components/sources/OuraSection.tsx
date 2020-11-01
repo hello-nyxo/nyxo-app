@@ -1,17 +1,15 @@
-import { authorizeOura } from '@actions/api-actions/oura-actions'
+import { toggleOura } from '@actions/api-actions/oura-actions'
 import TranslatedText from '@components/TranslatedText'
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { getOuraEnabled } from '@selectors/api-selectors/api-selectors'
 import { getIsOuraMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import React, { FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import colors from 'styles/colors'
-import { constants } from 'styles/themes'
+import { constants } from '@styles/themes'
 
-const OuraSection = () => {
+const OuraSection: FC = () => {
   const dispatch = useDispatch()
   const isOuraMainSource = useSelector(getIsOuraMainSource)
-  const ouraAuthorized = useSelector(getOuraEnabled)
 
   const setOuraAsSource = () => {
     dispatch(toggleOura())

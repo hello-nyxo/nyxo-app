@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import FastImage from 'react-native-fast-image'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '../../styles/themes'
+import { fonts, StyleProps } from '@styles/themes'
 
 interface AuthorCardProps {
   avatarURL: string

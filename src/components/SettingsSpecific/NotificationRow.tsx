@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { Switch } from 'react-native'
 import styled from 'styled-components/native'
+import { constants, StyleProps } from '@styles/themes'
 import { P } from '../Primitives/Primitives'
 import { NotificationDataItemProps } from '../../screens/settings/Notifications'
-import { constants, StyleProps } from '../../styles/themes'
 
 const NotificationRow = (props: NotificationDataItemProps) => {
   const onValueChange = (value: boolean) => {

@@ -1,112 +1,151 @@
-import { setSelectedDay } from '@actions/sleep/sleep-data-actions'
-import { getAllDays, getSelectedDay } from '@selectors/SleepDataSelectors'
-import moment from 'moment'
-import React, { FC } from 'react'
-import { FlatList } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { FC, useRef, useEffect } from 'react'
+import { FlatList, ListRenderItem, ViewToken } from 'react-native'
 import styled from 'styled-components/native'
-import { Day } from 'Types/Sleepdata'
+import { format, sub, startOfDay } from 'date-fns/esm'
 import { WIDTH } from '@helpers/Dimensions'
-import keyExtractor from '@helpers/KeyExtractor'
-import { fonts, StyleProps } from '../styles/themes'
+import { useDispatch } from 'react-redux'
+import { toggleCalendarModal } from '@actions/modal/modal-actions'
+import useCalendar from '@hooks/calendar'
+import { isSameDay } from 'date-fns'
+import LinearGradient from 'react-native-linear-gradient'
 
-const dayWidth = WIDTH / 7
-const cardMargin = 5
+const contentOffset = { x: -WIDTH / 2 / 2, y: 0 }
 
-const DayStrip: FC = () => {
-  const days = useSelector(getAllDays)
+const CalendarStrip: FC = () => {
+  const { selectDate, selectedDate } = useCalendar()
+  const flatListRef = useRef<FlatList>(null)
   const dispatch = useDispatch()
-  const { date } = useSelector(getSelectedDay)
-  const renderItem = ({ item }: { item: Day }) => {
-    const isToday = moment(item.date).isSame(new Date(), 'day')
+  const startDate = new Date()
+  const days = Array.from(Array(365 * 3)).map((_, index) =>
+    startOfDay(sub(startDate, { days: index }))
+  )
 
-    const handleOnPress = () => {
-      dispatch(setSelectedDay(item.date))
-    }
-
-    return (
-      <Segment
-        key={item.date}
-        today={isToday}
-        active={item.date === date}
-        onPress={handleOnPress}>
-        <DateText active={item.date === date}>
-          {moment(item.date).format('ddd')}
-        </DateText>
-        <DateNumber active={item.date === date}>
-          {moment(item.date).format('DD.MM.')}
-        </DateNumber>
-      </Segment>
-    )
+  const toggleCalendar = () => {
+    dispatch(toggleCalendarModal())
   }
 
-  const snapOffets: number[] = days.map((_, index) => index * 30)
+  const offsets = days.map((_, index) => index * (WIDTH / 2))
+
+  const renderItem: ListRenderItem<Date> = ({ item }) => (
+    <PressableContainer key={item.toISOString()} onPress={toggleCalendar}>
+      <Day>
+        <DateContainer>{format(item, 'EEE d. LLL')}</DateContainer>
+      </Day>
+    </PressableContainer>
+  )
+
+  const handleViewableItemsChanged = ({
+    viewableItems
+  }: {
+    viewableItems: Array<ViewToken>
+  }) => {
+    if (viewableItems.length === 1) {
+      const date = viewableItems[0].item
+      selectDate(date)
+    }
+  }
+
+  const handleViewableItemsChangedRef = useRef(handleViewableItemsChanged)
+
+  const viewabilityConfig = {
+    itemVisiblePercentThreshold: 85,
+    minimumViewTime: 200
+  }
+
+  const keyExtractor = (item: Date) => item.toISOString()
+
+  const scrollToItem = (index: number) => {
+    return flatListRef?.current?.scrollToIndex({
+      index,
+      animated: true,
+      viewPosition: 0.5
+    })
+  }
+
+  useEffect(() => {
+    const index = days.findIndex((date) =>
+      isSameDay(date, new Date(selectedDate))
+    )
+    if (index >= 0) {
+      scrollToItem(index)
+    }
+  }, [selectedDate])
 
   return (
-    <Segments
-      data={days}
-      decelerationRate="fast"
-      snapToStart
-      snapToOffsets={snapOffets}
-      getItemLayout={(_, index) => ({
-        index,
-        length: dayWidth,
-        offset: (dayWidth + cardMargin) * index
-      })}
-      keyExtractor={keyExtractor}
-      showsHorizontalScrollIndicator={false}
-      renderItem={renderItem}
-      horizontal
-    />
+    <Container>
+      <FlatList
+        ref={flatListRef}
+        showsHorizontalScrollIndicator={false}
+        inverted
+        snapToStart
+        horizontal
+        getItemLayout={(_, index: number) => ({
+          index,
+          length: WIDTH / 2,
+          offset: (WIDTH / 2) * index
+        })}
+        contentOffset={contentOffset}
+        keyExtractor={keyExtractor}
+        viewabilityConfig={viewabilityConfig}
+        onViewableItemsChanged={handleViewableItemsChangedRef.current}
+        decelerationRate="fast"
+        snapToInterval={WIDTH / 2}
+        centerContent
+        snapToAlignment="center"
+        data={days}
+        renderItem={renderItem}
+      />
+      <Gradient pointerEvents="box-none" />
+    </Container>
   )
 }
 
-export default DayStrip
+export default CalendarStrip
 
-const Segments = styled(FlatList)`
+const Container = styled.View`
   width: ${WIDTH}px;
-  height: ${dayWidth + 30}px;
-  margin: 20px 0px;
+  height: 30px;
 `
 
-interface SegmentProps extends StyleProps {
-  readonly active?: boolean
-  readonly today?: boolean
-}
-
-const Segment = styled.TouchableOpacity<SegmentProps>`
-  width: ${dayWidth}px;
-  height: ${dayWidth}px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-  margin-top: 30px;
-  border-radius: 5px;
-  background-color: ${(props: SegmentProps) =>
-    props.active
-      ? props.theme.PRIMARY_TEXT_COLOR
-      : props.theme.PRIMARY_BACKGROUND_COLOR};
+const Day = styled.View`
+  width: ${WIDTH / 2}px;
 `
 
-const DateText = styled.Text<SegmentProps>`
-  font-size: 12px;
-  color: ${(props: SegmentProps) =>
-    props.active
-      ? props.theme.PRIMARY_BACKGROUND_COLOR
-      : props.theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.bold};
-  margin-bottom: 5px;
-  text-transform: uppercase;
+const DateContainer = styled.Text`
   text-align: center;
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
-const DateNumber = styled.Text<SegmentProps>`
-  font-size: 13px;
-  font-family: ${fonts.medium};
-  text-align: center;
-  color: ${(props: SegmentProps) =>
-    props.active
-      ? props.theme.PRIMARY_BACKGROUND_COLOR
-      : props.theme.SECONDARY_TEXT_COLOR};
+const PressableContainer = styled.TouchableWithoutFeedback`
+  background-color: red;
+`
+
+const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
+  colors:
+    theme.mode === 'dark'
+      ? [
+          'rgba(0,0,0,1)',
+          'rgba(0,0,0,0)',
+          'rgba(0,0,0,0)',
+          'rgba(0,0,0,0)',
+          'rgba(0,0,0,1)'
+        ]
+      : [
+          'rgba(246,246,249,1)',
+          'rgba(246,246,249,0)',
+          'rgba(246,246,249,0)',
+          'rgba(246,246,249,0)',
+          'rgba(246,246,249,1)'
+        ],
+  locations: [0, 0.25, 0.5, 0.75, 1],
+  start: { x: 0, y: 0 },
+  end: { x: 1, y: 0 }
+}))`
+  width: ${WIDTH}px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 `

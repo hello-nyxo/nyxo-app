@@ -2,7 +2,7 @@ import { ScaleTime } from 'd3'
 import moment from 'moment'
 import React, { FC, useMemo } from 'react'
 import { G, Rect } from 'react-native-svg'
-import { Day } from 'Types/Sleepdata'
+import { Day } from '@typings/Sleepdata'
 import colors from '../../../styles/colors'
 
 interface Props {

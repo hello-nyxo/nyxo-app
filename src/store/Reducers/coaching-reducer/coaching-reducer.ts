@@ -14,13 +14,13 @@ import {
 } from '@actions/coaching/coaching-actions'
 import { RESET_APP } from '@actions/shared'
 import moment from 'moment'
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import {
   CoachingState,
   STAGE,
   CoachingMonth,
   StateWeek
-} from 'typings/state/coaching-state'
+} from '@typings/state/coaching-state'
 import { WEEK_STAGE } from '@selectors/coaching-selectors'
 
 const initialState: CoachingState = {

@@ -11,7 +11,6 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src/'],
         extensions: [
           '.ios.ts',
           '.android.ts',
@@ -26,11 +25,19 @@ module.exports = {
         alias: {
           '@actions': './src/store/actions',
           '@reducers': './src/store/Reducers',
-          '@selectors': './src/store/Selectors',
+          '@selectors': './src/store/selectors',
           '@components': './src/components',
           '@helpers': './src/helpers/',
           '@graphql': './src/graphql/',
-          '@hooks': './src/hooks'
+          '@screens': './src/screens/',
+          '@data-fetching': './src/data-fetching',
+          '@hooks': './src/hooks',
+          '@typings': './src/typings',
+          '@types': './src/Types',
+          '@config': './src/config',
+          '@styles': './src/styles',
+          '@API': './src/API',
+          'persist-queries': './src/store/persist-queries'
         }
       }
     ]

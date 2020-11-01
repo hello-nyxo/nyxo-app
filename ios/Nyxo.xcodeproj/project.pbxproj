@@ -617,7 +617,6 @@
 				5B6E854A21406B9A0013E7B5 /* Embed Watch Content */,
 				6C3BA05A2308A4078CE786D2 /* [CP] Copy Pods Resources */,
 				DED22F96C89D448186375252 /* Upload Debug Symbols to Sentry */,
-				8A51C43A24F553DC00DF3C83 /* Strip frameworks */,
 			);
 			buildRules = (
 			);
@@ -801,24 +800,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		8A51C43A24F553DC00DF3C83 /* Strip frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Strip frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/../node_modules/react-native-purchases/ios/strip-frameworks.sh\"\n";
 		};
 		BF842D7B9E4CC79A1B9C718D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1014,7 +995,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 44;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
@@ -1062,7 +1043,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

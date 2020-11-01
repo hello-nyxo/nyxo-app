@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
@@ -7,27 +7,26 @@ import {
   HEADER_MIN_HEIGHT,
   WIDTH
 } from '@helpers/Dimensions'
-import { StyleProps } from '../../styles/themes'
+import { StyleProps } from '@styles/themes'
 import AnimatedFastImage from '../AnimatedFastImage/AnimatedFastImage'
 
-interface Props {
-  yOffset: any
+type Props = {
+  yOffset: Animated.Value<number>
   cover: string
 }
 
-const LessonCover = (props: Props) => {
-  const { yOffset, cover } = props
-  const headerHeight = (yOffset: any) => ({
+const LessonCover: FC<Props> = ({ yOffset, cover }) => {
+  const headerHeight = (offset: Animated.Value<number>) => ({
     transform: [
       {
-        scale: yOffset.interpolate({
+        scale: offset.interpolate({
           inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
           outputRange: [2, 1],
           extrapolateRight: Animated.Extrapolate.CLAMP
         })
       }
     ],
-    opacity: yOffset.interpolate({
+    opacity: offset.interpolate({
       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
       outputRange: [1, 0],
       extrapolateRight: Animated.Extrapolate.CLAMP,
@@ -40,7 +39,7 @@ const LessonCover = (props: Props) => {
       <Gradient />
       <CoverPhoto
         style={headerHeight(yOffset)}
-        source={{ uri: `https:${cover}?fm=jpg&fl=progressive&w=${WIDTH * 2}` }}
+        source={{ uri: `https:${cover}?fm=jpg&fl=progressive&w=${WIDTH * 3}` }}
       />
     </Container>
   )
@@ -49,7 +48,7 @@ const LessonCover = (props: Props) => {
 export default LessonCover
 
 const Container = styled.View`
-  height: ${HEADER_MAX_HEIGHT};
+  height: ${HEADER_MAX_HEIGHT}px;
   width: 100%;
   overflow: hidden;
   position: absolute;

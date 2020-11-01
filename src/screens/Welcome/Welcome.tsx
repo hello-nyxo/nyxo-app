@@ -7,8 +7,8 @@ import { markIntroductionCompleted } from '@actions/user/user-actions'
 import AnimationContainer from '@components/animationContainer'
 import ScalingButton from '@components/Buttons/ScalingButton'
 import TranslatedText from '@components/TranslatedText'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
 
 interface WelcomeProps {
   navigation: any

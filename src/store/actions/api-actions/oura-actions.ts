@@ -1,16 +1,16 @@
-import { OuraAuthorizeResult, ResponseBase } from 'Types/State/api-state'
-import { GetState } from 'Types/GetState'
-import { authorize, refresh } from 'react-native-app-auth'
-import CONFIG from 'config/Config'
-import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { SOURCE } from 'typings/state/sleep-source-state'
-import { getOuraEnabled } from '@selectors/api-selectors/api-selectors'
-import moment from 'moment'
-import { formatOuraSamples } from 'helpers/sleep/oura-helper'
-import { formatSleepData } from '@actions/sleep/sleep-data-actions'
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
+import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
+import { getOuraEnabled } from '@selectors/api-selectors/api-selectors'
+import CONFIG from '@config/Config'
+import { format, isAfter } from 'date-fns'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { formatOuraSamples } from '@helpers/sleep/oura-helper'
+import { authorize, refresh } from 'react-native-app-auth'
+import { GetState } from '@typings/GetState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { OuraAuthorizeResult, ResponseBase } from '@typings/state/api-state'
+import { SOURCE } from '@typings/state/sleep-source-state'
+import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 
 export const OURA_AUTHORIZE_SUCCESS = 'OURA_AUTHORIZE_SUCCESS'
 export const OURA_REVOKE_SUCCESS = 'OURA_REVOKE_SUCCESS'
@@ -22,36 +22,36 @@ export const FETCH_SLEEP_OURA_FAILURE = 'FETCH_SLEEP_OURA_FAILURE'
 
 /* ACTIONS */
 
-export const ouraAuthorizeSuccess = (payload: ResponseBase) => ({
+export const ouraAuthorizeSuccess = (payload: ResponseBase): ReduxAction => ({
   type: OURA_AUTHORIZE_SUCCESS,
   payload
 })
 
-export const ouraRevokeSuccess = () => ({
+export const ouraRevokeSuccess = (): ReduxAction => ({
   type: OURA_REVOKE_SUCCESS
 })
 
-export const ouraUpdateToken = (payload: ResponseBase) => ({
+export const ouraUpdateToken = (payload: ResponseBase): ReduxAction => ({
   type: OURA_UPDATE_TOKEN,
   payload
 })
 
-export const fetchSleepOuraStart = () => ({
+export const fetchSleepOuraStart = (): ReduxAction => ({
   type: FETCH_SLEEP_OURA_START
 })
 
-export const fetchSleepOuraSuccess = () => ({
+export const fetchSleepOuraSuccess = (): ReduxAction => ({
   type: FETCH_SLEEP_OURA_SUCCESS
 })
 
-export const fetchSleepOuraFailure = () => ({
+export const fetchSleepOuraFailure = (): ReduxAction => ({
   type: FETCH_SLEEP_OURA_FAILURE
 })
 
 /* ASYNC ACTIONS */
 
-export const toggleOura = () => async (
-  dispatch: Function,
+export const toggleOura = (): Thunk => async (
+  dispatch: Dispatch,
   getState: GetState
 ) => {
   try {
@@ -67,7 +67,7 @@ export const toggleOura = () => async (
   }
 }
 
-export const authorizeOura = () => async (dispatch: Function) => {
+export const authorizeOura = (): Thunk => async (dispatch: Dispatch) => {
   try {
     const response = (await authorize(
       CONFIG.OURA_CONFIG
@@ -96,7 +96,7 @@ export const authorizeOura = () => async (dispatch: Function) => {
   }
 }
 
-export const refreshOuraToken = () => async (dispatch: Function) => {
+export const refreshOuraToken = (): Thunk => async (dispatch: Dispatch) => {
   const { refreshToken: oldToken } = (await GetKeychainParsedValue(
     CONFIG.OURA_CONFIG.bundleId
   )) as OuraAuthorizeResult
@@ -134,28 +134,32 @@ export const refreshOuraToken = () => async (dispatch: Function) => {
   return null
 }
 
-export const revokeOuraAccess = () => async (dispatch: Function) => {
+export const revokeOuraAccess = (): Thunk => async (dispatch: Dispatch) => {
   dispatch(ouraRevokeSuccess())
   dispatch(setMainSource(SOURCE.NO_SOURCE))
 }
 
-export const getOuraSleep = () => async (dispatch: Function) => {
+export const getOuraSleep = (
+  startDate: string,
+  endDate: string
+): Thunk => async (dispatch: Dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
   } = (await GetKeychainParsedValue(
     CONFIG.OURA_CONFIG.bundleId
   )) as OuraAuthorizeResult
+
   dispatch(fetchSleepOuraStart())
 
-  const startDate = moment().subtract(1, 'week').format('YYYY-MM-DD')
-  const endDate = moment().format('YYYY-MM-DD')
+  const start = format(new Date(startDate), 'yyyy-MM-dd')
+  const end = format(new Date(endDate), 'yyyy-MM-dd')
 
   if (accessToken) {
     try {
-      if (moment(accessTokenExpirationDate).isAfter(moment())) {
+      if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
         const ouraAPICall = await fetch(
-          `https://api.ouraring.com/v1/sleep?start=${startDate}&end=${endDate}`,
+          `https://api.ouraring.com/v1/sleep?start=${start}&end=${end}`,
           {
             method: 'GET',
             headers: {
@@ -167,25 +171,26 @@ export const getOuraSleep = () => async (dispatch: Function) => {
         const response = await ouraAPICall.json()
 
         const formattedResponse = formatOuraSamples(response.sleep)
-        await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+        console.log('formattedResponse', formattedResponse)
+        await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepOuraSuccess())
       } else {
-        const accessToken = await dispatch(refreshOuraToken())
+        const freshToken = await dispatch(refreshOuraToken())
         const ouraAPICall = await fetch(
-          `https://api.ouraring.com/v1/sleep?start=${startDate}&end=${endDate}`,
+          `https://api.ouraring.com/v1/sleep?start=${start}&end=${end}`,
           {
             method: 'GET',
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+              Authorization: `Bearer ${freshToken}`,
               'Content-Type': 'application/json'
             }
           }
         )
         const response = await ouraAPICall.json()
+
         const formattedResponse = formatOuraSamples(response.sleep)
-        await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+
+        await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepOuraSuccess())
       }
     } catch (error) {

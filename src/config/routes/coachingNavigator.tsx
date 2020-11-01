@@ -1,22 +1,22 @@
-import React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Coaching from '../../screens/coaching/CoachingView'
-import HabitView from '../../screens/Shared/HabitView'
+import { createStackNavigator } from '@react-navigation/stack'
+import React, { FC } from 'react'
+import CoachingIntroduction from '@screens/coaching/CoachingIntroduction'
+import Coaching from '@screens/coaching/CoachingView'
 import ROUTE from './Routes'
 
-const Stack = createNativeStackNavigator()
+const Stack = createStackNavigator()
 
-const CoachingNavigator = () => {
+const CoachingNavigator: FC = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator mode="modal">
       <Stack.Screen
         name={ROUTE.COACHING}
         component={Coaching}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name={ROUTE.HABITS}
-        component={HabitView}
+        name={ROUTE.COACHING_INTRODUCTION}
+        component={CoachingIntroduction}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

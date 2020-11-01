@@ -1,8 +1,7 @@
+import CONFIG from '@config/Config'
 import moment from 'moment'
-import { Night, Value } from 'Types/Sleepdata'
-import { FitbitSleepObject } from 'Types/Sleep/Fitbit'
-import { generateNightId } from './night-id-generator'
-import CONFIG from 'config/Config'
+import { FitbitSleepObject } from '@typings/Sleep/Fitbit'
+import { Night, Value } from '@typings/Sleepdata'
 
 export const formatFitbitSample = (
   fitbitObject: FitbitSleepObject
@@ -11,18 +10,8 @@ export const formatFitbitSample = (
   const endDate = moment(fitbitObject.endTime).toISOString()
   const totalDuration = fitbitObject.timeInBed
 
-  const inBedNightId = (<unknown>(
-    generateNightId(
-      'fitbit',
-      `${fitbitObject.logId}`,
-      startDate,
-      endDate,
-      Value.InBed
-    )
-  )) as string
-
   const inBedSample: Night = {
-    id: inBedNightId,
+    id: `fitbit_${fitbitObject.logId}_${startDate}_${endDate}_${Value.InBed}`,
     sourceId: CONFIG.FITBIT_CONFIG.bundleId,
     sourceName: 'Fitbit',
     value: Value.InBed,
@@ -32,23 +21,16 @@ export const formatFitbitSample = (
   }
 
   const asleepSamples: Night[] = fitbitObject.levels.data.map((sample) => {
-    const startDate = moment(sample.dateTime).toISOString()
-    const endDate = moment(sample.dateTime).add(sample.seconds).toISOString()
-    const asleepNightId = generateNightId(
-      'fitbit',
-      `${fitbitObject.logId}`,
-      startDate,
-      endDate,
-      Value.Asleep
-    )
+    const start = moment(sample.dateTime).toISOString()
+    const end = moment(sample.dateTime).add(sample.seconds).toISOString()
 
     return {
-      id: asleepNightId,
+      id: `fitbit_${fitbitObject.logId}_${start}_${end}_${Value.Asleep}`,
       sourceId: CONFIG.FITBIT_CONFIG.bundleId,
       sourceName: 'Fitbit',
       value: Value.Asleep,
-      startDate,
-      endDate,
+      startDate: start,
+      endDate: end,
       totalDuration: Math.floor(sample.seconds / 60)
     }
   })

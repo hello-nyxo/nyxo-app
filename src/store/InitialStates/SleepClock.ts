@@ -1,5 +1,5 @@
 import Moment from 'moment'
-import { SleepClockState } from 'Types/SleepClockState'
+import { SleepClockState } from '@typings/SleepClockState'
 
 export const initialState: SleepClockState = {
   primarySleepTrackingSource: {

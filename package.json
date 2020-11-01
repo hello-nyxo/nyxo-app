@@ -12,7 +12,6 @@
     "@contentful/rich-text-types": "^14.1.0",
     "@react-native-community/cli": "^4.8.0",
     "@sentry/wizard": "^1.0.1",
-    "@types/chroma-js": "^2.0.0",
     "@types/d3": "^5.7.2",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
@@ -23,6 +22,7 @@
     "@types/lodash-es": "^4.17.3",
     "@types/react": "^16.9.19",
     "@types/react-native": "^0.62.10",
+    "@types/react-native-calendars": "^1.20.10",
     "@types/react-navigation": "^3.0.8",
     "@types/react-redux": "^7.1.4",
     "@types/react-test-renderer": "^16.9.2",
@@ -59,6 +59,7 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.5",
     "eslint-plugin-react-native": "^3.8.1",
+    "eslint-plugin-unused-imports": "^0.1.3",
     "flipper-plugin-react-native-performance": "^0.4.3",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
@@ -67,7 +68,11 @@
     "jest-enzyme": "^7.1.2",
     "jest-styled-components": "^7.0.2",
     "metro-react-native-babel-preset": "^0.58.0",
+    "patch-package": "^6.2.2",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.0.5",
+    "prop-types": "^15.7.2",
+    "react-devtools-core": "^4.8.2",
     "react-native-cli": "^2.0.1",
     "react-native-mock-render": "^0.1.5",
     "react-native-testing-library": "^1.12.0",
@@ -92,7 +97,7 @@
     "create-bundle-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
     "debug-android": "adb logcat *:S ReactNative:V ReactNativeJS:V",
     "contentful-typescript-codegen": "contentful-typescript-codegen --output src/Types/generated/contentful.d.ts",
-    "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' && tsc --noEmit ",
     "lint:fix": "npm run lint --fix",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
@@ -108,49 +113,17 @@
     "beta:ios": "cd ios && fastlane beta",
     "beta:android": "cd android && fastlane beta"
   },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "jest-enzyme"
-    ],
-    "testEnvironment": "enzyme",
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "tsconfig.jest.json"
-      }
-    },
-    "moduleDirectories": [
-      "node_modules"
-    ],
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "transform": {
-      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "testPathIgnorePatterns": [
-      "\\.snap$",
-      "<rootDir>/node_modules/",
-      "<rootDir>/lib/"
-    ],
-    "cacheDirectory": ".jest/cache"
-  },
   "lint-staged": {
     "*.{js,json,css,md}": [
       "prettier --write",
       "git add"
     ]
   },
+  "resolutions": {
+    "@react-native-community/cli-debugger-ui": "4.7.0"
+  },
   "dependencies": {
     "@aws-amplify/core": "^3.2.1",
-    "@contentful/rich-text-html-renderer": "^13.4.0",
     "@contentful/rich-text-plain-text-renderer": "^14.0.0",
     "@contentful/rich-text-react-renderer": "^13.4.0",
     "@react-native-community/async-storage": "^1.6.2",
@@ -171,11 +144,9 @@
     "appcenter-crashes": "3.0.2",
     "aws-amplify": "^3.0.7",
     "aws-amplify-react-native": "^4.0.3",
-    "chroma-js": "^2.0.6",
     "contentful": "^7.13.1",
-    "countdown": "^2.6.0",
     "d3": "^5.12.0",
-    "date-fns": "^2.15.0",
+    "date-fns": "^2.16.0",
     "debug": "^4.1.1",
     "escape-string-regexp": "^4.0.0",
     "expo-blur": "^8.1.0",
@@ -186,30 +157,22 @@
     "jsc-android": "^241213.1.0",
     "lint-staged": "^10.2.2",
     "lodash": "^4.17.15",
-    "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
-    "moment-countdown": "0.0.3",
     "moment-range": "^4.0.2",
     "oauth-signature": "^1.5.0",
-    "patch-package": "^6.2.2",
-    "postinstall-postinstall": "^2.1.0",
-    "prop-types": "^15.7.2",
     "query-string": "^6.13.1",
     "react": "16.11.0",
     "react-native": "0.62.2",
-    "react-native-animatable": "^1.3.2",
     "react-native-app-auth": "^5.0.0",
     "react-native-app-intro-slider": "^4.0.2",
-    "react-native-autoheight-webview": "^1.4.1",
     "react-native-background-fetch": "^3.0.4",
-    "react-native-calendars": "^1.212.0",
-    "react-native-chart-kit": "^5.5.0",
+    "react-native-calendars": "^1.343.0",
     "react-native-circular-progress": "^1.3.0",
     "react-native-datepicker": "^1.7.2",
     "react-native-device-info": "^5.5.1",
     "react-native-fast-image": "^8.1.5",
     "react-native-firebase": "^5.6.0",
-    "react-native-gesture-handler": "^1.5.3",
+    "react-native-gesture-handler": "^1.8.0",
     "react-native-get-random-values": "^1.4.0",
     "react-native-haptic-feedback": "^1.8.2",
     "react-native-healthkit": "git+https://github.com/plahteenlahti/rn-apple-healthkit.git",
@@ -228,13 +191,12 @@
     "react-native-radial-context-menu": "0.0.2",
     "react-native-rate": "^1.1.10",
     "react-native-ratings": "^7.2.0",
-    "react-native-reanimated": "^1.7.0",
+    "react-native-reanimated": "^1.13.1",
     "react-native-redash": "^14.0.4",
     "react-native-render-html": "^4.2.0",
     "react-native-safe-area-context": "^1.0.0",
     "react-native-screens": "^2.0.0-beta.2",
     "react-native-sha256": "^1.3.6",
-    "react-native-simple-gauge": "^0.2.2",
     "react-native-snap-carousel": "^3.8.2",
     "react-native-splash-screen": "^3.2.0",
     "react-native-status-bar-height": "^2.4.0",
@@ -257,9 +219,8 @@
     "reselect": "^4.0.0",
     "serialize-javascript": "^3.0.0",
     "styled-components": "^5.1.1",
-    "svg-path-properties": "^1.0.4",
+    "svg-path-properties": "^1.0.5",
     "uuid": "^8.0.0",
-    "validate.js": "^0.13.1",
     "yarn": "^1.22.4",
     "yup": "^0.28.3"
   },

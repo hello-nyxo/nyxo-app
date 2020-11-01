@@ -11,12 +11,12 @@ import {
   UPDATE_DAY,
   UPDATE_SLEEP_DATA
 } from '@actions/sleep/sleep-data-actions'
-import { CREATE_SUCCESS } from '@actions/sleep/sleep-to-cloud-actions'
+
 import moment from 'moment'
-import ReduxAction from 'Types/ReduxActions'
-import { sortDays } from '@helpers/sleep'
-import { SleepClockState } from 'Types/SleepClockState'
-import { Day } from 'Types/Sleepdata'
+import ReduxAction from '@typings/redux-actions'
+import { sortDays } from '@helpers/sleep/sleep'
+import { SleepClockState } from '@typings/SleepClockState'
+import { Day } from '@typings/Sleepdata'
 import { initialState } from '../InitialStates/SleepClock'
 
 const reducer = (
@@ -51,14 +51,7 @@ const reducer = (
       const days = verifyDates([...state.days, ...payload])
       return { ...state, days: [...days] }
     }
-    case CREATE_SUCCESS: {
-      const updated = state.days.map((day: Day) => {
-        const withId = payload.days.find(({ date }: Day) => date === day.date)
-        return { ...day, id: withId ? withId.id : undefined }
-      })
 
-      return { ...state, days: [...updated] }
-    }
     case UPDATE_SLEEP_DATA:
       return {
         ...state,

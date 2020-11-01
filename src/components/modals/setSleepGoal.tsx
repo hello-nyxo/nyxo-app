@@ -10,7 +10,7 @@ import {
 import Modal from 'react-native-modal'
 import SleepTarget from '../SleepTarget/SleepTarget'
 import ScalingButton from '../Buttons/ScalingButton'
-import IconBold from '../iconBold'
+import { IconBold } from '../iconRegular'
 
 export class SetSleepGoalModal extends PureComponent {
   constructor(props) {

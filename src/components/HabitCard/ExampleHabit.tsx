@@ -5,15 +5,15 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import { addHabit } from '@actions/habit/habit-actions'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import { Period } from 'Types/State/Periods'
+import { Period } from '@typings/state/Periods'
 import { WIDTH } from '@helpers/Dimensions'
+import { fonts, StyleProps } from '@styles/themes'
+import { ScrollView } from 'react-native'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 import { IconBold } from '../iconRegular'
 import { Container, StyledModal } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 import { getIcon } from './TopRow'
-import { ScrollView } from 'react-native'
 
 interface Props {
   title?: string

@@ -15,7 +15,7 @@ jest.mock('@react-native-community/netinfo', () => ({}))
 
 describe('Auth reducer', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(initialState)
+    expect(reducer(undefined, { type: '' })).toEqual(initialState)
   })
 
   it(`should handle ${REGISTER_START}`, () => {

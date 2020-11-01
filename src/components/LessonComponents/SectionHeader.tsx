@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
+import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 import RichText from '../RichText'
 
 interface Props {

@@ -1,9 +1,8 @@
+import CONFIG from '@config/Config'
+import { getNightDuration } from '@helpers/sleep/sleep'
+import { WithingsSleepObject } from '@typings/Sleep/Withings'
+import { Night, Value } from '@typings/Sleepdata'
 import moment from 'moment'
-import { WithingsSleepObject } from 'Types/Sleep/Withings'
-import { Night, Value } from 'Types/Sleepdata'
-import { getNightDuration } from 'helpers/sleep'
-import { generateNightId } from './night-id-generator'
-import CONFIG from 'config/Config'
 
 export const formatWithingsSample = (
   withingsSleepObject: WithingsSleepObject
@@ -16,16 +15,8 @@ export const formatWithingsSample = (
   const endDate = moment.unix(withingsSleepObject.enddate).toISOString()
   const timeInBed = getNightDuration(startDate, endDate)
 
-  const inBedNightId = generateNightId(
-    'withings',
-    withingsSleepObject.date,
-    startDate,
-    endDate,
-    Value.InBed
-  )
-
   const inBedSample: Night = {
-    id: inBedNightId,
+    id: `withings_${withingsSleepObject.date}_${startDate}_${endDate}_${Value.InBed}`,
     sourceId: CONFIG.WITHINGS_CONFIG.bundleId,
     sourceName: 'Withings',
     value: Value.InBed,
@@ -43,16 +34,8 @@ export const formatWithingsSample = (
 
   const timeAsleep = getNightDuration(asleepStartDate, asleepEndDate)
 
-  const asleepNightId = generateNightId(
-    'withings',
-    <string>withingsSleepObject.id,
-    asleepStartDate,
-    asleepEndDate,
-    Value.Asleep
-  )
-
-  const asleepSamples: Night = {
-    id: asleepNightId,
+  const asleepSample: Night = {
+    id: `withings_${withingsSleepObject.date}_${asleepStartDate}_${asleepEndDate}_${Value.Asleep}`,
     sourceId: CONFIG.WITHINGS_CONFIG.bundleId,
     sourceName: 'Withings',
     value: Value.Asleep,
@@ -61,7 +44,7 @@ export const formatWithingsSample = (
     totalDuration: timeAsleep
   }
 
-  return [inBedSample, asleepSamples]
+  return [inBedSample, asleepSample]
 }
 
 export const formatWithingsSamples = (

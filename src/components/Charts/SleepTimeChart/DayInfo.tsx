@@ -1,7 +1,7 @@
 import moment from 'moment'
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { Day } from 'Types/Sleepdata'
+import { Day } from '@typings/Sleepdata'
 import translate from '../../../config/i18n'
 import { minutesToHoursString } from '@helpers/time'
 import colors from '../../../styles/colors'

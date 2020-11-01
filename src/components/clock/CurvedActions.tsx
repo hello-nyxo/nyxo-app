@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Defs, G, Path, Text, TextPath } from 'react-native-svg'
 import { describeArc, polarToCartesian } from '@helpers/geometry'
-import { fonts } from '../../styles/themes'
+import { fonts } from '@styles/themes'
 
 interface CurvedActionsProps {
   x: number

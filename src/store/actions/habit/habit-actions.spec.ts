@@ -6,9 +6,9 @@ import {
   HabitState,
   MutationType,
   UnsyncedHabit
-} from 'Types/State/habit-state'
-import { Period } from 'Types/State/Periods'
-import { AuthState } from 'Types/State/AuthState'
+} from '@typings/state/habit-state'
+import { Period } from '@typings/state/Periods'
+import { AuthState } from '@typings/state/AuthState'
 import {
   addHabit,
   addUnsyncedHabit,

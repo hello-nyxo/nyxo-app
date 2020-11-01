@@ -3,10 +3,10 @@ import {
   ListCoachingDatasQuery,
   ModelCoachingDataFilterInput,
   UpdateCoachingDataInput
-} from 'API'
+} from '@API'
 import { Auth } from 'aws-amplify'
-import { createCoachingData, updateCoachingData } from 'graphql/mutations'
-import { listCoachingDatas } from 'graphql/queries'
+import { createCoachingData, updateCoachingData } from '@graphql/mutations'
+import { listCoachingDatas } from '@graphql/queries'
 import moment from 'moment'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import {
@@ -15,10 +15,10 @@ import {
   getCurrentWeekAll,
   WEEK_STAGE
 } from '@selectors/coaching-selectors'
-import { GetState } from 'Types/GetState'
-import { CoachingMonth, STAGE, StateWeek } from 'typings/state/coaching-state'
+import { GetState } from '@typings/GetState'
+import { CoachingMonth, STAGE, StateWeek } from '@typings/state/coaching-state'
 import { v4 } from 'uuid'
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 
 /* ACTION TYPES */
 

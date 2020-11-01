@@ -9,9 +9,7 @@ const { width } = Dimensions.get('window')
 const ClockEmpty = () => {
   const dispatch = useDispatch()
 
-  const updateData = async () => {
-    dispatch(updateCalendar())
-  }
+  const updateData = async () => {}
 
   return (
     <View

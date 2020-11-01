@@ -6,11 +6,11 @@ import {
   getNightDuration,
   sortDays,
   sortNights
-} from '@helpers/sleep'
-import { GetState } from 'Types/GetState'
-import { Day, Value, Night } from 'Types/Sleepdata'
-import { updateSleepData } from '../sleep/sleep-data-actions'
-import { Dispatch, Thunk } from 'Types/ReduxActions'
+} from '@helpers/sleep/sleep'
+import { GetState } from '@typings/GetState'
+import { Day, Value, Night } from '@typings/Sleepdata'
+import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
+import { Dispatch, Thunk } from '@typings/redux-actions'
 
 export const SET_VALUES = 'SET_VALUES'
 export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE'
@@ -32,10 +32,6 @@ export const addManualDataToNight = (
   nightStart: { h: number; m: number },
   nightEnd: { h: number; m: number }
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
-  const {
-    sleepclock: { days, nights }
-  } = getState()
-
   const startTime = moment(date)
     .startOf('day')
     .subtract(1, 'day')
@@ -50,9 +46,6 @@ export const addManualDataToNight = (
     .minute(nightEnd.m)
     .toISOString()
 
-  const dayToUpdate = days.find((day: Day) => day.date === date)
-  const filteredDays = days.filter((day: Day) => day.date !== date)
-
   const newNightSample: Night = {
     source: 'Nyxo',
     sourceId: 'app.sleepcircle.application',
@@ -63,25 +56,9 @@ export const addManualDataToNight = (
     totalDuration: getNightDuration(startTime, endTime)
   }
 
-  if (dayToUpdate) {
-    const updatedDay: Day = {
-      ...dayToUpdate,
-      night: [...dayToUpdate.night, newNightSample]
-    }
-
-    const sortedDays = sortDays([...filteredDays, updatedDay])
-    const sortedNights = sortNights([...nights, newNightSample])
-
-    if (Platform.OS === 'ios') {
-      await createNight(startTime, endTime)
-    }
-
-    await dispatch(
-      updateSleepData({
-        days: sortedDays,
-        nights: sortedNights
-      })
-    )
+  if (Platform.OS === 'ios') {
+    await createNight(startTime, endTime)
+    await dispatch(fetchSleepData(startTime, endTime))
   }
 }
 

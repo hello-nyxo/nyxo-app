@@ -1,4 +1,4 @@
-import { Challenge } from 'Types/ChallengeState'
+import { Challenge } from '@typings/ChallengeState'
 
 export const MAKE_CHALLENGE_VISIBLE = 'MAKE_CHALLENGE_VISIBLE'
 export const ADD_CHALLENGES = 'ADD_CHALLENGES'

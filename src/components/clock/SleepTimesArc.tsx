@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import { Defs, G, Path, Text, TextPath } from 'react-native-svg'
 import { describeArc, describeReverseArc } from '@helpers/geometry'
 import { momentTimeToPolar } from '@helpers/time'
-import { fonts } from '../../styles/themes'
+import { fonts } from '@styles/themes'
 
 interface SleepTimesArcProps {
   x: number

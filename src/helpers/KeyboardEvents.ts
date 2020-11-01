@@ -8,14 +8,12 @@ interface Params {
   handleKeyboardWillHide?: KeyboardEventListener
 }
 
-const useKeyboardEvents = (params: Params) => {
-  const {
-    handleKeyboardWillShow,
-    handleKeyboardDidShow,
-    handleKeyboardDidHide,
-    handleKeyboardWillHide
-  } = params
-
+const useKeyboardEvents = ({
+  handleKeyboardWillShow,
+  handleKeyboardDidShow,
+  handleKeyboardDidHide,
+  handleKeyboardWillHide
+}: Params): void => {
   const isAndroid = Platform.OS === 'android'
   useEffect(() => {
     if (isAndroid) {

@@ -16,7 +16,13 @@ module.exports = {
     'plugin:import/warnings',
     'prettier'
   ],
-  plugins: ['react', 'react-native', '@typescript-eslint', 'prettier'],
+  plugins: [
+    'react',
+    'react-native',
+    '@typescript-eslint',
+    'prettier',
+    'unused-imports'
+  ],
   ignorePatterns: ['node_modules/', 'aws-exports.js'],
   parserOptions: {
     ecmaFeatures: {
@@ -50,7 +56,15 @@ module.exports = {
     'react-native/no-raw-text': 'off',
     'react-native/no-single-element-style-arrays': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
-
+    'unused-imports/no-unused-vars-ts': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_'
+      }
+    ],
     '@typescript-eslint/member-delimiter-style': [
       'error',
       { multiline: { delimiter: 'none' } }
