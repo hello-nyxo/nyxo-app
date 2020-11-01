@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
 import TranslatedText from '../TranslatedText'
 
 type Props = {

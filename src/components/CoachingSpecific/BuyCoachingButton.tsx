@@ -3,7 +3,8 @@ import { useNavigation } from '@react-navigation/core'
 import React, { FC, useEffect, useState } from 'react'
 import Purchases from 'react-native-purchases'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '../../styles/themes'
+import { fonts } from '@styles/themes'
+import colors from '@styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 
@@ -72,8 +73,8 @@ const RightColumn = styled.View`
   justify-content: flex-end;
 `
 
-const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(() => ({
+  fill: colors.white
 }))``
 
 const Container = styled.View`
@@ -100,14 +101,14 @@ const Button = styled.TouchableOpacity`
 const Text = styled(TranslatedText)`
   flex: 1;
   font-size: 18px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${colors.white};
   font-family: ${fonts.bold};
 `
 
 const MiniText = styled(TranslatedText)`
   flex: 1;
   font-size: 11px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${colors.white};
   font-family: ${fonts.bold};
 `
 const PriceContainer = styled.View`
@@ -116,13 +117,13 @@ const PriceContainer = styled.View`
 `
 
 const Price = styled.Text`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${colors.white};
   font-family: ${fonts.bold};
   font-size: 20px;
 `
 
 const Monthly = styled(TranslatedText)`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${colors.white};
   font-family: ${fonts.bold};
   font-size: 11px;
 `

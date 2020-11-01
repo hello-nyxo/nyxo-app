@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { setValues } from '@actions/manual-sleep/manual-sleep-actions'
-import { icons } from '../../../assets/svgs'
 import {
   calculateEndTimeFromAngle,
   calculateMinutesFromAngle,
@@ -10,8 +9,9 @@ import {
   padMinutes,
   roundAngleToFives
 } from '@helpers/time'
+import { fonts } from '@styles/themes'
+import { icons } from '../../../assets/svgs'
 import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
 import CircularSlider from './CircularSlider'
 import TimerText from './TimerText'
 

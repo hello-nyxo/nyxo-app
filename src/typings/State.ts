@@ -10,7 +10,6 @@ import { ModalState } from './ModalState'
 import { NetworkState } from './NetworkState'
 import { NotificationState } from './NotificationState'
 import { OnboardingState } from './OnboardingState'
-import { SleepClockState } from './SleepClockState'
 import { ApiState } from './State/api-state'
 import { AuthState } from './State/AuthState'
 import { HabitState } from './State/habit-state'
@@ -40,7 +39,6 @@ export interface State {
 
   // Sleep data
   calendar: CalendarState
-  sleepclock: SleepClockState
 
   sleepSources: SleepSourceState
   healthKit: HealthKitState

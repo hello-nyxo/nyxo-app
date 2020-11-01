@@ -87,11 +87,8 @@ export const calculateInsights = (): Thunk => async (
   getState: GetState
 ) => {
   dispatch(calculationStart())
-  const week = getWeek(getState())
-  const insights = calculateBedtimeWindow(week)
 
   try {
-    dispatch(calculationSuccess({ bedTimeWindow: insights }))
   } catch (error) {
     dispatch(calculationFailure())
   }

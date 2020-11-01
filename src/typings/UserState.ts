@@ -1,10 +1,8 @@
-import { ThemeProps } from '../styles/themes'
+import { ThemeProps } from '@styles/themes'
 
 export interface UserState {
   syncEnabled: boolean | null
-  introduction_completed: boolean | null
   quickIntroCompleted: boolean | null
-  healthkit_enabled: boolean | null
   appTheme: ThemeProps
   connectionId?: string
   username: string | null

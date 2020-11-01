@@ -3,7 +3,7 @@ import { Animated, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import styled from 'styled-components/native'
-import { fonts } from '../../styles/themes'
+import { fonts } from '@styles/themes'
 import TranslatedText from '../TranslatedText'
 
 interface Night {

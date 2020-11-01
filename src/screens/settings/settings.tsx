@@ -12,17 +12,12 @@ import IntercomProfilePictures from '@components/SettingsSpecific/IntercomProfil
 import SettingRow from '@components/SettingsSpecific/settingRow'
 import VersionInformation from '@components/SettingsSpecific/versionInformation'
 import TopInfo from '@components/TopInfo'
-import CONFIG from '../../config/Config'
 import keyExtractor from '@helpers/KeyExtractor'
 import { getIntercomNotificationCount } from '@selectors/NotificationSelectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { getTheme } from '@selectors/UserSelectors'
-import {
-  darkTheme,
-  lightTheme,
-  StyleProps,
-  ThemeProps
-} from '../../styles/themes'
+import { darkTheme, lightTheme, StyleProps, ThemeProps } from '@styles/themes'
+import CONFIG from '../../config/Config'
 
 const options = {
   AppleAppID: '1440417031',

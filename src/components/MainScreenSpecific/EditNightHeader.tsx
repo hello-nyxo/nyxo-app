@@ -12,8 +12,8 @@ import {
 import React, { FC, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
+import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 import { P } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 

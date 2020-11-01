@@ -1,7 +1,7 @@
 import Card from '@components/Card'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '../../styles/themes'
+import { fonts, StyleProps } from '@styles/themes'
 import { Container } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 

@@ -3,7 +3,7 @@ import { State } from '@typings/State'
 import { matchDayAndNight } from '@helpers/sleep/sleep-data-helper'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getMainSource } from '@sleep-source-selectors/sleep-source-selectors'
-import { Night, Value } from '@typings/Sleepdata'
+import { Day, Night, Value } from '@typings/Sleepdata'
 import {
   differenceInDays,
   min,
@@ -15,10 +15,13 @@ import {
   addMilliseconds,
   addMinutes
 } from 'date-fns'
+import { deviation } from 'd3'
 
 const getNights = (state: State) => state.nights
 
 const getTracker = () => 'com.ouraring.oura'
+
+const getTotalTrackedNights = (state: State) => state.nights
 
 export const getNightForSelectedDate = createSelector(
   [getNights, getSelectedDate, getTracker],
@@ -91,33 +94,74 @@ export const getNightsAsDays = createSelector(getNights, (nights) => {
       })
   }))
 })
+export const getBedTimeNights = createSelector(
+  getTotalTrackedNights,
+  (daysWithNights: Day[]) =>
+    daysWithNights
+      ? daysWithNights.filter((day: Day) => day.inBedDuration ?? -1 > 0)
+      : []
+)
 
-// const startDifference = moment.duration(
-// 	moment(night.startDate).diff(trueDate.startOf('day'))
-// )
-// const newStartDate = moment().startOf('day').add(startDifference)
+export const getAsleepNights = createSelector(
+  getTotalTrackedNights,
+  (daysWithNights: Day[]) =>
+    daysWithNights
+      ? daysWithNights.filter((day: Day) => day.asleepDuration ?? -1 > 0)
+      : []
+)
 
-// const normalizeSleepData = (night: Night[]): NormalizedDay[] => {
-//   const normalizedNights = day.night.map((night) => {
-//     const trueDate = new Date(day.date)
+export const getAverageBedTime = createSelector(
+  getBedTimeNights,
+  (longestNight: Day[]) =>
+    longestNight.reduce(
+      (acc, n) => (acc + n.inBedDuration ? n.inBedDuration : 0),
+      0
+    ) / longestNight.length
+)
 
-//     const startDifference = moment.duration(
-// 			differenceInDays(new Date(night.startDate), )
+export const getAverageSleepTime = createSelector(
+  getAsleepNights,
+  (longestNight: Day[]) =>
+    mean(longestNight, (item: Day) => item.asleepDuration)
+)
 
-// 			moment(night.startDate).diff(trueDate.startOf('day'))
-//     )
-//     const newStartDate = moment().startOf('day').add(startDifference)
+export const deviationBedTime = createSelector(
+  getBedTimeNights,
+  (days: Day[]) => deviation(days, (item: Day) => item.inBedDuration)
+)
 
-//     const newEndDate = moment(newStartDate).add(night.totalDuration, 'minutes')
+export const deviationSleep = createSelector(getAsleepNights, (days: Day[]) =>
+  deviation(days, (item: Day) => item.asleepDuration)
+)
 
-//     return {
-//       ...night,
-//       startDate: newStartDate.valueOf(),
-//       endDate: newEndDate.valueOf()
-//     }
-//   })
+export const getShortestBedTime = createSelector(
+  getBedTimeNights,
+  (days: Day[]) => min(days, (item: Day) => item.inBedDuration)
+)
 
-//   return { ...day, night: normalizedNights }
+export const getShortestSleepTime = createSelector(
+  getAsleepNights,
+  (days: Day[]) => min(days, (item: Day) => item.asleepDuration)
+)
 
-//   return normalized
-// }
+export const getLongestBedTime = createSelector(
+  getBedTimeNights,
+  (longestNight) => max(longestNight, (item) => item.inBedDuration)
+)
+
+export const getLongestSleepTime = createSelector(
+  getAsleepNights,
+  (longestNight: Day[]) => max(longestNight, (item: Day) => item.asleepDuration)
+)
+
+export const getNightsWithOver8HoursBedTime = createSelector(
+  getBedTimeNights,
+  (nightsOver8: Day[]) =>
+    nightsOver8.filter((night: Day) => night?.inBedDuration ?? 0 >= 480)
+)
+
+export const getNightsWithOver8HoursSleep = createSelector(
+  getAsleepNights,
+  (nightsOver8: Day[]) =>
+    nightsOver8.filter((night: Day) => night?.asleepDuration ?? 0 >= 480)
+)

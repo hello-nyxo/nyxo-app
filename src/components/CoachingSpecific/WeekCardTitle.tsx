@@ -1,8 +1,8 @@
 import { WEEK_STAGE } from '@selectors/coaching-selectors'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 

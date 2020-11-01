@@ -24,7 +24,7 @@ const CoachingHeader: FC = () => {
       {!hasActiveCoaching && <BuyCoachingButton />}
       {!hasActiveCoaching && <IntroduceCoaching />}
 
-      <Title>Active Coaching Period</Title>
+      <Title>Active Coaching</Title>
       <Container>
         <Column>
           {data?.started && (

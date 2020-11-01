@@ -14,7 +14,6 @@ import { lightTheme } from '../../../styles/themes'
 export const initialState: UserState = {
   syncEnabled: false,
   introduction_completed: false,
-  healthkit_enabled: false,
   appTheme: lightTheme,
   loggedIn: false,
   username: '',

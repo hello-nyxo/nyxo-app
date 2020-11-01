@@ -3,8 +3,8 @@ import { getInBedDuration } from '@selectors/night-selectors'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
+import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 
 const Explanations: FC = () => {
   const inbed = minutesToHoursString(useSelector(getInBedDuration))
@@ -17,7 +17,7 @@ const Explanations: FC = () => {
     { title: 'efficiency', figure: '100%', color: colors.nightAccent },
     {
       title: 'window',
-      figure: 0, //moment(window).format('HH:mm'),
+      figure: 0, // moment(window).format('HH:mm'),
       color: colors.fallAsleep
     }
   ]

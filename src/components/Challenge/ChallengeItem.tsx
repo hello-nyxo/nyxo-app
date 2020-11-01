@@ -1,8 +1,8 @@
 import React from 'react'
 import { Dimensions, Text, View } from 'react-native'
-import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
+import { fonts } from '@styles/themes'
 import { Challenge } from '@typings/ChallengeState'
+import colors from '../../styles/colors'
 import ScalingButton from '../Buttons/ScalingButton'
 import { IconBold } from '../iconRegular'
 

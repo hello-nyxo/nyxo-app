@@ -12,7 +12,7 @@ export type RootStackParamList = {
       readonly [ROUTE.WEEK]: undefined
       readonly [ROUTE.LESSON]: undefined
     }
-    readonly [ROUTE.PROFILE]: {}
+    readonly [ROUTE.PROFILE]: undefined
   }
 }
 

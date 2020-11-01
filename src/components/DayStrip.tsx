@@ -117,7 +117,9 @@ const DateContainer = styled.Text`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
-const PressableContainer = styled.TouchableWithoutFeedback``
+const PressableContainer = styled.TouchableWithoutFeedback`
+  background-color: red;
+`
 
 const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
   colors:

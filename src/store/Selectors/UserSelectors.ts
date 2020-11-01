@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { darkTheme, lightTheme } from '../../styles/themes'
+import { darkTheme, lightTheme } from '@styles/themes'
 import { State } from '@typings/State'
 import { UserState } from '@typings/UserState'
 

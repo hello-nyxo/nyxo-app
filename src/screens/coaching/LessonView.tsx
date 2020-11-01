@@ -23,7 +23,7 @@ import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { StyleProps } from '../../styles/themes'
+import { StyleProps } from '@styles/themes'
 
 const yOffset = new Animated.Value(0)
 

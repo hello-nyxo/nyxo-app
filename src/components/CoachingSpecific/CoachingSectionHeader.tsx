@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react'
 import { SectionListData } from 'react-native'
 import styled from 'styled-components/native'
 import { Habit } from '@typings/state/habit-state'
-import { fonts, StyleProps } from '../../styles/themes'
+import { fonts, StyleProps } from '@styles/themes'
 import TranslatedText from '../TranslatedText'
 
 type Props = {

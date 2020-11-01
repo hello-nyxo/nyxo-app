@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
 import TranslatedText from '../TranslatedText'
 
 const BackToAppButton = () => {

@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react'
+import React, { FC } from 'react'
 import { TouchableOpacity, ViewStyle } from 'react-native'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
@@ -6,7 +6,7 @@ import TranslatedText from '../TranslatedText'
 
 type Props = {
   center?: boolean
-  children: any
+  children: string
   style?: ViewStyle
   onPress: () => void
 }
@@ -32,10 +32,10 @@ interface TextProps {
 }
 
 const Text = styled(TranslatedText)<TextProps>`
-  font-size: 17px;
+  font-size: 15px;
   color: ${colors.radiantBlue};
-	font-family:${({ theme }) => theme.FONT_MEDIUM}
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   text-align: ${({ center }) => (center ? 'center' : 'left')};
 `
 
-export default memo(TextButton)
+export default TextButton

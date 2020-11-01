@@ -4,8 +4,8 @@ import { State } from './State'
 
 interface ReduxAction {
   type: string
-  payload?: any
-  error?: any
+  payload?: unknown
+  error?: unknown
 }
 
 export default ReduxAction
@@ -14,4 +14,4 @@ export type ThunkResult<R> = ThunkAction<R, State, void, ReduxAction>
 
 export type Thunk = ThunkResult<Promise<void | string | null>>
 
-export type Dispatch = ThunkDispatch<any, any, Action>
+export type Dispatch = ThunkDispatch<unknown, unknown, Action>

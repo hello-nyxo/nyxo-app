@@ -7,7 +7,7 @@ import {
   HEADER_MIN_HEIGHT,
   SMART_TOP_PADDING
 } from '@helpers/Dimensions'
-import { fonts } from '../../styles/themes'
+import { fonts } from '@styles/themes'
 import GoBack from '../Buttons/GoBack'
 
 interface Props {

@@ -55,7 +55,6 @@ export const startup = (): Thunk => async (
   if (isAuthenticated) {
     await dispatch(updateCoachingInCloud())
   }
-  await dispatch(calculateInsights())
 
   await dispatch(handleBedtimeApproachNotifications())
   await dispatch(handleCoachingUncompletedLessonNotifications())

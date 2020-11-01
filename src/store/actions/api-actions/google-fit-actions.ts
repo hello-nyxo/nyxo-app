@@ -4,23 +4,22 @@ import {
   setMainSource,
   updateGoogleFitSources
 } from '@actions/sleep-source-actions/sleep-source-actions'
+import { fetchSleepSuccess } from '@actions/sleep/health-kit-actions'
 import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
-import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
-import { getGoogleFitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import CONFIG from '@config/Config'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import { formatGoogleFitData } from '@helpers/sleep/google-fit-helper'
-import moment from 'moment'
-import { Platform } from 'react-native'
-import { authorize, refresh, revoke } from 'react-native-app-auth'
+import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
+import { getGoogleFitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { GetState } from '@typings/GetState'
 import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
-import { SleepDataSource } from '@typings/SleepClockState'
 import { Night } from '@typings/Sleepdata'
 import { GoogleFitResponse, ResponseBase } from '@typings/state/api-state'
 import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
-import { fetchSleepSuccess } from '@actions/sleep/health-kit-actions'
+import moment from 'moment'
+import { Platform } from 'react-native'
+import { authorize, refresh, revoke } from 'react-native-app-auth'
 /* ACTION TYPES */
 
 export const GOOGLE_FIT_AUTHORIZE_SUCCESS = 'GOOGLE_FIT_AUTHORIZE_SUCCESS'
@@ -231,37 +230,8 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
   }
 }
 
-export const writeGoogleFitSleep = (date?: string) => async (
-  dispatch: Function,
-  getState: GetState
-) => {
-  const { accessToken } = (await GetKeychainParsedValue(
-    GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
-
-  if (accessToken) {
-    try {
-      const formattedDate = moment(date).toISOString()
-      const googleApiCall = await fetch(
-        `https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=${formattedDate}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      )
-
-      const response = await googleApiCall.json()
-    } catch (error) {
-      console.warn(error)
-    }
-  }
-}
-
 export const switchGoogleFitSource = (googleFitSource: SUB_SOURCE) => async (
-  dispatch: Function
+  dispatch: Dispatch
 ) => {
   dispatch(changeGoogleFitSource(googleFitSource))
   dispatch(fetchSleepData())
@@ -276,7 +246,7 @@ export const createGoogleFitSources = (nights: Night[]): Thunk => async (
 
   nights.forEach((item: Night) => {
     const existingSource = sourceList.find(
-      (source: SleepDataSource) => source.sourceId === item.sourceId
+      (source) => source.sourceId === item.sourceId
     )
 
     if (!existingSource) {

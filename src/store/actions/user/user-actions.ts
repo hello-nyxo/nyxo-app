@@ -1,7 +1,5 @@
-import { Auth, graphqlOperation, API } from 'aws-amplify'
-import { updateUser } from '@graphql/mutations'
-import { GetState } from '@typings/GetState'
-import { ThemeProps } from '../../styles/themes'
+import { ThemeProps } from '@styles/themes'
+import ReduxAction from '@typings/redux-actions'
 
 /* ACTION TYPES */
 export const CHANGE_USER_NAME = 'CHANGE_USER_NAME'
@@ -18,64 +16,34 @@ export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE'
 
 /* ACTIONS */
 
-export const updateEmail = (email: string) => ({
+export const updateEmail = (email: string): ReduxAction => ({
   type: UPDATE_EMAIL,
   payload: email
 })
 
-export const markIntroductionCompleted = (completed: boolean) => ({
+export const markIntroductionCompleted = (completed: boolean): ReduxAction => ({
   type: COMPLETE_INTRODUCTION,
   payload: completed
 })
 
-export const setTheme = (theme: ThemeProps) => ({
+export const setTheme = (theme: ThemeProps): ReduxAction => ({
   type: SET_THEME,
   payload: theme
 })
 
-export const updateUserFromCloud = (user: any) => ({
-  type: UPDATE_USER_FROM_CLOUD,
-  payload: user
-})
-
-export const setIntercomId = (intercomId: string) => ({
+export const setIntercomId = (intercomId: string): ReduxAction => ({
   payload: intercomId,
   type: SET_INTERCOM_ID
 })
 
-export const updateUserStart = () => ({
+export const updateUserStart = (): ReduxAction => ({
   type: UPDATE_USER_START
 })
 
-export const updateUserSuccess = () => ({
+export const updateUserSuccess = (): ReduxAction => ({
   type: UPDATE_USER_SUCCESS
 })
 
-export const updateUserFailure = () => ({
+export const updateUserFailure = (): ReduxAction => ({
   type: UPDATE_USER_FAILURE
 })
-
-/* ASYNC ACTIONS */
-
-export const updateUserDateInCloud = () => async (
-  dispatch: Function,
-  getState: GetState
-) => {
-  dispatch(updateUserStart())
-  const {
-    user: { intercomId }
-  } = getState()
-  const { username } = await Auth.currentUserInfo()
-  try {
-    const input = {
-      id: username,
-      intercomId
-    }
-    const response: any = await API.graphql(
-      graphqlOperation(updateUser, { input })
-    )
-    dispatch(updateUserSuccess())
-  } catch (error) {
-    dispatch(updateUserFailure())
-  }
-}

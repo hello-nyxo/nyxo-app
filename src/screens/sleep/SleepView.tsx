@@ -78,12 +78,12 @@ const Sleep: FC = () => {
           </TitleContainer>
           <NotificationCenterLink />
         </TitleRow>
+        <InitializeSource />
 
         <Row>
           <Clock />
         </Row>
 
-        <InitializeSource />
         <Row>
           <InsightsCard />
         </Row>

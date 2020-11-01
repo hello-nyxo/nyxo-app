@@ -12,10 +12,10 @@ import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import SCTextInput from '@components/TextField'
 import TopInfo from '@components/TopInfo'
 import TranslatedText from '@components/TranslatedText'
-import { RegisterSchema } from '../../config/Validation'
 import { getLoading } from '@selectors/auth-selectors/auth-selectors'
+import { fonts, StyleProps } from '@styles/themes'
+import { RegisterSchema } from '../../config/Validation'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 
 const { width } = Dimensions.get('window')
 

@@ -13,10 +13,10 @@ import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import Input from '@components/TextField'
 import TopInfo from '@components/TopInfo'
 import TranslatedText from '@components/TranslatedText'
+import { fonts, StyleProps } from '@styles/themes'
 import ROUTE from '../../config/routes/Routes'
 import { LoginSchema } from '../../config/Validation'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 
 type Props = {
   navigation: any

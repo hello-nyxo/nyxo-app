@@ -7,8 +7,8 @@ import {
 import ReactNativeModal from 'react-native-modal'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
+import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 import { IconBold } from '../iconRegular'
 import TranslatedText, { AnimatedTranslatedText } from '../TranslatedText'
 

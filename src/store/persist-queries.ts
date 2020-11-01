@@ -1,7 +1,10 @@
 import { queryCache } from 'react-query'
 import AsyncStorage from '@react-native-community/async-storage'
 
-const writeToStorage = async (queryKey: string, data: any): Promise<void> => {
+const writeToStorage = async (
+  queryKey: string,
+  data: unknown
+): Promise<void | boolean> => {
   try {
     let storageData = await AsyncStorage.getItem('queries')
 
@@ -10,6 +13,7 @@ const writeToStorage = async (queryKey: string, data: any): Promise<void> => {
       [queryKey]: data
     }
     AsyncStorage.setItem('queries', JSON.stringify(storageData))
+    return true
   } catch (error) {
     return error
   }

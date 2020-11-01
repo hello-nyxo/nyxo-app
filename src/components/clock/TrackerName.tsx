@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Text } from 'react-native-svg'
 import styled from 'styled-components/native'
-import { fonts } from '../../styles/themes'
+import { fonts } from '@styles/themes'
 
 type Props = {
   x: number

@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 import React, { memo } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { withNavigation } from 'react-navigation'
-import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
+import { fonts } from '@styles/themes'
 import { Day } from '@typings/Sleepdata'
+import colors from '../../styles/colors'
 import TranslatedText from '../TranslatedText'
 
 interface NoDataInfoProps {

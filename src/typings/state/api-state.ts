@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { RefreshResult, AuthorizeResult } from 'react-native-app-auth'
 
 export interface ApiState {
@@ -27,14 +28,14 @@ export interface GoogleFitResponse extends ResponseBase {
   accessToken: string
 }
 
-export interface SuuntoResponse extends ResponseBase {}
+export type SuuntoResponse = ResponseBase
 
-export interface GarminResponse extends ResponseBase {}
+export type GarminResponse = ResponseBase
 export interface OuraResponse extends ResponseBase {
   user_id?: string
 }
 
-export interface PolarResponse extends ResponseBase {}
+export type PolarResponse = ResponseBase
 
 export interface FitbitRefreshResult extends RefreshResult {
   refreshToken: string
@@ -50,7 +51,7 @@ export interface FitbitAuthorizeResult extends AuthorizeResult {
   }
 }
 
-export interface OuraAuthorizeResult extends AuthorizeResult {}
+export type OuraAuthorizeResult = AuthorizeResult
 
 export interface WithingsAuthorizeResult extends AuthorizeResult {
   tokenAdditionalParameters: {

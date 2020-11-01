@@ -21,7 +21,7 @@ const QuestionCard: FC = () => {
 export default QuestionCard
 
 const Container = styled.View`
-  padding: 24px 16px;
+  padding: 16px 16px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   width: 100%;
   border-radius: 7px;
@@ -39,7 +39,7 @@ const Title = styled(TranslatedText)`
 const Text = styled(TranslatedText)`
   text-align: center;
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  font-size: 15px;
+  font-size: 13px;
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   margin-bottom: 16px;
 `
