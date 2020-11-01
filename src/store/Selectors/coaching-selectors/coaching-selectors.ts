@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect'
-import { ContentLesson, ContentWeek } from 'Types/CoachingContentState'
-import { State } from 'Types/State'
+import { ContentLesson, ContentWeek } from '@typings/CoachingContentState'
+import { State } from '@typings/State'
 import {
   CoachingMonth,
   CoachingState,
   STAGE,
   StateWeek
-} from 'typings/state/coaching-state'
+} from '@typings/state/coaching-state'
 import {
   getCoachingContentWeeks,
   getContentLessons,

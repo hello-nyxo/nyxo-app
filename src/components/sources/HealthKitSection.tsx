@@ -13,7 +13,7 @@ import {
   getIsHealthKitMainSource
 } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
-import { constants } from 'styles/themes'
+import { constants } from '@styles/themes'
 
 const HealthKitSection = () => {
   const dispatch = useDispatch()

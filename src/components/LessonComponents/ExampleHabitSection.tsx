@@ -1,15 +1,15 @@
-import React, { memo, useState } from 'react'
-import styled from 'styled-components/native'
+import keyExtractor from '@helpers/KeyExtractor'
+import { fonts, StyleProps } from '@styles/themes'
+import { ExampleHabit as ExampleHabitType } from '@typings/CoachingContentState'
+import React, { memo } from 'react'
 import { FlatList } from 'react-native'
-import { ExampleHabit as ExampleHabitType } from 'Types/CoachingContentState'
-import { H3Margin } from '../Primitives/Primitives'
-import { fonts, StyleProps } from '../../styles/themes'
+import styled from 'styled-components/native'
 import ExampleHabit, {
   EXAMPLE_HABIT_MARGIN_LEFT,
   EXAMPLE_HABIT_WIDTH
 } from '../HabitCard/ExampleHabit'
+import { H3Margin } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
-import keyExtractor from '@helpers/KeyExtractor'
 
 const ExampleHabitSection = ({
   habits

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { AuthorCard as AuthorCardType } from 'Types/CoachingContentState'
+import { AuthorCard as AuthorCardType } from '@typings/CoachingContentState'
 import AuthorCard from '../LessonComponents/AuthorCard'
 import LargeAuthorCard from '../LessonComponents/LargeAuthorCard'
 

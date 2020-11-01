@@ -1,7 +1,7 @@
-import { clockTimeToAngle } from 'helpers/geometry'
+import { clockTimeToAngle } from '@helpers/geometry'
 import { createSelector } from 'reselect'
-import { InsightState } from 'Types/State/insight-state'
-import { State } from 'Types/State'
+import { InsightState } from '@typings/state/insight-state'
+import { State } from '@typings/State'
 
 const getInsights = (state: State) => state.insights
 

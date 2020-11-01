@@ -104,6 +104,7 @@ amplify/.config/local-*
 amplify/mock-data
 amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
+amplify/backend/hosting
 amplify/team-provider-info.json
 build/
 dist/
@@ -112,7 +113,6 @@ awsconfiguration.json
 amplifyconfiguration.json
 amplify-gradle-config.json
 amplifyxc.config
-amplify/backend
 
 .secrets
 .env
@@ -127,3 +127,5 @@ android/app/.settings/org.eclipse.buildship.core.prefs
 ios/Nyxo/AppCenter-Config.plist
 rnuc.xcconfig
 android/app/.project
+
+ios/GoogleService-Info.plist

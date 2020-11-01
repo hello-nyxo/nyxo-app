@@ -1,4 +1,4 @@
-import { Value } from 'Types/Sleepdata'
+import { Value } from '@typings/Sleepdata'
 import * as Sentry from '@sentry/react-native'
 import { sha256 } from 'react-native-sha256'
 

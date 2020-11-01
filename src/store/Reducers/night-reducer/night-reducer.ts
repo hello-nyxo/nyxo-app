@@ -1,13 +1,10 @@
-import ReduxAction from 'Types/ReduxActions'
-import { Night } from 'Types/Sleepdata'
+import ReduxAction from '@typings/redux-actions'
+import { Night } from '@typings/Sleepdata'
+import { FETCH_SLEEP_SUCCESS } from '@actions/sleep/health-kit-actions'
 
-type State = {
-  nights: Night[]
-}
+export type NightState = Night[]
 
-const initialState = {
-  nights: []
-}
+const initialState: NightState = []
 
 // ADD NIGHTS
 // EDIT NIGHT
@@ -15,13 +12,15 @@ const initialState = {
 const reducer = (
   state = initialState,
   { type, payload }: ReduxAction
-): State => {
+): NightState => {
   //
   switch (type) {
     // payload: Night[]
-    case 'UPDATE_NIGHTS':
-      return initialState
+    case FETCH_SLEEP_SUCCESS:
+      return [...payload]
     default:
-      return initialState
+      return state
   }
 }
+
+export default reducer

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import { getIsGarminMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
-import { constants } from 'styles/themes'
+import { constants } from '@styles/themes'
 import { toggleGarmin } from '@actions/api-actions/garmin-actions'
 
 const GarminSection = () => {

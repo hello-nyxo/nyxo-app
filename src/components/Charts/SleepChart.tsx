@@ -1,20 +1,20 @@
-import TranslatedText from '@components/TranslatedText'
 import { setSelectedDay } from '@actions/sleep/sleep-data-actions'
+import TranslatedText from '@components/TranslatedText'
+import { getNightsAsDays } from '@selectors/night-selectors'
+// import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
 import { extent, max, min, scaleTime } from 'd3'
-import moment from 'moment'
-import React, { useMemo, FC } from 'react'
+import { addHours, subHours } from 'date-fns'
+import React, { FC } from 'react'
 import { Dimensions, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { getAllDays } from '@selectors/SleepDataSelectors'
-import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
-import { Day, Night, Value } from 'Types/Sleepdata'
+import { Day } from '@typings/Sleepdata'
 import SleepBars from './SleepTimeChart/SleepBars'
+// import TargetBars from './SleepTimeChart/TargetBars'
 import XTicks from './SleepTimeChart/XTicks'
 import YTicks from './SleepTimeChart/YTicks'
-import TargetBars from './SleepTimeChart/TargetBars'
 
 const { height, width } = Dimensions.get('window')
 
@@ -24,40 +24,31 @@ export const paddingRight = 100
 export const chartHeight = height / 3
 
 const SleepTimeChart: FC = () => {
-  const days = useSelector(getAllDays)
   const dispatch = useDispatch()
-  const chartWidth = (barWidth + 10) * days.length + paddingLeft + paddingRight
-  const bedtimeWindow = useSelector(getGoToSleepWindowCenter)
-
-  const { normalizedSleepData } = useMemo(
-    () => ({
-      normalizedSleepData: normalizeSleepData(days)
-    }),
-    [days]
-  )
+  const data = useSelector(getNightsAsDays)
+  const daysToShow = data.length
+  const chartWidth = (barWidth + 10) * daysToShow + paddingLeft + paddingRight
 
   const select = (day: Day) => {
     dispatch(setSelectedDay(day.date))
   }
 
-  const xDomain: Date[] = extent(
-    normalizedSleepData,
-    (day: Day) => new Date(day.date)
-  ) as Date[]
+  const xDomain: Date[] = extent(data, (date) => new Date(date.date)) as Date[]
 
   const yDomain: number[] = [
-    min(normalizedSleepData, (datum: Day) =>
-      min(datum.night, (night) =>
-        moment(night.startDate).subtract(1, 'hour').valueOf()
+    min(data, (date) =>
+      min(date.night, (night) =>
+        subHours(new Date(night.startDate), 1).valueOf()
       )
     ) as number,
-    max(normalizedSleepData, (datum: Day) =>
-      max(datum.night, (night) =>
-        moment(night.endDate).add(1, 'hour').valueOf()
-      )
+    max(data, (date) =>
+      max(date.night, (night) => addHours(new Date(night.endDate), 1).valueOf())
     ) as number
   ]
-  const scaleX = scaleTime().domain(xDomain).range([paddingLeft, chartWidth])
+
+  const scaleX = scaleTime()
+    .domain(xDomain)
+    .range([paddingLeft, chartWidth - paddingRight])
 
   const scaleY = scaleTime()
     .domain(yDomain)
@@ -65,11 +56,11 @@ const SleepTimeChart: FC = () => {
     .range([10, chartHeight - 80])
 
   const yTicks = scaleY.ticks(5)
-  const xTicks = scaleX.ticks(days.length)
+  const xTicks = scaleX.ticks(daysToShow)
 
   return (
     <Card>
-      <Title>Sleep Goal Trend</Title>
+      <Title>STAT.TREND</Title>
 
       <ScrollContainer>
         <ScrollView
@@ -78,30 +69,22 @@ const SleepTimeChart: FC = () => {
           showsHorizontalScrollIndicator={false}>
           <View style={{ transform: [{ scaleX: -1 }] }}>
             <Svg width={chartWidth} height={chartHeight}>
-              <TargetBars
+              {/* <TargetBars
                 start={bedtimeWindow}
                 onPress={select}
                 barWidth={barWidth}
                 scaleX={scaleX}
                 scaleY={scaleY}
                 data={normalizedSleepData}
-              />
+              /> */}
               <SleepBars
                 onPress={select}
                 barWidth={barWidth}
-                type={Value.InBed}
                 scaleX={scaleX}
                 scaleY={scaleY}
-                data={normalizedSleepData}
+                data={data}
               />
-              <SleepBars
-                onPress={select}
-                barWidth={barWidth}
-                type={Value.Asleep}
-                scaleX={scaleX}
-                scaleY={scaleY}
-                data={normalizedSleepData}
-              />
+
               <XTicks
                 chartHeight={chartHeight}
                 scaleX={scaleX}
@@ -142,38 +125,3 @@ const Card = styled.View`
   margin: 8px 16px;
   border-radius: 7px;
 `
-
-type NormalizedDay = Day & {
-  night: Night & {
-    startDate: number
-    endDate: number
-  }
-}
-
-const normalizeSleepData = (days: Day[]): NormalizedDay[] => {
-  const normalized = days.map((day) => {
-    const normalizedNights = day.night.map((night) => {
-      const trueDate = moment(day.date)
-
-      const startDifference = moment.duration(
-        moment(night.startDate).diff(trueDate.startOf('day'))
-      )
-      const newStartDate = moment().startOf('day').add(startDifference)
-
-      const newEndDate = moment(newStartDate).add(
-        night.totalDuration,
-        'minutes'
-      )
-
-      return {
-        ...night,
-        startDate: newStartDate.valueOf(),
-        endDate: newEndDate.valueOf()
-      }
-    })
-
-    return { ...day, night: normalizedNights }
-  })
-
-  return normalized
-}

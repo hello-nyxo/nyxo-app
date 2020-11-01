@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '../../styles/themes'
+import { fonts, StyleProps } from '@styles/themes'
 
 interface Props {
   title: string

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import {
   FlatList,
   SafeAreaView as RNSafeAreaView,
@@ -7,8 +7,8 @@ import {
 import ReactNativeModal from 'react-native-modal'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
+import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 import { IconBold } from '../iconRegular'
 import TranslatedText, { AnimatedTranslatedText } from '../TranslatedText'
 
@@ -19,8 +19,8 @@ interface ContainerProps extends StyleProps {
 }
 
 export const Container = styled.View<ContainerProps>`
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-right: 16px;
+  margin-left: 16px;
   flex: 1;
   background-color: ${(props: ContainerProps) =>
     props.background ? props.theme.PRIMARY_BACKGROUND_COLOR : 'transparent'};
@@ -232,3 +232,7 @@ const CheckBoxContainer = styled.View`
 `
 
 export const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
+
+export const ThemedRefreshControl = styled.RefreshControl.attrs(() => ({
+  tintColor: colors.radiantBlue
+}))``

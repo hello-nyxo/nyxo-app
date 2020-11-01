@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
-import { SleepSourceState, SOURCE } from 'typings/state/sleep-source-state'
-import CONFIG from 'config/Config'
+import { State } from '@typings/State'
+import { SleepSourceState, SOURCE } from '@typings/state/sleep-source-state'
+import CONFIG from '@config/Config'
 
 const getSleepSourcesState = (state: State) => state.sleepSources
 

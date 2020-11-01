@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
-import { ManualDataState } from 'Types/State/ManualDataState'
+import { State } from '@typings/State'
+import { ManualDataState } from '@typings/state/ManualDataState'
 
 const getState = (state: State) => state.manualData
 

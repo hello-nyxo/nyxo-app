@@ -35,18 +35,20 @@ const TextField: FC<Props> = ({
   placeholder,
   secureTextEntry
 }) => {
-  const inputRef = useRef<TextInput>(ref)
+  const inputRef = useRef<TextInput | undefined>(ref)
 
   const onFocus = () => {
     inputRef.current.focus()
   }
 
+  const hasError = !!error
+
   return (
     <Container onPress={onFocus}>
-      <InputContainer error={!!error}>
+      <InputContainer error={hasError}>
         <LabelContainer>
           <Icon icon={icon} fill={colors.red} width={15} height={15} />
-          <Label error={!!error}>{error ?? fieldName}</Label>
+          <Label error={hasError}>{hasError ? error : fieldName}</Label>
         </LabelContainer>
         <InputField
           keyboardType={keyboardType}

@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   NotificationPermissionType,
   UpdateNotificationPermissionType
-} from 'Types/NotificationState'
-import { State } from 'Types/State'
+} from '@typings/NotificationState'
+import { State } from '@typings/State'
 import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
 import {
   Container,

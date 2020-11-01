@@ -1,14 +1,16 @@
+import ROUTE from '@config/routes/Routes'
 import { useNavigation } from '@react-navigation/core'
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import Purchases from 'react-native-purchases'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '../../styles/themes'
+import { fonts } from '@styles/themes'
+import colors from '@styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 
-const BuyCoaching = () => {
+const BuyCoaching: FC = () => {
   const navigation = useNavigation()
-  const [price, setPrice]: any = useState(null)
+  const [price, setPrice] = useState('')
 
   const getProducts = async () => {
     try {
@@ -17,7 +19,8 @@ const BuyCoaching = () => {
         offerings.current !== null &&
         offerings.current.monthly !== undefined
       ) {
-        setPrice(offerings.current.monthly?.product.price_string)
+        // eslint-disable-next-line camelcase
+        setPrice(offerings.current.monthly?.product.price_string ?? '-')
       }
     } catch (e) {}
   }
@@ -27,7 +30,7 @@ const BuyCoaching = () => {
   }, [])
 
   const moveToPurchase = () => {
-    navigation.navigate('PurchaseView')
+    navigation.navigate(ROUTE.PURCHASE)
   }
 
   return (
@@ -70,16 +73,12 @@ const RightColumn = styled.View`
   justify-content: flex-end;
 `
 
-const Icon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.SECONDARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(() => ({
+  fill: colors.white
 }))``
 
 const Container = styled.View`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px 20px;
+  padding: 16px;
 `
 
 const AndroidContainer = styled.View`
@@ -88,30 +87,28 @@ const AndroidContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   border-radius: 5px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
 `
 
 const Button = styled.TouchableOpacity`
   border-radius: 5px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
   padding: 20px;
-  box-shadow: ${(props: StyleProps) => props.theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.SHADOW};
   flex-direction: row;
 `
 
 const Text = styled(TranslatedText)`
   flex: 1;
   font-size: 18px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${colors.white};
   font-family: ${fonts.bold};
 `
 
 const MiniText = styled(TranslatedText)`
   flex: 1;
   font-size: 11px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${colors.white};
   font-family: ${fonts.bold};
 `
 const PriceContainer = styled.View`
@@ -120,13 +117,13 @@ const PriceContainer = styled.View`
 `
 
 const Price = styled.Text`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${colors.white};
   font-family: ${fonts.bold};
   font-size: 20px;
 `
 
 const Monthly = styled(TranslatedText)`
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${colors.white};
   font-family: ${fonts.bold};
   font-size: 11px;
 `

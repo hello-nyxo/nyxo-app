@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import BackgroundFetch from 'react-native-background-fetch'
-import { setI18nConfig } from 'config/i18n'
+import { setI18nConfig } from '@config/i18n'
 
 const useBackgroundFetch = (
   minimumFetchInterval: number,

@@ -2,8 +2,8 @@ import Analytics from 'appcenter-analytics'
 import React, { memo } from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
+import { constants, fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
-import { constants, fonts, StyleProps } from '../../styles/themes'
 import { IconBold } from '../iconRegular'
 
 interface Props {

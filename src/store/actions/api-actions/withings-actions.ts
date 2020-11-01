@@ -1,18 +1,18 @@
-import { captureException } from '@sentry/react-native'
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { formatSleepData } from '@actions/sleep/sleep-data-actions'
-import CONFIG from 'config/Config'
-import { formatWithingsSamples } from 'helpers/sleep/withings-helper'
+import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
+import { getWithingsEnabled } from '@selectors/api-selectors/api-selectors'
+import { captureException } from '@sentry/react-native'
+import CONFIG from '@config/Config'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { formatWithingsSamples } from '@helpers/sleep/withings-helper'
 import moment from 'moment'
 import { authorize, refresh, RefreshResult } from 'react-native-app-auth'
-import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
-import { SOURCE } from 'typings/state/sleep-source-state'
-import { getWithingsEnabled } from '@selectors/api-selectors/api-selectors'
-import { GetState } from 'Types/GetState'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
-import { ResponseBase, WithingsAuthorizeResult } from 'Types/State/api-state'
+import { GetState } from '@typings/GetState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { ResponseBase, WithingsAuthorizeResult } from '@typings/state/api-state'
+import { SOURCE } from '@typings/state/sleep-source-state'
+import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 
 export const WITHINGS_AUTHORIZE_SUCCESS = 'WITHINGS_AUTHORIZE_SUCCESS'
 export const WITHINGS_REVOKE_SUCCESS = 'WITHINGS_REVOKE_SUCCESS'
@@ -99,9 +99,9 @@ export const authorizeWithings = (): Thunk => async (dispatch: Dispatch) => {
 }
 
 export const refreshWithingsToken = (): Thunk => async (dispatch: Dispatch) => {
-  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     CONFIG.WITHINGS_CONFIG.bundleId
-  )) as WithingsAuthorizeResult
+  )) as unknown) as WithingsAuthorizeResult
 
   if (oldToken) {
     try {
@@ -150,13 +150,13 @@ export const revokeWithingsAccess = (): Thunk => async (dispatch: Dispatch) => {
 export const getWithingsSleep = (
   startDate?: string,
   endDate?: string
-): Thunk => async (dispatch: Dispatch, getState: GetState) => {
+): Thunk => async (dispatch: Dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
-  } = (await GetKeychainParsedValue(
+  } = ((await GetKeychainParsedValue(
     CONFIG.WITHINGS_CONFIG.bundleId
-  )) as WithingsAuthorizeResult
+  )) as unknown) as WithingsAuthorizeResult
 
   dispatch(fetchSleepWithingsStart())
 
@@ -182,17 +182,17 @@ export const getWithingsSleep = (
         const response = await withingsApiCall.json()
         const formattedResponse = formatWithingsSamples(response.body.series)
         await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+        await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepWithingsSuccess())
       } else {
-        const accessToken = await dispatch(refreshWithingsToken())
+        const newAccessToken = await dispatch(refreshWithingsToken())
 
         const withingsApiCall = await fetch(
           `https://wbsapi.withings.net/v2/sleep?action=getsummary&startdateymd=${start}&enddateymd=${end}&data_fields=${dataFields}`,
           {
             method: 'GET',
             headers: {
-              Authorization: `Bearer ${accessToken}`
+              Authorization: `Bearer ${newAccessToken}`
             }
           }
         )
@@ -200,7 +200,7 @@ export const getWithingsSleep = (
         const response = await withingsApiCall.json()
         const formattedResponse = formatWithingsSamples(response.body.series)
         await dispatch(syncNightsToCloud(formattedResponse))
-        await dispatch(formatSleepData(formattedResponse))
+
         await dispatch(fetchSleepWithingsSuccess())
       }
     } catch (error) {

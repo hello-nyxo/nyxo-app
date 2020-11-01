@@ -6,15 +6,15 @@
  */
 
 module.exports = {
-	transformer: {
-		getTransformOptions: async () => ({
-			transform: {
-				experimentalImportSupport: false,
-				inlineRequires: false,
-			},
-		}),
-	},
-	resolver: {
-		// resolverMainFields: ['styled-components', 'styled-components/native'],
-	},
-};
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: false
+      }
+    })
+  },
+  resolver: {
+    blacklistRE: /#current-cloud-backend\/.*/
+  }
+}

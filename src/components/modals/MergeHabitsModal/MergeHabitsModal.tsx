@@ -3,7 +3,7 @@ import {
   handleHabitsFromCloudWhenLoggingIn,
   toggleMergingDialog
 } from '@actions/habit/habit-actions'
-import { WIDTH } from 'helpers/Dimensions'
+import { WIDTH } from '@helpers/Dimensions'
 import React, { memo, useState } from 'react'
 import { ActivityIndicator } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +11,7 @@ import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getMergingDialogDisplayed } from '@selectors/habit-selectors/habit-selectors'
 import { getUsername } from '@selectors/UserSelectors'
 import styled from 'styled-components/native'
-import ROUTE from 'config/routes/Routes'
+import ROUTE from '@config/routes/Routes'
 import TranslatedText from '@components/TranslatedText'
 import translate from '../../../config/i18n'
 import { fonts, StyleProps } from '../../../styles/themes'

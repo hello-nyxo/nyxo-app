@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react'
 import { Animated, SafeAreaView, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik } from 'formik'
-import { ConfirmationSchema } from 'config/Validation'
+import { ConfirmationSchema } from '@config/Validation'
 import {
   requestNewPassword,
   submitNewPassword

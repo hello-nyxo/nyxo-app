@@ -3,9 +3,9 @@ import {
   CALCULATE_INSIGHT_START,
   CALCULATE_INSIGHT_SUCCESS
 } from '@actions/insight-actions/insight-actions'
-import { InsightState } from 'Types/State/insight-state'
+import { InsightState } from '@typings/state/insight-state'
 import { RESET_APP } from '@actions/shared'
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 
 const initialState: InsightState = {
   loading: false,

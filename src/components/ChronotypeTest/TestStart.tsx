@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
-import { fonts } from '../../styles/themes'
+import { fonts } from '@styles/themes'
 import { PrimaryButton } from '../Buttons/PrimaryButton'
 import { Container } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'

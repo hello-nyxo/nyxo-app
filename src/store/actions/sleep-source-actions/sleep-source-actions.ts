@@ -3,9 +3,9 @@ import { setHealthKitStatus } from '@actions/sleep/health-kit-actions'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
 import AppleHealthKit from 'react-native-healthkit'
 import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { GetState } from 'Types/GetState'
-import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
-import { SOURCE, SUB_SOURCE } from 'typings/state/sleep-source-state'
+import { GetState } from '@typings/GetState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
 
 const PERMS = AppleHealthKit.Constants.Permissions
 

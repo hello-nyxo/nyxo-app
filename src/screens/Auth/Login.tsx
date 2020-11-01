@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { WIDTH } from 'helpers/Dimensions'
+import { WIDTH } from '@helpers/Dimensions'
 import React, { memo } from 'react'
 import { ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,10 +13,10 @@ import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import Input from '@components/TextField'
 import TopInfo from '@components/TopInfo'
 import TranslatedText from '@components/TranslatedText'
+import { fonts, StyleProps } from '@styles/themes'
 import ROUTE from '../../config/routes/Routes'
 import { LoginSchema } from '../../config/Validation'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 
 type Props = {
   navigation: any

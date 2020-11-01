@@ -1,4 +1,4 @@
-import ReduxAction from 'Types/ReduxActions'
+import ReduxAction from '@typings/redux-actions'
 import {
   REGISTER_START,
   REGISTER_SUCCESS,
@@ -10,7 +10,7 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE
 } from '@actions/auth/auth-actions'
-import { AuthState } from 'Types/State/AuthState'
+import { AuthState } from '@typings/state/AuthState'
 
 export const initialState: AuthState = {
   loading: false,

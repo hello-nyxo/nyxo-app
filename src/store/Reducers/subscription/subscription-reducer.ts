@@ -1,5 +1,5 @@
-import ReduxAction from 'Types/ReduxActions'
-import { SubscriptionState } from 'Types/SubscriptionState'
+import ReduxAction from '@typings/redux-actions'
+import { SubscriptionState } from '@typings/SubscriptionState'
 import {
   RESTORE_START,
   RESTORE_SUCCESS,

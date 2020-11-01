@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
-import { OnboardingState } from 'Types/OnboardingState'
+import { State } from '@typings/State'
+import { OnboardingState } from '@typings/OnboardingState'
 
 const getOnboardingState = (state: State) => state.onboarding
 

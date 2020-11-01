@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
-import { ApiState } from 'Types/State/api-state'
+import { State } from '@typings/State'
+import { ApiState } from '@typings/state/api-state'
 
 const getApi = (state: State) => state.apis
 

@@ -2,21 +2,32 @@ import {
   getGoToSleepWindowEnd,
   getGoToSleepWindowStart
 } from '@selectors/insight-selectors/Insights'
-import { getSelectedDay } from '@selectors/SleepDataSelectors'
 import { IconBold } from '@components/iconRegular'
 import { Column } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
-import { getFormattedDateOrPlaceholder } from 'helpers/time'
+import {
+  getFormattedDateOrPlaceholder,
+  minutesToHoursString
+} from '@helpers/time'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import colors from 'styles/colors'
-import { WIDTH } from 'helpers/Dimensions'
+import colors from '@styles/colors'
+import { WIDTH } from '@helpers/Dimensions'
+import useSleep from '@hooks/useSleep'
 
 const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
 const InsightsCard: FC = () => {
-  const { bedStart, bedEnd, sleepStart, sleepEnd } = useSelector(getSelectedDay)
+  const {
+    bedStart,
+    bedEnd,
+    sleepStart,
+    sleepEnd,
+    efficiency,
+    inBedDuration,
+    asleepDuration
+  } = useSleep()
   const goToSleepWindowStart = useSelector(getGoToSleepWindowStart)
   const goToSleepWindowEnd = useSelector(getGoToSleepWindowEnd)
 
@@ -43,8 +54,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonBegin"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.inBedColor}
               />
               <Column>
@@ -57,8 +68,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonEnd"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.inBedColor}
               />
               <Column>
@@ -73,8 +84,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonEnd"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.asleepColor}
               />
               <Column>
@@ -87,8 +98,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonEnd"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.asleepColor}
               />
               <Column>
@@ -103,14 +114,14 @@ const InsightsCard: FC = () => {
             <Figure>
               <Icon
                 fill="none"
-                name="nightMoonBegin"
-                height="30"
-                width="30"
+                name="doubleBed"
+                height="20"
+                width="20"
                 stroke="black"
               />
               <Column>
-                <Value>{wentToBed}</Value>
-                <Description>STAT.WENT_TO_BED</Description>
+                <Value>{minutesToHoursString(inBedDuration)}</Value>
+                <Description>STAT.BED</Description>
               </Column>
             </Figure>
 
@@ -118,13 +129,13 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="nightMoonEnd"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke="black"
               />
               <Column>
-                <Value>{wokeUp}</Value>
-                <Description>STAT.WOKE_UP</Description>
+                <Value>{efficiency}</Value>
+                <Description>STAT.EFFICIENCY</Description>
               </Column>
             </Figure>
           </Row>
@@ -133,14 +144,14 @@ const InsightsCard: FC = () => {
             <Figure>
               <Icon
                 fill="none"
-                name="nightMoonEnd"
-                height="30"
-                width="30"
+                name="doubleBed"
+                height="20"
+                width="20"
                 stroke="black"
               />
               <Column>
-                <Value>4:00</Value>
-                <Description>STAT.WOKE_UP</Description>
+                <Value>{minutesToHoursString(asleepDuration)}</Value>
+                <Description>STAT.SLEEP</Description>
               </Column>
             </Figure>
 
@@ -148,8 +159,8 @@ const InsightsCard: FC = () => {
               <Icon
                 fill="none"
                 name="bedWindow"
-                height="30"
-                width="30"
+                height="20"
+                width="20"
                 stroke={colors.bedTimeColor}
               />
               <Column>
@@ -206,7 +217,7 @@ const Figure = styled.View`
   align-items: center;
   flex: 1;
   width: 100%;
-  margin-right: 30px;
+  margin-right: 20px;
 `
 
 const Icon = styled(IconBold).attrs(() => ({}))`
@@ -216,7 +227,7 @@ const Icon = styled(IconBold).attrs(() => ({}))`
 const Value = styled.Text`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  font-size: 20px;
+  font-size: 15px;
 `
 
 const Description = styled(TranslatedText)`

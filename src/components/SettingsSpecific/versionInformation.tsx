@@ -1,14 +1,11 @@
-import { useNavigation } from '@react-navigation/native'
 import React, { memo, useEffect, useState } from 'react'
 import DeviceInfo from 'react-native-device-info'
 import styled from 'styled-components/native'
-import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
+import colors from '@styles/colors'
+import { fonts } from '@styles/themes'
 
 const VersionInformation = () => {
-  const navigation = useNavigation()
-  const [version, setVersion] = useState()
-  const [developerMenuCounter, incrementDevelopMenuCounter] = useState(0)
+  const [version, setVersion] = useState('')
 
   useEffect(() => {
     async function updateVersion() {
@@ -19,19 +16,10 @@ const VersionInformation = () => {
     updateVersion()
   }, [])
 
-  const increment = () => {
-    if (developerMenuCounter > 20) {
-      navigation.navigate('DevelopmentMenu', {})
-    } else {
-      incrementDevelopMenuCounter(developerMenuCounter + 1)
-    }
-  }
-
   return (
     <Container>
-      <VersionText onPress={increment}>
-        Nyxo © Copyright 2019.
-        {'\n'}
+      <VersionText>
+        Nyxo © Copyright {new Date().getFullYear()}.{'\n'}
         All rights reserved.
       </VersionText>
       <VersionText>Version {version}</VersionText>

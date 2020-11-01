@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { constants, fonts, StyleProps } from '../../styles/themes'
+import { constants, fonts, StyleProps } from '@styles/themes'
 
 const data = [
   {
