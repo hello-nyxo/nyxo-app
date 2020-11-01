@@ -1,4 +1,7 @@
-import { expectedNight, fitbitMockResponse } from '../../mockData/fitbit'
+import {
+  expectedNight,
+  fitbitMockResponse
+} from '@helpers/sleep/__mocks__/fitbit.mock'
 import { formatFitbitSample } from './fitbit-helper'
 
 jest.mock('moment', () => {
@@ -7,8 +10,8 @@ jest.mock('moment', () => {
 
 describe('Fitbit helper', () => {
   it(`formatFitbitResponse() should handle formatting fitbit api response`, () => {
-    // expect(formatFitbitSample(fitbitMockResponse.sleep[0])).toEqual(
-    //   expectedNight
-    // )
+    expect(formatFitbitSample(fitbitMockResponse.sleep[0])).toEqual(
+      expectedNight
+    )
   })
 })

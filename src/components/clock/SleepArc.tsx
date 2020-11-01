@@ -1,17 +1,15 @@
-import React from 'react'
-import { Path, G } from 'react-native-svg'
-import Reanimated from 'react-native-reanimated'
-import AnimatedSvgPath from '../AnimatedSvgPath'
-import { Value, Day, Night } from 'Types/Sleepdata'
 import { describeArc } from '@helpers/geometry'
-import { getAngleAM } from '@helpers/sleep'
+import { getAngleAM } from '@helpers/sleep/sleep'
+import React, { FC } from 'react'
+import Reanimated from 'react-native-reanimated'
+import { G, Path } from 'react-native-svg'
+import { Night, Value } from '@typings/Sleepdata'
 
-interface SleepArcProps {
-  day: Day
+type Props = {
   value: Value
   strokeWidth: number
   color: string
-
+  night: Night[]
   x: number
   y: number
   radius: number
@@ -19,18 +17,26 @@ interface SleepArcProps {
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path)
 
-const SleepArc = (props: SleepArcProps) => {
-  if (!props.day || !props.day.night) {
+const SleepArc: FC<Props> = ({
+  night,
+  value,
+  color,
+  strokeWidth,
+  x,
+  y,
+  radius
+}) => {
+  if (!night) {
     return <G />
   }
 
-  const arcs = props.day.night
-    .filter((night: Night) => night.value === props.value)
-    .map((part: Night, index: number) => {
+  const arcs = night
+    .filter((n: Night) => n.value === value)
+    .map((part: Night) => {
       const path = describeArc(
-        props.x,
-        props.y,
-        props.radius,
+        x,
+        y,
+        radius,
         getAngleAM(part.startDate),
         getAngleAM(part.endDate)
       ).toString()
@@ -40,9 +46,9 @@ const SleepArc = (props: SleepArcProps) => {
           d={path}
           strokeLinecap="round"
           fill="none"
-          stroke={props.color}
-          key={index}
-          strokeWidth={props.strokeWidth}
+          stroke={color}
+          key={part.id}
+          strokeWidth={strokeWidth}
         />
       )
     })

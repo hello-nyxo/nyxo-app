@@ -5,7 +5,7 @@ import {
   popFromIncompleteLessons
 } from '@actions/CoachingNotification/CoachingNotificationActions'
 
-import { InteractedLesson } from 'Types/CoachingNotificationState'
+import { InteractedLesson } from '@typings/CoachingNotificationState'
 import reducer, { initialState } from './coaching-notifications-reducer'
 
 const lesson: InteractedLesson = {

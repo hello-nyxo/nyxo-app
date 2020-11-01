@@ -3,8 +3,8 @@ import { PurchasesPackage } from 'react-native-purchases'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import { purchaseSubscription } from '@actions/subscription/subscription-actions'
+import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 import TranslatedText from '../TranslatedText'
 
 const SubscriptionItem = ({

@@ -4,25 +4,22 @@ import {
   setMainSource,
   updateGoogleFitSources
 } from '@actions/sleep-source-actions/sleep-source-actions'
-import {
-  fetchSleepData,
-  formatSleepData
-} from '@actions/sleep/sleep-data-actions'
-import CONFIG from 'config/Config'
-import { formatGoogleFitData } from 'helpers/sleep/google-fit-helper'
+import { fetchSleepSuccess } from '@actions/sleep/health-kit-actions'
+import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
+import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
+import CONFIG from '@config/Config'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { formatGoogleFitData } from '@helpers/sleep/google-fit-helper'
+import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
+import { getGoogleFitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import { GetState } from '@typings/GetState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { Night } from '@typings/Sleepdata'
+import { GoogleFitResponse, ResponseBase } from '@typings/state/api-state'
+import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
 import moment from 'moment'
 import { Platform } from 'react-native'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
-import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
-import { getGoogleFitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { Dispatch, Thunk } from 'Types/ReduxActions'
-import { SleepDataSource } from 'Types/SleepClockState'
-import { Night } from 'Types/Sleepdata'
-import { SOURCE, SUB_SOURCE } from 'typings/state/sleep-source-state'
-import { GetState } from 'Types/GetState'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { GoogleFitResponse, ResponseBase } from 'Types/State/api-state'
-import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
 /* ACTION TYPES */
 
 export const GOOGLE_FIT_AUTHORIZE_SUCCESS = 'GOOGLE_FIT_AUTHORIZE_SUCCESS'
@@ -36,16 +33,18 @@ export const FETCH_GOOGLE_FIT_FAILURE = 'FETCH_GOOGLE_FIT_FAILURE'
 export const GOOGLE_FIT_KEYCHAIN_SERVICE = 'service.fit.google.customized'
 /* ACTIONS */
 
-export const googleFitAuthorizeSuccess = (payload: ResponseBase) => ({
+export const googleFitAuthorizeSuccess = (
+  payload: ResponseBase
+): ReduxAction => ({
   type: GOOGLE_FIT_AUTHORIZE_SUCCESS,
   payload
 })
 
-export const googleFitRevokeSuccess = () => ({
+export const googleFitRevokeSuccess = (): ReduxAction => ({
   type: GOOGLE_FIT_REVOKE_SUCCESS
 })
 
-export const googleFitUpdateToken = (payload: ResponseBase) => ({
+export const googleFitUpdateToken = (payload: ResponseBase): ReduxAction => ({
   type: GOOGLE_FIT_UPDATE_TOKEN,
   payload
 })
@@ -71,7 +70,9 @@ export const toggleGoogleFit = (): Thunk => async (
   }
 }
 
-export const authorizeGoogleFit = () => async (dispatch: Function) => {
+export const authorizeGoogleFit = () => async (
+  dispatch: Dispatch
+): Promise<void> => {
   const config =
     Platform.OS === 'android'
       ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
@@ -103,10 +104,13 @@ export const authorizeGoogleFit = () => async (dispatch: Function) => {
   }
 }
 
-export const refreshGoogleFitToken = () => async (dispatch: Function) => {
-  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+export const refreshGoogleFitToken = (): Thunk => async (
+  dispatch: Dispatch
+) => {
+  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
+  )) as unknown) as GoogleFitResponse
+
   const config =
     Platform.OS === 'android'
       ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
@@ -148,9 +152,9 @@ export const refreshGoogleFitToken = () => async (dispatch: Function) => {
 export const revokeGoogleFitAccess = (): Thunk => async (
   dispatch: Dispatch
 ) => {
-  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
+  )) as unknown) as GoogleFitResponse
 
   const config =
     Platform.OS === 'android'
@@ -158,7 +162,7 @@ export const revokeGoogleFitAccess = (): Thunk => async (
       : CONFIG.GOOOGLE_FIT_GONFIG_IOS
   if (oldToken) {
     try {
-      const response = await revoke(config, {
+      await revoke(config, {
         tokenToRevoke: oldToken
       })
       dispatch(googleFitRevokeSuccess())
@@ -173,12 +177,12 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
-  } = (await GetKeychainParsedValue(
+  } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
+  )) as unknown) as GoogleFitResponse
 
   const startDate = moment().subtract(1, 'week').toISOString()
-  const endDate = moment().toISOString()
+  const endDate = new Date().toISOString()
 
   if (accessToken) {
     try {
@@ -198,7 +202,7 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
         const formatted = await formatGoogleFitData(response.session)
         await dispatch(syncNightsToCloud(formatted))
         await dispatch(createGoogleFitSources(formatted))
-        await dispatch(formatSleepData(formatted))
+        await dispatch(fetchSleepSuccess(formatted))
       } else {
         const newAccessToken = await dispatch(refreshGoogleFitToken())
 
@@ -217,7 +221,7 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
           const formatted = await formatGoogleFitData(response.session)
           await dispatch(syncNightsToCloud(formatted))
           await dispatch(createGoogleFitSources(formatted))
-          await dispatch(formatSleepData(formatted))
+          await dispatch(fetchSleepSuccess(formatted))
         }
       }
     } catch (error) {
@@ -226,52 +230,23 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
   }
 }
 
-export const writeGoogleFitSleep = (date?: string) => async (
-  dispatch: Function,
-  getState: GetState
-) => {
-  const { accessToken } = (await GetKeychainParsedValue(
-    GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as GoogleFitResponse
-
-  if (accessToken) {
-    try {
-      const formattedDate = moment(date).toISOString()
-      const googleApiCall = await fetch(
-        `https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=${formattedDate}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      )
-
-      const response = await googleApiCall.json()
-    } catch (error) {
-      console.warn(error)
-    }
-  }
-}
-
 export const switchGoogleFitSource = (googleFitSource: SUB_SOURCE) => async (
-  dispatch: Function
+  dispatch: Dispatch
 ) => {
   dispatch(changeGoogleFitSource(googleFitSource))
   dispatch(fetchSleepData())
 }
 
-export const createGoogleFitSources = (nights: Night[]) => async (
-  dispatch: Function,
-  getState: Function
+export const createGoogleFitSources = (nights: Night[]): Thunk => async (
+  dispatch: Dispatch,
+  getState: GetState
 ) => {
   const googleFitSource = getGoogleFitSource(getState())
   const sourceList: SUB_SOURCE[] = []
 
   nights.forEach((item: Night) => {
     const existingSource = sourceList.find(
-      (source: SleepDataSource) => source.sourceId === item.sourceId
+      (source) => source.sourceId === item.sourceId
     )
 
     if (!existingSource) {

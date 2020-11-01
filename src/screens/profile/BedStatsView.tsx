@@ -13,8 +13,6 @@ import {
 } from '@selectors/SleepDataSelectors'
 import { H3, P, Container } from '@components/Primitives/Primitives'
 
-const { width } = Dimensions.get('window')
-
 const BedStatsView = () => {
   const nights = useSelector(getBedTimeNights)
   const average = useSelector(getAverageBedTime)
@@ -24,7 +22,7 @@ const BedStatsView = () => {
   const over8 = useSelector(getNightsWithOver8HoursBedTime)
 
   return (
-    <Container style={{ marginVertical: 50 }}>
+    <Container>
       <H3>Bedtime statistics</H3>
       <P>Bedtime statistics subtitle</P>
       <InfoRow title="Tracked nights" figure={nights.length.toString()} />

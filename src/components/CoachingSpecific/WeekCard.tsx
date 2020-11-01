@@ -2,7 +2,7 @@ import { selectWeek } from '@actions/coaching/coaching-actions'
 import { useNavigation } from '@react-navigation/native'
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
-import ROUTE from 'config/routes/Routes'
+import ROUTE from '@config/routes/Routes'
 import React, { FC, memo } from 'react'
 import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
@@ -10,8 +10,8 @@ import Animated from 'react-native-reanimated'
 import { useDispatch } from 'react-redux'
 import { CombinedWeek } from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
+import { constants, fonts } from '@styles/themes'
 import colors from '../../styles/colors'
-import { constants, fonts } from '../../styles/themes'
 import ScalingButton from '../Buttons/ScalingButton'
 import WeekCardTitle from './WeekCardTitle'
 
@@ -19,9 +19,10 @@ type Props = {
   week: CombinedWeek
   cardWidth: number
   cardMargin: number
+  completed?: boolean
 }
 
-const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week }) => {
+const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, completed }) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
@@ -35,6 +36,7 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week }) => {
   const formatedIntro = week.intro ? week.intro.replace('–', '\n – ') : ''
   const lessonCount = week.lessons.length
   const { habitCount } = week
+
   return (
     <CardContainer>
       <ScalingButton

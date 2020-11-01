@@ -1,8 +1,8 @@
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import { GetState } from '@typings/GetState'
+import { Dispatch, Thunk } from '@typings/redux-actions'
 import { Platform } from 'react-native'
-import { GetState } from 'Types/GetState'
-import { Dispatch, Thunk } from 'Types/ReduxActions'
 import { refreshAuthStatus } from './auth/auth-actions'
 import {
   updateCoachingInCloud,
@@ -21,7 +21,6 @@ import {
   handleCoachingUncompletedLessonNotifications
 } from './notifications'
 import { prepareSleepDataFetching } from './sleep/health-kit-actions'
-import { fetchSleepData, updateCalendar } from './sleep/sleep-data-actions'
 import { updateSubscriptionStatus } from './subscription/subscription-actions'
 
 export const startup = (): Thunk => async (
@@ -37,9 +36,6 @@ export const startup = (): Thunk => async (
 
   await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
 
-  // await dispatch(pullSleepFromCloud());
-  await dispatch(updateCalendar())
-
   // Actions related to sleep data
   if (isUsingHealthKit) {
     await dispatch(prepareSleepDataFetching())
@@ -48,11 +44,10 @@ export const startup = (): Thunk => async (
   // Get Coaching Materials
   await dispatch(getAllWeeks())
 
-  await dispatch(fetchSleepData())
+  // await dispatch(fetchSleepData())
 
   await dispatch(updateSubscriptionStatus())
   await dispatch(refreshAuthStatus())
-  // // Action related to coaching
   await dispatch(validateWeeklyProgress())
 
   await dispatch(updateDayStreaks())
@@ -60,7 +55,6 @@ export const startup = (): Thunk => async (
   if (isAuthenticated) {
     await dispatch(updateCoachingInCloud())
   }
-  await dispatch(calculateInsights())
 
   await dispatch(handleBedtimeApproachNotifications())
   await dispatch(handleCoachingUncompletedLessonNotifications())
@@ -68,9 +62,8 @@ export const startup = (): Thunk => async (
 }
 
 export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {
-  await dispatch(updateCalendar())
-  await dispatch(handleBedtimeApproachNotifications())
-  await dispatch(handleCoachingUncompletedLessonNotifications())
-  await dispatch(handleCoachingLessonsInWeekNotifications())
-  await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
+  // await dispatch(handleBedtimeApproachNotifications())
+  // await dispatch(handleCoachingUncompletedLessonNotifications())
+  // await dispatch(handleCoachingLessonsInWeekNotifications())
+  // await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
 }

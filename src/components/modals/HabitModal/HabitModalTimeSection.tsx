@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { Period } from 'Types/State/Periods'
+import { Period } from '@typings/state/Periods'
 import SetTimePeriodButtons from './SetTimePeriodButtons'
 import TranslatedText from '../../TranslatedText'
 import { StyleProps, fonts } from '../../../styles/themes'

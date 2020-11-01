@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import { getIsFitbitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
-import colors from 'styles/colors'
+import colors from '@styles/colors'
 
 const FitbitSection = () => {
   const dispatch = useDispatch()

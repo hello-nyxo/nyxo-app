@@ -224,8 +224,16 @@
   },
 
   "COACHING_MONTH": {
-    "WEEKS": "Suoritetut viikot {{weeks}}",
-    "LESSONS": "Suoritetut oppitunnit {{lessons}}"
+    "SUBTITLE": "Valmennusjakso",
+    "WEEKS": {
+      "one": "{{count}} viikko",
+      "other": "{{count}} viikkoa"
+    },
+    "LESSONS": {
+      "one": "{{count}} oppitunti",
+      "other": "{{count}} oppituntia"
+    },
+    "PROGRESS": "Suoriutuminen"
   },
 
   "TimeOnCharge": "Käytä puhelimen lataus- ja käyttötietoja unen havaitsemiseen",
@@ -639,7 +647,7 @@
   "SUBSCRIPTION_MANAGEMENT": {
     "CURRENTLY_ACTIVE": "Aktiivinen tilaus",
     "STARTED": "Tilaus alkoi ",
-    "THANK_YOU": "Kiitos että olet tilaaja 😍'\n' Tilauksesi uusiutuu ",
+    "THANK_YOU": "Kiitos että olet tilaaja 😍 \n Tilauksesi uusiutuu ",
     "SANDBOX": "Tämä on testitilaus"
   },
 
@@ -670,5 +678,28 @@
     "HABITS": "Tavoitteet",
     "PROFILE": "Profiili",
     "SETTINGS": "Asetukset"
+  },
+
+  "COACHING": {
+    "WATCH_INTRO": "Katso Esittely",
+    "START": "Aloita Valmennus"
+  },
+
+  "QUESTION": {
+    "TITLE": "Kysymyksiä unesta?",
+    "TEXT": "Nyxo Univalmennukseen kuuluu mahdollisuus esittää kysymyksiä uniammattilaisillemme. Voit aloittaa suoran chatin liittyen uneen tai valmennukseen milloin vain.",
+    "OPEN_CHAT": "Kysy Asiantuntijoiltamme"
+  },
+
+  "POINTS": {
+    "TITLE": "Unipisteet",
+    "EFFICIENCY": "Tehokkuus",
+    "EFFICIENCY_EXPLANATION": "Tehokkuus lasketaan vertaamalla sängyssä vietettyä aikaa siihen aikaan jonka olit oikeasti unessa. Pienempi ero antaa enemmän pisteitä.",
+    "DURATION": "Kesto",
+    "DURATION_EXPLANATION": "Mitä lähempänä olet noin 8 tunnin unitavoitetta, sitä enemmän saat pisteitä.",
+    "SOCIAL_JET_LAG": "Sosiaalinen aikaero",
+    "SOCIAL_JET_LAG_EXPLANATION": "Sosiaalinen aikaero on arkipäivien ja viikonloppujen nukuttujen öiden ero toisiinsa. Pieni ero = enemmän pisteitä ",
+    "TIMING": "Ajoitus",
+    "TIMING_EXPLANATION": "Saat ajoituksesta pisteitä sen mukaan kuinka tasaisesti menet nukkumaan ja heräät."
   }
 }

@@ -5,7 +5,7 @@ import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import { getIsWithingsMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { toggleWithings } from '@actions/api-actions/withings-actions'
-import { constants } from 'styles/themes'
+import { constants } from '@styles/themes'
 
 const WithingsSection = () => {
   const dispatch = useDispatch()

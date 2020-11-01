@@ -1,5 +1,5 @@
-import React, { useRef, FC } from 'react'
-import { NativeSyntheticEvent, TextInputProps } from 'react-native'
+import React, { FC, useRef } from 'react'
+import { TextInput, TextInputProps } from 'react-native'
 import styled from 'styled-components/native'
 import translate from '../config/i18n'
 import colors from '../styles/colors'
@@ -12,7 +12,7 @@ interface Props extends TextInputProps {
   error?: string
   fieldName: string
   icon: string
-  ref?: any
+  ref?: TextInput
 }
 
 const TextField: FC<Props> = ({
@@ -26,6 +26,7 @@ const TextField: FC<Props> = ({
   ref,
   keyboardType,
   autoCorrect,
+  onChangeText,
   autoCompleteType,
   textContentType,
   autoCapitalize,
@@ -34,46 +35,33 @@ const TextField: FC<Props> = ({
   placeholder,
   secureTextEntry
 }) => {
-  const inputRef: any = useRef(ref)
+  const inputRef = useRef<TextInput | undefined>(ref)
 
   const onFocus = () => {
     inputRef.current.focus()
   }
 
-  const handleOnBlur = (
-    event: NativeSyntheticEvent<TextInputFocusEventData>
-  ) => {
-    onBlur && onBlur(event)
-  }
-
-  const handleOnEndEditing = (
-    event: NativeSyntheticEvent<TextInputEndEditingEventData>
-  ) => {
-    onEndEditing && onEndEditing(event)
-  }
-
-  const handleOnSubmitEditing = (event: any) => {
-    onSubmitEditing && onSubmitEditing(event)
-  }
+  const hasError = !!error
 
   return (
     <Container onPress={onFocus}>
-      <InputContainer error={!!error}>
+      <InputContainer error={hasError}>
         <LabelContainer>
           <Icon icon={icon} fill={colors.red} width={15} height={15} />
-          <Label error={!!error}>{error ? error : fieldName}</Label>
+          <Label error={hasError}>{hasError ? error : fieldName}</Label>
         </LabelContainer>
         <InputField
           keyboardType={keyboardType}
           ref={inputRef}
+          onChangeText={onChangeText}
           autoCorrect={autoCorrect}
           autoCompleteType={autoCompleteType}
           textContentType={textContentType}
-          onBlur={handleOnBlur}
+          onBlur={onBlur}
           autoCapitalize={autoCapitalize}
-          onEndEditing={handleOnEndEditing}
+          onEndEditing={onEndEditing}
           returnKeyType={returnKeyType}
-          onSubmitEditing={handleOnSubmitEditing}
+          onSubmitEditing={onSubmitEditing}
           enablesReturnKeyAutomatically={enablesReturnKeyAutomatically}
           value={value}
           clearButtonMode="while-editing"

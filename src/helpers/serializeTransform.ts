@@ -1,6 +1,6 @@
 import { createTransform } from 'redux-persist'
 import serialize from 'serialize-javascript'
-import { Habit } from 'Types/State/habit-state'
+import { Habit } from '@typings/state/habit-state'
 
 // Alternative for SerializeTransform for HabitState
 export const transformHabits = createTransform(

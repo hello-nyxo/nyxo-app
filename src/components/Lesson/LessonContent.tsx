@@ -1,16 +1,13 @@
-import React, { memo } from 'react'
+import React, { memo, FC } from 'react'
 import styled from 'styled-components/native'
 import { Document } from '@contentful/rich-text-types'
 import RichText from '../RichText'
 
-interface Props {
-  handleOnLayout: Function
+type Props = {
   lessonContent?: Document
 }
 
-const LessonContent = (props: Props) => {
-  const { lessonContent } = props
-
+const LessonContent: FC<Props> = ({ lessonContent }) => {
   const contentIsHtml = typeof lessonContent === 'string'
   if (!lessonContent || contentIsHtml) {
     return null
@@ -18,7 +15,7 @@ const LessonContent = (props: Props) => {
 
   return (
     <Container>
-      <RichText content={props.lessonContent} />
+      <RichText content={lessonContent} />
     </Container>
   )
 }

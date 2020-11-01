@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
+import { State } from '@typings/State'
 import {
   NotificationState,
   NotificationPermissionType
-} from 'Types/NotificationState'
+} from '@typings/NotificationState'
 
 const getNotificationState = (state: State) => state.notifications
 

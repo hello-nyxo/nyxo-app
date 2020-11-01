@@ -2,19 +2,23 @@
 const { defaults: tsjPreset } = require('ts-jest/presets')
 
 module.exports = {
-  setupFiles: ['<rootDir>/jest-setup.js', './node_modules/'],
+  setupFiles: [
+    '<rootDir>/jest-setup.js',
+    './node_modules/react-native-gesture-handler/jestSetup.js'
+  ],
   preset: 'react-native',
-  setupFiles: ['./node_modules/react-native-gesture-handler/jestSetup.js'],
   verbose: true,
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   roots: ['<rootDir>'],
   testPathIgnorePatterns: ['./node_modules/'],
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|@sentry/react-native|aws-amplify|aws-amplify-react-native)/)'
+    'node_modules/(?!(react-native|@sentry/react-native|react-native-ultimate-config|aws-amplify|aws-amplify-react-native)/)'
   ],
   moduleNameMapper: {
     '^@components(.*)$': '<rootDir>/src/components$1',
-    '^@constants(.*)$': '<rootDir>/src/constants$1'
+    '^@constants(.*)$': '<rootDir>/src/constants$1',
+    '^@helpers(.*)$': '<rootDir>/src/helpers$1',
+    '^@actions(.*)$': '<rootDir>/src/store/actions$1'
   },
   testEnvironment: 'jsdom',
   transform: {

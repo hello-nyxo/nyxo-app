@@ -19,8 +19,8 @@ import React, { FC } from 'react'
 import { SectionList } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import colors from 'styles/colors'
-import { Habit } from 'Types/State/habit-state'
+import colors from '@styles/colors'
+import { Habit } from '@typings/state/habit-state'
 
 const HabitView: FC = () => {
   const activeHabits = useSelector(getActiveHabits)

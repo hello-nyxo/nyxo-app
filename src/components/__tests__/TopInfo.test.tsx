@@ -2,7 +2,7 @@ import 'jest-styled-components'
 import 'react-native'
 import { Middleware } from 'redux'
 import configureStore from 'redux-mock-store'
-import { NotificationState, NotificationType } from 'Types/NotificationState'
+import { NotificationState, NotificationType } from '@typings/NotificationState'
 
 const middlewares: Middleware[] = []
 const mockStore = configureStore(middlewares)
@@ -19,11 +19,6 @@ jest.mock('react-native-modal', () => {
 
   return Modal
 })
-
-jest.mock('react-native-iphone-x-helper', () => ({
-  getStatusBarHeight: () => 20,
-  isIphoneX: () => true
-}))
 
 jest.mock('react-native', () => ({
   Dimensions: {

@@ -8,10 +8,10 @@ import GoBack from '@components/Buttons/GoBack'
 import PerkList from '@components/IAPComponents/PerkList'
 import SubscriptionItem from '@components/IAPComponents/SubscriptionItem'
 import TranslatedText from '@components/TranslatedText'
-import CONFIG from '../../config/Config'
 import { HEIGHT, SMART_TOP_PADDING } from '@helpers/Dimensions'
+import { fonts, StyleProps } from '@styles/themes'
+import CONFIG from '../../config/Config'
 import colors from '../../styles/colors'
-import { fonts, StyleProps } from '../../styles/themes'
 
 const PurchaseView = () => {
   const [availableSubscriptions, setSubscriptions]: any = useState([])

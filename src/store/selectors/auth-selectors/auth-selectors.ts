@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
-import { AuthState } from 'Types/State/AuthState'
+import { State } from '@typings/State'
+import { AuthState } from '@typings/state/AuthState'
 
 const getAuth = (state: State) => state.auth
 

@@ -4,8 +4,8 @@ import {
   HabitState,
   MutationType,
   UnsyncedHabit
-} from 'Types/State/habit-state'
-import { Period } from 'Types/State/Periods'
+} from '@typings/state/habit-state'
+import { Period } from '@typings/state/Periods'
 import {
   getActiveHabits,
   getAfternoonHabits,

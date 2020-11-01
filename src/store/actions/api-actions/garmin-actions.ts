@@ -1,20 +1,20 @@
 /* eslint-disable camelcase */
-import { getGarminEnabled } from '@selectors/api-selectors/api-selectors'
-import CONFIG from 'config/Config'
-import moment from 'moment'
-import ReduxAction, { Dispatch, Thunk } from 'Types/ReduxActions'
-import { GarminAuthorizeResult, ResponseBase } from 'Types/State/api-state'
-import { openAuthSessionAsync, WebBrowserResult } from 'expo-web-browser'
-import queryString from 'query-string'
-import { SOURCE } from 'typings/state/sleep-source-state'
-import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
-import { formatGarminSamples } from 'helpers/sleep/garmin-helper'
-import { formatSleepData } from '@actions/sleep/sleep-data-actions'
-import { GarminSleepObject } from 'Types/Sleep/Garmin'
-import { GetState } from 'Types/GetState'
+import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
+import { getGarminEnabled } from '@selectors/api-selectors/api-selectors'
+import CONFIG from '@config/Config'
+import { openAuthSessionAsync, WebBrowserResult } from 'expo-web-browser'
+import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { formatGarminSamples } from '@helpers/sleep/garmin-helper'
+import moment from 'moment'
+import queryString from 'query-string'
 import { Linking, Platform } from 'react-native'
-import { SetKeychainKeyValue, GetKeychainParsedValue } from 'helpers/Keychain'
+import { GetState } from '@typings/GetState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { GarminSleepObject } from '@typings/Sleep/Garmin'
+import { GarminAuthorizeResult, ResponseBase } from '@typings/state/api-state'
+import { SOURCE } from '@typings/state/sleep-source-state'
+import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 
 export const GARMIN_AUTHORIZE_SUCCESS = 'GARMIN_AUTHORIZE_SUCCESS'
 export const GARMIN_REVOKE_SUCCESS = 'GARMIN_REVOKE_SUCCESS'
@@ -253,7 +253,7 @@ export const getGarminSleep = (): Thunk => async (
       })
 
       const formattedResponse = formatGarminSamples(combinedSleepData)
-      await dispatch(formatSleepData(formattedResponse))
+      await dispatch(fetchSleepSuccess(formattedResponse))
       await dispatch(fetchSleepGarminSuccess())
     } catch (err) {
       console.warn('getGarminSleep error', err)

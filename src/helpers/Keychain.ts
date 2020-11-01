@@ -17,8 +17,8 @@ export const SetKeychainKeyValue = async (
       accessible: ACCESSIBLE.WHEN_UNLOCKED,
       service
     })
-  } catch (err) {
-    console.warn('SetKeychainKeyValue err', err)
+  } catch (error) {
+    console.warn('SetKeychainKeyValue err', error)
   }
 }
 
@@ -33,14 +33,15 @@ export const GetKeychainKeyValue = async (
     })
 
     return credential
-  } catch (err) {
-    console.warn('GetKeychainValue err', err)
+  } catch (error) {
+    console.warn('GetKeychainValue err', error)
+    return error
   }
-
-  return null
 }
 
-export const GetKeychainParsedValue = async (service: string) => {
+export const GetKeychainParsedValue = async (
+  service: string
+): Promise<Record<string, unknown> | string> => {
   const serviceValue = (await GetKeychainKeyValue(service)) as
     | SharedWebCredentials
     | null

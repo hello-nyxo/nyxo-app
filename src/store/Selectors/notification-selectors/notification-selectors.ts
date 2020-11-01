@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { CoachingNotificationState } from 'Types/CoachingNotificationState'
-import { State } from 'Types/State'
+import { CoachingNotificationState } from '@typings/CoachingNotificationState'
+import { State } from '@typings/State'
 import { getShouldAskForPermission } from '../NotificationSelectors'
 import { getIntercomNeedHelpRead } from '../OnboardingSelectors'
 

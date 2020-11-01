@@ -1,18 +1,14 @@
-import React, { memo } from 'react'
-import styled from 'styled-components/native'
-import { useSelector } from 'react-redux'
-import { H2, P, Container, Bordered } from '../Primitives/Primitives'
-import { getCurrentDaySuggestOtherSource } from '@selectors/SmartActionsSelectors'
 import { getTitle } from '@helpers/time'
+import React, { memo, FC } from 'react'
+import styled from 'styled-components/native'
+import { Bordered, Container, H2, P } from '../Primitives/Primitives'
 
-export const TodayView = () => {
+export const TodayView: FC = () => {
   const { title } = getTitle()
-  const suggestion = useSelector(getCurrentDaySuggestOtherSource)
   return (
     <Container>
       <Bordered>
         <H2>{title}</H2>
-        <Text>{suggestion || 'ALL_GOOD'}</Text>
       </Bordered>
     </Container>
   )

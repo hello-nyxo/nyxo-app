@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
-import { fonts } from '../../styles/themes'
 import ScalingButton from '../Buttons/ScalingButton'
 import TranslatedText from '../TranslatedText'
 

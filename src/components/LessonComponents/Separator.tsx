@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { constants, StyleProps } from '../../styles/themes'
+import { constants, StyleProps } from '@styles/themes'
 
 const Separator = () => {
   return <Line />

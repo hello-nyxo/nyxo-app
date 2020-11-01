@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { State } from 'Types/State'
-import { ModalState } from 'Types/ModalState'
+import { State } from '@typings/State'
+import { ModalState } from '@typings/ModalState'
 
 const getModalState = (state: State) => state.modals
 
@@ -27,4 +27,9 @@ export const getEditHabitModal = createSelector(
 export const getExplanationsModal = createSelector(
   getModalState,
   (modalState: ModalState) => modalState.explanationsModal
+)
+
+export const getCalendarModal = createSelector(
+  getModalState,
+  (modalState: ModalState) => modalState.calendarModal
 )

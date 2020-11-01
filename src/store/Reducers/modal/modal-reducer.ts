@@ -1,12 +1,13 @@
 import { RATE_NIGHT } from '@actions/sleep/sleep-data-actions'
-import { ModalState } from 'Types/ModalState'
-import ReduxAction from 'Types/ReduxActions'
+import { ModalState } from '@typings/ModalState'
+import ReduxAction from '@typings/redux-actions'
 
 import {
   TOGGLE_EDIT_HABIT_MODAL,
   TOGGLE_NEW_HABIT_MODAL,
   TOGGLE_RATING_MODAL,
-  TOGGLE_EXPLANATIONS_MODAL
+  TOGGLE_EXPLANATIONS_MODAL,
+  TOGGLE_CALENDAR_MODAL
 } from '@actions/modal/modal-actions'
 
 export const initialState: ModalState = {
@@ -14,7 +15,8 @@ export const initialState: ModalState = {
   editHabitModal: false,
   ratingModal: false,
   buySubscriptionModal: false,
-  explanationsModal: false
+  explanationsModal: false,
+  calendarModal: false
 }
 
 const ModalReducer = (
@@ -39,6 +41,9 @@ const ModalReducer = (
 
     case TOGGLE_NEW_HABIT_MODAL:
       return { ...state, newHabitModal: !state.newHabitModal }
+
+    case TOGGLE_CALENDAR_MODAL:
+      return { ...state, calendarModal: !state.calendarModal }
 
     default:
       return state

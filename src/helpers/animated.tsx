@@ -1,12 +1,13 @@
 import Animated, {
-  Easing,
   block,
+  Clock,
   clockRunning,
+  Easing,
   set,
-  timing,
   startClock,
   stopClock,
-  Clock
+  timing,
+  AnimatedNode
 } from 'react-native-reanimated'
 
 const {
@@ -76,7 +77,7 @@ export const interpolateColors = (
   animationValue: Animated.Adaptable<number>,
   inputRange: number[],
   hexColors: string[]
-) => {
+): AnimatedNode<number> => {
   const colors = hexColors.map((hexColor) => hexToRgb(hexColor) || white)
   const r = round(
     interpolate(animationValue, {

@@ -1,66 +1,50 @@
-import React, { memo } from 'react'
-import styled from 'styled-components/native'
-import TranslatedText from '@components/TranslatedText'
-import { completeWeek } from '@actions/coaching/coaching-actions'
-import { useDispatch } from 'react-redux'
-import moment from 'moment'
-import { PN } from '../Primitives/Primitives'
-import { StyleProps, fonts, constants } from '../../styles/themes'
+import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import { IconBold } from '@components/iconRegular'
+import TranslatedText from '@components/TranslatedText'
+import { canEndCoaching } from '@helpers/coaching/coaching'
+import { format } from 'date-fns/esm'
+import React, { FC, memo } from 'react'
+import styled from 'styled-components/native'
+import { fonts } from '@styles/themes'
+import { PN } from '../Primitives/Primitives'
 
-interface Props {
+type Props = {
   intro: string
   description: string
   habitCount: number
   lessonCount: number
-  started?: string
-  ended?: string
 }
 
-const WeekIntro = ({
+const WeekIntro: FC<Props> = ({
   intro,
   description,
   habitCount,
-  lessonCount,
-  started,
-  ended
-}: Props) => {
-  const startTime = started ? moment(started).format('DD.MM.') : ''
-  const endTime = ended ? moment(ended).format('DD.MM.') : ''
-
+  lessonCount
+}) => {
   return (
     <Container>
-      <Information>
-        {habitCount > 0 && (
-          <>
-            <HabitIcon />
-            <Habits variables={{ count: habitCount }}>
-              WEEK_VIEW.HABIT_COUNT
-            </Habits>
-          </>
-        )}
-        {lessonCount > 0 && (
-          <>
-            <LessonIcon />
-            <Habits variables={{ count: lessonCount }}>
-              WEEK_VIEW.LESSON_COUNT
-            </Habits>
-          </>
-        )}
-      </Information>
-      <DurationRow>
-        {started && (
-          <Started variables={{ started: startTime }}>
-            WEEK_VIEW.START_DATE
-          </Started>
-        )}
-        {ended && (
-          <Ended variables={{ ended: endTime }}>WEEK_VIEW.END_DATE</Ended>
-        )}
-      </DurationRow>
-
-      <Intro>{intro}</Intro>
-      <PN secondary>{description}</PN>
+      <Card>
+        <Intro>{intro}</Intro>
+        <Information>
+          {habitCount > 0 && (
+            <>
+              <HabitIcon />
+              <Habits variables={{ count: habitCount }}>
+                WEEK_VIEW.HABIT_COUNT
+              </Habits>
+            </>
+          )}
+          {lessonCount > 0 && (
+            <>
+              <LessonIcon />
+              <Habits variables={{ count: lessonCount }}>
+                WEEK_VIEW.LESSON_COUNT
+              </Habits>
+            </>
+          )}
+        </Information>
+        <Description secondary>{description}</Description>
+      </Card>
     </Container>
   )
 }
@@ -68,9 +52,20 @@ const WeekIntro = ({
 export default memo(WeekIntro)
 
 const Container = styled.View`
-  background-color: ${(props: StyleProps) =>
-    props.theme.PRIMARY_BACKGROUND_COLOR};
-  padding: 20px 20px 30px;
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  border-radius: 8px;
+`
+
+const Description = styled(PN)`
+  margin-bottom: 24px;
+`
+
+const Card = styled.View`
+  box-shadow: ${({ theme }) => theme.SHADOW};
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
 `
 
 const Intro = styled.Text`
@@ -94,7 +89,7 @@ const Habits = styled(TranslatedText)`
 
 const DurationRow = styled.View`
   flex-direction: row;
-  padding: 10px;
+  padding: 10px 0px;
 `
 
 const Started = styled(TranslatedText)`
