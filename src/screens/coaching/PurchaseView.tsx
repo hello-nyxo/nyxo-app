@@ -1,20 +1,22 @@
-import React, { memo, useEffect, useState } from 'react'
-import { ActivityIndicator, Linking, Platform } from 'react-native'
-import Purchases, { PurchasesPackage } from 'react-native-purchases'
-import { useDispatch } from 'react-redux'
-import styled from 'styled-components/native'
 import { restorePurchase } from '@actions/subscription/subscription-actions'
 import GoBack from '@components/Buttons/GoBack'
 import PerkList from '@components/IAPComponents/PerkList'
 import SubscriptionItem from '@components/IAPComponents/SubscriptionItem'
 import TranslatedText from '@components/TranslatedText'
 import { HEIGHT, SMART_TOP_PADDING } from '@helpers/Dimensions'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
+import React, { memo, useEffect, useState } from 'react'
+import { ActivityIndicator, Linking, Platform } from 'react-native'
+import Purchases, { PurchasesPackage } from 'react-native-purchases'
+import { useDispatch } from 'react-redux'
+import styled from 'styled-components/native'
 import CONFIG from '../../config/Config'
 import colors from '../../styles/colors'
 
 const PurchaseView = () => {
-  const [availableSubscriptions, setSubscriptions]: any = useState([])
+  const [availableSubscriptions, setSubscriptions] = useState<
+    PurchasesPackage[] | undefined
+  >([])
   const dispatch = useDispatch()
   const isIOS = Platform.OS === 'ios'
 
@@ -43,9 +45,12 @@ const PurchaseView = () => {
     await dispatch(restorePurchase())
   }
 
-  const mapped = availableSubscriptions.map(
-    (subscription: PurchasesPackage, index: number) => (
-      <SubscriptionItem key={index} subscription={subscription} />
+  const mapped = availableSubscriptions?.map(
+    (subscription: PurchasesPackage) => (
+      <SubscriptionItem
+        key={subscription.identifier}
+        subscription={subscription}
+      />
     )
   )
 
@@ -59,11 +64,10 @@ const PurchaseView = () => {
 
           <Title>BUY_COACHING</Title>
           <Subtitle>BUY_COACHING_SUBTITLE</Subtitle>
-
           <PerkList />
         </Header>
 
-        {mapped.length !== 0 ? (
+        {mapped?.length !== 0 ? (
           <>
             <Subscriptions>{mapped}</Subscriptions>
             {isIOS && <Renew>APPLE_DISCLAIMER</Renew>}
@@ -88,13 +92,11 @@ const PurchaseView = () => {
 export default memo(PurchaseView)
 
 const BG = styled.View`
-  background-color: ${(props: StyleProps) =>
-    props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `
 
 const Scrollable = styled.ScrollView`
-  background-color: ${(props: StyleProps) =>
-    props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `
 
 const Subscriptions = styled.View`
@@ -104,8 +106,8 @@ const Subscriptions = styled.View`
 `
 
 const Header = styled.View`
-  background-color: ${(props: StyleProps) =>
-    props.theme.mode === 'light' ? colors.evening : colors.eveningAccent};
+  background-color: ${({ theme }) =>
+    theme.mode === 'light' ? colors.evening : colors.eveningAccent};
   min-height: ${HEIGHT / 2}px;
   border-bottom-left-radius: 45px;
   border-bottom-right-radius: 45px;
@@ -121,7 +123,7 @@ const Title = styled(TranslatedText)`
   font-size: 25px;
   margin-top: 20px;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   text-align: center;
 `
 
@@ -130,14 +132,14 @@ const Subtitle = styled(TranslatedText)`
   font-family: ${fonts.medium};
   text-align: center;
   margin: 20px 50px;
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const Renew = styled(TranslatedText)`
   text-align: justify;
   font-size: 12px;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   margin: 30px 20px;
 `
 
@@ -154,5 +156,5 @@ const Fetching = styled(TranslatedText)`
   font-family: ${fonts.medium};
   margin: 20px;
   font-size: 15px;
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

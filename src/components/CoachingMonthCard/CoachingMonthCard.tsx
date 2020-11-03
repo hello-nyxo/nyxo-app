@@ -1,26 +1,25 @@
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
-import { format } from 'date-fns'
-import { CoachingPeriod } from '@hooks/coaching/useCoaching'
+import { stringToColor } from '@helpers/style/color'
+import { CoachingPeriod, useDeleteCoaching } from '@hooks/coaching/useCoaching'
 import { useUpdateUser } from '@hooks/user/useUser'
-import moment from 'moment'
-import React, { FC, useRef } from 'react'
-
 import { fonts } from '@styles/themes'
+import { format } from 'date-fns'
+import React, { FC, useRef } from 'react'
 import { Animated } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import styled from 'styled-components/native'
-import { stringToColor } from '@helpers/style/color'
 
 type Props = {
   month: CoachingPeriod
+  actionsEnabled?: boolean
 }
 
-const CoachingMonthCard: FC<Props> = ({ month }) => {
+const CoachingMonthCard: FC<Props> = ({ month, actionsEnabled = true }) => {
   const ref = useRef<Swipeable>(null)
   const title = format(new Date(month?.started ?? new Date()), 'LLLL yyyy')
-  const startDate = format(new Date(month?.started ?? new Date()), 'dd.mm.yyyy')
+  const startDate = format(new Date(month?.started ?? new Date()), 'dd.MM.yyyy')
 
   const endDate = month?.ended
     ? format(new Date(month?.ended), 'dd.mm.yyyy')
@@ -28,15 +27,26 @@ const CoachingMonthCard: FC<Props> = ({ month }) => {
   const weeks = month?.weeks?.length ?? 0
   const lessons = month?.lessons?.length ?? 0
 
-  const [mutate] = useUpdateUser()
+  const [editCoaching] = useUpdateUser()
+  const [deleteCoaching] = useDeleteCoaching()
 
   const setActive = () => {
-    mutate({
+    editCoaching({
       user: {
         id: '',
         userActiveCoachingId: month.id
       }
     })
+    close()
+  }
+
+  const deleteMonth = () => {
+    deleteCoaching({
+      coaching: {
+        id: month.id
+      }
+    })
+    close()
   }
 
   const renderLeftActions = (
@@ -48,14 +58,11 @@ const CoachingMonthCard: FC<Props> = ({ month }) => {
       outputRange: [-20, 0, 0, 1]
     })
     return (
-      <LeftAction onPress={close}>
-        <Animated.Text
-          style={{
-            transform: [{ translateX: trans }]
-          }}>
-          Delete
-        </Animated.Text>
-      </LeftAction>
+      <ButtonContainer style={{ transform: [{ translateX: trans }] }}>
+        <LeftAction onPress={deleteMonth}>
+          <ButtonText>COACHING.DELETE</ButtonText>
+        </LeftAction>
+      </ButtonContainer>
     )
   }
 
@@ -92,14 +99,18 @@ const CoachingMonthCard: FC<Props> = ({ month }) => {
     ref?.current?.close()
   }
 
+  const actions = {
+    renderLeftActions: actionsEnabled ? renderLeftActions : undefined,
+    renderRightActions: actionsEnabled ? renderRightActions : undefined
+  }
+
   return (
     <Swipeable
       ref={ref}
       friction={2}
       leftThreshold={30}
       rightThreshold={40}
-      renderLeftActions={renderLeftActions}
-      renderRightActions={renderRightActions}>
+      {...actions}>
       <Container>
         <Row>
           <Stripe color={stringToColor(month.id)} />

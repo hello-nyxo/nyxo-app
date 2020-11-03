@@ -1,4 +1,8 @@
-import { createCoachingData, updateCoachingData } from '@graphql/mutations'
+import {
+  createCoachingData,
+  deleteCoachingData,
+  updateCoachingData
+} from '@graphql/mutations'
 import { getCoachingData, listCoachingDatas } from '@graphql/queries'
 import {
   CreateCoachingDataInput,
@@ -7,7 +11,8 @@ import {
   ListCoachingDatasQuery,
   UpdateCoachingDataInput,
   UpdateCoachingDataMutation,
-  Stage
+  Stage,
+  DeleteCoachingDataMutation
 } from '@API'
 import { graphqlOperation, API, Auth } from 'aws-amplify'
 import { updateUserData } from '@data-fetching/remote/user'
@@ -126,6 +131,28 @@ export const updateCoaching = async ({
     return data
   } catch (error) {
     console.log(error)
+    return error
+  }
+}
+
+export const deleteCoaching = async ({
+  coaching
+}: {
+  coaching: DeleteCoachingDataMutation
+}): Promise<DeleteCoachingDataMutation> => {
+  try {
+    const input: DeleteCoachingDataMutation = {
+      ...coaching
+    }
+
+    const { data } = (await API.graphql(
+      graphqlOperation(deleteCoachingData, { input })
+    )) as {
+      data: DeleteCoachingDataMutation
+    }
+
+    return data
+  } catch (error) {
     return error
   }
 }

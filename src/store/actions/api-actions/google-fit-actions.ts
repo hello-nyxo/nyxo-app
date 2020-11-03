@@ -230,13 +230,6 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
   }
 }
 
-export const switchGoogleFitSource = (googleFitSource: SUB_SOURCE) => async (
-  dispatch: Dispatch
-) => {
-  dispatch(changeGoogleFitSource(googleFitSource))
-  dispatch(fetchSleepData())
-}
-
 export const createGoogleFitSources = (nights: Night[]): Thunk => async (
   dispatch: Dispatch,
   getState: GetState

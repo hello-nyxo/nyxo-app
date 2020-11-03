@@ -1,6 +1,5 @@
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import Card from '@components/Card'
-
 import TranslatedText from '@components/TranslatedText'
 import { canEndCoaching } from '@helpers/coaching/coaching'
 import { format } from 'date-fns'
@@ -19,7 +18,8 @@ export const WeekActions: FC<Props> = ({
   started,
   ended,
   isCurrentlyActive,
-  startWeek
+  startWeek,
+  endWeek
 }) => {
   const startTime = started ? format(new Date(started), 'dd.MM') : ''
   const endTime = ended ? format(new Date(ended), 'dd.MM') : ''
@@ -38,12 +38,12 @@ export const WeekActions: FC<Props> = ({
             <Ended variables={{ ended: endTime }}>WEEK_VIEW.END_DATE</Ended>
           )}
         </DurationRow>
-        {!isCurrentlyActive && !started ? (
+        {/* {!isCurrentlyActive && !started ? (
           <PrimaryButton title="WEEK.BEGIN" onPress={startWeek} />
         ) : null}
         {started && canEnd && !ended ? (
           <PrimaryButton title="WEEK.COMPLETE" onPress={endWeek} />
-        ) : null}
+        ) : null} */}
       </Card>
     </Container>
   )
@@ -52,6 +52,7 @@ export const WeekActions: FC<Props> = ({
 const Container = styled.View`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   padding: 16px 16px 0px;
+  margin-top: 32px;
 `
 const DurationRow = styled.View`
   flex-direction: row;

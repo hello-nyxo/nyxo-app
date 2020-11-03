@@ -38,7 +38,7 @@ const TopHeader: FC<Props> = ({ yOffset, title }) => {
         <GoBack />
       </BackButton>
       <TitleContainer>
-        <WeekTitleSmall numberOfLines={2} adjustsFontSizeToFit style={fadeIn()}>
+        <WeekTitleSmall numberOfLines={3} adjustsFontSizeToFit style={fadeIn()}>
           {title}
         </WeekTitleSmall>
       </TitleContainer>

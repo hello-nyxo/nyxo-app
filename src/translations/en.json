@@ -694,7 +694,13 @@
   "COACHING": {
     "WATCH_INTRO": "See introduction",
     "START": "Start Coaching",
-    "SETTINGS": "Coaching Settings",
+    "CHANGE": "Change",
+    "SETTINGS": {
+      "TITLE": "Coaching",
+      "ACTIVE": "Active Coaching Period",
+      "ALL": "All Coaching Periods"
+    },
+
     "SET_ACTIVE": "Set active",
     "DELETE": "Delete"
   },

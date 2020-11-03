@@ -1,20 +1,8 @@
 import { WIDTH } from '@helpers/Dimensions'
-import {
-  CombinedWeek,
-  getCombinedWeeks,
-  getCurrentWeek
-} from '@selectors/coaching-selectors'
-import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
+import { CombinedWeek, getCombinedWeeks } from '@selectors/coaching-selectors'
 import React, { FC } from 'react'
-import {
-  FlatList,
-  ListRenderItem,
-  RefreshControlProps,
-  View
-} from 'react-native'
+import { FlatList, ListRenderItem, RefreshControlProps } from 'react-native'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components/native'
-import { H3 } from '../Primitives/Primitives'
 import WeekCard from './WeekCard'
 
 export const cardWidth = WIDTH - 40
@@ -26,9 +14,7 @@ type Props = {
 }
 
 const WeekCarousel: FC<Props> = ({ ListHeaderComponent, refreshControl }) => {
-  const { data } = useGetActiveCoaching()
-  const combined = useSelector(getCombinedWeeks)
-  const ongoing = combined
+  const ongoing = useSelector(getCombinedWeeks)
 
   const renderWeekCard: ListRenderItem<CombinedWeek> | null | undefined = ({
     item
@@ -44,15 +30,9 @@ const WeekCarousel: FC<Props> = ({ ListHeaderComponent, refreshControl }) => {
     )
   }
 
-  const inset = (WIDTH - cardWidth - cardMargin) / 2
-
   return (
     <FlatList
       ListHeaderComponent={ListHeaderComponent}
-      contentContainerStyle={{
-        paddingLeft: inset,
-        paddingRight: inset
-      }}
       refreshControl={refreshControl}
       showsHorizontalScrollIndicator={false}
       snapToAlignment="center"

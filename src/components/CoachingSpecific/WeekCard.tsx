@@ -91,7 +91,9 @@ const Info = styled(TranslatedText)`
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
-const CardContainer = styled.View``
+const CardContainer = styled.View`
+  margin: 8px 16px;
+`
 
 const LessonIcon = styled(IconBold).attrs(({ theme }) => ({
   height: 15,

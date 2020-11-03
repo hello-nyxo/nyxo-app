@@ -25,7 +25,7 @@ export const chartHeight = height / 3
 
 const SleepTimeChart: FC = () => {
   const dispatch = useDispatch()
-  const data = useSelector(getNightsAsDays)
+  const data = [] // useSelector(getNightsAsDays)
   const daysToShow = data.length
   const chartWidth = (barWidth + 10) * daysToShow + paddingLeft + paddingRight
 

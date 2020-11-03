@@ -1,22 +1,22 @@
-import React from 'react'
+import { purchaseSubscription } from '@actions/subscription/subscription-actions'
+import { fonts } from '@styles/themes'
+import React, { FC } from 'react'
 import { PurchasesPackage } from 'react-native-purchases'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
-import { purchaseSubscription } from '@actions/subscription/subscription-actions'
-import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
 import TranslatedText from '../TranslatedText'
 
-const SubscriptionItem = ({
-  subscription
-}: {
+type Props = {
   subscription: PurchasesPackage
-}) => {
+}
+
+const SubscriptionItem: FC<Props> = ({ subscription }) => {
   const dispatch = useDispatch()
 
   const {
     packageType,
-    product: { price, title, price_string }
+    product: { price, title, price_string: priceString }
   } = subscription
 
   const purchaseItem = async () => {
@@ -34,7 +34,7 @@ const SubscriptionItem = ({
           <Months>{`IAP.${packageType}`}</Months>
         </TimeContainer>
         <PriceContainer>
-          <Price>{price_string}</Price>
+          <Price>{priceString}</Price>
           <Offer variables={{ perMonth: perMonthPrice }}>PER_MONTH</Offer>
         </PriceContainer>
       </SubscriptionOption>
@@ -57,9 +57,9 @@ const monthlyPrice = {
 }
 
 const TimeContainer = styled.View`
-  background-color: ${(props: StyleProps) =>
-    props.theme.mode === 'light' ? colors.afternoon : colors.afternoonAccent};
-  flex: 1;
+  background-color: ${({ theme: { mode } }) =>
+    mode === 'light' ? colors.afternoon : colors.afternoonAccent};
+  flex: 2;
   height: 100%;
   width: 100%;
   justify-content: center;
@@ -72,7 +72,7 @@ const TimeContainer = styled.View`
 const Time = styled.Text`
   font-family: ${fonts.medium};
   font-size: 18px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Months = styled(TranslatedText)`
@@ -80,7 +80,7 @@ const Months = styled(TranslatedText)`
   text-transform: uppercase;
   margin-top: 5px;
   font-size: 13px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Button = styled.TouchableOpacity`
@@ -92,29 +92,29 @@ const SubscriptionOption = styled.View`
   align-items: center;
   flex: 1;
   flex-direction: row;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   border-radius: 5px;
   margin: 10px 5px;
   min-height: 100px;
   elevation: 3;
-  box-shadow: ${(props: StyleProps) => props.theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.SHADOW};
 `
 
 const PriceContainer = styled.View`
   justify-content: center;
   align-items: center;
   padding: 20px 10px;
+  flex: 1;
 `
 const Price = styled.Text`
   font-size: 15px;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Offer = styled(TranslatedText)`
   font-size: 12px;
   margin-top: 5px;
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.medium};
 `

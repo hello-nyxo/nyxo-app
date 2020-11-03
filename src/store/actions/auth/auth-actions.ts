@@ -13,6 +13,7 @@ import Intercom from 'react-native-intercom'
 import Purchases from 'react-native-purchases'
 import { GetState } from '@typings/GetState'
 import { NotificationType } from '@typings/NotificationState'
+import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
 import { updateEmail } from '../user/user-actions'
 
 /* ACTION TYPES */
@@ -31,20 +32,20 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
 
 /* ACTIONS */
 
-export const registerStart = () => ({
+export const registerStart = (): ReduxAction => ({
   type: REGISTER_START
 })
 
-export const registerSuccess = (email: string) => ({
+export const registerSuccess = (email: string): ReduxAction => ({
   type: REGISTER_SUCCESS,
   payload: { email }
 })
 
-export const registerFailure = () => ({
+export const registerFailure = (): ReduxAction => ({
   type: REGISTER_FAILURE
 })
 
-export const loginStart = () => ({
+export const loginStart = (): ReduxAction => ({
   type: LOGIN_START
 })
 
@@ -52,31 +53,31 @@ export const loginSuccess = (
   authenticated: boolean,
   email: string,
   username: string
-) => ({
+): ReduxAction => ({
   type: LOGIN_SUCCESS,
   payload: { authenticated, email, username }
 })
 
-export const loginFailure = () => ({
+export const loginFailure = (): ReduxAction => ({
   type: LOGIN_FAILURE
 })
 
-export const logoutStart = () => ({
+export const logoutStart = (): ReduxAction => ({
   type: LOGOUT_START
 })
 
-export const logoutSuccess = () => ({
+export const logoutSuccess = (): ReduxAction => ({
   type: LOGOUT_SUCCESS
 })
 
-export const logoutFailure = () => ({
+export const logoutFailure = (): ReduxAction => ({
   type: LOGOUT_FAILURE
 })
 
 /* ASYNC ACTIONS */
 
-export const register = (email: string, password: string) => async (
-  dispatch: any
+export const register = (email: string, password: string): Thunk => async (
+  dispatch: Dispatch
 ) => {
   dispatch(registerStart())
   try {
@@ -105,7 +106,9 @@ export const register = (email: string, password: string) => async (
   }
 }
 
-export const resendEmail = (username: string) => async (dispatch: Function) => {
+export const resendEmail = (username: string): Thunk => async (
+  dispatch: Dispatch
+) => {
   try {
     await Auth.resendSignUp(username)
     await dispatch(
@@ -127,7 +130,7 @@ export const resendEmail = (username: string) => async (dispatch: Function) => {
 }
 
 export const confirmSignup = (email: string, authCode: string) => async (
-  dispatch: Function
+  dispatch: Dispatch
 ) => {
   const username = email
   try {
@@ -135,10 +138,10 @@ export const confirmSignup = (email: string, authCode: string) => async (
   } catch (error) {}
 }
 
-export const login = (loginEmail: string, loginPassword: string) => async (
-  dispatch: Function,
-  getState: GetState
-) => {
+export const login = (
+  loginEmail: string,
+  loginPassword: string
+): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   dispatch(loginStart())
 
   try {
@@ -194,7 +197,7 @@ export const login = (loginEmail: string, loginPassword: string) => async (
   }
 }
 
-export const logout = () => async (dispatch: Function) => {
+export const logout = (): Thunk => async (dispatch: Dispatch) => {
   dispatch(logoutStart())
   try {
     await dispatch(handleHabitsWhenloggingOut())

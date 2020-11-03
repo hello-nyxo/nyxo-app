@@ -8,6 +8,7 @@ import {
 import { API, Auth, graphqlOperation } from 'aws-amplify'
 import {
   createCoaching,
+  deleteCoaching,
   getCoaching,
   listCoaching,
   updateCoaching
@@ -16,6 +17,7 @@ import { getActiveCoaching } from '@graphql/custom/queries'
 import { updateCoachingData } from '@graphql/mutations'
 import { queryCache, QueryResult, useMutation, useQuery } from 'react-query'
 import { writeToStorage } from 'persist-queries'
+import { isLoggedIn } from '@helpers/auth'
 
 export type CoachingPeriod = Exclude<
   Exclude<GetCoachingDataQuery['getCoachingData'], null>,
@@ -26,6 +28,8 @@ export const getUserActiveCoaching = async (): Promise<Exclude<
   Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
   null
 > | null> => {
+  if (!(await isLoggedIn())) return null
+
   try {
     const { username } = await Auth.currentUserInfo()
     const {
@@ -97,6 +101,16 @@ export const useUpdateCoaching = () => {
   return useMutation(updateCoaching, {
     onSuccess: () => {
       queryCache.invalidateQueries('userActiveCoaching')
+      queryCache.invalidateQueries('listCoaching')
+    }
+  })
+}
+
+export const useDeleteCoaching = () => {
+  return useMutation(deleteCoaching, {
+    onSuccess: () => {
+      queryCache.invalidateQueries('userActiveCoaching')
+      queryCache.invalidateQueries('listCoaching')
     }
   })
 }

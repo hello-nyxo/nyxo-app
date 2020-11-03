@@ -1,5 +1,5 @@
 import { minutesToHoursString } from '@helpers/time'
-import { getInBedDuration } from '@selectors/night-selectors'
+import { getAsleepDuration, getInBedDuration } from '@selectors/night-selectors'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
@@ -17,15 +17,15 @@ const Explanations: FC = () => {
     { title: 'efficiency', figure: '100%', color: colors.nightAccent },
     {
       title: 'window',
-      figure: 0, // moment(window).format('HH:mm'),
+      figure: 0,
       color: colors.fallAsleep
     }
   ]
 
   return (
     <Container>
-      {stats.map((item, index) => (
-        <Item key={index}>
+      {stats.map((item) => (
+        <Item key={item.title}>
           <Dot color={item.color} />
           <Column>
             <Title>{item.title}</Title>
