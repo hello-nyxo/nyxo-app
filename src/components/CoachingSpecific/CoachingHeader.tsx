@@ -16,10 +16,11 @@ const CoachingHeader: FC = () => {
   const hasActiveCoaching = useSelector(getActiveCoaching)
   const { navigate } = useNavigation()
 
-  console.log('activeMonth', activeMonth)
-
   const openCoachingSettings = () => {
-    navigate(ROUTE.SETTINGS, { screen: ROUTE.COACHING_SETTINGS })
+    navigate(ROUTE.APP, {
+      screen: ROUTE.SETTINGS,
+      params: { screen: ROUTE.COACHING_SETTINGS }
+    })
   }
 
   return (

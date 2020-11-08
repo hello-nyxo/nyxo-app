@@ -67,3 +67,7 @@ export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {
   // await dispatch(handleCoachingLessonsInWeekNotifications())
   // await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
 }
+
+export const preFetchCoaching = (): Thunk => async (dispatch: Dispatch) => {
+  useGetActiveCoaching()
+}

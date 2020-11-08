@@ -22,12 +22,9 @@ import { isLoggedIn } from '@helpers/auth'
 export type CoachingPeriod = Exclude<
   Exclude<GetCoachingDataQuery['getCoachingData'], null>,
   null
->
+> | null
 
-export const getUserActiveCoaching = async (): Promise<Exclude<
-  Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
-  null
-> | null> => {
+export const getUserActiveCoaching = async (): Promise<CoachingPeriod | null> => {
   if (!(await isLoggedIn())) return null
 
   try {
@@ -41,7 +38,7 @@ export const getUserActiveCoaching = async (): Promise<Exclude<
     }
 
     if (data?.activeCoaching) {
-      return data?.activeCoaching
+      return data?.activeCoaching as CoachingPeriod
     }
 
     return null
@@ -76,12 +73,9 @@ export const completeLessonMutation = async ({
 
 /* HOOKS */
 
-type Result = Exclude<
-  ListCoachingDatasQuery['listCoachingDatas'],
-  null
->['items']
-
-export const useListCoaching = (): QueryResult<Result> => {
+export const useListCoaching = (): QueryResult<Array<
+  CoachingPeriod
+> | null> => {
   return useQuery('listCoaching', listCoaching)
 }
 
@@ -115,18 +109,8 @@ export const useDeleteCoaching = () => {
   })
 }
 
-export const useGetActiveCoaching = (): QueryResult<Exclude<
-  Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
-  null
-> | null> => {
+export const useGetActiveCoaching = (): QueryResult<CoachingPeriod | null> => {
   return useQuery('userActiveCoaching', getUserActiveCoaching, {
     onSuccess: (data) => writeToStorage('userActiveCoaching', data)
   })
-}
-
-export const useGetLesson = (): QueryResult<Exclude<
-  Exclude<GetActiveCoachingQuery['getUser'], null>['activeCoaching'],
-  null
-> | null> => {
-  return useQuery('userActiveCoaching', getUserActiveCoaching)
 }

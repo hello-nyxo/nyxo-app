@@ -17,12 +17,9 @@ import {
 import { graphqlOperation, API, Auth } from 'aws-amplify'
 import { updateUserData } from '@data-fetching/remote/user'
 import { isLoggedIn } from '@helpers/auth'
+import { CoachingPeriod } from '@hooks/coaching/useCoaching'
 
-type Response = Exclude<
-  ListCoachingDatasQuery['listCoachingDatas'],
-  null
->['items']
-export const listCoaching = async (): Promise<Response> => {
+export const listCoaching = async (): Promise<Array<CoachingPeriod> | null> => {
   try {
     if (await isLoggedIn()) {
       const {

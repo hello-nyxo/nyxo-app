@@ -38,12 +38,12 @@ export const WeekActions: FC<Props> = ({
             <Ended variables={{ ended: endTime }}>WEEK_VIEW.END_DATE</Ended>
           )}
         </DurationRow>
-        {/* {!isCurrentlyActive && !started ? (
+        {!isCurrentlyActive && !started ? (
           <PrimaryButton title="WEEK.BEGIN" onPress={startWeek} />
         ) : null}
         {started && canEnd && !ended ? (
           <PrimaryButton title="WEEK.COMPLETE" onPress={endWeek} />
-        ) : null} */}
+        ) : null}
       </Card>
     </Container>
   )
@@ -51,9 +51,12 @@ export const WeekActions: FC<Props> = ({
 
 const Container = styled.View`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
-  padding: 16px 16px 0px;
-  margin-top: 32px;
+  padding: 32px 16px 8px;
+  flex: 0;
+
+  height: auto;
 `
+
 const DurationRow = styled.View`
   flex-direction: row;
   padding: 10px 0px;

@@ -113,7 +113,7 @@ const CoachingMonthCard: FC<Props> = ({ month, actionsEnabled = true }) => {
       {...actions}>
       <Container>
         <Row>
-          <Stripe color={stringToColor(month.id)} />
+          <Stripe color={stringToColor(month?.id)} />
           <Column>
             <Row>
               <Column>

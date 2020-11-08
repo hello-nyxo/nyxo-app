@@ -1,21 +1,21 @@
 import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
 import CoachingMonthCard from '@components/CoachingMonthCard/CoachingMonthCard'
 import {
-  Container,
   H4,
   SafeAreaView,
   ThemedRefreshControl
 } from '@components/Primitives/Primitives'
 import { H2 } from '@components/Primitives/Types'
+import ROUTE from '@config/routes/Routes'
 import {
   CoachingPeriod,
   useGetActiveCoaching,
   useListCoaching
 } from '@hooks/coaching/useCoaching'
-import { useGetUser } from '@hooks/user/useUser'
 import React, { FC, memo } from 'react'
 import { ListRenderItem } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
+import styled from 'styled-components/native'
 
 const CoachingSettings: FC = () => {
   const {
@@ -48,7 +48,7 @@ const CoachingSettings: FC = () => {
         ListHeaderComponent={() => (
           <>
             <GoBackContainer>
-              <GoBack />
+              <GoBack route={ROUTE.SETTINGS} />
             </GoBackContainer>
             <Container>
               <H2>COACHING.SETTINGS.TITLE</H2>
@@ -71,3 +71,8 @@ const CoachingSettings: FC = () => {
 }
 
 export default memo(CoachingSettings)
+
+const Container = styled.View`
+  padding: 16px;
+  margin: 24px 0px 0px;
+`
