@@ -13,6 +13,7 @@ type Props = {
   startWeek: () => void
   endWeek: () => void
   isLoading: boolean
+  isSuccess: boolean
 }
 
 export const WeekActions: FC<Props> = ({
@@ -21,7 +22,8 @@ export const WeekActions: FC<Props> = ({
   isCurrentlyActive,
   startWeek,
   endWeek,
-  isLoading
+  isLoading,
+  isSuccess
 }) => {
   const startTime = started ? format(new Date(started), 'dd.MM') : ''
   const endTime = ended ? format(new Date(ended), 'dd.MM') : ''

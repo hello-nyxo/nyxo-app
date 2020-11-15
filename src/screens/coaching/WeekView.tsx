@@ -29,7 +29,7 @@ interface Props {
 const WeekView = ({ route }: Props) => {
   const { week }: { week: CombinedWeek } = route.params
   const hasCoaching = useSelector(getActiveCoaching)
-  const [mutate, { isLoading }] = useUpdateCoaching()
+  const [mutate, { isLoading, isSuccess }] = useUpdateCoaching()
   const { data } = useGetActiveCoaching()
 
   const startWeek = () => {
@@ -87,6 +87,7 @@ const WeekView = ({ route }: Props) => {
                   endWeek={endWeek}
                   startWeek={startWeek}
                   isLoading={isLoading}
+                  isSuccess={isSuccess}
                 />
               ) : (
                 <BuyCoachingContainer>

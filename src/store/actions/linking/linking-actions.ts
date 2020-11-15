@@ -3,6 +3,7 @@ import Auth from '@aws-amplify/auth'
 import { UpdateConnectionIDMutation } from '@API'
 import CONFIG from '@config/Config'
 import { updateConnectionId } from '@graphql/custom/mutations'
+import { Thunk } from '@typings/redux-actions'
 import { restorePurchase } from '../subscription/subscription-actions'
 
 /* ACTIONS TYPES */
@@ -43,8 +44,8 @@ export const removeLinkFailure = () => ({
 
 /* ASYNC ACTIONS */
 
-export const linkAccount = (connectionId: string) => async (
-  dispatch: Function
+export const linkAccount = (connectionId: string): Thunk => async (
+  dispatch: Dispatch
 ) => {
   dispatch(startLinking())
 
@@ -66,6 +67,8 @@ export const linkAccount = (connectionId: string) => async (
       }
       await dispatch(restorePurchase())
       dispatch(linkSuccess(updateUser?.connectionId))
+    } else {
+      dispatch(linkingFailure())
     }
   } catch (error) {
     console.warn(error)

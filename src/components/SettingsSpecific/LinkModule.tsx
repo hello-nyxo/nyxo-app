@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { FC, memo, useEffect, useState } from 'react'
 import { Alert } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
@@ -17,34 +17,15 @@ import { CodeSchema } from '../../config/Validation'
 interface Props {
   linkCode?: string
 }
-const LinkModule = (props: Props) => {
+const LinkModule: FC<Props> = ({ linkCode: linkCodeFromParams }) => {
   const dispatch = useDispatch()
   const linkCode = useSelector(getLinkingCode)
-  const linkCodeFromParams = props.linkCode
 
   const removeCode = async () => {
     await dispatch(removeLink())
   }
 
   const confirmUnLink = () => {
-    Alert.alert(
-      translate('UNLINK_CODE_TITLE'),
-      translate('UNLINK_CODE_TEXT'),
-      [
-        {
-          text: translate('UNLINK_YES'),
-          onPress: () => removeCode()
-        },
-        {
-          text: translate('UNLINK_NO'),
-          style: 'cancel'
-        }
-      ],
-      { cancelable: false }
-    )
-  }
-
-  const newLink = () => {
     Alert.alert(
       translate('UNLINK_CODE_TITLE'),
       translate('UNLINK_CODE_TEXT'),
@@ -89,8 +70,11 @@ const LinkModule = (props: Props) => {
         <Formik
           initialValues={{ code: '' }}
           validationSchema={CodeSchema}
-          onSubmit={(values) => {
+          onSubmit={(values, { setSubmitting }) => {
             dispatch(linkAccount(values.code))
+            setTimeout(() => {
+              setSubmitting(false)
+            }, 1000)
           }}>
           {({
             handleChange,
@@ -98,7 +82,7 @@ const LinkModule = (props: Props) => {
             handleBlur,
             values,
             touched,
-            errors,
+            isSubmitting,
             isValid
           }) => (
             <InnerContainer>
@@ -108,13 +92,14 @@ const LinkModule = (props: Props) => {
                 autoCapitalize="none"
                 value={values.code}
                 onChangeText={handleChange('code')}
-                onBlur={handleBlur}
+                onBlur={handleBlur('code')}
                 placeholder={translate('LINK_CODE_PLACEHOLDER')}
               />
               <PrimaryButton
-                disabled={!isValid}
+                disabled={!isValid && !touched.code}
                 title="VALIDATE_CODE"
                 onPress={handleSubmit}
+                loading={isSubmitting}
               />
             </InnerContainer>
           )}

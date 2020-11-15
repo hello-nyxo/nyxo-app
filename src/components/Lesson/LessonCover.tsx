@@ -39,7 +39,9 @@ const LessonCover: FC<Props> = ({ yOffset, cover }) => {
       <Gradient />
       <CoverPhoto
         style={headerHeight(yOffset)}
-        source={{ uri: `https:${cover}?fm=jpg&fl=progressive&w=${WIDTH * 3}` }}
+        source={{
+          uri: `https:${cover}?fm=jpg&fl=progressive&w=${WIDTH * 2}`
+        }}
       />
     </Container>
   )

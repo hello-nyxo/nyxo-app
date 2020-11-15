@@ -69,6 +69,7 @@ export default CoachingNotStarted
 const Container = styled.View`
   margin: 16px;
   padding: 20px 20px;
+  border-radius: 7px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: ${({ theme }) => theme.SHADOW};
 `
