@@ -1,11 +1,7 @@
 import CoachingHeader from '@components/CoachingSpecific/CoachingHeader'
-import CoachingNotStarted from '@components/CoachingSpecific/CoachingNotStarted'
 import WeekCarousel from '@components/CoachingSpecific/WeekCarousel'
 import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
-import {
-  SafeAreaView,
-  StyledScrollView
-} from '@components/Primitives/Primitives'
+import { SafeAreaView } from '@components/Primitives/Primitives'
 import TopInfo from '@components/TopInfo'
 import { WIDTH } from '@helpers/Dimensions'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
@@ -17,13 +13,14 @@ export const cardWidth = WIDTH - 40
 export const cardMargin = 5
 
 const CoachingScreen: FC = () => {
-  const { refetch, isLoading } = useGetActiveCoaching()
+  const { data: coaching, refetch, isLoading } = useGetActiveCoaching()
 
   return (
     <SafeAreaView>
       <TopInfo />
 
       <WeekCarousel
+        coaching={coaching}
         ListHeaderComponent={<CoachingHeader />}
         refreshControl={
           <RefreshControl
@@ -34,7 +31,6 @@ const CoachingScreen: FC = () => {
         }
       />
 
-      <CoachingNotStarted />
       <NewHabitModal />
     </SafeAreaView>
   )

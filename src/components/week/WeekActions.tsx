@@ -12,6 +12,7 @@ type Props = {
   isCurrentlyActive: boolean
   startWeek: () => void
   endWeek: () => void
+  isLoading: boolean
 }
 
 export const WeekActions: FC<Props> = ({
@@ -19,11 +20,14 @@ export const WeekActions: FC<Props> = ({
   ended,
   isCurrentlyActive,
   startWeek,
-  endWeek
+  endWeek,
+  isLoading
 }) => {
   const startTime = started ? format(new Date(started), 'dd.MM') : ''
   const endTime = ended ? format(new Date(ended), 'dd.MM') : ''
-  const canEnd = canEndCoaching(started, 7)
+  const canEnd = canEndCoaching(started, 0) && started && !ended
+
+  const canStart = !isCurrentlyActive && !started
 
   return (
     <Container>
@@ -38,11 +42,20 @@ export const WeekActions: FC<Props> = ({
             <Ended variables={{ ended: endTime }}>WEEK_VIEW.END_DATE</Ended>
           )}
         </DurationRow>
-        {!isCurrentlyActive && !started ? (
-          <PrimaryButton title="WEEK.BEGIN" onPress={startWeek} />
+        {canStart ? (
+          <PrimaryButton
+            title="WEEK.BEGIN"
+            onPress={startWeek}
+            loading={isLoading}
+          />
         ) : null}
-        {started && canEnd && !ended ? (
-          <PrimaryButton title="WEEK.COMPLETE" onPress={endWeek} />
+
+        {canEnd ? (
+          <PrimaryButton
+            title="WEEK.COMPLETE"
+            onPress={endWeek}
+            loading={isLoading}
+          />
         ) : null}
       </Card>
     </Container>

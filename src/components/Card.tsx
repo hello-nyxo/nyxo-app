@@ -1,8 +1,8 @@
-import React, { FC, memo } from 'react'
+import React, { FC, memo, ReactNode } from 'react'
 import styled from 'styled-components/native'
 
 type Props = {
-  children: JSX.Element[] | JSX.Element
+  children?: JSX.Element[] | JSX.Element | null | ReactNode
 }
 
 const Card: FC<Props> = ({ children }) => (

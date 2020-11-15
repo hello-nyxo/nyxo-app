@@ -1,4 +1,5 @@
 import { WIDTH } from '@helpers/Dimensions'
+import { CoachingPeriod } from '@hooks/coaching/useCoaching'
 import { CombinedWeek, getCombinedWeeks } from '@selectors/coaching-selectors'
 import React, { FC } from 'react'
 import { FlatList, ListRenderItem, RefreshControlProps } from 'react-native'
@@ -11,9 +12,14 @@ export const cardMargin = 5
 type Props = {
   ListHeaderComponent: React.ComponentType<any> | React.ReactElement | null
   refreshControl?: React.ReactElement<RefreshControlProps>
+  coaching?: CoachingPeriod
 }
 
-const WeekCarousel: FC<Props> = ({ ListHeaderComponent, refreshControl }) => {
+const WeekCarousel: FC<Props> = ({
+  ListHeaderComponent,
+  refreshControl,
+  coaching
+}) => {
   const ongoing = useSelector(getCombinedWeeks)
 
   const renderWeekCard: ListRenderItem<CombinedWeek> | null | undefined = ({
@@ -25,7 +31,7 @@ const WeekCarousel: FC<Props> = ({ ListHeaderComponent, refreshControl }) => {
         week={item}
         cardMargin={cardMargin}
         cardWidth={cardWidth}
-        completed
+        coaching={coaching}
       />
     )
   }

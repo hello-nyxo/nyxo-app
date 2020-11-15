@@ -67,11 +67,7 @@ const CoachingNotStarted: FC = () => {
 export default CoachingNotStarted
 
 const Container = styled.View`
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  border-radius: 7px;
+  margin: 16px;
   padding: 20px 20px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: ${({ theme }) => theme.SHADOW};

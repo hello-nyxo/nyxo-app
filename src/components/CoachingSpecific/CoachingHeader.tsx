@@ -10,6 +10,7 @@ import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { Container, H3, PageTitle } from '../Primitives/Primitives'
+import CoachingNotStarted from './CoachingNotStarted'
 
 const CoachingHeader: FC = () => {
   const { data: activeMonth } = useGetActiveCoaching()
@@ -38,6 +39,8 @@ const CoachingHeader: FC = () => {
           </ModifyContainer>
         </>
       ) : null}
+      <CoachingNotStarted />
+
       <Container>
         <H3>COACHING_WEEKS</H3>
       </Container>

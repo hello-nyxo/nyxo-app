@@ -12,7 +12,7 @@ import AnimatedFastImage from '../AnimatedFastImage/AnimatedFastImage'
 
 type Props = {
   yOffset: Animated.Value<number>
-  cover: string
+  cover?: string
 }
 
 const LessonCover: FC<Props> = ({ yOffset, cover }) => {

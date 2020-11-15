@@ -12,7 +12,7 @@ import GoBack from '../Buttons/GoBack'
 
 interface Props {
   yOffset: Animated.Value<number>
-  title: string
+  title?: string
 }
 
 const TopHeader: FC<Props> = ({ yOffset, title }) => {
