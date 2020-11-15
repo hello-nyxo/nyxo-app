@@ -77,12 +77,13 @@ export const createAndroidChannels = async () => {
 }
 
 /* START - HANDLE BEDTIME APPROACH NOTIFICATIONS */
-export const handleBedtimeApproachNotifications = () => async (
-  dispatch: Function,
+export const handleBedtimeApproachNotifications = (): Thunk => async (
+  dispatch: Dispatch,
   getState: GetState
 ) => {
   const {
-    sleepclock: { nights, insights },
+    nights,
+    insights,
     notifications: {
       bedtimeApproachNotification: { enabled: bedtimeNotificationEnabled } = {
         enabled: false

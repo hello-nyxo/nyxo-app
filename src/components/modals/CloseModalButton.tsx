@@ -10,14 +10,8 @@ type Props = {
 }
 
 export const CloseModalButton: FC<Props> = ({ relative, dark, closeModal }) => {
-  // const fill = themed ?
-
-  const handlePress = () => {
-    closeModal()
-  }
-
   return (
-    <ScalingButton analyticsEvent="Close modal" onPress={handlePress}>
+    <ScalingButton analyticsEvent="Close modal" onPress={closeModal}>
       <ButtonContainer dark={dark} relative={relative}>
         <ThemedIcon dark={dark} name="closeCircle" height={30} width={30} />
       </ButtonContainer>

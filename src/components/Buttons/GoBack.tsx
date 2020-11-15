@@ -1,18 +1,21 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
-import { StyleProps } from '@styles/themes'
 import { IconBold } from '../iconRegular'
 
 interface Props {
   route?: string
 }
 
-const GoBack = ({ route }: Props) => {
+const GoBack: FC<Props> = ({ route }) => {
   const navigation = useNavigation()
 
   const handlePress = () => {
-    route ? navigation.navigate(route, {}) : navigation.goBack()
+    if (route) {
+      navigation.navigate(route, {})
+    } else {
+      navigation.goBack()
+    }
   }
 
   return (

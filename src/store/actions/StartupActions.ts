@@ -4,16 +4,11 @@ import { GetState } from '@typings/GetState'
 import { Dispatch, Thunk } from '@typings/redux-actions'
 import { Platform } from 'react-native'
 import { refreshAuthStatus } from './auth/auth-actions'
-import {
-  updateCoachingInCloud,
-  validateWeeklyProgress
-} from './coaching/coaching-actions'
 import { getAllWeeks } from './coaching/content-actions'
 import {
   handleUnsyncedHabitsThenRetrieveHabitsFromCloud,
   updateDayStreaks
 } from './habit/habit-actions'
-import { calculateInsights } from './insight-actions/insight-actions'
 import {
   createAndroidChannels,
   handleBedtimeApproachNotifications,
@@ -48,13 +43,8 @@ export const startup = (): Thunk => async (
 
   await dispatch(updateSubscriptionStatus())
   await dispatch(refreshAuthStatus())
-  await dispatch(validateWeeklyProgress())
 
   await dispatch(updateDayStreaks())
-
-  if (isAuthenticated) {
-    await dispatch(updateCoachingInCloud())
-  }
 
   await dispatch(handleBedtimeApproachNotifications())
   await dispatch(handleCoachingUncompletedLessonNotifications())
@@ -66,4 +56,8 @@ export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {
   // await dispatch(handleCoachingUncompletedLessonNotifications())
   // await dispatch(handleCoachingLessonsInWeekNotifications())
   // await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
+}
+
+export const preFetchCoaching = (): Thunk => async (dispatch: Dispatch) => {
+  useGetActiveCoaching()
 }

@@ -1,4 +1,5 @@
 import { addHabit } from '@actions/habit/habit-actions'
+import { CloseModalButton } from '@components/modals/CloseModalButton'
 import RichText from '@components/RichText'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 import { Document } from '@contentful/rich-text-types'
@@ -70,6 +71,9 @@ const ExampleHabit = (props: Props) => {
       </Habit>
       <StyledModal hideModalContentWhileAnimating isVisible={show}>
         <Container>
+          <CloseButtonContainer>
+            <CloseModalButton closeModal={toggleModal} />
+          </CloseButtonContainer>
           <ModalTitle>{title}</ModalTitle>
           <ScrollView>
             <RichText content={description} />
@@ -150,4 +154,10 @@ const AddHabitText = styled(TranslatedText)`
   font-family: ${fonts.bold};
   font-size: 15px;
   text-align: right;
+`
+
+const CloseButtonContainer = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 16px 0px;
 `

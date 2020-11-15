@@ -12,6 +12,7 @@ import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
+import { isLoggedIn } from '@helpers/auth'
 import TranslatedText from '../TranslatedText'
 
 const CoachingNotStarted: FC = () => {
@@ -20,10 +21,14 @@ const CoachingNotStarted: FC = () => {
   const { data: coaching } = useGetActiveCoaching()
   const [mutate, { isLoading }] = useCreateCoaching()
 
-  // if (!hasActiveCoaching) return null
+  if (!hasActiveCoaching) return null
 
   const openIntroduction = () => {
     navigate(ROUTE.COACHING_INTRODUCTION)
+  }
+
+  const openLogin = () => {
+    navigate(ROUTE.AUTH, { screen: ROUTE.REGISTER })
   }
 
   const startCoaching = () => {
@@ -35,7 +40,7 @@ const CoachingNotStarted: FC = () => {
     })
   }
 
-  if (coaching?.started) {
+  if (!coaching?.started) {
     return (
       <Container>
         <Title>NOT_STARTED_TITLE</Title>
@@ -43,26 +48,28 @@ const CoachingNotStarted: FC = () => {
 
         <TextButton onPress={openIntroduction}>COACHING.WATCH_INTRO</TextButton>
         <Spacer />
-        <PrimaryButton
-          loading={isLoading}
-          title="COACHING.START"
-          onPress={startCoaching}
-        />
+        {isLoggedIn() ? (
+          <PrimaryButton
+            loading={isLoading}
+            title="COACHING.START"
+            onPress={startCoaching}
+          />
+        ) : (
+          <PrimaryButton title="LOGIN" onPress={openLogin} />
+        )}
       </Container>
     )
   }
+
   return null
 }
 
 export default CoachingNotStarted
 
 const Container = styled.View`
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  border-radius: 7px;
+  margin: 16px;
   padding: 20px 20px;
+  border-radius: 7px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: ${({ theme }) => theme.SHADOW};
 `

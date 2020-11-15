@@ -6,7 +6,6 @@ import {
   Container,
   H2,
   P,
-  Row,
   SafeAreaView
 } from '@components/Primitives/Primitives'
 import CodeDisclaimer from '@components/SettingsSpecific/CodeDisclaimer'
@@ -16,7 +15,7 @@ import {
   getLoading
 } from '@selectors/auth-selectors/auth-selectors'
 import { getLoading as getCodeLoading } from '@selectors/linking-selectors'
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import { RefreshControl, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import ROUTE from '../../config/routes/Routes'

@@ -65,19 +65,27 @@ export const getSharedSource = createSelector(
   (mainSource, googleFitSource, healthKitSource) => {
     switch (mainSource) {
       case SOURCE.GOOGLE_FIT:
-        return googleFitSource
+        return {
+          sourceName: googleFitSource?.sourceName,
+          sourceId: googleFitSource?.sourceId
+        }
       case SOURCE.FITBIT:
         return { sourceName: 'Fitbit', sourceId: CONFIG.FITBIT_CONFIG.bundleId }
       case SOURCE.OURA:
         return { sourceName: 'Oura', sourceId: CONFIG.OURA_CONFIG.bundleId }
-
+      case SOURCE.HEALTH_KIT:
+        return {
+          sourceName: healthKitSource?.sourceName,
+          sourceId: healthKitSource?.sourceId
+        }
       case SOURCE.WITHINGS:
         return {
           sourceName: 'Withings',
           sourceId: CONFIG.WITHINGS_CONFIG.bundleId
         }
+
       default:
-        return healthKitSource
+        return { sourceName: 'no-source', sourceId: 'no-source' }
     }
   }
 )

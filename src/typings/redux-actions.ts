@@ -14,4 +14,4 @@ export type ThunkResult<R> = ThunkAction<R, State, void, ReduxAction>
 
 export type Thunk = ThunkResult<Promise<void | string | null>>
 
-export type Dispatch = ThunkDispatch<unknown, unknown, Action>
+export type Dispatch = any

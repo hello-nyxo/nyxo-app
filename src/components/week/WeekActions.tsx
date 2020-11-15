@@ -1,6 +1,5 @@
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import Card from '@components/Card'
-
 import TranslatedText from '@components/TranslatedText'
 import { canEndCoaching } from '@helpers/coaching/coaching'
 import { format } from 'date-fns'
@@ -8,22 +7,30 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 
 type Props = {
-  started?: string
-  ended?: string
+  started?: string | null
+  ended?: string | null
   isCurrentlyActive: boolean
   startWeek: () => void
   endWeek: () => void
+  isLoading: boolean
+  isSuccess: boolean
 }
 
 export const WeekActions: FC<Props> = ({
   started,
   ended,
   isCurrentlyActive,
-  startWeek
+  startWeek,
+  endWeek,
+  isLoading,
+  isSuccess
 }) => {
   const startTime = started ? format(new Date(started), 'dd.MM') : ''
   const endTime = ended ? format(new Date(ended), 'dd.MM') : ''
-  const canEnd = canEndCoaching(started, 7)
+  const canEnd = canEndCoaching(started, 0) && started && !ended
+
+  const canStart = !isCurrentlyActive && !started
+
   return (
     <Container>
       <Card>
@@ -37,11 +44,20 @@ export const WeekActions: FC<Props> = ({
             <Ended variables={{ ended: endTime }}>WEEK_VIEW.END_DATE</Ended>
           )}
         </DurationRow>
-        {!isCurrentlyActive && !started && (
-          <PrimaryButton title="WEEK.BEGIN" onPress={startWeek} />
-        )}
-        {started && canEnd && !ended ? (
-          <PrimaryButton title="WEEK.COMPLETE" onPress={endWeek} />
+        {canStart ? (
+          <PrimaryButton
+            title="WEEK.BEGIN"
+            onPress={startWeek}
+            loading={isLoading}
+          />
+        ) : null}
+
+        {canEnd ? (
+          <PrimaryButton
+            title="WEEK.COMPLETE"
+            onPress={endWeek}
+            loading={isLoading}
+          />
         ) : null}
       </Card>
     </Container>
@@ -50,9 +66,12 @@ export const WeekActions: FC<Props> = ({
 
 const Container = styled.View`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
-  border-radius: 8px;
-  padding: 0px 16px;
+  padding: 32px 16px 8px;
+  flex: 0;
+
+  height: auto;
 `
+
 const DurationRow = styled.View`
   flex-direction: row;
   padding: 10px 0px;

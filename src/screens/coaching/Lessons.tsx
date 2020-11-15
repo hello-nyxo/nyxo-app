@@ -1,23 +1,19 @@
 import LessonListItem from '@components/LessonComponents/LessonListItem'
 import SectionHeader from '@components/LessonComponents/SectionHeader'
-import Separator from '@components/LessonComponents/Separator'
 import keyExtractor from '@helpers/KeyExtractor'
-import {
-  CombinedLessonArray,
-  getCoachingLessonsForCurrentWeek,
-  getCoachingLessonsForWeek,
-  CombinedLesson
-} from '@selectors/coaching-selectors/coaching-selectors'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
-import { listLikedContents } from '@graphql/queries'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
+import {
+  CombinedLesson,
+  CombinedLessonArray,
+  getCoachingLessonsForWeek
+} from '@selectors/coaching-selectors/coaching-selectors'
+import { Section } from '@typings/CoachingContentState'
 import { groupBy } from 'lodash'
 import React, { FC, memo, ReactElement } from 'react'
-import { SectionList, ListRenderItem } from 'react-native'
+import { ListRenderItem, SectionList } from 'react-native'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { Section } from '@typings/CoachingContentState'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 

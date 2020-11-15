@@ -1,88 +1,54 @@
+import CoachingMonthCard from '@components/CoachingMonthCard/CoachingMonthCard'
 import BuyCoachingButton from '@components/CoachingSpecific/BuyCoachingButton'
-import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
+import ROUTE from '@config/routes/Routes'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
+import { useNavigation } from '@react-navigation/native'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
-import { format } from 'date-fns'
+import colors from '@styles/colors'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { PageTitle } from '../Primitives/Primitives'
-import { IntroduceCoaching } from './IntroduceCoaching'
+import { Container, H3, PageTitle } from '../Primitives/Primitives'
+import CoachingNotStarted from './CoachingNotStarted'
 
 const CoachingHeader: FC = () => {
-  const { data } = useGetActiveCoaching()
+  const { data: activeMonth } = useGetActiveCoaching()
   const hasActiveCoaching = useSelector(getActiveCoaching)
+  const { navigate } = useNavigation()
 
-  const weeks = data?.weeks?.length ?? 0
-  const lessons = data?.lessons?.length ?? 0
+  const openCoachingSettings = () => {
+    navigate(ROUTE.APP, {
+      screen: ROUTE.SETTINGS,
+      params: { screen: ROUTE.COACHING_SETTINGS }
+    })
+  }
 
   return (
     <>
       <PageTitle>Coaching</PageTitle>
+      <Container>{!hasActiveCoaching && <BuyCoachingButton />}</Container>
+      {activeMonth ? (
+        <>
+          <Title>Active Coaching</Title>
+          <CoachingMonthCard actionsEnabled={false} month={activeMonth} />
+          <ModifyContainer>
+            <ModifyButton onPress={openCoachingSettings}>
+              <ButtonText>COACHING.CHANGE</ButtonText>
+            </ModifyButton>
+          </ModifyContainer>
+        </>
+      ) : null}
+      <CoachingNotStarted />
 
-      {!hasActiveCoaching && <BuyCoachingButton />}
-      {!hasActiveCoaching && <IntroduceCoaching />}
-
-      <Title>Active Coaching</Title>
       <Container>
-        <Column>
-          {data?.started && (
-            <MonthTitle>
-              Started: {format(new Date(data?.started), 'dd.mm.yy')}
-            </MonthTitle>
-          )}
-          <Row>
-            <Icon />
-            <Text variables={{ count: lessons }}>COACHING_MONTH.LESSONS</Text>
-          </Row>
-          <Row>
-            <Icon />
-            <Text variables={{ count: weeks }}>COACHING_MONTH.WEEKS</Text>
-          </Row>
-        </Column>
+        <H3>COACHING_WEEKS</H3>
       </Container>
     </>
   )
 }
 
 export default CoachingHeader
-
-const Container = styled.View`
-  margin: 0px 16px 32px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  padding: 16px;
-  border-radius: 8px;
-  flex-direction: row;
-  box-shadow: ${({ theme }) => theme.SHADOW};
-`
-
-const MonthTitle = styled.Text`
-  font-size: 17px;
-  text-transform: uppercase;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-  margin-bottom: 16px;
-`
-
-const Row = styled.View`
-  flex-direction: row;
-  align-items: center;
-`
-
-const Text = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-`
-
-const Icon = styled(IconBold).attrs(({ theme }) => ({
-  height: 15,
-  width: 15,
-  fill: theme.SECONDARY_TEXT_COLOR,
-  name: 'bookLamp'
-}))`
-  margin-right: 8px;
-`
 
 const Title = styled.Text`
   margin: 16px 16px 8px;
@@ -92,4 +58,20 @@ const Title = styled.Text`
   font-family: ${({ theme }) => theme.FONT_BOLD};
 `
 
-const Column = styled.View``
+const ModifyButton = styled.TouchableOpacity`
+  padding: 8px 16px;
+  border-radius: 20px;
+  flex-direction: row;
+  align-items: center;
+`
+
+const ModifyContainer = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+`
+
+const ButtonText = styled(TranslatedText)`
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+  color: ${colors.radiantBlue};
+  font-size: 15px;
+`

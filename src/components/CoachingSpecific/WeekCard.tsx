@@ -8,9 +8,13 @@ import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
 import { useDispatch } from 'react-redux'
-import { CombinedWeek } from '@selectors/coaching-selectors/coaching-selectors'
+import {
+  CombinedWeek,
+  WEEK_STAGE
+} from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import { constants, fonts } from '@styles/themes'
+import { CoachingPeriod } from '@hooks/coaching/useCoaching'
 import colors from '../../styles/colors'
 import ScalingButton from '../Buttons/ScalingButton'
 import WeekCardTitle from './WeekCardTitle'
@@ -19,10 +23,10 @@ type Props = {
   week: CombinedWeek
   cardWidth: number
   cardMargin: number
-  completed?: boolean
+  coaching?: CoachingPeriod
 }
 
-const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, completed }) => {
+const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
@@ -36,14 +40,14 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, completed }) => {
   const formatedIntro = week.intro ? week.intro.replace('–', '\n – ') : ''
   const lessonCount = week.lessons.length
   const { habitCount } = week
-
+  const { stage } = getStage(coaching, week.slug)
   return (
     <CardContainer>
       <ScalingButton
         analyticsEvent={`Go to week ${week.weekName}`}
         onPress={handlePress}>
         <Card style={{ width: cardWidth, marginHorizontal: cardMargin }}>
-          <WeekCardTitle stage={week.stage} weekName={week.weekName} />
+          <WeekCardTitle stage={stage} weekName={week.weekName} />
 
           <CoverPhotoContainer>
             <CoverPhoto
@@ -82,6 +86,24 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, completed }) => {
 
 export default memo(WeekCard)
 
+const getStage = (coaching: CoachingPeriod, slug: string): Data => {
+  const week = coaching?.weeks?.find((w) => w?.slug === slug)
+  if (week) {
+    if (week.ended && week.started) {
+      return { stage: WEEK_STAGE.COMPLETED }
+    }
+    return { stage: WEEK_STAGE.ONGOING }
+  }
+
+  return {
+    stage: WEEK_STAGE.UPCOMING
+  }
+}
+
+type Data = {
+  stage: WEEK_STAGE.COMPLETED | WEEK_STAGE.ONGOING | WEEK_STAGE.UPCOMING
+}
+
 const Gradient = styled(LinearGradient)`
   padding: 10px;
 `
@@ -91,8 +113,8 @@ const Info = styled(TranslatedText)`
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
-const CardContainer = styled(Animated.View)`
-  flex: 1;
+const CardContainer = styled.View`
+  margin: 8px 16px;
 `
 
 const LessonIcon = styled(IconBold).attrs(({ theme }) => ({

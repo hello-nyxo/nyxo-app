@@ -2,7 +2,6 @@ import { selectLesson } from '@actions/coaching/coaching-actions'
 import { getReadingTime } from '@helpers/reading-time'
 import { useNavigation } from '@react-navigation/core'
 import { CombinedLesson } from '@selectors/coaching-selectors/coaching-selectors'
-import Analytics from 'appcenter-analytics'
 import ROUTE from '@config/routes/Routes'
 import React, { FC, memo } from 'react'
 import FastImage from 'react-native-fast-image'
@@ -25,26 +24,20 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
 
   const handlePress = () => {
     if (!locked) {
-      Analytics.trackEvent(`Open lesson ${lesson.lessonName}`)
       dispatch(selectLesson(lesson.slug))
       navigate(ROUTE.LESSON, {})
     }
   }
 
-  const author = lesson.authorCards
-    ? {
-        name: lesson?.authorCards[0]?.name
-      }
-    : {
-        name: 'Pietari Nurmi'
-      }
+  const author =
+    (lesson?.authorCards && lesson?.authorCards[0]?.name) ?? 'Pietari Nurmi'
 
   return (
     <Touchable onPress={handlePress}>
       <Container>
         <LessonInfo>
           <LessonName numberOfLines={2}>{lesson.lessonName}</LessonName>
-          <Author>{author.name}</Author>
+          <Author>{author}</Author>
           <InfoRow>
             <StyledIcon name="clockBold" height={10} width={10} />
             <ReadingTime variables={{ readingTime: time }}>

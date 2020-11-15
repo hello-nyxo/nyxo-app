@@ -17,14 +17,17 @@ import RatingModal from '@components/RatingModal'
 import CalendarModal from '@components/sleep/CalendarModal'
 import InsightsCard from '@components/sleep/InsightsCard'
 import QuestionCard from '@components/sleep/QuestionCard'
+import { getUserActiveCoaching } from '@hooks/coaching/useCoaching'
 import useBackgroundFetch from '@hooks/UseBackgroundFetch'
 import useNotificationEventHandlers from '@hooks/UseNotificationEventHandlers'
+import { useFocusEffect } from '@react-navigation/core'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import { format } from 'date-fns'
-import React, { FC, useEffect } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
+import { queryCache } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -40,6 +43,17 @@ const Sleep: FC = () => {
     dispatch(startup())
     dispatch(fetchSleepData())
   }, [])
+
+  useFocusEffect(
+    useCallback(() => {
+      async function preFetch() {
+        await queryCache.prefetchQuery('userActiveCoaching', () =>
+          getUserActiveCoaching()
+        )
+      }
+      preFetch()
+    }, [])
+  )
 
   useBackgroundFetch(15, async () => {
     dispatch(backgroundAction())

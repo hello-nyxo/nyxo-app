@@ -196,21 +196,6 @@ export const calculateEfficiency = (
   return `${Math.round((totalBedTime / totalSleepTime) * 100)} %`
 }
 
-// export const getNightsWithDates = (nights: Night[] ): string => {
-// 	const firstDate = min([...nights.map(night => new Date(night.startDate))])
-// 	const lastDate = max([...nights.map(night => new Date(night.endDate))])
-
-// 	const days = eachDayOfInterval({
-// 		start: firstDate,
-// 		end: lastDate
-// 	})
-
-// return days.map(night => ({
-// 	...night,
-// 	date:
-// }))
-// }
-
 export const convertNightValue = (value: Value): NightValue => {
   switch (value) {
     case Value.Asleep:

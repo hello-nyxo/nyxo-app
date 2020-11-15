@@ -9,12 +9,12 @@ import {
   SafeAreaView,
   StyledScrollView
 } from '@components/Primitives/Primitives'
-import React from 'react'
+import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
 import styled from 'styled-components/native'
 
-const NotificationCenter = () => {
+const NotificationCenter: FC = () => {
   const notificationCount = useSelector(getStaticNotificationsCount)
 
   return (
@@ -34,6 +34,7 @@ const NotificationCenter = () => {
 
         <HelpInfo />
         <EnablePushCheck />
+
         {notificationCount === 0 && <EmptyState />}
       </StyledScrollView>
     </SafeAreaView>

@@ -16,7 +16,11 @@ const InitializeSource: FC = () => {
   const onboardingCompleted = useSelector(getDataOnboardingCompleted)
 
   const handlePress = () => {
-    navigate(ROUTE.SETTINGS, { screen: ROUTE.SOURCE_SETTINGS })
+    navigate(ROUTE.APP, {
+      screen: ROUTE.SETTINGS,
+      params: { screen: ROUTE.SOURCE_SETTINGS }
+    })
+
     dispatch(markDataOnboardingCompleted())
   }
 

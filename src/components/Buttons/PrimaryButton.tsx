@@ -22,13 +22,10 @@ export const PrimaryButton: FC<Props> = ({
   return (
     <TouchableOpacity disabled={loading || disabled} onPress={onPress}>
       <Button white={white} disabled={loading || disabled}>
-        {loading ? (
-          <Loading />
-        ) : (
-          <ButtonText white={white} disabled={loading || disabled}>
-            {title}
-          </ButtonText>
-        )}
+        <ButtonText white={white} disabled={loading || disabled}>
+          {title}
+        </ButtonText>
+        {loading ? <Loading /> : null}
       </Button>
     </TouchableOpacity>
   )
@@ -47,9 +44,11 @@ const Button = styled.View<ButtonProps>`
   min-width: 200px;
   margin-bottom: 10px;
   align-items: center;
+  flex-direction: row;
+  justify-content: center;
   background-color: ${({ white }) =>
     white ? colors.white : colors.radiantBlue};
-  opacity: ${({ disabled }) => (disabled ? 0.2 : 1)};
+  opacity: ${({ disabled }) => (disabled ? 0.75 : 1)};
   box-shadow: 1px 1px 5px rgba(74, 90, 239, 0.4);
   align-self: center;
 `
@@ -61,7 +60,8 @@ const ButtonText = styled(TranslatedText)<ButtonProps>`
   color: ${({ white }) => (white ? colors.radiantBlue : colors.white)};
   font-size: 15px;
   text-align: center;
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 `
 
-const Loading = styled.ActivityIndicator``
+const Loading = styled.ActivityIndicator`
+  margin-left: 10px;
+`

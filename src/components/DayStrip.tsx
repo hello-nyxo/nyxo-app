@@ -55,11 +55,11 @@ const CalendarStrip: FC = () => {
   const keyExtractor = (item: Date) => item.toISOString()
 
   const scrollToItem = (index: number) => {
-    return flatListRef?.current?.scrollToIndex({
-      index,
-      animated: true,
-      viewPosition: 0.5
-    })
+    // return flatListRef?.current?.scrollToIndex({
+    //   index,
+    //   animated: true,
+    //   viewPosition: 0.5
+    // })
   }
 
   useEffect(() => {

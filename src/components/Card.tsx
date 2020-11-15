@@ -1,23 +1,21 @@
-import React, { memo } from 'react'
+import React, { FC, memo, ReactNode } from 'react'
 import styled from 'styled-components/native'
-import { StyleProps } from '../styles/themes'
 
-interface CardProps {
-  children: JSX.Element[] | JSX.Element
+type Props = {
+  children?: JSX.Element[] | JSX.Element | null | ReactNode
 }
 
-const Card = (props: CardProps) => (
-  <CardContainer>{props.children}</CardContainer>
+const Card: FC<Props> = ({ children }) => (
+  <CardContainer>{children}</CardContainer>
 )
 
 export default memo(Card)
 
 const CardContainer = styled.View`
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
-  padding: 10px 10px;
-  box-shadow: 1px 1px 5px rgba(32, 33, 37, 0.1);
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  padding: 8px;
+  box-shadow: ${({ theme }) => theme.SHADOW};
   z-index: 1;
   flex: 1;
-  border-radius: 5px;
+  border-radius: 7px;
 `

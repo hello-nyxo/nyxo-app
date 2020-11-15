@@ -3,18 +3,11 @@ import TopHeader from '@components/CoachingSpecific/TopHeader'
 import WeekViewHeader from '@components/CoachingSpecific/WeekViewHeader'
 import LessonContent from '@components/Lesson/LessonContent'
 import LessonCover from '@components/Lesson/LessonCover'
-import { ReAnimatedTranslatedText } from '@components/TranslatedText'
-import {
-  useGetActiveCoaching,
-  useUpdateCoaching
-} from '@hooks/coaching/useCoaching'
 import { useIntroduction } from '@hooks/coaching/useContent'
+import { StyleProps } from '@styles/themes'
 import React, { FC, memo } from 'react'
-import { Button } from 'react-native'
-import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
 
 const yOffset = new Animated.Value(0)
 
