@@ -2,43 +2,50 @@ import { clockTimeToAngle } from '@helpers/geometry'
 import { createSelector } from 'reselect'
 import { InsightState } from '@typings/state/insight-state'
 import { State } from '@typings/State'
+import { set } from 'date-fns'
 
 const getInsights = (state: State) => state.insights
 
-const dummyDate = new Date().toISOString()
 const dummyInsights: InsightState = {
   bedTimeWindow: {
-    start: dummyDate,
-    center: dummyDate,
-    end: dummyDate
+    start: set(new Date(), { hours: 22, minutes: 0, seconds: 0 }).toISOString(),
+    end: set(new Date(), {
+      hours: 23,
+      minutes: 30,
+      seconds: 0
+    }).toISOString(),
+    center: set(new Date(), {
+      hours: 22,
+      minutes: 45,
+      seconds: 0
+    }).toISOString()
   }
 }
 
 export const getGoToSleepWindowStart = createSelector(
   getInsights,
   (insights) => {
-    if (!insights || !insights.bedTimeWindow?.start) {
-      return dummyInsights.bedTimeWindow.start
-    }
-    return insights.bedTimeWindow?.start
+    return (
+      insights?.bedTimeWindow?.start ??
+      (dummyInsights.bedTimeWindow.start as string)
+    )
   }
 )
 
 export const getGoToSleepWindowCenter = createSelector(
   getInsights,
   (insights) => {
-    if (!insights || !insights.bedTimeWindow.center) {
-      return dummyInsights.bedTimeWindow.center
-    }
-    return insights.bedTimeWindow?.center
+    return (
+      insights?.bedTimeWindow?.center ??
+      (dummyInsights.bedTimeWindow.center as string)
+    )
   }
 )
 
 export const getGoToSleepWindowEnd = createSelector(getInsights, (insights) => {
-  if (!insights || !insights?.bedTimeWindow?.end) {
-    return dummyInsights.bedTimeWindow.end
-  }
-  return insights.bedTimeWindow.end
+  return (
+    insights?.bedTimeWindow?.end ?? (dummyInsights.bedTimeWindow.end as string)
+  )
 })
 
 export const getBedtimeWindowArc = createSelector(

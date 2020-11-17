@@ -1,6 +1,7 @@
 import { setSelectedDay } from '@actions/sleep/sleep-data-actions'
 import TranslatedText from '@components/TranslatedText'
 import { getNightsAsDays } from '@selectors/night-selectors'
+import { Day } from '@typings/Sleepdata'
 // import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
 import { extent, max, min, scaleTime } from 'd3'
 import { addHours, subHours } from 'date-fns'
@@ -10,7 +11,6 @@ import { ScrollView } from 'react-native-gesture-handler'
 import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { Day } from '@typings/Sleepdata'
 import SleepBars from './SleepTimeChart/SleepBars'
 // import TargetBars from './SleepTimeChart/TargetBars'
 import XTicks from './SleepTimeChart/XTicks'
@@ -25,7 +25,7 @@ export const chartHeight = height / 3
 
 const SleepTimeChart: FC = () => {
   const dispatch = useDispatch()
-  const data = [] // useSelector(getNightsAsDays)
+  const data = useSelector(getNightsAsDays)
   const daysToShow = data.length
   const chartWidth = (barWidth + 10) * daysToShow + paddingLeft + paddingRight
 

@@ -17,13 +17,11 @@ import {
 import { deviation, mean, min, max } from 'd3'
 import { getSharedSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 
-const getNights = (state: State) => state.nights
+const getNights = (state: State) => state.nights.nights
 
 export const getNightForSelectedDate = createSelector(
   [getNights, getSelectedDate, getSharedSource],
   (nights, selectedDate, tracker) => {
-    console.log(nights, tracker)
-
     return nights
       .filter((night) => night.sourceId === tracker.sourceId)
       .map((night) => {

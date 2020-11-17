@@ -132,7 +132,7 @@ export const fetchSleepFromHealthKit = (
   endDate?: string
 ): Thunk => async (dispatch: Dispatch) => {
   dispatch(fetchHKSleepStart())
-
+  console.log(startDate, endDate)
   const options = {
     startDate,
     endDate
@@ -150,13 +150,11 @@ export const fetchSleepFromHealthKit = (
         const formattedData: Night[] = response?.map((nightObject) =>
           formatHealthKitResponse(nightObject)
         )
-        console.log(formattedData)
         await dispatch(syncNightsToCloud(formattedData))
         await dispatch(fetchSleepSuccess(formattedData))
       }
     )
   } catch (error) {
-    console.log(error)
     dispatch(fetchHKSleepFailure())
   } finally {
     dispatch(fetchHKSleepSuccess())

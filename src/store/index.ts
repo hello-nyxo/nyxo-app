@@ -76,7 +76,7 @@ const rootReducer = combineReducers({
   apis: makePersisted('apis', ApiReducer, undefined),
   manualData: ManualDataReducer,
   modals: ModalReducer,
-  nights: NightReducer,
+  nights: makePersisted('nights', NightReducer, undefined),
   calendar: CalendarReducer,
   insights: makePersisted('insights', InsightsReducer, undefined),
   sleepSources: makePersisted('sleepSources', SleepSourceReducer, undefined),

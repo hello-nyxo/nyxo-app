@@ -49,17 +49,17 @@ const CalendarStrip: FC = () => {
 
   const viewabilityConfig = {
     itemVisiblePercentThreshold: 85,
-    minimumViewTime: 200
+    minimumViewTime: 400
   }
 
   const keyExtractor = (item: Date) => item.toISOString()
 
   const scrollToItem = (index: number) => {
-    // return flatListRef?.current?.scrollToIndex({
-    //   index,
-    //   animated: true,
-    //   viewPosition: 0.5
-    // })
+    return flatListRef?.current?.scrollToIndex({
+      index,
+      animated: true,
+      viewPosition: 0.5
+    })
   }
 
   useEffect(() => {
@@ -74,6 +74,7 @@ const CalendarStrip: FC = () => {
   return (
     <Container>
       <FlatList
+        contentInset={{ right: WIDTH / 2 }}
         ref={flatListRef}
         showsHorizontalScrollIndicator={false}
         inverted
@@ -111,7 +112,7 @@ type DayProps = {
 }
 
 const Day = styled.View<DayProps>`
-  width: ${({ isFirst }) => (isFirst ? WIDTH : WIDTH / 2)}px;
+  width: ${WIDTH / 2}px;
 `
 
 const DateContainer = styled.Text`
@@ -149,4 +150,8 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
   top: 0;
   right: 0;
   bottom: 0;
+`
+
+const Filler = styled.View`
+  width: ${WIDTH / 2}px;
 `
