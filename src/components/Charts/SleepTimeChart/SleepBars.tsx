@@ -29,7 +29,8 @@ const SleepBars: FC<Props> = ({ data, scaleX, scaleY, barWidth, onPress }) => {
             scaleY(new Date(night.startDate).valueOf())
 
           return (
-            <G key={night.id}>
+            <G
+              key={`${night.id}_${night.value}_${night.startDate}_${night.endDate}`}>
               <StyledRect
                 x={x}
                 width={barWidth}
@@ -52,6 +53,10 @@ const SleepBars: FC<Props> = ({ data, scaleX, scaleY, barWidth, onPress }) => {
 
 export default SleepBars
 
-const StyledRect = styled(Rect).attrs<{ value: Value }>(({ value }) => ({
+type RectProps = {
+  value: Value
+}
+
+const StyledRect = styled(Rect).attrs<RectProps>(({ value }) => ({
   fill: value === Value.Asleep ? colors.radiantBlue : colors.inBedColor
 }))``

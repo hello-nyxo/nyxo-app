@@ -22,6 +22,7 @@ import {
   UpdateNotificationPermissionType
 } from '@typings/NotificationState'
 import { Thunk, Dispatch } from '@typings/redux-actions'
+import { startOfDay } from 'date-fns'
 
 const { notifications: firebaseNotifications } = Firebase
 const {
@@ -54,11 +55,11 @@ export const askForPush = (): Thunk => async (dispatch: Dispatch) => {
 export const setNotification = (
   type: UpdateNotificationPermissionType,
   enabled: boolean
-) => (dispatch: Function) => {
+): Thunk => (dispatch: Dispatch) => {
   dispatch(updateNotificationPermission(type, enabled))
 }
 
-export const createAndroidChannels = async () => {
+export const createAndroidChannels = async (): Promise<void> => {
   const bedtimeChannel = new firebaseNotifications.Android.Channel(
     androidChannels.BEDTIME.id,
     androidChannels.BEDTIME.name,
@@ -91,10 +92,7 @@ export const handleBedtimeApproachNotifications = (): Thunk => async (
     }
   } = getState()
 
-  const dateISOString = moment() // Get today moment
-    .startOf('day')
-    .subtract(1, 'day')
-    .toISOString()
+  const today = startOfDay(new Date()).toISOString()
 
   const notification = {
     ...BEDTIME_APPROACH,
@@ -104,10 +102,11 @@ export const handleBedtimeApproachNotifications = (): Thunk => async (
   dispatch(cancelLocalNotifications(notification))
 
   if (bedtimeNotificationEnabled) {
-    const tonightIndex = ((nights: Night[]) => {
-      const index = nights.findIndex((night) => {
+    const notificationTime = new Date()
+    const tonightIndex = ((n: Night[]) => {
+      const index = n.findIndex((night) => {
         const nightDate = moment(night.startDate).toDate()
-        const tonightDate = moment(dateISOString).toDate()
+        const tonightDate = moment(today).toDate()
         return (
           nightDate.getDate() === tonightDate.getDate() &&
           nightDate.getMonth() === tonightDate.getMonth() &&
@@ -118,13 +117,7 @@ export const handleBedtimeApproachNotifications = (): Thunk => async (
     })(nights)
 
     const MSBeforeNotify = 60 * 60 * 1000 // 1 hour
-    let tonightStartDate = ''
-
-    if (tonightIndex > -1) {
-      tonightStartDate = nights[tonightIndex].startDate
-    } else {
-      tonightStartDate = insights.goToSleepWindowStart
-    }
+    const tonightStartDate = ''
 
     if (tonightStartDate.length > 0) {
       const startDateMS = moment(tonightStartDate).toDate().getTime()
@@ -146,8 +139,8 @@ export const handleBedtimeApproachNotifications = (): Thunk => async (
 
 /* START- HANDLE COACHING NOTIFICATIONS */
 
-export const handleCoachingUncompletedLessonNotifications = () => async (
-  dispatch: Function,
+export const handleCoachingUncompletedLessonNotifications = (): Thunk => async (
+  dispatch: Dispatch,
   getState: GetState
 ) => {
   const {
@@ -345,7 +338,7 @@ const scheduleAndroidNotification = (
 const scheduleIosNotification = (
   notification: NotificationObject,
   fireDate: string
-) => async (dispatch: Function) => {
+): Thunk => async (dispatch: Dispatch) => {
   const { title, body, userInfo, id } = notification
   PushNotificationIOS.scheduleLocalNotification({
     userInfo,

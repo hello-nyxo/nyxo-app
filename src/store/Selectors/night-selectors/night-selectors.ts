@@ -17,7 +17,7 @@ import {
 import { deviation, mean, min, max } from 'd3'
 import { getSharedSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 
-const getNights = (state: State) => state.nights
+const getNights = (state: State) => state.nights.nights
 
 export const getNightForSelectedDate = createSelector(
   [getNights, getSelectedDate, getSharedSource],

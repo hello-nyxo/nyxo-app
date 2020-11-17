@@ -1,6 +1,7 @@
 import Moment from 'moment'
 import { to12hClock } from '@helpers/time'
 import { Day, Night } from '@typings/Sleepdata'
+import { endOfDay, startOfDay, subDays } from 'date-fns'
 
 export function getAngleAM(dateTime: string): number {
   const time = Moment(dateTime)
@@ -49,4 +50,23 @@ export function sortNights(nights: Night[]): Night[] {
     Moment(a.startDate).diff(Moment(b.startDate))
   )
   return sorted
+}
+
+type StartEnd = {
+  startDate: string
+  endDate: string
+}
+
+export const getStartEndWeek = (): StartEnd => {
+  return {
+    startDate: startOfDay(subDays(new Date(), 7)).toISOString(),
+    endDate: endOfDay(new Date()).toISOString()
+  }
+}
+
+export const getStartEndDay = (): StartEnd => {
+  return {
+    startDate: startOfDay(new Date()).toISOString(),
+    endDate: endOfDay(new Date()).toISOString()
+  }
 }

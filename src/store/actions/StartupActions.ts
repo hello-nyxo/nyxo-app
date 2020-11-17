@@ -9,12 +9,7 @@ import {
   handleUnsyncedHabitsThenRetrieveHabitsFromCloud,
   updateDayStreaks
 } from './habit/habit-actions'
-import {
-  createAndroidChannels,
-  handleBedtimeApproachNotifications,
-  handleCoachingLessonsInWeekNotifications,
-  handleCoachingUncompletedLessonNotifications
-} from './notifications'
+import { createAndroidChannels } from './notifications'
 import { prepareSleepDataFetching } from './sleep/health-kit-actions'
 import { updateSubscriptionStatus } from './subscription/subscription-actions'
 
@@ -46,9 +41,9 @@ export const startup = (): Thunk => async (
 
   await dispatch(updateDayStreaks())
 
-  await dispatch(handleBedtimeApproachNotifications())
-  await dispatch(handleCoachingUncompletedLessonNotifications())
-  await dispatch(handleCoachingLessonsInWeekNotifications())
+  // await dispatch(handleBedtimeApproachNotifications())
+  // await dispatch(handleCoachingUncompletedLessonNotifications())
+  // await dispatch(handleCoachingLessonsInWeekNotifications())
 }
 
 export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {
@@ -56,8 +51,4 @@ export const backgroundAction = (): Thunk => async (dispatch: Dispatch) => {
   // await dispatch(handleCoachingUncompletedLessonNotifications())
   // await dispatch(handleCoachingLessonsInWeekNotifications())
   // await dispatch(handleUnsyncedHabitsThenRetrieveHabitsFromCloud())
-}
-
-export const preFetchCoaching = (): Thunk => async (dispatch: Dispatch) => {
-  useGetActiveCoaching()
 }

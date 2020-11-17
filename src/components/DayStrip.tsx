@@ -26,9 +26,9 @@ const CalendarStrip: FC = () => {
 
   const offsets = days.map((_, index) => index * (WIDTH / 2))
 
-  const renderItem: ListRenderItem<Date> = ({ item }) => (
+  const renderItem: ListRenderItem<Date> = ({ item, index }) => (
     <PressableContainer key={item.toISOString()} onPress={toggleCalendar}>
-      <Day>
+      <Day isFirst={index === 0}>
         <DateContainer>{format(item, 'EEE d. LLL')}</DateContainer>
       </Day>
     </PressableContainer>
@@ -49,17 +49,17 @@ const CalendarStrip: FC = () => {
 
   const viewabilityConfig = {
     itemVisiblePercentThreshold: 85,
-    minimumViewTime: 200
+    minimumViewTime: 400
   }
 
   const keyExtractor = (item: Date) => item.toISOString()
 
   const scrollToItem = (index: number) => {
-    // return flatListRef?.current?.scrollToIndex({
-    //   index,
-    //   animated: true,
-    //   viewPosition: 0.5
-    // })
+    return flatListRef?.current?.scrollToIndex({
+      index,
+      animated: true,
+      viewPosition: 0.5
+    })
   }
 
   useEffect(() => {
@@ -74,6 +74,7 @@ const CalendarStrip: FC = () => {
   return (
     <Container>
       <FlatList
+        contentInset={{ right: WIDTH / 2 }}
         ref={flatListRef}
         showsHorizontalScrollIndicator={false}
         inverted
@@ -106,8 +107,11 @@ const Container = styled.View`
   width: ${WIDTH}px;
   height: 30px;
 `
+type DayProps = {
+  isFirst: boolean
+}
 
-const Day = styled.View`
+const Day = styled.View<DayProps>`
   width: ${WIDTH / 2}px;
 `
 
@@ -117,9 +121,7 @@ const DateContainer = styled.Text`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
-const PressableContainer = styled.TouchableWithoutFeedback`
-  background-color: red;
-`
+const PressableContainer = styled.TouchableWithoutFeedback``
 
 const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
   colors:
@@ -148,4 +150,8 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
   top: 0;
   right: 0;
   bottom: 0;
+`
+
+const Filler = styled.View`
+  width: ${WIDTH / 2}px;
 `

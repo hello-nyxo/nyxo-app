@@ -20,6 +20,7 @@ import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
 import { getInBedDuration, getAsleepDuration } from '@selectors/night-selectors'
 import { getSelectedDate } from '@selectors/calendar-selectors'
+import { format, parseISO } from 'date-fns'
 
 const Modal = RNModal as any
 
@@ -34,6 +35,8 @@ const ExplanationsModal: FC = () => {
   const formattedDate = toNightTime(date)
   const windowStart = useSelector(getGoToSleepWindowStart)
   const windowEnd = useSelector(getGoToSleepWindowEnd)
+
+  console.log(inbed, asleep)
 
   const stats = [
     {
@@ -51,7 +54,7 @@ const ExplanationsModal: FC = () => {
     {
       title: 'STAT.WINDOW',
       explanation: 'STAT.WINDOW_EXPLANATION',
-      figure: `${moment(windowStart).format('HH:mm')} – ${moment(
+      figure: `${format(parseISO(windowStart), 'HH:mm')} – ${moment(
         windowEnd
       ).format('HH:mm')}`,
       color: colors.fallAsleep

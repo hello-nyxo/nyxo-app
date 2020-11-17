@@ -45,7 +45,6 @@ export interface State {
   insights: InsightState
   nights: NightState
 
-  tracking: TrackingState
   manualData: ManualDataState
   apis: ApiState
   // network
