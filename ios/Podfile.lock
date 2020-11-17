@@ -848,7 +848,7 @@ SPEC CHECKSUMS:
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   EXBlur: b622dc0f8a8fe74f05fb437cfb1c5ee16259dab1
   EXConstants: 5304709b1bea70a4828f48ba4c7fc3ec3b2d9b17
@@ -856,7 +856,7 @@ SPEC CHECKSUMS:
   EXImageLoader: 5ad6896fa1ef2ee814b551873cbf7a7baccc694a
   EXPermissions: 24b97f734ce9172d245a5be38ad9ccfcb6135964
   EXWebBrowser: d37a5ffdea1b65947352bc001dd9f732463725d4
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   FBLazyVector: 4aab18c93cd9546e4bfed752b4084585eca8b245
   FBReactNativeSpec: 5465d51ccfeecb7faa12f9ae0024f2044ce4044e
   Firebase: 2d750c54cda57d5a6ae31212cfe5cc813c6be7e4

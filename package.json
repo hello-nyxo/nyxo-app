@@ -120,7 +120,7 @@
     ]
   },
   "resolutions": {
-    "@react-native-community/cli-debugger-ui": "4.7.0"
+    "@react-native-community/cli-debugger-ui": "4.9.0"
   },
   "dependencies": {
     "@aws-amplify/core": "^3.2.1",
