@@ -3,6 +3,7 @@ import {
   updateHealthKitSources
 } from '@actions/sleep-source-actions/sleep-source-actions'
 import { formatHealthKitResponse } from '@helpers/sleep/health-kit-helper'
+import { getStartEndWeek } from '@helpers/sleep/sleep'
 import { getHealthKitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { GetState } from '@typings/GetState'
 import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
@@ -91,11 +92,12 @@ export const switchHKSourceAndFetch = (hkSource: SUB_SOURCE): Thunk => async (
   dispatch: Dispatch
 ) => {
   dispatch(changeHealthKitSource(hkSource))
-  dispatch(fetchSleepData())
+  const { startDate, endDate } = getStartEndWeek()
+  dispatch(fetchSleepData(startDate, endDate))
 }
 
 export const createHealthKitSources = (
-  rawSleepData: SleepSample[] = []
+  data: SleepSample[] = []
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   const hkSource = getHealthKitSource(getState())
 
@@ -103,7 +105,7 @@ export const createHealthKitSources = (
     { sourceName: 'Nyxo', sourceId: 'app.sleepcircle.application' }
   ]
 
-  rawSleepData.forEach((item: SleepSample) => {
+  data.forEach((item: SleepSample) => {
     const existingSource = sourceList.find(
       (source: SleepDataSource) => source.sourceId === item.sourceId
     )
@@ -132,28 +134,29 @@ export const fetchSleepFromHealthKit = (
   dispatch(fetchHKSleepStart())
 
   const options = {
-    startDate: startOfDay(subDays(new Date(), 365)).toISOString(),
-    endDate: endOfDay(new Date()).toISOString()
+    startDate,
+    endDate
   }
 
   try {
-    await AppleHealthKit.getSleepSamples(
+    AppleHealthKit.getSleepSamples(
       options,
       async (error: string, response: Array<SleepSample>) => {
         if (error) {
           dispatch(fetchHKSleepFailure())
         }
-        // dispatch(createHealthKitSources(response))
+        dispatch(createHealthKitSources(response))
 
         const formattedData: Night[] = response?.map((nightObject) =>
           formatHealthKitResponse(nightObject)
         )
-
+        console.log(formattedData)
         await dispatch(syncNightsToCloud(formattedData))
         await dispatch(fetchSleepSuccess(formattedData))
       }
     )
   } catch (error) {
+    console.log(error)
     dispatch(fetchHKSleepFailure())
   } finally {
     dispatch(fetchHKSleepSuccess())

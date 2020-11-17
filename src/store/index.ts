@@ -12,12 +12,12 @@ import ManualDataReducer from '@reducers/manual-sleep/manual-sleep-reducer'
 import ModalReducer from '@reducers/modal/modal-reducer'
 import NightReducer from '@reducers/night-reducer/night-reducer'
 import NotificationReducer from '@reducers/NotificationReducer'
-import CoachingNotificationReducer from '@reducers/notifications/coaching-notifications-reducer'
 import OnboardingReducer from '@reducers/onboarding/onboarding-reducer'
 import SleepSourceReducer from '@reducers/sleep-source-reducer/sleep-source-reducer'
 import HealthKitReducer from '@reducers/sleep/health-kit-reducer'
 import SubscriptionReducer from '@reducers/subscription/subscription-reducer'
 import user from '@reducers/user/user-reducer'
+import { State } from '@typings/State'
 import { enableES5, enableMapSet } from 'immer'
 import { reducer as network } from 'react-native-offline'
 import {
@@ -36,7 +36,6 @@ import {
 } from 'redux-persist'
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 import thunk from 'redux-thunk'
-import { State } from '@typings/State'
 
 enableES5()
 enableMapSet()
@@ -70,11 +69,6 @@ const rootReducer = combineReducers({
   notifications: makePersisted('notifications', NotificationReducer, undefined),
   coachingContent: makePersisted('coachingContent', ContentReducer, undefined),
   coachingState: makePersisted('coachingState', CoachingReducer, undefined),
-  coachingNotification: makePersisted(
-    'coachingNotification',
-    CoachingNotificationReducer,
-    undefined
-  ),
   habitState: makePersisted('habitState', HabitReducer, undefined, [
     serializeTransform
   ]),

@@ -15,9 +15,8 @@ const reducer = (
 ): NightState => {
   //
   switch (type) {
-    // payload: Night[]
     case FETCH_SLEEP_SUCCESS:
-      return [...payload]
+      return [...(payload as Night[])]
     default:
       return state
   }

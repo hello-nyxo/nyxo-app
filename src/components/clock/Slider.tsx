@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { setValues } from '@actions/manual-sleep/manual-sleep-actions'
@@ -10,18 +10,19 @@ import {
   roundAngleToFives
 } from '@helpers/time'
 import { fonts } from '@styles/themes'
+import styled from 'styled-components/native'
 import { icons } from '../../../assets/svgs'
 import colors from '../../styles/colors'
 import CircularSlider from './CircularSlider'
 import TimerText from './TimerText'
 
-interface BedtimeProps {
+type Props = {
   clockSize: number
-  toggleEditMode: Function
+  toggleEditMode: () => void
   date: string
 }
 
-const Bedtime = (props: BedtimeProps) => {
+const Bedtime: FC<Props> = ({ clockSize }) => {
   const dispatch = useDispatch()
   const [startAngle, setStartAngle] = useState((Math.PI * 10) / 6)
   const [angleLength, setAngleLength] = useState((Math.PI * 7) / 6)
@@ -51,32 +52,27 @@ const Bedtime = (props: BedtimeProps) => {
     (startAngle + angleLength) % (2 * Math.PI)
   )
 
-  const editNightRadius: number = props.clockSize / 2 - 20
+  const editNightRadius: number = clockSize / 2 - 20
 
   return (
-    <View
+    <Container
       style={{
-        position: 'absolute',
-        width: props.clockSize,
-        height: props.clockSize,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: props.clockSize,
-        overflow: 'hidden',
-        zIndex: 10
+        width: clockSize,
+        height: clockSize,
+        borderRadius: clockSize
       }}>
-      <View style={[styles.timeContainer, { top: props.clockSize / 2 }]}>
-        <View style={styles.timeHeader}>
-          <Text style={styles.bedtimeText}>
+      <TimeContainer style={{ top: clockSize / 2 }}>
+        <TimeHeader>
+          <BedTimeText>
             {`${bedtime.h}:${padMinutes(bedtime.m)} - ${
               waketime.h
             }:${padMinutes(waketime.m)}`}
-          </Text>
-        </View>
-      </View>
+          </BedTimeText>
+        </TimeHeader>
+      </TimeContainer>
       <View>
-        <TimerText
-          style={[styles.sleepTimeContainer, { bottom: props.clockSize / 2 }]}
+        <SleepTimeContainer
+          style={{ bottom: clockSize / 2 }}
           minutesLong={calculateMinutesFromAngle(angleLength)}
         />
         <CircularSlider
@@ -90,59 +86,47 @@ const Bedtime = (props: BedtimeProps) => {
           startIcon={icons.daySunset}
         />
       </View>
-    </View>
+    </Container>
   )
 }
 
 export default Bedtime
 
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    left: 0,
-    top: 0
-  },
-  bedtimeText: {
-    color: colors.radiantBlue,
-    fontFamily: fonts.bold,
-    fontSize: 17
-  },
-  wakeText: {
-    color: colors.radiantBlue,
-    fontFamily: fonts.bold,
-    fontSize: 17
-  },
-  timeContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'center'
-  },
-  time: {
-    marginTop: 15,
-    alignItems: 'center',
-    flex: 1
-  },
-  timeHeader: {
-    position: 'absolute',
-    top: 15,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  timeValue: {
-    color: 'black',
-    fontSize: 35,
-    fontWeight: '300'
-  },
-  sleepTimeContainer: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    position: 'absolute',
-    alignItems: 'flex-end',
-    top: 0,
-    left: 0,
-    right: 0
-  }
-})
+const Container = styled.View`
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10;
+`
+
+const TimeContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  flex-direction: row;
+  justify-content: center;
+`
+
+const BedTimeText = styled.Text`
+  color: ${colors.radiantBlue};
+  font-size: 17px;
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+`
+const TimeHeader = styled.View`
+  position: absolute;
+  top: 15px;
+  flex-direction: row;
+  align-items: center;
+`
+
+const SleepTimeContainer = styled(TimerText)`
+  justify-content: center;
+  flex-direction: row;
+  position: absolute;
+  align-items: flex-end;
+  top: 0;
+  left: 0;
+  right: 0;
+`

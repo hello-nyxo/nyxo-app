@@ -18,12 +18,15 @@ export const fetchSleepData = (
 
   switch (source) {
     case SOURCE.HEALTH_KIT:
+      // max range 0 - 30
       dispatch(fetchSleepFromHealthKit(startDate, endDate))
       break
     case SOURCE.GOOGLE_FIT:
+      // max range 0 - 30
       dispatch(readGoogleFitSleep())
       break
     case SOURCE.FITBIT:
+      // max range 0 - 30
       dispatch(getFitbitSleep())
       break
     case SOURCE.OURA:

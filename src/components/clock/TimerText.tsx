@@ -1,16 +1,14 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 
-interface TimerTextProps {
+type Props = {
   style: any
   minutesLong: number
 }
 
-const TimerText = (props: TimerTextProps) => {
-  const { minutesLong, style } = props
-
+const TimerText: FC<Props> = ({ minutesLong, style }) => {
   const hours = Math.floor(minutesLong / 60)
   const minutes = minutesLong - hours * 60
 

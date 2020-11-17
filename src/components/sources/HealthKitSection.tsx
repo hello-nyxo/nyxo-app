@@ -52,6 +52,7 @@ const HealthKitSection: FC = () => {
         />
       </TitleRow>
       <Description>SOURCE.HEALTH_KIT_DESCRIPTION</Description>
+      <SourceTitle>SOURCE.AVAILABLE_HEALTHKIT</SourceTitle>
       {isHealthKitMainSource && <Sources>{mapped ?? <EmptyState />}</Sources>}
     </Container>
   )
@@ -77,6 +78,13 @@ const TitleRow = styled.View`
 const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+`
+
+const SourceTitle = styled(TranslatedText)`
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-size: 15px;
+  margin: 16px 0px 8px;
 `
 
 const Switch = styled.Switch``

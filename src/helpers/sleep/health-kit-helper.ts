@@ -5,7 +5,6 @@ import { differenceInMinutes, parse, parseISO } from 'date-fns'
 export const formatHealthKitResponse = (
   hkSample: HealthKitSleepResponse
 ): Night => {
-  console.log(hkSample)
   const startDate = parseISO(hkSample.startDate)
   const endDate = parseISO(hkSample.endDate)
   let minutes = differenceInMinutes(endDate, startDate)

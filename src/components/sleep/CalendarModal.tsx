@@ -1,20 +1,19 @@
 import { toggleCalendarModal } from '@actions/modal/modal-actions'
+import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
+import useCalendar from '@hooks/calendar'
 import { getCalendarModal } from '@selectors/ModalSelectors'
+import { endOfDay, format, startOfDay, subDays, subYears } from 'date-fns'
 import React, { FC, useMemo } from 'react'
 import {
   Calendar,
-  DateCallbackHandler,
-  CalendarProps
+  CalendarProps,
+  DateCallbackHandler
 } from 'react-native-calendars'
 import Modal, { ReactNativeModal } from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
-import { startOfDay, format, subDays, subYears, endOfDay } from 'date-fns'
-import useCalendar from '@hooks/calendar'
-import colors from '@styles/colors'
 
-const minDate = subYears(new Date(), 3)
+const minDate = subYears(new Date(), 2)
 
 const CalendarModal: FC = () => {
   const isVisible = useSelector(getCalendarModal)

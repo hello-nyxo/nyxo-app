@@ -18,10 +18,7 @@ const reducer = (state = initialState, action: ReduxAction): CalendarState => {
       return initialState
 
     case SET_SELECTED_DATE:
-      // payload: isoString
-      console.log(state)
-      return { ...state, selectedDay: payload }
-
+      return { ...state, selectedDay: payload as string }
     default:
       return state
   }

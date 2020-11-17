@@ -26,9 +26,9 @@ const CalendarStrip: FC = () => {
 
   const offsets = days.map((_, index) => index * (WIDTH / 2))
 
-  const renderItem: ListRenderItem<Date> = ({ item }) => (
+  const renderItem: ListRenderItem<Date> = ({ item, index }) => (
     <PressableContainer key={item.toISOString()} onPress={toggleCalendar}>
-      <Day>
+      <Day isFirst={index === 0}>
         <DateContainer>{format(item, 'EEE d. LLL')}</DateContainer>
       </Day>
     </PressableContainer>
@@ -106,9 +106,12 @@ const Container = styled.View`
   width: ${WIDTH}px;
   height: 30px;
 `
+type DayProps = {
+  isFirst: boolean
+}
 
-const Day = styled.View`
-  width: ${WIDTH / 2}px;
+const Day = styled.View<DayProps>`
+  width: ${({ isFirst }) => (isFirst ? WIDTH : WIDTH / 2)}px;
 `
 
 const DateContainer = styled.Text`
@@ -117,9 +120,7 @@ const DateContainer = styled.Text`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
-const PressableContainer = styled.TouchableWithoutFeedback`
-  background-color: red;
-`
+const PressableContainer = styled.TouchableWithoutFeedback``
 
 const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
   colors:

@@ -22,6 +22,8 @@ const getNights = (state: State) => state.nights
 export const getNightForSelectedDate = createSelector(
   [getNights, getSelectedDate, getSharedSource],
   (nights, selectedDate, tracker) => {
+    console.log(nights, tracker)
+
     return nights
       .filter((night) => night.sourceId === tracker.sourceId)
       .map((night) => {

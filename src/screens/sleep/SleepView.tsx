@@ -101,9 +101,9 @@ const Sleep: FC = () => {
         <Row>
           <InsightsCard />
         </Row>
-        <Row>
+        {/* <Row>
           <QuestionCard />
-        </Row>
+        </Row> */}
         <SleepTimeChart />
       </ScrollView>
 

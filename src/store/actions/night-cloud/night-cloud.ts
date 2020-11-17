@@ -9,10 +9,11 @@ import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-se
 import { GetState } from '@typings/GetState'
 import { Dispatch, Thunk } from '@typings/redux-actions'
 import { SOURCE } from '@typings/state/sleep-source-state'
+import { endOfDay, startOfDay } from 'date-fns'
 
 export const fetchSleepData = (
-  startDate: string = new Date().toISOString(),
-  endDate: string = new Date().toISOString()
+  startDate: string = startOfDay(new Date()).toISOString(),
+  endDate: string = endOfDay(new Date()).toISOString()
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   const source = getMainSource(getState())
 

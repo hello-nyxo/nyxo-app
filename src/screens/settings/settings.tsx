@@ -95,12 +95,12 @@ const SettingsScreen = (props: SettingsScreenProps) => {
         icon: 'star',
         analyticsEvent: 'Rated app through settings',
         action: rateApp
-      },
-      {
-        text: 'CONTROL_NOTIFICATIONS',
-        icon: 'alarmBell',
-        action: () => navigate('NotificationSettings')
       }
+      // {
+      //   text: 'CONTROL_NOTIFICATIONS',
+      //   icon: 'alarmBell',
+      //   action: () => navigate('NotificationSettings')
+      // }
     ],
     [theme]
   )

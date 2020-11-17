@@ -562,6 +562,8 @@
     "GOOGLE_FIT": "Google Fit",
     "HEALTH_KIT": "Apple Health",
     "HEALTH_KIT_DESCRIPTION": "Enabling Apple Health synchronization allows Nyxo to synchronize sleep records from Apple Health compatible devices and apps.",
+    "AVAILABLE_HEALTHKIT": "Apple Health Sources",
+
     "GOGLE_FIT_DESCRIPTION": "Enabling Google Fit synchronization allows Nyxo to synchronize sleep records from Google Fit compatible devices and apps.",
     "FITBIT": "Fitbit",
     "FITBIT_DESCRIPTION": "Enabling synchronization with Fitbit will allow Nyxo to synchronize your sleep records from Fitbit. You have the option also to enable Nyxo to save your Fitbit sleep records to Apple Health",
