@@ -48,9 +48,9 @@ const TabNavigator: FC = () => {
       <Tab.Screen
         name={ROUTE.COACHING}
         component={CoachingNavigator}
-        options={({ route }) => ({
-          tabBarVisible: getTabBarVisible(route)
-        })}
+        // options={({ route }) => ({
+        //   tabBarVisible: getTabBarVisible(route)
+        // })}
       />
       <Tab.Screen name={ROUTE.HABITS} component={Habits} />
       <Tab.Screen name={ROUTE.PROFILE} component={ProfileNavigator} />
@@ -60,19 +60,21 @@ const TabNavigator: FC = () => {
 }
 
 const getTabBarVisible = (route: RouteProp<ParamListBase, RouteName>) => {
-  const routeName = route.state
-    ? route.state.routes[route.state.index].name
-    : ROUTE.COACHING
-  switch (routeName) {
-    case ROUTE.COACHING:
-      return true
-    case ROUTE.WEEK:
-      return false
-    case ROUTE.LESSON:
-      return false
-    default:
-      return true
-  }
+  // const routeName = route.state
+  //   ? route.state.routes[route.state.index].name
+  //   : ROUTE.COACHING
+  // switch (routeName) {
+  //   case ROUTE.COACHING:
+  //     return true
+  //   case ROUTE.WEEK:
+  //     return false
+  //   case ROUTE.LESSON:
+  //     return false
+  //   default:
+  //     return true
+  // }
+
+  return true
 }
 
 export default TabNavigator

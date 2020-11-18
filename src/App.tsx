@@ -10,12 +10,12 @@ import { enableScreens } from 'react-native-screens'
 import SplashScreen from 'react-native-splash-screen'
 import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components/native'
+import { State } from '@typings/State'
 import amplify from './config/Amplify'
 import AppWithNavigationState from './config/AppNavigation'
 import CONFIG from './config/Config'
 import { setI18nConfig } from './config/i18n'
 import { darkTheme, lightTheme, ThemeProps } from './styles/themes'
-import { State } from './Types/State'
 
 if (!__DEV__) {
   Sentry.init({
