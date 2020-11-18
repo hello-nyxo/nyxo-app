@@ -57,13 +57,12 @@ export default memo(EditNightHeader)
 
 const Header = styled.View`
   position: absolute;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   left: 0px;
   right: 0px;
   top: 0;
   z-index: 30;
-  box-shadow: ${(props: StyleProps) => props.theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.SHADOW};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -71,7 +70,7 @@ const Header = styled.View`
 `
 
 const Text = styled(P)`
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   font-size: 15px;
   font-family: ${fonts.bold};
 `
@@ -80,7 +79,7 @@ const LeftButton = styled.TouchableOpacity``
 const RightButton = styled.TouchableOpacity``
 
 const Title = styled(TranslatedText)`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 15px;
   font-family: ${fonts.medium};
 `

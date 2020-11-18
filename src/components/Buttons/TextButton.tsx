@@ -33,7 +33,7 @@ interface TextProps {
 
 const Text = styled(TranslatedText)<TextProps>`
   font-size: 15px;
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   text-align: ${({ center }) => (center ? 'center' : 'left')};
 `

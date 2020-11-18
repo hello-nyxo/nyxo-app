@@ -21,7 +21,7 @@ const SleepTimeChartAverage = (props: SleepTimeChartAverageProps) => {
         y1={props.averageBedTime}
         y2={props.averageBedTime}
         strokeWidth="2"
-        stroke={colors.radiantBlue}
+        stroke={colors.darkBlue}
         strokeDasharray={[10, 10]}
         strokeDashoffset={10}
         strokeLinecap="round"
@@ -29,7 +29,7 @@ const SleepTimeChartAverage = (props: SleepTimeChartAverageProps) => {
       <SvgText
         fontFamily="Montserrat-Medium"
         fontSize="13"
-        fill={colors.radiantBlue}
+        fill={colors.darkBlue}
         alignmentBaseline="central"
         x={20}
         y={props.averageBedTime - 12}>
@@ -38,7 +38,7 @@ const SleepTimeChartAverage = (props: SleepTimeChartAverageProps) => {
       <SvgText
         fontFamily="Montserrat-Medium"
         fontSize="13"
-        fill={colors.radiantBlue}
+        fill={colors.darkBlue}
         alignmentBaseline="central"
         x={20}
         y={props.averageBedTime + 12}>

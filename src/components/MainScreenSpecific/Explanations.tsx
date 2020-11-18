@@ -12,7 +12,7 @@ const Explanations: FC = () => {
   // const window = useSelector(getGoToSleepWindowCenter)
 
   const stats = [
-    { title: 'sleep', figure: inbed, color: colors.radiantBlue },
+    { title: 'sleep', figure: inbed, color: colors.darkBlue },
     { title: 'asleep', figure: asleep, color: colors.inBedColor },
     { title: 'efficiency', figure: '100%', color: colors.nightAccent },
     {
@@ -68,12 +68,12 @@ const Title = styled.Text`
   text-transform: uppercase;
   font-size: 12px;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const Figure = styled.Text`
   text-transform: uppercase;
   font-size: 15px;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `

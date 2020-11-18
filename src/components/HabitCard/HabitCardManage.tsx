@@ -107,8 +107,7 @@ export default memo(HabitCardManage)
 const Card = styled.View`
   margin: 10px 20px;
   border-radius: 5px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   padding: 20px 10px;
   box-shadow: 1px 1px 15px rgba(32, 33, 37, 0.1);
 `
@@ -121,7 +120,7 @@ export const StreakRow = styled.View`
 export const Streak = styled(TranslatedText)`
   margin-left: 10px;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const ActionRow = styled.TouchableOpacity`
@@ -137,5 +136,5 @@ const Action = styled.Text`
   font-size: 15px;
   text-decoration: ${(props: ActionProps) =>
     props.completedToday ? 'line-through' : 'none'};
-  color: ${(props: ActionProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${(props: ActionProps) => theme.SECONDARY_TEXT_COLOR};
 `

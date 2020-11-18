@@ -123,7 +123,7 @@ const TitleRow = styled.View`
 
 const Circle = styled.View`
   width: ${WIDTH}px;
-  background-color: ${colors.radiantBlueTransparent};
+  background-color: ${colors.darkBlueTransparent};
   height: ${WIDTH}px;
   border-radius: ${WIDTH}px;
   position: absolute;
@@ -134,13 +134,13 @@ const Circle = styled.View`
 const ForgotPassword = styled(TranslatedText)`
   font-family: ${fonts.medium};
   font-size: 15px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Register = styled(TranslatedText)`
   text-align: center;
   font-family: ${fonts.medium};
   font-size: 15px;
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   margin-top: 30px;
 `

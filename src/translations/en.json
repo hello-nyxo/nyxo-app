@@ -725,6 +725,18 @@
     "TIMING_EXPLANATION": "You accumulate points for timing by keeping a consistant bed time on all nights."
   },
 
+  "ONBOARDING": {
+    "HELLO": "👋 Welcome!",
+    "HELLO_TEXT": "Nyxo is a sleep app for those who want to sleep better",
+
+    "DATA": "Let's take a look at how you sleep",
+    "DATA_TEXT": "You can bring your existing sleep data to Nyxo.",
+    "DATA_BUTTON": "Connect Sleep Tracker",
+
+    "COACHING": "Sleep Coaching built by Experts",
+    "COACHING_TEXT": ""
+  },
+
   "WEEK": {
     "BEGIN": "Begin week",
     "COMPLETE": "Complete week",

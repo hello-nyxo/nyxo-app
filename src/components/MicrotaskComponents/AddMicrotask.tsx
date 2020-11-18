@@ -36,7 +36,7 @@ const Container = styled.View`
 `
 
 const ButtonContainer = styled.View`
-  background-color: ${colors.radiantBlue};
+  background-color: ${colors.darkBlue};
   border-radius: 5px;
   padding: 20px;
   align-items: center;

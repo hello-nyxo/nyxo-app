@@ -119,7 +119,7 @@ const Register = ({ navigation }: Props) => {
 export default memo(Register)
 
 const PasswordRequirement = styled(TranslatedText)<StyleProps>`
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.medium};
   font-size: 13px;
 `
@@ -127,7 +127,7 @@ const PasswordRequirement = styled(TranslatedText)<StyleProps>`
 const Circle = styled.View`
   width: ${width}px;
   height: ${width}px;
-  background-color: ${colors.radiantBlueTransparent};
+  background-color: ${colors.darkBlueTransparent};
   border-radius: ${width}px;
   position: absolute;
   left: ${width / -2}px;
@@ -142,5 +142,5 @@ const LoginButton = styled(TranslatedText)`
   font-family: ${fonts.medium};
   text-align: center;
   font-size: 15px;
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
 `

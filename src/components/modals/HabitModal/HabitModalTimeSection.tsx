@@ -31,7 +31,7 @@ const Section = styled.View`
 
 const SectionTitle = styled(TranslatedText)`
   font-size: 15px;
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.bold};
   opacity: 0.6;
 `

@@ -7,7 +7,7 @@ import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import Habits from '../../screens/Shared/HabitView'
 import CoachingNavigator from './coachingNavigator'
-import CircleNavigator from './JournalNavigator'
+import JournalNavigator from './JournalNavigator'
 import ProfileNavigator from './profileNavigator'
 import ROUTE from './Routes'
 import SettingsNavigator from './settingsNavigator'
@@ -44,7 +44,7 @@ const TabNavigator: FC = () => {
           )
         }
       })}>
-      <Tab.Screen name={ROUTE.JOURNAL} component={CircleNavigator} />
+      <Tab.Screen name={ROUTE.JOURNAL} component={JournalNavigator} />
       <Tab.Screen
         name={ROUTE.COACHING}
         component={CoachingNavigator}

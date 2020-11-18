@@ -35,7 +35,7 @@ const HabitModalStreak = ({ dayStreak, longestDayStreak }: Props) => {
               name="flame"
               width={22}
               height={22}
-              fill={colors.radiantBlue}
+              fill={colors.darkBlue}
             />
           </StreakHolder>
         </Row>
@@ -64,7 +64,7 @@ const Row = styled.View`
 const IndicatorText = styled(TranslatedText)`
   font-family: ${fonts.bold};
   font-size: 15px;
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   opacity: 0.5;
 `
 
@@ -76,7 +76,7 @@ const StreakHolder = styled.View`
 const StreakText = styled.Text`
   font-family: ${fonts.bold};
   font-size: 17px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   margin-right: 10px;
 `
 
@@ -93,5 +93,5 @@ const HairlineContainer = styled.View`
 const Hairline = styled.View`
   height: 1px;
   flex: 1;
-  background-color: ${(props: StyleProps) => props.theme.HAIRLINE_COLOR};
+  background-color: ${({ theme }) => theme.HAIRLINE_COLOR};
 `

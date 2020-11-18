@@ -36,5 +36,5 @@ const ButtonText = styled(TranslatedText)`
   font-family: ${fonts.bold};
   font-size: 15px;
   padding: 5px;
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
 `

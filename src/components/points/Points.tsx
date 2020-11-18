@@ -47,7 +47,7 @@ const Points: FC<Props> = ({
                 y={center.y}
                 r={10}
                 strokeWidth={4}
-                stroke={colors.radiantBlue}
+                stroke={colors.darkBlue}
               />
             )
           }}
@@ -184,7 +184,7 @@ const ScoreContainer = styled.View``
 const Progress = styled(AnimatedCircularProgress).attrs(({ theme }) => ({
   rotation: 250,
   arcSweepAngle: 225,
-  tintColor: colors.radiantBlue,
+  tintColor: colors.darkBlue,
   backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
   lineCap: 'round'
 }))`

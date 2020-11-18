@@ -92,8 +92,7 @@ const InputContainer = styled.View<InputProps>`
   border-color: ${(props: InputProps) => (props.error ? colors.red : 'white')};
   border-width: ${constants.hairlineWidth}px;
   border-radius: 5px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: 1px 1px 15px rgba(32, 33, 37, 0.1);
   min-height: 70px;
 `
@@ -108,17 +107,17 @@ const Label = styled(TranslatedText)<InputProps>`
   font-family: ${fonts.medium};
   margin-left: 5px;
   color: ${(props: InputProps) =>
-    props.error ? colors.red : props.theme.SECONDARY_TEXT_COLOR};
+    props.error ? colors.red : theme.SECONDARY_TEXT_COLOR};
 `
 
 const InputField = styled.TextInput<InputProps>`
   min-width: 150px;
   font-family: ${fonts.medium};
   flex: 1;
-  color: ${(props: InputProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${(props: InputProps) => theme.PRIMARY_TEXT_COLOR};
   font-size: 17px;
 `
 const Icon = styled(IconBold).attrs((props: InputProps) => ({
-  fill: props.error ? colors.red : props.theme.SECONDARY_TEXT_COLOR,
+  fill: props.error ? colors.red : theme.SECONDARY_TEXT_COLOR,
   name: props.error ? 'closeCircle' : props.icon
 }))<InputProps>``

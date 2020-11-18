@@ -89,12 +89,11 @@ const DialogContainer = styled.View`
   border-radius: 15px;
   width: ${WIDTH * 0.9}px;
   padding: 20px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
 `
 
 const Description = styled(TranslatedText)`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 15px;
   font-family: ${fonts.medium};
 `
@@ -114,13 +113,13 @@ const Button = styled.TouchableOpacity`
 `
 
 const AgreeText = styled(TranslatedText)`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 15px;
   font-family: ${fonts.medium};
 `
 
 const DisagreeText = styled(TranslatedText)`
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-size: 15px;
   font-family: ${fonts.medium};
 `

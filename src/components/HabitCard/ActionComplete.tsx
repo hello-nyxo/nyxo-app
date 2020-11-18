@@ -42,12 +42,12 @@ const ActionComplete = (props: Props) => {
 
 export default memo(ActionComplete)
 
-const Icon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.PRIMARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.PRIMARY_TEXT_COLOR
 }))``
 
 const ButtonText = styled(AnimatedTranslatedText)`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
   margin: 0px 5px;
 `

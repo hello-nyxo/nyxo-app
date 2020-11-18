@@ -97,7 +97,7 @@ const StyledModal = styled(Modal)`
 `
 
 const Mark = styled.View<StyleProps>`
-  background-color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   height: 5px;
   width: 100px;
   border-radius: 5px;
@@ -113,8 +113,7 @@ const ButtonContainer = styled.View`
 
 const Container = styled.View<StyleProps>`
   border-radius: 30px;
-  /* background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR}; */
+  /* background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR}; */
   justify-content: space-between;
   padding: 10px 20px;
 `

@@ -80,7 +80,7 @@ const PurchaseView = () => {
           </>
         ) : (
           <>
-            <ActivityIndicator size="large" color={colors.radiantBlue} />
+            <ActivityIndicator size="large" color={colors.darkBlue} />
             <Fetching>FETCHING_SUBS</Fetching>
           </>
         )}
@@ -146,7 +146,7 @@ const Renew = styled(TranslatedText)`
 const TermsButton = styled(TranslatedText)`
   font-size: 13px;
   font-family: ${fonts.medium};
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   text-align: center;
   margin-bottom: 30px;
 `

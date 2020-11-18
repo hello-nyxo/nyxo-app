@@ -26,19 +26,19 @@ const Row = styled.View<StyleProps>`
   align-items: center;
   justify-content: space-between;
   border-bottom-width: ${constants.hairlineWidth}px;
-  border-bottom-color: ${(props) => props.theme.SECONDARY_TEXT_COLOR};
+  border-bottom-color: ${(props) => theme.SECONDARY_TEXT_COLOR};
 `
 
 export const Title = styled(TranslatedText)<StyleProps>`
   text-align: center;
   font-size: 17px;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Figure = styled.Text<StyleProps>`
   text-align: center;
   font-size: 17px;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `

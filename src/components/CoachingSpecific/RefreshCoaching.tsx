@@ -25,8 +25,7 @@ const RefreshCoaching = (props: Props) => {
 export default RefreshCoaching
 
 const Card = styled.View`
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   width: 250px;
   padding: 20px;
   border-radius: 5px;

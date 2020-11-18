@@ -88,7 +88,7 @@ const Cursor = ({ radius, angle, icon, startX, startY }: CursorProps) => {
             transform: [{ translateX }, { translateY }],
             position: 'absolute',
             top: 0,
-            backgroundColor: colors.radiantBlue,
+            backgroundColor: colors.darkBlue,
             width: 40,
             height: 40,
             borderRadius: 25

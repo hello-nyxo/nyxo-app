@@ -53,7 +53,7 @@ export default SubscriptionCard
 const Container = styled.View`
   margin: 20px 0px;
   padding: 10px;
-  border-color: ${colors.radiantBlueTransparent};
+  border-color: ${colors.darkBlueTransparent};
   border-width: 3px;
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.SHADOW};
@@ -102,14 +102,14 @@ const TitleRow = styled.View`
 const Title = styled.Text`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   font-size: 19px;
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   text-transform: uppercase;
 `
 
 const Type = styled.Text`
   font-size: 10px;
   font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
 `
 
 const BoldText = styled.Text`

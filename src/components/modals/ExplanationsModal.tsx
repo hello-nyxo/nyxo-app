@@ -43,7 +43,7 @@ const ExplanationsModal: FC = () => {
       title: 'STAT.BED',
       explanation: 'STAT.BED_EXPLANATION',
       figure: inbed,
-      color: colors.radiantBlue
+      color: colors.darkBlue
     },
     {
       title: 'STAT.SLEEP',

@@ -115,18 +115,18 @@ const Container = styled.View`
   margin: 30px 0px 60px;
 `
 
-const CodeInput = styled.TextInput.attrs((props: StyleProps) => ({
-  placeholderTextColor: props.theme.PRIMARY_TEXT_COLOR
+const CodeInput = styled.TextInput.attrs(({ theme }) => ({
+  placeholderTextColor: theme.PRIMARY_TEXT_COLOR
 }))`
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 17px;
   flex: 1;
   min-height: 50px;
   border-radius: 5px;
   padding: 10px 20px;
   margin-bottom: 20px;
-  border-color: ${(props: StyleProps) => props.theme.HAIRLINE_COLOR};
+  border-color: ${({ theme }) => theme.HAIRLINE_COLOR};
   border-width: ${constants.hairlineWidth}px;
 `
 
@@ -144,15 +144,15 @@ const LinkCodeRow = styled.View`
 
 const LinkCode = styled.Text`
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 17px;
   flex: 1;
 `
 
 const RemoveButton = styled.TouchableOpacity``
 
-const RemoveButtonIcon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.PRIMARY_TEXT_COLOR
+const RemoveButtonIcon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.PRIMARY_TEXT_COLOR
 }))``
 
 const CodeSuggestionContainer = styled.View`

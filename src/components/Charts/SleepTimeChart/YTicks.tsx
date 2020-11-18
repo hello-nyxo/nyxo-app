@@ -4,8 +4,8 @@ import React, { memo } from 'react'
 import { G, Line, Text } from 'react-native-svg'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { StyleProps } from '../../../styles/themes'
 import { getTextColorOnTheme } from '@selectors/UserSelectors'
+import { StyleProps } from '../../../styles/themes'
 
 interface Props {
   chartWidth: number
@@ -43,6 +43,6 @@ const YTicks = (props: Props) => {
 
 export default memo(YTicks)
 
-const StyledText = styled(Text).attrs((props: StyleProps) => ({
-  fill: props.theme.PRIMARY_TEXT_COLOR
+const StyledText = styled(Text).attrs(({ theme }) => ({
+  fill: theme.PRIMARY_TEXT_COLOR
 }))``

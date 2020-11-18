@@ -38,7 +38,7 @@ interface ButtonProps {
 
 const Button = styled.View<ButtonProps>`
   border-radius: 8px;
-  border-color: ${({ white }) => (white ? colors.radiantBlue : 'transparent')};
+  border-color: ${({ white }) => (white ? colors.darkBlue : 'transparent')};
   border-width: 1px;
   padding: 16px;
   min-width: 200px;
@@ -46,8 +46,7 @@ const Button = styled.View<ButtonProps>`
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  background-color: ${({ white }) =>
-    white ? colors.white : colors.radiantBlue};
+  background-color: ${({ white }) => (white ? colors.white : colors.darkBlue)};
   opacity: ${({ disabled }) => (disabled ? 0.75 : 1)};
   box-shadow: 1px 1px 5px rgba(74, 90, 239, 0.4);
   align-self: center;
@@ -57,7 +56,7 @@ const ButtonText = styled(TranslatedText)<ButtonProps>`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: ${({ white }) => (white ? colors.radiantBlue : colors.white)};
+  color: ${({ white }) => (white ? colors.darkBlue : colors.white)};
   font-size: 15px;
   text-align: center;
 `

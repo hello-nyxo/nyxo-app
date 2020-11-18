@@ -1,6 +1,6 @@
 enum ROUTE {
   APP = 'App',
-
+  ONBOARDING = 'ONBOARDING',
   AUTH = 'Auth',
   REGISTER = 'Register',
   LOGIN = 'Login',

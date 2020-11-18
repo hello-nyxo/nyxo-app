@@ -38,8 +38,8 @@ const Header = styled(Animated.View)`
   overflow: hidden;
 `
 
-const Gradient = styled(LinearGradient).attrs((props: StyleProps) => ({
-  colors: props.theme.GRADIENT
+const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
+  colors: theme.GRADIENT
 }))`
   position: absolute;
   left: 0;
@@ -58,5 +58,5 @@ const WeekTitle = styled(Animated.Text)`
   bottom: 0;
   left: 20px;
   right: 20px;
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `

@@ -44,7 +44,7 @@ const NotificationCountContainer = styled.View`
   top: 0;
   right: 0;
   position: absolute;
-  background-color: ${colors.radiantBlue};
+  background-color: ${colors.darkBlue};
   height: 20px;
   width: 20px;
   border-radius: 30px;

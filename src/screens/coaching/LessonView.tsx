@@ -114,6 +114,5 @@ const ScrollView = styled(Animated.ScrollView).attrs(() => ({
     flexGrow: 1
   }
 }))`
-  background-color: ${(props: StyleProps) =>
-    props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `

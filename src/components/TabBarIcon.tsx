@@ -32,7 +32,7 @@ const TabBarIcon: FC<TabBarIconProps> = ({
       <IconBold
         name={tabBarIcons[routeName]}
         height={20}
-        fill={focused ? colors.radiantBlue : colors.gray}
+        fill={focused ? colors.darkBlue : colors.gray}
         width={20}
       />
       {!!badgeCount && (

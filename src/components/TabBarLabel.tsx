@@ -26,6 +26,6 @@ const Text = styled.Text<TextProps>`
   font-size: 12px;
   text-align: center;
   color: ${({ focused, theme }) =>
-    focused ? colors.radiantBlue : theme.SECONDARY_TEXT_COLOR};
+    focused ? colors.darkBlue : theme.SECONDARY_TEXT_COLOR};
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
 `

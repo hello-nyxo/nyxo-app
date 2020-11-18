@@ -138,7 +138,7 @@ const HabitCard = (props: Props) => {
                 width={15}
                 height={15}
                 name="checkMark"
-                fill={colors.radiantBlue}
+                fill={colors.darkBlue}
               />
             )}
           </CheckIconHolder>
@@ -153,8 +153,7 @@ export default memo(HabitCard)
 const Card = styled.View`
   margin: 8px 20px;
   border-radius: 5px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
 
   box-shadow: 1px 3px 2px rgba(32, 33, 37, 0.2);
   flex-direction: row;
@@ -196,7 +195,7 @@ const TitleHolder = styled.Text`
   font-size: 15px;
   text-decoration: ${(props: TitleHolderProps) =>
     props.completedToday ? 'line-through' : 'none'};
-  color: ${(props: TitleHolderProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${(props: TitleHolderProps) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const DayStreakContainer = styled.View`
@@ -208,7 +207,7 @@ const DayStreak = styled.Text`
   margin-left: 5px;
   font-size: 12px;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const Separator = styled.View`

@@ -64,7 +64,7 @@ const HabitView: FC = () => {
                   width={20}
                   height={20}
                   name="circleAdd"
-                  fill={colors.radiantBlue}
+                  fill={colors.darkBlue}
                 />
               </NewHabitButton>
             </TitleRow>

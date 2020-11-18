@@ -37,5 +37,5 @@ const Started = styled.Text``
 const SectionTitle = styled(TranslatedText)`
   font-size: 15px;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

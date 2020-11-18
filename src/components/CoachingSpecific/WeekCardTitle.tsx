@@ -16,12 +16,7 @@ const WeekCardTitle: FC<Props> = ({ weekName, stage }) => {
   return (
     <Container>
       <Row>
-        <IconBold
-          name={icon}
-          fill={colors.radiantBlue}
-          height={10}
-          width={10}
-        />
+        <IconBold name={icon} fill={colors.darkBlue} height={10} width={10} />
         <Title numberOfLines={2}>{stageTitle}</Title>
       </Row>
 
@@ -64,7 +59,7 @@ const Title = styled(TranslatedText)`
   text-transform: uppercase;
   font-size: 12px;
   font-family: ${fonts.medium};
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
 `
 
 const Theme = styled.Text`

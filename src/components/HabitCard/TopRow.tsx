@@ -67,5 +67,5 @@ export const Streak = styled(TranslatedText)`
   margin-left: 10px;
   font-size: 12px;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

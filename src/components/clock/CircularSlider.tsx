@@ -246,7 +246,7 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
                   key={i}
                   strokeWidth={strokeWidth}
                   strokeOpacity={0.75}
-                  stroke={colors.radiantBlue}
+                  stroke={colors.darkBlue}
                   fill="transparent"
                 />
               )
@@ -263,7 +263,7 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
                 r={(strokeWidth - 1) / 2}
                 fill={colors.white}
                 fillOpacity={1}
-                stroke={colors.radiantBlue}
+                stroke={colors.darkBlue}
                 strokeWidth="4"
               />
               {/* {stopIcon} */}
@@ -283,7 +283,7 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
                 r={(strokeWidth - 1) / 2}
                 fill={colors.white}
                 fillOpacity={1}
-                stroke={colors.radiantBlue}
+                stroke={colors.darkBlue}
                 strokeWidth="4"
               />
               {/* {startIcon} */}

@@ -37,7 +37,7 @@ const Container = styled.View`
 
 const ButtonContainer = styled.View<ButtonProps>`
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  background-color: ${colors.radiantBlue};
+  background-color: ${colors.darkBlue};
   border-radius: 5px;
   padding: 15px;
   box-shadow: 1px 1px 5px rgba(74, 90, 239, 0.4);

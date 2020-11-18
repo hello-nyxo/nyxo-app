@@ -103,7 +103,7 @@ const ActiveSubscriptionContainer = styled.View`
 const ModifyButton = styled.TouchableOpacity`
   padding: 8px 16px;
   border-width: 2px;
-  border-color: ${colors.radiantBlue};
+  border-color: ${colors.darkBlue};
   border-radius: 20px;
   flex-direction: row;
   align-items: center;
@@ -116,12 +116,12 @@ const ModifyContainer = styled.View`
 
 const ButtonText = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   font-size: 15px;
 `
 
 const ModifyIcon = styled(IconBold).attrs(() => ({
-  fill: colors.radiantBlue,
+  fill: colors.darkBlue,
   name: 'wrench'
 }))`
   margin-right: 5px;

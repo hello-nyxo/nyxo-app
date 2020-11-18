@@ -147,7 +147,7 @@ const Routes: FC = () => {
 
 export default Routes
 
-const StyledStatusBar = styled.StatusBar.attrs((props: StyleProps) => ({
-  barStyle: props.theme.mode === 'dark' ? 'light-content' : 'dark-content',
-  backgroundColor: props.theme.PRIMARY_BACKGROUND_COLOR
+const StyledStatusBar = styled.StatusBar.attrs(({ theme }) => ({
+  barStyle: theme.mode === 'dark' ? 'light-content' : 'dark-content',
+  backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
 }))``

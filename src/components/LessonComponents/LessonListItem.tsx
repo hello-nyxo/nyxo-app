@@ -143,7 +143,7 @@ const Completed = styled.View<CompletedProps>`
   justify-content: center;
   overflow: hidden;
   background-color: ${({ completed }: CompletedProps) =>
-    completed ? colors.radiantBlue : 'transparent'};
+    completed ? colors.darkBlue : 'transparent'};
 `
 
 const LessonInfo = styled.View`

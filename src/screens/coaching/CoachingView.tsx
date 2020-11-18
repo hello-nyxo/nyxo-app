@@ -25,7 +25,7 @@ const CoachingScreen: FC = () => {
         refreshControl={
           <RefreshControl
             refreshing={isLoading}
-            tintColor={colors.radiantBlue}
+            tintColor={colors.darkBlue}
             onRefresh={refetch}
           />
         }

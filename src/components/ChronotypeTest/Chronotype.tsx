@@ -194,7 +194,7 @@ const ChronotypeTest = () => {
 export default memo(ChronotypeTest)
 
 const CustomSafeAreaView = styled(SafeAreaView)`
-  background-color: ${colors.radiantBlue};
+  background-color: ${colors.darkBlue};
   align-items: center;
   justify-content: center;
 `
@@ -206,11 +206,11 @@ const Answers = styled.View`
 const QuestionNumber = styled.Text`
   font-family: ${fonts.bold};
   text-transform: uppercase;
-  color: ${(Props: StyleProps) => Props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const AnswerCard = styled(Animated.View)<StyleProps>`
-  background: ${(props: StyleProps) => props.theme.SECONDARY_BACKGROUND_COLOR};
+  background: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   padding: 10px;
   margin: 10px ${cardMargin}px;
   border-radius: 10px;
@@ -219,7 +219,7 @@ const AnswerCard = styled(Animated.View)<StyleProps>`
 
 const Answer = styled.TouchableOpacity``
 const AnswerInner = styled.View<StyleProps>`
-  background: ${(props: StyleProps) => props.theme.SECONDARY_BACKGROUND_COLOR};
+  background: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   margin: 10px 20px;
   flex-direction: row;
   align-items: center;

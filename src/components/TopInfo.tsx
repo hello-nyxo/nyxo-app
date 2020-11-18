@@ -66,8 +66,7 @@ const Container = styled.View`
   width: ${width - 20}px;
   align-items: center;
   justify-content: center;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   border-radius: 15px;
   position: absolute;
   left: 10px;
@@ -78,12 +77,12 @@ const Container = styled.View`
 `
 
 const Text = styled.Text`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 15px;
   font-family: ${fonts.medium};
   flex: 1;
 `
 
-const Icon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.PRIMARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.PRIMARY_TEXT_COLOR
 }))``

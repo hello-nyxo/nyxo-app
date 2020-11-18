@@ -18,13 +18,13 @@ const CoachingProgressToday = () => (
       rotation={0}
       lineCap="round"
       fill={60}
-      tintColor={colors.radiantBlue}
+      tintColor={colors.darkBlue}
       backgroundColor="white">
       {(fill: number) => (
         <IconBold
           width={20}
           height={20}
-          fill={colors.radiantBlue}
+          fill={colors.darkBlue}
           name="schoolPhysicalBold"
         />
       )}

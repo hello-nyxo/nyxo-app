@@ -22,5 +22,5 @@ const Container = styled.View`
 const Text = styled.Text`
   font-family: ${fonts.medium};
   text-align: center;
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

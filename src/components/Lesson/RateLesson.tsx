@@ -43,15 +43,14 @@ export default memo(RateLesson)
 
 const Container = styled.View`
   padding: 20px 20px 50px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
 `
 
 const Title = styled(TranslatedText)`
   font-size: 20px;
   text-align: center;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Subtitle = styled(TranslatedText)`
@@ -59,20 +58,20 @@ const Subtitle = styled(TranslatedText)`
   font-size: 13px;
   text-align: center;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 const ThankYou = styled(TranslatedText)`
   margin: 20px 0px;
   font-size: 13px;
   text-align: center;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
-const CustomRating = styled(Rating).attrs((props: StyleProps) => ({
-  tintColor: props.theme.PRIMARY_BACKGROUND_COLOR,
-  ratingBackgroundColor: props.theme.PRIMARY_BACKGROUND_COLOR,
-  ratingColor: colors.radiantBlue
+const CustomRating = styled(Rating).attrs(({ theme }) => ({
+  tintColor: theme.PRIMARY_BACKGROUND_COLOR,
+  ratingBackgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
+  ratingColor: colors.darkBlue
 }))``
 
 const ThanksContainer = styled.View`

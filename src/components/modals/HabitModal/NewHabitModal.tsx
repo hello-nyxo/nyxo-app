@@ -125,7 +125,6 @@ const Container = styled.SafeAreaView<StyleProps>`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   flex: 1;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   justify-content: space-between;
 `

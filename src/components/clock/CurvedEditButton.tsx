@@ -50,7 +50,7 @@ const CurvedEditButton: FC<Props> = (props) => {
       <AnimatedText
         onPress={handlePress}
         transform={{ originX: props.x, originY: props.y * 2 }}
-        fill={colors.radiantBlue}
+        fill={colors.darkBlue}
         fontSize="17"
         fontWeight="bold"
         fontFamily={fonts.bold}>
