@@ -55,7 +55,7 @@ export const H1 = styled(TranslatedText)<StyleProps & TextProps>`
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
@@ -65,7 +65,7 @@ export const H1N = styled.Text<StyleProps & TextProps>`
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
@@ -74,7 +74,7 @@ export const PageTitle = styled(AnimatedTranslatedText)<StyleProps & TextProps>`
   font-size: 34px;
   margin: 40px 20px 20px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.medium};
 `
@@ -86,7 +86,7 @@ export const H1Animated = styled(AnimatedTranslatedText)<
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
@@ -96,7 +96,7 @@ export const H2 = styled(TranslatedText)`
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ theme }) => (props.center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
@@ -106,8 +106,8 @@ export const H2N = styled.Text`
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
-  color: ${(props: TextProps) => theme.PRIMARY_TEXT_COLOR};
+  text-align: ${({ theme }) => (props.center ? 'center' : 'left')};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
 
@@ -116,7 +116,7 @@ export const H3 = styled(TranslatedText)`
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
@@ -130,7 +130,7 @@ export const H4 = styled(TranslatedText)`
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
@@ -140,7 +140,7 @@ export const H5 = styled(TranslatedText)`
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
@@ -150,7 +150,7 @@ export const H4N = styled.Text`
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
@@ -161,9 +161,9 @@ export const P = styled(TranslatedText)<TextProps>`
   font-family: ${fonts.medium};
   margin-top: 10px;
   margin-bottom: 10px;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
-  color: ${(props: TextProps) =>
-    props.secondary ? theme.SECONDARY_TEXT_COLOR : theme.PRIMARY_TEXT_COLOR};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
+  color: ${({ theme, secondary }) =>
+    secondary ? theme.SECONDARY_TEXT_COLOR : theme.PRIMARY_TEXT_COLOR};
 `
 
 export const PN = styled.Text<TextProps>`
@@ -172,9 +172,9 @@ export const PN = styled.Text<TextProps>`
   font-family: ${fonts.medium};
   margin-top: 10px;
   margin-bottom: 10px;
-  text-align: ${(props: TextProps) => (props.center ? 'center' : 'left')};
-  color: ${(props: TextProps) =>
-    props.secondary ? theme.SECONDARY_TEXT_COLOR : theme.PRIMARY_TEXT_COLOR};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
+  color: ${({ theme, secondary }) =>
+    secondary ? theme.SECONDARY_TEXT_COLOR : theme.PRIMARY_TEXT_COLOR};
 `
 
 export const SafeAreaView = styled(RNSafeAreaView)<StyleProps>`

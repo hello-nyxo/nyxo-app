@@ -15,11 +15,11 @@ const RootStack = createNativeStackNavigator<RootStackParamList>()
 const Root: FC = () => {
   return (
     <RootStack.Navigator>
-      <RootStack.Screen
+      {/* <RootStack.Screen
         name={ROUTE.ONBOARDING}
         component={Onboarding}
         options={{ headerShown: false }}
-      />
+      /> */}
       <RootStack.Screen
         name={ROUTE.APP}
         options={{ headerShown: false }}

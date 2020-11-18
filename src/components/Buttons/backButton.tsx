@@ -51,5 +51,5 @@ const Text = styled(TranslatedText)<TextProps>`
   margin-left: 5px;
   font-size: 15px;
   font-family: ${fonts.medium};
-  color: ${(props: TextProps) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
