@@ -1,3 +1,4 @@
+import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import { H2, SafeAreaView } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import { HEIGHT, WIDTH } from '@helpers/Dimensions'
@@ -7,8 +8,12 @@ import { ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 
 export const Onboarding: FC = () => {
+  const openSourceModal = () => {}
+
+  const openPurchaseModal = () => {}
+
   return (
-    <SafeAreaView>
+    <Container>
       <ScrollView
         showsHorizontalScrollIndicator={false}
         horizontal
@@ -27,12 +32,29 @@ export const Onboarding: FC = () => {
           <TextContainer>
             <Title>ONBOARDING.DATA</Title>
             <Text>ONBOARDING.DATA_TEXT</Text>
+
+            <PrimaryButton title="START.BUTTON" onPress={openSourceModal} />
+          </TextContainer>
+        </Page>
+
+        <Page>
+          <ImageContainer />
+          <Line />
+          <TextContainer>
+            <Title>ONBOARDING.COACHING</Title>
+            <Text>ONBOARDING.COACHING_TEXT</Text>
+
+            <PrimaryButton title="START.BUTTON" onPress={openSourceModal} />
           </TextContainer>
         </Page>
       </ScrollView>
-    </SafeAreaView>
+    </Container>
   )
 }
+
+const Container = styled(SafeAreaView)`
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+`
 
 const Page = styled.View`
   width: 100%;
