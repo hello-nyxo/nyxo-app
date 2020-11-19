@@ -36,8 +36,6 @@ const ExplanationsModal: FC = () => {
   const windowStart = useSelector(getGoToSleepWindowStart)
   const windowEnd = useSelector(getGoToSleepWindowEnd)
 
-  console.log(inbed, asleep)
-
   const stats = [
     {
       title: 'STAT.BED',
@@ -49,7 +47,7 @@ const ExplanationsModal: FC = () => {
       title: 'STAT.SLEEP',
       explanation: 'STAT.SLEEP_EXPLANATION',
       figure: asleep,
-      color: colors.inBedColor
+      color: colors.darkBlue
     },
     {
       title: 'STAT.WINDOW',

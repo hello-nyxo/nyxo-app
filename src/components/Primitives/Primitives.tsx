@@ -12,6 +12,7 @@ import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText, { AnimatedTranslatedText } from '../TranslatedText'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Modal = ReactNativeModal as any
 
 interface ContainerProps extends StyleProps {
@@ -22,8 +23,8 @@ export const Container = styled.View<ContainerProps>`
   margin-right: 16px;
   margin-left: 16px;
   flex: 1;
-  background-color: ${(props: ContainerProps) =>
-    props.background ? theme.PRIMARY_BACKGROUND_COLOR : 'transparent'};
+  background-color: ${({ theme, background }) =>
+    background ? theme.PRIMARY_BACKGROUND_COLOR : 'transparent'};
 `
 
 export const Bordered = styled.View`
@@ -79,9 +80,7 @@ export const PageTitle = styled(AnimatedTranslatedText)<StyleProps & TextProps>`
   font-family: ${fonts.medium};
 `
 
-export const H1Animated = styled(AnimatedTranslatedText)<
-  StyleProps & TextProps
->`
+export const H1Animated = styled(AnimatedTranslatedText)<TextProps>`
   font-size: 34px;
   margin-bottom: 10px;
   margin-top: 5px;
@@ -91,27 +90,27 @@ export const H1Animated = styled(AnimatedTranslatedText)<
   font-family: ${fonts.bold};
 `
 
-export const H2 = styled(TranslatedText)`
+export const H2 = styled(TranslatedText)<TextProps>`
   font-size: 28px;
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${({ theme }) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
 
-export const H2N = styled.Text`
+export const H2N = styled.Text<TextProps>`
   font-size: 28px;
   margin-bottom: 10px;
   margin-top: 5px;
   font-weight: bold;
-  text-align: ${({ theme }) => (props.center ? 'center' : 'left')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
 `
 
-export const H3 = styled(TranslatedText)`
+export const H3 = styled(TranslatedText)<TextProps>`
   font-size: 22px;
   margin-bottom: 10px;
   margin-top: 5px;
@@ -125,7 +124,7 @@ export const H3Margin = styled(H3)`
   margin: 0px 20px;
 `
 
-export const H4 = styled(TranslatedText)`
+export const H4 = styled(TranslatedText)<TextProps>`
   font-size: 20px;
   margin-bottom: 10px;
   margin-top: 5px;
@@ -135,7 +134,7 @@ export const H4 = styled(TranslatedText)`
   font-family: ${fonts.bold};
 `
 
-export const H5 = styled(TranslatedText)`
+export const H5 = styled(TranslatedText)<TextProps>`
   font-size: 17px;
   margin-bottom: 10px;
   margin-top: 5px;
@@ -145,7 +144,7 @@ export const H5 = styled(TranslatedText)`
   font-family: ${fonts.bold};
 `
 
-export const H4N = styled.Text`
+export const H4N = styled.Text<TextProps>`
   font-size: 20px;
   margin-bottom: 10px;
   margin-top: 5px;

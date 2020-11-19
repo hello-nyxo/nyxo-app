@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import SvgIcon from './SvgIcon'
 
 interface Props {
@@ -25,7 +25,7 @@ export const IconRegular = (props: Props) => {
   return <SvgIcon {...props} fill="none" viewBox="0 0 24 24" />
 }
 
-export const IconBold = (props: Props) => (
+export const IconBold: FC<Props> = (props) => (
   <SvgIcon {...props} viewBox="0 0 24 24" />
 )
 

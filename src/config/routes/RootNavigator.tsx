@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { TransitionPresets } from '@react-navigation/stack'
 import LessonView from '@screens/coaching/LessonView'
-import PurchaseView from '@screens/coaching/PurchaseView'
+import { PurchaseScreen } from '@screens/onboarding/PurchaseScreen'
 import CoachingWeek from '@screens/coaching/WeekView'
 import { Onboarding } from '@screens/onboarding/Onboarding'
 import Welcome from '@screens/Terveystalo/Welcome'
@@ -15,11 +16,6 @@ const RootStack = createNativeStackNavigator<RootStackParamList>()
 const Root: FC = () => {
   return (
     <RootStack.Navigator>
-      {/* <RootStack.Screen
-        name={ROUTE.ONBOARDING}
-        component={Onboarding}
-        options={{ headerShown: false }}
-      /> */}
       <RootStack.Screen
         name={ROUTE.APP}
         options={{ headerShown: false }}
@@ -42,13 +38,21 @@ const Root: FC = () => {
       />
       <RootStack.Screen
         name={ROUTE.PURCHASE}
-        component={PurchaseView}
+        component={PurchaseScreen}
         options={{ headerShown: false }}
       />
       <RootStack.Screen
         name={ROUTE.TERVEYSTALO}
         component={Welcome}
         options={{ headerShown: false }}
+      />
+      <RootStack.Screen
+        name={ROUTE.ONBOARDING}
+        component={Onboarding}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.ModalTransition
+        }}
       />
     </RootStack.Navigator>
   )

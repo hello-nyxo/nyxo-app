@@ -1,9 +1,9 @@
 import { minutesToHoursString } from '@helpers/time'
 import { getAsleepDuration, getInBedDuration } from '@selectors/night-selectors'
+import { fonts } from '@styles/themes'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
 
 const Explanations: FC = () => {
@@ -13,7 +13,7 @@ const Explanations: FC = () => {
 
   const stats = [
     { title: 'sleep', figure: inbed, color: colors.darkBlue },
-    { title: 'asleep', figure: asleep, color: colors.inBedColor },
+    { title: 'asleep', figure: asleep, color: colors.darkBlue },
     { title: 'efficiency', figure: '100%', color: colors.nightAccent },
     {
       title: 'window',

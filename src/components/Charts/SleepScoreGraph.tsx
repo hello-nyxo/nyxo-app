@@ -73,7 +73,7 @@ const SleepScoreGraph = (props) => {
         {/* <Path
 					d={runningAverage}
 					fill='transparent'
-					stroke={colors.inBedColor}
+					stroke={colors.darkBlue}
 					strokeWidth={3}
 				/> */}
         {/* {data.map(item => (

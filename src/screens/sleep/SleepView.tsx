@@ -16,6 +16,7 @@ import { SafeAreaView } from '@components/Primitives/Primitives'
 import RatingModal from '@components/RatingModal'
 import CalendarModal from '@components/sleep/CalendarModal'
 import InsightsCard from '@components/sleep/InsightsCard'
+import { OnboardingCard } from '@components/sleep/OnboardingCard'
 import QuestionCard from '@components/sleep/QuestionCard'
 import { getUserActiveCoaching } from '@hooks/coaching/useCoaching'
 import useBackgroundFetch from '@hooks/UseBackgroundFetch'
@@ -90,8 +91,9 @@ const Sleep: FC = () => {
               </Subtitle>
             </SubRow>
           </TitleContainer>
-          <NotificationCenterLink />
+          {/* <NotificationCenterLink /> */}
         </TitleRow>
+        <OnboardingCard />
         <InitializeSource />
 
         <Row>

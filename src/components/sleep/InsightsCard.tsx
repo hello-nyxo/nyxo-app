@@ -56,7 +56,7 @@ const InsightsCard: FC = () => {
                 name="nightMoonBegin"
                 height="20"
                 width="20"
-                stroke={colors.inBedColor}
+                stroke={colors.darkBlue}
               />
               <Column>
                 <Value>{wentToBed}</Value>
@@ -70,7 +70,7 @@ const InsightsCard: FC = () => {
                 name="nightMoonEnd"
                 height="20"
                 width="20"
-                stroke={colors.inBedColor}
+                stroke={colors.darkBlue}
               />
               <Column>
                 <Value>{gotUp}</Value>

@@ -15,7 +15,7 @@ import Scale, { ROW_HEIGHT } from './Scale'
 import StartModal from './StartModal'
 
 const { height } = Dimensions.get('window')
-const backgroundColor = colors.inBedColor
+const backgroundColor = colors.darkBlue
 const PADDING = 100
 
 export default class SleepTarget extends React.PureComponent {

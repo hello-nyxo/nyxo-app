@@ -123,7 +123,7 @@ const c = StyleSheet.create({
     zIndex: 20,
     paddingHorizontal: 20,
     position: 'absolute',
-    backgroundColor: colors.inBedColor,
+    backgroundColor: colors.darkBlue,
     flexDirection: 'column',
     justifyContent: 'flex-end'
   },
@@ -137,7 +137,7 @@ const c = StyleSheet.create({
     position: 'absolute',
     paddingHorizontal: 20,
     flexDirection: 'column',
-    backgroundColor: colors.inBedColor
+    backgroundColor: colors.darkBlue
   },
   text: {
     zIndex: 101,

@@ -57,8 +57,8 @@ export default colors
 
 export const colorPairs = {
   // In bed color, used to enchance connection to in bed variable
-  inBed: colors.inBedColor,
-  inBedBg: colors.inBedColor,
+  inBed: colors.darkBlue,
+  inBedBg: colors.darkBlue,
   // Asleep color, used to enchance connection to asleep variable
   asleep: colors.asleepColor,
   asleepBg: colors.asleepColor,

@@ -38,7 +38,8 @@ const TextField: FC<Props> = ({
   const inputRef = useRef<TextInput | undefined>(ref)
 
   const onFocus = () => {
-    inputRef.current.focus()
+    // eslint-disable-next-line no-unused-expressions
+    inputRef?.current?.focus()
   }
 
   const hasError = !!error
@@ -106,18 +107,18 @@ const LabelContainer = styled.View`
 const Label = styled(TranslatedText)<InputProps>`
   font-family: ${fonts.medium};
   margin-left: 5px;
-  color: ${(props: InputProps) =>
-    props.error ? colors.red : theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme, error }) =>
+    error ? colors.red : theme.SECONDARY_TEXT_COLOR};
 `
 
 const InputField = styled.TextInput<InputProps>`
   min-width: 150px;
   font-family: ${fonts.medium};
   flex: 1;
-  color: ${(props: InputProps) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 17px;
 `
-const Icon = styled(IconBold).attrs((props: InputProps) => ({
-  fill: props.error ? colors.red : theme.SECONDARY_TEXT_COLOR,
-  name: props.error ? 'closeCircle' : props.icon
+const Icon = styled(IconBold).attrs(({ theme, error, icon }: InputProps) => ({
+  fill: error ? colors.red : theme.SECONDARY_TEXT_COLOR,
+  name: error ? 'closeCircle' : icon
 }))<InputProps>``

@@ -478,7 +478,7 @@
   "NYXO_COACHING_INTRO": "Get access to personalized sleep coaching",
   "BUY_COACHING": "Get started today!",
   "BUY_COACHING_SUBTITLE": "Start learning more about your sleep and improve your health.",
-  "WHY_REGISTER": "Creating a Nyxo account allows you to backup your sleep and coaching progress onto our cloud.",
+  "WHY_REGISTER": "Creating a free Nyxo account brings a lot of perks:",
   "FETCHING_SUBS": "Getting subscription options.",
   "WHY_BUY_1": "Nyxo Sleep Coaching is science-based coaching program that personalizes to your needs based on your sleeping behavior.",
   "WHY_BUY_2": "Before buying the coaching you can take a look at some of the example lesson and exercises coaching week consists of. Full content becomes available after purchasing coaching. ",
@@ -733,6 +733,9 @@
     "DATA_TEXT": "You can bring your existing sleep data to Nyxo.",
     "DATA_BUTTON": "Connect Sleep Tracker",
 
+    "REGISTER": "Create Nyxo Account",
+    "REGISTER_TEXT": "And get access to varios perks",
+
     "COACHING": "Sleep Coaching built by Experts",
     "COACHING_TEXT": ""
   },
@@ -741,5 +744,12 @@
     "BEGIN": "Begin week",
     "COMPLETE": "Complete week",
     "LESSONS": "Lessons"
+  },
+
+  "WHY_SIGNUP": {
+    "BACKUP": "Backup your sleep and coaching.",
+    "SAVE_COACHING_PROGRESS": "Save your coaching progress to cloud",
+    "ACCESS_FROM_COMPUTER": "Access your sleep, coaching, and habits from a big screen at nyxo.app",
+    "SHARE": "Share your sleep and coaching with sleep coaches"
   }
 }

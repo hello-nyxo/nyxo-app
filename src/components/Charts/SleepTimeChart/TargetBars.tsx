@@ -43,7 +43,7 @@ const TargetBars: FC<Props> = ({
               rx={5}
               y={y}
               height={height}
-              fill={colors.inBedColor}
+              fill={colors.darkBlue}
             />
           </G>
         )

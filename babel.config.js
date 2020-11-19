@@ -30,6 +30,7 @@ module.exports = {
           '@helpers': './src/helpers/',
           '@graphql': './src/graphql/',
           '@screens': './src/screens/',
+          '@views': './src/views/',
           '@data-fetching': './src/data-fetching',
           '@hooks': './src/hooks',
           '@typings': './src/typings',

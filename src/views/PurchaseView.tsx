@@ -5,15 +5,15 @@ import SubscriptionItem from '@components/IAPComponents/SubscriptionItem'
 import TranslatedText from '@components/TranslatedText'
 import { HEIGHT, SMART_TOP_PADDING } from '@helpers/Dimensions'
 import { fonts } from '@styles/themes'
-import React, { memo, useEffect, useState } from 'react'
+import React, { FC, memo, useEffect, useState } from 'react'
 import { ActivityIndicator, Linking, Platform } from 'react-native'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
-import CONFIG from '../../config/Config'
-import colors from '../../styles/colors'
+import CONFIG from '../config/Config'
+import colors from '../styles/colors'
 
-const PurchaseView = () => {
+const PurchaseView: FC = () => {
   const [availableSubscriptions, setSubscriptions] = useState<
     PurchasesPackage[] | undefined
   >([])
