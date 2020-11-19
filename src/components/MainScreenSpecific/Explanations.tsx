@@ -1,9 +1,9 @@
 import { minutesToHoursString } from '@helpers/time'
 import { getAsleepDuration, getInBedDuration } from '@selectors/night-selectors'
+import { fonts } from '@styles/themes'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
 import colors from '../../styles/colors'
 
 const Explanations: FC = () => {
@@ -12,8 +12,8 @@ const Explanations: FC = () => {
   // const window = useSelector(getGoToSleepWindowCenter)
 
   const stats = [
-    { title: 'sleep', figure: inbed, color: colors.radiantBlue },
-    { title: 'asleep', figure: asleep, color: colors.inBedColor },
+    { title: 'sleep', figure: inbed, color: colors.darkBlue },
+    { title: 'asleep', figure: asleep, color: colors.darkBlue },
     { title: 'efficiency', figure: '100%', color: colors.nightAccent },
     {
       title: 'window',
@@ -68,12 +68,12 @@ const Title = styled.Text`
   text-transform: uppercase;
   font-size: 12px;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const Figure = styled.Text`
   text-transform: uppercase;
   font-size: 15px;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `

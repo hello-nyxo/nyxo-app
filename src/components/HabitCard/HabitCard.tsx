@@ -27,7 +27,7 @@ type Props = {
 }
 
 const HabitCard = (props: Props) => {
-  const ref: any = useRef()
+  const ref = useRef<Swipeable>(null)
   const dispatch = useDispatch()
   const { habit } = props
   const {
@@ -57,7 +57,8 @@ const HabitCard = (props: Props) => {
   }
 
   const close = () => {
-    ref!.current!.close()
+    // eslint-disable-next-line no-unused-expressions
+    ref?.current?.close()
   }
 
   const renderLeftActions = (
@@ -138,7 +139,7 @@ const HabitCard = (props: Props) => {
                 width={15}
                 height={15}
                 name="checkMark"
-                fill={colors.radiantBlue}
+                fill={colors.darkBlue}
               />
             )}
           </CheckIconHolder>
@@ -153,21 +154,23 @@ export default memo(HabitCard)
 const Card = styled.View`
   margin: 8px 20px;
   border-radius: 5px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
 
   box-shadow: 1px 3px 2px rgba(32, 33, 37, 0.2);
   flex-direction: row;
   elevation: 8;
 `
 
-const PeriodBarIndicator = styled.View`
+type PeriodProps = {
+  backgroundColor: string
+}
+
+const PeriodBarIndicator = styled.View<PeriodProps>`
   flex-direction: column;
   width: 3px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `
 
 const MiddleSector = styled.View`
@@ -183,7 +186,7 @@ interface TimeProps {
 const PeriodIndicator = styled(TranslatedText)<TimeProps>`
   font-size: 11px;
   text-transform: uppercase;
-  color: ${(props: TimeProps) => props.accent};
+  color: ${({ accent }) => accent};
   font-family: ${fonts.medium};
 `
 
@@ -191,12 +194,12 @@ interface TitleHolderProps extends StyleProps {
   completedToday: boolean
 }
 
-const TitleHolder = styled.Text`
+const TitleHolder = styled.Text<TitleHolderProps>`
   font-family: ${fonts.medium};
   font-size: 15px;
-  text-decoration: ${(props: TitleHolderProps) =>
-    props.completedToday ? 'line-through' : 'none'};
-  color: ${(props: TitleHolderProps) => props.theme.SECONDARY_TEXT_COLOR};
+  text-decoration: ${({ completedToday }) =>
+    completedToday ? 'line-through' : 'none'};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const DayStreakContainer = styled.View`
@@ -208,7 +211,7 @@ const DayStreak = styled.Text`
   margin-left: 5px;
   font-size: 12px;
   font-family: ${fonts.medium};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const Separator = styled.View`

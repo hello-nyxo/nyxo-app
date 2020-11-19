@@ -35,7 +35,7 @@ const InitializeSource: FC = () => {
         <Button onPress={handlePress}>
           <ButtonText>START.BUTTON</ButtonText>
           <Icon
-            fill={colors.radiantBlue}
+            fill={colors.darkBlue}
             height="20"
             width="20"
             name="arrowCircleRight"
@@ -76,7 +76,7 @@ const Button = styled.TouchableOpacity`
 `
 
 const ButtonText = styled(TranslatedText)`
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   font-family: ${({ theme }) => theme.FONT_BOLD};
   font-size: 15px;
 `

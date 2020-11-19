@@ -16,10 +16,9 @@ const Disclaimer = () => {
   return (
     <DisclaimerContainer>
       <DisclaimerText>
-        By creating a Nyxo Cloud Account, I agree to Nyxo's{' '}
-        <UnderLine onPress={openTerms}> Terms of Service </UnderLine>
-        and
-        <UnderLine onPress={openPrivacyPolicy}> Privacy Policy</UnderLine>
+        By creating a Nyxo Cloud Account, I agree to Nyxo&apos;s
+        <UnderLine onPress={openTerms}> Terms of Service</UnderLine> and{' '}
+        <UnderLine onPress={openPrivacyPolicy}>Privacy Policy</UnderLine>
       </DisclaimerText>
     </DisclaimerContainer>
   )
@@ -32,13 +31,13 @@ const DisclaimerContainer = styled.View`
 `
 
 const UnderLine = styled.Text`
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
-  text-decoration: underline;
+  color: ${({ theme }) => theme.accent};
   margin: 0px 5px;
+  text-decoration: underline;
 `
 
 const DisclaimerText = styled.Text`
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.medium};
   line-height: 25px;
 `

@@ -121,7 +121,7 @@ export const Timeline = () => {
           borderTopColor: colors.gray2,
           borderTopWidth: StyleSheet.hairlineWidth,
           flexDirection: 'row'
-          // backgroundColor: colors.radiantBlueTransparent,
+          // backgroundColor: colors.darkBlueTransparent,
         }}>
         <View
           style={{
@@ -149,7 +149,7 @@ export const Timeline = () => {
     <View
       key={index}
       style={{
-        // backgroundColor: colors.radiantBlueTransparent,
+        // backgroundColor: colors.darkBlueTransparent,
         marginTop: -20,
         flexDirection: 'row',
         paddingVertical: 10,

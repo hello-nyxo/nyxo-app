@@ -14,5 +14,5 @@ const Text = styled(TranslatedText)`
   text-align: center;
   font-family: ${fonts.medium};
   font-size: 15px;
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

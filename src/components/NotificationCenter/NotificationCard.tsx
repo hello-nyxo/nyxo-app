@@ -82,7 +82,7 @@ const Button = styled.TouchableOpacity``
 const ButtonText = styled(TranslatedText)`
   font-size: 15px;
   font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   text-align: center;
   margin: 20px 0px 0px;
 `

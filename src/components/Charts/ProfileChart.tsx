@@ -37,7 +37,7 @@ const PhotoContainer = styled.View`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  border-bottom-color: ${(props: StyleProps) => props.theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
   border-bottom-width: ${constants.hairlineWidth}px;
 `
 

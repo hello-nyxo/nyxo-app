@@ -59,7 +59,7 @@ const c = StyleSheet.create({
   },
   link: {
     fontFamily: fonts.medium,
-    color: colors.radiantBlue,
+    color: colors.darkBlue,
     textAlign: 'center'
   }
 })

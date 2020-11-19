@@ -150,7 +150,7 @@ const QuestionIcon = styled(IconBold).attrs(({ theme }) => ({
 const AddHabit = styled.TouchableOpacity``
 
 const AddHabitText = styled(TranslatedText)`
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   font-family: ${fonts.bold};
   font-size: 15px;
   text-align: right;

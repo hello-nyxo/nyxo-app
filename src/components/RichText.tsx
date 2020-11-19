@@ -201,7 +201,7 @@ const Line = styled.View`
 `
 
 const Link = styled(Paragraph)`
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
 `
 
 const List = ({

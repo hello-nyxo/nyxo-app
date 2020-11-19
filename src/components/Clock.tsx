@@ -67,7 +67,7 @@ const Clock: FC = () => {
             night={night}
             value={Value.InBed}
             strokeWidth={12}
-            color={colors.inBedColor}
+            color={colors.darkBlue}
             x={x}
             y={y}
             radius={inBedRadius}
@@ -85,7 +85,7 @@ const Clock: FC = () => {
             night={night}
             value={Value.Asleep}
             strokeWidth={8}
-            color={colors.radiantBlue}
+            color={colors.darkBlue}
             x={x}
             y={y}
             radius={inBedRadius}

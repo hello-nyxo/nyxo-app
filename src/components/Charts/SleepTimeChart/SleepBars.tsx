@@ -58,5 +58,5 @@ type RectProps = {
 }
 
 const StyledRect = styled(Rect).attrs<RectProps>(({ value }) => ({
-  fill: value === Value.Asleep ? colors.radiantBlue : colors.inBedColor
+  fill: value === Value.Asleep ? colors.darkBlue : colors.darkBlue
 }))``

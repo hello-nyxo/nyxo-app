@@ -98,7 +98,7 @@ const SleepTime = (props: SleepTimeProps) => {
         textLength={100}
         alignmentBaseline="central"
         fontSize="13"
-        fill={colors.inBedColor}>
+        fill={colors.darkBlue}>
         {string}
       </SVGText>
 

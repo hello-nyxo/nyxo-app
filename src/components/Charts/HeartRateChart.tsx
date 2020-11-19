@@ -115,7 +115,7 @@ const HeartRateChart = (props: HeartRateChartProps) => {
         <G x={0} y={0}>
           <Path
             d={lineShape(data)}
-            stroke={colors.radiantBlue}
+            stroke={colors.darkBlue}
             strokeWidth={3}
             fill="none"
           />

@@ -1,6 +1,6 @@
-import React from 'react'
+import { fonts } from '@styles/themes'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 
@@ -19,11 +19,11 @@ const slides = [
   }
 ]
 
-const PerkList = () => {
+const PerkList: FC = () => {
   return (
     <PerksList>
-      {slides.map((perk, index) => (
-        <Perk key={index}>
+      {slides.map((perk) => (
+        <Perk key={perk.title}>
           <Icon name="checkMark" height={15} width={15} />
           <PerkText>{perk.text}</PerkText>
         </Perk>
@@ -34,8 +34,8 @@ const PerkList = () => {
 
 export default PerkList
 
-const Icon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.SECONDARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.SECONDARY_TEXT_COLOR
 }))`
   margin-right: 10px;
 `
@@ -52,7 +52,7 @@ const Perk = styled.View`
 `
 
 const PerkText = styled(TranslatedText)`
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.medium};
   font-size: 15px;
 `

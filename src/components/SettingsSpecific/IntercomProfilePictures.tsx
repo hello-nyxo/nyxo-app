@@ -35,7 +35,7 @@ const ProfilePicture = styled.Image`
   height: 30px;
   width: 30px;
   overflow: hidden;
-  border-color: ${colors.radiantBlue};
+  border-color: ${colors.darkBlue};
   border-width: 2px;
   border-radius: 30px;
   margin-left: -10px;

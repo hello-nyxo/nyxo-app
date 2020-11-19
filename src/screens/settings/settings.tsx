@@ -215,6 +215,5 @@ export default memo(SettingsScreen)
 const SectionHeader = styled(H2)`
   padding: 30px 20px 20px;
   margin: 0px;
-  background-color: ${(props: StyleProps) =>
-    props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `

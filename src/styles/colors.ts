@@ -1,4 +1,6 @@
 const colors = {
+  darkBlue: '#2c0b8e',
+
   tangerine: '#fe851e',
   white: '#ffffff',
   black: '#444',
@@ -24,11 +26,10 @@ const colors = {
   asleepColor: '#4a5aef', // '#238bcd', // was  DD956E
   primaryGray: '#FAFAFA',
   bedTimeColor: '#4aefd5',
-  radiantBlue: '#4A5AEF',
-  radiantBlueTransparent: 'rgba(74, 90, 239, 0.3)',
-  radiantBlueTransparent1: 'rgba(74, 90, 239, 0.5)',
-  radiantBlueTransparent2: 'rgba(74, 90, 239, 0.95)',
-  radiantBlueShadow: '#4A5AEF',
+  darkBlueTransparent: 'rgba(74, 90, 239, 0.3)',
+  darkBlueTransparent1: 'rgba(74, 90, 239, 0.5)',
+  darkBlueTransparent2: 'rgba(74, 90, 239, 0.95)',
+  darkBlueShadow: '#4A5AEF',
   shadowColor: 'rgba(152, 152, 152, 0.5)',
 
   // new ui colors:
@@ -56,8 +57,8 @@ export default colors
 
 export const colorPairs = {
   // In bed color, used to enchance connection to in bed variable
-  inBed: colors.inBedColor,
-  inBedBg: colors.inBedColor,
+  inBed: colors.darkBlue,
+  inBedBg: colors.darkBlue,
   // Asleep color, used to enchance connection to asleep variable
   asleep: colors.asleepColor,
   asleepBg: colors.asleepColor,

@@ -24,7 +24,7 @@ export default memo(NotificationRow)
 const Wrapper = styled.View`
   padding: 10px 0px;
   border-bottom-width: ${constants.hairlineWidth}px;
-  border-bottom-color: ${(props: StyleProps) => props.theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
 `
 
 const Container = styled.View`

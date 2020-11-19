@@ -55,7 +55,7 @@ const EditableArc = (props: EditableArcProps) => {
         <Svg width={props.width} height={props.height}>
           <AnimatedCircle
             strokeWidth={padding * 2}
-            stroke={colors.inBedColor}
+            stroke={colors.darkBlue}
             strokeOpacity={0.9}
             strokeLineCap="round"
             fill="none"

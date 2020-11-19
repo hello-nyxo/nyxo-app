@@ -44,7 +44,7 @@ const Container = styled.View<StyleProps>`
   padding: 20px 0px;
   flex-direction: row;
   border-bottom-width: ${constants.hairlineWidth}px;
-  border-bottom-color: ${(props: StyleProps) => props.theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
 `
 
 const InnerContainer = styled.View`
@@ -54,8 +54,8 @@ const InnerContainer = styled.View`
   justify-content: space-between;
 `
 
-const Icon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.PRIMARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.PRIMARY_TEXT_COLOR
 }))``
 
 const IconContainer = styled.View`

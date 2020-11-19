@@ -81,7 +81,7 @@ const Bedtime: FC<Props> = ({ clockSize }) => {
           onUpdate={onUpdate}
           strokeWidth={28}
           radius={editNightRadius}
-          bgCircleColor={colors.radiantBlue}
+          bgCircleColor={colors.darkBlue}
           stopIcon={icons.daySunrise}
           startIcon={icons.daySunset}
         />
@@ -110,7 +110,7 @@ const TimeContainer = styled.View`
 `
 
 const BedTimeText = styled.Text`
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   font-size: 17px;
   font-family: ${({ theme }) => theme.FONT_BOLD};
 `

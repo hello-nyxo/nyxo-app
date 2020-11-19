@@ -31,14 +31,14 @@ const ChallengeItem = ({ challenge }: { challenge: Challenge }) => {
             borderRadius: 15,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: colors.radiantBlueTransparent,
+            backgroundColor: colors.darkBlueTransparent,
             marginRight: 10
           }}>
           <IconBold
             name="trophyStar"
             height={20}
             width={20}
-            fill={colors.radiantBlue}
+            fill={colors.darkBlue}
           />
         </View>
         <View style={{ width: 200 }}>

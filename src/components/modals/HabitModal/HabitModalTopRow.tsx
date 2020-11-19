@@ -56,18 +56,18 @@ const CancelText = styled(TranslatedText)<ButtonProps>`
   font-size: 15px;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   color: ${({ primary, theme }) =>
-    primary ? colors.radiantBlue : theme.PRIMARY_TEXT_COLOR};
+    primary ? colors.darkBlue : theme.PRIMARY_TEXT_COLOR};
 `
 
 const Title = styled(TranslatedText)`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 15px;
   font-family: ${fonts.bold};
   text-align: center;
 `
 
 const FormattedTitle = styled.Text`
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 15px;
   font-family: ${fonts.bold};
   text-align: center;

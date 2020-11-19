@@ -82,7 +82,7 @@ export default memo(Welcome)
 
 const SafeContainer = styled.SafeAreaView`
   flex: 1;
-  background-color: ${colors.radiantBlue};
+  background-color: ${colors.darkBlue};
   justify-content: center;
 `
 
@@ -112,7 +112,7 @@ const HKButtonContainer = styled.View`
 const WelcomeButtonText = styled(TranslatedText)`
   text-transform: uppercase;
   font-family: ${fonts.bold};
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   font-size: 17px;
 `
 
@@ -128,6 +128,6 @@ const GoButton = styled.View`
 const GoButtonText = styled(TranslatedText)`
   text-transform: uppercase;
   font-family: ${fonts.bold};
-  color: ${colors.radiantBlue};
+  color: ${colors.darkBlue};
   font-size: 17px;
 `

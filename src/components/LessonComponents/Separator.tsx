@@ -11,6 +11,6 @@ export default Separator
 const Line = styled.View`
   height: ${constants.hairlineWidth}px;
   margin-left: 20px;
-  background-color: ${(props: StyleProps) => props.theme.HAIRLINE_COLOR};
+  background-color: ${({ theme }) => theme.HAIRLINE_COLOR};
   width: 100%;
 `

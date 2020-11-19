@@ -1,17 +1,19 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import React from 'react'
+import { TransitionPresets } from '@react-navigation/stack'
+import LessonView from '@screens/coaching/LessonView'
+import { PurchaseScreen } from '@screens/onboarding/PurchaseScreen'
+import CoachingWeek from '@screens/coaching/WeekView'
+import { Onboarding } from '@screens/onboarding/Onboarding'
+import Welcome from '@screens/Terveystalo/Welcome'
 import { RootStackParamList } from '@typings/navigation/navigation'
-import LessonView from '../../screens/coaching/LessonView'
-import PurchaseView from '../../screens/coaching/PurchaseView'
-import CoachingWeek from '../../screens/coaching/WeekView'
-import Welcome from '../../screens/Terveystalo/Welcome'
+import React, { FC } from 'react'
 import AuthNavigator from './AuthNavigator'
 import ROUTE from './Routes'
 import TabNavigator from './TabNavigator'
 
 const RootStack = createNativeStackNavigator<RootStackParamList>()
 
-const Root = () => {
+const Root: FC = () => {
   return (
     <RootStack.Navigator>
       <RootStack.Screen
@@ -36,13 +38,21 @@ const Root = () => {
       />
       <RootStack.Screen
         name={ROUTE.PURCHASE}
-        component={PurchaseView}
+        component={PurchaseScreen}
         options={{ headerShown: false }}
       />
       <RootStack.Screen
         name={ROUTE.TERVEYSTALO}
         component={Welcome}
         options={{ headerShown: false }}
+      />
+      <RootStack.Screen
+        name={ROUTE.ONBOARDING}
+        component={Onboarding}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.ModalTransition
+        }}
       />
     </RootStack.Navigator>
   )

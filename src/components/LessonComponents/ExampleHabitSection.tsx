@@ -61,7 +61,7 @@ export default memo(ExampleHabitSection)
 const TextSmall = styled(TranslatedText)`
   font-family: ${fonts.medium};
   font-size: 13px;
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   margin: 10px 20px;
 `
 

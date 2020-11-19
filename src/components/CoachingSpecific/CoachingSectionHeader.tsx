@@ -25,7 +25,7 @@ const CoachingSectionHeader: FC<Props> = ({
 export default CoachingSectionHeader
 
 const SectionHeader = styled.View<StyleProps>`
-  background-color: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   padding: 30px 20px 20px;
 `
 

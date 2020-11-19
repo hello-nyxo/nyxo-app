@@ -41,6 +41,6 @@ const Logo = styled.Image`
 const Name = styled.Text`
   margin-left: 20px;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 17px;
 `

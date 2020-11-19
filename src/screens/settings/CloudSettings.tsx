@@ -50,7 +50,7 @@ const CloudView = ({ navigation, route }) => {
       <ScrollView
         refreshControl={
           <RefreshControl
-            tintColor={colors.radiantBlue}
+            tintColor={colors.darkBlue}
             onRefresh={refresh}
             refreshing={linkingLoading}
           />

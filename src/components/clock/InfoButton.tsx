@@ -16,7 +16,7 @@ const InfoButton = () => {
         <IconBold
           width={20}
           height={20}
-          fill={colors.radiantBlue}
+          fill={colors.darkBlue}
           name="informationCircle"
         />
       </Touchable>

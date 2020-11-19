@@ -35,7 +35,7 @@ const Row = styled.View`
 
 const Source = styled.Text`
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Toggle = styled.Switch``

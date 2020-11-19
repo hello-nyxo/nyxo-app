@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import React, { FC } from 'react'
 import NotificationCenter from '@screens/main/NotificationCenter'
+import Habits from '@screens/Shared/HabitView'
 import Sleep from '@screens/sleep/SleepView'
 import { JournalStackParamList } from '@typings/navigation/navigation'
-import Habits from '../../screens/Shared/HabitView'
+import React, { FC } from 'react'
 import ROUTE from './Routes'
 
 const Stack = createNativeStackNavigator<JournalStackParamList>()

@@ -31,9 +31,9 @@ const Text = styled(TranslatedText)`
   font-size: 17px;
   text-align: center;
   font-family: ${fonts.bold};
-  color: ${(props: StyleProps) => props.theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
-const Icon = styled(IconBold).attrs((props: StyleProps) => ({
-  fill: props.theme.SECONDARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.SECONDARY_TEXT_COLOR
 }))``

@@ -17,6 +17,7 @@ platform :ios, '10.0'
 target 'Nyxo' do
 
 	pod 'Intercom'
+	pod 'Sentry', '6.0.7'
   use_unimodules!(exclude: ['expo-face-detector'])
   use_native_modules!
 
