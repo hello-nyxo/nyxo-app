@@ -12,12 +12,22 @@ import ROUTE from '@config/routes/Routes'
 import PurchaseView from '@views/PurchaseView'
 import Modal, { ReactNativeModal } from 'react-native-modal'
 import RegisterScreen from '@screens/Auth/RegisterScreen'
+import { CoachingIllustration } from '@components/onboarding/CoachingIllustration'
+import { DeviceIllustration } from '@components/onboarding/DeviceIllustration'
+import { RegisterView } from '@views/RegisterView'
+import { useDispatch } from 'react-redux'
+import { register } from '@actions/auth/auth-actions'
 
 export const Onboarding: FC = () => {
   const { navigate } = useNavigation()
+  const dispatch = useDispatch()
   const [showDataModal, setShowDataModal] = useState(false)
   const [showPurchaseModal, setShowPurchaseModal] = useState(false)
   const [authModal, toggleAuthModal] = useState(false)
+
+  const signUp = async (email, password) => {
+    await dispatch(register(email, password, openAuthModal))
+  }
 
   const openSourceModal = () => {
     setShowDataModal(true)
@@ -63,7 +73,9 @@ export const Onboarding: FC = () => {
           </TextContainer>
         </Page>
         <Page>
-          <ImageContainer />
+          <ImageContainer>
+            <DeviceIllustration />
+          </ImageContainer>
           <Line />
           <TextContainer>
             <Title>ONBOARDING.DATA</Title>
@@ -88,7 +100,9 @@ export const Onboarding: FC = () => {
         </Page>
 
         <Page>
-          <ImageContainer />
+          <ImageContainer>
+            <CoachingIllustration />
+          </ImageContainer>
           <Line />
           <TextContainer>
             <Title>ONBOARDING.COACHING</Title>
@@ -123,7 +137,11 @@ export const Onboarding: FC = () => {
         hideModalContentWhileAnimating
         animationType="slide">
         <ModalContent>
-          <RegisterScreen />
+          <RegisterView
+            back={openAuthModal}
+            goToLogin={() => {}}
+            register={signUp}
+          />
         </ModalContent>
       </StyledModal>
 
@@ -137,7 +155,7 @@ export const Onboarding: FC = () => {
         hideModalContentWhileAnimating
         animationType="slide">
         <ModalContent>
-          <PurchaseView />
+          <PurchaseView isScreen={false} />
         </ModalContent>
       </StyledModal>
     </Container>
@@ -164,6 +182,7 @@ const Text = styled(TranslatedText)`
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-size: 15px;
   line-height: 28px;
+  margin-bottom: 32px;
 `
 
 const Line = styled.View`
@@ -179,6 +198,8 @@ const TextContainer = styled.View`
 
 const ImageContainer = styled.View`
   height: ${(HEIGHT * 2) / 5}px;
+  justify-content: flex-end;
+  align-items: center;
 `
 
 const ModalContent = styled.ScrollView`

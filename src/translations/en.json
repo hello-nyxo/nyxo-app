@@ -734,10 +734,12 @@
     "DATA_BUTTON": "Connect Sleep Tracker",
 
     "REGISTER": "Create Nyxo Account",
-    "REGISTER_TEXT": "And get access to varios perks",
+    "REGISTER_TEXT": "And get access to various perks",
 
     "COACHING": "Sleep Coaching built by Experts",
-    "COACHING_TEXT": ""
+    "COACHING_TEXT": "Nyxo Sleep Coaching program is developed together with sleep researhers.",
+
+    "PROMPT": "Get to know the features of Nyxo through this onboarding."
   },
 
   "WEEK": {

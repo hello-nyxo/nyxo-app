@@ -11,7 +11,6 @@ import {
   useUpdateCoaching,
   useGetActiveCoaching
 } from '@hooks/coaching/useCoaching'
-import { uniqBy } from 'lodash'
 import React, { memo } from 'react'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
@@ -29,6 +28,7 @@ interface Props {
 const WeekView = ({ route }: Props) => {
   const { week }: { week: CombinedWeek } = route.params
   const hasCoaching = useSelector(getActiveCoaching)
+
   const [mutate, { isLoading, isSuccess }] = useUpdateCoaching()
   const { data } = useGetActiveCoaching()
 
@@ -75,7 +75,7 @@ const WeekView = ({ route }: Props) => {
           onScroll={Animated.event([
             { nativeEvent: { contentOffset: { y: yOffset } } }
           ])}
-          locked={false}
+          locked={!hasCoaching}
           header={
             <>
               <WeekViewHeader title={week.weekName} yOffset={yOffset} />

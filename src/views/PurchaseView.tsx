@@ -13,7 +13,11 @@ import styled from 'styled-components/native'
 import CONFIG from '../config/Config'
 import colors from '../styles/colors'
 
-const PurchaseView: FC = () => {
+type Props = {
+  isScreen: boolean
+}
+
+const PurchaseView: FC<Props> = ({ isScreen }) => {
   const [availableSubscriptions, setSubscriptions] = useState<
     PurchasesPackage[] | undefined
   >([])
@@ -57,10 +61,12 @@ const PurchaseView: FC = () => {
   return (
     <BG>
       <Scrollable>
-        <Header>
-          <ButtonRow>
-            <GoBack />
-          </ButtonRow>
+        <Header isScreen={isScreen}>
+          {isScreen ? (
+            <ButtonRow>
+              <GoBack />
+            </ButtonRow>
+          ) : null}
 
           <Title>BUY_COACHING</Title>
           <Subtitle>BUY_COACHING_SUBTITLE</Subtitle>
@@ -105,10 +111,14 @@ const Subscriptions = styled.View`
   justify-content: space-between;
 `
 
-const Header = styled.View`
+type ViewProps = {
+  isScreen: boolean
+}
+
+const Header = styled.View<ViewProps>`
   background-color: ${({ theme }) =>
     theme.mode === 'light' ? colors.evening : colors.eveningAccent};
-  min-height: ${HEIGHT / 2}px;
+  min-height: ${({ isScreen }) => (isScreen ? HEIGHT / 3 : HEIGHT / 2)}px;
   border-bottom-left-radius: 45px;
   border-bottom-right-radius: 45px;
   align-items: center;

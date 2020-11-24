@@ -14,6 +14,7 @@ import { ListRenderItem, SectionList } from 'react-native'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 

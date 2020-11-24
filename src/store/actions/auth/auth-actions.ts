@@ -76,9 +76,11 @@ export const logoutFailure = (): ReduxAction => ({
 
 /* ASYNC ACTIONS */
 
-export const register = (email: string, password: string): Thunk => async (
-  dispatch: Dispatch
-) => {
+export const register = (
+  email: string,
+  password: string,
+  successCallback: void
+): Thunk => async (dispatch: Dispatch) => {
   dispatch(registerStart())
   try {
     const response = await Auth.signUp({
@@ -88,7 +90,7 @@ export const register = (email: string, password: string): Thunk => async (
     })
 
     await dispatch(registerSuccess(email))
-    await dispatch(login(email, password))
+    await dispatch(login(email, password, successCallback))
   } catch (error) {
     let { message } = error
     if (error.code === 'UsernameExistsException') {
@@ -129,20 +131,15 @@ export const resendEmail = (username: string): Thunk => async (
   }
 }
 
-export const confirmSignup = (email: string, authCode: string) => async (
-  dispatch: Dispatch
-) => {
-  const username = email
-  try {
-    const response = await Auth.confirmSignUp(username, authCode)
-  } catch (error) {}
-}
-
 export const login = (
   loginEmail: string,
-  loginPassword: string
+  loginPassword: string,
+  successCallback: () => void
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   dispatch(loginStart())
+  const {
+    habitState: { habits, subHabits }
+  } = getState()
 
   try {
     const {
@@ -150,23 +147,18 @@ export const login = (
       username
     } = await Auth.signIn(loginEmail, loginPassword)
 
-    const {
-      habitState: { habits, subHabits }
-    } = getState()
-
     await Intercom.updateUser({ email, user_id: username })
     await Purchases.identify(username)
     await Purchases.setEmail(email)
-    await NavigationService.navigate(ROUTE.SLEEP, {})
 
     if (areThereChangesInLocal(habits, subHabits)) {
       await dispatch(toggleMergingDialog(true))
     } else {
       await dispatch(handleHabitsFromCloudWhenLoggingIn(username, false))
-      await NavigationService.navigate(ROUTE.SLEEP, {})
     }
 
     await dispatch(loginSuccess(true, email, username))
+    await successCallback()
   } catch (error) {
     console.warn(error)
     const { code } = error

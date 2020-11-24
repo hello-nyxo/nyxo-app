@@ -22,16 +22,20 @@ type Props = {
   navigation: any
 }
 
-const SignInScreen = ({ navigation }: Props) => {
+const SignInScreen: FC<Props> = ({ navigation }) => {
   const loading = useSelector(getLoading)
   const dispatch = useDispatch()
 
-  const forgotPassword = () => {
-    navigation.navigate(ROUTE.RECOVER)
-  }
-
   const toRegister = () => {
     navigation.navigate(ROUTE.REGISTER)
+  }
+
+  const loginSuccess = () => {
+    navigation.navigate(ROUTE.APP)
+  }
+
+  const submit = ({ email, password }) => {
+    dispatch(login(email, password, loginSuccess))
   }
 
   return (
@@ -41,9 +45,7 @@ const SignInScreen = ({ navigation }: Props) => {
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={LoginSchema}
-        onSubmit={(values) => {
-          dispatch(login(values.email, values.password))
-        }}>
+        onSubmit={submit}>
         {({
           handleChange,
           handleSubmit,
@@ -118,7 +120,7 @@ const TitleRow = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin: 30px 0px;
 `
 
 const Circle = styled.View`

@@ -1,24 +1,24 @@
 import ROUTE from '@config/routes/Routes'
 
 export type RootStackParamList = {
-  readonly [ROUTE.APP]: {
-    readonly [ROUTE.JOURNAL]: {
-      readonly [ROUTE.TERVEYSTALO]: { connectionId: string }
-      readonly [ROUTE.SLEEP]: undefined
-      readonly [ROUTE.HABITS]: undefined
-      readonly [ROUTE.DETAIL]: undefined
+  [ROUTE.APP]: {
+    [ROUTE.JOURNAL]: {
+      [ROUTE.TERVEYSTALO]: { connectionId: string }
+      [ROUTE.SLEEP]: undefined
+      [ROUTE.HABITS]: undefined
+      [ROUTE.DETAIL]: undefined
     }
-    readonly [ROUTE.COACHING]: {
-      readonly [ROUTE.WEEK]: undefined
-      readonly [ROUTE.LESSON]: undefined
+    [ROUTE.COACHING]: {
+      [ROUTE.WEEK]: undefined
+      [ROUTE.LESSON]: undefined
     }
-    readonly [ROUTE.PROFILE]: undefined
+    [ROUTE.PROFILE]: undefined
   }
 }
 
 export type JournalStackParamList = {
-  readonly Terveystalo: { connectionId: string }
-  readonly [ROUTE.SLEEP]: undefined
-  readonly [ROUTE.HABITS]: undefined
-  readonly [ROUTE.DETAIL]: undefined
+  Terveystalo: { connectionId: string }
+  [ROUTE.SLEEP]: undefined
+  [ROUTE.HABITS]: undefined
+  [ROUTE.DETAIL]: undefined
 }

@@ -29,7 +29,7 @@ export const OnboardingCard: FC = () => {
 }
 const Container = styled.View`
   margin: 16px 16px;
-  padding: 20px 20px;
+  padding: 16px 16px;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   border-radius: 5px;
   box-shadow: ${({ theme }) => theme.SHADOW};
@@ -54,7 +54,7 @@ const Text = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-size: 15px;
-  line-height: 28px;
+  line-height: 20px;
 `
 
 const CircleButton = styled.View`

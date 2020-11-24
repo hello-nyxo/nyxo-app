@@ -1,20 +1,17 @@
-import { useNavigation } from '@react-navigation/native'
-import React, { memo } from 'react'
-import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
+import React, { FC, memo } from 'react'
+import styled from 'styled-components/native'
 import colors from '../../styles/colors'
 import TranslatedText from '../TranslatedText'
 
-const BackToAppButton = () => {
-  const navigation = useNavigation()
+type Props = {
+  back: () => void
+}
 
-  const getBackToApp = () => {
-    navigation.navigate('Sleep')
-  }
-
+const BackToAppButton: FC<Props> = ({ back }) => {
   return (
     <Container>
-      <Button onPress={getBackToApp}>
+      <Button onPress={back}>
         <ButtonText>Get back to Nyxo</ButtonText>
       </Button>
     </Container>
