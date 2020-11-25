@@ -37,7 +37,7 @@ android {
         applicationId "fi.nyxo.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 71
+        versionCode 76
         versionName "1.5.0"
         multiDexEnabled true
         manifestPlaceholders = [
@@ -100,7 +100,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    addUnimodulesDependencies([exclude: ['expo-face-detector']])
+    addUnimodulesDependencies()
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'

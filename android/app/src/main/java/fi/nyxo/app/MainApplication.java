@@ -42,9 +42,9 @@ public class MainApplication extends Application implements ReactApplication {
 
       @SuppressWarnings("UnnecessaryLocalVariable")
       List<ReactPackage> packages = new PackageList(this).getPackages();
-      packages.add(new ModuleRegistryAdapter(mModuleRegistryProvider));
       packages.add(new RNFirebaseMessagingPackage()); 
-      packages.add(new RNFirebaseNotificationsPackage()); 
+			packages.add(new RNFirebaseNotificationsPackage()); 
+			packages.addAll(unimodules);
       return packages;
     }
 
