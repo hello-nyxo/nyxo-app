@@ -94,7 +94,6 @@ const Sleep: FC = () => {
           {/* <NotificationCenterLink /> */}
         </TitleRow>
         <OnboardingCard />
-        <InitializeSource />
 
         <Row>
           <Clock />
