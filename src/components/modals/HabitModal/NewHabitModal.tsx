@@ -121,7 +121,7 @@ const StyledModal = styled(Modal)`
   top: 0;
 `
 
-const Container = styled.SafeAreaView<StyleProps>`
+const Container = styled.SafeAreaView`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   flex: 1;

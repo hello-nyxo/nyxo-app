@@ -176,12 +176,12 @@ export const PN = styled.Text<TextProps>`
     secondary ? theme.SECONDARY_TEXT_COLOR : theme.PRIMARY_TEXT_COLOR};
 `
 
-export const SafeAreaView = styled(RNSafeAreaView)<StyleProps>`
+export const SafeAreaView = styled(RNSafeAreaView)`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   flex: 1;
 `
 
-export const StyledModal = styled(Modal)<StyleProps>`
+export const StyledModal = styled(Modal)`
   bottom: 0;
   left: 0;
   justify-content: center;

@@ -96,7 +96,7 @@ const StyledModal = styled(Modal)`
   justify-content: flex-end;
 `
 
-const Mark = styled.View<StyleProps>`
+const Mark = styled.View`
   background-color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   height: 5px;
   width: 100px;
@@ -111,7 +111,7 @@ const ButtonContainer = styled.View`
   margin: 30px 0px;
 `
 
-const Container = styled.View<StyleProps>`
+const Container = styled.View`
   border-radius: 30px;
   /* background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR}; */
   justify-content: space-between;

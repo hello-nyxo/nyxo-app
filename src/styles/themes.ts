@@ -1,31 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { isIphoneX, getStatusBarHeight } from 'react-native-iphone-x-helper'
-import { DefaultTheme } from 'styled-components/native'
+import { DefaultTheme } from 'styled-components'
 import colors from './colors'
-
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    mode?: string
-    PRIMARY_BACKGROUND_COLOR?: string
-    SECONDARY_BACKGROUND_COLOR?: string
-
-    SECONDARY_BACKGROUND_COLOR_TRANSPARENT?: string
-
-    PRIMARY_TEXT_COLOR?: string
-    SECONDARY_TEXT_COLOR?: string
-    ICON_COLOR: string
-    PRIMARY_BUTTON_COLOR?: string
-    SECONDARY_BUTTON_COLOR?: string
-    HAIRLINE_COLOR?: string
-    GRADIENT: string[]
-    SHADOW: string
-
-    FONT_REGULAR: string
-    FONT_MEDIUM: string
-    FONT_BOLD: string
-    accent: string
-  }
-}
 
 export const lightTheme: DefaultTheme = {
   mode: 'light',
@@ -85,22 +61,4 @@ export const fonts = {
 
   domine: 'Domine-Regular',
   domineBold: 'Domine-Bold'
-}
-
-export interface ThemeProps {
-  mode?: string
-  PRIMARY_BACKGROUND_COLOR?: string
-  SECONDARY_BACKGROUND_COLOR?: string
-  PRIMARY_TEXT_COLOR?: string
-  SECONDARY_TEXT_COLOR?: string
-  PRIMARY_BUTTON_COLOR?: string
-  SECONDARY_BUTTON_COLOR?: string
-  HAIRLINE_COLOR?: string
-  GRADIENT: string[]
-  SHADOW: string
-  accent: string
-}
-
-export interface StyleProps {
-  theme: ThemeProps
 }

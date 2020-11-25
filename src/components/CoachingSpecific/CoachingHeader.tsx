@@ -30,7 +30,6 @@ const CoachingHeader: FC = () => {
       <Container>{!hasActiveCoaching && <BuyCoachingButton />}</Container>
       {activeMonth ? (
         <>
-          <Title>Active Coaching</Title>
           <CoachingMonthCard actionsEnabled={false} month={activeMonth} />
           <ModifyContainer>
             <ModifyButton onPress={openCoachingSettings}>

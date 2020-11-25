@@ -1,6 +1,6 @@
 import React, { FC, useRef, useEffect } from 'react'
 import { FlatList, ListRenderItem, ViewToken } from 'react-native'
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import { format, sub, startOfDay } from 'date-fns/esm'
 import { WIDTH } from '@helpers/Dimensions'
 import { useDispatch } from 'react-redux'
@@ -9,7 +9,8 @@ import useCalendar from '@hooks/calendar'
 import { isSameDay } from 'date-fns'
 import LinearGradient from 'react-native-linear-gradient'
 
-const contentOffset = { x: -WIDTH / 2 / 2, y: 0 }
+const DAY_WIDTH = WIDTH / 2
+const FIRST_DAY_WIDTH = DAY_WIDTH * 2 - DAY_WIDTH / 2
 
 const CalendarStrip: FC = () => {
   const { selectDate, selectedDate } = useCalendar()
@@ -24,12 +25,12 @@ const CalendarStrip: FC = () => {
     dispatch(toggleCalendarModal())
   }
 
-  const offsets = days.map((_, index) => index * (WIDTH / 2))
-
   const renderItem: ListRenderItem<Date> = ({ item, index }) => (
     <PressableContainer key={item.toISOString()} onPress={toggleCalendar}>
       <Day isFirst={index === 0}>
-        <DateContainer>{format(item, 'EEE d. LLL')}</DateContainer>
+        <DateContainer isFirst={index === 0}>
+          {format(item, 'EEE d. LLL')}
+        </DateContainer>
       </Day>
     </PressableContainer>
   )
@@ -48,7 +49,7 @@ const CalendarStrip: FC = () => {
   const handleViewableItemsChangedRef = useRef(handleViewableItemsChanged)
 
   const viewabilityConfig = {
-    itemVisiblePercentThreshold: 85,
+    itemVisiblePercentThreshold: 100,
     minimumViewTime: 400
   }
 
@@ -71,28 +72,43 @@ const CalendarStrip: FC = () => {
     }
   }, [selectedDate])
 
+  const getItemLayout = (_: unknown, index: number) => {
+    if (index === 0) {
+      return {
+        index,
+        length: FIRST_DAY_WIDTH,
+        offset: 0
+      }
+    }
+    return {
+      index,
+      length: DAY_WIDTH,
+      offset: FIRST_DAY_WIDTH + DAY_WIDTH * index - DAY_WIDTH
+    }
+  }
+
+  const snapOffsets = days.map((_, index) => {
+    if (index === 0) {
+      return DAY_WIDTH
+    }
+    return DAY_WIDTH * (index + 1)
+  })
+
   return (
     <Container>
       <FlatList
-        contentInset={{ right: WIDTH / 2 }}
+        initialScrollIndex={0}
         ref={flatListRef}
         showsHorizontalScrollIndicator={false}
         inverted
         snapToStart
         horizontal
-        getItemLayout={(_, index: number) => ({
-          index,
-          length: WIDTH / 2,
-          offset: (WIDTH / 2) * index
-        })}
-        contentOffset={contentOffset}
+        getItemLayout={getItemLayout}
         keyExtractor={keyExtractor}
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={handleViewableItemsChangedRef.current}
         decelerationRate="fast"
-        snapToInterval={WIDTH / 2}
-        centerContent
-        snapToAlignment="center"
+        snapToOffsets={snapOffsets}
         data={days}
         renderItem={renderItem}
       />
@@ -112,11 +128,27 @@ type DayProps = {
 }
 
 const Day = styled.View<DayProps>`
-  width: ${WIDTH / 2}px;
+  ${({ isFirst }) =>
+    isFirst
+      ? css`
+          width: ${DAY_WIDTH * 2 - DAY_WIDTH / 2}px;
+        `
+      : css`
+          width: ${WIDTH / 2}px;
+        `}
 `
 
-const DateContainer = styled.Text`
-  text-align: center;
+const DateContainer = styled.Text<DayProps>`
+  ${({ isFirst }) =>
+    isFirst
+      ? css`
+          text-align: left;
+          margin-left: ${DAY_WIDTH / 4}px;
+        `
+      : css`
+          text-align: center;
+        `}
+
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
@@ -150,8 +182,4 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
   top: 0;
   right: 0;
   bottom: 0;
-`
-
-const Filler = styled.View`
-  width: ${WIDTH / 2}px;
 `

@@ -72,7 +72,7 @@ const FieldIndicatorText = styled(TranslatedText)`
 
 const InputField = styled.TextInput.attrs(({ theme }) => ({
   placeholderTextColor: theme.SECONDARY_TEXT_COLOR
-}))<StyleProps>`
+}))`
   margin-top: 10px;
   font-family: ${fonts.domine};
   font-size: 18px;

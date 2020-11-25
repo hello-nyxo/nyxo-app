@@ -1,11 +1,10 @@
+import { getTextColorOnTheme } from '@selectors/UserSelectors'
 import { ScaleTime } from 'd3'
 import moment from 'moment'
 import React, { memo } from 'react'
 import { G, Line, Text } from 'react-native-svg'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { getTextColorOnTheme } from '@selectors/UserSelectors'
-import { StyleProps } from '../../../styles/themes'
 
 interface Props {
   chartWidth: number

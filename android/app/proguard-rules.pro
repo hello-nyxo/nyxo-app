@@ -24,3 +24,6 @@
   **[] $VALUES;
   public *;
 }
+-keepclassmembers class fi.nyxo.app.BuildConfig {
+   public static <fields>;
+}

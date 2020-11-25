@@ -9,12 +9,18 @@ import {
   getFormattedDateOrPlaceholder,
   minutesToHoursString
 } from '@helpers/time'
-import React, { FC } from 'react'
+import React, { FC, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { WIDTH } from '@helpers/Dimensions'
 import useSleep from '@hooks/useSleep'
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ViewToken
+} from 'react-native'
+import { ThemeColors } from 'react-navigation'
 
 const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
@@ -30,24 +36,37 @@ const InsightsCard: FC = () => {
   } = useSleep()
   const goToSleepWindowStart = useSelector(getGoToSleepWindowStart)
   const goToSleepWindowEnd = useSelector(getGoToSleepWindowEnd)
-
   const wentToBed = getFormattedDateOrPlaceholder(bedStart, 'H:mm')
   const gotUp = getFormattedDateOrPlaceholder(bedEnd, 'H:mm')
-
   const fellAsleep = getFormattedDateOrPlaceholder(sleepStart, 'H:mm')
   const wokeUp = getFormattedDateOrPlaceholder(sleepEnd, 'H:mm')
-
   const windowStart = getFormattedDateOrPlaceholder(
     goToSleepWindowStart,
     'H:mm'
   )
   const windowEnd = getFormattedDateOrPlaceholder(goToSleepWindowEnd, 'H:mm')
+  const [page, setPage] = useState(0)
+
+  const handleScroll = ({
+    nativeEvent
+  }: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (nativeEvent.contentOffset.x > nativeEvent.contentSize.width / 3) {
+      setPage(1)
+    } else {
+      setPage(0)
+    }
+  }
 
   return (
     <Container>
       <Title>STAT.STATISTICS</Title>
 
-      <ScrollView horizontal pagingEnabled>
+      <ScrollView
+        horizontal
+        pagingEnabled
+        scrollEventThrottle={30}
+        showsHorizontalScrollIndicator={false}
+        onScroll={handleScroll}>
         <Page>
           <Row>
             <Figure>
@@ -173,7 +192,10 @@ const InsightsCard: FC = () => {
           </Row>
         </Page>
       </ScrollView>
-      {/* <Paging></Paging> */}
+      <Paging>
+        <Dot selected={page === 0} />
+        <Dot selected={page === 1} />
+      </Paging>
     </Container>
   )
 }
@@ -234,4 +256,23 @@ const Description = styled(TranslatedText)`
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${({ theme }) => theme.FONT_REGULAR};
   font-size: 13px;
+`
+
+const Paging = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`
+
+type DotProps = {
+  selected: boolean
+}
+const Dot = styled.View<DotProps>`
+  height: 5px;
+  width: 5px;
+  border-radius: 10px;
+  background-color: ${({ selected, theme }) =>
+    selected ? theme.accent : theme.HAIRLINE_COLOR};
+  margin: 0px 5px;
 `

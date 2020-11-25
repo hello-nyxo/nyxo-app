@@ -18,8 +18,7 @@ project(':appcenter-analytics').projectDir = new File(rootProject.projectDir, '.
 include ':react-native-firebase'
 project(':react-native-firebase').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-firebase/android')
 
-include ':@sentry'
-project(':@sentry').projectDir = new File(rootProject.projectDir, '../node_modules/@sentry/react-native/android')
-
+include ':@sentry_react-native'
+project(':@sentry_react-native').projectDir = new File(rootProject.projectDir, '../node_modules/@sentry/react-native/android')
 
 include ':app'

@@ -31,9 +31,9 @@ const GoogleFitSection: FC = () => {
     dispatch(toggleGoogleFit())
   }
 
-  const mapped = sources?.map((item, key) => (
+  const mapped = sources?.map((item) => (
     <SourceRow
-      key={key}
+      key={item.sourceId}
       sourceId={item.sourceId}
       sourceName={item.sourceName}
       selectedSourceId={healthKitSource?.sourceId}

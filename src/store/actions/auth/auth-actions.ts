@@ -79,7 +79,7 @@ export const logoutFailure = (): ReduxAction => ({
 export const register = (
   email: string,
   password: string,
-  successCallback: void
+  successCallback: void | (() => void)
 ): Thunk => async (dispatch: Dispatch) => {
   dispatch(registerStart())
   try {
@@ -134,7 +134,7 @@ export const resendEmail = (username: string): Thunk => async (
 export const login = (
   loginEmail: string,
   loginPassword: string,
-  successCallback: () => void
+  successCallback: void | (() => void)
 ): Thunk => async (dispatch: Dispatch, getState: GetState) => {
   dispatch(loginStart())
   const {
@@ -206,8 +206,8 @@ export const logout = (): Thunk => async (dispatch: Dispatch) => {
   }
 }
 
-export const requestNewPassword = (username: string) => async (
-  dispatch: Function
+export const requestNewPassword = (username: string): Thunk => async (
+  dispatch: Dispatch
 ) => {
   try {
     const forgotRes = await Auth.forgotPassword(username)
@@ -225,7 +225,7 @@ export const submitNewPassword = (
   username: string,
   confirmationCode: string,
   password: string
-) => async (dispatch: Function) => {
+): Thunk => async (dispatch: Dispatch) => {
   try {
     const res = await Auth.forgotPasswordSubmit(
       username,
@@ -245,7 +245,7 @@ export const submitNewPassword = (
 export const updatePassword = (
   oldPassword: string,
   newPassword: string
-) => async (dispatch: Function) => {
+): Thunk => async (dispatch: Thunk) => {
   await Auth.currentAuthenticatedUser()
     .then((user) => Auth.changePassword(user, oldPassword, newPassword))
     .then((data) => {})

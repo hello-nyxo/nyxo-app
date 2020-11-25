@@ -1,11 +1,3 @@
-import { Formik } from 'formik'
-import { WIDTH } from '@helpers/Dimensions'
-import React, { memo } from 'react'
-import { ScrollView } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import { getLoading } from '@selectors/auth-selectors/auth-selectors'
-import styled from 'styled-components/native'
-import { login } from '@actions/auth/auth-actions'
 import BackToAppButton from '@components/Buttons/BackToAppButton'
 import BottomButton from '@components/Buttons/BottomButton'
 import MergingDialog from '@components/modals/MergeHabitsModal/MergeHabitsModal'
@@ -13,29 +5,33 @@ import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import Input from '@components/TextField'
 import TopInfo from '@components/TopInfo'
 import TranslatedText from '@components/TranslatedText'
-import { fonts, StyleProps } from '@styles/themes'
-import ROUTE from '../../config/routes/Routes'
-import { LoginSchema } from '../../config/Validation'
-import colors from '../../styles/colors'
+import ROUTE from '@config/routes/Routes'
+import { LoginSchema } from '@config/Validation'
+import { WIDTH } from '@helpers/Dimensions'
+import { getLoading } from '@selectors/auth-selectors/auth-selectors'
+import colors from '@styles/colors'
+import { fonts } from '@styles/themes'
+import { Formik } from 'formik'
+import React, { FC, memo } from 'react'
+import { ScrollView } from 'react-native'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 
 type Props = {
-  navigation: any
+  login: (email: string, password: string) => Promise<void>
+  back: () => void
+  goToRegister: () => void
 }
 
-const SignInScreen: FC<Props> = ({ navigation }) => {
+const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
   const loading = useSelector(getLoading)
-  const dispatch = useDispatch()
-
-  const toRegister = () => {
-    navigation.navigate(ROUTE.REGISTER)
-  }
 
   const loginSuccess = () => {
     navigation.navigate(ROUTE.APP)
   }
 
   const submit = ({ email, password }) => {
-    dispatch(login(email, password, loginSuccess))
+    login(email, password, loginSuccess)
   }
 
   return (
@@ -95,20 +91,20 @@ const SignInScreen: FC<Props> = ({ navigation }) => {
                   onChangeText={handleChange('password')}
                 />
 
-                <Register onPress={toRegister}>MOVE_TO_REGISTER</Register>
+                <Register onPress={goToRegister}>MOVE_TO_REGISTER</Register>
               </ScrollView>
             </Container>
 
             <BottomButton
               loading={loading}
-              disabled={!isValid}
+              disabled={!isValid || (!touched.email && !touched.password)}
               onPress={handleSubmit}
               title="BUTTON_SIGNIN"
             />
           </>
         )}
       </Formik>
-      <BackToAppButton />
+      <BackToAppButton back={back} />
       <MergingDialog />
     </SafeAreaView>
   )
@@ -131,12 +127,6 @@ const Circle = styled.View`
   position: absolute;
   right: ${WIDTH / -2}px;
   top: ${WIDTH / -2}px;
-`
-
-const ForgotPassword = styled(TranslatedText)`
-  font-family: ${fonts.medium};
-  font-size: 15px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Register = styled(TranslatedText)`

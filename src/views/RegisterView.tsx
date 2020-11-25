@@ -9,10 +9,10 @@ import { RegisterSchema } from '@config/Validation'
 import { WIDTH } from '@helpers/Dimensions'
 import { getLoading } from '@selectors/auth-selectors/auth-selectors'
 import colors from '@styles/colors'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import { Formik } from 'formik'
 import React, { FC } from 'react'
-import { ActivityIndicator, ScrollView } from 'react-native'
+import { ScrollView } from 'react-native'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -95,14 +95,12 @@ export const RegisterView: FC<Props> = ({ register, back, goToLogin }) => {
                 <LoginButton onPress={navigateToSignIn}>
                   MOVE_TO_SIGNIN
                 </LoginButton>
-
-                {loading && <ActivityIndicator />}
               </ScrollView>
             </Container>
 
             <BottomButton
               loading={loading}
-              disabled={!isValid}
+              disabled={!isValid || (!touched.email && !touched.password)}
               onPress={handleSubmit}
               title="BUTTON_REGISTER"
             />
@@ -114,7 +112,7 @@ export const RegisterView: FC<Props> = ({ register, back, goToLogin }) => {
   )
 }
 
-const PasswordRequirement = styled(TranslatedText)<StyleProps>`
+const PasswordRequirement = styled(TranslatedText)`
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.medium};
   font-size: 13px;

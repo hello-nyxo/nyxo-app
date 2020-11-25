@@ -104,7 +104,9 @@ const SleepTimeChart: FC = () => {
 
 export default SleepTimeChart
 
-const ScrollContainer = styled.View``
+const ScrollContainer = styled.View`
+  overflow: hidden;
+`
 
 const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};

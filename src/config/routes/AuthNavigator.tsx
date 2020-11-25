@@ -1,9 +1,9 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Login from '../../screens/Auth/Login'
-import Register from '../../screens/Auth/RegisterScreen'
-import ConfirmUser from '../../screens/Auth/ConfirmUser'
-import ForgotPassword from '../../screens/Auth/ForgotPasswordScreen'
+import Login from '@screens/Auth/LoginScreen'
+import Register from '@screens/Auth/RegisterScreen'
+import ConfirmUser from '@screens/Auth/ConfirmUser'
+import ForgotPassword from '@screens/Auth/ForgotPasswordScreen'
 import ROUTE from './Routes'
 
 const Stack = createNativeStackNavigator()

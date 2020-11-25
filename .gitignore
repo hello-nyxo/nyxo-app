@@ -129,3 +129,5 @@ rnuc.xcconfig
 android/app/.project
 
 ios/GoogleService-Info.plist
+android/debug.keystore.properties
+android/release.keystore.properties

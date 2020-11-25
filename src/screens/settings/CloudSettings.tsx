@@ -2,6 +2,7 @@ import { logout } from '@actions/auth/auth-actions'
 import { getConnectionId } from '@actions/linking/linking-actions'
 import GoBack, { GoBackContainer, Spacer } from '@components/Buttons/GoBack'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
+import SignupBottomButton from '@components/Signup/SignupBottomButton'
 import {
   Container,
   H2,
@@ -76,15 +77,7 @@ const CloudView = ({ navigation, route }) => {
               />
             </>
           )}
-          {!isLoggedIn && (
-            <>
-              <P>SCcloudRequirements</P>
-
-              <PrimaryButton title="Sign in" onPress={handleNavToSignIn} />
-              <Spacer />
-              <PrimaryButton title="Register" onPress={handleNavToRegister} />
-            </>
-          )}
+          {!isLoggedIn && <SignupBottomButton />}
         </Container>
       </ScrollView>
       <CodeDisclaimer linkCode={linkCode} />

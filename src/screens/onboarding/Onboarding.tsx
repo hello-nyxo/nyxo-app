@@ -1,55 +1,59 @@
+/* eslint-disable global-require */
+import { register } from '@actions/auth/auth-actions'
+import { markDataOnboardingCompleted } from '@actions/onboarding/onboarding-actions'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import { H2, SafeAreaView } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
+import ROUTE from '@config/routes/Routes'
 import { HEIGHT, WIDTH } from '@helpers/Dimensions'
+import { useNavigation } from '@react-navigation/core'
 import colors from '@styles/colors'
+import PurchaseView from '@views/PurchaseView'
+import { RegisterView } from '@views/RegisterView'
+import { SourceSettingsView } from '@views/SourceView'
 import React, { FC, useState } from 'react'
 import { ScrollView } from 'react-native'
-import { SourceSettingsView } from '@views/SourceView'
-import styled from 'styled-components/native'
-import { useNavigation } from '@react-navigation/core'
-import ROUTE from '@config/routes/Routes'
-import PurchaseView from '@views/PurchaseView'
 import Modal, { ReactNativeModal } from 'react-native-modal'
-import RegisterScreen from '@screens/Auth/RegisterScreen'
-import { CoachingIllustration } from '@components/onboarding/CoachingIllustration'
-import { DeviceIllustration } from '@components/onboarding/DeviceIllustration'
-import { RegisterView } from '@views/RegisterView'
 import { useDispatch } from 'react-redux'
-import { register } from '@actions/auth/auth-actions'
+import styled from 'styled-components/native'
+
+const images = {
+  welcome: require('@assets/onboarding/welcome.png'),
+  auth: require('@assets/onboarding/auth.png'),
+  coaching: require('@assets/onboarding/coaching.png'),
+  done: require('@assets/onboarding/done.png'),
+  devices: require('@assets/onboarding/devices.png')
+}
 
 export const Onboarding: FC = () => {
   const { navigate } = useNavigation()
   const dispatch = useDispatch()
-  const [showDataModal, setShowDataModal] = useState(false)
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+  const [dataModal, toggleDataModal] = useState(false)
+  const [purchaseModal, togglePurchaseModal] = useState(false)
   const [authModal, toggleAuthModal] = useState(false)
 
-  const signUp = async (email, password) => {
-    await dispatch(register(email, password, openAuthModal))
-  }
-
-  const openSourceModal = () => {
-    setShowDataModal(true)
+  const signUp = async (email: string, password: string) => {
+    await dispatch(register(email, password, authModalToggle))
   }
 
   const skip = () => {
     navigate(ROUTE.APP)
   }
 
-  const openPurchaseModal = () => {
-    setShowPurchaseModal(true)
+  const done = () => {
+    dispatch(markDataOnboardingCompleted())
+    navigate(ROUTE.APP)
   }
 
-  const closeModal = () => {
-    setShowDataModal(false)
+  const dataModalToggle = () => {
+    toggleDataModal(!dataModal)
   }
 
-  const closePurchase = () => {
-    setShowPurchaseModal(false)
+  const purchaseModalToggle = () => {
+    togglePurchaseModal(!purchaseModal)
   }
 
-  const openAuthModal = () => {
+  const authModalToggle = () => {
     toggleAuthModal(!authModal)
   }
 
@@ -60,65 +64,88 @@ export const Onboarding: FC = () => {
           <SkipButtonText>Skip</SkipButtonText>
         </SkipButton>
       </SkipContainer>
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        pagingEnabled>
+      <ScrollView horizontal pagingEnabled>
         <Page>
-          <ImageContainer />
+          <ImageContainer>
+            <Image source={images.welcome} />
+          </ImageContainer>
           <Line />
           <TextContainer>
-            <Title>ONBOARDING.HELLO</Title>
-            <Text>ONBOARDING.HELLO_TEXT</Text>
+            <Content>
+              <Title>ONBOARDING.HELLO</Title>
+              <Text>ONBOARDING.HELLO_TEXT</Text>
+            </Content>
           </TextContainer>
         </Page>
         <Page>
           <ImageContainer>
-            <DeviceIllustration />
+            <Image source={images.devices} />
           </ImageContainer>
           <Line />
           <TextContainer>
-            <Title>ONBOARDING.DATA</Title>
-            <Text>ONBOARDING.DATA_TEXT</Text>
-
-            <PrimaryButton title="START.BUTTON" onPress={openSourceModal} />
+            <Content>
+              <Title>ONBOARDING.DATA</Title>
+              <Text>ONBOARDING.DATA_TEXT</Text>
+            </Content>
+            <PrimaryButton title="START.BUTTON" onPress={dataModalToggle} />
           </TextContainer>
         </Page>
 
         <Page>
-          <ImageContainer />
+          <ImageContainer>
+            <Image source={images.auth} />
+          </ImageContainer>
           <Line />
           <TextContainer>
-            <Title>ONBOARDING.REGISTER</Title>
-            <Text>ONBOARDING.REGISTER_TEXT</Text>
-
+            <Content>
+              <Title>ONBOARDING.REGISTER</Title>
+              <Text>ONBOARDING.REGISTER_TEXT</Text>
+            </Content>
             <PrimaryButton
               title="CREATE_ACCOUNT_BUTTON"
-              onPress={openAuthModal}
+              onPress={authModalToggle}
             />
           </TextContainer>
         </Page>
 
         <Page>
           <ImageContainer>
-            <CoachingIllustration />
+            <Image source={images.coaching} />
           </ImageContainer>
           <Line />
           <TextContainer>
-            <Title>ONBOARDING.COACHING</Title>
-            <Text>ONBOARDING.COACHING_TEXT</Text>
+            <Content>
+              <Title>ONBOARDING.COACHING</Title>
+              <Text>ONBOARDING.COACHING_TEXT</Text>
+            </Content>
+            <PrimaryButton
+              title="ONBOARDING.PURCHASE"
+              onPress={purchaseModalToggle}
+            />
+          </TextContainer>
+        </Page>
 
-            <PrimaryButton title="START.PURCHASE" onPress={openPurchaseModal} />
+        <Page>
+          <ImageContainer>
+            <Image source={images.done} />
+          </ImageContainer>
+          <Line />
+          <TextContainer>
+            <Content>
+              <Title>ONBOARDING.ALL_DONE</Title>
+              <Text>ONBOARDING.ALL_DONE_TEXT</Text>
+            </Content>
+            <PrimaryButton title="ONBOARDING.DONE" onPress={done} />
           </TextContainer>
         </Page>
       </ScrollView>
 
       {/* Source Selection */}
       <StyledModal
-        isVisible={showDataModal}
+        isVisible={dataModal}
         transparent={false}
-        onSwipeComplete={closeModal}
-        onRequestClose={closeModal}
+        onSwipeComplete={dataModalToggle}
+        onRequestClose={dataModalToggle}
         presentationStyle="pageSheet"
         hideModalContentWhileAnimating
         animationType="slide">
@@ -131,14 +158,14 @@ export const Onboarding: FC = () => {
       <StyledModal
         isVisible={authModal}
         transparent={false}
-        onSwipeComplete={openAuthModal}
-        onRequestClose={openAuthModal}
+        onSwipeComplete={authModalToggle}
+        onRequestClose={authModalToggle}
         presentationStyle="pageSheet"
         hideModalContentWhileAnimating
         animationType="slide">
         <ModalContent>
           <RegisterView
-            back={openAuthModal}
+            back={authModalToggle}
             goToLogin={() => {}}
             register={signUp}
           />
@@ -147,10 +174,10 @@ export const Onboarding: FC = () => {
 
       {/* IAP */}
       <StyledModal
-        isVisible={showPurchaseModal}
+        isVisible={purchaseModal}
         transparent={false}
-        onSwipeComplete={closePurchase}
-        onRequestClose={closePurchase}
+        onSwipeComplete={purchaseModalToggle}
+        onRequestClose={purchaseModalToggle}
         presentationStyle="pageSheet"
         hideModalContentWhileAnimating
         animationType="slide">
@@ -187,7 +214,7 @@ const Text = styled(TranslatedText)`
 
 const Line = styled.View`
   background-color: ${colors.darkBlue};
-  height: 2px;
+  height: 0px;
   width: 100%;
 `
 
@@ -222,4 +249,16 @@ const SkipButton = styled.TouchableOpacity``
 const SkipButtonText = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+`
+
+const Image = styled.Image.attrs(() => ({
+  resizeMode: 'contain'
+}))`
+  width: 80%;
+  height: 80%;
+  margin-bottom: 0px;
+`
+
+const Content = styled.View`
+  height: 180px;
 `

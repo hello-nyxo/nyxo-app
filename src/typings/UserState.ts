@@ -1,9 +1,9 @@
-import { ThemeProps } from '@styles/themes'
+import { DefaultTheme } from 'styled-components'
 
 export interface UserState {
   syncEnabled: boolean | null
   quickIntroCompleted: boolean | null
-  appTheme: ThemeProps
+  appTheme: DefaultTheme
   connectionId?: string
   username: string | null
   email: string | null

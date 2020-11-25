@@ -554,6 +554,7 @@
     "GOOGLE_FIT": "Google Fit",
     "HEALTH_KIT": "Apple Terveys",
     "HEALTH_KIT_DESCRIPTION": "Sallimalla Apple Terveys -synkronoinnin annat Nyxolle luvan hakea unidataa Apple Terveys -yhteensopivista laitteista ja sovelluksista.",
+    "AVAILABLE_HEALTHKIT": "Apple Terveydestä löydetyt lähteet",
     "GOGLE_FIT_DESCRIPTION": "Sallimalla Google Fit -synkronoinnin annat Nyxolle luvan hakea unidataa Google Fit -yhteensopivista laitteista ja sovelluksista.",
     "FITBIT": "Fitbit",
     "FITBIT_DESCRIPTION": "Sallimalla Fitbit-synkronoinnin annat Nyxolle luvan hakea unidataa Fitbitistä. Voit myös sallia sen, että Nyxo tallentaa unidatan Apple Terveyteen.",
@@ -562,9 +563,9 @@
     "OURA": "Oura",
     "OURA_DESCRIPTION": "Sallimalla Oura-synkronoinnin annat Nyxolle luvan hakea unidataa Ourasta.",
     "GARMIN": "Garmin",
-    "GARMIN_DESCRIPTION": "Sallimalla Garmin-synkronoinnin annat Nyxolle luvan hakea unidataa Garmin laitteista ja sovelluksista.",
+    "GARMIN_DESCRIPTION": "Sallimalla Garmin-synkronoinnin annat Nyxolle luvan hakea unidataa Garminin laitteista ja sovelluksista.",
     "POLAR": "Polar",
-    "POLAR_DESCRIPTION": "Enabling synchronization with Polar will allow Nyxo to synchronize your sleep records from Polar."
+    "POLAR_DESCRIPTION": "Sallimalla Polar-synkronoinnin annat Nyxolle luvan hakea unidataa Polarin laitteista ja sovelluksista."
   },
 
   "ERROR": {
@@ -657,9 +658,13 @@
     "INVALID_PASSWORD_EXCEPTION": "Väärä salasana"
   },
   "STAT": {
+    "TREND": "Kehitys",
     "STATISTICS": "Tunnuslukuja",
     "TITLE": "Uni",
     "NIGHT": "Yö: {{night}}",
+    "GOT_UP": "Nousit",
+    "FELL_ASLEEP": "Nukahdit",
+
     "BED": "Sängyssä",
     "BED_EXPLANATION": "Sängyssä vietetty aika perustuu unen seurantalaitteesi antamaan tietoon. Tästä johtuen se voi erota välillä melko paljon unessa vietetystä ajasta.",
     "SLEEP": "Unessa",
@@ -667,9 +672,10 @@
     "WINDOW": "Uni-ikkuna",
     "WINDOW_EXPLANATION": "Uni-ikkuna on arvio sirkkadiaanisen ja homeostaattisen rytmisi määrittelemästä 'optimaalisesta nukahtamisajasta'. Uni-ikkuna lasketaan seitsemän viimeisen yön perusteella. Nukahtaaksesi helpommin, pyri ajoittamaan nukahtaminen uni-ikkunan sisälle.",
     "RATING": "Oma arvio",
+    "EFFICIENCY": "Vaikuttavuus",
     "RATING_EXPLANATION": "Oma arviosi viime yön unen laadusta.",
-    "WENT_TO_BED": "Uni alkoi",
-    "WOKE_UP": "Herääminen"
+    "WENT_TO_BED": "Menit sänkyyn",
+    "WOKE_UP": "Heräsit"
   },
 
   "TAB": {
@@ -682,7 +688,16 @@
 
   "COACHING": {
     "WATCH_INTRO": "Katso Esittely",
-    "START": "Aloita Valmennus"
+    "START": "Aloita Valmennus",
+    "CHANGE": "Muuta",
+    "SETTINGS": {
+      "TITLE": "Valmennus",
+      "ACTIVE": "Aktiivinen valmennusjakso",
+      "ALL": "Kaikki valmennusjaksot"
+    },
+
+    "SET_ACTIVE": "Aseta aktiiviseksi",
+    "DELETE": "Poista"
   },
 
   "QUESTION": {
@@ -701,5 +716,41 @@
     "SOCIAL_JET_LAG_EXPLANATION": "Sosiaalinen aikaero on arkipäivien ja viikonloppujen nukuttujen öiden ero toisiinsa. Pieni ero = enemmän pisteitä ",
     "TIMING": "Ajoitus",
     "TIMING_EXPLANATION": "Saat ajoituksesta pisteitä sen mukaan kuinka tasaisesti menet nukkumaan ja heräät."
+  },
+
+  "ONBOARDING": {
+    "HELLO": "👋 Tervetuloa!",
+    "HELLO_TEXT": "Nyxo on sovellus niille, jotka haluavat nukkua paremmin \n  \n 👉 Swaippaa oikealle niin kerromme lisää! ",
+
+    "DATA": "Katsotaanko dataa?",
+    "DATA_TEXT": "Jos käytössäsi on unta mittaava laite, voit yhdistää tiedot helposti Nyxoon alla olevalla painikkeella",
+    "DATA_BUTTON": "Connect Sleep Tracker",
+
+    "REGISTER": "Luo Nyxo-tili",
+    "REGISTER_TEXT": "Näin saat pääsyn moniin etuihin, kuten unidatasi varmuuskopiointi,  unidatan ja valmennussisällön katsominen pöytäkoneelta tai tabletilta sekä edistymisen seuraaminen univalmentajan kanssa",
+
+    "COACHING": "Asiantuntijoiden käsissä",
+    "COACHING_TEXT": "Nyxon univalmennus on luotu yhdessä johtavien univalmentajien kanssa",
+
+    "PROMPT": "Katso tästä lyhyt esittely!",
+
+    "PURCHASE": "Lue lisää",
+
+    "ALL_DONE": "Valmis aloittamaan?",
+    "ALL_DONE_TEXT": "Nyt voidaan aloittaa Nyxon käyttäminen",
+    "DONE": "Menoksi!"
+  },
+
+  "WEEK": {
+    "BEGIN": "Begin week",
+    "COMPLETE": "Complete week",
+    "LESSONS": "Lessons"
+  },
+
+  "WHY_SIGNUP": {
+    "BACKUP": "Unidatasi varmuuskopiointi",
+    "SAVE_COACHING_PROGRESS": "Tallenna valmennuksen edistyminen pilveen",
+    "ACCESS_FROM_COMPUTER": "Pääset käsiksi aunidataan ja valmennussisältöön pöytäkoneelta tai tabletilta",
+    "SHARE": "Jaa edistyksesi univalmentajan kanssa"
   }
 }

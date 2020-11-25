@@ -1,5 +1,5 @@
-import { ThemeProps } from '@styles/themes'
 import ReduxAction from '@typings/redux-actions'
+import { DefaultTheme } from 'styled-components'
 
 /* ACTION TYPES */
 export const CHANGE_USER_NAME = 'CHANGE_USER_NAME'
@@ -26,7 +26,7 @@ export const markIntroductionCompleted = (completed: boolean): ReduxAction => ({
   payload: completed
 })
 
-export const setTheme = (theme: ThemeProps): ReduxAction => ({
+export const setTheme = (theme: DefaultTheme): ReduxAction => ({
   type: SET_THEME,
   payload: theme
 })

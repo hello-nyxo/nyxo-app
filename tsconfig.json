@@ -30,6 +30,7 @@
       "@types/*": ["./src/Types/*"],
       "@styles/*": ["./src/styles/*"],
       "@config/*": ["./src/config/*"],
+      "@assets/*": ["./assets/*"],
       "@API": ["./src/API.ts"],
       "persist-queries": ["./src/store/persist-queries.ts"]
     }

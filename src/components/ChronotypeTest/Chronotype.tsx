@@ -209,7 +209,7 @@ const QuestionNumber = styled.Text`
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
-const AnswerCard = styled(Animated.View)<StyleProps>`
+const AnswerCard = styled(Animated.View)`
   background: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   padding: 10px;
   margin: 10px ${cardMargin}px;
@@ -218,7 +218,7 @@ const AnswerCard = styled(Animated.View)<StyleProps>`
 `
 
 const Answer = styled.TouchableOpacity``
-const AnswerInner = styled.View<StyleProps>`
+const AnswerInner = styled.View`
   background: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   margin: 10px 20px;
   flex-direction: row;

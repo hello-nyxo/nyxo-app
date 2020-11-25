@@ -3,7 +3,7 @@ import { TextInput, TextInputProps } from 'react-native'
 import styled from 'styled-components/native'
 import translate from '../config/i18n'
 import colors from '../styles/colors'
-import { constants, fonts, StyleProps } from '../styles/themes'
+import { constants, fonts } from '../styles/themes'
 import { IconBold } from './iconRegular'
 import TranslatedText from './TranslatedText'
 
@@ -82,7 +82,7 @@ const Container = styled.TouchableWithoutFeedback`
   background-color: red;
 `
 
-interface InputProps extends StyleProps, TextInputProps {
+interface InputProps extends TextInputProps {
   readonly error?: boolean
   readonly icon?: string
 }
@@ -118,7 +118,7 @@ const InputField = styled.TextInput<InputProps>`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 17px;
 `
-const Icon = styled(IconBold).attrs(({ theme, error, icon }: InputProps) => ({
+const Icon = styled(IconBold).attrs<InputProps>(({ theme, error, icon }) => ({
   fill: error ? colors.red : theme.SECONDARY_TEXT_COLOR,
   name: error ? 'closeCircle' : icon
-}))<InputProps>``
+}))``

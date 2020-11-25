@@ -24,12 +24,12 @@ const CoachingSectionHeader: FC<Props> = ({
 
 export default CoachingSectionHeader
 
-const SectionHeader = styled.View<StyleProps>`
+const SectionHeader = styled.View`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   padding: 30px 20px 20px;
 `
 
-const SectionTitle = styled(TranslatedText)<StyleProps>`
+const SectionTitle = styled(TranslatedText)`
   font-family: ${fonts.bold};
   font-size: 22px;
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};

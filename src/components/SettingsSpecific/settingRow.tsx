@@ -39,7 +39,7 @@ const SettingRow = (props: Props) => {
 
 export default memo(SettingRow)
 
-const Container = styled.View<StyleProps>`
+const Container = styled.View`
   margin: 0px 20px;
   padding: 20px 0px;
   flex-direction: row;
