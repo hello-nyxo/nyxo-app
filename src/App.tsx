@@ -1,4 +1,3 @@
-import { sendError } from '@actions/notifications'
 import Amplify from '@aws-amplify/core'
 import { getTheme } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
@@ -28,7 +27,6 @@ enableScreens()
 Amplify.configure(amplify)
 
 interface AppProps {
-  sendError: (error: any) => void
   theme: DefaultTheme
 }
 
@@ -76,4 +74,4 @@ const mapStateToProps = (state: State) => ({
   theme: getTheme(state)
 })
 
-export default connect(mapStateToProps, { sendError })(App)
+export default connect(mapStateToProps)(App)

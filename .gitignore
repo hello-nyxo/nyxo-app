@@ -131,3 +131,5 @@ android/app/.project
 ios/GoogleService-Info.plist
 android/debug.keystore.properties
 android/release.keystore.properties
+android/app/release.keystore.properties
+android/app/debug.keystore.properties

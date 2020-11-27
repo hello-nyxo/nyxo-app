@@ -9,10 +9,9 @@ import {
   COACHING_INCOMPLETE_LESSON,
   COACHING_REMIND_LESSONS_IN_WEEK,
   NotificationObject
-} from '@config/PushNotifications'
+} from '@config/push-notifications'
 import moment from 'moment'
 import { Platform } from 'react-native'
-import Firebase from 'react-native-firebase'
 import Intercom from 'react-native-intercom'
 import { actionCreators } from '@reducers/NotificationReducer'
 import { GetState } from '@typings/GetState'
@@ -24,7 +23,7 @@ import {
 import { Thunk, Dispatch } from '@typings/redux-actions'
 import { startOfDay } from 'date-fns'
 
-const { notifications: firebaseNotifications } = Firebase
+const firebaseNotifications = undefined
 const {
   setShouldAskNotificationPermission,
   newNotification,

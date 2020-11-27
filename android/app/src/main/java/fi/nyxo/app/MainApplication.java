@@ -16,13 +16,9 @@ import org.unimodules.adapters.react.ReactModuleRegistryProvider;
 import org.unimodules.core.interfaces.SingletonModule;
 import fi.nyxo.app.R;
 import io.intercom.android.sdk.Intercom;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Arrays;
-import io.invertase.firebase.messaging.RNFirebaseMessagingPackage; 
-import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage; 
 import com.reactnativeultimateconfig.UltimateConfigModule;
 public class MainApplication extends Application implements ReactApplication {
   private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
@@ -42,9 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
 
       @SuppressWarnings("UnnecessaryLocalVariable")
       List<ReactPackage> packages = new PackageList(this).getPackages();
-      packages.add(new ModuleRegistryAdapter(mModuleRegistryProvider));
-      packages.add(new RNFirebaseMessagingPackage()); 
-      packages.add(new RNFirebaseNotificationsPackage()); 
+			packages.addAll(unimodules);
       return packages;
     }
 

@@ -1,4 +1,3 @@
-import { askForPush } from '@actions/notifications'
 import { getShouldAskForPermission } from '@selectors/NotificationSelectors'
 import NotificationCard from '@components/NotificationCenter/NotificationCard'
 import React, { FC } from 'react'
@@ -14,7 +13,7 @@ const EnablePushCheck: FC = () => {
   }
 
   const allowPush = () => {
-    dispatch(askForPush())
+    // dispatch(askForPush())
   }
 
   const hidePushCheck = () => {

@@ -3,9 +3,6 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 require_relative '../node_modules/react-native-unimodules/cocoapods.rb'
 
 pod 'RNPurchases', :path => '../node_modules/react-native-purchases', :inhibit_warnings => true
-pod 'RNSha256', :path => '../node_modules/react-native-sha256'
-pod 'Firebase/Core', '~> 6.9.0'
-pod 'Firebase/Messaging', '~> 6.9.0'
 pod 'OpenSSL-Universal'
 
 
@@ -17,7 +14,6 @@ platform :ios, '10.0'
 target 'Nyxo' do
 
 	pod 'Intercom'
-	pod 'Sentry', '6.0.7'
   use_unimodules!(exclude: ['expo-face-detector'])
   use_native_modules!
 
@@ -36,6 +32,7 @@ end
 # post_install do |installer|
 
 # installer.pods_project.targets.each do |target|
+
 
 #   if target.name == 'YogaKit'
 #     target.build_configurations.each do |config|

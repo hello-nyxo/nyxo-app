@@ -3,7 +3,7 @@ apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
 import com.android.build.OutputFile
 
 // Load keystore
-def keystorePropertiesFile = rootProject.file("release.keystore.properties");
+def keystorePropertiesFile = rootProject.file("app/release.keystore.properties");
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
@@ -37,7 +37,7 @@ android {
         applicationId "fi.nyxo.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 71
+        versionCode 76
         versionName "1.5.0"
         multiDexEnabled true
         manifestPlaceholders = [
@@ -100,23 +100,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    addUnimodulesDependencies([exclude: ['expo-face-detector']])
-
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    
+    implementation "com.facebook.react:react-native:+" 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-    implementation project(':react-native-background-fetch')
     implementation project(':appcenter')
     implementation project(':appcenter-analytics')
     implementation project(':appcenter-crashes')
-    implementation 'com.google.firebase:firebase-core:17.0.0'
-    implementation project(':react-native-firebase')
-    implementation 'com.google.firebase:firebase-messaging:9.2.1'
     implementation 'io.intercom.android:intercom-sdk-base:5.+'
-
-    implementation "com.google.firebase:firebase-messaging:18.0.0"
-    implementation 'me.leolin:ShortcutBadger:1.1.21@aar' // <-- Add this line if you wish to use badge on Android
+    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
+		
+		addUnimodulesDependencies([exclude: ['expo-face-detector','expo-permissions']])
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
@@ -128,12 +121,6 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
     }
-
-
-    // required if your app is in the Google Play Store (tip: avoid using bundled play services libs)
-    implementation 'com.google.firebase:firebase-appindexing:19.0.0' // App indexing
-    implementation 'com.google.android.gms:play-services-ads:16+' // GAID matching
-
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
