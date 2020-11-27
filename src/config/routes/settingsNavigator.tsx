@@ -6,12 +6,12 @@ import ManageSubscription from '@screens/settings/ManageSubscription'
 import NotificationSettings from '@screens/settings/Notifications'
 import Settings from '@screens/settings/settings'
 import SetSource from '@screens/settings/SourceSettings'
-import React from 'react'
+import React, { FC } from 'react'
 import ROUTE from './Routes'
 
 const Stack = createNativeStackNavigator()
 
-const SettingsNavigator = () => {
+const SettingsNavigator: FC = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -29,11 +29,11 @@ const SettingsNavigator = () => {
         component={CloudSettings}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="NotificationSettings"
         component={NotificationSettings}
         options={{ headerShown: false }}
-      />
+      /> */}
       <Stack.Screen
         name="CoachingSettings"
         component={CoachingSettings}

@@ -6,10 +6,6 @@
  */
 
 
-/* react-native-firebase */
- #import <Firebase.h> 
- #import "RNFirebaseNotifications.h"
-
 /* react-native-community/push-notification-ios */
 #import <RNCPushNotificationIOS.h>
 #import <UserNotifications/UserNotifications.h>
@@ -30,8 +26,6 @@
 #import "AppCenterReactNativeAnalytics.h"
 #import "AppCenterReactNativeCrashes.h"
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 #import "Intercom/intercom.h"
 #import <TSBackgroundFetch/TSBackgroundFetch.h>
 
@@ -48,6 +42,7 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
+#import <react-native-ultimate-config/ConfigValues.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -59,10 +54,6 @@ static void InitializeFlipper(UIApplication *application) {
   [client start];
 }
 #endif
-
-
-
-#import <react-native-ultimate-config/ConfigValues.h>
 
 
 @implementation AppDelegate
@@ -97,15 +88,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
 //  [RNCPushNotificationIOS didReceiveLocalNotification:notification];
-  [[RNFirebaseNotifications instance] didReceiveLocalNotification:notification];
 }
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  /* react-native-firebase */
-  [FIRApp configure];
-  [RNFirebaseNotifications configure];
 
   #if DEBUG
 //    InitializeFlipper(application);
@@ -139,6 +126,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
+  [super application:application didFinishLaunchingWithOptions:launchOptions];
 
 
   return YES;
@@ -150,8 +138,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 - (NSArray<id<RCTBridgeModule>> *)extraModulesForBridge:(RCTBridge *)bridge
 {
   NSArray<id<RCTBridgeModule>> *extraModules = [_moduleRegistryAdapter extraModulesForBridge:bridge];
-  // You can inject any extra modules that you would like here, more information at:
-  // https://facebook.github.io/react-native/docs/native-modules-ios.html#dependency-injection
+
   return extraModules;
 }
 

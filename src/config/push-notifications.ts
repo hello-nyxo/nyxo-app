@@ -1,7 +1,6 @@
-import Firebase from 'react-native-firebase'
 import translate from './i18n'
 
-const { notifications: firebaseNotifications } = Firebase
+const firebaseNotifications = undefined
 
 export interface NotificationTypes {
   BEDTIME_APPROACH: Notification
@@ -13,7 +12,7 @@ export interface UserInfo {
   id: string
 }
 
-export type androidImportanceType = typeof firebaseNotifications.Android.Importance.Max
+export type androidImportanceType = typeof firebaseNotifications?.Android.Importance.Max
 
 export interface AndroidChannel {
   id: string
@@ -40,7 +39,7 @@ export const androidChannels: AndroidChannels = {
   BEDTIME: {
     id: 'bedtimeChannel',
     name: 'Bedtime Channel',
-    importance: firebaseNotifications.Android.Importance.Max
+    importance: firebaseNotifications?.Android?.Importance.Max
   },
   COACHING: {
     id: 'coachingChannel',

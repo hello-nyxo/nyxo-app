@@ -1,26 +1,21 @@
 import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import { fetchSleepData } from '@actions/night-cloud/night-cloud'
-import { backgroundAction, startup } from '@actions/StartupActions'
+import { startup } from '@actions/StartupActions'
 import SleepTimeChart from '@components/Charts/SleepChart'
 import Clock from '@components/Clock'
 import DayStrip from '@components/DayStrip'
 import { IconBold } from '@components/iconRegular'
 import { EditNightHeader } from '@components/MainScreenSpecific/EditNightHeader'
-import InitializeSource from '@components/MainScreenSpecific/InitializeSources'
 import ExplanationsModal from '@components/modals/ExplanationsModal'
 import EditHabitModal from '@components/modals/HabitModal/EditHabitModal'
 import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import MergeHabitsModal from '@components/modals/MergeHabitsModal/MergeHabitsModal'
-import NotificationCenterLink from '@components/NotificationCenter/NotificationCenterLink'
 import { SafeAreaView } from '@components/Primitives/Primitives'
 import RatingModal from '@components/RatingModal'
 import CalendarModal from '@components/sleep/CalendarModal'
 import InsightsCard from '@components/sleep/InsightsCard'
 import { OnboardingCard } from '@components/sleep/OnboardingCard'
-import QuestionCard from '@components/sleep/QuestionCard'
 import { getUserActiveCoaching } from '@hooks/coaching/useCoaching'
-import useBackgroundFetch from '@hooks/UseBackgroundFetch'
-import useNotificationEventHandlers from '@hooks/UseNotificationEventHandlers'
 import { useFocusEffect } from '@react-navigation/core'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
@@ -38,7 +33,7 @@ const Sleep: FC = () => {
   const editModeOn = useSelector(getEditMode)
   const isLoadingSleepData = useSelector(getHealthKitLoading)
 
-  useNotificationEventHandlers()
+  // useNotificationEventHandlers()
 
   useEffect(() => {
     dispatch(startup())
@@ -55,10 +50,6 @@ const Sleep: FC = () => {
       preFetch()
     }, [])
   )
-
-  useBackgroundFetch(15, async () => {
-    dispatch(backgroundAction())
-  })
 
   const checkSleepData = async () => {
     await dispatch(fetchSleepData(date))

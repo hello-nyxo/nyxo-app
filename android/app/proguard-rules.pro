@@ -16,6 +16,13 @@
 #   public *;
 #}
 
+
+
+-keepclassmembers class fi.nyxo.app.BuildConfig {
+   public static <fields>;
+}
+# [react-native-background-fetch]
+#-keep class com.transistorsoft.rnbackgroundfetch.HeadlessTask { *; }
 -keep public class com.dylanvann.fastimage.* {*;}
 -keep public class com.dylanvann.fastimage.** {*;}
 -keep public class * implements com.bumptech.glide.module.GlideModule
@@ -23,7 +30,4 @@
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
-}
--keepclassmembers class fi.nyxo.app.BuildConfig {
-   public static <fields>;
 }

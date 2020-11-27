@@ -2,12 +2,10 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios'
 import { useNavigation } from '@react-navigation/native'
 import { useEffect } from 'react'
 import { Platform } from 'react-native'
-import firebase from 'react-native-firebase'
-import { NotificationOpen } from 'react-native-firebase/notifications'
 import {
   COACHING_INCOMPLETE_LESSON,
   COACHING_REMIND_LESSONS_IN_WEEK
-} from '../config/PushNotifications'
+} from '@config/push-notifications'
 
 function useNotificationEventHandlers() {
   const navigation = useNavigation()

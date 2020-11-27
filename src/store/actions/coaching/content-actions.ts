@@ -15,7 +15,6 @@ import {
   ILessonFields
 } from '@typings/generated/contentful'
 import { Dispatch, Thunk } from '@typings/redux-actions'
-import { sendError } from '../notifications'
 
 const { createClient } = require('contentful/dist/contentful.browser.min.js')
 
@@ -165,10 +164,7 @@ export const getAllWeeks = (): Thunk => async (dispatch: Dispatch) => {
       })
     )
   } catch (error) {
-    await Promise.all([
-      dispatch(contentActions.updateContentError()),
-      dispatch(sendError(error))
-    ])
+    await Promise.all([dispatch(contentActions.updateContentError())])
   }
 }
 
