@@ -9,7 +9,13 @@ import {
 } from '@actions/user/user-actions'
 import ReduxAction from '@typings/redux-actions'
 import { UserState } from '@typings/UserState'
-import { lightTheme } from '../../../styles/themes'
+import { lightTheme } from '@styles/themes'
+
+jest.mock('react-native', () => ({
+  StyleSheet: {
+    hairlineWidth: 10
+  }
+}))
 
 export const initialState: UserState = {
   syncEnabled: false,

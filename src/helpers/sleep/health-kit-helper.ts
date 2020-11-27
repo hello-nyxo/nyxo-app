@@ -1,28 +1,21 @@
 import { getNightDuration } from '@helpers/sleep/sleep'
 import { HealthKitSleepResponse, Night, Value } from '@typings/Sleepdata'
-import { differenceInMinutes, parse, parseISO } from 'date-fns'
 
 export const formatHealthKitResponse = (
   hkSample: HealthKitSleepResponse
 ): Night => {
-  const startDate = parseISO(hkSample.startDate)
-  const endDate = parseISO(hkSample.endDate)
-  let minutes = differenceInMinutes(endDate, startDate)
-  const hours = Math.floor(minutes / 60)
-  minutes -= hours * 60
+  const startDate = new Date(hkSample.startDate).toISOString()
+  const endDate = new Date(hkSample.endDate).toISOString()
 
-  const isoStartDate = startDate.toISOString()
-  const isoEndDate = endDate.toISOString()
-
-  const totalDuration = getNightDuration(isoStartDate, isoEndDate)
+  const totalDuration = getNightDuration(startDate, endDate)
 
   return {
     id: hkSample.uuid,
     sourceId: hkSample.sourceId,
     sourceName: hkSample.sourceName,
     value: healthKitSampleToValue(hkSample.value),
-    startDate: isoStartDate,
-    endDate: isoEndDate,
+    startDate,
+    endDate,
     totalDuration
   }
 }

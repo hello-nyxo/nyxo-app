@@ -3,12 +3,16 @@ import reducer, { initialState } from './user-reducer'
 jest.mock('react-native', () => ({
   StyleSheet: {
     hairlineWidth: 10
+  },
+
+  NativeModules: {
+    RNSentry: () => jest.fn()
   }
 }))
 
-jest.mock('react-native', () => ({
-  NativeModules: {
-    RNSentry: () => jest.fn()
+jest.mock('@aws-amplify/auth', () => ({
+  Auth: {
+    RNAWSCognito: () => jest.fn()
   }
 }))
 

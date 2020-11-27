@@ -1,4 +1,3 @@
-import { RATE_NIGHT } from '@actions/sleep/sleep-data-actions'
 import { ModalState } from '@typings/ModalState'
 import ReduxAction from '@typings/redux-actions'
 
@@ -29,11 +28,8 @@ const ModalReducer = (
     case TOGGLE_RATING_MODAL:
       return { ...state, ratingModal: !state.ratingModal }
 
-    case RATE_NIGHT:
-      return { ...state, ratingModal: !state.ratingModal }
-
     case TOGGLE_EXPLANATIONS_MODAL: {
-      const showHide = payload || !state.explanationsModal
+      const showHide = Boolean(payload || !state.explanationsModal)
       return { ...state, explanationsModal: showHide }
     }
     case TOGGLE_EDIT_HABIT_MODAL:

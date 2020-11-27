@@ -1,7 +1,7 @@
 import { TOGGLE_RATING_MODAL } from '@actions/modal/modal-actions'
 import reducer, { initialState } from './modal-reducer'
 
-describe('Coaching notification reducer', () => {
+describe('Modal reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState)
   })

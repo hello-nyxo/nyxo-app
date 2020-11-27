@@ -46,8 +46,8 @@ import {
   WITHINGS_REVOKE_SUCCESS,
   WITHINGS_UPDATE_TOKEN
 } from '@actions/api-actions/withings-actions'
-import ReduxAction from '../../../Types/ReduxActions'
-import { ApiState } from '../../../Types/State/api-state'
+import ReduxAction from '@typings/redux-actions'
+import { ApiState } from '@typings/State/api-state'
 
 export const initialState: ApiState = {
   loadingFitbit: false,
