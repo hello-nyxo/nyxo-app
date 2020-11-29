@@ -4,7 +4,6 @@ import { actionCreators as notificationActions } from '@reducers/NotificationRed
 import translate from '@config/i18n'
 import * as NavigationService from '@config/NavigationHelper'
 import ROUTE from '@config/routes/Routes'
-import Intercom from 'react-native-intercom'
 import Purchases from 'react-native-purchases'
 import { NotificationType } from '@typings/NotificationState'
 import { AppThunk } from '@typings/redux-actions'
@@ -138,9 +137,9 @@ export const login = (
       username
     } = await Auth.signIn(loginEmail, loginPassword)
 
-    await Intercom.updateUser({ email, user_id: username })
-    await Purchases.identify(username)
-    await Purchases.setEmail(email)
+    // await Intercom.updateUser({ email, user_id: username })
+    // await Purchases.identify(username)
+    // await Purchases.setEmail(email)
 
     // if (areThereChangesInLocal(habits, subHabits)) {
     //   await dispatch(toggleMergingDialog(true))

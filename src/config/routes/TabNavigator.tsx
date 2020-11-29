@@ -1,8 +1,8 @@
 import TabBarIcon, { TabBarIconProps } from '@components/TabBarIcon'
 import TabBarLabel from '@components/TabBarLabel'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ParamListBase, RouteProp } from '@react-navigation/native'
 import { getIntercomNotificationCount } from '@selectors/NotificationSelectors'
+import { TabParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import Habits from '../../screens/Shared/HabitView'
@@ -12,7 +12,7 @@ import ProfileNavigator from './profileNavigator'
 import ROUTE from './Routes'
 import SettingsNavigator from './settingsNavigator'
 
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator<TabParamList>()
 
 const TabNavigator: FC = () => {
   const intercomNotifications = useSelector(getIntercomNotificationCount)
@@ -57,24 +57,6 @@ const TabNavigator: FC = () => {
       <Tab.Screen name={ROUTE.SETTINGS} component={SettingsNavigator} />
     </Tab.Navigator>
   )
-}
-
-const getTabBarVisible = (route: RouteProp<ParamListBase, RouteName>) => {
-  // const routeName = route.state
-  //   ? route.state.routes[route.state.index].name
-  //   : ROUTE.COACHING
-  // switch (routeName) {
-  //   case ROUTE.COACHING:
-  //     return true
-  //   case ROUTE.WEEK:
-  //     return false
-  //   case ROUTE.LESSON:
-  //     return false
-  //   default:
-  //     return true
-  // }
-
-  return true
 }
 
 export default TabNavigator

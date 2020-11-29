@@ -39,7 +39,7 @@ export const CONFIG = {
   GOOOGLE_FIT_GONFIG_ANDROID: {
     issuer: 'https://accounts.google.com',
     clientId: config.GOOGLE_FIT_ID_ANDROID,
-    redirectUrl: config.GOOGLE_FIT_ID_ANDROID,
+    redirectUrl: config.GOOGLE_FIT_URL_ANDROID,
     scopes: [
       'openid',
       'profile',

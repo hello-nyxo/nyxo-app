@@ -9,18 +9,13 @@ import {
   getFormattedDateOrPlaceholder,
   minutesToHoursString
 } from '@helpers/time'
-import React, { FC, useRef, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { WIDTH } from '@helpers/Dimensions'
 import useSleep from '@hooks/useSleep'
-import {
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  ViewToken
-} from 'react-native'
-import { ThemeColors } from 'react-navigation'
+import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 
 const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
@@ -147,7 +142,7 @@ const InsightsCard: FC = () => {
             <Figure>
               <Icon
                 fill="none"
-                name="nightMoonEnd"
+                name="percentage"
                 height="20"
                 width="20"
                 stroke="black"

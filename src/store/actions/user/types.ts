@@ -50,4 +50,3 @@ export type UserActionTypes =
   | UpdateUserAction
   | UpdateUserSuccessAction
   | UpdateUserFailAction
-  | UpdateUserFromCloudAction
