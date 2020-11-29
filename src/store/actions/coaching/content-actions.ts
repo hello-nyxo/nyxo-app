@@ -1,8 +1,6 @@
+import CONFIG from '@config/Config'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 import { actionCreators as contentActions } from '@reducers/content-reducer/content-reducer'
-import CONFIG from '@config/Config'
-import { ContentfulClientApi, Entry } from 'contentful'
-import I18n from 'i18n-js'
 import {
   AuthorCard,
   ContentLesson,
@@ -15,7 +13,10 @@ import {
   ILessonFields
 } from '@typings/generated/contentful'
 import { Dispatch, Thunk } from '@typings/redux-actions'
+import { ContentfulClientApi, Entry } from 'contentful'
+import I18n from 'i18n-js'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { createClient } = require('contentful/dist/contentful.browser.min.js')
 
 export const contentfulClient: ContentfulClientApi = createClient({

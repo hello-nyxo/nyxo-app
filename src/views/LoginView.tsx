@@ -30,7 +30,7 @@ const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
     navigation.navigate(ROUTE.APP)
   }
 
-  const submit = ({ email, password }) => {
+  const submit = ({ email, password }: { email: string; password: string }) => {
     login(email, password, loginSuccess)
   }
 

@@ -1,6 +1,7 @@
 import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock.js'
 import React from 'react'
 import * as ReactNative from 'react-native'
+import { enableFetchMocks } from 'jest-fetch-mock'
 
 global.React = React
 global.ReactNative = ReactNative
@@ -31,11 +32,14 @@ export const Keyboard = {
   dismiss: keyboardDismiss
 }
 
+enableFetchMocks()
+
 export const Platform = {
   ...ReactNative.Platform,
   OS: 'ios',
   Version: 123,
   isTesting: true,
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   select: (objs) => objs.ios
 }
 

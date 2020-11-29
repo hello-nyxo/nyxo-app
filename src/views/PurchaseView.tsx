@@ -2,6 +2,7 @@ import { restorePurchase } from '@actions/subscription/subscription-actions'
 import GoBack from '@components/Buttons/GoBack'
 import PerkList from '@components/IAPComponents/PerkList'
 import SubscriptionItem from '@components/IAPComponents/SubscriptionItem'
+import { ThemedRefreshControl } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import { HEIGHT, SMART_TOP_PADDING } from '@helpers/Dimensions'
 import { fonts } from '@styles/themes'
@@ -21,6 +22,7 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
   const [availableSubscriptions, setSubscriptions] = useState<
     PurchasesPackage[] | undefined
   >([])
+  const [error, setError] = useState(false)
   const dispatch = useDispatch()
   const isIOS = Platform.OS === 'ios'
 
@@ -30,7 +32,10 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
       if (offerings.current?.availablePackages.length !== 0) {
         setSubscriptions(offerings.current?.availablePackages)
       }
-    } catch (error) {}
+      setError(false)
+    } catch {
+      setError(true)
+    }
   }
 
   useEffect(() => {
@@ -60,7 +65,13 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
 
   return (
     <BG>
-      <Scrollable>
+      <Scrollable
+        refreshControl={
+          <ThemedRefreshControl
+            refreshing={false}
+            onRefresh={getSubscription}
+          />
+        }>
         <Header isScreen={isScreen}>
           {isScreen ? (
             <ButtonRow>

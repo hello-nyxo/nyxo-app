@@ -5,11 +5,6 @@ import { UserState } from '@typings/UserState'
 
 const getUserState = (state: State) => state.user
 
-export const getIntroductionCompleted = createSelector(
-  getUserState,
-  (user: UserState) => user.introduction_completed
-)
-
 export const getIntercomId = createSelector(
   getUserState,
   (user: UserState) => user.intercomId

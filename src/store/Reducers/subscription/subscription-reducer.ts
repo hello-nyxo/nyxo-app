@@ -1,13 +1,13 @@
-import ReduxAction from '@typings/redux-actions'
 import { SubscriptionState } from '@typings/SubscriptionState'
 import {
+  PurchaseActionTypes,
   RESTORE_START,
   RESTORE_SUCCESS,
   RESTORE_FAILURE,
   PURCHASE_SUBSCRIPTION_START,
   PURCHASE_SUBSCRIPTION_SUCCESS,
   PURCHASE_SUBSCRIPTION_FAILURE
-} from '@actions/subscription/subscription-actions'
+} from '@actions/subscription/types'
 
 export const initialState: SubscriptionState = {
   loading: false,
@@ -16,19 +16,17 @@ export const initialState: SubscriptionState = {
 
 const reducer = (
   state = initialState,
-  action: ReduxAction
+  action: PurchaseActionTypes
 ): SubscriptionState => {
-  const { type, payload } = action
-
-  switch (type) {
+  switch (action.type) {
     case RESTORE_START:
       return { ...state, loading: true }
 
     case RESTORE_SUCCESS: {
       return {
         ...state,
-        isActive: payload.isActive,
-        expirationDate: payload.expirationDate,
+        isActive: action.payload.isActive,
+        expirationDate: action.payload.expirationDate,
         loading: false
       }
     }
@@ -45,8 +43,8 @@ const reducer = (
       return {
         ...state,
         loading: false,
-        isActive: payload.isActive,
-        expirationDate: payload.expirationDate
+        isActive: action.payload.isActive,
+        expirationDate: action.payload.expirationDate
       }
     }
 

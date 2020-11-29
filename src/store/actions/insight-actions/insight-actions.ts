@@ -1,39 +1,30 @@
-import { getWeek } from '@selectors/SleepDataSelectors'
-import { Day } from '@typings/Sleepdata'
-import { GetState } from '@typings/GetState'
-import moment from 'moment'
 import { nearestMinutes } from '@helpers/time'
-import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
-/* ACTION TYPES */
+import { Dispatch, Thunk } from '@typings/redux-actions'
+import { Day } from '@typings/Sleepdata'
+import moment from 'moment'
+import {
+  BedTimeWindowInsight,
+  CALCULATE_INSIGHT_FAILURE,
+  CALCULATE_INSIGHT_START,
+  CALCULATE_INSIGHT_SUCCESS,
+  Insight,
+  InsightActionTypes
+} from './types'
 
-export const CALCULATE_INSIGHT_START = 'CALCULATE_INSIGHT_START'
-export const CALCULATE_INSIGHT_SUCCESS = 'CALCULATE_INSIGHT_SUCCESS'
-export const CALCULATE_INSIGHT_FAILURE = 'CALCULATE_INSIGHT_FAILURE'
-
-/* ACTIONS */
-
-export const calculationStart = (): ReduxAction => ({
+export const calculationStart = (): InsightActionTypes => ({
   type: CALCULATE_INSIGHT_START
 })
 
-export const calculationSuccess = (insights: Insight): ReduxAction => ({
+export const calculationSuccess = (insights: Insight): InsightActionTypes => ({
   type: CALCULATE_INSIGHT_SUCCESS,
   payload: insights
 })
-export const calculationFailure = (): ReduxAction => ({
-  type: CALCULATE_INSIGHT_FAILURE
+export const calculationFailure = (error: string): InsightActionTypes => ({
+  type: CALCULATE_INSIGHT_FAILURE,
+  payload: error
 })
 
 /* ASYNC ACTIONS */
-
-type BedTimeWindowInsight = {
-  start: string | undefined
-  center: string | undefined
-  end: string | undefined
-}
-type Insight = {
-  bedTimeWindow: BedTimeWindowInsight
-}
 
 export const calculateBedtimeWindow = (days: Day[]): BedTimeWindowInsight => {
   let averageBedTime = 0
@@ -82,10 +73,7 @@ export const calculateBedtimeWindow = (days: Day[]): BedTimeWindowInsight => {
   return insights
 }
 
-export const calculateInsights = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+export const calculateInsights = (): Thunk => async (dispatch: Dispatch) => {
   dispatch(calculationStart())
 
   try {

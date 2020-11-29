@@ -2,7 +2,7 @@ export interface SubscriptionState {
   loading: boolean
   isActive: boolean
   isSandbox?: boolean
-  expirationDate?: string
+  expirationDate?: string | null
 }
 
 export interface SubscriptionResponseiOS {

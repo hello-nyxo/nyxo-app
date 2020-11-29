@@ -1,16 +1,11 @@
+import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
+import { getNightDuration } from '@helpers/sleep/sleep'
+import { GetState } from '@typings/GetState'
+import { Dispatch, Thunk } from '@typings/redux-actions'
+import { Night, Value } from '@typings/Sleepdata'
 import moment from 'moment'
 import { Platform } from 'react-native'
-import AppleHealthKit from 'react-native-healthkit'
-import {
-  getAngleAM,
-  getNightDuration,
-  sortDays,
-  sortNights
-} from '@helpers/sleep/sleep'
-import { GetState } from '@typings/GetState'
-import { Day, Value, Night } from '@typings/Sleepdata'
-import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
-import { Dispatch, Thunk } from '@typings/redux-actions'
+import AppleHealthKit, { SleepSample } from 'react-native-healthkit'
 
 export const SET_VALUES = 'SET_VALUES'
 export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE'
@@ -80,17 +75,20 @@ export const createNight = async (
       value: Value.Asleep
     }
 
-    await AppleHealthKit.saveSleep(newNightBed, (error: any, response: any) => {
-      if (error) {
-        throw error
-      } else {
-        return response
+    await AppleHealthKit.saveSleep(
+      newNightBed,
+      (error: string, response: SleepSample[]) => {
+        if (error) {
+          throw error
+        } else {
+          return response
+        }
       }
-    })
+    )
 
     await AppleHealthKit.saveSleep(
       newNightSleep,
-      (error: any, response: any) => {
+      (error: string, response: SleepSample[]) => {
         if (error) {
           throw error
         } else {
@@ -104,12 +102,15 @@ export const createNight = async (
       startDate: startTime,
       endDate: endTime
     }
-    await AppleHealthKit.saveSleep(newNight, (error: any, response: any) => {
-      if (error) {
-        throw error
-      } else {
-        return response
+    await AppleHealthKit.saveSleep(
+      newNight,
+      (error: string, response: SleepSample[]) => {
+        if (error) {
+          throw error
+        } else {
+          return response
+        }
       }
-    })
+    )
   }
 }
