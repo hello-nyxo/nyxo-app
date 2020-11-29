@@ -79,7 +79,6 @@ export default TextField
 
 const Container = styled.TouchableWithoutFeedback`
   max-height: 80px;
-  background-color: red;
 `
 
 interface InputProps extends TextInputProps {
@@ -113,8 +112,8 @@ const Label = styled(TranslatedText)<InputProps>`
 
 const InputField = styled.TextInput<InputProps>`
   min-width: 150px;
-  font-family: ${fonts.medium};
-  flex: 1;
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  padding: 5px;
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 17px;
 `

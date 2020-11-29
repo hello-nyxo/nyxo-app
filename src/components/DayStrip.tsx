@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect } from 'react'
+import React, { FC, useRef, useEffect, useState } from 'react'
 import { FlatList, ListRenderItem, ViewToken } from 'react-native'
 import styled, { css } from 'styled-components/native'
 import { format, sub, startOfDay } from 'date-fns/esm'
@@ -15,6 +15,7 @@ const FIRST_DAY_WIDTH = DAY_WIDTH * 2 - DAY_WIDTH / 2
 const CalendarStrip: FC = () => {
   const { selectDate, selectedDate } = useCalendar()
   const flatListRef = useRef<FlatList>(null)
+  const [init, setInit] = useState(true)
   const dispatch = useDispatch()
   const startDate = new Date()
   const days = Array.from(Array(365 * 3)).map((_, index) =>
@@ -49,8 +50,8 @@ const CalendarStrip: FC = () => {
   const handleViewableItemsChangedRef = useRef(handleViewableItemsChanged)
 
   const viewabilityConfig = {
-    itemVisiblePercentThreshold: 100,
-    minimumViewTime: 400
+    itemVisiblePercentThreshold: 85,
+    minimumViewTime: 750
   }
 
   const keyExtractor = (item: Date) => item.toISOString()
@@ -64,11 +65,15 @@ const CalendarStrip: FC = () => {
   }
 
   useEffect(() => {
-    const index = days.findIndex((date) =>
-      isSameDay(date, new Date(selectedDate))
-    )
-    if (index >= 0) {
-      scrollToItem(index)
+    if (!init) {
+      const index = days.findIndex((date) =>
+        isSameDay(date, new Date(selectedDate))
+      )
+      if (index >= 0) {
+        scrollToItem(index)
+      }
+    } else {
+      setInit(false)
     }
   }, [selectedDate])
 
@@ -97,7 +102,6 @@ const CalendarStrip: FC = () => {
   return (
     <Container>
       <FlatList
-        initialScrollIndex={0}
         ref={flatListRef}
         showsHorizontalScrollIndicator={false}
         inverted

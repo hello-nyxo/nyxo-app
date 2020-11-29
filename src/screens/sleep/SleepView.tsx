@@ -22,7 +22,7 @@ import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import { format } from 'date-fns'
 import React, { FC, useCallback, useEffect } from 'react'
-import { ScrollView } from 'react-native-gesture-handler'
+import { ScrollView } from 'react-native'
 import { queryCache } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'

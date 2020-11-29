@@ -32,12 +32,12 @@ const options = {
   fallbackPlatformURL: 'http://www.nyxo.app/'
 }
 type SettingsNavigationProp = NativeStackNavigationProp<
-  RootStackParamList[ROUTE.APP],
+  RootStackParamList[ROUTE.APP][ROUTE.SETTINGS],
   ROUTE.SETTINGS
 >
 
 type SettingsScreenRouteProp = RouteProp<
-  RootStackParamList[ROUTE.APP],
+  RootStackParamList[ROUTE.APP][ROUTE.SETTINGS],
   ROUTE.SETTINGS
 >
 
@@ -80,12 +80,12 @@ const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
       {
         text: 'Manage Nyxo Subscription',
         icon: 'receipt',
-        action: () => navigate(ROUTE.CLOUD_SETTINGS)
+        action: () => navigate(ROUTE.SUBSCRIPTION_SETTINGS)
       },
       {
         text: 'Sync to backend',
         icon: 'syncCloud',
-        action: () => navigate(ROUTE.CLOUD_SETTINGS)
+        action: () => navigate(ROUTE.CLOUD_SETTINGS, { code: '' })
       },
       {
         text: 'Switch mode',
@@ -101,9 +101,9 @@ const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
         action: rateApp
       },
       {
-        text: 'RATE_APP',
-        icon: 'star',
-        analyticsEvent: 'Rated app through settings',
+        text: 'ONBOARDING.TITLE',
+        icon: 'compass',
+        analyticsEvent: 'Rewatched onboarding',
         action: () => navigate(ROUTE.ONBOARDING)
       }
       // {

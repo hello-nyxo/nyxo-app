@@ -29,8 +29,10 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>App.png</string>
 			<key>CFBundleURLName</key>
-			<string>nyxo</string>
+			<string>app.sleepcircle.application</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>nyxo</string>
@@ -38,7 +40,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>58</string>
+	<string>59</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

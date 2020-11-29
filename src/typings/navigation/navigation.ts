@@ -16,11 +16,7 @@ export type TabParamList = {
   [ROUTE.COACHING]: undefined
   [ROUTE.HABITS]: undefined
   [ROUTE.PROFILE]: undefined
-  [ROUTE.SETTINGS]: {
-    [ROUTE.CLOUD_SETTINGS]: { code: string }
-    [ROUTE.COACHING_SETTINGS]: undefined
-    [ROUTE.SOURCE_SETTINGS]: undefined
-  }
+  [ROUTE.SETTINGS]: SettingsStackParamList
 }
 
 export type JournalStackParamList = {
@@ -29,5 +25,9 @@ export type JournalStackParamList = {
 }
 
 export type SettingsStackParamList = {
-  [ROUTE.CLOUD_SETTINGS]: { connectionId: string }
+  [ROUTE.SETTINGS]: undefined
+  [ROUTE.CLOUD_SETTINGS]: { code?: string | undefined | null }
+  [ROUTE.COACHING_SETTINGS]: undefined
+  [ROUTE.SUBSCRIPTION_SETTINGS]: undefined
+  [ROUTE.SOURCE_SETTINGS]: undefined
 }

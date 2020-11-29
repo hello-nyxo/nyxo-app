@@ -55,10 +55,9 @@ export const H1 = styled(TranslatedText)<StyleProps & TextProps>`
   font-size: 34px;
   margin-bottom: 10px;
   margin-top: 5px;
-  font-weight: bold;
   text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.FONT_BOLD};
 `
 
 export const H1N = styled.Text<StyleProps & TextProps>`
@@ -74,7 +73,6 @@ export const H1N = styled.Text<StyleProps & TextProps>`
 export const PageTitle = styled(AnimatedTranslatedText)<StyleProps & TextProps>`
   font-size: 34px;
   margin: 40px 20px 20px;
-  font-weight: bold;
   text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.medium};
@@ -84,7 +82,6 @@ export const H1Animated = styled(AnimatedTranslatedText)<TextProps>`
   font-size: 34px;
   margin-bottom: 10px;
   margin-top: 5px;
-  font-weight: bold;
   text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
@@ -94,7 +91,6 @@ export const H2 = styled(TranslatedText)<TextProps>`
   font-size: 28px;
   margin-bottom: 10px;
   margin-top: 5px;
-  font-weight: bold;
   text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
@@ -104,7 +100,6 @@ export const H2N = styled.Text<TextProps>`
   font-size: 28px;
   margin-bottom: 10px;
   margin-top: 5px;
-  font-weight: bold;
   text-align: ${({ center }) => (center ? 'center' : 'left')};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-family: ${fonts.bold};
