@@ -2,8 +2,8 @@
 #import <UIKit/UIKit.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
 #import <React/RCTBridgeDelegate.h>
-#import "RNAppAuthAuthorizationFlowManager.h"
 #import <UMCore/UMAppDelegateWrapper.h>
+#import "RNAppAuthAuthorizationFlowManager.h"
  
 @interface AppDelegate : UMAppDelegateWrapper <UIApplicationDelegate, RCTBridgeDelegate, RNAppAuthAuthorizationFlowManager>
 
