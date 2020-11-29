@@ -24,6 +24,7 @@ enum ROUTE {
   COACHING_SETTINGS = 'CoachingSettings',
   CLOUD_SETTINGS = 'CloudSettings',
   SOURCE_SETTINGS = 'SetSource',
+  SUBSCRIPTION_SETTINGS = 'SubscriptionSettings',
 
   PURCHASE = 'PurchaseView',
 

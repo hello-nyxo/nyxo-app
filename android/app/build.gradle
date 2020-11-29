@@ -37,8 +37,8 @@ android {
         applicationId "fi.nyxo.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 76
-        versionName "1.5.0"
+        versionCode 82
+        versionName "1.5.1"
         multiDexEnabled true
         manifestPlaceholders = [
             appAuthRedirectScheme: 'fi.nyxo.app'

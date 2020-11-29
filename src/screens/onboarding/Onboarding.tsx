@@ -2,6 +2,7 @@
 import { register } from '@actions/auth/auth-actions'
 import { markDataOnboardingCompleted } from '@actions/onboarding/onboarding-actions'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
+import { ExpandingDot } from '@components/micro-interactions/FlatListPageIndicator'
 import { H2, SafeAreaView } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import ROUTE from '@config/routes/Routes'
@@ -11,8 +12,8 @@ import colors from '@styles/colors'
 import PurchaseView from '@views/PurchaseView'
 import { RegisterView } from '@views/RegisterView'
 import { SourceSettingsView } from '@views/SourceView'
-import React, { FC, useState } from 'react'
-import { ScrollView } from 'react-native'
+import React, { FC, useRef, useState } from 'react'
+import { ScrollView, Animated } from 'react-native'
 import Modal, { ReactNativeModal } from 'react-native-modal'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
@@ -26,6 +27,7 @@ const images = {
 }
 
 export const Onboarding: FC = () => {
+  const scrollX = useRef(new Animated.Value(0)).current
   const { navigate } = useNavigation()
   const dispatch = useDispatch()
   const [dataModal, toggleDataModal] = useState(false)
@@ -64,7 +66,17 @@ export const Onboarding: FC = () => {
           <SkipButtonText>Skip</SkipButtonText>
         </SkipButton>
       </SkipContainer>
-      <ScrollView horizontal pagingEnabled>
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          {
+            useNativeDriver: false
+          }
+        )}>
         <Page>
           <ImageContainer>
             <Image source={images.welcome} />
@@ -139,7 +151,7 @@ export const Onboarding: FC = () => {
           </TextContainer>
         </Page>
       </ScrollView>
-
+      <ScrollIndicator scrollX={scrollX} data={[1, 2, 3, 4, 5]} />
       {/* Source Selection */}
       <StyledModal
         isVisible={dataModal}
@@ -261,4 +273,10 @@ const Image = styled.Image.attrs(() => ({
 
 const Content = styled.View`
   height: 180px;
+`
+
+const ScrollIndicator = styled(ExpandingDot)`
+  margin-bottom: 30px;
+  justify-content: center;
+  width: 100%;
 `

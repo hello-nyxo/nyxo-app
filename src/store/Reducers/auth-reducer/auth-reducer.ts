@@ -1,16 +1,16 @@
-import ReduxAction from '@typings/redux-actions'
+import { AuthState } from '@typings/state/AuthState'
 import {
-  REGISTER_START,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
+  AuthActionTypes,
+  LOGIN_FAILURE,
   LOGIN_START,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
+  LOGOUT_FAILURE,
   LOGOUT_START,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
-} from '@actions/auth/auth-actions'
-import { AuthState } from '@typings/state/AuthState'
+  REGISTER_FAILURE,
+  REGISTER_START,
+  REGISTER_SUCCESS
+} from '@actions/auth/types'
 
 export const initialState: AuthState = {
   loading: false,
@@ -20,16 +20,14 @@ export const initialState: AuthState = {
   email: ''
 }
 
-const reducer = (state = initialState, action: ReduxAction): AuthState => {
-  const { type, payload } = action
-
-  switch (type) {
+const reducer = (state = initialState, action: AuthActionTypes): AuthState => {
+  switch (action.type) {
     case REGISTER_START: {
       return { ...state, loading: true }
     }
 
     case REGISTER_SUCCESS: {
-      return { ...state, loading: false, email: payload.email }
+      return { ...state, loading: false, email: action.payload.email }
     }
 
     case REGISTER_FAILURE: {
@@ -43,7 +41,7 @@ const reducer = (state = initialState, action: ReduxAction): AuthState => {
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        authenticated: payload.authenticated,
+        authenticated: action.payload.authenticated,
         loading: false,
         email: ''
       }

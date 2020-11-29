@@ -1,51 +1,41 @@
-import {
-  handleHabitsFromCloudWhenLoggingIn,
-  handleHabitsWhenloggingOut,
-  toggleMergingDialog
-} from '@actions/habit/habit-actions'
+import { handleHabitsWhenloggingOut } from '@actions/habit/habit-actions'
 import Auth from '@aws-amplify/auth'
 import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
 import translate from '@config/i18n'
 import * as NavigationService from '@config/NavigationHelper'
 import ROUTE from '@config/routes/Routes'
-import { areThereChangesInLocal } from '@helpers/habits'
-import Intercom from 'react-native-intercom'
 import Purchases from 'react-native-purchases'
-import { GetState } from '@typings/GetState'
 import { NotificationType } from '@typings/NotificationState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { updateEmail } from '../user/user-actions'
+import {
+  LOGIN_FAILURE,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGOUT_FAILURE,
+  LOGOUT_START,
+  LOGOUT_SUCCESS,
+  REGISTER_FAILURE,
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  AuthActionTypes
+} from './types'
 
-/* ACTION TYPES */
-
-export const REGISTER_START = 'REGISTER_START'
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
-export const REGISTER_FAILURE = 'REGISTER_FAILURE'
-
-export const LOGIN_START = 'LOGIN_START'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAILURE = 'LOGIN_FAILURE'
-
-export const LOGOUT_START = 'LOGOUT_START'
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
-export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
-
-/* ACTIONS */
-
-export const registerStart = (): ReduxAction => ({
+export const registerStart = (): AuthActionTypes => ({
   type: REGISTER_START
 })
 
-export const registerSuccess = (email: string): ReduxAction => ({
+export const registerSuccess = (email: string): AuthActionTypes => ({
   type: REGISTER_SUCCESS,
   payload: { email }
 })
 
-export const registerFailure = (): ReduxAction => ({
-  type: REGISTER_FAILURE
+export const registerFailure = (error: string): AuthActionTypes => ({
+  type: REGISTER_FAILURE,
+  payload: error
 })
 
-export const loginStart = (): ReduxAction => ({
+export const loginStart = (): AuthActionTypes => ({
   type: LOGIN_START
 })
 
@@ -53,25 +43,27 @@ export const loginSuccess = (
   authenticated: boolean,
   email: string,
   username: string
-): ReduxAction => ({
+): AuthActionTypes => ({
   type: LOGIN_SUCCESS,
   payload: { authenticated, email, username }
 })
 
-export const loginFailure = (): ReduxAction => ({
-  type: LOGIN_FAILURE
+export const loginFailure = (error: string): AuthActionTypes => ({
+  type: LOGIN_FAILURE,
+  payload: error
 })
 
-export const logoutStart = (): ReduxAction => ({
+export const logoutStart = (): AuthActionTypes => ({
   type: LOGOUT_START
 })
 
-export const logoutSuccess = (): ReduxAction => ({
+export const logoutSuccess = (): AuthActionTypes => ({
   type: LOGOUT_SUCCESS
 })
 
-export const logoutFailure = (): ReduxAction => ({
-  type: LOGOUT_FAILURE
+export const logoutFailure = (error: string): AuthActionTypes => ({
+  type: LOGOUT_FAILURE,
+  payload: error
 })
 
 /* ASYNC ACTIONS */
@@ -80,7 +72,7 @@ export const register = (
   email: string,
   password: string,
   successCallback: void | (() => void)
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   dispatch(registerStart())
   try {
     const response = await Auth.signUp({
@@ -104,13 +96,11 @@ export const register = (
       })
     )
 
-    await dispatch(registerFailure())
+    await dispatch(registerFailure(error))
   }
 }
 
-export const resendEmail = (username: string): Thunk => async (
-  dispatch: Dispatch
-) => {
+export const resendEmail = (username: string): AppThunk => async (dispatch) => {
   try {
     await Auth.resendSignUp(username)
     await dispatch(
@@ -135,7 +125,7 @@ export const login = (
   loginEmail: string,
   loginPassword: string,
   successCallback: void | (() => void)
-): Thunk => async (dispatch: Dispatch, getState: GetState) => {
+): AppThunk => async (dispatch, getState) => {
   dispatch(loginStart())
   const {
     habitState: { habits, subHabits }
@@ -147,20 +137,21 @@ export const login = (
       username
     } = await Auth.signIn(loginEmail, loginPassword)
 
-    await Intercom.updateUser({ email, user_id: username })
-    await Purchases.identify(username)
-    await Purchases.setEmail(email)
+    // await Intercom.updateUser({ email, user_id: username })
+    // await Purchases.identify(username)
+    // await Purchases.setEmail(email)
 
-    if (areThereChangesInLocal(habits, subHabits)) {
-      await dispatch(toggleMergingDialog(true))
-    } else {
-      await dispatch(handleHabitsFromCloudWhenLoggingIn(username, false))
-    }
+    // if (areThereChangesInLocal(habits, subHabits)) {
+    //   await dispatch(toggleMergingDialog(true))
+    // } else {
+    //   await dispatch(handleHabitsFromCloudWhenLoggingIn(username, false))
+    // }
 
     await dispatch(loginSuccess(true, email, username))
-    await successCallback()
+    if (successCallback) {
+      await successCallback()
+    }
   } catch (error) {
-    console.warn(error)
     const { code } = error
     let message = 'Unknown error'
 
@@ -185,11 +176,11 @@ export const login = (
         type: NotificationType.ERROR
       })
     )
-    await dispatch(loginFailure())
+    await dispatch(loginFailure(error))
   }
 }
 
-export const logout = (): Thunk => async (dispatch: Dispatch) => {
+export const logout = (): AppThunk => async (dispatch) => {
   dispatch(logoutStart())
   try {
     await dispatch(handleHabitsWhenloggingOut())
@@ -206,8 +197,8 @@ export const logout = (): Thunk => async (dispatch: Dispatch) => {
   }
 }
 
-export const requestNewPassword = (username: string): Thunk => async (
-  dispatch: Dispatch
+export const requestNewPassword = (username: string): AppThunk => async (
+  dispatch
 ) => {
   try {
     const forgotRes = await Auth.forgotPassword(username)
@@ -225,7 +216,7 @@ export const submitNewPassword = (
   username: string,
   confirmationCode: string,
   password: string
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   try {
     const res = await Auth.forgotPasswordSubmit(
       username,
@@ -242,24 +233,7 @@ export const submitNewPassword = (
   }
 }
 
-export const updatePassword = (
-  oldPassword: string,
-  newPassword: string
-): Thunk => async (dispatch: Thunk) => {
-  await Auth.currentAuthenticatedUser()
-    .then((user) => Auth.changePassword(user, oldPassword, newPassword))
-    .then((data) => {})
-    .catch((err) => {})
-}
-
-export const updateUserAttributes = async (attributes: {}) => {
-  await Auth.currentAuthenticatedUser()
-    .then((user) => Auth.updateUserAttributes(user, attributes))
-    .then((data) => {})
-    .catch((err) => {})
-}
-
-export const refreshAuthStatus = () => async (dispatch: Function) => {
+export const refreshAuthStatus = (): AppThunk => async (dispatch) => {
   dispatch(loginStart())
   try {
     const user = await Auth.currentUserInfo()
@@ -269,6 +243,6 @@ export const refreshAuthStatus = () => async (dispatch: Function) => {
       dispatch(loginSuccess(false, '', ''))
     }
   } catch (error) {
-    dispatch(loginFailure())
+    dispatch(loginFailure(error))
   }
 }

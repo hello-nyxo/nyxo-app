@@ -1,11 +1,11 @@
 import Moment from 'moment'
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import { G, Text as SVGText } from 'react-native-svg'
 import styled from 'styled-components/native'
 import translate from '../../config/i18n'
 import colors from '../../styles/colors'
 
-interface SleepTimeProps {
+type Props = {
   x: number
   y: number
   timeInBed?: number
@@ -17,19 +17,17 @@ interface SleepTimeProps {
   hasData: boolean
 }
 
-const SleepTime = (props: SleepTimeProps) => {
-  const {
-    hasData,
-    x,
-    y,
-    timeAsleep = 0,
-    timeInBed = 0,
-    sleepEnd,
-    sleepStart,
-    bedStart,
-    bedEnd
-  } = props
-
+const SleepTime: FC<Props> = ({
+  hasData,
+  x,
+  y,
+  timeAsleep = 0,
+  timeInBed = 0,
+  sleepEnd,
+  sleepStart,
+  bedStart,
+  bedEnd
+}) => {
   if (!hasData) {
     return (
       <G>

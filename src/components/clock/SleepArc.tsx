@@ -1,9 +1,9 @@
 import { describeArc } from '@helpers/geometry'
 import { getAngleAM } from '@helpers/sleep/sleep'
 import React, { FC } from 'react'
-import Reanimated from 'react-native-reanimated'
 import { G, Path } from 'react-native-svg'
 import { Night, Value } from '@typings/Sleepdata'
+import styled from 'styled-components/native'
 
 type Props = {
   value: Value
@@ -12,10 +12,9 @@ type Props = {
   night: Night[]
   x: number
   y: number
+  outline?: boolean
   radius: number
 }
-
-const AnimatedPath = Reanimated.createAnimatedComponent(Path)
 
 const SleepArc: FC<Props> = ({
   night,
@@ -24,6 +23,7 @@ const SleepArc: FC<Props> = ({
   strokeWidth,
   x,
   y,
+  outline,
   radius
 }) => {
   if (!night) {
@@ -41,8 +41,28 @@ const SleepArc: FC<Props> = ({
         getAngleAM(part.endDate)
       ).toString()
 
+      if (outline) {
+        return (
+          <G key={`${part.id}_outline`}>
+            <Path
+              d={path}
+              strokeLinecap="round"
+              fill="none"
+              stroke={color}
+              strokeWidth={strokeWidth}
+            />
+            <ThemedPath
+              d={path}
+              strokeLinecap="round"
+              fill="none"
+              strokeWidth={strokeWidth - 5}
+            />
+          </G>
+        )
+      }
+
       return (
-        <AnimatedPath
+        <Path
           d={path}
           strokeLinecap="round"
           fill="none"
@@ -57,3 +77,7 @@ const SleepArc: FC<Props> = ({
 }
 
 export default SleepArc
+
+const ThemedPath = styled(Path).attrs(({ theme }) => ({
+  stroke: theme.SECONDARY_BACKGROUND_COLOR
+}))``

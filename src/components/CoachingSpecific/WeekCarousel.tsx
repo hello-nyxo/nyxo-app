@@ -40,6 +40,7 @@ const WeekCarousel: FC<Props> = ({
     <FlatList
       ListHeaderComponent={ListHeaderComponent}
       refreshControl={refreshControl}
+      keyExtractor={(item) => item.slug}
       showsHorizontalScrollIndicator={false}
       snapToAlignment="center"
       data={ongoing}

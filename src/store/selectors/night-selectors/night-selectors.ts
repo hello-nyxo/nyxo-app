@@ -1,21 +1,18 @@
-import { createSelector } from 'reselect'
-import { State } from '@typings/State'
 import { matchDayAndNight } from '@helpers/sleep/sleep-data-helper'
-import { getNightDuration } from '@helpers/sleep/sleep'
 import { getSelectedDate } from '@selectors/calendar-selectors'
-import { getMainSource } from '@sleep-source-selectors/sleep-source-selectors'
-import { Day, Night, Value } from '@typings/Sleepdata'
-import {
-  differenceInDays,
-  eachDayOfInterval,
-  subDays,
-  differenceInMilliseconds,
-  startOfDay,
-  addMilliseconds,
-  addMinutes
-} from 'date-fns'
-import { deviation, mean, min, max } from 'd3'
 import { getSharedSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import { Night, Value } from '@typings/Sleepdata'
+import { State } from '@typings/State'
+import { deviation, max, mean, min } from 'd3'
+import {
+  addMilliseconds,
+  addMinutes,
+  differenceInMilliseconds,
+  eachDayOfInterval,
+  startOfDay,
+  subDays
+} from 'date-fns'
+import { createSelector } from 'reselect'
 
 const getNights = (state: State) => state.nights.nights
 

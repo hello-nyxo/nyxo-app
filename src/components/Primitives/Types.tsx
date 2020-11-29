@@ -1,5 +1,5 @@
 import TranslatedText from '@components/TranslatedText'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 export const H2 = styled(TranslatedText)`
   font-size: 28px;

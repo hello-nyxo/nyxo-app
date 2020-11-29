@@ -116,7 +116,6 @@ const StyledModal = styled(Modal)<ReactNativeModal>`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   flex: 1;
   margin: 0px;
-  padding: 20px;
 `
 
 const Item = styled.View<DotProps>`
@@ -171,6 +170,7 @@ const Figure = styled.Text`
 
 const Container = styled.ScrollView`
   flex: 1;
+  padding: 16px;
 `
 
 const SubTitle = styled(TranslatedText)`

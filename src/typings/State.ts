@@ -17,7 +17,6 @@ import { InsightState } from './State/insight-state'
 import { LinkingState } from './State/linking-state'
 import { ManualDataState } from './State/ManualDataState'
 import { SubscriptionState } from './SubscriptionState'
-import { TrackingState } from './TrackingState'
 import { UserState } from './UserState'
 
 export interface State {

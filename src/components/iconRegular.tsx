@@ -14,15 +14,11 @@ interface Props {
   focused?: boolean
 }
 
-export const IconRegular = (props: Props) => {
-  const { stroke, focused, name } = props
-
+export const IconRegular: FC<Props> = ({ stroke, focused, name, ...rest }) => {
   if (focused) {
-    return (
-      <SvgIcon {...props} name={name} stroke={stroke} viewBox="0 0 24 24" />
-    )
+    return <SvgIcon {...rest} name={name} stroke={stroke} viewBox="0 0 24 24" />
   }
-  return <SvgIcon {...props} fill="none" viewBox="0 0 24 24" />
+  return <SvgIcon {...rest} fill="none" viewBox="0 0 24 24" />
 }
 
 export const IconBold: FC<Props> = (props) => (

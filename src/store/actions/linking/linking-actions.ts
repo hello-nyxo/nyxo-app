@@ -3,49 +3,49 @@ import Auth from '@aws-amplify/auth'
 import { UpdateConnectionIDMutation } from '@API'
 import CONFIG from '@config/Config'
 import { updateConnectionId } from '@graphql/custom/mutations'
-import { Thunk } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { restorePurchase } from '../subscription/subscription-actions'
-
-/* ACTIONS TYPES */
-export const LINKING_START = 'LINKING_START'
-export const LINKING_SUCCESS = 'LINKING_SUCCESS'
-export const LINKING_FAILURE = 'LINKING_FAILURE'
-
-export const REMOVE_LINK_START = 'REMOVE_LINK_START'
-export const REMOVE_LINK_SUCCESS = 'REMOVE_LINK_SUCCESS'
-export const REMOVE_LINK_FAILURE = 'REMOVE_LINK_FAILURE'
+import {
+  LinkingActions,
+  LINKING_FAILURE,
+  LINKING_START,
+  LINKING_SUCCESS,
+  REMOVE_LINK_FAILURE,
+  REMOVE_LINK_START,
+  REMOVE_LINK_SUCCESS
+} from './types'
 
 /* ACTIONS */
 
-export const startLinking = () => ({
+export const startLinking = (): LinkingActions => ({
   type: LINKING_START
 })
 
-export const linkSuccess = (connectionId?: string | null) => ({
+export const linkSuccess = (connectionId?: string | null): LinkingActions => ({
   type: LINKING_SUCCESS,
   payload: connectionId
 })
 
-export const linkingFailure = () => ({
+export const linkingFailure = (): LinkingActions => ({
   type: LINKING_FAILURE
 })
 
-export const removeLinkStart = () => ({
+export const removeLinkStart = (): LinkingActions => ({
   type: REMOVE_LINK_START
 })
 
-export const removeLinkSuccess = () => ({
+export const removeLinkSuccess = (): LinkingActions => ({
   type: REMOVE_LINK_SUCCESS
 })
 
-export const removeLinkFailure = () => ({
+export const removeLinkFailure = (): LinkingActions => ({
   type: REMOVE_LINK_FAILURE
 })
 
 /* ASYNC ACTIONS */
 
-export const linkAccount = (connectionId: string): Thunk => async (
-  dispatch: Dispatch
+export const linkAccount = (connectionId: string): AppThunk => async (
+  dispatch
 ) => {
   dispatch(startLinking())
 
@@ -57,6 +57,7 @@ export const linkAccount = (connectionId: string): Thunk => async (
       connectionId
     }
     const codeIsValid = await validateLinkCode(connectionId, username)
+
     if (codeIsValid) {
       const {
         data: { updateUser }
@@ -71,29 +72,28 @@ export const linkAccount = (connectionId: string): Thunk => async (
       dispatch(linkingFailure())
     }
   } catch (error) {
-    console.warn(error)
     dispatch(linkingFailure())
   }
 }
 
-export const removeLink = () => async (dispatch: Function) => {
+export const removeLink = (): AppThunk => async (dispatch) => {
   const { username } = await Auth.currentUserInfo()
   try {
     const input = {
       id: username,
       connectionId: null
     }
-    const response: any = await API.graphql(
+    const _ = (await API.graphql(
       graphqlOperation(updateConnectionId, { input })
-    )
+    )) as UpdateConnectionIDMutation
+
     dispatch(removeLinkSuccess())
   } catch (error) {
-    console.warn(error)
     dispatch(removeLinkFailure())
   }
 }
 
-export const getConnectionId = () => async (dispatch: Function) => {
+export const getConnectionId = (): AppThunk => async (dispatch) => {
   const { username } = await Auth.currentUserInfo()
   try {
     const input = {
@@ -108,7 +108,10 @@ export const getConnectionId = () => async (dispatch: Function) => {
 }
 
 /* HELPERS  */
-export const validateLinkCode = async (code: string, userId: string) => {
+export const validateLinkCode = async (
+  code: string,
+  userId: string
+): Promise<boolean> => {
   const configuration = {
     method: 'post',
     headers: {
@@ -125,7 +128,7 @@ export const validateLinkCode = async (code: string, userId: string) => {
   try {
     const response = await fetch(CONFIG.LINK_VALIDATION_URL, configuration)
     const { body } = await response.json()
-    const { valid, check, userId } = body
+    const { valid, check } = body
 
     if (valid && check >= 0 && check <= 9) {
       return true

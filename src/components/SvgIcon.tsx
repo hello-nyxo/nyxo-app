@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Svg from 'react-native-svg'
 import svgs from '../../assets/svgs'
 
@@ -14,7 +14,7 @@ interface SvgIconProps {
   viewBox?: string
 }
 
-const SvgIcon = (props: SvgIconProps) => {
+const SvgIcon: FC<SvgIconProps> = (props) => {
   const {
     name,
     fill,

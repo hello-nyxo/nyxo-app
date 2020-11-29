@@ -5,7 +5,6 @@ import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import Input from '@components/TextField'
 import TopInfo from '@components/TopInfo'
 import TranslatedText from '@components/TranslatedText'
-import ROUTE from '@config/routes/Routes'
 import { LoginSchema } from '@config/Validation'
 import { WIDTH } from '@helpers/Dimensions'
 import { getLoading } from '@selectors/auth-selectors/auth-selectors'
@@ -26,12 +25,8 @@ type Props = {
 const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
   const loading = useSelector(getLoading)
 
-  const loginSuccess = () => {
-    navigation.navigate(ROUTE.APP)
-  }
-
-  const submit = ({ email, password }) => {
-    login(email, password, loginSuccess)
+  const submit = ({ email, password }: { email: string; password: string }) => {
+    login(email, password)
   }
 
   return (

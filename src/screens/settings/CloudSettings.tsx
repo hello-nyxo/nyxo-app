@@ -16,30 +16,40 @@ import {
   getLoading
 } from '@selectors/auth-selectors/auth-selectors'
 import { getLoading as getCodeLoading } from '@selectors/linking-selectors'
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import { RefreshControl, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import ROUTE from '../../config/routes/Routes'
-import colors from '../../styles/colors'
+import colors from '@styles/colors'
+import { RootStackParamList } from '@typings/navigation/navigation'
+import { StackNavigationProp } from '@react-navigation/stack'
+import ROUTE from '@config/routes/Routes'
+import { RouteProp } from '@react-navigation/core'
 
-const CloudView = ({ navigation, route }) => {
+type CloudSettingsScreenProp = StackNavigationProp<
+  RootStackParamList['App']['Settings'],
+  ROUTE.CLOUD_SETTINGS
+>
+
+type CloudSettingsScreenRouteProp = RouteProp<
+  RootStackParamList['App']['Settings'],
+  ROUTE.CLOUD_SETTINGS
+>
+
+type Props = {
+  navigation: CloudSettingsScreenProp
+  route: CloudSettingsScreenRouteProp
+}
+
+const CloudView: FC<Props> = ({ route }) => {
   const isLoggedIn = useSelector(getAuthState)
   const linkingLoading = useSelector(getCodeLoading)
   const logoutLoading = useSelector(getLoading)
   const dispatch = useDispatch()
 
-  const linkCode = route?.params?.link
+  const linkCode = route?.params?.code
 
   const handleSignOut = () => {
     dispatch(logout())
-  }
-
-  const handleNavToSignIn = () => {
-    navigation.navigate('Auth', { screen: ROUTE.LOGIN })
-  }
-
-  const handleNavToRegister = () => {
-    navigation.navigate('Auth', { screen: ROUTE.REGISTER })
   }
 
   const refresh = async () => {

@@ -32,7 +32,7 @@
 #import <UMCore/UMModuleRegistry.h>
 #import <UMReactNativeAdapter/UMNativeModulesProxy.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
-
+#import <react-native-ultimate-config/ConfigValues.h>
 #import "RNSplashScreen.h"
 
 #if DEBUG
@@ -42,7 +42,6 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
-#import <react-native-ultimate-config/ConfigValues.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -112,7 +111,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];
   
     
-  [Intercom setApiKey:INTERCOM_KEY_IOS forAppId:INTERCOM_ID];
+  [Intercom setApiKey: INTERCOM_KEY_IOS forAppId: INTERCOM_ID];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
   

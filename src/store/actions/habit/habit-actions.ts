@@ -18,6 +18,7 @@ import { getUsername } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
 import { GetState } from '@typings/GetState'
 import ReduxAction, {
+  AppThunk,
   Dispatch,
   Thunk,
   ThunkResult
@@ -394,7 +395,7 @@ export const handleHabitsFromCloudWhenLoggingIn = (
 }
 
 // When user logs out, invoke this
-export const handleHabitsWhenloggingOut = (): Thunk => async (
+export const handleHabitsWhenloggingOut = (): AppThunk => async (
   dispatch: Dispatch,
   getState: GetState
 ) => {

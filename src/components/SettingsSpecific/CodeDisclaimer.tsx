@@ -2,11 +2,11 @@ import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
-import { constants, fonts, StyleProps } from '@styles/themes'
+import { constants, fonts } from '@styles/themes'
 import TranslatedText from '../TranslatedText'
 
 interface Props {
-  linkCode?: string
+  linkCode?: string | undefined | null
 }
 
 const CodeDisclaimer = ({ linkCode }: Props) => {
@@ -14,11 +14,11 @@ const CodeDisclaimer = ({ linkCode }: Props) => {
 
   return (
     <>
-      {!loggedIn && linkCode && (
+      {!loggedIn && !!linkCode ? (
         <Container>
           <Code variables={{ linkCode }}>CODE_FOR_LINKING</Code>
         </Container>
-      )}
+      ) : null}
     </>
   )
 }

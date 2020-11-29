@@ -1,3 +1,4 @@
+import { login } from '@actions/auth/auth-actions'
 import ROUTE from '@config/routes/Routes'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '@typings/navigation/navigation'
@@ -16,7 +17,8 @@ type Props = {
 
 const Register: FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch()
-  const login = async (email: string, password: string) => {
+
+  const handleLogin = async (email: string, password: string) => {
     dispatch(login(email, password, back))
   }
 
@@ -28,7 +30,9 @@ const Register: FC<Props> = ({ navigation }) => {
     navigation.navigate(ROUTE.APP)
   }
 
-  return <LoginView goToRegister={goToRegister} login={login} back={back} />
+  return (
+    <LoginView goToRegister={goToRegister} login={handleLogin} back={back} />
+  )
 }
 
 export default memo(Register)

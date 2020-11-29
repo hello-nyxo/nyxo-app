@@ -14,6 +14,8 @@
 		5B33130921DFB5B800698A4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130121DFB5B800698A4A /* AppDelegate.m */; };
 		5B33130A21DFB5B800698A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130221DFB5B800698A4A /* main.m */; };
 		5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B40961E242BAE0000169B4C /* GoogleService-Info.plist */; };
+		5B82C8E42574205400D21B1E /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B82C8E32574205300D21B1E /* App.png */; };
+		5B82C8E62574206B00D21B1E /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B82C8E52574206B00D21B1E /* App.png */; };
 		5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
 		5B96275F24F16E4C00C7FFDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */; };
 		5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0F90521E2411B00D3D56E /* main.jsbundle */; };
@@ -140,6 +142,8 @@
 		5B70355723E998420068DB97 /* Nyxo (DEV).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Nyxo (DEV).plist"; sourceTree = "<group>"; };
 		5B75EE392188A8920070EB69 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		5B75EE3A2188A8920070EB69 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		5B82C8E32574205300D21B1E /* App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App.png; sourceTree = "<group>"; };
+		5B82C8E52574206B00D21B1E /* App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App.png; path = ../../../../Desktop/App.png; sourceTree = "<group>"; };
 		5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BA0F90521E2411B00D3D56E /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 		13B07FAE1A68108700A75B9A /* Nyxo */ = {
 			isa = PBXGroup;
 			children = (
+				5B82C8E52574206B00D21B1E /* App.png */,
 				5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */,
 				5B70355723E998420068DB97 /* Nyxo (DEV).plist */,
 				5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */,
@@ -477,6 +482,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5B82C8E32574205300D21B1E /* App.png */,
 				5B2D63A724FC1941002E853B /* AppCenter-Config.plist */,
 				5B5220FA24F29CA50039E226 /* rnuc.xcconfig */,
 				5B40961E242BAE0000169B4C /* GoogleService-Info.plist */,
@@ -722,6 +728,7 @@
 				5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */,
 				5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */,
 				5BD58B9922D71D7600D1CD2D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				5B82C8E62574206B00D21B1E /* App.png in Resources */,
 				5BD58B9A22D71D7600D1CD2D /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				5BD58B9B22D71D7600D1CD2D /* Montserrat-Black.ttf in Resources */,
 				5BD58B9C22D71D7600D1CD2D /* Montserrat-Italic.ttf in Resources */,
@@ -744,6 +751,7 @@
 				5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */,
 				5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */,
 				5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */,
+				5B82C8E42574205400D21B1E /* App.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -997,7 +1005,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 61;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
@@ -1045,7 +1053,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 61;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -12,6 +12,7 @@
 		<string>applinks:get.nyxo.fi</string>
 		<string>applinks:get-nyxo.app.link</string>
 		<string>applinks:auth.nyxo.app</string>
+		<string>applinks:nyxo.app</string>
 	</array>
 	<key>com.apple.developer.healthkit</key>
 	<true/>

@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import TranslatedText from '@components/TranslatedText'
 import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
 
 interface Props {
-  navigate: Function
-  link: Function
+  navigate: () => void
+  link: () => void
   code?: string
   loading: boolean
   disabled?: boolean
 }
 
-const LinkingButton = ({ navigate, link, code, loading, disabled }: Props) => {
+const LinkingButton: FC<Props> = ({
+  navigate,
+  link,
+  code,
+  loading,
+  disabled
+}) => {
   const handlePress = () => {
     code ? link() : navigate()
   }

@@ -21,12 +21,13 @@ import TrackerName from './clock/TrackerName'
 import TranslatedText from './TranslatedText'
 
 const { width } = Dimensions.get('window')
-const clockSize = width - 40
-const x: number = clockSize / 2
+const containerSize = width - 40
+const x: number = containerSize / 2
 const y: number = x
-const radius: number = clockSize / 2 - 10
-const inBedRadius: number = clockSize / 2 - 15
-const fallAsleepRadius: number = clockSize / 2 - 5
+
+const radius: number = containerSize / 2 - 30
+const inBedRadius: number = containerSize / 2 - 15
+const fallAsleepRadius: number = containerSize / 2 - 5
 
 const Clock: FC = () => {
   const {
@@ -51,9 +52,20 @@ const Clock: FC = () => {
   return (
     <Card>
       <Title>STAT.TITLE</Title>
+      <Legend>
+        <LegendItem>
+          <LegendText>INBED</LegendText>
+          <Circle />
+        </LegendItem>
+        <LegendItem>
+          <LegendText>ASLEEP</LegendText>
+          <Ball />
+        </LegendItem>
+      </Legend>
 
-      <ClockContainer style={{ height: clockSize + 15, width: clockSize + 15 }}>
-        <Svg width={clockSize} height={clockSize}>
+      <ClockContainer
+        style={{ height: containerSize + 15, width: containerSize + 15 }}>
+        <Svg width={containerSize} height={containerSize}>
           <MinuteSticks x={x} y={y} radius={radius} />
           <ClockTimes x={x} y={y} radius={radius} />
           <FallAsleepWindow
@@ -67,6 +79,7 @@ const Clock: FC = () => {
             night={night}
             value={Value.InBed}
             strokeWidth={12}
+            outline
             color={colors.darkBlue}
             x={x}
             y={y}
@@ -109,7 +122,7 @@ const Clock: FC = () => {
         {/* <NightRating day={selectedDay} x={x} /> */}
         {editMode && (
           <Bedtime
-            clockSize={clockSize}
+            clockSize={containerSize}
             toggleEditMode={toggleEditNightMode}
             date={date}
           />
@@ -148,4 +161,38 @@ const Title = styled(TranslatedText)`
   top: 10px;
   left: 16px;
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+`
+
+const Legend = styled.View`
+  right: 16px;
+  top: 10px;
+  position: absolute;
+  flex-direction: column;
+`
+
+const LegendItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+`
+
+const Circle = styled.View`
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  border: 2px solid ${({ theme }) => theme.accent};
+`
+
+const Ball = styled.View`
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.accent};
+`
+
+const LegendText = styled(TranslatedText)`
+  font-size: 10px;
+  margin-bottom: 2px;
+  width: 45px;
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
 `

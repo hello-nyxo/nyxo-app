@@ -1,53 +1,50 @@
-import React, { useEffect } from 'react'
-import { SvgCss } from 'react-native-svg'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { useSelector, useDispatch } from 'react-redux'
-import Intercom from 'react-native-intercom'
-import { Alert, Button } from 'react-native'
 import { linkAccount } from '@actions/linking/linking-actions'
 import { getLinkingCode, getLoading } from '@selectors/linking-selectors'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { JournalStackParamList } from '@typings/navigation/navigation'
+import { RootStackParamList } from '@typings/navigation/navigation'
 import LinkingButton from '@components/Buttons/LinkingButton'
 import LoginButton from '@components/Buttons/LoginButton'
-import TerveystaloLogo from '../../../assets/terveystalo-logo.svg'
-import TerveystaloButton from '@components/Buttons/TerveystaloButton'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
-import translate from '../../config/i18n'
-import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
-import ROUTE from '../../config/routes/Routes'
 import {
   H2,
   SafeAreaView,
   StyledScrollView,
   P,
   CheckBox,
-  Container
+  Container,
+  StyledModal
 } from '@components/Primitives/Primitives'
+import { RouteProp } from '@react-navigation/core'
+import TranslatedText from '@components/TranslatedText'
+import colors from '@styles/colors'
+import LinkModule from '@components/SettingsSpecific/LinkModule'
+import ROUTE from '../../config/routes/Routes'
 
 type TerveystaloNavigationProp = NativeStackNavigationProp<
-  JournalStackParamList,
-  'Terveystalo'
+  RootStackParamList,
+  ROUTE.TERVEYSTALO
+>
+
+type TerveystaloScreenRouteProp = RouteProp<
+  RootStackParamList,
+  ROUTE.TERVEYSTALO
 >
 
 type Props = {
   navigation: TerveystaloNavigationProp
-  data: any
+  route: TerveystaloScreenRouteProp
 }
 
-const TTWelcome = ({ navigation, route }: Props) => {
+const TTWelcome: FC<Props> = ({ route }) => {
   const loggedIn = useSelector(getAuthState)
   const loading = useSelector(getLoading)
   const code = useSelector(getLinkingCode)
-
-  const linkCode = route?.params?.link
-
   const dispatch = useDispatch()
-
-  const handleChatPress = () => {
-    Intercom.displayMessenger()
-  }
+  const linkCode = route?.params?.code
 
   const handleLink = () => {
     dispatch(linkAccount(linkCode))
@@ -90,6 +87,22 @@ const TTWelcome = ({ navigation, route }: Props) => {
           )}
 
           {loggedIn && !!code && <P>TERVEYSTALO.DONE</P>}
+          {/* <ErrorContainer>
+            <Error>SOMETHING_WRONG</Error>
+          </ErrorContainer> */}
+
+          <StyledModal
+            isVisible={false}
+            transparent={false}
+            onSwipeComplete={() => {}}
+            onRequestClose={() => {}}
+            presentationStyle="pageSheet"
+            hideModalContentWhileAnimating
+            animationType="slide">
+            <ModalContent>
+              <LinkModule />
+            </ModalContent>
+          </StyledModal>
         </Container>
       </StyledScrollView>
     </SafeAreaView>
@@ -118,8 +131,14 @@ const Explanation = styled(P)`
   line-height: 25px;
 `
 
-const OpenChat = styled.TouchableOpacity``
+const ErrorContainer = styled.View``
 
-const OpenChatText = styled.Text``
+const Error = styled(TranslatedText)`
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  color: ${colors.red};
+`
 
-const Text = styled.Text``
+const ModalContent = styled.ScrollView`
+  flex: 1;
+  padding: 16px;
+`

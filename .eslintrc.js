@@ -48,7 +48,8 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react-native/no-unused-styles': 'error',
     'react-native/split-platform-components': 'error',
-    'react/jsx-closing-bracket-location': 'after-props',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     'react-native/no-inline-styles': 'error',
     'react-native/no-color-literals': 'error',
     'react/jsx-closing-bracket-location': 'off',
@@ -56,6 +57,8 @@ module.exports = {
     'react-native/no-raw-text': 'off',
     'react-native/no-single-element-style-arrays': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'unused-imports/no-unused-imports-ts': 'error',
     'unused-imports/no-unused-vars-ts': [
       'warn',
       {

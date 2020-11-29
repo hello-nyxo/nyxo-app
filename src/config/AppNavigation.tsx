@@ -1,22 +1,18 @@
 import { registerIntercomUser } from '@actions/IntercomActions'
-import getStateFromPath from '@helpers/GetPathFromState'
-import useLinking from '@hooks/useLinking'
 import {
   DarkTheme,
   DefaultTheme,
-  NavigationContainer
+  NavigationContainer,
+  useLinking
 } from '@react-navigation/native'
 import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
 import { getIsDarkMode } from '@selectors/UserSelectors'
-import { readFromStorage } from 'persist-queries'
 import Analytics from 'appcenter-analytics'
+import { readFromStorage } from 'persist-queries'
 import React, { FC, useEffect, useRef, useState } from 'react'
-import { Linking } from 'react-native'
 import Intercom from 'react-native-intercom'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { StyleProps } from '../styles/themes'
-import { navigationRef } from './NavigationHelper'
 import Root from './routes/RootNavigator'
 import ROUTE from './routes/Routes'
 
@@ -33,8 +29,12 @@ function getActiveRouteName(state: any): string {
 const Routes: FC = () => {
   const dispatch = useDispatch()
   const isDarkMode = useSelector(getIsDarkMode)
+  const ref = useRef(null)
+  const [isReady, setIsReady] = useState(false)
+  const [initialState, setInitialState] = useState()
+  const routeNameRef = useRef<string>()
 
-  const { getInitialState } = useLinking(navigationRef, {
+  const { getInitialState } = useLinking(ref, {
     prefixes: [
       'https://nyxo.fi',
       'https://nyxo.app',
@@ -43,38 +43,78 @@ const Routes: FC = () => {
       'nyxo://'
     ],
     config: {
-      [ROUTE.TERVEYSTALO]: {
-        path: 'link'
-      },
-      [ROUTE.APP]: {
-        path: 'app',
-        [ROUTE.JOURNAL]: {
-          path: 'sleep'
+      screens: {
+        [ROUTE.TERVEYSTALO]: {
+          path: 'link',
+          parse: {
+            code: (code) => `${code}`
+          }
         },
-        [ROUTE.SETTINGS]: {
-          path: 'settings',
-          [ROUTE.CLOUD_SETTINGS]: {
-            path: 'cloud'
-          },
-          [ROUTE.GARMIN]: {
-            path: 'garmin'
-          },
-          [ROUTE.SOURCE_SETTINGS]: {
-            path: 'callback'
+        [ROUTE.AUTH]: {
+          path: 'auth',
+          screens: {
+            [ROUTE.REGISTER]: {
+              path: 'register'
+            },
+            [ROUTE.LOGIN]: {
+              path: 'login'
+            }
+          }
+        },
+        [ROUTE.ONBOARDING]: {
+          path: 'onboarding'
+        },
+        [ROUTE.PURCHASE]: {
+          path: 'purchase'
+        },
+        [ROUTE.LESSON]: {
+          path: 'lesson/:slug'
+        },
+        [ROUTE.LESSON]: {
+          path: 'fi/lesson/:slug'
+        },
+        [ROUTE.APP]: {
+          screens: {
+            [ROUTE.SETTINGS]: {
+              screens: {
+                [ROUTE.CLOUD_SETTINGS]: {
+                  path: 'join'
+                }
+              }
+            }
+          }
+        },
+        [ROUTE.APP]: {
+          path: 'app',
+          screens: {
+            [ROUTE.JOURNAL]: {
+              path: 'sleep'
+            },
+            [ROUTE.PROFILE]: {
+              path: 'profile'
+            },
+            [ROUTE.COACHING]: {
+              path: 'coaching'
+            },
+            [ROUTE.SETTINGS]: {
+              path: 'settings',
+              screens: {
+                [ROUTE.CLOUD_SETTINGS]: {
+                  path: 'cloud'
+                },
+                [ROUTE.GARMIN]: {
+                  path: 'garmin'
+                },
+                [ROUTE.SOURCE_SETTINGS]: {
+                  path: 'callback'
+                }
+              }
+            }
           }
         }
       }
-    },
-    getStateFromPath
+    }
   })
-
-  const [isReady, setIsReady] = useState(false)
-  const [initialState, setInitialState] = useState()
-  const routeNameRef = useRef<string>()
-
-  Linking.getInitialURL()
-    .then((url) => {})
-    .catch((err) => console.error('An error occurred', err))
 
   useEffect(() => {
     readQueries()
@@ -83,17 +123,13 @@ const Routes: FC = () => {
       dispatch(notificationActions.updateIntercomNotificationCount(count))
     }
 
-    getInitialState()
-      .catch((error) => {
-        console.warn(error)
-      })
-      .then((state) => {
-        if (state !== undefined) {
-          setInitialState(state)
-        }
+    getInitialState().then((state) => {
+      if (state !== undefined) {
+        setInitialState(state)
+      }
 
-        setIsReady(true)
-      })
+      setIsReady(true)
+    })
 
     dispatch(registerIntercomUser())
 
@@ -125,13 +161,12 @@ const Routes: FC = () => {
     <>
       <StyledStatusBar animated />
       <NavigationContainer
-        ref={navigationRef}
+        ref={ref}
         theme={isDarkMode ? DarkTheme : DefaultTheme}
         initialState={initialState}
         onStateChange={(state) => {
           const previousRouteName = routeNameRef.current
           const currentRouteName = getActiveRouteName(state)
-
           if (previousRouteName !== currentRouteName) {
             Intercom.logEvent('viewed_screen', { currentRouteName })
             Analytics.trackEvent(`Navigated to ${currentRouteName}`)

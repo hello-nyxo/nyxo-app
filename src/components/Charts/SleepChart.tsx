@@ -63,6 +63,12 @@ const SleepTimeChart: FC = () => {
       <Title>STAT.TREND</Title>
 
       <ScrollContainer>
+        <YTicksContainer
+          pointerEvents="auto"
+          width={chartWidth}
+          height={chartHeight}>
+          <YTicks scaleY={scaleY} chartWidth={chartWidth} ticks={yTicks} />
+        </YTicksContainer>
         <ScrollView
           style={{ transform: [{ scaleX: -1 }] }}
           horizontal
@@ -94,9 +100,6 @@ const SleepTimeChart: FC = () => {
             </Svg>
           </View>
         </ScrollView>
-        <YTicksContainer width={chartWidth} height={chartHeight}>
-          <YTicks scaleY={scaleY} chartWidth={chartWidth} ticks={yTicks} />
-        </YTicksContainer>
       </ScrollContainer>
     </Card>
   )

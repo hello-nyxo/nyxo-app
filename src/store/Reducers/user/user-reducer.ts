@@ -1,25 +1,19 @@
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from '@actions/auth/auth-actions'
+import { UserState } from '@typings/UserState'
+import { lightTheme } from '@styles/themes'
 import {
-  CHANGE_USER_EMAIL,
-  COMPLETE_INTRODUCTION,
   SET_INTERCOM_ID,
   SET_THEME,
   UPDATE_EMAIL,
-  UPDATE_USER_FROM_CLOUD
-} from '@actions/user/user-actions'
-import ReduxAction from '@typings/redux-actions'
-import { UserState } from '@typings/UserState'
-import { lightTheme } from '@styles/themes'
-
-jest.mock('react-native', () => ({
-  StyleSheet: {
-    hairlineWidth: 10
-  }
-}))
+  UserActionTypes
+} from '@actions/user/types'
+import {
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
+  AuthActionTypes
+} from '@actions/auth/types'
 
 export const initialState: UserState = {
   syncEnabled: false,
-  introduction_completed: false,
   appTheme: lightTheme,
   loggedIn: false,
   username: '',
@@ -31,25 +25,16 @@ export const initialState: UserState = {
 
 const reducer = (
   state: UserState = initialState,
-  action: ReduxAction
+  action: UserActionTypes | AuthActionTypes
 ): UserState => {
-  const { type, payload } = action
-
-  switch (type) {
-    case UPDATE_USER_FROM_CLOUD:
-      return { ...state, connectionId: payload.connectionId }
-
-    case CHANGE_USER_EMAIL:
-      return { ...state, email: payload.email }
-
+  switch (action.type) {
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        username: payload.username,
-        authenticated: !!payload.authenticated,
+        username: action.payload.username,
+        authenticated: !!action.payload.authenticated,
         syncEnabled: true,
-        username: payload.username,
-        email: payload.email
+        email: action.payload.email
       }
     }
 
@@ -57,20 +42,14 @@ const reducer = (
       return { ...state, authenticated: false, syncEnabled: false, email: '' }
     }
 
-    case COMPLETE_INTRODUCTION:
-      return {
-        ...state,
-        introduction_completed: payload
-      }
-
     case UPDATE_EMAIL:
-      return { ...state, email: payload }
+      return { ...state, email: action.payload }
 
     case SET_THEME:
-      return { ...state, appTheme: { ...state.appTheme, ...payload } }
+      return { ...state, appTheme: { ...state.appTheme, ...action.payload } }
 
     case SET_INTERCOM_ID:
-      return { ...state, intercomId: payload }
+      return { ...state, intercomId: action.payload }
 
     default:
       return state

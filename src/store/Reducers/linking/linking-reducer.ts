@@ -4,10 +4,10 @@ import {
   LINKING_FAILURE,
   REMOVE_LINK_START,
   REMOVE_LINK_SUCCESS,
-  REMOVE_LINK_FAILURE
-} from '@actions/linking/linking-actions'
+  REMOVE_LINK_FAILURE,
+  LinkingActions
+} from '@actions/linking/types'
 import { LinkingState } from '@typings/state/linking-state'
-import ReduxAction from '@typings/redux-actions'
 
 const initialState = {
   linkCode: null,
@@ -16,13 +16,13 @@ const initialState = {
 
 const reducer = (
   state = initialState,
-  { type, payload }: ReduxAction
+  action: LinkingActions
 ): LinkingState => {
-  switch (type) {
+  switch (action.type) {
     case LINKING_START:
       return { ...state, loading: true }
     case LINKING_SUCCESS:
-      return { ...state, loading: false, linkCode: payload }
+      return { ...state, loading: false, linkCode: action.payload }
     case LINKING_FAILURE:
       return { ...state, loading: false }
     case REMOVE_LINK_START:
