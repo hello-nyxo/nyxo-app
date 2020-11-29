@@ -5,21 +5,23 @@ import {
 import { IconBold } from '@components/iconRegular'
 import { Column } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
+import { ExpandingDot } from '@components/micro-interactions/FlatListPageIndicator'
 import {
   getFormattedDateOrPlaceholder,
   minutesToHoursString
 } from '@helpers/time'
-import React, { FC, useState } from 'react'
+import React, { FC, useRef } from 'react'
+import { Animated } from 'react-native'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { WIDTH } from '@helpers/Dimensions'
 import useSleep from '@hooks/useSleep'
-import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 
 const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
 const InsightsCard: FC = () => {
+  const scrollX = useRef(new Animated.Value(0)).current
   const {
     bedStart,
     bedEnd,
@@ -40,17 +42,6 @@ const InsightsCard: FC = () => {
     'H:mm'
   )
   const windowEnd = getFormattedDateOrPlaceholder(goToSleepWindowEnd, 'H:mm')
-  const [page, setPage] = useState(0)
-
-  const handleScroll = ({
-    nativeEvent
-  }: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (nativeEvent.contentOffset.x > nativeEvent.contentSize.width / 3) {
-      setPage(1)
-    } else {
-      setPage(0)
-    }
-  }
 
   return (
     <Container>
@@ -59,9 +50,14 @@ const InsightsCard: FC = () => {
       <ScrollView
         horizontal
         pagingEnabled
-        scrollEventThrottle={30}
         showsHorizontalScrollIndicator={false}
-        onScroll={handleScroll}>
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          {
+            useNativeDriver: false
+          }
+        )}>
         <Page>
           <Row>
             <Figure>
@@ -187,10 +183,7 @@ const InsightsCard: FC = () => {
           </Row>
         </Page>
       </ScrollView>
-      <Paging>
-        <Dot selected={page === 0} />
-        <Dot selected={page === 1} />
-      </Paging>
+      <ScrollIndicator width={pageWidth} scrollX={scrollX} data={[0, 1]} />
     </Container>
   )
 }
@@ -253,21 +246,15 @@ const Description = styled(TranslatedText)`
   font-size: 13px;
 `
 
-const Paging = styled.View`
+const ScrollIndicator = styled(ExpandingDot).attrs(() => ({
+  dotStyle: {
+    width: 5,
+    height: 5
+  }
+}))`
   flex-direction: row;
   align-items: center;
+  position: relative;
   justify-content: center;
   width: 100%;
-`
-
-type DotProps = {
-  selected: boolean
-}
-const Dot = styled.View<DotProps>`
-  height: 5px;
-  width: 5px;
-  border-radius: 10px;
-  background-color: ${({ selected, theme }) =>
-    selected ? theme.accent : theme.HAIRLINE_COLOR};
-  margin: 0px 5px;
 `

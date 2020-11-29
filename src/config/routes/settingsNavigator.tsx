@@ -3,7 +3,6 @@ import CloudSettings from '@screens/settings/CloudSettings'
 import CoachingSettings from '@screens/settings/CoachingSettings'
 import GarminScreen from '@screens/settings/GarminScreen'
 import ManageSubscription from '@screens/settings/ManageSubscription'
-import NotificationSettings from '@screens/settings/Notifications'
 import Settings from '@screens/settings/settings'
 import SetSource from '@screens/settings/SourceSettings'
 import React, { FC } from 'react'
@@ -15,7 +14,7 @@ const SettingsNavigator: FC = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Settings"
+        name={ROUTE.SETTINGS}
         component={Settings}
         options={{ headerShown: false }}
       />
@@ -25,7 +24,7 @@ const SettingsNavigator: FC = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="CloudSettings"
+        name={ROUTE.CLOUD_SETTINGS}
         component={CloudSettings}
         options={{ headerShown: false }}
       />
@@ -35,12 +34,12 @@ const SettingsNavigator: FC = () => {
         options={{ headerShown: false }}
       /> */}
       <Stack.Screen
-        name="CoachingSettings"
+        name={ROUTE.COACHING_SETTINGS}
         component={CoachingSettings}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="ManageSubscription"
+        name={ROUTE.SUBSCRIPTION_SETTINGS}
         component={ManageSubscription}
         options={{ headerShown: false }}
       />

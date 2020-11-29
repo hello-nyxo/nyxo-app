@@ -8,11 +8,14 @@ import TopInfo from '@components/TopInfo'
 import CONFIG from '@config/Config'
 import ROUTE from '@config/routes/Routes'
 import keyExtractor from '@helpers/KeyExtractor'
+import { RouteProp } from '@react-navigation/core'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { getIntercomNotificationCount } from '@selectors/NotificationSelectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { getTheme } from '@selectors/UserSelectors'
 import { darkTheme, lightTheme } from '@styles/themes'
-import React, { memo, useMemo } from 'react'
+import { RootStackParamList } from '@typings/navigation/navigation'
+import React, { FC, memo, useMemo } from 'react'
 import { Linking, SectionList } from 'react-native'
 import Intercom from 'react-native-intercom'
 import Rate, { AndroidMarket } from 'react-native-rate'
@@ -28,38 +31,38 @@ const options = {
   openAppStoreIfInAppFails: true,
   fallbackPlatformURL: 'http://www.nyxo.app/'
 }
+type SettingsNavigationProp = NativeStackNavigationProp<
+  RootStackParamList[ROUTE.APP],
+  ROUTE.SETTINGS
+>
 
-interface SettingsScreenProps {
-  navigation: any
+type SettingsScreenRouteProp = RouteProp<
+  RootStackParamList[ROUTE.APP],
+  ROUTE.SETTINGS
+>
+
+type Props = {
+  navigation: SettingsNavigationProp
+  route: SettingsScreenRouteProp
 }
 
-const SettingsScreen = (props: SettingsScreenProps) => {
+const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch()
   const theme = useSelector(getTheme)
   const hasActiveCoaching = useSelector(getActiveCoaching)
   const intercomCount = useSelector(getIntercomNotificationCount)
-  const {
-    navigation: { navigate }
-  } = props
 
   const switchTheme = () => {
-    const newTheme = theme
-      ? theme.mode === 'dark'
-        ? lightTheme
-        : darkTheme
-      : lightTheme
+    const newTheme = theme?.mode === 'dark' ? lightTheme : darkTheme
     dispatch(setTheme(newTheme))
   }
 
   const rateApp = () => {
-    Rate.rate(options, (success) => {
-      if (success) {
-      }
-    })
+    Rate.rate(options, (success) => {})
   }
 
   const displayTheme = (t: DefaultTheme) =>
-    t ? (t.mode === 'dark' ? 'Light' : 'Dark') : 'Light'
+    t?.mode === 'dark' ? 'Light' : 'Dark'
 
   const settings = useMemo(
     () => [
@@ -71,18 +74,18 @@ const SettingsScreen = (props: SettingsScreenProps) => {
       {
         text: 'Coaching settings',
         icon: 'schoolPhysicalBold',
-        action: () => navigate('CoachingSettings')
+        action: () => navigate(ROUTE.COACHING_SETTINGS)
       },
 
       {
         text: 'Manage Nyxo Subscription',
         icon: 'receipt',
-        action: () => navigate('ManageSubscription')
+        action: () => navigate(ROUTE.CLOUD_SETTINGS)
       },
       {
         text: 'Sync to backend',
         icon: 'syncCloud',
-        action: () => navigate('CloudSettings')
+        action: () => navigate(ROUTE.CLOUD_SETTINGS)
       },
       {
         text: 'Switch mode',
@@ -96,6 +99,12 @@ const SettingsScreen = (props: SettingsScreenProps) => {
         icon: 'star',
         analyticsEvent: 'Rated app through settings',
         action: rateApp
+      },
+      {
+        text: 'RATE_APP',
+        icon: 'star',
+        analyticsEvent: 'Rated app through settings',
+        action: () => navigate(ROUTE.ONBOARDING)
       }
       // {
       //   text: 'CONTROL_NOTIFICATIONS',

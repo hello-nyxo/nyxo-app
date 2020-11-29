@@ -61,6 +61,9 @@ const Routes: FC = () => {
             }
           }
         },
+        [ROUTE.ONBOARDING]: {
+          path: 'onboarding'
+        },
         [ROUTE.PURCHASE]: {
           path: 'purchase'
         },
