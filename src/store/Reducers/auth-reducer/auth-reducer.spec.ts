@@ -1,13 +1,14 @@
 import { NativeModules } from 'react-native'
 import RNCNetInfoMock from '@react-native-community/netinfo'
+
 import {
   REGISTER_START,
-  REGISTER_SUCCESS,
   REGISTER_FAILURE,
-  LOGIN_START,
+  REGISTER_SUCCESS,
   LOGIN_SUCCESS,
+  LOGIN_START,
   LOGIN_FAILURE
-} from '@actions/auth/auth-actions'
+} from '@actions/auth/types'
 import reducer, { initialState } from './auth-reducer'
 
 NativeModules.RNCNetInfo = RNCNetInfoMock
@@ -44,7 +45,8 @@ describe('Auth reducer', () => {
   it(`should handle ${REGISTER_FAILURE}`, () => {
     expect(
       reducer(initialState, {
-        type: REGISTER_FAILURE
+        type: REGISTER_FAILURE,
+        payload: 'error'
       })
     ).toEqual({
       ...initialState,
@@ -67,7 +69,7 @@ describe('Auth reducer', () => {
     expect(
       reducer(initialState, {
         type: LOGIN_SUCCESS,
-        payload: { authenticated: true }
+        payload: { authenticated: true, username: '', email: '' }
       })
     ).toEqual({
       ...initialState,
@@ -79,7 +81,8 @@ describe('Auth reducer', () => {
   it(`should handle ${LOGIN_FAILURE}`, () => {
     expect(
       reducer(initialState, {
-        type: LOGIN_FAILURE
+        type: LOGIN_FAILURE,
+        payload: 'error'
       })
     ).toEqual({
       ...initialState,

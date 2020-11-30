@@ -1,27 +1,22 @@
-import ReduxAction from '@typings/redux-actions'
+import { ManualDataState } from '@typings/state/ManualDataState'
+import { manualData } from 'src/store/initial-states/manual-data-state'
 import {
+  ManualSleepActions,
   SET_VALUES,
   TOGGLE_EDIT_MODE
-} from '@actions/manual-sleep/manual-sleep-actions'
-import { RESET_APP } from '@actions/shared'
-import { ManualDataState } from '@typings/state/ManualDataState'
-
-const initialState: ManualDataState = {
-  editMode: false,
-  startTime: { h: 0, m: 0 },
-  endTime: { h: 0, m: 0 }
-}
+} from '@actions/manual-sleep/types'
 
 const reducer = (
-  state: ManualDataState = initialState,
-  { payload, type }: ReduxAction
+  state: ManualDataState = manualData,
+  action: ManualSleepActions
 ): ManualDataState => {
-  switch (type) {
-    case RESET_APP:
-      return initialState
-
+  switch (action.type) {
     case SET_VALUES:
-      return { ...state, startTime: payload.start, endTime: payload.end }
+      return {
+        ...state,
+        startTime: action.payload.start,
+        endTime: action.payload.end
+      }
 
     case TOGGLE_EDIT_MODE:
       return { ...state, editMode: !state.editMode }

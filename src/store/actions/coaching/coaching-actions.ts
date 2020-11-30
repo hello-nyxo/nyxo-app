@@ -1,23 +1,3 @@
-import API, { graphqlOperation } from '@aws-amplify/api'
-import {
-  ListCoachingDatasQuery,
-  ModelCoachingDataFilterInput,
-  UpdateCoachingDataInput
-} from '@API'
-import { Auth } from 'aws-amplify'
-import { createCoachingData, updateCoachingData } from '@graphql/mutations'
-import { listCoachingDatas } from '@graphql/queries'
-import moment from 'moment'
-import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
-import {
-  getActiveWeekWithContent,
-  getCoachingMonth,
-  getCurrentWeekAll,
-  WEEK_STAGE
-} from '@selectors/coaching-selectors'
-import { GetState } from '@typings/GetState'
-import { CoachingMonth, STAGE, StateWeek } from '@typings/state/coaching-state'
-import { v4 } from 'uuid'
 import ReduxAction from '@typings/redux-actions'
 
 /* ACTION TYPES */
@@ -77,43 +57,3 @@ export const completeLesson = (slug: string): ReduxAction => ({
   type: COMPLETE_LESSON,
   payload: slug
 })
-
-export const completeWeek = (
-  completedWeekSlug: string,
-  nextWeekSlug?: string
-): ReduxAction => ({
-  type: COMPLETE_WEEK,
-  payload: { completedWeekSlug, nextWeekSlug }
-})
-
-/* ASYNC ACTIONS */
-
-export const updateCoaching = (coachingMonths: CoachingMonth[]) => async (
-  dispatch: Function,
-  getState: GetState
-) => {
-  const { username } = await Auth.currentUserInfo()
-  const updatePromises: Promise<any>[] = []
-  try {
-    coachingMonths.forEach((month) => {
-      const input: UpdateCoachingDataInput = {
-        id: month.id,
-        userId: username,
-        lessons: month.lessons,
-        weeks: month.weeks.map((week) => ({
-          slug: week.slug,
-          started: week.started,
-          ended: week.ended
-        })),
-        started: month.started
-      }
-
-      updatePromises.push(
-        API.graphql(graphqlOperation(updateCoachingData, { input })) as any
-      )
-    })
-    await Promise.all(updatePromises)
-  } catch (error) {
-    console.warn(error)
-  }
-}

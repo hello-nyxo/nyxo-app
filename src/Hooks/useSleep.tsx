@@ -53,6 +53,8 @@ const useSleep = (): Hook => {
     sleepEnd = findEndTime(night, Value.Asleep)
   }
 
+  console.log(night)
+
   return {
     windowStart,
     windowEnd,

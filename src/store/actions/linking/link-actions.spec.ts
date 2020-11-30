@@ -1,7 +1,8 @@
 import { State } from '@typings/State'
 import { enableMapSet } from 'immer'
+import { Action } from 'redux'
 import configureStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import thunk, { ThunkDispatch } from 'redux-thunk'
 import { linkAccount, linkSuccess } from './linking-actions'
 
 enableMapSet()
@@ -13,11 +14,13 @@ jest.mock('aws-amplify', () => ({
 
 const middlewares = [thunk]
 
-const mockStore = configureStore(middlewares)
-
 type S = {
   linking: State['linking']
 }
+
+type DispatchExts = ThunkDispatch<State, unknown, Action<string>>
+
+const mockStore = configureStore<State, DispatchExts>(middlewares)
 
 const state: S = {
   linking: {

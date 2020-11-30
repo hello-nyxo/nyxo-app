@@ -1,12 +1,8 @@
-import ReduxAction from '@typings/redux-actions'
-
-/* ACTION TYPES */
-
-export const SET_SELECTED_DATE = 'CREATE_DAYS_START'
+import { CalendarActions, SET_SELECTED_DATE } from './types'
 
 /* ACTIONS */
 
-export const setSelectedDate = (date: string): ReduxAction => ({
+export const setSelectedDate = (date: string): CalendarActions => ({
   type: SET_SELECTED_DATE,
   payload: date
 })

@@ -77,7 +77,6 @@ export const updateSubscriptionStatus = (): Thunk => async (
       dispatch(purchaseSuccess({ isActive: false }))
     }
   } catch (error) {
-    console.warn(error)
     dispatch(purchaseFailure(error))
   }
 }

@@ -7,48 +7,50 @@ import { formatFitbitSamples } from '@helpers/sleep/fitbit-helper'
 import moment from 'moment'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
 import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { Dispatch, Thunk } from '@typings/redux-actions'
 import {
   FitbitAuthorizeResult,
   FitbitRefreshResult,
   ResponseBase
 } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
+import { captureException } from '@sentry/react-native'
 import { fetchSleepSuccess } from '../sleep/health-kit-actions'
-
-export const FITBIT_AUTHORIZE_SUCCESS = 'FITBIT_AUTHORIZE_SUCCESS'
-export const FITBIT_REVOKE_SUCCESS = 'FITBIT_REVOKE_SUCCESS'
-export const FITBIT_UPDATE_TOKEN = 'FITBIT_UPDATE_TOKEN'
-
-export const FETCH_SLEEP_FITBIT_START = 'FETCH_SLEEP_FITBIT_START'
-export const FETCH_SLEEP_FITBIT_SUCCESS = 'FETCH_SLEEP_FITBIT_SUCCESS'
-export const FETCH_SLEEP_FITBIT_FAILURE = 'FETCH_SLEEP_FITBIT_FAILURE'
+import {
+  FETCH_SLEEP_FITBIT_FAILURE,
+  FETCH_SLEEP_FITBIT_START,
+  FETCH_SLEEP_FITBIT_SUCCESS,
+  FITBIT_AUTHORIZE_SUCCESS,
+  FITBIT_REVOKE_SUCCESS,
+  FITBIT_UPDATE_TOKEN,
+  ApiActions
+} from './types'
 
 /* ACTIONS */
 
-export const fitbitAuthorizeSuccess = (payload: ResponseBase): ReduxAction => ({
+export const fitbitAuthorizeSuccess = (payload: ResponseBase): ApiActions => ({
   type: FITBIT_AUTHORIZE_SUCCESS,
   payload
 })
 
-export const fitbitRevokeSuccess = (): ReduxAction => ({
+export const fitbitRevokeSuccess = (): ApiActions => ({
   type: FITBIT_REVOKE_SUCCESS
 })
 
-export const fitbitUpdateToken = (payload: ResponseBase): ReduxAction => ({
+export const fitbitUpdateToken = (payload: ResponseBase): ApiActions => ({
   type: FITBIT_UPDATE_TOKEN,
   payload
 })
 
-export const fetchSleepFitbitStart = (): ReduxAction => ({
+export const fetchSleepFitbitStart = (): ApiActions => ({
   type: FETCH_SLEEP_FITBIT_START
 })
 
-export const fetchSleepFitbitSuccess = (): ReduxAction => ({
+export const fetchSleepFitbitSuccess = (): ApiActions => ({
   type: FETCH_SLEEP_FITBIT_SUCCESS
 })
 
-export const fetchSleepFitbitFailure = (): ReduxAction => ({
+export const fetchSleepFitbitFailure = (): ApiActions => ({
   type: FETCH_SLEEP_FITBIT_FAILURE
 })
 
@@ -67,8 +69,8 @@ export const toggleFitbit = (): Thunk => async (
       await dispatch(revokePreviousSource())
       await dispatch(authorizeFitbit())
     }
-  } catch (err) {
-    console.warn('toggleFitbit err', err)
+  } catch (error) {
+    captureException(error)
   }
 }
 
@@ -82,6 +84,7 @@ export const authorizeFitbit = (): Thunk => async (dispatch: Dispatch) => {
       accessTokenExpirationDate,
       refreshToken,
       accessToken,
+      // eslint-disable-next-line camelcase
       tokenAdditionalParameters: { user_id }
     } = response
 
@@ -102,14 +105,14 @@ export const authorizeFitbit = (): Thunk => async (dispatch: Dispatch) => {
     )
     await dispatch(setMainSource(SOURCE.FITBIT))
   } catch (error) {
-    console.warn('authorizeFitbit err', error)
+    captureException(error)
   }
 }
 
 export const refreshFitbitToken = (): Thunk => async (dispatch: Dispatch) => {
-  const { refreshToken: oldToken } = (await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     CONFIG.FITBIT_CONFIG.bundleId
-  )) as FitbitAuthorizeResult
+  )) as unknown) as FitbitAuthorizeResult
 
   if (oldToken) {
     try {
@@ -121,6 +124,7 @@ export const refreshFitbitToken = (): Thunk => async (dispatch: Dispatch) => {
         accessTokenExpirationDate,
         refreshToken,
         accessToken,
+        // eslint-disable-next-line camelcase
         additionalParameters: { user_id }
       } = response
 
@@ -142,7 +146,7 @@ export const refreshFitbitToken = (): Thunk => async (dispatch: Dispatch) => {
 
       return accessToken
     } catch (error) {
-      console.warn('refreshFitbitToken err', error)
+      captureException(error)
     }
   }
 
@@ -150,9 +154,9 @@ export const refreshFitbitToken = (): Thunk => async (dispatch: Dispatch) => {
 }
 
 export const revokeFitbitAccess = (): Thunk => async (dispatch: Dispatch) => {
-  const { accessToken } = (await GetKeychainParsedValue(
+  const { accessToken } = ((await GetKeychainParsedValue(
     CONFIG.FITBIT_CONFIG.bundleId
-  )) as FitbitAuthorizeResult
+  )) as unknown) as FitbitAuthorizeResult
 
   if (accessToken) {
     try {
@@ -164,7 +168,7 @@ export const revokeFitbitAccess = (): Thunk => async (dispatch: Dispatch) => {
       dispatch(fitbitRevokeSuccess())
       dispatch(setMainSource(SOURCE.NO_SOURCE))
     } catch (error) {
-      console.warn('revokeFitbitAccess err', error)
+      captureException(error)
     }
   }
 }
@@ -173,10 +177,11 @@ export const getFitbitSleep = (): Thunk => async (dispatch: Dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate,
+    // eslint-disable-next-line camelcase
     tokenAdditionalParameters: { user_id }
-  } = (await GetKeychainParsedValue(
+  } = ((await GetKeychainParsedValue(
     CONFIG.FITBIT_CONFIG.bundleId
-  )) as FitbitAuthorizeResult
+  )) as unknown) as FitbitAuthorizeResult
 
   const startDate = moment().subtract(1, 'week').format('YYYY-MM-DD')
   const endDate = moment().format('YYYY-MM-DD')
@@ -217,7 +222,7 @@ export const getFitbitSleep = (): Thunk => async (dispatch: Dispatch) => {
         await dispatch(fetchSleepFitbitSuccess())
       }
     } catch (error) {
-      console.warn('getFitbitSleep err', error)
+      captureException(error)
       dispatch(fetchSleepFitbitFailure())
     }
   }

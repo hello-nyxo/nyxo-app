@@ -6,55 +6,51 @@ import {
 } from '@actions/sleep-source-actions/sleep-source-actions'
 import { fetchSleepSuccess } from '@actions/sleep/health-kit-actions'
 import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
-import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
 import CONFIG from '@config/Config'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import { formatGoogleFitData } from '@helpers/sleep/google-fit-helper'
 import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
 import { getGoogleFitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { captureException } from '@sentry/react-native'
+import { AppThunk } from '@typings/redux-actions'
 import { Night } from '@typings/Sleepdata'
 import { GoogleFitResponse, ResponseBase } from '@typings/state/api-state'
 import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
-import moment from 'moment'
+import { isAfter, subWeeks } from 'date-fns'
 import { Platform } from 'react-native'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
-/* ACTION TYPES */
-
-export const GOOGLE_FIT_AUTHORIZE_SUCCESS = 'GOOGLE_FIT_AUTHORIZE_SUCCESS'
-export const GOOGLE_FIT_REVOKE_SUCCESS = 'GOOGLE_FIT_REVOKE_SUCCESS'
-export const GOOGLE_FIT_UPDATE_TOKEN = 'GOOGLE_FIT_UPDATE_TOKEN'
-
-export const FETCH_GOOGLE_FIT_START = 'FETCH_GOOGLE_FIT_START'
-export const FETCH_GOOGLE_FIT_SUCCESS = 'FETCH_GOOGLE_FIT_SUCCESS'
-export const FETCH_GOOGLE_FIT_FAILURE = 'FETCH_GOOGLE_FIT_FAILURE'
+import {
+  GOOGLE_FIT_AUTHORIZE_SUCCESS,
+  GOOGLE_FIT_REVOKE_SUCCESS,
+  GOOGLE_FIT_UPDATE_TOKEN,
+  ApiActions
+} from './types'
 
 export const GOOGLE_FIT_KEYCHAIN_SERVICE = 'service.fit.google.customized'
+const GOOGLE_FIT_API =
+  'https://www.googleapis.com/fitness/v1/users/me/sessions?startTime='
+
 /* ACTIONS */
 
 export const googleFitAuthorizeSuccess = (
   payload: ResponseBase
-): ReduxAction => ({
+): ApiActions => ({
   type: GOOGLE_FIT_AUTHORIZE_SUCCESS,
   payload
 })
 
-export const googleFitRevokeSuccess = (): ReduxAction => ({
+export const googleFitRevokeSuccess = (): ApiActions => ({
   type: GOOGLE_FIT_REVOKE_SUCCESS
 })
 
-export const googleFitUpdateToken = (payload: ResponseBase): ReduxAction => ({
+export const googleFitUpdateToken = (payload: ResponseBase): ApiActions => ({
   type: GOOGLE_FIT_UPDATE_TOKEN,
   payload
 })
 
 /* ASYNC ACTIONS */
 
-export const toggleGoogleFit = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+export const toggleGoogleFit = (): AppThunk => async (dispatch, getState) => {
   try {
     const enabled = getGoogleFitEnabled(getState())
 
@@ -66,13 +62,11 @@ export const toggleGoogleFit = (): Thunk => async (
       await dispatch(authorizeGoogleFit())
     }
   } catch (err) {
-    console.warn(err)
+    captureException(err)
   }
 }
 
-export const authorizeGoogleFit = () => async (
-  dispatch: Dispatch
-): Promise<void> => {
+export const authorizeGoogleFit = (): AppThunk => async (dispatch) => {
   const config =
     Platform.OS === 'android'
       ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
@@ -98,15 +92,18 @@ export const authorizeGoogleFit = () => async (
     )
 
     dispatch(setMainSource(SOURCE.GOOGLE_FIT))
-    dispatch(readGoogleFitSleep())
+    dispatch(
+      readGoogleFitSleep(
+        new Date().toISOString(),
+        subWeeks(new Date(), 1).toISOString()
+      )
+    )
   } catch (error) {
-    console.warn(error)
+    captureException(error)
   }
 }
 
-export const refreshGoogleFitToken = (): Thunk => async (
-  dispatch: Dispatch
-) => {
+export const refreshGoogleFitToken = (): AppThunk => async (dispatch) => {
   const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
   )) as unknown) as GoogleFitResponse
@@ -142,16 +139,14 @@ export const refreshGoogleFitToken = (): Thunk => async (
       // - The user revokes the Google Fit access
       // - The refresh token has not been used for 6 months
       await dispatch(revokeGoogleFitAccess())
-      console.warn(error)
+      captureException(error)
     }
   }
 
   return null
 }
 
-export const revokeGoogleFitAccess = (): Thunk => async (
-  dispatch: Dispatch
-) => {
+export const revokeGoogleFitAccess = (): AppThunk => async (dispatch) => {
   const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
   )) as unknown) as GoogleFitResponse
@@ -167,13 +162,16 @@ export const revokeGoogleFitAccess = (): Thunk => async (
       })
       dispatch(googleFitRevokeSuccess())
     } catch (error) {
-      console.warn(error)
+      captureException(error)
     }
   }
   dispatch(googleFitRevokeSuccess())
 }
 
-export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
+export const readGoogleFitSleep = (
+  startDate: string,
+  endDate: string
+): AppThunk => async (dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
@@ -181,14 +179,11 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
     GOOGLE_FIT_KEYCHAIN_SERVICE
   )) as unknown) as GoogleFitResponse
 
-  const startDate = moment().subtract(1, 'week').toISOString()
-  const endDate = new Date().toISOString()
-
   if (accessToken) {
     try {
-      if (moment(accessTokenExpirationDate).isAfter(moment())) {
+      if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
         const googleApiCall = await fetch(
-          `https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=${startDate}&endTime=${endDate}`,
+          `${GOOGLE_FIT_API}${startDate}&endTime=${endDate}`,
           {
             method: 'GET',
             headers: {
@@ -208,7 +203,7 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
 
         if (newAccessToken) {
           const googleApiCall = await fetch(
-            `https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=${startDate}&endTime=${endDate}`,
+            `${GOOGLE_FIT_API}${startDate}&endTime=${endDate}`,
             {
               method: 'GET',
               headers: {
@@ -225,14 +220,14 @@ export const readGoogleFitSleep = (): Thunk => async (dispatch: Dispatch) => {
         }
       }
     } catch (error) {
-      console.warn('ERROR', error)
+      captureException(error)
     }
   }
 }
 
-export const createGoogleFitSources = (nights: Night[]): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+export const createGoogleFitSources = (nights: Night[]): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   const googleFitSource = getGoogleFitSource(getState())
   const sourceList: SUB_SOURCE[] = []

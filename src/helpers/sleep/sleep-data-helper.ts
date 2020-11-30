@@ -168,7 +168,6 @@ export function matchDayAndNight(night: string, day: string): boolean {
   const nightTime = new Date(night)
   const nightStart = subHours(startOfDay(new Date(day)), 12)
   const nightEnd = addHours(startOfDay(new Date(day)), 12)
-
   return isWithinInterval(nightTime, { start: nightStart, end: nightEnd })
 }
 

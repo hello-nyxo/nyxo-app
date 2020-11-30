@@ -1,12 +1,16 @@
-import { handleHabitsWhenloggingOut } from '@actions/habit/habit-actions'
+import {
+  handleHabitsFromCloudWhenLoggingIn,
+  handleHabitsWhenloggingOut,
+  toggleMergingDialog
+} from '@actions/habit/habit-actions'
 import Auth from '@aws-amplify/auth'
 import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
 import translate from '@config/i18n'
-import * as NavigationService from '@config/NavigationHelper'
-import ROUTE from '@config/routes/Routes'
 import Purchases from 'react-native-purchases'
 import { NotificationType } from '@typings/NotificationState'
 import { AppThunk } from '@typings/redux-actions'
+import Intercom from 'react-native-intercom'
+import { areThereChangesInLocal } from '@helpers/habits'
 import { updateEmail } from '../user/user-actions'
 import {
   LOGIN_FAILURE,
@@ -75,7 +79,7 @@ export const register = (
 ): AppThunk => async (dispatch) => {
   dispatch(registerStart())
   try {
-    const response = await Auth.signUp({
+    const _ = await Auth.signUp({
       username: email,
       password,
       attributes: { email }
@@ -137,15 +141,15 @@ export const login = (
       username
     } = await Auth.signIn(loginEmail, loginPassword)
 
-    // await Intercom.updateUser({ email, user_id: username })
-    // await Purchases.identify(username)
-    // await Purchases.setEmail(email)
+    await Intercom.updateUser({ email, user_id: username })
+    await Purchases.identify(username)
+    await Purchases.setEmail(email)
 
-    // if (areThereChangesInLocal(habits, subHabits)) {
-    //   await dispatch(toggleMergingDialog(true))
-    // } else {
-    //   await dispatch(handleHabitsFromCloudWhenLoggingIn(username, false))
-    // }
+    if (areThereChangesInLocal(habits, subHabits)) {
+      await dispatch(toggleMergingDialog(true))
+    } else {
+      await dispatch(handleHabitsFromCloudWhenLoggingIn(username, false))
+    }
 
     await dispatch(loginSuccess(true, email, username))
     if (successCallback) {
@@ -158,7 +162,6 @@ export const login = (
     switch (code) {
       case 'UserNotConfirmedException':
         await dispatch(updateEmail(loginEmail))
-        NavigationService.navigate(ROUTE.CONFIRM, {})
         break
       case 'UserNotFoundException':
         message = translate('AUTH_ERROR.USER_NOT_EXIST_EXCEPTION')

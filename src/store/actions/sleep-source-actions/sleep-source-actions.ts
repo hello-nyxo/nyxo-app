@@ -4,9 +4,18 @@ import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
 import AppleHealthKit from 'react-native-healthkit'
 import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { AppThunk, Dispatch } from '@typings/redux-actions'
 import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
 import { subDays } from 'date-fns'
+import { captureException } from '@sentry/react-native'
+import {
+  SET_MAIN_SOURCE,
+  CHANGE_HEALTH_KIT_SOURCE,
+  UPDATE_HEALTH_KIT_SOURCES,
+  CHANGE_GOOGLE_FIT_SOURCE,
+  UPDATE_GOOGLE_FIT_SOURCES,
+  SleepSourceActions
+} from './types'
 
 const PERMS = AppleHealthKit.Constants.Permissions
 
@@ -17,47 +26,44 @@ const healthKitOptions = {
   }
 }
 
-/* ACTION TYPES */
-
-export const SET_MAIN_SOURCE = 'SET_MAIN_SOURCE'
-export const CHANGE_HEALTH_KIT_SOURCE = 'CHANGE_HEALTH_KIT_SOURCE'
-export const UPDATE_HEALTH_KIT_SOURCES = 'UPDATE_HEALTH_KIT_SOURCES'
-
-export const CHANGE_GOOGLE_FIT_SOURCE = 'CHANGE_GOOGLE_FIT_SOURCE'
-export const UPDATE_GOOGLE_FIT_SOURCES = 'UPDATE_GOOGLE_FIT_SOURCES'
-
 /* ACTIONS */
 
-export const setMainSource = (source: SOURCE): ReduxAction => ({
+export const setMainSource = (source: SOURCE): SleepSourceActions => ({
   type: SET_MAIN_SOURCE,
   payload: { mainSource: source }
 })
 
-export const changeHealthKitSource = (hkSource: SUB_SOURCE): ReduxAction => ({
+export const changeHealthKitSource = (
+  hkSource: SUB_SOURCE
+): SleepSourceActions => ({
   type: CHANGE_HEALTH_KIT_SOURCE,
   payload: { healthKitSource: hkSource }
 })
 
-export const updateHealthKitSources = (sources: SUB_SOURCE[]): ReduxAction => ({
+export const updateHealthKitSources = (
+  sources: SUB_SOURCE[]
+): SleepSourceActions => ({
   type: UPDATE_HEALTH_KIT_SOURCES,
   payload: { sources }
 })
 
 export const changeGoogleFitSource = (
   googleFitSource: SUB_SOURCE
-): ReduxAction => ({
+): SleepSourceActions => ({
   type: CHANGE_GOOGLE_FIT_SOURCE,
   payload: { googleFitSource }
 })
 
-export const updateGoogleFitSources = (sources: SUB_SOURCE[]): ReduxAction => ({
+export const updateGoogleFitSources = (
+  sources: SUB_SOURCE[]
+): SleepSourceActions => ({
   type: UPDATE_GOOGLE_FIT_SOURCES,
   payload: { sources }
 })
 
 /* ASYNC ACTIONS */
 
-export const toggleHealthKit = (): Thunk => async (
+export const toggleHealthKit = (): AppThunk => async (
   dispatch: Dispatch,
   getState: GetState
 ) => {
@@ -72,15 +78,16 @@ export const toggleHealthKit = (): Thunk => async (
       await dispatch(setMainSource(SOURCE.HEALTH_KIT))
     }
   } catch (err) {
-    console.warn(err)
+    captureException(err)
   }
 }
 
-export const setHealthKitAsSourceAndFetch = (): Thunk => async (
+export const setHealthKitAsSourceAndFetch = (): AppThunk => async (
   dispatch: Dispatch
 ) => {
   await AppleHealthKit.initHealthKit(healthKitOptions, async (err, res) => {
     if (err) {
+      captureException(err)
       await dispatch(setHealthKitStatus(false))
     } else {
       dispatch(setHealthKitStatus(true))

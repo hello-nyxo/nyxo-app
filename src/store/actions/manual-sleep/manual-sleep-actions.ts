@@ -1,32 +1,30 @@
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
-import { getNightDuration } from '@helpers/sleep/sleep'
-import { GetState } from '@typings/GetState'
-import { Dispatch, Thunk } from '@typings/redux-actions'
-import { Night, Value } from '@typings/Sleepdata'
+import { AppThunk } from '@typings/redux-actions'
+import { Value } from '@typings/Sleepdata'
 import moment from 'moment'
 import { Platform } from 'react-native'
 import AppleHealthKit, { SleepSample } from 'react-native-healthkit'
-
-export const SET_VALUES = 'SET_VALUES'
-export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE'
+import { ManualSleepActions, SET_VALUES, TOGGLE_EDIT_MODE } from './types'
 
 export const setValues = (
   start: { h: number; m: number },
   end: { h: number; m: number }
-) => ({
+): ManualSleepActions => ({
   type: SET_VALUES,
   payload: { start, end }
 })
 
-export const toggleEditMode = () => ({
+export const toggleEditMode = (): ManualSleepActions => ({
   type: TOGGLE_EDIT_MODE
 })
+
+/* ASYNC ACTIONS */
 
 export const addManualDataToNight = (
   date: string,
   nightStart: { h: number; m: number },
   nightEnd: { h: number; m: number }
-): Thunk => async (dispatch: Dispatch, getState: GetState) => {
+): AppThunk => async (dispatch) => {
   const startTime = moment(date)
     .startOf('day')
     .subtract(1, 'day')
@@ -41,16 +39,6 @@ export const addManualDataToNight = (
     .minute(nightEnd.m)
     .toISOString()
 
-  const newNightSample: Night = {
-    source: 'Nyxo',
-    sourceId: 'app.sleepcircle.application',
-    sourceName: 'Nyxo',
-    value: Value.InBed,
-    startDate: startTime,
-    endDate: endTime,
-    totalDuration: getNightDuration(startTime, endTime)
-  }
-
   if (Platform.OS === 'ios') {
     await createNight(startTime, endTime)
     await dispatch(fetchSleepData(startTime, endTime))
@@ -61,7 +49,7 @@ export const createNight = async (
   startTime: string,
   endTime: string,
   value?: Value
-) => {
+): Promise<void> => {
   if (!value) {
     const newNightBed = {
       startDate: startTime,

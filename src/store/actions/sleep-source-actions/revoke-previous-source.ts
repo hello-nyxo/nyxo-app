@@ -1,16 +1,16 @@
-import { SOURCE } from '@typings/state/sleep-source-state'
-import { toggleHealthKit } from '@actions/sleep-source-actions/sleep-source-actions'
-import { toggleGoogleFit } from '@actions/api-actions/google-fit-actions'
 import { toggleFitbit } from '@actions/api-actions/fitbit-actions'
-import { Thunk, Dispatch } from '@typings/redux-actions'
-import { GetState } from '@typings/GetState'
-import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { toggleOura } from '@actions/api-actions/oura-actions'
-import { toggleWithings } from '@actions/api-actions/withings-actions'
 import { toggleGarmin } from '@actions/api-actions/garmin-actions'
+import { toggleGoogleFit } from '@actions/api-actions/google-fit-actions'
+import { toggleOura } from '@actions/api-actions/oura-actions'
 import { togglePolar } from '@actions/api-actions/polar-actions'
+import { toggleWithings } from '@actions/api-actions/withings-actions'
+import { toggleHealthKit } from '@actions/sleep-source-actions/sleep-source-actions'
+import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import { GetState } from '@typings/GetState'
+import { AppThunk, Dispatch } from '@typings/redux-actions'
+import { SOURCE } from '@typings/state/sleep-source-state'
 
-export const revokePreviousSource = (): Thunk => async (
+export const revokePreviousSource = (): AppThunk => async (
   dispatch: Dispatch,
   getState: GetState
 ) => {

@@ -16,8 +16,8 @@ export interface GarminSleepObject {
     awake?: GarminSleepTimeLevel[]
   }
   validation: SleepValidation
-  timeOffsetSleepRespiration: any
-  timeOffsetSleepSpo2: any
+  timeOffsetSleepRespiration: unknown
+  timeOffsetSleepSpo2: unknown
 }
 
 export interface GarminSleepTimeLevel {

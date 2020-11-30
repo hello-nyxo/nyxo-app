@@ -5,8 +5,7 @@ import {
 import { formatHealthKitResponse } from '@helpers/sleep/health-kit-helper'
 import { getStartEndWeek } from '@helpers/sleep/sleep'
 import { getHealthKitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { SleepDataSource } from '@typings/SleepClockState'
 import { Night } from '@typings/Sleepdata'
 import { SUB_SOURCE } from '@typings/state/sleep-source-state'
@@ -14,41 +13,36 @@ import { Platform } from 'react-native'
 import AppleHealthKit, { SleepSample } from 'react-native-healthkit'
 import { syncNightsToCloud } from './night-cloud-actions'
 import { fetchSleepData } from './sleep-data-actions'
-
-/* ACTION TYPES */
-
-export const FETCH_SLEEP_HEALTH_KIT_START = 'FETCH_SLEEP_HEALTH_KIT_START'
-export const FETCH_SLEEP_HEALTH_KIT_SUCCESS = 'FETCH_SLEEP_HEALTH_KIT_SUCCESS'
-export const FETCH_SLEEP_HEALTH_KIT_FAILURE = 'FETCH_SLEEP_HEALTH_KIT_FAILURE'
-export const FETCH_SLEEP_SUCCESS = 'FETCH_SLEEP_SUCCESS'
-
-export const SWITCH_HEALTH_KIT_SOURCE = 'SWITCH_HEALTH_KIT_SOURCE'
-
-export const TOGGLE_HEALTH_KIT_AVAILABILITY = 'TOGGLE_HEALTH_KIT_AVAILABILITY'
-export const TOGGLE_USE_HEALTH_KIT = 'TOGGLE_USE_HEALTH_KIT'
-export const SET_HEALTH_KIT_STATUS = 'SET_HEALTH_KIT_STATUS'
+import {
+  FETCH_SLEEP_HEALTH_KIT_FAILURE,
+  FETCH_SLEEP_HEALTH_KIT_START,
+  FETCH_SLEEP_HEALTH_KIT_SUCCESS,
+  FETCH_SLEEP_SUCCESS,
+  SET_HEALTH_KIT_STATUS,
+  SleepActions
+} from './types'
 
 /* ACTIONS */
 
-export const setHealthKitStatus = (enabled: boolean): ReduxAction => ({
+export const setHealthKitStatus = (enabled: boolean): SleepActions => ({
   type: SET_HEALTH_KIT_STATUS,
   payload: enabled
 })
 
-export const fetchHKSleepStart = (): ReduxAction => ({
+export const fetchHKSleepStart = (): SleepActions => ({
   type: FETCH_SLEEP_HEALTH_KIT_START
 })
 
-export const fetchHKSleepSuccess = (): ReduxAction => ({
+export const fetchHKSleepSuccess = (): SleepActions => ({
   type: FETCH_SLEEP_HEALTH_KIT_SUCCESS
 })
 
-export const fetchSleepSuccess = (night: Night[]): ReduxAction => ({
+export const fetchSleepSuccess = (nights: Night[]): SleepActions => ({
   type: FETCH_SLEEP_SUCCESS,
-  payload: night
+  payload: nights
 })
 
-export const fetchHKSleepFailure = (): ReduxAction => ({
+export const fetchHKSleepFailure = (): SleepActions => ({
   type: FETCH_SLEEP_HEALTH_KIT_FAILURE
 })
 
@@ -63,15 +57,13 @@ const healthKitOptions = {
   }
 }
 
-export const prepareSleepDataFetching = (): Thunk => async (
-  dispatch: Dispatch
-) => {
+export const prepareSleepDataFetching = (): AppThunk => async (dispatch) => {
   if (Platform.OS === 'ios') {
     await dispatch(initHealthKit())
   }
 }
 
-export const initHealthKit = (): Thunk => async (dispatch: Dispatch) => {
+export const initHealthKit = (): AppThunk => async (dispatch) => {
   await AppleHealthKit.initHealthKit(healthKitOptions, (err) => {
     if (err) {
       dispatch(setHealthKitStatus(false))
@@ -87,9 +79,9 @@ export const initHealthKit = (): Thunk => async (dispatch: Dispatch) => {
  * @param {Array} nights Unfiltered night data from Healthkit
  *
  */
-export const switchHKSourceAndFetch = (hkSource: SUB_SOURCE): Thunk => async (
-  dispatch: Dispatch
-) => {
+export const switchHKSourceAndFetch = (
+  hkSource: SUB_SOURCE
+): AppThunk => async (dispatch) => {
   dispatch(changeHealthKitSource(hkSource))
   const { startDate, endDate } = getStartEndWeek()
   dispatch(fetchSleepData(startDate, endDate))
@@ -97,7 +89,7 @@ export const switchHKSourceAndFetch = (hkSource: SUB_SOURCE): Thunk => async (
 
 export const createHealthKitSources = (
   data: SleepSample[] = []
-): Thunk => async (dispatch: Dispatch, getState: GetState) => {
+): AppThunk => async (dispatch, getState) => {
   const hkSource = getHealthKitSource(getState())
 
   const sourceList: SUB_SOURCE[] = [
@@ -129,9 +121,8 @@ export const createHealthKitSources = (
 export const fetchSleepFromHealthKit = (
   startDate?: string,
   endDate?: string
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   dispatch(fetchHKSleepStart())
-  console.log(startDate, endDate)
   const options = {
     startDate,
     endDate

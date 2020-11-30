@@ -1,36 +1,33 @@
-import ReduxAction from '@typings/redux-actions'
 import { SleepSourceState } from '@typings/state/sleep-source-state'
 import {
   SET_MAIN_SOURCE,
   CHANGE_HEALTH_KIT_SOURCE,
   UPDATE_HEALTH_KIT_SOURCES,
   CHANGE_GOOGLE_FIT_SOURCE,
-  UPDATE_GOOGLE_FIT_SOURCES
-} from '@actions/sleep-source-actions/sleep-source-actions'
-
-const initialState: SleepSourceState = {}
+  UPDATE_GOOGLE_FIT_SOURCES,
+  SleepSourceActions
+} from '@actions/sleep-source-actions/types'
+import { SleepSources } from 'src/store/initial-states/sleep-source-state'
 
 const reducer = (
-  state = initialState,
-  action: ReduxAction
+  state = SleepSources,
+  action: SleepSourceActions
 ): SleepSourceState => {
-  const { type, payload } = action
-
-  switch (type) {
+  switch (action.type) {
     case SET_MAIN_SOURCE:
-      return { ...state, mainSource: payload.mainSource }
+      return { ...state, mainSource: action.payload.mainSource }
 
     case CHANGE_HEALTH_KIT_SOURCE:
-      return { ...state, healthKitSource: payload.healthKitSource }
+      return { ...state, healthKitSource: action.payload.healthKitSource }
 
     case UPDATE_HEALTH_KIT_SOURCES:
-      return { ...state, allHealthKitSources: payload.sources }
+      return { ...state, allHealthKitSources: action.payload.sources }
 
     case CHANGE_GOOGLE_FIT_SOURCE:
-      return { ...state, googleFitSource: payload.googleFitSource }
+      return { ...state, googleFitSource: action.payload.googleFitSource }
 
     case UPDATE_GOOGLE_FIT_SOURCES:
-      return { ...state, allGoogleFitSources: payload.sources }
+      return { ...state, allGoogleFitSources: action.payload.sources }
 
     default:
       return state

@@ -1,6 +1,7 @@
-import { RESET_APP } from '@actions/shared'
-import { SET_SELECTED_DATE } from '@actions/calendar-actions/calendar-actions'
-import ReduxAction from '@typings/redux-actions'
+import {
+  CalendarActions,
+  SET_SELECTED_DATE
+} from '@actions/calendar-actions/types'
 
 const initialState = {
   selectedDay: new Date().toISOString()
@@ -10,15 +11,13 @@ export type CalendarState = {
   selectedDay: string
 }
 
-const reducer = (state = initialState, action: ReduxAction): CalendarState => {
-  const { type, payload } = action
-
-  switch (type) {
-    case RESET_APP:
-      return initialState
-
+const reducer = (
+  state = initialState,
+  action: CalendarActions
+): CalendarState => {
+  switch (action.type) {
     case SET_SELECTED_DATE:
-      return { ...state, selectedDay: payload as string }
+      return { ...state, selectedDay: action.payload }
     default:
       return state
   }
