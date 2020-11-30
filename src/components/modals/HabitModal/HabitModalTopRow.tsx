@@ -1,32 +1,37 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import { GestureResponderEvent } from 'react-native'
 import styled from 'styled-components/native'
 import TranslatedText from '../../TranslatedText'
-import { fonts, StyleProps } from '../../../styles/themes'
+import { fonts } from '../../../styles/themes'
 import colors from '../../../styles/colors'
 
-interface Props {
+type Props = {
   closeModal: (e: GestureResponderEvent) => void
-  saveModal: Function
+  saveModal: () => void
   titleValue?: string
   formattedTitle?: string
   isValid: boolean
 }
 
-const HabitModalTopRow = (props: Props) => {
-  const { isValid } = props
+const HabitModalTopRow: FC<Props> = ({
+  closeModal,
+  isValid,
+  titleValue,
+  formattedTitle,
+  saveModal
+}) => {
   return (
     <TitleRow>
-      <CancelButton onPress={props.closeModal}>
+      <CancelButton onPress={closeModal}>
         <CancelText>Cancel</CancelText>
       </CancelButton>
-      {props.titleValue ? (
-        <Title>{props.titleValue}</Title>
+      {titleValue ? (
+        <Title>{titleValue}</Title>
       ) : (
-        <FormattedTitle>{props.formattedTitle}</FormattedTitle>
+        <FormattedTitle>{formattedTitle}</FormattedTitle>
       )}
 
-      <CancelButton disabled={!isValid} onPress={props.saveModal}>
+      <CancelButton disabled={!isValid} onPress={saveModal}>
         <CancelText disabled={!isValid} primary>
           Save
         </CancelText>
@@ -46,7 +51,7 @@ const TitleRow = styled.View`
 
 const CancelButton = styled.TouchableOpacity``
 
-interface ButtonProps extends StyleProps {
+interface ButtonProps {
   readonly primary?: boolean
   readonly disabled?: boolean
 }

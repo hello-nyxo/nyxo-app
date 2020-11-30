@@ -6,54 +6,56 @@ import { captureException } from '@sentry/react-native'
 import CONFIG from '@config/Config'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import { formatWithingsSamples } from '@helpers/sleep/withings-helper'
-import moment from 'moment'
 import { authorize, refresh, RefreshResult } from 'react-native-app-auth'
-import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { ResponseBase, WithingsAuthorizeResult } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
+import { format, isAfter, subWeeks } from 'date-fns'
 import { fetchSleepSuccess } from '../sleep/health-kit-actions'
-
-export const WITHINGS_AUTHORIZE_SUCCESS = 'WITHINGS_AUTHORIZE_SUCCESS'
-export const WITHINGS_REVOKE_SUCCESS = 'WITHINGS_REVOKE_SUCCESS'
-export const WITHINGS_UPDATE_TOKEN = 'WITHINGS_UPDATE_TOKEN'
-
-export const FETCH_SLEEP_WITHINGS_START = 'FETCH_SLEEP_WITHINGS_START'
-export const FETCH_SLEEP_WITHINGS_SUCCESS = 'FETCH_SLEEP_WITHINGS_SUCCESS'
-export const FETCH_SLEEP_WITHINGS_FAILURE = 'FETCH_SLEEP_WITHINGS_FAILURE'
+import {
+  FETCH_SLEEP_WITHINGS_FAILURE,
+  FETCH_SLEEP_WITHINGS_START,
+  FETCH_SLEEP_WITHINGS_SUCCESS,
+  WITHINGS_AUTHORIZE_SUCCESS,
+  WITHINGS_REVOKE_SUCCESS,
+  WITHINGS_UPDATE_TOKEN,
+  ApiActions
+} from './types'
 
 export const withingsAuthorizeSuccess = (
   payload: ResponseBase
-): ReduxAction => ({
+): ApiActions => ({
   type: WITHINGS_AUTHORIZE_SUCCESS,
   payload
 })
 
-export const withingsRevokeSuccess = (): ReduxAction => ({
+export const withingsRevokeSuccess = (): ApiActions => ({
   type: WITHINGS_REVOKE_SUCCESS
 })
 
-export const withingsUpdateToken = (payload: ResponseBase): ReduxAction => ({
+export const withingsUpdateToken = (payload: ResponseBase): ApiActions => ({
   type: WITHINGS_UPDATE_TOKEN,
   payload
 })
 
-export const fetchSleepWithingsStart = (): ReduxAction => ({
+export const fetchSleepWithingsStart = (): ApiActions => ({
   type: FETCH_SLEEP_WITHINGS_START
 })
 
-export const fetchSleepWithingsSuccess = (): ReduxAction => ({
+export const fetchSleepWithingsSuccess = (): ApiActions => ({
   type: FETCH_SLEEP_WITHINGS_SUCCESS
 })
 
-export const fetchSleepWithingsFailure = (): ReduxAction => ({
+export const fetchSleepWithingsFailure = (): ApiActions => ({
   type: FETCH_SLEEP_WITHINGS_FAILURE
 })
 
-export const toggleWithings = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+/* ASYNC ACTIONS */
+
+const WITHINGS_API =
+  'https://wbsapi.withings.net/v2/sleep?action=getsummary&startdateymd='
+
+export const toggleWithings = (): AppThunk => async (dispatch, getState) => {
   const enabled = getWithingsEnabled(getState())
   if (enabled) {
     dispatch(revokeWithingsAccess())
@@ -64,7 +66,7 @@ export const toggleWithings = (): Thunk => async (
   }
 }
 
-export const authorizeWithings = (): Thunk => async (dispatch: Dispatch) => {
+export const authorizeWithings = (): AppThunk => async (dispatch) => {
   try {
     const response = (await authorize(
       CONFIG.WITHINGS_CONFIG
@@ -98,7 +100,7 @@ export const authorizeWithings = (): Thunk => async (dispatch: Dispatch) => {
   }
 }
 
-export const refreshWithingsToken = (): Thunk => async (dispatch: Dispatch) => {
+export const refreshWithingsToken = (): AppThunk => async (dispatch) => {
   const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     CONFIG.WITHINGS_CONFIG.bundleId
   )) as unknown) as WithingsAuthorizeResult
@@ -113,6 +115,7 @@ export const refreshWithingsToken = (): Thunk => async (dispatch: Dispatch) => {
         accessTokenExpirationDate,
         refreshToken,
         accessToken,
+        // eslint-disable-next-line camelcase
         additionalParameters: { userid: user_id }
       } = response
 
@@ -142,7 +145,7 @@ export const refreshWithingsToken = (): Thunk => async (dispatch: Dispatch) => {
   return null
 }
 
-export const revokeWithingsAccess = (): Thunk => async (dispatch: Dispatch) => {
+export const revokeWithingsAccess = (): AppThunk => async (dispatch) => {
   dispatch(withingsRevokeSuccess())
   dispatch(setMainSource(SOURCE.NO_SOURCE))
 }
@@ -150,7 +153,7 @@ export const revokeWithingsAccess = (): Thunk => async (dispatch: Dispatch) => {
 export const getWithingsSleep = (
   startDate?: string,
   endDate?: string
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate
@@ -160,17 +163,17 @@ export const getWithingsSleep = (
 
   dispatch(fetchSleepWithingsStart())
 
-  const start = startDate || moment().subtract(1, 'week').format('YYYY-MM-DD')
-  const end = endDate || moment().format('YYYY-MM-DD')
+  const start = startDate || format(subWeeks(new Date(), 1), 'YYYY-MM-DD')
+  const end = endDate || format(new Date(), 'YYYY-MM-DD')
 
   const dataFields =
     'deepsleepduration,durationtosleep,durationtowakeup,sleep_score,snoring, snoringepisodecount'
 
   if (accessToken) {
     try {
-      if (moment(accessTokenExpirationDate).isAfter(moment())) {
+      if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
         const withingsApiCall = await fetch(
-          `https://wbsapi.withings.net/v2/sleep?action=getsummary&startdateymd=${start}&enddateymd=${end}&data_fields=${dataFields}`,
+          `${WITHINGS_API}${start}&enddateymd=${end}&data_fields=${dataFields}`,
           {
             method: 'GET',
             headers: {
@@ -188,7 +191,7 @@ export const getWithingsSleep = (
         const newAccessToken = await dispatch(refreshWithingsToken())
 
         const withingsApiCall = await fetch(
-          `https://wbsapi.withings.net/v2/sleep?action=getsummary&startdateymd=${start}&enddateymd=${end}&data_fields=${dataFields}`,
+          `${WITHINGS_API}${start}&enddateymd=${end}&data_fields=${dataFields}`,
           {
             method: 'GET',
             headers: {

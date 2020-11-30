@@ -6,7 +6,7 @@ export function polarToCartesian(
   centerY: number,
   radius: number,
   angleInDegrees: number
-) {
+): { x: number; y: number } {
   const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0
 
   return {
@@ -21,7 +21,7 @@ export function describeArc(
   radius: number,
   startAngle: number,
   endAngle: number
-) {
+): string {
   const start = polarToCartesian(x, y, radius, endAngle)
   const end = polarToCartesian(x, y, radius, startAngle)
 
@@ -55,7 +55,7 @@ export function describeReverseArc(
   radius: number,
   startAngle: number,
   endAngle: number
-) {
+): string {
   const start = polarToCartesian(x, y, radius, startAngle)
   const end = polarToCartesian(x, y, radius, endAngle)
 
@@ -83,25 +83,17 @@ export function describeReverseArc(
   return d
 }
 
-export function clockTimeToAngle(ISOStringDate: string) {
+export function clockTimeToAngle(ISOStringDate: string): number {
   const time = Moment(ISOStringDate)
   const angle = ((to12hClock(time.hour()) + time.minute() / 60) / 12) * 360
 
   return angle
 }
 
-export function angleToClockTime(angle: number) {
-  // const angleInMinutes = angle
-  // const time = Moment(ISOStringDate);
-  // const angle = ((to12hClock(time.hour()) + time.minute() / 60) / 12) * 360;
-
-  return angle
-}
-
-export function radiansToDegrees(radians: number) {
+export function radiansToDegrees(radians: number): number {
   return (radians * 180) / Math.PI
 }
 
-export function degreesToRadians(degrees: number) {
+export function degreesToRadians(degrees: number): number {
   return (degrees * Math.PI) / 180
 }

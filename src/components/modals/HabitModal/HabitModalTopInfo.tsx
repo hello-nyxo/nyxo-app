@@ -1,20 +1,18 @@
-import React, { useEffect, useState, memo } from 'react'
-import { TouchableOpacity, View, Dimensions } from 'react-native'
-import Modal from 'react-native-modal'
+import React, { useEffect, useState, memo, FC } from 'react'
+import { TouchableOpacity } from 'react-native'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '../../../styles/themes'
+import { StyledModal } from '@components/Primitives/Primitives'
+import { WIDTH } from '@helpers/Dimensions'
+import { fonts } from '../../../styles/themes'
 import { IconBold } from '../../iconRegular'
-
-const { width } = Dimensions.get('window')
 
 interface Props {
   message: string
-  resetMessage: Function
+  resetMessage: (message: string) => void
 }
 
-const HabitModalTopInfo = (props: Props) => {
-  const { message, resetMessage } = props
+const HabitModalTopInfo: FC<Props> = ({ message, resetMessage }) => {
   const [show, setShow] = useState(false)
 
   const discardNotification = () => {
@@ -31,7 +29,7 @@ const HabitModalTopInfo = (props: Props) => {
   }, [message])
 
   return (
-    <Modal
+    <StyledModal
       backdropOpacity={0.1}
       isVisible={show}
       swipeDirection={['up', 'left', 'right']}
@@ -43,24 +41,23 @@ const HabitModalTopInfo = (props: Props) => {
       onSwipeComplete={discardNotification}
       hasBackdrop
       onBackdropPress={discardNotification}
-      animationOutTiming={400}
-      style={{ margin: 0, padding: 0 }}>
+      animationOutTiming={400}>
       <Container>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Row>
           <Text>{message}</Text>
           <TouchableOpacity onPress={discardNotification}>
             <Icon name="closeCircle" height={20} width={20} />
           </TouchableOpacity>
-        </View>
+        </Row>
       </Container>
-    </Modal>
+    </StyledModal>
   )
 }
 
 export default memo(HabitModalTopInfo)
 
 const Container = styled.View`
-  width: ${width - 20}px;
+  width: ${WIDTH - 20}px;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
@@ -71,6 +68,11 @@ const Container = styled.View`
   top: ${getStatusBarHeight() + 20}px;
   padding: 20px;
   z-index: 10;
+`
+
+const Row = styled.View`
+  flex-direction: row;
+  align-items: center;
 `
 
 const Text = styled.Text`

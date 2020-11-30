@@ -2,6 +2,8 @@ import moment from 'moment'
 import { Night, Value } from '@typings/Sleepdata'
 import { GarminSleepObject } from '@typings/Sleep/Garmin'
 import { getNightDuration } from '@helpers/sleep/sleep'
+import CONFIG from '@config/Config'
+import { captureException } from '@sentry/react-native'
 
 export const formatGarminSample = (
   garminSleepObject: GarminSleepObject
@@ -63,4 +65,24 @@ export const formatGarminSamples = (samples: GarminSleepObject[]): Night[] => {
   }
 
   return nights
+}
+
+export const generateSleepApiCall = async (
+  accessToken: string,
+  accessTokenSecret: string,
+  uploadStartTimeInSeconds: number,
+  uploadEndTimeInSeconds: number
+): Promise<Response | undefined> => {
+  return fetch(CONFIG.GARMIN_CONFIG.GET_SLEEP_ENDPOINT, {
+    method: 'POST',
+    body: JSON.stringify({
+      accessToken,
+      accessTokenSecret,
+      uploadStartTimeInSeconds,
+      uploadEndTimeInSeconds
+    })
+  }).catch((error) => {
+    captureException(error)
+    return undefined
+  })
 }

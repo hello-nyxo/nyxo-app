@@ -1,12 +1,9 @@
-import React, { memo, useState } from 'react'
-import { Animated, SafeAreaView, ScrollView } from 'react-native'
+import React, { memo } from 'react'
+import { SafeAreaView, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { Formik } from 'formik'
 import { ConfirmationSchema } from '@config/Validation'
-import {
-  requestNewPassword,
-  submitNewPassword
-} from '@actions/auth/auth-actions'
+import { requestNewPassword } from '@actions/auth/auth-actions'
 import BottomButton from '@components/Buttons/BottomButton'
 import TextButton from '@components/Buttons/TextButton'
 import { Container, H1, H4 } from '@components/Primitives/Primitives'

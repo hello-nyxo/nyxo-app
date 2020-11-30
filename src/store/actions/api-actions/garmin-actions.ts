@@ -5,55 +5,62 @@ import { getGarminEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from '@config/Config'
 import { openAuthSessionAsync, WebBrowserResult } from 'expo-web-browser'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
-import { formatGarminSamples } from '@helpers/sleep/garmin-helper'
+import {
+  formatGarminSamples,
+  generateSleepApiCall
+} from '@helpers/sleep/garmin-helper'
 import moment from 'moment'
 import queryString from 'query-string'
 import { Linking, Platform } from 'react-native'
 import { GetState } from '@typings/GetState'
-import ReduxAction, { Dispatch, Thunk } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { GarminSleepObject } from '@typings/Sleep/Garmin'
 import { GarminAuthorizeResult, ResponseBase } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
+import { captureException } from '@sentry/react-native'
 import { fetchSleepSuccess } from '../sleep/health-kit-actions'
-
-export const GARMIN_AUTHORIZE_SUCCESS = 'GARMIN_AUTHORIZE_SUCCESS'
-export const GARMIN_REVOKE_SUCCESS = 'GARMIN_REVOKE_SUCCESS'
-export const GARMIN_UPDATE_TOKEN = 'GARMIN_UPDATE_TOKEN'
-
-export const FETCH_SLEEP_GARMIN_START = 'FETCH_SLEEP_GARMIN_START'
-export const FETCH_SLEEP_GARMIN_SUCCESS = 'FETCH_SLEEP_GARMIN_SUCCESS'
-export const FETCH_SLEEP_GARMIN_FAILURE = 'FETCH_SLEEP_GARMIN_FAILURE'
+import {
+  FETCH_SLEEP_GARMIN_FAILURE,
+  FETCH_SLEEP_GARMIN_START,
+  FETCH_SLEEP_GARMIN_SUCCESS,
+  GARMIN_AUTHORIZE_SUCCESS,
+  GARMIN_REVOKE_SUCCESS,
+  GARMIN_UPDATE_TOKEN,
+  ApiActions
+} from './types'
 
 /* ACTIONS */
 
-export const garminAuthorizeSuccess = (payload: ResponseBase): ReduxAction => ({
+const GARMIN_AUTH_API = 'https://connect.garmin.com/oauthConfirm?oauth_token='
+
+export const garminAuthorizeSuccess = (payload: ResponseBase): ApiActions => ({
   type: GARMIN_AUTHORIZE_SUCCESS,
   payload
 })
 
-export const garminRevokeSuccess = (): ReduxAction => ({
+export const garminRevokeSuccess = (): ApiActions => ({
   type: GARMIN_REVOKE_SUCCESS
 })
 
-export const garminUpdateToken = (payload: ResponseBase): ReduxAction => ({
+export const garminUpdateToken = (payload: ResponseBase): ApiActions => ({
   type: GARMIN_UPDATE_TOKEN,
   payload
 })
 
-export const fetchSleepGarminStart = (): ReduxAction => ({
+export const fetchSleepGarminStart = (): ApiActions => ({
   type: FETCH_SLEEP_GARMIN_START
 })
 
-export const fetchSleepGarminSuccess = (): ReduxAction => ({
+export const fetchSleepGarminSuccess = (): ApiActions => ({
   type: FETCH_SLEEP_GARMIN_SUCCESS
 })
 
-export const fetchSleepGarminFailure = (): ReduxAction => ({
+export const fetchSleepGarminFailure = (): ApiActions => ({
   type: FETCH_SLEEP_GARMIN_FAILURE
 })
 
-export const toggleGarmin = (): Thunk => async (
-  dispatch: Dispatch,
+export const toggleGarmin = (): AppThunk => async (
+  dispatch,
   getState: GetState
 ) => {
   try {
@@ -68,12 +75,12 @@ export const toggleGarmin = (): Thunk => async (
         await dispatch(getGarminOauthVerifierAndroid())
       }
     }
-  } catch (err) {
-    console.log('toggleGarmin err', err)
+  } catch (error) {
+    captureException(error)
   }
 }
 
-export const authorizeGarminIOS = (): Thunk => async (dispatch: Dispatch) => {
+export const authorizeGarminIOS = (): AppThunk => async (dispatch) => {
   try {
     const getRequestTokenResponse = await fetch(
       CONFIG.GARMIN_CONFIG.REQUEST_TOKEN_ENDPOINT
@@ -86,7 +93,7 @@ export const authorizeGarminIOS = (): Thunk => async (dispatch: Dispatch) => {
 
     const callbackUri = 'nyxo://callback'
 
-    const authorizationUrl = `https://connect.garmin.com/oauthConfirm?oauth_token=${oauth_token}&oauth_callback=${callbackUri}`
+    const authorizationUrl = `${GARMIN_AUTH_API}${oauth_token}&oauth_callback=${callbackUri}`
 
     const authorizedResponse = (await openAuthSessionAsync(
       authorizationUrl,
@@ -135,13 +142,13 @@ export const authorizeGarminIOS = (): Thunk => async (dispatch: Dispatch) => {
     )
 
     await dispatch(setMainSource(SOURCE.GARMIN))
-  } catch (err) {
-    console.warn('authorizeGarminIOS err', err)
+  } catch (error) {
+    captureException(error)
   }
 }
 
-export const getGarminOauthVerifierAndroid = (): Thunk => async (
-  dispatch: Dispatch
+export const getGarminOauthVerifierAndroid = (): AppThunk => async (
+  dispatch
 ) => {
   try {
     const getRequestTokenResponse = await fetch(
@@ -168,24 +175,24 @@ export const getGarminOauthVerifierAndroid = (): Thunk => async (
 
     const callbackUri = 'nyxo://garmin'
 
-    const authorizationUrl = `https://connect.garmin.com/oauthConfirm?oauth_token=${oauth_token}&oauth_callback=${callbackUri}`
+    const authorizationUrl = `${GARMIN_AUTH_API}${oauth_token}&oauth_callback=${callbackUri}`
 
     await Linking.openURL(authorizationUrl)
-  } catch (err) {
-    console.warn('getOauthVerifierAndroid err', err)
+  } catch (error) {
+    captureException(error)
   }
 }
 
 export const getGarminAccessTokenAndroid = (
   oauth_token: string,
   oauth_verifier: string
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   try {
     const {
       oauthTokenSecret: oauth_token_secret
-    } = (await GetKeychainParsedValue(
+    } = ((await GetKeychainParsedValue(
       CONFIG.GARMIN_CONFIG.bundleId
-    )) as GarminAuthorizeResult
+    )) as unknown) as GarminAuthorizeResult
 
     const getAccessTokenResponse = await fetch(
       CONFIG.GARMIN_CONFIG.ACCESS_TOKEN_ENDPOINT,
@@ -220,15 +227,17 @@ export const getGarminAccessTokenAndroid = (
     )
 
     await dispatch(setMainSource(SOURCE.GARMIN))
-  } catch (err) {
-    console.log('getAccessTokenAndroid err', err)
+  } catch (error) {
+    captureException(error)
   }
 }
 
 export const getGarminSleep = (
+  // eslint-disable-next-line unused-imports/no-unused-vars-ts
   startDate?: string,
+  // eslint-disable-next-line unused-imports/no-unused-vars-ts
   endDate?: string
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   const { accessToken, accessTokenSecret } = ((await GetKeychainParsedValue(
     CONFIG.GARMIN_CONFIG.bundleId
   )) as unknown) as GarminAuthorizeResult
@@ -255,36 +264,16 @@ export const getGarminSleep = (
       const formattedResponse = formatGarminSamples(combinedSleepData)
       await dispatch(fetchSleepSuccess(formattedResponse))
       await dispatch(fetchSleepGarminSuccess())
-    } catch (err) {
-      console.warn('getGarminSleep error', err)
+    } catch (error) {
+      captureException(error)
       dispatch(fetchSleepGarminFailure())
     }
   }
 }
 
-export const revokeGarminAccess = (): Thunk => async (dispatch: Dispatch) => {
+export const revokeGarminAccess = (): AppThunk => async (dispatch) => {
   dispatch(garminRevokeSuccess())
   dispatch(setMainSource(SOURCE.NO_SOURCE))
-}
-
-const generateSleepApiCall = (
-  accessToken: string,
-  accessTokenSecret: string,
-  uploadStartTimeInSeconds: number,
-  uploadEndTimeInSeconds: number
-) => {
-  return fetch(CONFIG.GARMIN_CONFIG.GET_SLEEP_ENDPOINT, {
-    method: 'POST',
-    body: JSON.stringify({
-      accessToken,
-      accessTokenSecret,
-      uploadStartTimeInSeconds,
-      uploadEndTimeInSeconds
-    })
-  }).catch((err) => {
-    console.warn('getGarminSleep for loop err', err)
-    return undefined
-  })
 }
 
 const getRecent7DaysSleepApiCalls = (

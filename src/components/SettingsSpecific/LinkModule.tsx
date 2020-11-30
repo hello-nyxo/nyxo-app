@@ -1,11 +1,11 @@
-import React, { FC, memo, useEffect, useState } from 'react'
+import React, { FC, memo } from 'react'
 import { Alert } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { Formik } from 'formik'
 import { getLinkingCode } from '@selectors/linking-selectors'
 import { linkAccount, removeLink } from '@actions/linking/linking-actions'
-import { constants, fonts, StyleProps } from '@styles/themes'
+import { constants, fonts } from '@styles/themes'
 import translate from '../../config/i18n'
 import colors from '../../styles/colors'
 import { PrimaryButton } from '../Buttons/PrimaryButton'
@@ -15,7 +15,7 @@ import TranslatedText from '../TranslatedText'
 import { CodeSchema } from '../../config/Validation'
 
 interface Props {
-  linkCode?: string
+  linkCode?: string | null
 }
 const LinkModule: FC<Props> = ({ linkCode: linkCodeFromParams }) => {
   const dispatch = useDispatch()

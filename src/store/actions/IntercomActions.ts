@@ -1,13 +1,12 @@
-import { GetState } from '@typings/GetState'
-import { Dispatch, Thunk } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import 'react-native-get-random-values'
 import Intercom from 'react-native-intercom'
 import { v4 } from 'uuid'
 import { setIntercomId } from './user/user-actions'
 
-export const registerIntercomUser = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+export const registerIntercomUser = (): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   const {
     user: { intercomId }

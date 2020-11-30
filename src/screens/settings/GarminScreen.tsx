@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { FC, useEffect } from 'react'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'

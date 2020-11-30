@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Animated } from 'react-native'
 import Svg, { Circle } from 'react-native-svg'
 import colors from '../../styles/colors'
@@ -10,7 +10,7 @@ type Props = {
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle)
 
-export const TextLengthIndicator = ({ radius, percentage }: Props) => {
+export const TextLengthIndicator: FC<Props> = ({ radius, percentage }) => {
   const circumference = returnCircumference(radius)
   const progress = returnProgress(percentage, circumference)
 

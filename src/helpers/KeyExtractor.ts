@@ -1,3 +1,3 @@
-const keyExtractor = (item: any, index: number): string => index.toString()
+const keyExtractor = (item: unknown, index: number): string => index.toString()
 
 export default keyExtractor

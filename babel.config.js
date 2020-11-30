@@ -27,6 +27,7 @@ module.exports = {
           '@assets': './assets',
           '@reducers': './src/store/Reducers',
           '@selectors': './src/store/selectors',
+          '@initial-states': './src/store/initial-states',
           '@components': './src/components',
           '@helpers': './src/helpers/',
           '@graphql': './src/graphql/',

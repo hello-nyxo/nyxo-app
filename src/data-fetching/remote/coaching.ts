@@ -11,7 +11,6 @@ import {
   ListCoachingDatasQuery,
   UpdateCoachingDataInput,
   UpdateCoachingDataMutation,
-  Stage,
   DeleteCoachingDataMutation
 } from '@API'
 import { graphqlOperation, API, Auth } from 'aws-amplify'
@@ -127,7 +126,6 @@ export const updateCoaching = async ({
     }
     return data
   } catch (error) {
-    console.log(error)
     return error
   }
 }

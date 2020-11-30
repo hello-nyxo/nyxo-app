@@ -13,8 +13,7 @@ import { getUsername } from '@selectors/UserSelectors'
 import styled from 'styled-components/native'
 import ROUTE from '@config/routes/Routes'
 import TranslatedText from '@components/TranslatedText'
-import translate from '../../../config/i18n'
-import { fonts, StyleProps } from '../../../styles/themes'
+import { fonts } from '../../../styles/themes'
 
 const MergingDialog = () => {
   const navigation = useNavigation()

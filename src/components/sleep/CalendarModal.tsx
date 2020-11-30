@@ -13,7 +13,7 @@ import Modal, { ReactNativeModal } from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
-const minDate = subYears(new Date(), 2)
+const minDate = subYears(new Date(), 3)
 
 const CalendarModal: FC = () => {
   const isVisible = useSelector(getCalendarModal)
@@ -43,11 +43,6 @@ const CalendarModal: FC = () => {
   )
 
   const getMonthData: DateCallbackHandler = ({ month, year }) => {
-    console.log(
-      'getMonthData',
-      new Date(year, month - 1, 1).toISOString(),
-      new Date(year, month, 0).toISOString()
-    )
     dispatch(
       fetchSleepData(
         new Date(year, month - 1, 1).toISOString(),

@@ -43,7 +43,7 @@ jest.mock('moment', () => () => ({
 const middlewares = [thunk]
 
 const startOfTodayString = '2020-05-07T21:00:00.000Z'
-const mockStore = configureStore(middlewares)
+const mockStore = configureStore<State>(middlewares)
 const localHabit1: Habit = {
   id: 'local-habit-1',
   title: 'Local Habit 1',

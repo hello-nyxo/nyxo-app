@@ -16,13 +16,7 @@ import {
 } from '@selectors/habit-selectors/habit-selectors'
 import { getUsername } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
-import { GetState } from '@typings/GetState'
-import ReduxAction, {
-  AppThunk,
-  Dispatch,
-  Thunk,
-  ThunkResult
-} from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { Habit, MutationType, UnsyncedHabit } from '@typings/state/habit-state'
 import { Period } from '@typings/state/Periods'
 import { API, graphqlOperation } from 'aws-amplify'
@@ -30,61 +24,59 @@ import produce from 'immer'
 import moment from 'moment'
 import 'react-native-get-random-values'
 import { v4 } from 'uuid'
+import {
+  CLEAR_SUB_HABITS,
+  DELETE_HABIT,
+  DRAFT_EDIT_HABIT,
+  POP_UNSYNCED_HABIT,
+  PUSH_UNSYNCED_HABIT,
+  REPLACE_HABITS,
+  REPLACE_SUB_HABITS,
+  TOGGLE_MERGING_DIALOG,
+  UPDATE_HABIT,
+  HabitActions
+} from './types'
 
-/* ACTION TYPES */
-
-export const UPDATE_HABIT = 'UPDATE_HABIT'
-export const DELETE_HABIT = 'DELETE_HABIT'
-export const DRAFT_EDIT_HABIT = 'DRAFT_EDIT_HABIT'
-export const PUSH_UNSYNCED_HABIT = 'PUSH_UNSYNCED_HABIT'
-export const POP_UNSYNCED_HABIT = 'POP_UNSYNCED_HABIT'
-export const TOGGLE_MERGING_DIALOG = 'TOGGLE_MERGING_DIALOG'
-export const REPLACE_HABITS = 'REPLACE_HABITS'
-export const REPLACE_SUB_HABITS = 'REPLACE_SUB_HABITS'
-export const CLEAR_SUB_HABITS = 'CLEAR_SUB_HABITS'
-
-/* ACTIONS */
-
-export const updateEditedHabit = (habit: Habit): ReduxAction => ({
+export const updateEditedHabit = (habit: Habit): HabitActions => ({
   type: UPDATE_HABIT,
   payload: habit
 })
 
-export const removeHabit = (id: string): ReduxAction => ({
+export const removeHabit = (id: string): HabitActions => ({
   type: DELETE_HABIT,
   payload: id
 })
 
-export const draftEditHabit = (habit: Habit): ReduxAction => ({
+export const draftEditHabit = (habit: Habit): HabitActions => ({
   type: DRAFT_EDIT_HABIT,
   payload: habit
 })
 
 export const addUnsyncedHabit = (
   unsyncedHabit: UnsyncedHabit
-): ReduxAction => ({
+): HabitActions => ({
   type: PUSH_UNSYNCED_HABIT,
   payload: unsyncedHabit
 })
 
-export const removeSyncedHabit = (habitId: string): ReduxAction => ({
+export const removeSyncedHabit = (habitId: string): HabitActions => ({
   type: POP_UNSYNCED_HABIT,
   payload: habitId
 })
 
-export const toggleMergingDialog = (toggle?: boolean): ReduxAction => ({
+export const toggleMergingDialog = (toggle?: boolean): HabitActions => ({
   type: TOGGLE_MERGING_DIALOG,
   payload: toggle
 })
 
-export const replaceHabits = (habits: Map<string, Habit>): ReduxAction => ({
+export const replaceHabits = (habits: Map<string, Habit>): HabitActions => ({
   type: REPLACE_HABITS,
   payload: habits
 })
-export const clearSubHabits = (): ReduxAction => ({
+export const clearSubHabits = (): HabitActions => ({
   type: CLEAR_SUB_HABITS
 })
-export const replaceSubHabits = (habits: Map<string, Habit>): ReduxAction => ({
+export const replaceSubHabits = (habits: Map<string, Habit>): HabitActions => ({
   type: REPLACE_SUB_HABITS,
   payload: habits
 })
@@ -96,7 +88,7 @@ export const addHabit = (
   description = '',
   period: Period,
   id?: string
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   const days = new Map()
 
   const habit: Habit = {
@@ -118,7 +110,7 @@ export const editHabit = (
   description: string,
   period: Period,
   modifiedHabit: Habit
-): ThunkResult<Promise<void>> => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   const updatedHabit: Habit = {
     ...modifiedHabit,
     title: title.trim(),
@@ -132,15 +124,15 @@ export const editHabit = (
 export const updateHabitDayStreak = (
   habit: Habit,
   dayStreak: number
-): ThunkResult<Promise<void>> => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   const updatedHabit: Habit = { ...habit, dayStreak }
   await dispatch(updateEditedHabit(updatedHabit))
   await dispatch(stashHabitToSync(updatedHabit, MutationType.UPDATE))
 }
 
-export const markTodayHabitAsCompleted = (
-  habit: Habit
-): ThunkResult<Promise<void>> => async (dispatch: Dispatch) => {
+export const markTodayHabitAsCompleted = (habit: Habit): AppThunk => async (
+  dispatch
+) => {
   const today = moment().startOf('day').toISOString()
   const { days, longestDayStreak = 0 } = habit
   let { dayStreak = 0 } = habit
@@ -177,9 +169,7 @@ export const markTodayHabitAsCompleted = (
   await dispatch(stashHabitToSync(updatedHabit, MutationType.UPDATE))
 }
 
-export const archiveHabit = (
-  habit: Habit
-): ThunkResult<Promise<void>> => async (dispatch: Dispatch) => {
+export const archiveHabit = (habit: Habit): AppThunk => async (dispatch) => {
   const updatedHabit: Habit = {
     ...habit,
     archived: habit.archived ? !habit.archived : true
@@ -188,9 +178,7 @@ export const archiveHabit = (
   await dispatch(stashHabitToSync(updatedHabit, MutationType.UPDATE))
 }
 
-export const deleteHabitById = (habit: Habit): Thunk => async (
-  dispatch: Dispatch
-) => {
+export const deleteHabitById = (habit: Habit): AppThunk => async (dispatch) => {
   await dispatch(removeHabit(habit.id))
   await dispatch(stashHabitToSync(habit, MutationType.DELETE))
 }
@@ -198,10 +186,7 @@ export const deleteHabitById = (habit: Habit): Thunk => async (
 const stashHabitToSync = (
   habit: Habit,
   mutationType: MutationType
-): ThunkResult<Promise<void>> => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+): AppThunk => async (dispatch, getState) => {
   const loggedIn = getAuthState(getState())
   const unsyncedHabits = getUnsyncedHabits(getState())
 
@@ -243,10 +228,7 @@ const stashHabitToSync = (
 const syncHabit = (
   mutationType: MutationType,
   habit: Habit
-): ThunkResult<Promise<void>> => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+): AppThunk => async (dispatch, getState) => {
   const username = getUsername(getState())
   const loggedIn = getAuthState(getState())
 
@@ -295,9 +277,9 @@ const syncHabit = (
   }
 }
 
-export const handleUnsyncedHabits = (): ThunkResult<Promise<void>> => async (
-  dispatch: Dispatch,
-  getState: GetState
+export const handleUnsyncedHabits = (): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   const {
     habitState: { unsyncedHabits }
@@ -319,7 +301,7 @@ export const handleUnsyncedHabits = (): ThunkResult<Promise<void>> => async (
 export const handleHabitsFromCloudWhenLoggingIn = (
   userId: string,
   merge: boolean
-): Thunk => async (dispatch: Dispatch, getState: GetState) => {
+): AppThunk => async (dispatch, getState) => {
   const variables: {
     filter: ModelHabitFilterInput
     limit?: number
@@ -396,8 +378,8 @@ export const handleHabitsFromCloudWhenLoggingIn = (
 
 // When user logs out, invoke this
 export const handleHabitsWhenloggingOut = (): AppThunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+  dispatch,
+  getState
 ) => {
   await dispatch(handleUnsyncedHabits())
 
@@ -409,9 +391,9 @@ export const handleHabitsWhenloggingOut = (): AppThunk => async (
   await dispatch(replaceHabits(subHabits))
 }
 
-export const handleUnsyncedHabitsThenRetrieveHabitsFromCloud = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+export const handleUnsyncedHabitsThenRetrieveHabitsFromCloud = (): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   const loggedIn = getAuthState(getState())
 
@@ -422,9 +404,9 @@ export const handleUnsyncedHabitsThenRetrieveHabitsFromCloud = (): Thunk => asyn
 }
 
 // Can be used to get saved-on-cloud habits
-export const getHabitsFromCloud = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+export const getHabitsFromCloud = (): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   const username = getUsername(getState())
 
@@ -454,10 +436,7 @@ export const getHabitsFromCloud = (): Thunk => async (
   }
 }
 
-export const updateDayStreaks = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+export const updateDayStreaks = (): AppThunk => async (dispatch, getState) => {
   const habits = getHabits(getState())
   habits.forEach((habit) => {
     if (shouldResetDayStreak(habit)) {

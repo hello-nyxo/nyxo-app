@@ -1,16 +1,14 @@
 import TranslatedText from '@components/TranslatedText'
-import React, { useState } from 'react'
+import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import { getIsGarminMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { toggleGarmin } from '@actions/api-actions/garmin-actions'
 
-const GarminSection = () => {
+const GarminSection: FC = () => {
   const dispatch = useDispatch()
   const isGarminMainSource = useSelector(getIsGarminMainSource)
-  const fitbitAuthorized = useSelector(getFitbitEnabled)
 
   const setGarminAsSource = async () => {
     await dispatch(toggleGarmin())

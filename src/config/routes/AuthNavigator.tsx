@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Login from '@screens/Auth/LoginScreen'
 import Register from '@screens/Auth/RegisterScreen'
@@ -8,7 +8,7 @@ import ROUTE from './Routes'
 
 const Stack = createNativeStackNavigator()
 
-const AuthNavigator = () => {
+const AuthNavigator: FC = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen

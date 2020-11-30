@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { ViewStyle } from 'react-native'
 import SvgIcon from './SvgIcon'
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
   name: string
   stroke?: string
   strokeWidth?: number | string
-  style?: any
+  style?: ViewStyle
   width: number | string
   viewBox?: string
   focused?: boolean
@@ -25,6 +26,6 @@ export const IconBold: FC<Props> = (props) => (
   <SvgIcon {...props} viewBox="0 0 24 24" />
 )
 
-export const IconLight = (props: Props) => (
+export const IconLight: FC<Props> = (props) => (
   <SvgIcon {...props} viewBox="0 0 24 24" />
 )

@@ -9,11 +9,13 @@ import {
   Section
 } from '@typings/CoachingContentState'
 import {
-  ICoachingWeekFields,
-  ILessonFields
+  IAuthor,
+  ICoachingWeek,
+  IHabit,
+  ILesson
 } from '@typings/generated/contentful'
-import { Dispatch, Thunk } from '@typings/redux-actions'
-import { ContentfulClientApi, Entry } from 'contentful'
+import { AppThunk } from '@typings/redux-actions'
+import { ContentfulClientApi, EntryCollection } from 'contentful'
 import I18n from 'i18n-js'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -25,10 +27,10 @@ export const contentfulClient: ContentfulClientApi = createClient({
 })
 
 const getFieldValue = (
-  entry: Entry<any>,
+  entry: ILesson | ICoachingWeek | IAuthor | IHabit,
   fieldToGet: string,
-  object: any,
-  callback?: (args: any) => void,
+  object: unknown,
+  callback?: (args: unknown) => void,
   fieldToSet?: string
 ) => {
   if (entry.fields[fieldToGet]) {
@@ -38,79 +40,65 @@ const getFieldValue = (
   }
 }
 
-export const getAllWeeks = (): Thunk => async (dispatch: Dispatch) => {
+export const getAllWeeks = (): AppThunk => async (dispatch) => {
   const locale = I18n.locale === 'en' ? 'en-US' : 'fi-FI'
   const weeks: ContentWeek[] = []
-  const lessons: any = []
+  const lessons: ContentLesson[] = []
   const sections: Section[] = []
   const exampleHabits: ExampleHabit[] = []
 
   await dispatch(contentActions.updateContentStart())
 
   try {
-    const coachingWeeks: any = await contentfulClient.getEntries({
-      locale,
-      content_type: 'coachingWeek',
-      'fields.slug[ne]': 'introduction',
-      include: 3
-    })
-
-    coachingWeeks.items.forEach((coachingWeek: Entry<ICoachingWeekFields>) => {
-      const weekObject: ContentWeek = {}
-
-      weekObject.contentId = coachingWeek.sys.id
-
-      getFieldValue(coachingWeek, 'weekName', weekObject)
-      getFieldValue(coachingWeek, 'duration', weekObject)
-      getFieldValue(
-        coachingWeek,
-        'locked',
-        weekObject,
-        undefined,
-        'defaultLocked'
-      )
-      if (coachingWeek.fields.coverPhoto) {
-        weekObject.coverPhoto = coachingWeek.fields.coverPhoto.fields.file.url
+    const coachingWeeks: EntryCollection<ICoachingWeek> = await contentfulClient.getEntries(
+      {
+        locale,
+        content_type: 'coachingWeek',
+        'fields.slug[ne]': 'introduction',
+        include: 3
       }
+    )
 
-      if (coachingWeek.fields.slug) {
-        weekObject.slug = coachingWeek.fields.slug
+    coachingWeeks.items.forEach((coachingWeek: ICoachingWeek) => {
+      const weekObject: ContentWeek = {
+        order: coachingWeek.fields.order,
+        contentId: coachingWeek.sys.id,
+        weekName: coachingWeek.fields.weekName,
+        intro: coachingWeek.fields.intro,
+        taskCount: coachingWeek.fields.taskCount,
+        defaultLocked: Boolean(coachingWeek.fields.taskCount),
+        duration: coachingWeek.fields.duration,
+        coverPhoto: coachingWeek.fields.coverPhoto.fields.file.url,
+        slug: coachingWeek.fields.slug,
+        weekDescription: documentToPlainTextString(
+          coachingWeek.fields.weekDescription
+        ),
+        lessons: []
       }
-      getFieldValue(coachingWeek, 'order', weekObject)
-      getFieldValue(coachingWeek, 'intro', weekObject)
-      getFieldValue(
-        coachingWeek,
-        'weekDescription',
-        weekObject,
-        documentToPlainTextString
-      )
 
       if (coachingWeek.fields.lessons) {
         const weekLessons: string[] = []
 
-        coachingWeek.fields.lessons.forEach((lesson: Entry<ILessonFields>) => {
-          const lessonObject: ContentLesson = { contentId: lesson.sys.id }
+        coachingWeek.fields.lessons.forEach((lesson: ILesson) => {
+          const lessonObject: ContentLesson = {
+            contentId: lesson.sys.id,
+            slug: lesson.fields.slug,
+            lessonContent: lesson.fields.lessonContent,
+            cover: lesson.fields.cover?.fields.file.url,
+            author: lesson.fields.author,
+            tags: lesson.fields.keywords
+          }
+          lessonObject.authorCards = mapAuthors(lesson)
 
           if (lesson.fields.slug) {
             lessonObject.slug = lesson.fields.slug
           }
           getFieldValue(lesson, 'lessonName', lessonObject)
           getFieldValue(lesson, 'additionalInformation', lessonObject)
-
           getFieldValue(lesson, 'author', lessonObject)
           getFieldValue(lesson, 'lessonName', lessonObject)
           getFieldValue(lesson, 'stage', lessonObject)
           getFieldValue(lesson, 'lessonContent', lessonObject)
-
-          lessonObject.authorCards = mapAuthors(lesson)
-
-          if (lesson.fields.cover) {
-            lessonObject.cover = lesson.fields.cover.fields.file.url
-          }
-
-          if (lesson.fields.keywords) {
-            lessonObject.tags = lesson.fields.keywords
-          }
 
           if (lesson.fields.section) {
             const section: Section = {
@@ -169,12 +157,16 @@ export const getAllWeeks = (): Thunk => async (dispatch: Dispatch) => {
   }
 }
 
-const mapAuthors = (lesson: Entry<any>): AuthorCard[] => {
+const mapAuthors = (lesson: ILesson): AuthorCard[] => {
   const authorArray: AuthorCard[] = []
 
   if (lesson.fields.authorCard) {
-    lesson.fields.authorCard.forEach((card: Entry<any>) => {
-      const author: any = {}
+    lesson.fields.authorCard.forEach((card: IAuthor) => {
+      const author: AuthorCard = {
+        name: '',
+        credentials: '',
+        avatar: ''
+      }
 
       if (card.fields.name) {
         author.name = card.fields.name
@@ -183,7 +175,7 @@ const mapAuthors = (lesson: Entry<any>): AuthorCard[] => {
       getFieldValue(card, 'name', author)
       getFieldValue(card, 'credentials', author)
 
-      if (card.fields.avatar.fields.file.url) {
+      if (card?.fields?.avatar?.fields.file.url) {
         author.avatar = card.fields.avatar.fields.file.url
       }
       authorArray.push(author)

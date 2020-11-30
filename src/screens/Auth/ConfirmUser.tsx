@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { resendEmail } from '@actions/auth/auth-actions'
@@ -15,10 +15,10 @@ import {
 import TopInfo from '@components/TopInfo'
 import { getEmail } from '@selectors/UserSelectors'
 
-interface ConfirmationScreenProps {
+interface Props {
   navigation: any
 }
-const ConfirmationScreen = (props: ConfirmationScreenProps) => {
+const ConfirmationScreen: FC<Props> = (props) => {
   const email = useSelector(getEmail)
   const dispatch = useDispatch()
 

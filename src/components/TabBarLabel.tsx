@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import translate from '../config/i18n'
 import colors from '../styles/colors'
-import { StyleProps } from '../styles/themes'
 
 type Props = {
   focused: boolean
@@ -18,7 +17,7 @@ const TabBarLabel: FC<Props> = ({ focused, label }) => (
 
 export default TabBarLabel
 
-interface TextProps extends StyleProps {
+interface TextProps {
   readonly focused?: boolean
 }
 

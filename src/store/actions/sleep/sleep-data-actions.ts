@@ -6,14 +6,13 @@ import { getPolarSleep } from '@actions/api-actions/polar-actions'
 import { getWithingsSleep } from '@actions/api-actions/withings-actions'
 import { fetchSleepFromHealthKit } from '@actions/sleep/health-kit-actions'
 import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { GetState } from '@typings/GetState'
-import { Dispatch, Thunk } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { SOURCE } from '@typings/state/sleep-source-state'
 
 export const fetchSleepData = (
   startDate: string,
   endDate: string
-): Thunk => async (dispatch: Dispatch, getState: GetState) => {
+): AppThunk => async (dispatch, getState) => {
   const source = getMainSource(getState())
 
   switch (source) {
@@ -23,11 +22,11 @@ export const fetchSleepData = (
       break
     case SOURCE.GOOGLE_FIT:
       // max range 0 - 30
-      dispatch(readGoogleFitSleep())
+      dispatch(readGoogleFitSleep(startDate, endDate))
       break
     case SOURCE.FITBIT:
       // max range 0 - 30
-      dispatch(getFitbitSleep())
+      dispatch(getFitbitSleep(startDate, endDate))
       break
     case SOURCE.OURA:
       dispatch(getOuraSleep(startDate, endDate))

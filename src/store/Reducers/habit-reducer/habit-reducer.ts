@@ -1,4 +1,5 @@
 import {
+  HabitActions,
   CLEAR_SUB_HABITS,
   DELETE_HABIT,
   DRAFT_EDIT_HABIT,
@@ -8,10 +9,9 @@ import {
   REPLACE_SUB_HABITS,
   TOGGLE_MERGING_DIALOG,
   UPDATE_HABIT
-} from '@actions/habit/habit-actions'
-import { enableMapSet, produce } from 'immer'
-import ReduxAction from '@typings/redux-actions'
+} from '@actions/habit/types'
 import { HabitState, UnsyncedHabit } from '@typings/state/habit-state'
+import { enableMapSet, produce } from 'immer'
 
 enableMapSet()
 
@@ -23,49 +23,49 @@ export const initialState: HabitState = {
   loading: false
 }
 
-const reducer = produce((draft: HabitState, action: ReduxAction) => {
-  const { payload, type } = action
-
-  switch (type) {
+const reducer = produce((draft: HabitState, action: HabitActions) => {
+  switch (action.type) {
     case REPLACE_HABITS: {
-      draft.habits = payload
+      draft.habits = action.payload
       break
     }
 
     case REPLACE_SUB_HABITS: {
-      draft.subHabits = payload
+      draft.subHabits = action.payload
       break
     }
 
     case UPDATE_HABIT:
-      draft.habits.set(payload.id, payload)
+      draft.habits.set(action.payload.id, action.payload)
       break
 
     case DELETE_HABIT:
-      draft.habits.delete(payload)
+      draft.habits.delete(action.payload)
       break
 
     case DRAFT_EDIT_HABIT:
-      draft.draftEditHabit = payload
+      draft.draftEditHabit = action.payload
       break
 
     case PUSH_UNSYNCED_HABIT: {
       draft.unsyncedHabits = draft.unsyncedHabits.filter(
         (unsyncedHabit: UnsyncedHabit) =>
-          unsyncedHabit.habit.id !== payload.habit.id
+          unsyncedHabit.habit.id !== action.payload.habit.id
       )
-      draft.unsyncedHabits.push(payload)
+      draft.unsyncedHabits.push(action.payload)
       break
     }
 
     case POP_UNSYNCED_HABIT:
       draft.unsyncedHabits = draft.unsyncedHabits.filter(
-        (unsyncedHabit: UnsyncedHabit) => unsyncedHabit.habit.id !== payload
+        (unsyncedHabit: UnsyncedHabit) =>
+          unsyncedHabit.habit.id !== action.payload
       )
       break
 
     case TOGGLE_MERGING_DIALOG:
-      const mergingDialogEnabled = payload || !draft.mergingDialogDisplayed
+      const mergingDialogEnabled =
+        action.payload || !draft.mergingDialogDisplayed
 
       draft.mergingDialogDisplayed = mergingDialogEnabled
       break

@@ -7,7 +7,7 @@ import {
 import ReactNativeModal from 'react-native-modal'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText, { AnimatedTranslatedText } from '../TranslatedText'
@@ -15,7 +15,7 @@ import TranslatedText, { AnimatedTranslatedText } from '../TranslatedText'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Modal = ReactNativeModal as any
 
-interface ContainerProps extends StyleProps {
+interface ContainerProps {
   background?: boolean
 }
 
@@ -46,12 +46,12 @@ export const BGContainer = styled.View`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `
 
-interface TextProps extends StyleProps {
+interface TextProps {
   readonly center?: boolean
   readonly secondary?: boolean
 }
 
-export const H1 = styled(TranslatedText)<StyleProps & TextProps>`
+export const H1 = styled(TranslatedText)<TextProps>`
   font-size: 34px;
   margin-bottom: 10px;
   margin-top: 5px;
@@ -60,7 +60,7 @@ export const H1 = styled(TranslatedText)<StyleProps & TextProps>`
   font-family: ${({ theme }) => theme.FONT_BOLD};
 `
 
-export const H1N = styled.Text<StyleProps & TextProps>`
+export const H1N = styled.Text<TextProps>`
   font-size: 34px;
   margin-bottom: 10px;
   margin-top: 5px;
@@ -70,7 +70,7 @@ export const H1N = styled.Text<StyleProps & TextProps>`
   font-family: ${fonts.bold};
 `
 
-export const PageTitle = styled(AnimatedTranslatedText)<StyleProps & TextProps>`
+export const PageTitle = styled(AnimatedTranslatedText)<TextProps>`
   font-size: 34px;
   margin: 40px 20px 20px;
   text-align: ${({ center }) => (center ? 'center' : 'left')};

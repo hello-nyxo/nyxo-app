@@ -1,9 +1,5 @@
-import {
-  setValues,
-  SET_VALUES,
-  toggleEditMode,
-  TOGGLE_EDIT_MODE
-} from './manual-sleep-actions'
+import { setValues, toggleEditMode } from './manual-sleep-actions'
+import { TOGGLE_EDIT_MODE, SET_VALUES } from './types'
 
 const testValues = {
   start: { h: 10, m: 30 },

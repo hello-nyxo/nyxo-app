@@ -73,7 +73,9 @@ export const convertDaysToFitGraphQL = (
   return result
 }
 
-export const convertRemoteHabitsToLocalHabits = (remoteHabits: any) => {
+export const convertRemoteHabitsToLocalHabits = (
+  remoteHabits: any
+): Map<string, Habit> => {
   const resultHabits = new Map<string, Habit>() // on-device habits
   remoteHabits.forEach((item: any) => {
     // on-cloud habit

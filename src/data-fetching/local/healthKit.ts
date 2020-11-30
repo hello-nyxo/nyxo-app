@@ -18,11 +18,9 @@ export const getHealthKitData = (startDate: string): Night[] => {
         return error
       }
       data = response.map((nightObject) => formatHealthKitResponse(nightObject))
-      console.log('getHealthKitData', data)
       return data
     }
   )
 
-  console.log('running thins', data)
   return data
 }

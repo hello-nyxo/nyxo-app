@@ -1,15 +1,12 @@
-import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
-import { canEndCoaching } from '@helpers/coaching/coaching'
-import { format } from 'date-fns/esm'
 import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
 import { PN } from '../Primitives/Primitives'
 
 type Props = {
-  intro: string
+  intro: string | undefined
   description: string
   habitCount: number
   lessonCount: number

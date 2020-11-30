@@ -3,7 +3,7 @@ import { GetUserQuery } from '@API'
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
-import Svg, { Circle } from 'react-native-svg'
+import { Circle } from 'react-native-svg'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 
