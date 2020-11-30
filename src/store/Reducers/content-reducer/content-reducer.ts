@@ -1,9 +1,5 @@
 import {
   CoachingContentState,
-  ContentWeek,
-  ContentLesson,
-  Section,
-  ExampleHabit,
   ContentUpdate
 } from '@typings/CoachingContentState'
 import ReduxAction from '@typings/redux-actions'
@@ -30,20 +26,7 @@ export const actionCreators = {
   updateContentSuccess: (payload: ContentUpdate) => ({
     type: UPDATE_CONTENT_SUCCESS,
     payload
-  }),
-
-  updateWeeks: (weeks: ContentWeek[]) => {
-    return { type: UPDATE_WEEKS, payload: weeks }
-  },
-  updateLessons: (lessons: ContentLesson[]) => {
-    return { type: UPDATE_LESSONS, payload: lessons }
-  },
-  updateSections: (sections: Section[]) => {
-    return { type: UPDATE_SECTIONS, payload: sections }
-  },
-  updateExampleHabits: (habits: ExampleHabit[]) => {
-    return { type: UPDATE_SECTIONS, payload: habits }
-  }
+  })
 }
 
 const initState: CoachingContentState = {
@@ -73,18 +56,6 @@ const CoachingContentReducer = (
 
     case RESET_COACHING:
       return initState
-
-    case UPDATE_WEEKS:
-      return { ...state, weeks: payload }
-
-    case UPDATE_LESSONS:
-      return { ...state, lessons: payload }
-
-    case UPDATE_SECTIONS:
-      return { ...state, sections: payload }
-
-    case UPDATE_EXAMPLE_HABITS:
-      return { ...state, habits: payload }
 
     default:
       return state

@@ -43,11 +43,6 @@ const CalendarModal: FC = () => {
   )
 
   const getMonthData: DateCallbackHandler = ({ month, year }) => {
-    console.log(
-      'getMonthData',
-      new Date(year, month - 1, 1).toISOString(),
-      new Date(year, month, 0).toISOString()
-    )
     dispatch(
       fetchSleepData(
         new Date(year, month - 1, 1).toISOString(),

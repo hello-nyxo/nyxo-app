@@ -21,15 +21,10 @@ export const getNightForSelectedDate = createSelector(
   (nights, selectedDate, tracker) => {
     return nights
       .filter((night) => {
-        console.log('filter', night)
         return night.sourceId === tracker.sourceId
       })
       .filter((night) => {
         return matchDayAndNight(night.startDate, selectedDate)
-      })
-      .map((night) => {
-        console.log('map', night)
-        return night
       })
   }
 )

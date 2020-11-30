@@ -7,7 +7,7 @@ import {
   UPDATE_GOOGLE_FIT_SOURCES,
   SleepSourceActions
 } from '@actions/sleep-source-actions/types'
-import { SleepSources } from 'src/store/initial-states/sleep-source-state'
+import { SleepSources } from '@initial-states/sleep-source-state'
 
 const reducer = (
   state = SleepSources,

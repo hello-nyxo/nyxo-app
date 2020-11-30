@@ -18,13 +18,13 @@ export interface CoachingContentState {
 export interface ContentWeek {
   order: number
   contentId: string
-  weekName: string
-  intro: string
+  weekName: string | undefined
+  intro: string | undefined
   weekDescription: string
-  taskCount: number
+  taskCount: number | undefined
   lessons: string[]
   coverPhoto: string
-  defaultLocked: boolean
+  defaultLocked: boolean | undefined
   duration: number
 
   slug: string

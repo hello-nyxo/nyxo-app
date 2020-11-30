@@ -1,5 +1,5 @@
 import { ManualDataState } from '@typings/state/ManualDataState'
-import { manualData } from 'src/store/initial-states/manual-data-state'
+import { manualData } from '@initial-states/manual-data-state'
 import {
   ManualSleepActions,
   SET_VALUES,

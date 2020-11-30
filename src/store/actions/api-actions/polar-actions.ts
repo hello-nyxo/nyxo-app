@@ -130,8 +130,6 @@ export const getPolarSleep = (
     CONFIG.POLAR_CONFIG.bundleId
   )) as unknown) as PolarAuthorizeResult
 
-  console.log(startDate)
-
   dispatch(fetchSleepPolarStart())
 
   if (accessToken) {
@@ -180,7 +178,6 @@ export const getPolarSleep = (
         await dispatch(fetchSleepPolarSuccess())
       }
     } catch (error) {
-      console.log(error)
       dispatch(fetchSleepPolarFailure())
     }
   }

@@ -1,5 +1,5 @@
 import CONFIG from '@config/Config'
-import ReduxAction, { AppThunk, Dispatch, Thunk } from '@typings/redux-actions'
+import ReduxAction, { AppThunk, Dispatch } from '@typings/redux-actions'
 import Intercom from 'react-native-intercom'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import { updateIntercomInformation } from '../IntercomActions'
@@ -55,7 +55,7 @@ export const restoreFailure = (error: string): PurchaseActionTypes => ({
  * @async
  *  Run on every app start and updates subscription status
  */
-export const updateSubscriptionStatus = (): Thunk => async (
+export const updateSubscriptionStatus = (): AppThunk => async (
   dispatch: Dispatch
 ) => {
   try {
@@ -87,7 +87,7 @@ export const updateSubscriptionStatus = (): Thunk => async (
  */
 export const purchaseSubscription = (
   subscription: PurchasesPackage
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch: Dispatch) => {
   dispatch(purchaseStart())
   try {
     const { purchaserInfo } = await Purchases.purchasePackage(subscription)
