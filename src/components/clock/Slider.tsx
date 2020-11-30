@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { setValues } from '@actions/manual-sleep/manual-sleep-actions'
 import {
@@ -9,7 +9,6 @@ import {
   padMinutes,
   roundAngleToFives
 } from '@helpers/time'
-import { fonts } from '@styles/themes'
 import styled from 'styled-components/native'
 import { icons } from '../../../assets/svgs'
 import colors from '../../styles/colors'

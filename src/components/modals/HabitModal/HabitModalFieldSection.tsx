@@ -1,8 +1,8 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
 import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native'
-import translate from '../../../config/i18n'
-import { fonts, StyleProps } from '../../../styles/themes'
+import translate from '@config/i18n'
+import { fonts } from '@styles/themes'
 import { TextLengthIndicator } from '../../TextIndicator/TextLengthIndicator'
 import TranslatedText from '../../TranslatedText'
 
@@ -16,17 +16,15 @@ type Props = {
   onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void
 }
 
-const HabitModalFieldSection = (props: Props) => {
-  const {
-    indicatorText,
-    isTitle,
-    handleChangeText,
-    placeholder,
-    value,
-    inputMaxLength,
-    onBlur
-  } = props
-
+const HabitModalFieldSection: FC<Props> = ({
+  indicatorText,
+  isTitle,
+  handleChangeText,
+  placeholder,
+  value,
+  inputMaxLength,
+  onBlur
+}) => {
   const percentage = value.length / inputMaxLength
   return (
     <FieldContainer>

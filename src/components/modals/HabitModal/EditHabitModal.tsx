@@ -11,13 +11,12 @@ import { getEditHabitModal } from '@selectors/ModalSelectors'
 import styled from 'styled-components/native'
 import { Habit } from '@typings/state/habit-state'
 import { Period } from '@typings/state/Periods'
-import { StyleProps } from '../../../styles/themes'
+import { revertLineBreaks } from '@helpers/habits'
 import HabitModalFieldSection from './HabitModalFieldSection'
 import HabitModalStreak from './HabitModalStreak'
 import HabitModalTimeSection from './HabitModalTimeSection'
 import HabitModalTopRow from './HabitModalTopRow'
 import { descriptionMaxLength, titleMaxLength } from './NewHabitModal'
-import { revertLineBreaks } from '@helpers/habits'
 
 const EditHabitModal = () => {
   const show = useSelector(getEditHabitModal)

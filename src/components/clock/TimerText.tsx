@@ -40,10 +40,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bold,
     fontWeight: 'bold',
     fontSize: 42
-  },
-  text: {
-    color: colors.asleepColor,
-    fontFamily: fonts.medium,
-    fontSize: 15
   }
 })
