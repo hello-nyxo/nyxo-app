@@ -1,8 +1,6 @@
-import { setSelectedDay } from '@actions/sleep/sleep-data-actions'
 import TranslatedText from '@components/TranslatedText'
 import { getNightsAsDays } from '@selectors/night-selectors'
 import { Day } from '@typings/Sleepdata'
-// import { getGoToSleepWindowCenter } from '@selectors/insight-selectors/Insights'
 import { extent, max, min, scaleTime } from 'd3'
 import { addHours, subHours } from 'date-fns'
 import React, { FC } from 'react'
@@ -30,7 +28,7 @@ const SleepTimeChart: FC = () => {
   const chartWidth = (barWidth + 10) * daysToShow + paddingLeft + paddingRight
 
   const select = (day: Day) => {
-    dispatch(setSelectedDay(day.date))
+    // TODO
   }
 
   const xDomain: Date[] = extent(data, (date) => new Date(date.date)) as Date[]

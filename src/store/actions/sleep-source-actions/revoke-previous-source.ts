@@ -6,13 +6,12 @@ import { togglePolar } from '@actions/api-actions/polar-actions'
 import { toggleWithings } from '@actions/api-actions/withings-actions'
 import { toggleHealthKit } from '@actions/sleep-source-actions/sleep-source-actions'
 import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { GetState } from '@typings/GetState'
-import { AppThunk, Dispatch } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { SOURCE } from '@typings/state/sleep-source-state'
 
 export const revokePreviousSource = (): AppThunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+  dispatch,
+  getState
 ) => {
   const currentSource = getMainSource(getState())
 

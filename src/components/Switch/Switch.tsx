@@ -1,24 +1,18 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 
-interface Props {
-  valueChange: Function
+type Props = {
+  valueChange: (val: boolean) => void
   value: boolean
   title: string
 }
 
-const LinkSource = (props: Props) => {
-  const { valueChange, title, value } = props
-
-  const handleOnValueChange = (value: boolean) => {
-    valueChange(value)
-  }
-
+const LinkSource: FC<Props> = ({ valueChange, title, value }) => {
   return (
     <Row>
       <Source>{title}</Source>
-      <Toggle onValueChange={handleOnValueChange} value={value} />
+      <Toggle onValueChange={valueChange} value={value} />
     </Row>
   )
 }

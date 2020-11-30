@@ -12,25 +12,25 @@ import {
   useGetActiveCoaching,
   useUpdateCoaching
 } from '@hooks/coaching/useCoaching'
-import {
-  CombinedLesson,
-  getContentForSelectedLesson
-} from '@selectors/coaching-selectors/coaching-selectors'
+import { getContentForSelectedLesson } from '@selectors/coaching-selectors/coaching-selectors'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
-import React, { FC, memo, useState } from 'react'
-import { LayoutChangeEvent } from 'react-native'
+import React, { FC, memo } from 'react'
 import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { StyleProps } from '@styles/themes'
 
 const yOffset = new Animated.Value(0)
 
 const LessonView: FC = () => {
-  const selectedLesson: CombinedLesson = useSelector(
-    getContentForSelectedLesson
-  )
+  const { data } = useGetActiveCoaching()
+  const [mutate, { isLoading: completeLoading }] = useUpdateCoaching()
+  const selectedLesson = useSelector(getContentForSelectedLesson)
+
+  if (!selectedLesson) {
+    return null
+  }
+
   const {
     tags,
     cover = '',
@@ -42,13 +42,7 @@ const LessonView: FC = () => {
     authorCards
   } = selectedLesson
 
-  const { data } = useGetActiveCoaching()
-  const [mutate, { isLoading: completeLoading }] = useUpdateCoaching()
   const completed = data?.lessons?.find((l) => l === slug)
-
-  if (!selectedLesson) {
-    return null
-  }
 
   const markCompleted = async () => {
     mutate({

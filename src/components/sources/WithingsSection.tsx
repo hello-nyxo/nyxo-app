@@ -1,16 +1,14 @@
 import TranslatedText from '@components/TranslatedText'
-import React from 'react'
+import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import { getIsWithingsMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { toggleWithings } from '@actions/api-actions/withings-actions'
 import { constants } from '@styles/themes'
 
-const WithingsSection = () => {
+const WithingsSection: FC = () => {
   const dispatch = useDispatch()
   const isWithingsMainSource = useSelector(getIsWithingsMainSource)
-  const fitbitAuthorized = useSelector(getFitbitEnabled)
 
   const setWithingsAsSource = () => {
     dispatch(toggleWithings())

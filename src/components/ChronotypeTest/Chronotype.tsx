@@ -4,8 +4,7 @@ import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import Modal from 'react-native-modal'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
-import keyExtractor from '@helpers/KeyExtractor'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import { CheckBox, H4, P, SafeAreaView } from '../Primitives/Primitives'
@@ -148,7 +147,6 @@ const ChronotypeTest = () => {
               length: cardWidth,
               offset: (cardWidth + cardMargin * 2) * index
             })}
-            key
             contentContainerStyle={{
               paddingLeft: inset,
               paddingRight: inset
@@ -160,7 +158,7 @@ const ChronotypeTest = () => {
             data={content}
             ref={flatListRef}
             decelerationRate="fast"
-            keyExtractor={keyExtractor}
+            keyExtractor={(q) => q.question}
             snapToAlignment="center"
             snapToEnd={false}
             ListHeaderComponent={<TestStart start={startTest} />}

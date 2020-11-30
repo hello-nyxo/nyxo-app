@@ -6,8 +6,7 @@ import { format, isAfter } from 'date-fns'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import { formatOuraSamples } from '@helpers/sleep/oura-helper'
 import { authorize, refresh } from 'react-native-app-auth'
-import { GetState } from '@typings/GetState'
-import { AppThunk, Dispatch } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { OuraAuthorizeResult, ResponseBase } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
 import { captureException } from '@sentry/react-native'
@@ -54,10 +53,7 @@ export const fetchSleepOuraFailure = (): ApiActions => ({
 
 const OURA_API = 'https://api.ouraring.com/v1/sleep?start='
 
-export const toggleOura = (): AppThunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+export const toggleOura = (): AppThunk => async (dispatch, getState) => {
   try {
     const enabled = getOuraEnabled(getState())
     if (enabled) {
@@ -71,7 +67,7 @@ export const toggleOura = (): AppThunk => async (
   }
 }
 
-export const authorizeOura = (): AppThunk => async (dispatch: Dispatch) => {
+export const authorizeOura = (): AppThunk => async (dispatch) => {
   try {
     const response = (await authorize(
       CONFIG.OURA_CONFIG
@@ -100,7 +96,7 @@ export const authorizeOura = (): AppThunk => async (dispatch: Dispatch) => {
   }
 }
 
-export const refreshOuraToken = (): AppThunk => async (dispatch: Dispatch) => {
+export const refreshOuraToken = (): AppThunk => async (dispatch) => {
   const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     CONFIG.OURA_CONFIG.bundleId
   )) as unknown) as OuraAuthorizeResult
@@ -138,7 +134,7 @@ export const refreshOuraToken = (): AppThunk => async (dispatch: Dispatch) => {
   return null
 }
 
-export const revokeOuraAccess = (): AppThunk => async (dispatch: Dispatch) => {
+export const revokeOuraAccess = (): AppThunk => async (dispatch) => {
   dispatch(ouraRevokeSuccess())
   dispatch(setMainSource(SOURCE.NO_SOURCE))
 }
@@ -146,7 +142,7 @@ export const revokeOuraAccess = (): AppThunk => async (dispatch: Dispatch) => {
 export const getOuraSleep = (
   startDate: string,
   endDate: string
-): AppThunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   const {
     accessToken,
     accessTokenExpirationDate

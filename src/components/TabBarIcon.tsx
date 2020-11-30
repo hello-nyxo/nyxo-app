@@ -1,4 +1,5 @@
-import React, { memo, FC } from 'react'
+import ROUTE from '@config/routes/Routes'
+import React, { FC } from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
 import colors from '../styles/colors'
@@ -8,22 +9,25 @@ import { IconBold } from './iconRegular'
 export type TabBarIconProps = {
   focused: boolean
   tintColor: string
-  routeName: string
+  routeName:
+    | ROUTE.JOURNAL
+    | ROUTE.COACHING
+    | ROUTE.HABITS
+    | ROUTE.PROFILE
+    | ROUTE.SETTINGS
   badgeCount?: number
 }
 
 const tabBarIcons = {
-  Sleep: 'clockBold',
-  Coaching: 'schoolPhysicalBold',
-  Habits: 'checklist',
-  Feed: 'multiUsers',
-  Profile: 'userBold',
-  Settings: 'settingsBold'
+  [ROUTE.JOURNAL]: 'clockBold',
+  [ROUTE.COACHING]: 'schoolPhysicalBold',
+  [ROUTE.HABITS]: 'checklist',
+  [ROUTE.PROFILE]: 'userBold',
+  [ROUTE.SETTINGS]: 'settingsBold'
 }
 
 const TabBarIcon: FC<TabBarIconProps> = ({
   focused,
-  tintColor,
   routeName,
   badgeCount
 }: TabBarIconProps) => {

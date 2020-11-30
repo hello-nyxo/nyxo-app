@@ -1,33 +1,44 @@
-import React, { memo } from 'react'
-import { Animated as Anim, Text, TextProps, Platform } from 'react-native'
+import React, { memo, FC } from 'react'
+import {
+  Animated as Anim,
+  Text,
+  TextProps,
+  Platform,
+  TextStyle
+} from 'react-native'
 import Animated from 'react-native-reanimated'
-import translate from '../config/i18n'
+import translate from '@config/i18n'
 
 interface Props extends TextProps {
   children: string
   variables?: any
-  style?: any
+  style?: TextStyle
   androidTranslation?: string
 }
 
-const TranslatedText = (props: Props) => {
-  const { children, variables, androidTranslation } = props
-
+const TranslatedText: FC<Props> = ({
+  children,
+  variables,
+  androidTranslation,
+  ...rest
+}) => {
   if (androidTranslation && Platform.OS === 'android') {
-    return <Text {...props}>{translate(androidTranslation, variables)}</Text>
+    return <Text {...rest}>{translate(androidTranslation, variables)}</Text>
   }
 
-  return <Text {...props}>{translate(children, variables)}</Text>
+  return <Text {...rest}>{translate(children, variables)}</Text>
 }
 
-export const AnimatedTranslatedText: React.SFC<Props> = (props: Props) => (
-  <Anim.Text {...props}>{translate(props.children, props.variables)}</Anim.Text>
-)
+export const AnimatedTranslatedText: FC<Props> = ({
+  children,
+  variables,
+  ...rest
+}) => <Anim.Text {...rest}>{translate(children, variables)}</Anim.Text>
 
-export const ReAnimatedTranslatedText: React.SFC<Props> = (props: Props) => (
-  <Animated.Text {...props}>
-    {translate(props.children, props.variables)}
-  </Animated.Text>
-)
+export const ReAnimatedTranslatedText: FC<Props> = ({
+  children,
+  variables,
+  ...rest
+}) => <Animated.Text {...rest}>{translate(children, variables)}</Animated.Text>
 
 export default memo(TranslatedText)

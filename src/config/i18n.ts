@@ -25,7 +25,6 @@ export const setI18nConfig = (): void => {
   I18nManager.forceRTL(isRTL)
 
   // set i18n-js config
-  // @ts-ignore
   I18n.translations = { [languageTag]: translationGetters[languageTag]() }
   I18n.locale = languageTag
 

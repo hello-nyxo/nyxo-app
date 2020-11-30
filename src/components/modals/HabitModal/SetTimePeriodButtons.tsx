@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import colors from '../../../styles/colors'
-import { fonts, StyleProps } from '../../../styles/themes'
+import { fonts } from '../../../styles/themes'
 import { IconBold } from '../../iconRegular'
 import TranslatedText from '../../TranslatedText'
 
 type Props = {
-  setTimePeriod: Function
+  setTimePeriod: (period: string) => void
   currentTimePeriod: string
 }
 
-const SetTimePeriodButtons = ({ setTimePeriod, currentTimePeriod }: Props) => {
+const SetTimePeriodButtons: FC<Props> = ({
+  setTimePeriod,
+  currentTimePeriod
+}) => {
   const periodButtons = [
     {
       name: 'morning',
@@ -35,14 +38,14 @@ const SetTimePeriodButtons = ({ setTimePeriod, currentTimePeriod }: Props) => {
     }
   ]
 
-  const buttons = periodButtons.map((item, index) => {
+  const buttons = periodButtons.map((item) => {
     const active = currentTimePeriod === item.name
 
     return (
       <ButtonContainer
         active={active}
         accentColor={item.accentColor}
-        key={index}
+        key={item.name}
         onPress={item.setFunction}>
         <TimeFrame>
           <IconBold
@@ -73,7 +76,7 @@ const Container = styled.View`
   margin: 20px 0px;
 `
 
-interface ButtonProps extends StyleProps {
+interface ButtonProps {
   readonly active?: boolean
   readonly accentColor?: string
 }

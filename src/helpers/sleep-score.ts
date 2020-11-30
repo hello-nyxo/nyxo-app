@@ -6,7 +6,7 @@ import { getStartTimeInMinutes, isWeekend } from './time'
 Name: calculateEfficiency
 Description: This function calculates the efficiency of the sleep by comparing time spent in bed to time spent asleep
 */
-function calculateDuration(day) {
+function calculateDuration(day): number {
   const lengthScale = d3
     .scaleLinear()
     .domain([0, 359, 360, 480])
@@ -25,7 +25,7 @@ function calculateDuration(day) {
 Name: calculateEfficiency
 Description: This function calculates the efficiency of the sleep by comparing time spent in bed to time spent asleep
 */
-function calculateEfficiency(day) {
+function calculateEfficiency(day): number {
   const efficiencyScale = d3.scaleLinear().domain([60, 0]).range([50, 100])
   efficiencyScale.clamp(true)
 
@@ -46,7 +46,7 @@ function calculateEfficiency(day) {
 Name: calculateTiming
 Description: This function calculates the efficiency of the sleep by comparing time spent in bed to time spent asleep
 */
-function calculateTiming(day, insights) {
+function calculateTiming(day, insights): number {
   if (!insights || !insights.goToSleepWindowCenter) return 0
   const goalTime = getStartTimeInMinutes(insights.goToSleepWindowCenter)
 
@@ -70,7 +70,7 @@ function calculateTiming(day, insights) {
 Name: calculateJetlag
 Description: This function calculates the efficiency of the sleep by comparing time spent in bed to time spent asleep
 */
-function calculateJetlag(day, insights) {
+function calculateJetlag(day, insights): number {
   if (!insights || !insights.weekendDayAverage || !insights.weekDayAverage) {
     return 0
   }
@@ -101,14 +101,14 @@ function calculateJetlag(day, insights) {
 Name: calculateSubjective
 Description: This function includes subjective to the calculation. User can have 100 points if the night is rated, otherwise zero
 */
-function calculateSubjective(day) {
+function calculateSubjective(day): number {
   if (day.rating) {
     return 100
   }
   return 0
 }
 
-function calculateAverage(item) {
+function calculateAverage(item): number {
   const w = {
     duration: 0.5,
     efficiency: 0.1,

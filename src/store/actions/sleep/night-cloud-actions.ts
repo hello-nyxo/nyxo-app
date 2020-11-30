@@ -5,12 +5,12 @@ import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getUsername } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
 import { GetState } from '@typings/GetState'
-import { AppThunk, Dispatch } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { Night } from '@typings/Sleepdata'
 import { API, graphqlOperation } from 'aws-amplify'
 
 export const syncNightsToCloud = (nights: Night[]): AppThunk => async (
-  _: Dispatch,
+  _,
   getState: GetState
 ) => {
   try {

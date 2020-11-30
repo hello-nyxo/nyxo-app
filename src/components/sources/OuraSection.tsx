@@ -1,6 +1,5 @@
 import { toggleOura } from '@actions/api-actions/oura-actions'
 import TranslatedText from '@components/TranslatedText'
-import { getOuraEnabled } from '@selectors/api-selectors/api-selectors'
 import { getIsOuraMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,7 +7,7 @@ import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 
 const OuraSection: FC = () => {
-  const dispatch = useDispatch()
+  const dispatch: FC = useDispatch()
   const isOuraMainSource = useSelector(getIsOuraMainSource)
 
   const setOuraAsSource = () => {

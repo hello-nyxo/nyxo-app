@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import ProfileScreen from '../../screens/profile/profile'
 
 const Stack = createNativeStackNavigator()
 
-const ProfileNavigator = () => {
+const ProfileNavigator: FC = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen

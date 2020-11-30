@@ -9,7 +9,7 @@ import {
   deleteMicroTaskById,
   markTodayAsCompleted
 } from '@actions/habit/habit-actions'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import { MicroTask } from '@typings/Microtask'
 import TranslatedText from '../TranslatedText'
 import ActionComplete from './ActionComplete'
@@ -127,7 +127,7 @@ const ActionRow = styled.TouchableOpacity`
   flex: 1;
 `
 
-interface ActionProps extends StyleProps {
+interface ActionProps {
   completedToday: boolean
 }
 
@@ -136,5 +136,5 @@ const Action = styled.Text`
   font-size: 15px;
   text-decoration: ${(props: ActionProps) =>
     props.completedToday ? 'line-through' : 'none'};
-  color: ${(props: ActionProps) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

@@ -1,7 +1,6 @@
 import {
   GetActiveCoachingQuery,
   GetCoachingDataQuery,
-  ListCoachingDatasQuery,
   UpdateCoachingDataInput,
   UpdateCoachingDataMutation
 } from '@API'
@@ -73,9 +72,7 @@ export const completeLessonMutation = async ({
 
 /* HOOKS */
 
-export const useListCoaching = (): QueryResult<Array<
-  CoachingPeriod
-> | null> => {
+export const useListCoaching = (): QueryResult<Array<CoachingPeriod> | null> => {
   return useQuery('listCoaching', listCoaching)
 }
 

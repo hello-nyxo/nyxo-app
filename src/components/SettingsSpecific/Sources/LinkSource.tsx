@@ -1,20 +1,19 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '../../../styles/themes'
+import { fonts } from '../../../styles/themes'
 
-interface LinkSourceProps {
-  authorize: Function
+type Props = {
+  authorize: () => void
   sourceName: string
 }
 
-const LinkSource = (props: LinkSourceProps) => {
-  const { authorize } = props
+const LinkSource: FC<Props> = ({ authorize, sourceName }) => {
   const handleLink = () => {
     authorize()
   }
   return (
     <Row>
-      <Source>{props.sourceName}</Source>
+      <Source>{sourceName}</Source>
       <Toggle onValueChange={handleLink} />
     </Row>
   )

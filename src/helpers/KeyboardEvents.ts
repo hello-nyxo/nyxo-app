@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { useEffect } from 'react'
 import { Keyboard, KeyboardEventListener, Platform } from 'react-native'
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-function useInterval(callback, interval = 1000) {
+function useInterval(callback:, interval = 1000) {
   const callbackRef = useRef || null
 
   useEffect(() => {
@@ -9,6 +9,7 @@ function useInterval(callback, interval = 1000) {
 
   useEffect(() => {
     const tick = () => {
+      // eslint-disable-next-line no-unused-expressions
       callbackRef.current && callbackRef.current()
     }
 

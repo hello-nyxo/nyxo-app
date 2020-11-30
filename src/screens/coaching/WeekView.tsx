@@ -17,12 +17,17 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { WeekActions } from '@components/week/WeekActions'
 import BuyCoaching from '@components/CoachingSpecific/BuyCoachingButton'
+import { RouteProp } from '@react-navigation/core'
+import ROUTE from '@config/routes/Routes'
+import { RootStackParamList } from '@typings/navigation/navigation'
 import Lessons from './Lessons'
 
 const yOffset = new Animated.Value(0)
 
+type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.WEEK>
+
 interface Props {
-  route: any
+  route: WeekScreenRouteProp
 }
 
 const WeekView = ({ route }: Props) => {

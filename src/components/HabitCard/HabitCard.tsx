@@ -13,7 +13,7 @@ import styled from 'styled-components/native'
 import { Habit } from '@typings/state/habit-state'
 import { toggleEditHabitModal } from '@actions/modal/modal-actions'
 import { isCompletedToday } from '@helpers/habits'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
@@ -190,7 +190,7 @@ const PeriodIndicator = styled(TranslatedText)<TimeProps>`
   font-family: ${fonts.medium};
 `
 
-interface TitleHolderProps extends StyleProps {
+interface TitleHolderProps {
   completedToday: boolean
 }
 

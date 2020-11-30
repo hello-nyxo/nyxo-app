@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import ScalingButton from './ScalingButton'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
@@ -44,7 +44,7 @@ const Icon = styled(IconBold).attrs(({ theme }) => ({
   fill: theme.PRIMARY_TEXT_COLOR
 }))``
 
-interface TextProps extends StyleProps {
+interface TextProps {
   readonly dark?: boolean
 }
 const Text = styled(TranslatedText)<TextProps>`

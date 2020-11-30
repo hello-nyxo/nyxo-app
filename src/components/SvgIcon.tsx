@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { ViewStyle } from 'react-native'
 import Svg from 'react-native-svg'
 import svgs from '../../assets/svgs'
 
@@ -9,25 +10,23 @@ interface SvgIconProps {
   name?: string
   stroke?: string
   strokeWidth?: number | string
-  style?: any
+  style?: ViewStyle
   width: number | string
   viewBox?: string
 }
 
-const SvgIcon: FC<SvgIconProps> = (props) => {
-  const {
-    name,
-    fill,
-    height,
-    width,
-    style,
-    strokeWidth,
-    fillRule,
-    stroke,
-    viewBox
-  } = props
-
-  if (!props || !props.name) {
+const SvgIcon: FC<SvgIconProps> = ({
+  name,
+  fill,
+  height,
+  width,
+  style,
+  strokeWidth,
+  fillRule,
+  stroke,
+  viewBox
+}) => {
+  if (!name) {
     return null
   }
 
@@ -46,7 +45,7 @@ const SvgIcon: FC<SvgIconProps> = (props) => {
 
   let iconViewBox
 
-  if (props.viewBox) {
+  if (viewBox) {
     iconViewBox = viewBox
   } else if (!isSimple && iconName.viewBox) {
     iconViewBox = iconName.viewBox

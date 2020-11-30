@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
-import { constants, fonts, StyleProps } from '@styles/themes'
+import { constants, fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 
@@ -78,7 +78,7 @@ const ImageContainer = styled.View`
   border-radius: 5px;
   overflow: hidden;
 `
-interface IconProps extends StyleProps {
+interface IconProps {
   readonly selected?: boolean
 }
 

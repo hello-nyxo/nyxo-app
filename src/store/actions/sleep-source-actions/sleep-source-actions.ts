@@ -3,8 +3,7 @@ import { setHealthKitStatus } from '@actions/sleep/health-kit-actions'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
 import AppleHealthKit from 'react-native-healthkit'
 import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { GetState } from '@typings/GetState'
-import { AppThunk, Dispatch } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
 import { subDays } from 'date-fns'
 import { captureException } from '@sentry/react-native'
@@ -63,10 +62,7 @@ export const updateGoogleFitSources = (
 
 /* ASYNC ACTIONS */
 
-export const toggleHealthKit = (): AppThunk => async (
-  dispatch: Dispatch,
-  getState: GetState
-) => {
+export const toggleHealthKit = (): AppThunk => async (dispatch, getState) => {
   const isHealthKitMainSource = getIsHealthKitMainSource(getState())
 
   try {
@@ -83,7 +79,7 @@ export const toggleHealthKit = (): AppThunk => async (
 }
 
 export const setHealthKitAsSourceAndFetch = (): AppThunk => async (
-  dispatch: Dispatch
+  dispatch
 ) => {
   await AppleHealthKit.initHealthKit(healthKitOptions, async (err, res) => {
     if (err) {
