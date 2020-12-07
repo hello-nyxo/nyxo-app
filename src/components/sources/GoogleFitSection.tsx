@@ -1,4 +1,8 @@
-import { toggleGoogleFit } from '@actions/api-actions/google-fit-actions'
+import {
+  recordGoogleFitSleep,
+  registerGoogleFitDevice,
+  toggleGoogleFit
+} from '@actions/api-actions/google-fit-actions'
 import { changeGoogleFitSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import EmptyState from '@components/EmptyState'
 import SourceRow from '@components/SettingsSpecific/SourceRow'
@@ -13,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { constants } from '@styles/themes'
+import { Button } from 'react-native'
 
 const GoogleFitSection: FC = () => {
   const dispatch = useDispatch()
@@ -31,6 +36,13 @@ const GoogleFitSection: FC = () => {
     dispatch(toggleGoogleFit())
   }
 
+  const doas = () => {
+    registerGoogleFitDevice()
+  }
+  const sleep = () => {
+    dispatch(recordGoogleFitSleep())
+  }
+
   const mapped = sources?.map((item) => (
     <SourceRow
       key={item.sourceId}
@@ -43,6 +55,9 @@ const GoogleFitSection: FC = () => {
 
   return (
     <Container>
+      <Button onPress={doas} title="momononon" />
+      <Button onPress={sleep} title="sleep" />
+
       <TitleRow>
         <Column>
           <LogoAndTitle>

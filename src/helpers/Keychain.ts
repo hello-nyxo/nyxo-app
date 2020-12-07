@@ -1,30 +1,34 @@
+import { captureException } from '@sentry/react-native'
 import {
   ACCESSIBLE,
   ACCESS_CONTROL,
   getGenericPassword,
+  Result,
   setGenericPassword,
-  SharedWebCredentials
+  SharedWebCredentials,
+  UserCredentials
 } from 'react-native-keychain'
 
 export const SetKeychainKeyValue = async (
   key: string,
   value: string,
   service: string
-): Promise<void> => {
+): Promise<false | Result> => {
   try {
-    await setGenericPassword(key, value, {
+    return await setGenericPassword(key, value, {
       accessControl: ACCESS_CONTROL.USER_PRESENCE,
       accessible: ACCESSIBLE.WHEN_UNLOCKED,
       service
     })
   } catch (error) {
-    console.warn('SetKeychainKeyValue err', error)
+    captureException(error)
+    return error
   }
 }
 
 export const GetKeychainKeyValue = async (
   service: string
-): Promise<SharedWebCredentials | null | false> => {
+): Promise<UserCredentials | false> => {
   try {
     const credential = await getGenericPassword({
       service,
@@ -34,7 +38,7 @@ export const GetKeychainKeyValue = async (
 
     return credential
   } catch (error) {
-    console.warn('GetKeychainValue err', error)
+    captureException(error)
     return error
   }
 }

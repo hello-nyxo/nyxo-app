@@ -2,6 +2,7 @@
     "Version": 4,
     "ElasticsearchWarning": true,
     "StackMapping": {
-        "QueryfeedbackContentBySlugResolver": "FeedbackContent"
+        "QueryfeedbackContentBySlugResolver": "FeedbackContent",
+        "QuerycommentsBySlugResolver": "Comments"
     }
 }

@@ -1,22 +1,12 @@
 type SleepData
-@model
-@auth(
-  rules: [
-    { allow: owner }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete]
-      queries: [get, list]
-    }
-    {
-      allow: owner
-      ownerField: "viewers"
-      mutations: null
-      queries: [get, list]
-    }
-  ]
-) {
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"], operations: [read, delete] }
+      { allow: owner, ownerField: "viewers", operations: [read] }
+    ]
+  ) {
   id: ID!
   userId: ID!
   user: User! @connection(fields: ["userId"])
@@ -34,68 +24,69 @@ type NightSegment {
 }
 
 type Request
-@model
-@auth(
-  rules: [
-    {
-      allow: owner
-      ownerField: "owner"
-      mutations: [create]
-      queries: [get, list]
-    }
-    {
-      allow: owner
-      ownerField: "userId"
-      mutations: [delete, update]
-      queries: [get, list]
-    }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete]
-      queries: [get, list]
-    }
-  ]
-) {
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "owner"
+        operations: [read, delete, update, create]
+      }
+      {
+        allow: owner
+        ownerField: "userId"
+        identityClaim: "email"
+        operations: [read, delete, update]
+      }
+      { allow: groups, groups: ["admin"], operations: [read, delete] }
+    ]
+  ) {
   id: ID!
   requesterName: String!
   requesterId: String!
   userName: String!
+  code: String
+  userId: String!
+  accepted: Boolean!
+}
+
+type Mutation {
+  createCoachingRequest(input: CreateCoachingRequestInput!): Request
+}
+
+input CreateCoachingRequestInput {
+  requesterName: String!
+  requesterId: String!
+  userName: String!
+  owner: String
+  code: String
   userId: String!
   accepted: Boolean!
 }
 
 type User
-@key(
-  name: "byConnectionId"
-  fields: ["connectionId"]
-  queryField: "userByConnectionId"
-)
-@model
-@auth(
-  rules: [
-    {
-      allow: owner
-      ownerField: "owner"
-      mutations: [update, delete]
-      queries: [get, list]
-    }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete]
-      queries: [get, list]
-    }
-    { allow: groups, groups: ["coach"], mutations: null, queries: [get, list] }
-  ]
-) {
+  @key(
+    name: "byConnectionId"
+    fields: ["connectionId"]
+    queryField: "userByConnectionId"
+  )
+  @model
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "owner", operations: [read, update, delete] }
+      { allow: groups, groups: ["admin"], operations: [read, delete] }
+      { allow: owner, ownerField: "viewers", operations: [read] }
+    ]
+  ) {
   connectionId: String
   id: ID!
   email: String!
   nickname: String
   darkMode: Boolean
   intercomId: String
+  viewers: [String]
   activeCoaching: CoachingData @connection(name: "ActiveCoachingMonth")
+  primaryDeviceID: String
   sleepPoints: SleepPoints
 }
 
@@ -107,25 +98,15 @@ type SleepPoints {
 }
 
 type CoachingData
-@key(name: "byUser", fields: ["userId"], queryField: "coachingByUser")
-@model
-@auth(
-  rules: [
-    { allow: owner }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete]
-      queries: [get, list]
-    }
-    {
-      allow: owner
-      ownerField: "viewers"
-      mutations: null
-      queries: [get, list]
-    }
-  ]
-) {
+  @key(name: "byUser", fields: ["userId"], queryField: "coachingByUser")
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"], operations: [delete, read] }
+      { allow: owner, ownerField: "viewers", operations: [read] }
+    ]
+  ) {
   id: ID!
   userId: ID!
   user: User! @connection(fields: ["userId"])
@@ -152,24 +133,14 @@ type Week {
 }
 
 type Habit
-@model
-@auth(
-  rules: [
-    { allow: owner }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete]
-      queries: [get, list]
-    }
-    {
-      allow: owner
-      ownerField: "viewers"
-      mutations: null
-      queries: [get, list]
-    }
-  ]
-) {
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"], operations: [delete, read] }
+      { allow: owner, ownerField: "viewers", operations: [read] }
+    ]
+  ) {
   id: ID!
   userId: ID!
   user: User! @connection(fields: ["userId"])
@@ -196,26 +167,16 @@ type DayCompletionRecord {
 }
 
 type Night
-@model
-@aws_iam
-@auth(
-  rules: [
-    { allow: owner }
-    { allow: private, provider: iam, operations: [read] }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete]
-      queries: [get, list]
-    }
-    {
-      allow: owner
-      ownerField: "viewers"
-      mutations: null
-      queries: [get, list]
-    }
-  ]
-) {
+  @model
+  @aws_iam
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, provider: iam, operations: [read] }
+      { allow: groups, groups: ["admin"], operations: [delete, read] }
+      { allow: owner, ownerField: "viewers", operations: [read] }
+    ]
+  ) {
   id: ID!
   userId: ID!
   user: User! @connection(fields: ["userId"])
@@ -234,19 +195,18 @@ enum NightValue {
 }
 
 type LikedContent
-@model
-@key(name: "bySlug", fields: ["slug", "id"], queryField: "likedContentBySlug")
-@auth(
-  rules: [
-    { allow: owner }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete, update, create]
-      queries: [get, list]
-    }
-  ]
-) {
+  @model
+  @key(name: "bySlug", fields: ["slug", "id"], queryField: "likedContentBySlug")
+  @auth(
+    rules: [
+      { allow: owner }
+      {
+        allow: groups
+        groups: ["admin"]
+        operations: [delete, update, create, read]
+      }
+    ]
+  ) {
   id: ID!
   name: String
   type: String
@@ -254,24 +214,14 @@ type LikedContent
 }
 
 type NightRating
-@model
-@auth(
-  rules: [
-    { allow: owner }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete]
-      queries: [get, list]
-    }
-    {
-      allow: owner
-      ownerField: "viewers"
-      mutations: null
-      queries: [get, list]
-    }
-  ]
-) {
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"], operations: [delete, read] }
+      { allow: owner, ownerField: "viewers", operations: [read] }
+    ]
+  ) {
   id: ID!
   userId: ID!
   user: User! @connection(fields: ["userId"])
@@ -279,44 +229,42 @@ type NightRating
   date: String!
 }
 
-type FeedbackContent
-@model
-@key(
-  name: "bySlug"
-  fields: ["slug", "id"]
-  queryField: "feedbackContentBySlug"
-)
-@auth(
-  rules: [
-    { allow: owner }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete, update, create]
-      queries: [get, list]
-    }
-  ]
-) {
+type Feedback
+  @model
+  @key(
+    name: "bySlug"
+    fields: ["slug", "id"]
+    queryField: "feedbackContentBySlug"
+  )
+  @auth(
+    rules: [
+      { allow: owner }
+      {
+        allow: groups
+        groups: ["admin"]
+        operations: [delete, update, create, read]
+      }
+    ]
+  ) {
   id: String
   type: String
   slug: String!
   rating: Int!
 }
 
-type Comments
-@model
-@key(name: "bySlug", fields: ["slug", "id"], queryField: "commentsBySlug")
-@auth(
-  rules: [
-    { allow: owner }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete, update, create]
-      queries: [get, list]
-    }
-  ]
-) {
+type Comment
+  @model
+  @key(name: "bySlug", fields: ["slug", "id"], queryField: "commentsBySlug")
+  @auth(
+    rules: [
+      { allow: owner }
+      {
+        allow: groups
+        groups: ["admin"]
+        operations: [delete, update, create, read]
+      }
+    ]
+  ) {
   id: String
   type: String
   slug: String!
@@ -326,24 +274,14 @@ type Comments
 }
 
 type NightNote
-@model
-@auth(
-  rules: [
-    { allow: owner }
-    {
-      allow: groups
-      groups: ["admin"]
-      mutations: [delete]
-      queries: [get, list]
-    }
-    {
-      allow: owner
-      ownerField: "viewers"
-      mutations: null
-      queries: [get, list]
-    }
-  ]
-) {
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"], operations: [delete, read] }
+      { allow: owner, ownerField: "viewers", operations: [read] }
+    ]
+  ) {
   id: ID!
   userId: ID!
   user: User! @connection(fields: ["userId"])
