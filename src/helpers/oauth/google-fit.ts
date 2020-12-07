@@ -9,24 +9,24 @@ import { refresh } from 'react-native-app-auth'
 export const GOOGLE_FIT_KEYCHAIN_SERVICE = 'service.fit.google.customized'
 
 export const getGoogleFitToken = async (): Promise<GoogleFitResponse> => {
-  const {
-    accessToken,
-    accessTokenExpirationDate,
-    refreshToken: oldToken
-  } = ((await GetKeychainParsedValue(
-    GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as unknown) as GoogleFitResponse
-
-  if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
-    return {
+  try {
+    const {
       accessToken,
       accessTokenExpirationDate,
-      refreshToken: oldToken,
-      enabled: true
-    }
-  }
+      refreshToken: oldToken
+    } = ((await GetKeychainParsedValue(
+      GOOGLE_FIT_KEYCHAIN_SERVICE
+    )) as unknown) as GoogleFitResponse
 
-  try {
+    if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
+      return {
+        accessToken,
+        accessTokenExpirationDate,
+        refreshToken: oldToken,
+        enabled: true
+      }
+    }
+
     const config =
       Platform.OS === 'android'
         ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID

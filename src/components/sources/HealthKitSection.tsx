@@ -52,8 +52,12 @@ const HealthKitSection: FC = () => {
         />
       </TitleRow>
       <Description>SOURCE.HEALTH_KIT_DESCRIPTION</Description>
-      <SourceTitle>SOURCE.AVAILABLE_HEALTHKIT</SourceTitle>
-      {isHealthKitMainSource && <Sources>{mapped ?? <EmptyState />}</Sources>}
+      {isHealthKitMainSource && (
+        <>
+          <SourceTitle>SOURCE.AVAILABLE_HEALTHKIT</SourceTitle>
+          <Sources>{mapped ?? <EmptyState />}</Sources>
+        </>
+      )}
     </Container>
   )
 }
