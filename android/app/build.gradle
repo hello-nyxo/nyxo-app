@@ -37,7 +37,7 @@ android {
         applicationId "fi.nyxo.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 82
+        versionCode 83
         versionName "1.5.1"
         multiDexEnabled true
         manifestPlaceholders = [
