@@ -131,5 +131,6 @@ const TitleContainer = styled.View`
 
 const BuyCoachingContainer = styled.View`
   padding: 0px 20px;
+  flex: 1;
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `

@@ -44,7 +44,9 @@ export const CONFIG = {
       'openid',
       'profile',
       'https://www.googleapis.com/auth/fitness.activity.read',
-      'https://www.googleapis.com/auth/fitness.activity.write'
+      'https://www.googleapis.com/auth/fitness.activity.write',
+      'https://www.googleapis.com/auth/fitness.sleep.write',
+      'https://www.googleapis.com/auth/fitness.sleep.read'
     ]
   },
 
@@ -56,7 +58,9 @@ export const CONFIG = {
       'openid',
       'profile',
       'https://www.googleapis.com/auth/fitness.activity.read',
-      'https://www.googleapis.com/auth/fitness.activity.write'
+      'https://www.googleapis.com/auth/fitness.activity.write',
+      'https://www.googleapis.com/auth/fitness.sleep.write',
+      'https://www.googleapis.com/auth/fitness.sleep.read'
     ]
   },
 

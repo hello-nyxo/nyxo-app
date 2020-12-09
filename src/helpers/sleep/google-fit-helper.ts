@@ -41,16 +41,28 @@ export const formatGoogleFitData = (
         parseInt(session.endTimeMillis, 10)
       ).toISOString()
 
-      const night: Night = {
-        id: `google-fit-${session.id}`,
-        sourceId: session.application.packageName,
-        sourceName: 'Google Fit',
+      const asleep: Night = {
+        id: `google-fit-${session.id}_ASLEEP`,
+        sourceId:
+          session.application.packageName || 'app.sleepcircle.application',
+        sourceName: session.name || 'Google Fit',
         startDate,
         endDate,
         value: Value.Asleep,
         totalDuration: getNightDuration(startDate, endDate)
       }
-      samples.push(night)
+      const inBed: Night = {
+        id: `google-fit-${session.id}_INBED`,
+        sourceId:
+          session.application.packageName || 'app.sleepcircle.application',
+        sourceName: session.name || 'Google Fit',
+        startDate,
+        endDate,
+        value: Value.InBed,
+        totalDuration: getNightDuration(startDate, endDate)
+      }
+      samples.push(asleep)
+      samples.push(inBed)
     }
   })
 

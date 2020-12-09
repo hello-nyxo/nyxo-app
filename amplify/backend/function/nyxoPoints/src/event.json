@@ -1,5 +1,7 @@
 {
   "key1": "value1",
   "key2": "value2",
-  "key3": "value3"
+  "identity": {
+    "username": "a22113d5-64a4-422e-b290-327f49dd2c4a"
+  }
 }

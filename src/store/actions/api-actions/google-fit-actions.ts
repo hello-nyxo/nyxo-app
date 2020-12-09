@@ -16,9 +16,11 @@ import { AppThunk } from '@typings/redux-actions'
 import { Night } from '@typings/Sleepdata'
 import { GoogleFitResponse, ResponseBase } from '@typings/state/api-state'
 import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
-import { isAfter, subWeeks } from 'date-fns'
+import { endOfDay, startOfDay, subWeeks } from 'date-fns'
 import { Platform } from 'react-native'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
+import { getGoogleFitToken } from '@helpers/oauth/google-fit'
+import { v4 } from 'uuid'
 import {
   GOOGLE_FIT_AUTHORIZE_SUCCESS,
   GOOGLE_FIT_REVOKE_SUCCESS,
@@ -103,7 +105,9 @@ export const authorizeGoogleFit = (): AppThunk => async (dispatch) => {
   }
 }
 
-export const refreshGoogleFitToken = (): AppThunk => async (dispatch) => {
+export const refreshGoogleFitToken = (): AppThunk<
+  Promise<string | null>
+> => async (dispatch): Promise<string | null> => {
   const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
   )) as unknown) as GoogleFitResponse
@@ -169,59 +173,100 @@ export const revokeGoogleFitAccess = (): AppThunk => async (dispatch) => {
 }
 
 export const readGoogleFitSleep = (
+  startDate: string = startOfDay(new Date()).toISOString(),
+  endDate: string = endOfDay(new Date()).toISOString()
+): AppThunk => async (dispatch) => {
+  const { accessToken } = await getGoogleFitToken()
+
+  try {
+    const googleApiCall = await fetch(
+      `${GOOGLE_FIT_API}${startDate}&endTime=${endDate}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+    const response = await googleApiCall.json()
+
+    const formatted = await formatGoogleFitData(response.session)
+    await dispatch(syncNightsToCloud(formatted))
+    await dispatch(createGoogleFitSources(formatted))
+    await dispatch(fetchSleepSuccess(formatted))
+  } catch (error) {
+    captureException(error)
+    return error
+  }
+}
+
+export const registerGoogleFitDevice = async () => {
+  const { accessToken } = await getGoogleFitToken()
+
+  const url = 'https://www.googleapis.com/fitness/v1/users/me/dataSources'
+  try {
+    const call = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        dataStreamName: 'Nyxo',
+        type: 'raw',
+        dataType: {
+          name: 'com.google.sleep.segment'
+        },
+        application: {
+          detailsUrl: 'http://nyxo.app',
+          name: 'Nyxo',
+          version: '1'
+        }
+      })
+    })
+  } catch (error) {
+    captureException(error)
+    return error
+  }
+}
+
+export const recordGoogleFitSleep = (
   startDate: string,
   endDate: string
 ): AppThunk => async (dispatch) => {
-  const {
-    accessToken,
-    accessTokenExpirationDate
-  } = ((await GetKeychainParsedValue(
-    GOOGLE_FIT_KEYCHAIN_SERVICE
-  )) as unknown) as GoogleFitResponse
+  const id = v4()
 
-  if (accessToken) {
-    try {
-      if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
-        const googleApiCall = await fetch(
-          `${GOOGLE_FIT_API}${startDate}&endTime=${endDate}`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              'Content-Type': 'application/json'
-            }
-          }
-        )
-        const response = await googleApiCall.json()
+  const url = `https://www.googleapis.com/fitness/v1/users/me/sessions/${id}`
 
-        const formatted = await formatGoogleFitData(response.session)
-        await dispatch(syncNightsToCloud(formatted))
-        await dispatch(createGoogleFitSources(formatted))
-        await dispatch(fetchSleepSuccess(formatted))
-      } else {
-        const newAccessToken = await dispatch(refreshGoogleFitToken())
+  const { accessToken } = await getGoogleFitToken()
 
-        if (newAccessToken) {
-          const googleApiCall = await fetch(
-            `${GOOGLE_FIT_API}${startDate}&endTime=${endDate}`,
-            {
-              method: 'GET',
-              headers: {
-                Authorization: `Bearer ${newAccessToken}`,
-                'Content-Type': 'application/json'
-              }
-            }
-          )
-          const response = await googleApiCall.json()
-          const formatted = await formatGoogleFitData(response.session)
-          await dispatch(syncNightsToCloud(formatted))
-          await dispatch(createGoogleFitSources(formatted))
-          await dispatch(fetchSleepSuccess(formatted))
-        }
-      }
-    } catch (error) {
-      captureException(error)
-    }
+  try {
+    const call = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id,
+        name: 'Nyxo',
+        description: 'Sleep from nyxo',
+        startTimeMillis: new Date(startDate).getTime(),
+        endTimeMillis: new Date(endDate).getTime(),
+        version: 1,
+
+        application: {
+          detailsUrl: 'http://nyxo.app',
+          name: 'Nyxo',
+          version: '1.0'
+        },
+        activityType: 72 // Sleep
+      })
+    })
+  } catch (error) {
+    captureException(error)
+    return error
   }
 }
 
@@ -230,7 +275,10 @@ export const createGoogleFitSources = (nights: Night[]): AppThunk => async (
   getState
 ) => {
   const googleFitSource = getGoogleFitSource(getState())
-  const sourceList: SUB_SOURCE[] = []
+
+  const sourceList: SUB_SOURCE[] = [
+    { sourceName: 'Nyxo', sourceId: 'app.sleepcircle.application' }
+  ]
 
   nights.forEach((item: Night) => {
     const existingSource = sourceList.find(

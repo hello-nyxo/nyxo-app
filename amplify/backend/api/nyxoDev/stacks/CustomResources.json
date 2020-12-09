@@ -27,6 +27,292 @@
     }
   },
   "Resources": {
+    "InvokeRequestCodeLambdaDataSource": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "AppSyncApiId"
+        },
+        "Name": "InvokeRequestCodeLambdaDataSource",
+        "DataSourceName": "CreateRequestCodeSource",
+        "FunctionVersion": "2018-05-29",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Sub": [
+            "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/pipelineFunctions/${ResolverFileName}",
+            {
+              "S3DeploymentBucket": {
+                "Ref": "S3DeploymentBucket"
+              },
+              "S3DeploymentRootKey": {
+                "Ref": "S3DeploymentRootKey"
+              },
+              "ResolverFileName": {
+                "Fn::Join": [
+                  ".",
+                  ["InvokeRequestCodeLambdaDataSource", "req", "vtl"]
+                ]
+              }
+            }
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Sub": [
+            "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/pipelineFunctions/${ResolverFileName}",
+            {
+              "S3DeploymentBucket": {
+                "Ref": "S3DeploymentBucket"
+              },
+              "S3DeploymentRootKey": {
+                "Ref": "S3DeploymentRootKey"
+              },
+              "ResolverFileName": {
+                "Fn::Join": [
+                  ".",
+                  ["InvokeRequestCodeLambdaDataSource", "res", "vtl"]
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "DependsOn": "CreateRequestCodeSource"
+    },
+    "CreateRequestCodeSourceRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::If": [
+            "HasEnvironmentParameter",
+            {
+              "Fn::Join": [
+                "-",
+                [
+                  "createRequestCode",
+                  {
+                    "Ref": "AppSyncApiId"
+                  },
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            },
+            {
+              "Fn::Join": [
+                "-",
+                [
+                  "createRequestCode",
+                  {
+                    "Ref": "AppSyncApiId"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "InvokeLambdaFunction",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": ["lambda:InvokeFunction"],
+                  "Resource": {
+                    "Fn::If": [
+                      "HasEnvironmentParameter",
+                      {
+                        "Fn::Sub": [
+                          "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:createRequestCode-${env}",
+                          {
+                            "env": {
+                              "Ref": "env"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Fn::Sub": [
+                          "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:createRequestCode",
+                          {}
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "CreateRequestCodeSource": {
+      "Type": "AWS::AppSync::DataSource",
+      "Properties": {
+        "ApiId": {
+          "Ref": "AppSyncApiId"
+        },
+        "Name": "CreateRequestCodeSource",
+        "Type": "AWS_LAMBDA",
+        "ServiceRoleArn": {
+          "Fn::GetAtt": ["CreateRequestCodeSourceRole", "Arn"]
+        },
+        "LambdaConfig": {
+          "LambdaFunctionArn": {
+            "Fn::If": [
+              "HasEnvironmentParameter",
+              {
+                "Fn::Sub": [
+                  "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:createRequestCode-${env}",
+                  {
+                    "env": {
+                      "Ref": "env"
+                    }
+                  }
+                ]
+              },
+              {
+                "Fn::Sub": [
+                  "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:createRequestCode",
+                  {}
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "DependsOn": "CreateRequestCodeSourceRole"
+    },
+
+    "MutationCreateCoachingRequestFunction": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "AppSyncApiId"
+        },
+        "Name": "MutationCreateCoachingRequestFunction",
+        "DataSourceName": "RequestTable",
+        "FunctionVersion": "2018-05-29",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Sub": [
+            "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/pipelineFunctions/${ResolverFileName}",
+            {
+              "S3DeploymentBucket": {
+                "Ref": "S3DeploymentBucket"
+              },
+              "S3DeploymentRootKey": {
+                "Ref": "S3DeploymentRootKey"
+              },
+              "ResolverFileName": {
+                "Fn::Join": [
+                  ".",
+                  ["MutationCreateCoachingRequestFunction", "req", "vtl"]
+                ]
+              }
+            }
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Sub": [
+            "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/pipelineFunctions/${ResolverFileName}",
+            {
+              "S3DeploymentBucket": {
+                "Ref": "S3DeploymentBucket"
+              },
+              "S3DeploymentRootKey": {
+                "Ref": "S3DeploymentRootKey"
+              },
+              "ResolverFileName": {
+                "Fn::Join": [
+                  ".",
+                  ["MutationCreateCoachingRequestFunction", "res", "vtl"]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "MutationCreateCoachingRequestResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+        "ApiId": {
+          "Ref": "AppSyncApiId"
+        },
+        "TypeName": "Mutation",
+        "FieldName": "createCoachingRequest",
+        "Kind": "PIPELINE",
+        "PipelineConfig": {
+          "Functions": [
+            {
+              "Fn::GetAtt": ["InvokeRequestCodeLambdaDataSource", "FunctionId"]
+            },
+            {
+              "Fn::GetAtt": [
+                "MutationCreateCoachingRequestFunction",
+                "FunctionId"
+              ]
+            }
+          ]
+        },
+        "RequestMappingTemplateS3Location": {
+          "Fn::Sub": [
+            "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
+            {
+              "S3DeploymentBucket": {
+                "Ref": "S3DeploymentBucket"
+              },
+              "S3DeploymentRootKey": {
+                "Ref": "S3DeploymentRootKey"
+              },
+              "ResolverFileName": {
+                "Fn::Join": [
+                  ".",
+                  ["Mutation", "createCoachingRequest", "req", "vtl"]
+                ]
+              }
+            }
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Sub": [
+            "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
+            {
+              "S3DeploymentBucket": {
+                "Ref": "S3DeploymentBucket"
+              },
+              "S3DeploymentRootKey": {
+                "Ref": "S3DeploymentRootKey"
+              },
+              "ResolverFileName": {
+                "Fn::Join": [
+                  ".",
+                  ["Mutation", "createCoachingRequest", "res", "vtl"]
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "DependsOn": [
+        "MutationCreateCoachingRequestFunction",
+        "InvokeRequestCodeLambdaDataSource"
+      ]
+    },
+
     "NyxoPointsLambdaDataSourceRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
