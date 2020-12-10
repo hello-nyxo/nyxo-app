@@ -1,18 +1,18 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
-require_relative '../node_modules/react-native-unimodules/cocoapods.rb'
-
-pod 'RNPurchases', :path => '../node_modules/react-native-purchases', :inhibit_warnings => true
-pod 'OpenSSL-Universal'
-
-
-
-config = use_native_modules!
-use_react_native!(:path => config["reactNativePath"]) 
 
 platform :ios, '10.0'
 target 'Nyxo' do
-
+	require_relative '../node_modules/react-native/scripts/react_native_pods'
+	require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+	require_relative '../node_modules/react-native-unimodules/cocoapods.rb'
+	
+	pod 'RNPurchases', :path => '../node_modules/react-native-purchases', :inhibit_warnings => true
+	pod 'OpenSSL-Universal'
+	
+	
+	
+	config = use_native_modules!
+	use_react_native!(:path => config["reactNativePath"]) 
+	
 	pod 'Intercom'
   use_unimodules!(exclude: ['expo-face-detector'])
   use_native_modules!
@@ -20,6 +20,13 @@ target 'Nyxo' do
   use_flipper!
 
 end 
+
+
+
+target 'Nyxo WidgetExtension' do
+	pod 'Contentful'
+end
+
 
 
 # target 'Nyxo Dev' do

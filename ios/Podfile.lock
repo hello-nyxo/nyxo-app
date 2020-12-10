@@ -27,6 +27,9 @@ PODS:
     - React
   - CocoaAsyncSocket (7.6.4)
   - CocoaLibEvent (1.0.0)
+  - Contentful (5.4.0):
+    - Contentful/ImageOptions (= 5.4.0)
+  - Contentful/ImageOptions (5.4.0)
   - DoubleConversion (1.1.6)
   - EXConstants (9.2.0):
     - UMConstantsInterface
@@ -442,6 +445,7 @@ DEPENDENCIES:
   - appcenter-core (from `../node_modules/appcenter/ios`)
   - appcenter-crashes (from `../node_modules/appcenter-crashes/ios`)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
+  - Contentful
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
@@ -543,6 +547,7 @@ SPEC REPOS:
     - boost-for-react-native
     - CocoaAsyncSocket
     - CocoaLibEvent
+    - Contentful
     - Flipper
     - Flipper-DoubleConversion
     - Flipper-Folly
@@ -720,6 +725,7 @@ SPEC CHECKSUMS:
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
+  Contentful: 4fafae07d56d8d15cc2c973497be8c3607996a9c
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   EXConstants: f486f6b4a36b86e47ab258d4d2b7b2699786fdce
   EXFileSystem: afe9b1fd937d30270bf5108ba44e2f4a1d1ad694
@@ -807,6 +813,6 @@ SPEC CHECKSUMS:
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 668f1b42ae68930b42efbfaa9e281dda1f378172
+PODFILE CHECKSUM: 754b77415b9b9f6a0aa695695eb39298a63e75b5
 
 COCOAPODS: 1.9.3

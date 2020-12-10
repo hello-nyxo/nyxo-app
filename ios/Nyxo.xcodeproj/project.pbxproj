@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */; };
-		5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */; };
+		26CB1B78ED7375383EC45848 /* libPods-Nyxo WidgetExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF004A1FFA82EAF95947FDD3 /* libPods-Nyxo WidgetExtension.a */; };
 		5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20692C224E434B00257043 /* StoreKit.framework */; };
 		5B2D63A824FC1942002E853B /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D63A724FC1941002E853B /* AppCenter-Config.plist */; };
 		5B33130921DFB5B800698A4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130121DFB5B800698A4A /* AppDelegate.m */; };
@@ -17,7 +16,6 @@
 		5B76E78A2580D97300D2E4B2 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5B76E7892580D97300D2E4B2 /* Configuration.storekit */; };
 		5B76E78C2580DB2600D2E4B2 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5B76E78B2580DB2600D2E4B2 /* StoreKitTestCertificate.cer */; };
 		5B82C8E42574205400D21B1E /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B82C8E32574205300D21B1E /* App.png */; };
-		5B82C8E62574206B00D21B1E /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B82C8E52574206B00D21B1E /* App.png */; };
 		5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
 		5B96275F24F16E4C00C7FFDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */; };
 		5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0F90521E2411B00D3D56E /* main.jsbundle */; };
@@ -40,6 +38,11 @@
 		5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */; };
 		5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */; };
 		5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
+		5BDD88942582746C008C8BA8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDD88932582746C008C8BA8 /* WidgetKit.framework */; };
+		5BDD88962582746C008C8BA8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDD88952582746C008C8BA8 /* SwiftUI.framework */; };
+		5BDD88992582746C008C8BA8 /* Nyxo_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD88982582746C008C8BA8 /* Nyxo_Widget.swift */; };
+		5BDD889F2582746E008C8BA8 /* Nyxo WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5BDD88922582746C008C8BA8 /* Nyxo WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5BDD89DA25827FDE008C8BA8 /* LessonWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD89D925827FDE008C8BA8 /* LessonWidgetView.swift */; };
 		C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */; };
 		E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -67,6 +70,13 @@
 			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
 			remoteInfo = RNDeviceInfo;
 		};
+		5BDD889D2582746E008C8BA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BDD88912582746C008C8BA8;
+			remoteInfo = "Nyxo WidgetExtension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +90,17 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BDD88A02582746E008C8BA8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5BDD889F2582746E008C8BA8 /* Nyxo WidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -91,8 +112,6 @@
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4F61ADB20DA8429D927A20BC /* FontAwesome5_Pro_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Solid.ttf; path = ../assets/fonts/FontAwesome5_Pro_Solid.ttf; sourceTree = "<group>"; };
-		5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Domine-Bold.ttf"; path = "../assets/fonts/Domine-Bold.ttf"; sourceTree = "<group>"; };
-		5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Domine-Regular.ttf"; path = "../assets/fonts/Domine-Regular.ttf"; sourceTree = "<group>"; };
 		5B20692C224E434B00257043 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5B2069A4224FB24200257043 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		5B2B308921EF5C82007E2982 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -201,15 +220,25 @@
 		5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		5BDD88922582746C008C8BA8 /* Nyxo WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Nyxo WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BDD88932582746C008C8BA8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		5BDD88952582746C008C8BA8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		5BDD88982582746C008C8BA8 /* Nyxo_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nyxo_Widget.swift; sourceTree = "<group>"; };
+		5BDD889A2582746E008C8BA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5BDD889C2582746E008C8BA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BDD89D925827FDE008C8BA8 /* LessonWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonWidgetView.swift; sourceTree = "<group>"; };
 		5BF9811C22D2052900509ED1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
 		6CF46B6888304B68952AC827 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Dosis-Medium.ttf"; path = "../assets/fonts/Dosis-Medium.ttf"; sourceTree = "<group>"; };
 		796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Brands.ttf; path = ../assets/fonts/FontAwesome5_Pro_Brands.ttf; sourceTree = "<group>"; };
 		8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo/Pods-Nyxo.debug.xcconfig"; sourceTree = "<group>"; };
 		9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.debug.xcconfig"; sourceTree = "<group>"; };
+		AF004A1FFA82EAF95947FDD3 /* libPods-Nyxo WidgetExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo WidgetExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8AE9D283D6EA8182B4AC5C9 /* Pods-Nyxo WidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo WidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-Nyxo WidgetExtension/Pods-Nyxo WidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		B959F1EA20BD3D8E00AC734C /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dosis-Bold.ttf"; path = "../assets/fonts/Dosis-Bold.ttf"; sourceTree = "<group>"; };
 		B959F21820BD455C00AC734C /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-regular-400.ttf"; sourceTree = "<group>"; };
 		B95CBA9B2099AEB300243A25 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BC20C0ADAE8344ED9E90B05C /* FontAwesome5_Pro_Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Light.ttf; path = ../assets/fonts/FontAwesome5_Pro_Light.ttf; sourceTree = "<group>"; };
+		C56F2F0BB7609B73E5A5CC2F /* Pods-Nyxo WidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo WidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo WidgetExtension/Pods-Nyxo WidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.release.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.release.xcconfig"; sourceTree = "<group>"; };
 		E28D9DBBB35A494F8B7F80E4 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		E763E2F2E04548318B376785 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -236,6 +265,16 @@
 				5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */,
 				C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */,
 				E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BDD888F2582746C008C8BA8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BDD88962582746C008C8BA8 /* SwiftUI.framework in Frameworks */,
+				5BDD88942582746C008C8BA8 /* WidgetKit.framework in Frameworks */,
+				26CB1B78ED7375383EC45848 /* libPods-Nyxo WidgetExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +329,9 @@
 				4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */,
 				140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */,
 				E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */,
+				5BDD88932582746C008C8BA8 /* WidgetKit.framework */,
+				5BDD88952582746C008C8BA8 /* SwiftUI.framework */,
+				AF004A1FFA82EAF95947FDD3 /* libPods-Nyxo WidgetExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -476,6 +518,17 @@
 			path = Properties;
 			sourceTree = "<group>";
 		};
+		5BDD88972582746C008C8BA8 /* Nyxo Widget */ = {
+			isa = PBXGroup;
+			children = (
+				5BDD88982582746C008C8BA8 /* Nyxo_Widget.swift */,
+				5BDD89D925827FDE008C8BA8 /* LessonWidgetView.swift */,
+				5BDD889A2582746E008C8BA8 /* Assets.xcassets */,
+				5BDD889C2582746E008C8BA8 /* Info.plist */,
+			);
+			path = "Nyxo Widget";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,8 +554,6 @@
 				5BD58B8722D71D7400D1CD2D /* Montserrat-ExtraBoldItalic.ttf */,
 				5BD58B9322D71D7500D1CD2D /* Montserrat-ExtraLight.ttf */,
 				5BD58B8F22D71D7500D1CD2D /* Montserrat-ExtraLightItalic.ttf */,
-				5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */,
-				5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */,
 				5BD58B8A22D71D7500D1CD2D /* Montserrat-Italic.ttf */,
 				5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */,
 				5BD58B8622D71D7400D1CD2D /* Montserrat-LightItalic.ttf */,
@@ -518,6 +569,7 @@
 				13B07FAE1A68108700A75B9A /* Nyxo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NyxoTests */,
+				5BDD88972582746C008C8BA8 /* Nyxo Widget */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				94F1E8A8CFBD46088A2BB76D /* Resources */,
@@ -533,6 +585,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Nyxo.app */,
 				00E356EE1AD99517003FC87E /* NyxoTests.xctest */,
+				5BDD88922582746C008C8BA8 /* Nyxo WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -591,6 +644,8 @@
 				00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */,
 				9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */,
 				C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */,
+				C56F2F0BB7609B73E5A5CC2F /* Pods-Nyxo WidgetExtension.debug.xcconfig */,
+				B8AE9D283D6EA8182B4AC5C9 /* Pods-Nyxo WidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -629,15 +684,35 @@
 				5B6E854A21406B9A0013E7B5 /* Embed Watch Content */,
 				6C3BA05A2308A4078CE786D2 /* [CP] Copy Pods Resources */,
 				2D37A87543474FAB8DD0A526 /* Upload Debug Symbols to Sentry */,
+				5BDD88A02582746E008C8BA8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5BDD889E2582746E008C8BA8 /* PBXTargetDependency */,
 			);
 			name = Nyxo;
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* Nyxo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		5BDD88912582746C008C8BA8 /* Nyxo WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BDD88A32582746E008C8BA8 /* Build configuration list for PBXNativeTarget "Nyxo WidgetExtension" */;
+			buildPhases = (
+				D51FFA80AFE17959AB77112E /* [CP] Check Pods Manifest.lock */,
+				5BDD888E2582746C008C8BA8 /* Sources */,
+				5BDD888F2582746C008C8BA8 /* Frameworks */,
+				5BDD88902582746C008C8BA8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Nyxo WidgetExtension";
+			productName = "Nyxo WidgetExtension";
+			productReference = 5BDD88922582746C008C8BA8 /* Nyxo WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -646,7 +721,7 @@
 			isa = PBXProject;
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Original;
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
@@ -674,6 +749,11 @@
 							};
 						};
 					};
+					5BDD88912582746C008C8BA8 = {
+						CreatedOnToolsVersion = 12.2;
+						DevelopmentTeam = RPKZ2YP3VZ;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Nyxo" */;
@@ -698,6 +778,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* Nyxo */,
 				00E356ED1AD99517003FC87E /* NyxoTests */,
+				5BDD88912582746C008C8BA8 /* Nyxo WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -735,14 +816,12 @@
 				5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */,
 				5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */,
 				5BD58B9922D71D7600D1CD2D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
-				5B82C8E62574206B00D21B1E /* App.png in Resources */,
 				5BD58B9A22D71D7600D1CD2D /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				5BD58B9B22D71D7600D1CD2D /* Montserrat-Black.ttf in Resources */,
 				5BD58B9C22D71D7600D1CD2D /* Montserrat-Italic.ttf in Resources */,
 				5BD58B9D22D71D7600D1CD2D /* Montserrat-ThinItalic.ttf in Resources */,
 				5BD58B9E22D71D7600D1CD2D /* Montserrat-Medium.ttf in Resources */,
 				5B96275F24F16E4C00C7FFDF /* LaunchScreen.storyboard in Resources */,
-				5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */,
 				5BD58B9F22D71D7600D1CD2D /* Montserrat-Regular.ttf in Resources */,
 				5BD58BA022D71D7600D1CD2D /* Montserrat-MediumItalic.ttf in Resources */,
 				5BD58BA122D71D7600D1CD2D /* Montserrat-ExtraLightItalic.ttf in Resources */,
@@ -758,8 +837,14 @@
 				5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */,
 				5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */,
 				5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */,
-				5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */,
 				5B82C8E42574205400D21B1E /* App.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BDD88902582746C008C8BA8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,6 +940,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D51FFA80AFE17959AB77112E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nyxo WidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -875,6 +982,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BDD888E2582746C008C8BA8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BDD89DA25827FDE008C8BA8 /* LessonWidgetView.swift in Sources */,
+				5BDD88992582746C008C8BA8 /* Nyxo_Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -882,6 +998,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* Nyxo */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		5BDD889E2582746E008C8BA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BDD88912582746C008C8BA8 /* Nyxo WidgetExtension */;
+			targetProxy = 5BDD889D2582746E008C8BA8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1006,6 +1127,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
 				CLANG_ENABLE_MODULES = YES;
@@ -1055,6 +1177,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
 				CLANG_ENABLE_MODULES = YES;
@@ -1095,6 +1218,72 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		5BDD88A12582746E008C8BA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C56F2F0BB7609B73E5A5CC2F /* Pods-Nyxo WidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Nyxo Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "app.sleepcircle.application.Nyxo-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5BDD88A22582746E008C8BA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8AE9D283D6EA8182B4AC5C9 /* Pods-Nyxo WidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Nyxo Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "app.sleepcircle.application.Nyxo-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1219,6 +1408,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BDD88A32582746E008C8BA8 /* Build configuration list for PBXNativeTarget "Nyxo WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BDD88A12582746E008C8BA8 /* Debug */,
+				5BDD88A22582746E008C8BA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
