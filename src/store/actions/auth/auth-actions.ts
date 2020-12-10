@@ -11,6 +11,7 @@ import { NotificationType } from '@typings/NotificationState'
 import { AppThunk } from '@typings/redux-actions'
 import Intercom from 'react-native-intercom'
 import { areThereChangesInLocal } from '@helpers/habits'
+import { updateSubscriptionStatus } from '@actions/subscription/subscription-actions'
 import { updateEmail } from '../user/user-actions'
 import {
   LOGIN_FAILURE,
@@ -152,6 +153,8 @@ export const login = (
     }
 
     await dispatch(loginSuccess(true, email, username))
+    await dispatch(updateSubscriptionStatus())
+
     if (successCallback) {
       await successCallback()
     }
@@ -190,6 +193,7 @@ export const logout = (): AppThunk => async (dispatch) => {
     await Auth.signOut()
     await Purchases.reset()
     await dispatch(logoutSuccess())
+    await dispatch(updateSubscriptionStatus())
   } catch (error) {
     await dispatch(
       notificationActions.newNotification({

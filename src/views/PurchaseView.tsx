@@ -1,5 +1,9 @@
-import { restorePurchase } from '@actions/subscription/subscription-actions'
+import {
+  purchaseSubscription,
+  restorePurchase
+} from '@actions/subscription/subscription-actions'
 import GoBack from '@components/Buttons/GoBack'
+import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import PerkList from '@components/IAPComponents/PerkList'
 import SubscriptionItem from '@components/IAPComponents/SubscriptionItem'
 import { ThemedRefreshControl } from '@components/Primitives/Primitives'
@@ -23,6 +27,7 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
     PurchasesPackage[] | undefined
   >([])
   const [error, setError] = useState(false)
+  const [selected, select] = useState<PurchasesPackage | undefined>(undefined)
   const dispatch = useDispatch()
   const isIOS = Platform.OS === 'ios'
 
@@ -32,8 +37,12 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
       if (offerings.current?.availablePackages.length !== 0) {
         setSubscriptions(offerings.current?.availablePackages)
       }
+      if (availableSubscriptions) {
+        select(availableSubscriptions[0])
+      }
       setError(false)
-    } catch {
+    } catch (error) {
+      console.log(error)
       setError(true)
     }
   }
@@ -54,9 +63,15 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
     await dispatch(restorePurchase())
   }
 
+  const purchase = async () => {
+    dispatch(purchaseSubscription(selected))
+  }
+
   const mapped = availableSubscriptions?.map(
     (subscription: PurchasesPackage) => (
       <SubscriptionItem
+        select={select}
+        selected={selected?.identifier === subscription?.identifier}
         key={subscription.identifier}
         subscription={subscription}
       />
@@ -87,13 +102,16 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
         {mapped?.length !== 0 ? (
           <>
             <Subscriptions>{mapped}</Subscriptions>
+            <TermsButton onPress={handleRecovery}>RESTORE_PURCHASE</TermsButton>
+
             {isIOS && <Renew>APPLE_DISCLAIMER</Renew>}
 
-            <TermsButton onPress={openTerms}>Terms of Service</TermsButton>
-            <TermsButton onPress={openPrivacyPolicy}>
-              Privacy Policy
-            </TermsButton>
-            <TermsButton onPress={handleRecovery}>RESTORE_PURCHASE</TermsButton>
+            <Terms>
+              <TermsButton onPress={openTerms}>Terms of Service</TermsButton>
+              <TermsButton onPress={openPrivacyPolicy}>
+                Privacy Policy
+              </TermsButton>
+            </Terms>
           </>
         ) : (
           <>
@@ -102,6 +120,14 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
           </>
         )}
       </Scrollable>
+      <FixedContainer>
+        {!!selected && (
+          <PrimaryButton
+            onPress={purchase}
+            title={`IAP.PURCHASE_${selected.packageType}`}
+          />
+        )}
+      </FixedContainer>
     </BG>
   )
 }
@@ -125,6 +151,14 @@ const Subscriptions = styled.View`
 type ViewProps = {
   isScreen: boolean
 }
+
+const FixedContainer = styled.View`
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 30px;
+`
 
 const Header = styled.View<ViewProps>`
   background-color: ${({ theme }) =>
@@ -166,10 +200,10 @@ const Renew = styled(TranslatedText)`
 
 const TermsButton = styled(TranslatedText)`
   font-size: 13px;
-  font-family: ${fonts.medium};
-  color: ${colors.darkBlue};
+  margin: 8px 0px;
+  font-family: ${fonts.bold};
+  color: ${({ theme }) => theme.accent};
   text-align: center;
-  margin-bottom: 30px;
 `
 
 const Fetching = styled(TranslatedText)`
@@ -178,4 +212,8 @@ const Fetching = styled(TranslatedText)`
   margin: 20px;
   font-size: 15px;
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+`
+
+const Terms = styled.View`
+  padding-bottom: 135px;
 `

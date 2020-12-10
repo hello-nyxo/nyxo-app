@@ -26,7 +26,7 @@ const ProfileSignup: FC = () => {
   const navigation = useNavigation()
 
   const navigate = () => {
-    navigation.navigate('Auth', { screen: ROUTE.REGISTER })
+    navigation.navigate(ROUTE.AUTH, { screen: ROUTE.REGISTER })
   }
   const navigateToSignIn = () => {
     navigation.navigate(ROUTE.AUTH, { screen: ROUTE.LOGIN })

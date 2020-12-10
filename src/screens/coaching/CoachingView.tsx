@@ -1,3 +1,4 @@
+import { updateSubscriptionStatus } from '@actions/subscription/subscription-actions'
 import CoachingHeader from '@components/CoachingSpecific/CoachingHeader'
 import WeekCarousel from '@components/CoachingSpecific/WeekCarousel'
 import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
@@ -8,12 +9,20 @@ import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
 import colors from '@styles/colors'
 import React, { FC, memo } from 'react'
 import { RefreshControl } from 'react-native'
+import { useDispatch } from 'react-redux'
 
 export const cardWidth = WIDTH - 40
 export const cardMargin = 5
 
 const CoachingScreen: FC = () => {
   const { data: coaching, refetch, isLoading } = useGetActiveCoaching()
+  const dispatch = useDispatch()
+
+  const refresh = async () => {
+    await dispatch(updateSubscriptionStatus())
+
+    refetch()
+  }
 
   return (
     <SafeAreaView>
@@ -26,7 +35,7 @@ const CoachingScreen: FC = () => {
           <RefreshControl
             refreshing={isLoading}
             tintColor={colors.darkBlue}
-            onRefresh={refetch}
+            onRefresh={refresh}
           />
         }
       />

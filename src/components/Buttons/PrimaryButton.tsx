@@ -1,6 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC, useRef } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
+import { Animated } from 'react-native'
 import colors from '../../styles/colors'
 import TranslatedText from '../TranslatedText'
 
@@ -19,8 +20,41 @@ export const PrimaryButton: FC<Props> = ({
   title,
   onPress
 }) => {
+  const scaleIn = useRef(new Animated.Value(0)).current
+
+  const pressIn = () => {
+    scaleIn.setValue(0)
+    Animated.timing(scaleIn, {
+      toValue: 1,
+      duration: 150,
+      useNativeDriver: true
+    }).start()
+  }
+
+  const pressOut = () => {
+    scaleIn.setValue(1)
+    Animated.timing(scaleIn, {
+      toValue: 0,
+      duration: 150,
+      useNativeDriver: true
+    }).start()
+  }
+
+  const transform = (animated: Animated.Value) => {
+    const interpolation = animated.interpolate({
+      inputRange: [0, 1],
+      outputRange: [1, 0.95]
+    })
+
+    return {
+      transform: [{ scale: interpolation }]
+    }
+  }
   return (
-    <TouchableOpacity disabled={loading || disabled} onPress={onPress}>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      disabled={loading || disabled}
+      onPress={onPress}>
       <Button white={white} disabled={loading || disabled}>
         <ButtonText white={white} disabled={loading || disabled}>
           {title}

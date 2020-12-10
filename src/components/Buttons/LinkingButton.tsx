@@ -20,7 +20,11 @@ const LinkingButton: FC<Props> = ({
   disabled
 }) => {
   const handlePress = () => {
-    code ? link() : navigate()
+    if (code) {
+      link()
+    } else {
+      navigate()
+    }
   }
   return (
     <Touchable onPress={handlePress} disabled={loading || disabled}>

@@ -7,7 +7,7 @@ const Login: FC = () => {
   const navigation = useNavigation()
 
   const navigateToLogin = () => {
-    navigation.navigate('Auth', { screen: ROUTE.LOGIN })
+    navigation.navigate(ROUTE.AUTH, { screen: ROUTE.LOGIN })
   }
 
   return <PrimaryButton title="Sign in" onPress={navigateToLogin} />

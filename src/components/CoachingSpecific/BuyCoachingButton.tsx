@@ -88,12 +88,12 @@ const AndroidContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  background-color: ${({ theme }) => theme.accent};
 `
 
 const Button = styled.TouchableOpacity`
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  background-color: ${({ theme }) => theme.accent};
   padding: 20px;
   box-shadow: ${({ theme }) => theme.SHADOW};
   flex-direction: row;

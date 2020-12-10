@@ -1,0 +1,81 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "99",
+      "familyShareable" : false,
+      "internalID" : "F0297C1C",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "fi.nyxo.sleepcoaching.lifetime",
+      "referenceName" : "Nyxo Gold Lifetime",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "FADD0F6C",
+      "localizations" : [
+
+      ],
+      "name" : "Nyxo Coaching",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "10",
+          "familyShareable" : true,
+          "groupNumber" : 1,
+          "internalID" : "D7F079AA",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "fi.nyxo.sleepcoaching.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Nyxo Gold",
+          "subscriptionGroupID" : "FADD0F6C",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "50",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "3E01D748",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "fi.nyxo.sleepcoaching.yearly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Nyxo Gold",
+          "subscriptionGroupID" : "FADD0F6C",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}

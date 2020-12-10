@@ -5,7 +5,7 @@ import { State } from '@typings/State'
 import * as Analytics from 'appcenter-analytics'
 import React from 'react'
 import { addEventListener, removeEventListener } from 'react-native-localize'
-import Purchases from 'react-native-purchases'
+import Purchases, { PurchaserInfo } from 'react-native-purchases'
 import { enableScreens } from 'react-native-screens'
 import SplashScreen from 'react-native-splash-screen'
 import { connect } from 'react-redux'
@@ -30,10 +30,19 @@ interface AppProps {
   theme: DefaultTheme
 }
 
+type MakePurchasePromise = Promise<{
+  productIdentifier: string
+  purchaserInfo: PurchaserInfo
+}>
+
 class App extends React.Component<AppProps> {
   constructor(props: AppProps) {
     super(props)
     setI18nConfig()
+  }
+
+  purchaserInfoUpdateListener = (info) => {
+    console.log(info)
   }
 
   async componentDidMount() {
@@ -42,15 +51,36 @@ class App extends React.Component<AppProps> {
     addEventListener('change', this.handleLocalizationChange)
     Purchases.setDebugLogsEnabled(true)
     Purchases.setup(CONFIG.REVENUE_CAT)
+
+    Purchases.addPurchaserInfoUpdateListener(this.purchaserInfoUpdateListener)
+    Purchases.addShouldPurchasePromoProductListener(
+      this.shouldPurchasePromoProduct
+    )
   }
 
   componentWillUnmount() {
     removeEventListener('change', this.handleLocalizationChange)
+    Purchases.removePurchaserInfoUpdateListener(
+      this.purchaserInfoUpdateListener
+    )
+    Purchases.removeShouldPurchasePromoProductListener(
+      this.shouldPurchasePromoProduct
+    )
   }
 
   handleLocalizationChange = () => {
     setI18nConfig()
     this.forceUpdate()
+  }
+
+  shouldPurchasePromoProduct = async (
+    deferredPurchase: () => MakePurchasePromise
+  ) => {
+    try {
+      deferredPurchase()
+    } catch (error) {
+      Sentry.captureException(error)
+    }
   }
 
   enableAnalytics = async () => {

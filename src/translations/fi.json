@@ -474,9 +474,25 @@
   "WHY_BUY_2": "Ennen ostoa voit katsoa, minkälaisista oppitunneista ja harjoitteista viikot saattavat koostua. Yksilölliset oppitunnit ja harjoitukset aukeavat vasta ostettuasi valmennuksen.",
 
   "IAP": {
-    "MONTHLY": "Kuukausitilaus",
-    "THREE_MONTH": "3-kuukauden tilaus",
-    "ANNUAL": "Vuositilaus"
+    "MONTHLY": "/ kuukaudessa",
+    "ANNUAL": "/ vuodessa",
+    "LIFETIME": "/ ikuisesti",
+
+    "MONTHLY_LONG": "Kuukausitilaus",
+    "MONTHLY_TEXT_1": "😸 1-viikon ilmainen kokeilu.",
+    "MONTHLY_TEXT_2": "😺 Peruuta koska tahansa.",
+
+    "ANNUAL_LONG": "Vuositilaus",
+    "ANNUAL_TEXT_1": "😸 2-viikon ilmainen kokeilu.",
+    "ANNUAL_TEXT_2": "😺 Peruuta koska tahansa.",
+
+    "LIFETIME_LONG": "Lifetime",
+    "LIFETIME_TEXT_1": "😽 Nyxo Gold elinikäisesti.",
+    "LIFETIME_TEXT_2": "😿 Kissat saattavat joutua maksamaan 9 kertaa",
+
+    "PURCHASE_MONTHLY": "Tilaa kuukausittainen",
+    "PURCHASE_ANNUAL": "Tilaa vuosittainen",
+    "PURCHASE_LIFETIME": "Tilaa ikuinen"
   },
 
   "PURCHASE_COACHING": "Osta univalmennus",
@@ -743,9 +759,9 @@
   },
 
   "WEEK": {
-    "BEGIN": "Begin week",
-    "COMPLETE": "Complete week",
-    "LESSONS": "Lessons"
+    "BEGIN": "Aloita viikko",
+    "COMPLETE": "Merkitse suoritetuksi",
+    "LESSONS": "Oppitunnit"
   },
 
   "WHY_SIGNUP": {

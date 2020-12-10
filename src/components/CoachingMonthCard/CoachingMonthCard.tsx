@@ -1,5 +1,6 @@
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
+import { localizedFormat } from '@config/i18n'
 import { stringToColor } from '@helpers/style/color'
 import { CoachingPeriod, useDeleteCoaching } from '@hooks/coaching/useCoaching'
 import { useUpdateUser } from '@hooks/user/useUser'
@@ -18,7 +19,10 @@ type Props = {
 
 const CoachingMonthCard: FC<Props> = ({ month, actionsEnabled = true }) => {
   const ref = useRef<Swipeable>(null)
-  const title = format(new Date(month?.started ?? new Date()), 'LLLL yyyy')
+  const title = localizedFormat(
+    new Date(month?.started ?? new Date()),
+    'LLLL yyyy'
+  )
   const startDate = format(new Date(month?.started ?? new Date()), 'dd.MM.yyyy')
 
   const endDate = month?.ended

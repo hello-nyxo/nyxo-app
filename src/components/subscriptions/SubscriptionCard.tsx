@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { IconBold } from '@components/iconRegular'
 import colors from '@styles/colors'
@@ -10,7 +10,7 @@ type Props = {
   subscription?: PurchasesEntitlementInfo
 }
 
-const SubscriptionCard = ({ subscription }: Props) => {
+const SubscriptionCard: FC<Props> = ({ subscription }) => {
   if (!subscription) return null
 
   const {

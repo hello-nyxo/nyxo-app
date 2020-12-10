@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import styled from 'styled-components/native'
 import { useSelector, useDispatch } from 'react-redux'
 import { linkAccount } from '@actions/linking/linking-actions'
@@ -40,11 +40,16 @@ type Props = {
 }
 
 const TTWelcome: FC<Props> = ({ route }) => {
+  const [showCode, toggleShowCode] = useState(false)
   const loggedIn = useSelector(getAuthState)
   const loading = useSelector(getLoading)
   const code = useSelector(getLinkingCode)
   const dispatch = useDispatch()
   const linkCode = route?.params?.code
+
+  const toggleLinkModule = () => {
+    toggleShowCode(showCode)
+  }
 
   const handleLink = () => {
     dispatch(linkAccount(linkCode))
@@ -87,15 +92,12 @@ const TTWelcome: FC<Props> = ({ route }) => {
           )}
 
           {loggedIn && !!code && <P>TERVEYSTALO.DONE</P>}
-          {/* <ErrorContainer>
-            <Error>SOMETHING_WRONG</Error>
-          </ErrorContainer> */}
 
           <StyledModal
-            isVisible={false}
+            isVisible={showCode}
             transparent={false}
-            onSwipeComplete={() => {}}
-            onRequestClose={() => {}}
+            onSwipeComplete={toggleLinkModule}
+            onRequestClose={toggleLinkModule}
             presentationStyle="pageSheet"
             hideModalContentWhileAnimating
             animationType="slide">
