@@ -5,7 +5,7 @@ import colors from './colors'
 
 export const lightTheme: DefaultTheme = {
   mode: 'light',
-  PRIMARY_BACKGROUND_COLOR: '#F6F6F9',
+  PRIMARY_BACKGROUND_COLOR: '#F1F1F1',
   SECONDARY_BACKGROUND_COLOR: '#FFFFFF',
   SECONDARY_BACKGROUND_COLOR_TRANSPARENT: 'rgba(255,255,255,0.3)',
 
@@ -31,7 +31,7 @@ export const lightTheme: DefaultTheme = {
 export const darkTheme: DefaultTheme = {
   mode: 'dark',
   PRIMARY_BACKGROUND_COLOR: 'black',
-  SECONDARY_BACKGROUND_COLOR: '#333',
+  SECONDARY_BACKGROUND_COLOR: '#161718',
   SECONDARY_BACKGROUND_COLOR_TRANSPARENT: 'rgba(51,51,51,0.3)',
 
   PRIMARY_TEXT_COLOR: 'white',

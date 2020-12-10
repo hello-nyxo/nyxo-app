@@ -5,6 +5,8 @@ import moment from 'moment'
 import I18n, { TranslateOptions, Scope } from 'i18n-js'
 import { memoize } from 'lodash'
 import { setLocale } from 'yup'
+import { fi, enUS } from 'date-fns/locale'
+import { format } from 'date-fns'
 
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
@@ -51,5 +53,11 @@ setLocale({
     required: 'ERROR.FIELD_EMPTY'
   }
 })
+
+export const localizedFormat = (date: Date, f: string): string => {
+  return format(date, f, {
+    locale: I18n.currentLocale() === 'fi' ? fi : enUS
+  })
+}
 
 export default translate

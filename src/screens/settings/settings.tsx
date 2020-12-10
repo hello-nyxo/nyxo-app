@@ -53,6 +53,7 @@ const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
   const intercomCount = useSelector(getIntercomNotificationCount)
 
   const switchTheme = () => {
+    // ReactNativeHapticFeedback.trigger('impactLight')
     const newTheme = theme?.mode === 'dark' ? lightTheme : darkTheme
     dispatch(setTheme(newTheme))
   }

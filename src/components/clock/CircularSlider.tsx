@@ -53,7 +53,7 @@ function calculateArcCircle(
 }
 
 interface CircularSliderProps {
-  onUpdate: Function
+  onUpdate: () => void
   startAngle: number
   angleLength: number
   segments: number

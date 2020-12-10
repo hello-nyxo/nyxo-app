@@ -6,15 +6,14 @@ import {
   Container,
   H1,
   H2,
-  H3,
   P,
   SafeAreaView
 } from '@components/Primitives/Primitives'
-import SubscriptionCard from '@components/subscriptions/SubscriptionCard'
+import { ActiveSubscriptions } from '@components/subscriptions/ActiveSubscriptions'
 import TranslatedText from '@components/TranslatedText'
 import { getLoadingPurchase } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import colors from '@styles/colors'
-import React, { memo, useEffect, useState } from 'react'
+import React, { FC, memo, useEffect, useState } from 'react'
 import { Linking, Platform, RefreshControl, ScrollView } from 'react-native'
 import Purchases, { PurchasesEntitlementInfos } from 'react-native-purchases'
 import { useDispatch, useSelector } from 'react-redux'
@@ -61,23 +60,7 @@ const ManageSubscription: FC = () => {
         <Container>
           <H1>Manage Nyxo Subscription</H1>
 
-          {hasActiveSubscription && (
-            <ActiveSubscriptionContainer>
-              <H3>SUBSCRIPTION_MANAGEMENT.CURRENTLY_ACTIVE</H3>
-              {info?.active['Nyxo Coaching'].isActive && (
-                <SubscriptionCard
-                  subscription={info?.active['Nyxo Coaching']}
-                />
-              )}
-
-              <ModifyContainer>
-                <ModifyButton onPress={handleOpenManagement}>
-                  <ModifyIcon height={15} width={15} />
-                  <ButtonText>JUMP_MANAGE_SUBSCRIPTION</ButtonText>
-                </ModifyButton>
-              </ModifyContainer>
-            </ActiveSubscriptionContainer>
-          )}
+          <ActiveSubscriptions />
 
           {!hasActiveSubscription && (
             <>

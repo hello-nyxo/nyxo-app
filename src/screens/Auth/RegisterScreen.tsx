@@ -8,7 +8,7 @@ import { RootStackParamList } from '@typings/navigation/navigation'
 
 type RegisterScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'Profile'
+  ROUTE.APP
 >
 
 type Props = {
@@ -18,11 +18,11 @@ type Props = {
 const Register: FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch()
   const signup = async (email: string, password: string) => {
-    dispatch(register(email, password, navigation.navigate(ROUTE.APP)))
+    dispatch(register(email, password, back))
   }
 
   const goToLogin = () => {
-    navigation.navigate(ROUTE.LOGIN)
+    navigation.navigate(ROUTE.AUTH, { screen: ROUTE.LOGIN })
   }
 
   const back = () => {

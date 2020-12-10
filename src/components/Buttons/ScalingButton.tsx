@@ -1,95 +1,83 @@
-import * as React from 'react'
+import React, { FC, ReactNode, memo, useRef } from 'react'
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 import Analytics from 'appcenter-analytics'
 import {
   GestureResponderEvent,
   Animated,
-  Easing,
   TouchableWithoutFeedback
 } from 'react-native'
 import styled from 'styled-components/native'
 import Intercom from 'react-native-intercom'
 
-interface ScalingButtonProps {
+type Props = {
   onPress: (event: GestureResponderEvent) => void
   analyticsEvent: string
   disabled?: boolean
-  children: React.ReactNode
-  noDefaultStyles?: boolean
-  styles?: any
+  children: ReactNode
 }
 
-const ScalingButton = (props: ScalingButtonProps) => {
-  const scaleValue = new Animated.Value(0)
-  const [isPressed, setPressed] = React.useState(false)
+const ScalingButton: FC<Props> = ({
+  analyticsEvent,
+  children,
+  onPress,
+  disabled
+}) => {
+  const scaleIn = useRef(new Animated.Value(0)).current
 
-  const scale = () => {
-    scaleValue.setValue(0)
-    Animated.spring(scaleValue, {
+  const pressIn = () => {
+    scaleIn.setValue(0)
+    Animated.timing(scaleIn, {
       toValue: 1,
-      useNativeDriver: true,
-      speed: 60,
-      bounciness: 25
+      duration: 150,
+      useNativeDriver: true
     }).start()
   }
 
-  const onPressIn = () => {
-    scale()
+  const pressOut = () => {
+    scaleIn.setValue(1)
+    Animated.timing(scaleIn, {
+      toValue: 0,
+      duration: 150,
+      useNativeDriver: true
+    }).start()
   }
 
-  const onPress = (event: any) => {
+  const handlePress = (event: GestureResponderEvent) => {
     Analytics.trackEvent('Button pressed', {
-      buttonType: props.analyticsEvent
+      buttonType: analyticsEvent
     })
     Intercom.logEvent('Button pressed', {
-      buttonType: props.analyticsEvent
+      buttonType: analyticsEvent
     })
-    setPressed(true)
-    ReactNativeHapticFeedback.trigger('impactLight', {
+    ReactNativeHapticFeedback.trigger('impactMedium', {
       enableVibrateFallback: true
     })
 
-    props.onPress(event)
+    onPress(event)
   }
 
-  const onPressOut = () => {
-    Animated.timing(scaleValue, {
-      toValue: 0,
-      duration: 200,
-      easing: Easing.ease,
-      useNativeDriver: true
-    }).start()
+  const transform = (animated: Animated.Value) => {
+    const interpolation = animated.interpolate({
+      inputRange: [0, 1],
+      outputRange: [1, 0.95]
+    })
 
-    setPressed(false)
+    return {
+      transform: [{ scale: interpolation }]
+    }
   }
-
-  const buttonScaleIn = scaleValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, 0.9]
-  })
-
-  const buttonScaleOut = scaleValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.9, 1]
-  })
 
   return (
     <TouchableWithoutFeedback
-      onPress={onPress}
-      disabled={props.disabled}
-      onPressIn={onPressIn}
-      onPressOut={onPressOut}
-      {...props}>
-      <Button
-        style={{
-          transform: [{ scale: isPressed ? buttonScaleOut : buttonScaleIn }]
-        }}>
-        {props.children}
-      </Button>
+      onPress={handlePress}
+      disabled={disabled}
+      onPressIn={pressIn}
+      onPressOut={pressOut}>
+      <Button style={transform(scaleIn)}>{children}</Button>
     </TouchableWithoutFeedback>
   )
 }
 
 const Button = styled(Animated.View)``
 
-export default React.memo(ScalingButton)
+export default memo(ScalingButton)

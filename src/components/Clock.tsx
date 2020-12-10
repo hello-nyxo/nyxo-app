@@ -54,11 +54,11 @@ const Clock: FC = () => {
       <Title>STAT.TITLE</Title>
       <Legend>
         <LegendItem>
-          <LegendText>INBED</LegendText>
+          <LegendText adjustsFontSizeToFit>INBED</LegendText>
           <Circle />
         </LegendItem>
         <LegendItem>
-          <LegendText>ASLEEP</LegendText>
+          <LegendText adjustsFontSizeToFit>ASLEEP</LegendText>
           <Ball />
         </LegendItem>
       </Legend>

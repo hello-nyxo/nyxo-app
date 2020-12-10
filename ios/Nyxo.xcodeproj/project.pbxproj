@@ -14,6 +14,8 @@
 		5B33130921DFB5B800698A4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130121DFB5B800698A4A /* AppDelegate.m */; };
 		5B33130A21DFB5B800698A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130221DFB5B800698A4A /* main.m */; };
 		5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B40961E242BAE0000169B4C /* GoogleService-Info.plist */; };
+		5B76E78A2580D97300D2E4B2 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5B76E7892580D97300D2E4B2 /* Configuration.storekit */; };
+		5B76E78C2580DB2600D2E4B2 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5B76E78B2580DB2600D2E4B2 /* StoreKitTestCertificate.cer */; };
 		5B82C8E42574205400D21B1E /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B82C8E32574205300D21B1E /* App.png */; };
 		5B82C8E62574206B00D21B1E /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B82C8E52574206B00D21B1E /* App.png */; };
 		5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
@@ -142,6 +144,8 @@
 		5B70355723E998420068DB97 /* Nyxo (DEV).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Nyxo (DEV).plist"; sourceTree = "<group>"; };
 		5B75EE392188A8920070EB69 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		5B75EE3A2188A8920070EB69 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		5B76E7892580D97300D2E4B2 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		5B76E78B2580DB2600D2E4B2 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoreKitTestCertificate.cer; path = ../../../../Desktop/StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		5B82C8E32574205300D21B1E /* App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App.png; sourceTree = "<group>"; };
 		5B82C8E52574206B00D21B1E /* App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App.png; path = ../../../../Desktop/App.png; sourceTree = "<group>"; };
 		5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -482,6 +486,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5B76E7892580D97300D2E4B2 /* Configuration.storekit */,
+				5B76E78B2580DB2600D2E4B2 /* StoreKitTestCertificate.cer */,
 				5B82C8E32574205300D21B1E /* App.png */,
 				5B2D63A724FC1941002E853B /* AppCenter-Config.plist */,
 				5B5220FA24F29CA50039E226 /* rnuc.xcconfig */,
@@ -725,6 +731,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B76E78C2580DB2600D2E4B2 /* StoreKitTestCertificate.cer in Resources */,
 				5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */,
 				5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */,
 				5BD58B9922D71D7600D1CD2D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
@@ -746,6 +753,7 @@
 				5BD58BA422D71D7600D1CD2D /* Montserrat-BlackItalic.ttf in Resources */,
 				5BD58BA522D71D7600D1CD2D /* Montserrat-ExtraLight.ttf in Resources */,
 				5BD58BA622D71D7600D1CD2D /* Montserrat-ExtraBold.ttf in Resources */,
+				5B76E78A2580D97300D2E4B2 /* Configuration.storekit in Resources */,
 				5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */,
 				5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */,
 				5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */,
@@ -1005,7 +1013,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 63;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
@@ -1022,7 +1030,7 @@
 				INFOPLIST_FILE = Nyxo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.5.2;
+				MARKETING_VERSION = 1.5.3;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-DFB_SONARKIT_ENABLED=1",
@@ -1053,7 +1061,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 63;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1069,7 +1077,7 @@
 				INFOPLIST_FILE = Nyxo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.5.2;
+				MARKETING_VERSION = 1.5.3;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-DFB_SONARKIT_ENABLED=1",

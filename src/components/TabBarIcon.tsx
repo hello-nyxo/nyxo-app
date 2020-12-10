@@ -30,7 +30,7 @@ const TabBarIcon: FC<TabBarIconProps> = ({
   focused,
   routeName,
   badgeCount
-}: TabBarIconProps) => {
+}) => {
   return (
     <View>
       <IconBold

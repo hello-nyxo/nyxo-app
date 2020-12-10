@@ -15,12 +15,12 @@ import RatingModal from '@components/RatingModal'
 import CalendarModal from '@components/sleep/CalendarModal'
 import InsightsCard from '@components/sleep/InsightsCard'
 import { OnboardingCard } from '@components/sleep/OnboardingCard'
+import { localizedFormat } from '@config/i18n'
 import { getUserActiveCoaching } from '@hooks/coaching/useCoaching'
 import { useFocusEffect } from '@react-navigation/core'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
-import { format } from 'date-fns'
 import React, { FC, useCallback, useEffect } from 'react'
 import { ScrollView } from 'react-native'
 import { queryCache } from 'react-query'
@@ -74,11 +74,11 @@ const Sleep: FC = () => {
 
         <TitleRow>
           <TitleContainer>
-            <Title>{format(new Date(date), 'cccc')}</Title>
+            <Title>{localizedFormat(new Date(date), 'cccc')}</Title>
             <SubRow>
               <CalendarIcon />
               <Subtitle onPress={toggleCalendar}>
-                {format(new Date(date), 'dd MMMM yyyy')}
+                {localizedFormat(new Date(date), 'dd MMMM yyyy')}
               </Subtitle>
             </SubRow>
           </TitleContainer>

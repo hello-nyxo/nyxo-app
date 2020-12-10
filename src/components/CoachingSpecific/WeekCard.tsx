@@ -15,8 +15,8 @@ import {
 import styled from 'styled-components/native'
 import { constants, fonts } from '@styles/themes'
 import { CoachingPeriod } from '@hooks/coaching/useCoaching'
+import { TouchableOpacity } from 'react-native'
 import colors from '../../styles/colors'
-import ScalingButton from '../Buttons/ScalingButton'
 import WeekCardTitle from './WeekCardTitle'
 
 type Props = {
@@ -43,9 +43,7 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
   const { stage } = getStage(coaching, week.slug)
   return (
     <CardContainer>
-      <ScalingButton
-        analyticsEvent={`Go to week ${week.weekName}`}
-        onPress={handlePress}>
+      <TouchableOpacity onPress={handlePress}>
         <Card style={{ width: cardWidth, marginHorizontal: cardMargin }}>
           <WeekCardTitle stage={stage} weekName={week.weekName} />
 
@@ -64,7 +62,7 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
             </GradientContainer>
           </CoverPhotoContainer>
         </Card>
-      </ScalingButton>
+      </TouchableOpacity>
 
       <Row>
         <LessonIcon />

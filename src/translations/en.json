@@ -484,9 +484,25 @@
   "WHY_BUY_2": "Before buying the coaching you can take a look at some of the example lesson and exercises coaching week consists of. Full content becomes available after purchasing coaching. ",
 
   "IAP": {
-    "MONTHLY": "Monthly",
-    "THREE_MONTH": "Quarterly",
-    "ANNUAL": "Annual"
+    "MONTHLY": "/ month",
+    "ANNUAL": "/ year",
+    "LIFETIME": "/ life",
+
+    "MONTHLY_LONG": "Monthly Subscription",
+    "MONTHLY_TEXT_1": "😸 1 week free trial.",
+    "MONTHLY_TEXT_2": "😺 Cancel anytime.",
+
+    "ANNUAL_LONG": "Yearly Subscription",
+    "ANNUAL_TEXT_1": "😸 2 week free trial.",
+    "ANNUAL_TEXT_2": "😺 Cancel anytime.",
+
+    "LIFETIME_LONG": "Lifetime",
+    "LIFETIME_TEXT_1": "😽 Get Nyxo Gold for life.",
+    "LIFETIME_TEXT_2": "😿 Cats may need to pay 9 times",
+
+    "PURCHASE_MONTHLY": "Join monthly",
+    "PURCHASE_ANNUAL": "Join yearly",
+    "PURCHASE_LIFETIME": "Join lifetime"
   },
 
   "PURCHASE_COACHING": "Purchase coaching",

@@ -1,13 +1,14 @@
 import React, { FC, useRef, useEffect, useState } from 'react'
 import { FlatList, ListRenderItem, ViewToken } from 'react-native'
 import styled, { css } from 'styled-components/native'
-import { format, sub, startOfDay } from 'date-fns/esm'
+import { sub, startOfDay } from 'date-fns/esm'
 import { WIDTH } from '@helpers/Dimensions'
 import { useDispatch } from 'react-redux'
 import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import useCalendar from '@hooks/calendar'
 import { isSameDay } from 'date-fns'
 import LinearGradient from 'react-native-linear-gradient'
+import { localizedFormat } from '@config/i18n'
 
 const DAY_WIDTH = WIDTH / 2
 const FIRST_DAY_WIDTH = DAY_WIDTH * 2 - DAY_WIDTH / 2
@@ -30,7 +31,7 @@ const CalendarStrip: FC = () => {
     <PressableContainer key={item.toISOString()} onPress={toggleCalendar}>
       <Day isFirst={index === 0}>
         <DateContainer isFirst={index === 0}>
-          {format(item, 'EEE d. LLL')}
+          {localizedFormat(item, 'EEE d. LLL')}
         </DateContainer>
       </Day>
     </PressableContainer>
