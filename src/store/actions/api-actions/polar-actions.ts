@@ -147,7 +147,7 @@ export const getPolarSleep = (
         )
 
         const response = await polarListNightsApiCall.json()
-        const sevenNightsSleepData = (<Array<PolarSleepObject>>response.nights)
+        const sevenNightsSleepData = (<Array<PolarSleepObject>>response?.nights)
           .reverse()
           .slice(7)
         const formattedResponse = formatPolarSamples(sevenNightsSleepData)
@@ -169,7 +169,7 @@ export const getPolarSleep = (
 
         const response = await polarListNightsApiCall.json()
 
-        const sevenNightsSleepData = (<Array<PolarSleepObject>>response.nights)
+        const sevenNightsSleepData = (<Array<PolarSleepObject>>response?.nights)
           .reverse()
           .slice(7)
 

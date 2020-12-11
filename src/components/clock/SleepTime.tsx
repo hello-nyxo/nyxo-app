@@ -100,7 +100,7 @@ const SleepTime: FC<Props> = ({
         {string}
       </SVGText>
 
-      <SVGText
+      <StartText
         id="asleep"
         x={x}
         y={y}
@@ -108,10 +108,9 @@ const SleepTime: FC<Props> = ({
         textAnchor="middle"
         alignmentBaseline="central"
         fontSize="42"
-        fontWeight="bold"
-        fill={colors.asleepColor}>
+        fontWeight="bold">
         {valueToShow}
-      </SVGText>
+      </StartText>
     </G>
   )
 }
@@ -120,4 +119,8 @@ export default memo(SleepTime)
 
 const ThemedText = styled(SVGText).attrs(({ theme }) => ({
   fill: theme.SECONDARY_TEXT_COLOR
+}))``
+
+const StartText = styled(SVGText).attrs(({ theme }) => ({
+  fill: theme.accent
 }))``

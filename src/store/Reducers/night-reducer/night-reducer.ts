@@ -14,7 +14,7 @@ const reducer = (state = initialState, action: SleepActions): NightState => {
     case FETCH_SLEEP_SUCCESS: {
       if (action.payload) {
         const nights: Night[] = []
-        state.nights.forEach((night) => {
+        state?.nights?.forEach((night) => {
           if (nights.find((n) => n.id === night.id)) {
             return
           }

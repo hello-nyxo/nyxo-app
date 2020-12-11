@@ -42,7 +42,7 @@ class App extends React.Component<AppProps> {
   }
 
   purchaserInfoUpdateListener = (info) => {
-    console.log(info)
+    // TODO
   }
 
   async componentDidMount() {

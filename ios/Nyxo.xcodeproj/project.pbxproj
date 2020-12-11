@@ -41,8 +41,8 @@
 		5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */; };
 		5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
 		C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */; };
-		E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+		F2B7A82D60CA8102C016EE62 /* libPods-Nyxo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,9 +211,9 @@
 		B95CBA9B2099AEB300243A25 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BC20C0ADAE8344ED9E90B05C /* FontAwesome5_Pro_Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Light.ttf; path = ../assets/fonts/FontAwesome5_Pro_Light.ttf; sourceTree = "<group>"; };
 		C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.release.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.release.xcconfig"; sourceTree = "<group>"; };
+		D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28D9DBBB35A494F8B7F80E4 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		E763E2F2E04548318B376785 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EDBCD013F22D4256B775A881 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */,
 				C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */,
-				E1DF9C1DF40E9169E37562FD /* libPods-Nyxo.a in Frameworks */,
+				F2B7A82D60CA8102C016EE62 /* libPods-Nyxo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +289,7 @@
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */,
 				140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */,
-				E89B28DB570F1784E077C6A0 /* libPods-Nyxo.a */,
+				D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

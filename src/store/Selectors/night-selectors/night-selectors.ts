@@ -14,7 +14,7 @@ import {
 } from 'date-fns'
 import { createSelector } from 'reselect'
 
-const getNights = (state: State) => state.nights.nights
+const getNights = (state: State) => state?.nights?.nights
 
 export const getNightForSelectedDate = createSelector(
   [getNights, getSelectedDate, getSharedSource],
