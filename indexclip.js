@@ -5,8 +5,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import { AppClip } from './src/AppClip'
 import { lightTheme } from './src/styles/themes'
 
-const TOKEN = 'dItO0o2BOR53HD0jSFB9HHBw3SfIk8b8Pu9ZwEt09AM'
-const SPACE = '2bj8pq0ood89'
+const TOKEN = ''
+const SPACE = ''
 
 const client = new ApolloClient({
   uri: 'https://graphql.contentful.com/content/v1/spaces/2bj8pq0ood89',
