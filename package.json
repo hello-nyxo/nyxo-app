@@ -125,6 +125,7 @@
     ]
   },
   "dependencies": {
+    "@apollo/client": "^3.3.6",
     "@aws-amplify/core": "^3.8.5",
     "@contentful/rich-text-plain-text-renderer": "^14.1.2",
     "@contentful/rich-text-react-renderer": "^14.1.2",
@@ -153,6 +154,7 @@
     "escape-string-regexp": "^4.0.0",
     "expo-web-browser": "^8.5.0",
     "formik": "^2.2.5",
+    "graphql": "^15.4.0",
     "i18n-js": "^3.8.0",
     "lodash": "^4.17.15",
     "moment": "^2.29.1",

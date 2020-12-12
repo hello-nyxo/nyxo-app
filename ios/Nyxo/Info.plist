@@ -29,8 +29,6 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLIconFile</key>
-			<string>App.png</string>
 			<key>CFBundleURLName</key>
 			<string>app.sleepcircle.application</string>
 			<key>CFBundleURLSchemes</key>
@@ -40,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>63</string>
+	<string>67</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -100,15 +98,7 @@
 	<string>Allow $(PRODUCT_NAME) to access your reminders</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Montserrat-Black.ttf</string>
-		<string>Montserrat-BlackItalic.ttf</string>
 		<string>Montserrat-Bold.ttf</string>
-		<string>Montserrat-BoldItalic.ttf</string>
-		<string>Montserrat-Hairline.ttf</string>
-		<string>Montserrat-HairlineItalic.ttf</string>
-		<string>Montserrat-Italic.ttf</string>
-		<string>Montserrat-Light.ttf</string>
-		<string>Montserrat-LightItalic.ttf</string>
 		<string>Montserrat-Regular.ttf</string>
 		<string>Montserrat-Medium.ttf</string>
 		<string>Domine-Bold.ttf</string>

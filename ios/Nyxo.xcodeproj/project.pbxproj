@@ -11,35 +11,32 @@
 		5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */; };
 		5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20692C224E434B00257043 /* StoreKit.framework */; };
 		5B2D63A824FC1942002E853B /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D63A724FC1941002E853B /* AppCenter-Config.plist */; };
+		5B307E072584E1DF00003FA6 /* Fix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B307E062584E1DF00003FA6 /* Fix.swift */; };
 		5B33130921DFB5B800698A4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130121DFB5B800698A4A /* AppDelegate.m */; };
 		5B33130A21DFB5B800698A4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B33130221DFB5B800698A4A /* main.m */; };
 		5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B40961E242BAE0000169B4C /* GoogleService-Info.plist */; };
+		5B6CB03025853E6600A75570 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
+		5B6CB03125853E6600A75570 /* Domine-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */; };
+		5B6CB03225853E6600A75570 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8C22D71D7500D1CD2D /* Montserrat-Medium.ttf */; };
 		5B76E78A2580D97300D2E4B2 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5B76E7892580D97300D2E4B2 /* Configuration.storekit */; };
 		5B76E78C2580DB2600D2E4B2 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5B76E78B2580DB2600D2E4B2 /* StoreKitTestCertificate.cer */; };
-		5B82C8E42574205400D21B1E /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B82C8E32574205300D21B1E /* App.png */; };
-		5B82C8E62574206B00D21B1E /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B82C8E52574206B00D21B1E /* App.png */; };
 		5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9811C22D2052900509ED1 /* Images.xcassets */; };
 		5B96275F24F16E4C00C7FFDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */; };
 		5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0F90521E2411B00D3D56E /* main.jsbundle */; };
 		5BA9115E22E1E2350098700A /* CommandStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9115D22E1E2350098700A /* CommandStatus.swift */; };
-		5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8622D71D7400D1CD2D /* Montserrat-LightItalic.ttf */; };
-		5BD58B9922D71D7600D1CD2D /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8722D71D7400D1CD2D /* Montserrat-ExtraBoldItalic.ttf */; };
-		5BD58B9A22D71D7600D1CD2D /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8822D71D7500D1CD2D /* Montserrat-SemiBoldItalic.ttf */; };
-		5BD58B9B22D71D7600D1CD2D /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8922D71D7500D1CD2D /* Montserrat-Black.ttf */; };
-		5BD58B9C22D71D7600D1CD2D /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8A22D71D7500D1CD2D /* Montserrat-Italic.ttf */; };
-		5BD58B9D22D71D7600D1CD2D /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8B22D71D7500D1CD2D /* Montserrat-ThinItalic.ttf */; };
 		5BD58B9E22D71D7600D1CD2D /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8C22D71D7500D1CD2D /* Montserrat-Medium.ttf */; };
 		5BD58B9F22D71D7600D1CD2D /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8D22D71D7500D1CD2D /* Montserrat-Regular.ttf */; };
-		5BD58BA022D71D7600D1CD2D /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8E22D71D7500D1CD2D /* Montserrat-MediumItalic.ttf */; };
-		5BD58BA122D71D7600D1CD2D /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B8F22D71D7500D1CD2D /* Montserrat-ExtraLightItalic.ttf */; };
-		5BD58BA222D71D7600D1CD2D /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9022D71D7500D1CD2D /* Montserrat-BoldItalic.ttf */; };
 		5BD58BA322D71D7600D1CD2D /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9122D71D7500D1CD2D /* Montserrat-SemiBold.ttf */; };
-		5BD58BA422D71D7600D1CD2D /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9222D71D7500D1CD2D /* Montserrat-BlackItalic.ttf */; };
-		5BD58BA522D71D7600D1CD2D /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9322D71D7500D1CD2D /* Montserrat-ExtraLight.ttf */; };
-		5BD58BA622D71D7600D1CD2D /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9422D71D7600D1CD2D /* Montserrat-ExtraBold.ttf */; };
-		5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */; };
-		5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */; };
 		5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */; };
+		5BDD8AC62583AF8F008C8BA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD8AC52583AF8F008C8BA8 /* AppDelegate.m */; };
+		5BDD8AC92583AF8F008C8BA8 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD8AC82583AF8F008C8BA8 /* SceneDelegate.m */; };
+		5BDD8ACC2583AF8F008C8BA8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD8ACB2583AF8F008C8BA8 /* ViewController.m */; };
+		5BDD8ACF2583AF8F008C8BA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BDD8ACD2583AF8F008C8BA8 /* Main.storyboard */; };
+		5BDD8AD12583AF91008C8BA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BDD8AD02583AF91008C8BA8 /* Assets.xcassets */; };
+		5BDD8AD42583AF91008C8BA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BDD8AD22583AF91008C8BA8 /* LaunchScreen.storyboard */; };
+		5BDD8AD72583AF91008C8BA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD8AD62583AF91008C8BA8 /* main.m */; };
+		5BDD8ADB2583AF91008C8BA8 /* Nyxo AppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 5BDD8AC22583AF8F008C8BA8 /* Nyxo AppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8E633422BB976C4A16942F3E /* libPods-Nyxo AppClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A599BE3421AC8400B6660D2D /* libPods-Nyxo AppClip.a */; };
 		C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		F2B7A82D60CA8102C016EE62 /* libPods-Nyxo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */; };
@@ -67,6 +64,13 @@
 			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
 			remoteInfo = RNDeviceInfo;
 		};
+		5BDD8AD92583AF91008C8BA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BDD8AC12583AF8F008C8BA8;
+			remoteInfo = "Nyxo AppClip";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +84,17 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BDD8ADC2583AF91008C8BA8 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				5BDD8ADB2583AF91008C8BA8 /* Nyxo AppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +103,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Nyxo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nyxo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo Dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2274C79D9A804D5DEAADAA57 /* Pods-Nyxo-Nyxo AppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo-Nyxo AppClip.release.xcconfig"; path = "Target Support Files/Pods-Nyxo-Nyxo AppClip/Pods-Nyxo-Nyxo AppClip.release.xcconfig"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4F61ADB20DA8429D927A20BC /* FontAwesome5_Pro_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Solid.ttf; path = ../assets/fonts/FontAwesome5_Pro_Solid.ttf; sourceTree = "<group>"; };
@@ -97,6 +113,8 @@
 		5B2069A4224FB24200257043 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		5B2B308921EF5C82007E2982 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		5B2D63A724FC1941002E853B /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Nyxo/AppCenter-Config.plist"; sourceTree = "<group>"; };
+		5B307E052584E1DF00003FA6 /* Nyxo AppClip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyxo AppClip-Bridging-Header.h"; sourceTree = "<group>"; };
+		5B307E062584E1DF00003FA6 /* Fix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fix.swift; sourceTree = "<group>"; };
 		5B3312FB21DFB5B700698A4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
 		5B3312FE21DFB5B800698A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.old.xib; sourceTree = "<group>"; };
 		5B33130021DFB5B800698A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -141,7 +159,6 @@
 		5B50DCC82218829A0036DFDD /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = Vendor/AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
 		5B50DD33221884EB0036DFDD /* AppCenterPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterPush.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenterPush.framework"; sourceTree = "<group>"; };
 		5B5220FA24F29CA50039E226 /* rnuc.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = rnuc.xcconfig; sourceTree = "<group>"; };
-		5B70355723E998420068DB97 /* Nyxo (DEV).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Nyxo (DEV).plist"; sourceTree = "<group>"; };
 		5B75EE392188A8920070EB69 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		5B75EE3A2188A8920070EB69 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		5B76E7892580D97300D2E4B2 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
@@ -201,15 +218,31 @@
 		5BD58B9522D71D7600D1CD2D /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		5BD58B9622D71D7600D1CD2D /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		5BDD8AC22583AF8F008C8BA8 /* Nyxo AppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nyxo AppClip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BDD8AC42583AF8F008C8BA8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5BDD8AC52583AF8F008C8BA8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5BDD8AC72583AF8F008C8BA8 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		5BDD8AC82583AF8F008C8BA8 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		5BDD8ACA2583AF8F008C8BA8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5BDD8ACB2583AF8F008C8BA8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5BDD8ACE2583AF8F008C8BA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5BDD8AD02583AF91008C8BA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5BDD8AD32583AF91008C8BA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5BDD8AD52583AF91008C8BA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BDD8AD62583AF91008C8BA8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5BDD8AD82583AF91008C8BA8 /* Nyxo_AppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nyxo_AppClip.entitlements; sourceTree = "<group>"; };
 		5BF9811C22D2052900509ED1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
 		6CF46B6888304B68952AC827 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Dosis-Medium.ttf"; path = "../assets/fonts/Dosis-Medium.ttf"; sourceTree = "<group>"; };
 		796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Brands.ttf; path = ../assets/fonts/FontAwesome5_Pro_Brands.ttf; sourceTree = "<group>"; };
 		8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo/Pods-Nyxo.debug.xcconfig"; sourceTree = "<group>"; };
 		9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.debug.xcconfig"; sourceTree = "<group>"; };
+		A599BE3421AC8400B6660D2D /* libPods-Nyxo AppClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo AppClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7E477CA74F197FF3FACDF5D /* Pods-Nyxo AppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo AppClip.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo AppClip/Pods-Nyxo AppClip.debug.xcconfig"; sourceTree = "<group>"; };
 		B959F1EA20BD3D8E00AC734C /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dosis-Bold.ttf"; path = "../assets/fonts/Dosis-Bold.ttf"; sourceTree = "<group>"; };
 		B959F21820BD455C00AC734C /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-regular-400.ttf"; sourceTree = "<group>"; };
 		B95CBA9B2099AEB300243A25 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BC20C0ADAE8344ED9E90B05C /* FontAwesome5_Pro_Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Light.ttf; path = ../assets/fonts/FontAwesome5_Pro_Light.ttf; sourceTree = "<group>"; };
+		BE506772AB3008ACEB0AAB30 /* Pods-Nyxo AppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo AppClip.release.xcconfig"; path = "Target Support Files/Pods-Nyxo AppClip/Pods-Nyxo AppClip.release.xcconfig"; sourceTree = "<group>"; };
 		C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.release.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.release.xcconfig"; sourceTree = "<group>"; };
 		D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28D9DBBB35A494F8B7F80E4 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
@@ -218,6 +251,7 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EDBCD013F22D4256B775A881 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F39D20A4A03A4E13BB614E17 /* FontAwesome5_Pro_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Regular.ttf; path = ../assets/fonts/FontAwesome5_Pro_Regular.ttf; sourceTree = "<group>"; };
+		FFDF868AA8B8AE369A8BFF07 /* Pods-Nyxo-Nyxo AppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo-Nyxo AppClip.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo-Nyxo AppClip/Pods-Nyxo-Nyxo AppClip.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +270,14 @@
 				5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */,
 				C6BF152484FF448FA7435F49 /* libz.tbd in Frameworks */,
 				F2B7A82D60CA8102C016EE62 /* libPods-Nyxo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BDD8ABF2583AF8F008C8BA8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E633422BB976C4A16942F3E /* libPods-Nyxo AppClip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +305,6 @@
 			children = (
 				5B82C8E52574206B00D21B1E /* App.png */,
 				5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */,
-				5B70355723E998420068DB97 /* Nyxo (DEV).plist */,
 				5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */,
 				5B33130421DFB5B800698A4A /* AppDelegate.h */,
 				5B33130121DFB5B800698A4A /* AppDelegate.m */,
@@ -290,6 +331,7 @@
 				4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */,
 				140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */,
 				D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */,
+				A599BE3421AC8400B6660D2D /* libPods-Nyxo AppClip.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -476,6 +518,27 @@
 			path = Properties;
 			sourceTree = "<group>";
 		};
+		5BDD8AC32583AF8F008C8BA8 /* Nyxo AppClip */ = {
+			isa = PBXGroup;
+			children = (
+				5BDD8AC42583AF8F008C8BA8 /* AppDelegate.h */,
+				5BDD8AC52583AF8F008C8BA8 /* AppDelegate.m */,
+				5BDD8AC72583AF8F008C8BA8 /* SceneDelegate.h */,
+				5BDD8AC82583AF8F008C8BA8 /* SceneDelegate.m */,
+				5BDD8ACA2583AF8F008C8BA8 /* ViewController.h */,
+				5BDD8ACB2583AF8F008C8BA8 /* ViewController.m */,
+				5BDD8ACD2583AF8F008C8BA8 /* Main.storyboard */,
+				5BDD8AD02583AF91008C8BA8 /* Assets.xcassets */,
+				5BDD8AD22583AF91008C8BA8 /* LaunchScreen.storyboard */,
+				5BDD8AD52583AF91008C8BA8 /* Info.plist */,
+				5BDD8AD62583AF91008C8BA8 /* main.m */,
+				5BDD8AD82583AF91008C8BA8 /* Nyxo_AppClip.entitlements */,
+				5B307E062584E1DF00003FA6 /* Fix.swift */,
+				5B307E052584E1DF00003FA6 /* Nyxo AppClip-Bridging-Header.h */,
+			);
+			path = "Nyxo AppClip";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,6 +581,7 @@
 				13B07FAE1A68108700A75B9A /* Nyxo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NyxoTests */,
+				5BDD8AC32583AF8F008C8BA8 /* Nyxo AppClip */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				94F1E8A8CFBD46088A2BB76D /* Resources */,
@@ -533,6 +597,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Nyxo.app */,
 				00E356EE1AD99517003FC87E /* NyxoTests.xctest */,
+				5BDD8AC22583AF8F008C8BA8 /* Nyxo AppClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -591,6 +656,10 @@
 				00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */,
 				9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */,
 				C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */,
+				B7E477CA74F197FF3FACDF5D /* Pods-Nyxo AppClip.debug.xcconfig */,
+				BE506772AB3008ACEB0AAB30 /* Pods-Nyxo AppClip.release.xcconfig */,
+				FFDF868AA8B8AE369A8BFF07 /* Pods-Nyxo-Nyxo AppClip.debug.xcconfig */,
+				2274C79D9A804D5DEAADAA57 /* Pods-Nyxo-Nyxo AppClip.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -629,15 +698,38 @@
 				5B6E854A21406B9A0013E7B5 /* Embed Watch Content */,
 				6C3BA05A2308A4078CE786D2 /* [CP] Copy Pods Resources */,
 				2D37A87543474FAB8DD0A526 /* Upload Debug Symbols to Sentry */,
+				5BDD8ADC2583AF91008C8BA8 /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5BDD8ADA2583AF91008C8BA8 /* PBXTargetDependency */,
 			);
 			name = Nyxo;
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* Nyxo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		5BDD8AC12583AF8F008C8BA8 /* Nyxo AppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BDD8ADF2583AF91008C8BA8 /* Build configuration list for PBXNativeTarget "Nyxo AppClip" */;
+			buildPhases = (
+				AB50A826535B60A19EFA2195 /* [CP] Check Pods Manifest.lock */,
+				5B307E6E2584EEE500003FA6 /* Start RN packager */,
+				5BDD8ABE2583AF8F008C8BA8 /* Sources */,
+				5BDD8ABF2583AF8F008C8BA8 /* Frameworks */,
+				5BDD8AC02583AF8F008C8BA8 /* Resources */,
+				5B307E6F2584EF4600003FA6 /* Bundle React Native code and images */,
+				BAA56CFFC5F06ACD9FCA03CB /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Nyxo AppClip";
+			productName = "Nyxo AppClip";
+			productReference = 5BDD8AC22583AF8F008C8BA8 /* Nyxo AppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -674,6 +766,12 @@
 							};
 						};
 					};
+					5BDD8AC12583AF8F008C8BA8 = {
+						CreatedOnToolsVersion = 12.2;
+						DevelopmentTeam = RPKZ2YP3VZ;
+						LastSwiftMigration = 1220;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Nyxo" */;
@@ -698,6 +796,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* Nyxo */,
 				00E356ED1AD99517003FC87E /* NyxoTests */,
+				5BDD8AC12583AF8F008C8BA8 /* Nyxo AppClip */,
 			);
 		};
 /* End PBXProject section */
@@ -733,33 +832,30 @@
 			files = (
 				5B76E78C2580DB2600D2E4B2 /* StoreKitTestCertificate.cer in Resources */,
 				5B96275D24F16D3B00C7FFDF /* Images.xcassets in Resources */,
-				5BD58B9822D71D7600D1CD2D /* Montserrat-LightItalic.ttf in Resources */,
-				5BD58B9922D71D7600D1CD2D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
-				5B82C8E62574206B00D21B1E /* App.png in Resources */,
-				5BD58B9A22D71D7600D1CD2D /* Montserrat-SemiBoldItalic.ttf in Resources */,
-				5BD58B9B22D71D7600D1CD2D /* Montserrat-Black.ttf in Resources */,
-				5BD58B9C22D71D7600D1CD2D /* Montserrat-Italic.ttf in Resources */,
-				5BD58B9D22D71D7600D1CD2D /* Montserrat-ThinItalic.ttf in Resources */,
 				5BD58B9E22D71D7600D1CD2D /* Montserrat-Medium.ttf in Resources */,
 				5B96275F24F16E4C00C7FFDF /* LaunchScreen.storyboard in Resources */,
 				5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */,
 				5BD58B9F22D71D7600D1CD2D /* Montserrat-Regular.ttf in Resources */,
-				5BD58BA022D71D7600D1CD2D /* Montserrat-MediumItalic.ttf in Resources */,
-				5BD58BA122D71D7600D1CD2D /* Montserrat-ExtraLightItalic.ttf in Resources */,
 				5B40961F242BAE0000169B4C /* GoogleService-Info.plist in Resources */,
-				5BD58BA222D71D7600D1CD2D /* Montserrat-BoldItalic.ttf in Resources */,
 				5BD58BA322D71D7600D1CD2D /* Montserrat-SemiBold.ttf in Resources */,
 				5B2D63A824FC1942002E853B /* AppCenter-Config.plist in Resources */,
-				5BD58BA422D71D7600D1CD2D /* Montserrat-BlackItalic.ttf in Resources */,
-				5BD58BA522D71D7600D1CD2D /* Montserrat-ExtraLight.ttf in Resources */,
-				5BD58BA622D71D7600D1CD2D /* Montserrat-ExtraBold.ttf in Resources */,
 				5B76E78A2580D97300D2E4B2 /* Configuration.storekit in Resources */,
-				5BD58BA722D71D7600D1CD2D /* Montserrat-Light.ttf in Resources */,
-				5BD58BA822D71D7600D1CD2D /* Montserrat-Thin.ttf in Resources */,
 				5BD58BA922D71D7600D1CD2D /* Montserrat-Bold.ttf in Resources */,
 				5BA0F90621E2411B00D3D56E /* main.jsbundle in Resources */,
 				5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */,
-				5B82C8E42574205400D21B1E /* App.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BDD8AC02583AF8F008C8BA8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B6CB03025853E6600A75570 /* Montserrat-Bold.ttf in Resources */,
+				5B6CB03125853E6600A75570 /* Domine-Regular.ttf in Resources */,
+				5B6CB03225853E6600A75570 /* Montserrat-Medium.ttf in Resources */,
+				5BDD8AD42583AF91008C8BA8 /* LaunchScreen.storyboard in Resources */,
+				5BDD8AD12583AF91008C8BA8 /* Assets.xcassets in Resources */,
+				5BDD8ACF2583AF8F008C8BA8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +889,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
+		};
+		5B307E6E2584EEE500003FA6 /* Start RN packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start RN packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+		};
+		5B307E6F2584EF4600003FA6 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh indexclip.js\n\n";
 		};
 		5BBCCCD22472B0940047CD86 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -831,6 +963,46 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB50A826535B60A19EFA2195 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nyxo AppClip-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAA56CFFC5F06ACD9FCA03CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nyxo AppClip/Pods-Nyxo AppClip-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo AppClip/Pods-Nyxo AppClip-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BF842D7B9E4CC79A1B9C718D /* [CP] Check Pods Manifest.lock */ = {
@@ -875,6 +1047,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BDD8ABE2583AF8F008C8BA8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BDD8ACC2583AF8F008C8BA8 /* ViewController.m in Sources */,
+				5BDD8AC62583AF8F008C8BA8 /* AppDelegate.m in Sources */,
+				5B307E072584E1DF00003FA6 /* Fix.swift in Sources */,
+				5BDD8AD72583AF91008C8BA8 /* main.m in Sources */,
+				5BDD8AC92583AF8F008C8BA8 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -882,6 +1066,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* Nyxo */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		5BDD8ADA2583AF91008C8BA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BDD8AC12583AF8F008C8BA8 /* Nyxo AppClip */;
+			targetProxy = 5BDD8AD92583AF91008C8BA8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -902,6 +1091,22 @@
 				5B48388521FA22EE003855DF /* fi */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		5BDD8ACD2583AF8F008C8BA8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BDD8ACE2583AF8F008C8BA8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5BDD8AD22583AF91008C8BA8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BDD8AD32583AF91008C8BA8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1006,6 +1211,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
 				CLANG_ENABLE_MODULES = YES;
@@ -1013,7 +1219,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 67;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
@@ -1030,7 +1236,7 @@
 				INFOPLIST_FILE = Nyxo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.4;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-DFB_SONARKIT_ENABLED=1",
@@ -1055,13 +1261,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1077,7 +1284,7 @@
 				INFOPLIST_FILE = Nyxo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.4;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-DFB_SONARKIT_ENABLED=1",
@@ -1095,6 +1302,80 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		5BDD8ADD2583AF91008C8BA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7E477CA74F197FF3FACDF5D /* Pods-Nyxo AppClip.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Nyxo AppClip/Nyxo_AppClip.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 67;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Nyxo AppClip/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.5.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Nyxo AppClip/Nyxo AppClip-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		5BDD8ADE2583AF91008C8BA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE506772AB3008ACEB0AAB30 /* Pods-Nyxo AppClip.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Nyxo AppClip/Nyxo_AppClip.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 67;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Nyxo AppClip/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.5.4;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Nyxo Clip AppStore";
+				SWIFT_OBJC_BRIDGING_HEADER = "Nyxo AppClip/Nyxo AppClip-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1219,6 +1500,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BDD8ADF2583AF91008C8BA8 /* Build configuration list for PBXNativeTarget "Nyxo AppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BDD8ADD2583AF91008C8BA8 /* Debug */,
+				5BDD8ADE2583AF91008C8BA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
