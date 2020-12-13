@@ -43,13 +43,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = Nyxo;
-		};
 		5BB5735C21DE4024008895BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BB5733A21DE4024008895BB /* RNDeviceInfo.xcodeproj */;
@@ -99,14 +92,15 @@
 
 /* Begin PBXFileReference section */
 		00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo.release.xcconfig"; path = "Target Support Files/Pods-Nyxo/Pods-Nyxo.release.xcconfig"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* NyxoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NyxoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Nyxo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nyxo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo Dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2274C79D9A804D5DEAADAA57 /* Pods-Nyxo-Nyxo AppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo-Nyxo AppClip.release.xcconfig"; path = "Target Support Files/Pods-Nyxo-Nyxo AppClip/Pods-Nyxo-Nyxo AppClip.release.xcconfig"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		34000CEDB687C95D82BCFAA7 /* libPods-Nyxo-NyxoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo-NyxoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4F61ADB20DA8429D927A20BC /* FontAwesome5_Pro_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Solid.ttf; path = ../assets/fonts/FontAwesome5_Pro_Solid.ttf; sourceTree = "<group>"; };
+		500A6AF9E1371113B0943E1F /* Pods-Nyxo-NyxoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo-NyxoTests.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo-NyxoTests/Pods-Nyxo-NyxoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Domine-Bold.ttf"; path = "../assets/fonts/Domine-Bold.ttf"; sourceTree = "<group>"; };
 		5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Domine-Regular.ttf"; path = "../assets/fonts/Domine-Regular.ttf"; sourceTree = "<group>"; };
 		5B20692C224E434B00257043 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -116,8 +110,6 @@
 		5B307E052584E1DF00003FA6 /* Nyxo AppClip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyxo AppClip-Bridging-Header.h"; sourceTree = "<group>"; };
 		5B307E062584E1DF00003FA6 /* Fix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fix.swift; sourceTree = "<group>"; };
 		5B3312FB21DFB5B700698A4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
-		5B3312FE21DFB5B800698A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.old.xib; sourceTree = "<group>"; };
-		5B33130021DFB5B800698A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5B33130121DFB5B800698A4A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Nyxo/AppDelegate.m; sourceTree = "<group>"; };
 		5B33130221DFB5B800698A4A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Nyxo/main.m; sourceTree = "<group>"; };
 		5B33130321DFB5B800698A4A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Nyxo/Info.plist; sourceTree = "<group>"; };
@@ -151,8 +143,6 @@
 		5B37A98A22CE1A4900820944 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		5B37A98B22CE1A4A00820944 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		5B40961E242BAE0000169B4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5B48388421FA22EE003855DF /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = ../fi.lproj/LaunchScreen.old.strings; sourceTree = "<group>"; };
-		5B48388521FA22EE003855DF /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = ../fi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B50DCC2221882830036DFDD /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
 		5B50DCC3221882830036DFDD /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenter.framework"; sourceTree = "<group>"; };
 		5B50DCC4221882830036DFDD /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "Vendor/AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
@@ -165,7 +155,6 @@
 		5B76E78B2580DB2600D2E4B2 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoreKitTestCertificate.cer; path = ../../../../Desktop/StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		5B82C8E32574205300D21B1E /* App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App.png; sourceTree = "<group>"; };
 		5B82C8E52574206B00D21B1E /* App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App.png; path = ../../../../Desktop/App.png; sourceTree = "<group>"; };
-		5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BA0F90521E2411B00D3D56E /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		5BA9115B22E1E2350098700A /* Nyxo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyxo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -245,6 +234,7 @@
 		BE506772AB3008ACEB0AAB30 /* Pods-Nyxo AppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo AppClip.release.xcconfig"; path = "Target Support Files/Pods-Nyxo AppClip/Pods-Nyxo AppClip.release.xcconfig"; sourceTree = "<group>"; };
 		C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.release.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.release.xcconfig"; sourceTree = "<group>"; };
 		D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D965ED849E6E5C26055A5520 /* Pods-Nyxo-NyxoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo-NyxoTests.release.xcconfig"; path = "Target Support Files/Pods-Nyxo-NyxoTests/Pods-Nyxo-NyxoTests.release.xcconfig"; sourceTree = "<group>"; };
 		E28D9DBBB35A494F8B7F80E4 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		E763E2F2E04548318B376785 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -255,13 +245,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,11 +287,9 @@
 			isa = PBXGroup;
 			children = (
 				5B82C8E52574206B00D21B1E /* App.png */,
-				5B8EDB59242B6F4800A3796F /* GoogleService-Info.plist */,
 				5B96275E24F16E4C00C7FFDF /* LaunchScreen.storyboard */,
 				5B33130421DFB5B800698A4A /* AppDelegate.h */,
 				5B33130121DFB5B800698A4A /* AppDelegate.m */,
-				5B3312FC21DFB5B800698A4A /* Base.lproj */,
 				5B3312FB21DFB5B700698A4A /* Images.xcassets */,
 				5B33130321DFB5B800698A4A /* Info.plist */,
 				5BA0F90521E2411B00D3D56E /* main.jsbundle */,
@@ -332,18 +313,9 @@
 				140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */,
 				D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */,
 				A599BE3421AC8400B6660D2D /* libPods-Nyxo AppClip.a */,
+				34000CEDB687C95D82BCFAA7 /* libPods-Nyxo-NyxoTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5B3312FC21DFB5B800698A4A /* Base.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				5B3312FD21DFB5B800698A4A /* LaunchScreen.old.xib */,
-				5B3312FF21DFB5B800698A4A /* LaunchScreen.xib */,
-			);
-			name = Base.lproj;
-			path = Nyxo/Base.lproj;
 			sourceTree = "<group>";
 		};
 		5B50DCC1221882130036DFDD /* Vendor */ = {
@@ -596,7 +568,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* Nyxo.app */,
-				00E356EE1AD99517003FC87E /* NyxoTests.xctest */,
 				5BDD8AC22583AF8F008C8BA8 /* Nyxo AppClip.app */,
 			);
 			name = Products;
@@ -660,6 +631,8 @@
 				BE506772AB3008ACEB0AAB30 /* Pods-Nyxo AppClip.release.xcconfig */,
 				FFDF868AA8B8AE369A8BFF07 /* Pods-Nyxo-Nyxo AppClip.debug.xcconfig */,
 				2274C79D9A804D5DEAADAA57 /* Pods-Nyxo-Nyxo AppClip.release.xcconfig */,
+				500A6AF9E1371113B0943E1F /* Pods-Nyxo-NyxoTests.debug.xcconfig */,
+				D965ED849E6E5C26055A5520 /* Pods-Nyxo-NyxoTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -667,24 +640,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* NyxoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NyxoTests" */;
-			buildPhases = (
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = NyxoTests;
-			productName = NyxoTests;
-			productReference = 00E356EE1AD99517003FC87E /* NyxoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* Nyxo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Nyxo" */;
@@ -742,11 +697,6 @@
 				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = RPKZ2YP3VZ;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = RPKZ2YP3VZ;
 						LastSwiftMigration = 1020;
@@ -795,7 +745,6 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* Nyxo */,
-				00E356ED1AD99517003FC87E /* NyxoTests */,
 				5BDD8AC12583AF8F008C8BA8 /* Nyxo AppClip */,
 			);
 		};
@@ -819,13 +768,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1030,13 +972,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1062,11 +997,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Nyxo */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
 		5BDD8ADA2583AF91008C8BA8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5BDD8AC12583AF8F008C8BA8 /* Nyxo AppClip */;
@@ -1075,24 +1005,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5B3312FD21DFB5B800698A4A /* LaunchScreen.old.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5B3312FE21DFB5B800698A4A /* Base */,
-				5B48388421FA22EE003855DF /* fi */,
-			);
-			name = LaunchScreen.old.xib;
-			sourceTree = "<group>";
-		};
-		5B3312FF21DFB5B800698A4A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5B33130021DFB5B800698A4A /* Base */,
-				5B48388521FA22EE003855DF /* fi */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 		5BDD8ACD2583AF8F008C8BA8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1112,101 +1024,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/rn-apple-healthkit/RCTAppleHealthKit",
-					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
-					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
-					"$(SRCROOT)/../node_modules/react-native-haptic-feedback/ios",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
-					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
-					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
-					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
-					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
-					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-screens/ios",
-				);
-				INFOPLIST_FILE = NyxoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-DFB_SONARKIT_ENABLED=1",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nyxo.app/Nyxo";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/rn-apple-healthkit/RCTAppleHealthKit",
-					"$(SRCROOT)/../node_modules/react-native-version-number/ios",
-					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
-					"$(SRCROOT)/../node_modules/react-native-haptic-feedback/ios",
-					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
-					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
-					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
-					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
-					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
-					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
-					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-screens/ios",
-				);
-				INFOPLIST_FILE = NyxoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-DFB_SONARKIT_ENABLED=1",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d1d3a31a-831f-44c7-be9d-541c01656f20";
-				PROVISIONING_PROFILE_SPECIFIER = "app.sleepcircle.application AppStore";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nyxo.app/Nyxo";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */;
@@ -1486,15 +1303,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NyxoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Nyxo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

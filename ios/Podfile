@@ -14,6 +14,13 @@ target 'Nyxo' do
 	pod 'Intercom'
   use_unimodules!(exclude: ['expo-face-detector'])
 	use_flipper!
+
+
+	target 'NyxoTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
 	config = use_native_modules!
 	use_react_native!(:path => config["reactNativePath"]) 
 end 
