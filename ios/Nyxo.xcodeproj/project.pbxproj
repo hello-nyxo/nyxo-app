@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22B8A8120C3EE7E20FF5A14C /* libPods-Nyxo-NyxoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F37F7BD8C461EFA46AF9CEF /* libPods-Nyxo-NyxoTests.a */; };
 		5B090C42235912AC00FD7E9B /* Domine-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C40235912AC00FD7E9B /* Domine-Bold.ttf */; };
 		5B090C43235912AC00FD7E9B /* Domine-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B090C41235912AC00FD7E9B /* Domine-Regular.ttf */; };
 		5B20692D224E434B00257043 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B20692C224E434B00257043 /* StoreKit.framework */; };
@@ -203,8 +204,11 @@
 		5BD58B9722D71D7600D1CD2D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		5BF9811C22D2052900509ED1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Nyxo/Images.xcassets; sourceTree = "<group>"; };
 		6CF46B6888304B68952AC827 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Dosis-Medium.ttf"; path = "../assets/fonts/Dosis-Medium.ttf"; sourceTree = "<group>"; };
+		6F37F7BD8C461EFA46AF9CEF /* libPods-Nyxo-NyxoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nyxo-NyxoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		796FDDB5089B4D6FBFF9AF7D /* FontAwesome5_Pro_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Brands.ttf; path = ../assets/fonts/FontAwesome5_Pro_Brands.ttf; sourceTree = "<group>"; };
+		80411D972162770C522FABBE /* Pods-Nyxo-NyxoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo-NyxoTests.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo-NyxoTests/Pods-Nyxo-NyxoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8299F6F8C97B11A56957F31C /* Pods-Nyxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo/Pods-Nyxo.debug.xcconfig"; sourceTree = "<group>"; };
+		99D42BB6F4AA4C3977C7C75A /* Pods-Nyxo-NyxoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo-NyxoTests.release.xcconfig"; path = "Target Support Files/Pods-Nyxo-NyxoTests/Pods-Nyxo-NyxoTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyxo Dev.debug.xcconfig"; path = "Target Support Files/Pods-Nyxo Dev/Pods-Nyxo Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		B959F1EA20BD3D8E00AC734C /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dosis-Bold.ttf"; path = "../assets/fonts/Dosis-Bold.ttf"; sourceTree = "<group>"; };
 		B959F21820BD455C00AC734C /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-regular-400.ttf"; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B8A8120C3EE7E20FF5A14C /* libPods-Nyxo-NyxoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +295,7 @@
 				4BAC1FA2BBE14987AE9C5E6D /* libz.tbd */,
 				140C71F65113D98617CEF82C /* libPods-Nyxo Dev.a */,
 				D04B9EF8AD80B7D939618D93 /* libPods-Nyxo.a */,
+				6F37F7BD8C461EFA46AF9CEF /* libPods-Nyxo-NyxoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -591,6 +597,8 @@
 				00814AB27B8A4287577099B1 /* Pods-Nyxo.release.xcconfig */,
 				9F67C385EC2C483E6892E5F9 /* Pods-Nyxo Dev.debug.xcconfig */,
 				C5FD1B15D7409AEE375B867C /* Pods-Nyxo Dev.release.xcconfig */,
+				80411D972162770C522FABBE /* Pods-Nyxo-NyxoTests.debug.xcconfig */,
+				99D42BB6F4AA4C3977C7C75A /* Pods-Nyxo-NyxoTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -602,9 +610,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NyxoTests" */;
 			buildPhases = (
+				01EB1F44F31A00B9FE360639 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				035AC62F4491730AD465FF17 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -780,6 +790,50 @@
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nexport NODE_BINARY=NODE\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
+		01EB1F44F31A00B9FE360639 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nyxo-NyxoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		035AC62F4491730AD465FF17 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nyxo-NyxoTests/Pods-Nyxo-NyxoTests-resources.sh",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/Intercom.bundle",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/IntercomTranslations.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Intercom.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IntercomTranslations.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo-NyxoTests/Pods-Nyxo-NyxoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D37A87543474FAB8DD0A526 /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -909,6 +963,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80411D972162770C522FABBE /* Pods-Nyxo-NyxoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -957,6 +1012,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99D42BB6F4AA4C3977C7C75A /* Pods-Nyxo-NyxoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

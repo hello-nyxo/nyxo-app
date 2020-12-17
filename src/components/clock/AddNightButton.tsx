@@ -1,17 +1,41 @@
-import React, { FC } from 'react'
-import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
-import { useDispatch } from 'react-redux'
+import React, { FC, useEffect, useRef } from 'react'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { IconBold } from '@components/iconRegular'
+import { Animated } from 'react-native'
 
-const AddNightButton: FC = () => {
-  const dispatch = useDispatch()
-  const onPress = () => {
-    dispatch(toggleEditMode())
-  }
+type Props = {
+  hide: boolean
+  onPress: () => void
+}
+
+const AddNightButton: FC<Props> = ({ hide, onPress }) => {
+  const animationValue = useRef(new Animated.Value(0)).current
+
+  useEffect(() => {
+    if (hide) {
+      animationValue.setValue(1)
+      Animated.timing(animationValue, {
+        toValue: 0,
+        duration: 150,
+        useNativeDriver: true
+      }).start()
+    } else {
+      animationValue.setValue(0)
+      Animated.timing(animationValue, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: true
+      }).start()
+    }
+  }, [hide])
+
   return (
-    <Container>
+    <Container
+      style={{
+        opacity: animationValue,
+        transform: [{ scale: animationValue }]
+      }}>
       <Touchable onPress={onPress}>
         <IconBold
           width={20}
@@ -26,7 +50,7 @@ const AddNightButton: FC = () => {
 
 export default AddNightButton
 
-const Container = styled.View`
+const Container = styled(Animated.View)`
   position: absolute;
   bottom: 25px;
   left: 35px;

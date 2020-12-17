@@ -1,17 +1,40 @@
-import { toggleExplanationsModal } from '@actions/modal/modal-actions'
-import React, { memo } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { FC, memo, useEffect, useRef } from 'react'
 import styled from 'styled-components/native'
-import colors from '../../styles/colors'
+import colors from '@styles/colors'
+import { Animated } from 'react-native'
 import { IconBold } from '../iconRegular'
 
-const InfoButton = () => {
-  const dispatch = useDispatch()
-  const onPress = () => {
-    dispatch(toggleExplanationsModal(true))
-  }
+type Props = {
+  hide: boolean
+  onPress: () => void
+}
+
+const InfoButton: FC<Props> = ({ hide, onPress }) => {
+  const animationValue = useRef(new Animated.Value(0)).current
+  useEffect(() => {
+    if (hide) {
+      animationValue.setValue(1)
+      Animated.timing(animationValue, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: true
+      }).start()
+    } else {
+      animationValue.setValue(0)
+      Animated.timing(animationValue, {
+        toValue: 1,
+        duration: 250,
+        useNativeDriver: true
+      }).start()
+    }
+  }, [hide])
+
   return (
-    <Container>
+    <Container
+      style={{
+        opacity: animationValue,
+        transform: [{ scale: animationValue }]
+      }}>
       <Touchable onPress={onPress}>
         <IconBold
           width={20}
@@ -26,7 +49,7 @@ const InfoButton = () => {
 
 export default memo(InfoButton)
 
-const Container = styled.View`
+const Container = styled(Animated.View)`
   position: absolute;
   bottom: 25px;
   right: 35px;

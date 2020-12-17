@@ -10,7 +10,6 @@ import {
   roundAngleToFives
 } from '@helpers/time'
 import styled from 'styled-components/native'
-import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 import { icons } from '../../../assets/svgs'
 import colors from '../../styles/colors'
 import CircularSlider from './CircularSlider'
@@ -42,8 +41,6 @@ const Bedtime: FC<Props> = ({ clockSize }) => {
       startAngle,
       (startAngle + angleLength) % (2 * Math.PI)
     )
-
-    ReactNativeHapticFeedback.trigger('impactLight')
 
     dispatch(setValues(bedtime, waketime))
   }
@@ -113,7 +110,7 @@ const TimeContainer = styled.View`
 
 const BedTimeText = styled.Text`
   color: ${colors.darkBlue};
-  font-size: 17px;
+  font-size: 15px;
   font-family: ${({ theme }) => theme.FONT_BOLD};
 `
 const TimeHeader = styled.View`

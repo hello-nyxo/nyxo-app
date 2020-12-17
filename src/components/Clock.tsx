@@ -8,7 +8,15 @@ import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { Value } from '@typings/Sleepdata'
-import colors from '../styles/colors'
+import colors from '@styles/colors'
+import { toggleExplanationsModal } from '@actions/modal/modal-actions'
+import { timing, useValue, useClock } from 'react-native-redash/lib/module/v1'
+import Animated, {
+  set,
+  useCode,
+  cond,
+  stopClock
+} from 'react-native-reanimated'
 import AddNightButton from './clock/AddNightButton'
 import ClockTimes from './clock/ClockTimes'
 import FallAsleepWindow from './clock/FallAsleepWindow'
@@ -44,13 +52,39 @@ const Clock: FC = () => {
   const date = useSelector(getSelectedDate)
   const editMode = useSelector(getEditMode)
   const dispatch = useDispatch()
+  const hide = editMode
+
+  const value = useValue<number>(1)
+  const clock = useClock()
+  const height = value.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 50]
+  })
+  useCode(
+    () => [
+      set(
+        value,
+        cond(
+          hide,
+          timing({ from: value, to: 1, duration: 200, clock }),
+          timing({ from: value, to: 0, duration: 200, clock })
+        )
+      )
+    ],
+    [editMode]
+  )
 
   const toggleEditNightMode = () => {
+    stopClock(clock)
     dispatch(toggleEditMode())
   }
 
+  const toggleInfo = () => {
+    dispatch(toggleExplanationsModal(true))
+  }
+
   return (
-    <Card>
+    <Card style={{ paddingBottom: height }}>
       <Title>STAT.TITLE</Title>
       <Legend>
         <LegendItem>
@@ -127,8 +161,8 @@ const Clock: FC = () => {
             date={date}
           />
         )}
-        <AddNightButton />
-        <InfoButton />
+        <AddNightButton onPress={toggleEditNightMode} hide={hide} />
+        <InfoButton onPress={toggleInfo} hide={hide} />
       </ClockContainer>
     </Card>
   )
@@ -136,7 +170,7 @@ const Clock: FC = () => {
 
 export default memo(Clock)
 
-const Card = styled.View`
+const Card = styled(Animated.View)`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: ${({ theme }) => theme.SHADOW};
   border-radius: 7px;
