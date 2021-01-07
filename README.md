@@ -17,6 +17,10 @@
 <br><br>
 </p>
 
+- [Public beta for iOS](https://testflight.apple.com/join/jhNZ8CC7)
+- [Public beta for Android](https://play.google.com/apps/testing/fi.nyxo.app)
+
+
 ## What is Nyxo App
 Nyxo is a mobile application for improving your sleep. Its built with React Native, AWS Amplify, styled-components, and Redux. Nyxo provides the following features:
 - Sleep tracking, with support for multiple different trackers
