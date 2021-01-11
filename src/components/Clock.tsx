@@ -1,22 +1,22 @@
 import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
+import { toggleExplanationsModal } from '@actions/modal/modal-actions'
 import useSleep from '@hooks/useSleep'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
+import colors from '@styles/colors'
+import { Value } from '@typings/Sleepdata'
 import React, { FC, memo } from 'react'
 import { Dimensions } from 'react-native'
+import Animated, {
+  cond,
+  set,
+  stopClock,
+  useCode
+} from 'react-native-reanimated'
+import { timing, useClock, useValue } from 'react-native-redash/lib/module/v1'
 import Svg from 'react-native-svg'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { Value } from '@typings/Sleepdata'
-import colors from '@styles/colors'
-import { toggleExplanationsModal } from '@actions/modal/modal-actions'
-import { timing, useValue, useClock } from 'react-native-redash/lib/module/v1'
-import Animated, {
-  set,
-  useCode,
-  cond,
-  stopClock
-} from 'react-native-reanimated'
 import AddNightButton from './clock/AddNightButton'
 import ClockTimes from './clock/ClockTimes'
 import FallAsleepWindow from './clock/FallAsleepWindow'
@@ -58,16 +58,26 @@ const Clock: FC = () => {
   const clock = useClock()
   const height = value.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 50]
+    outputRange: [0, 20]
   })
+  const opacity = value.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1]
+  })
+
+  const scale = value.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.9, 1]
+  })
+
   useCode(
     () => [
       set(
         value,
         cond(
-          hide,
-          timing({ from: value, to: 1, duration: 200, clock }),
-          timing({ from: value, to: 0, duration: 200, clock })
+          editMode,
+          timing({ from: value, to: 1, duration: 350, clock }),
+          timing({ from: value, to: 0, duration: 350, clock })
         )
       )
     ],
@@ -164,6 +174,14 @@ const Clock: FC = () => {
         <AddNightButton onPress={toggleEditNightMode} hide={hide} />
         <InfoButton onPress={toggleInfo} hide={hide} />
       </ClockContainer>
+      <InstructionsContainer style={{ opacity, transform: [{ scale }] }}>
+        {editMode ? (
+          <Instructions>
+            Hello, here are instruction on how to use this feature. Select night
+            duration by dragging the handles
+          </Instructions>
+        ) : null}
+      </InstructionsContainer>
     </Card>
   )
 }
@@ -229,4 +247,17 @@ const LegendText = styled(TranslatedText)`
   width: 45px;
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
+`
+
+const InstructionsContainer = styled(Animated.View)`
+  padding: 0px 16px;
+  align-items: center;
+  justify-content: center;
+`
+
+const Instructions = styled(Animated.Text)`
+  text-align: center;
+  font-size: 13px;
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
