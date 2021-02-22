@@ -3,11 +3,12 @@ import { getReadingTime } from '@helpers/reading-time'
 import { useNavigation } from '@react-navigation/core'
 import { CombinedLesson } from '@selectors/coaching-selectors/coaching-selectors'
 import ROUTE from '@config/routes/Routes'
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import FastImage from 'react-native-fast-image'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
+import { WeekScreenNavigationProp } from '@screens/coaching/WeekScreen'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
@@ -19,13 +20,16 @@ type Props = {
 
 const LessonListItem: FC<Props> = ({ lesson, locked }) => {
   const dispatch = useDispatch()
-  const { navigate } = useNavigation()
+  const { navigate } = useNavigation<WeekScreenNavigationProp>()
   const time = getReadingTime(lesson.lessonContent)
 
   const handlePress = () => {
-    if (!locked) {
+    if (locked) {
       dispatch(selectLesson(lesson.slug))
-      navigate(ROUTE.LESSON, {})
+      navigate(ROUTE.LESSON, {
+        slug: lesson.slug,
+        id: lesson.contentId
+      })
     }
   }
 
@@ -80,7 +84,7 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
   )
 }
 
-export default memo(LessonListItem)
+export default LessonListItem
 
 const StyledIcon = styled(IconBold).attrs(({ theme }) => ({
   fill: theme.SECONDARY_TEXT_COLOR

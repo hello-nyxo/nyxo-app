@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import { Period } from '@typings/state/Periods'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'

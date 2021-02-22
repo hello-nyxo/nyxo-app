@@ -1,14 +1,14 @@
+import { MemoVoidIterator } from 'lodash'
 import React from 'react'
 import styled from 'styled-components/native'
-import { StyleProps } from '@styles/themes'
 import { PrimaryButton } from '../Buttons/PrimaryButton'
 import { H3, P } from '../Primitives/Primitives'
 
 interface Props {
-  refresh: Function
+  refresh: () => MemoVoidIterator
 }
 
-const RefreshCoaching = (props: Props) => {
+const RefreshCoaching: FC<Props> = (props) => {
   const refresh = () => {
     props.refresh()
   }

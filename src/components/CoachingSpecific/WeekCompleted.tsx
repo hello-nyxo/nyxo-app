@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getSelectedWeekCompleted } from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import TranslatedText from '../TranslatedText'
 
 const WeekCompleted = () => {

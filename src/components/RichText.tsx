@@ -7,7 +7,7 @@ import {
   MARKS
 } from '@contentful/rich-text-types'
 import { WIDTH } from '@helpers/Dimensions'
-import React, { ReactNode, useLayoutEffect, useState } from 'react'
+import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { Image, Linking } from 'react-native'
 import styled from 'styled-components/native'
 import colors from '../styles/colors'
@@ -19,6 +19,7 @@ const HyperLink = ({ href, children }: { href: string; children: string }) => {
     Linking.openURL(href)
   }
 
+  // eslint-disable-next-line jsx-a11y/anchor-is-valid
   return <Link onPress={onPress}>{children}</Link>
 }
 
@@ -30,48 +31,36 @@ const options = {
     [MARKS.CODE]: (text: string) => <Code>{text}</Code>
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node: ReactNode, children: string) => (
+    [BLOCKS.PARAGRAPH]: (_: ReactNode, children: string) => (
       <Paragraph>{children}</Paragraph>
     ),
-    [BLOCKS.UL_LIST]: (node: ReactNode, children: string) => {
-      return <List node={node}>{children}</List>
-    },
-    [BLOCKS.OL_LIST]: (node: ReactNode, children: string) => {
-      return <List node={node}>{children}</List>
-    },
+    [BLOCKS.UL_LIST]: (node: ReactNode, children: string) => (
+      <List node={node}>{children}</List>
+    ),
+    [BLOCKS.OL_LIST]: (node: ReactNode, children: string) => (
+      <List node={node}>{children}</List>
+    ),
     [BLOCKS.EMBEDDED_ASSET]: (node: ReactNode, children: string) => (
       <ImageBlock type="" node={node as Inline}>
         {children}
       </ImageBlock>
     ),
-    [BLOCKS.HR]: (node: ReactNode, children: string) => <Line />,
-    [BLOCKS.LIST_ITEM]: (node: ReactNode, children: string) => (
+    [BLOCKS.HR]: (_: ReactNode) => <Line />,
+    [BLOCKS.LIST_ITEM]: (_: ReactNode, children: string) => (
       <ListItemText>{children}</ListItemText>
     ),
-    [BLOCKS.HEADING_1]: (node: ReactNode, children: string) => (
-      <H1>{children}</H1>
-    ),
-    [BLOCKS.HEADING_2]: (node: ReactNode, children: string) => (
-      <H2>{children}</H2>
-    ),
-    [BLOCKS.HEADING_3]: (node: ReactNode, children: string) => (
-      <H3>{children}</H3>
-    ),
-    [BLOCKS.HEADING_4]: (node: ReactNode, children: string) => (
-      <H4>{children}</H4>
-    ),
-    [BLOCKS.HEADING_5]: (node: ReactNode, children: string) => (
-      <H5>{children}</H5>
-    ),
-    [BLOCKS.HEADING_6]: (node: ReactNode, children: string) => (
-      <H6>{children}</H6>
-    ),
-    [BLOCKS.QUOTE]: (node: ReactNode, children: string) => (
+    [BLOCKS.HEADING_1]: (_: ReactNode, children: string) => <H1>{children}</H1>,
+    [BLOCKS.HEADING_2]: (_: ReactNode, children: string) => <H2>{children}</H2>,
+    [BLOCKS.HEADING_3]: (_: ReactNode, children: string) => <H3>{children}</H3>,
+    [BLOCKS.HEADING_4]: (_: ReactNode, children: string) => <H4>{children}</H4>,
+    [BLOCKS.HEADING_5]: (_: ReactNode, children: string) => <H5>{children}</H5>,
+    [BLOCKS.HEADING_6]: (_: ReactNode, children: string) => <H6>{children}</H6>,
+    [BLOCKS.QUOTE]: (_: ReactNode, children: string) => (
       <BlockQuote>{children}</BlockQuote>
     ),
-    [INLINES.HYPERLINK]: (node: ReactNode, children: string) => {
-      return <HyperLink href={node?.data?.uri}>{children}</HyperLink>
-    },
+    [INLINES.HYPERLINK]: (node: ReactNode, children: string) => (
+      <HyperLink href={node?.data?.uri}>{children}</HyperLink>
+    ),
     [INLINES.EMBEDDED_ENTRY]: (node: ReactNode) =>
       defaultInline(INLINES.EMBEDDED_ENTRY, node as Inline)
   }
@@ -97,7 +86,7 @@ const getContentType = (
 }
 
 const defaultInline: (type: string, node: Inline) => ReactNode = (
-  type,
+  _,
   node: Inline
 ) => {
   const contentType = getContentType(node)
@@ -109,8 +98,7 @@ interface Props {
   content?: Document
 }
 
-const RichText = (props: Props) => {
-  const { content } = props
+const RichText: FC<Props> = ({ content }) => {
   if (!content) return null
   const components = documentToReactComponents(content, options)
 
@@ -212,9 +200,9 @@ const List = ({
   children: any
 }) => {
   const ordered = nodeType === 'ordered-list'
-  const mapped = children.map((child: any) => (
+  const mapped = children.map((child) => (
     <ListItemContainer ordered={ordered} key={child.key}>
-      {ordered ? <Number>{parseInt(child.key) + 1}.</Number> : <Dot />}
+      {ordered ? <Number>{parseInt(child.key, 10) + 1}.</Number> : <Dot />}
       <ListItemText>{child}</ListItemText>
     </ListItemContainer>
   ))
@@ -263,7 +251,7 @@ type ImageProps = {
   node: Inline
 }
 
-const ImageBlock = ({ type, node }: ImageProps): ReactNode => {
+const ImageBlock: FC<ImageProps> = ({ type, node }) => {
   const url = `https:${
     node.data.target.fields.file.url
   }?fm=jpg&fl=progressive&w=${WIDTH * 2}`
@@ -276,7 +264,7 @@ const ImageBlock = ({ type, node }: ImageProps): ReactNode => {
     Image.getSize(
       url,
       (width, height) => setDimensions({ width, height }),
-      () => {}
+      () => null
     )
   }, [])
 

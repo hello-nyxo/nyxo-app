@@ -12,35 +12,38 @@ import {
   useGetActiveCoaching,
   useUpdateCoaching
 } from '@hooks/coaching/useCoaching'
-import { getContentForSelectedLesson } from '@selectors/coaching-selectors/coaching-selectors'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
 import Animated from 'react-native-reanimated'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
+import { RootStackParamList } from '@typings/navigation/navigation'
+import { RouteProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import ROUTE from '@config/routes/Routes'
+import { useLesson } from '@hooks/coaching/useLesson'
 
 const yOffset = new Animated.Value(0)
 
-const LessonView: FC = () => {
+export type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.LESSON>
+export type WeekScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  ROUTE.LESSON
+>
+
+type Props = {
+  route: WeekScreenRouteProp
+  navigation: WeekScreenNavigationProp
+}
+
+const LessonView: FC<Props> = ({
+  route: {
+    params: { slug }
+  }
+}) => {
+  const { data: lessons, loading, error } = useLesson(slug)
   const { data } = useGetActiveCoaching()
   const [mutate, { isLoading: completeLoading }] = useUpdateCoaching()
-  const selectedLesson = useSelector(getContentForSelectedLesson)
-
-  if (!selectedLesson) {
-    return null
-  }
-
-  const {
-    tags,
-    cover = '',
-    slug,
-    exampleHabit,
-    lessonName = '',
-    additionalInformation,
-    lessonContent,
-    authorCards
-  } = selectedLesson
 
   const completed = data?.lessons?.find((l) => l === slug)
 
@@ -52,26 +55,32 @@ const LessonView: FC = () => {
       }
     })
   }
+  const lesson = lessons?.lessonCollection?.items[0]
 
   return (
     <>
-      <TopHeader yOffset={yOffset} title={lessonName} />
+      <TopHeader yOffset={yOffset} title={lesson?.lessonName} />
+      <LessonCover yOffset={yOffset} cover={lesson?.cover.url} />
+
       <ScrollView
         onScroll={Animated.event([
           { nativeEvent: { contentOffset: { y: yOffset } } }
         ])}
         scrollEventThrottle={16}>
-        <LessonCover yOffset={yOffset} cover={cover} />
-        <WeekViewHeader yOffset={yOffset} title={lessonName} />
-        <Authors authorCards={authorCards} />
-        <ReadingTime
-          content={lessonContent}
-          habitCount={exampleHabit?.length}
+        <WeekViewHeader
+          yOffset={yOffset}
+          loading={loading}
+          title={lesson?.lessonName}
         />
-        <Tags tags={tags} />
-        <LessonContent lessonContent={lessonContent} />
-        <ExampleHabitSection habits={exampleHabit} />
-        <ExtraInfo additionalInformation={additionalInformation} />
+        <Authors authorCards={lesson?.authorCardCollection?.items} />
+        <ReadingTime
+          content={lesson?.lessonContent?.json}
+          habitCount={lesson?.habitCollection?.items?.length}
+        />
+        <Tags tags={lesson?.keywords} />
+        <LessonContent lessonContent={lesson?.lessonContent?.json} />
+        <ExampleHabitSection habits={lesson?.habitCollection?.items} />
+        <ExtraInfo additionalInformation={lesson?.lessonContent?.json} />
         <Copyright />
       </ScrollView>
 
@@ -88,7 +97,7 @@ const LessonView: FC = () => {
   )
 }
 
-export default memo(LessonView)
+export default LessonView
 
 const ButtonContainer = styled.View`
   position: absolute;
@@ -108,5 +117,5 @@ const ScrollView = styled(Animated.ScrollView).attrs(() => ({
     flexGrow: 1
   }
 }))`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
 `

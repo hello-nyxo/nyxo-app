@@ -1,80 +1,95 @@
-import Copyright from '@components//CoachingSpecific/Copyright'
-import TopHeader from '@components//CoachingSpecific/TopHeader'
-import WeekCover from '@components//CoachingSpecific/Week.Cover'
-import WeekIntro from '@components//CoachingSpecific/WeekIntro'
-import WeekViewHeader from '@components//CoachingSpecific/WeekViewHeader'
 import NewHabitModal from '@components//modals/HabitModal/NewHabitModal'
 import { BGContainer, H2 } from '@components//Primitives/Primitives'
-import { CombinedWeek } from '@selectors/coaching-selectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import {
   useUpdateCoaching,
   useGetActiveCoaching
 } from '@hooks/coaching/useCoaching'
-import React, { memo } from 'react'
+import React, { FC } from 'react'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { WeekActions } from '@components/week/WeekActions'
-import BuyCoaching from '@components/CoachingSpecific/BuyCoachingButton'
 import { RouteProp } from '@react-navigation/core'
 import ROUTE from '@config/routes/Routes'
 import { RootStackParamList } from '@typings/navigation/navigation'
+import Copyright from '@components/CoachingSpecific/Copyright'
+import BuyCoaching from '@components/CoachingSpecific/BuyCoachingButton'
+import WeekIntro from '@components/CoachingSpecific/WeekIntro'
+import { WeekActions } from '@components/week/WeekActions'
+import WeekViewHeader from '@components/CoachingSpecific/WeekViewHeader'
+import TopHeader from '@components/CoachingSpecific/TopHeader'
+import WeekCover from '@components/CoachingSpecific/Week.Cover'
+import { useWeek } from '@hooks/coaching/useCoachingContent'
+import { StackNavigationProp } from '@react-navigation/stack'
 import Lessons from './Lessons'
 
 const yOffset = new Animated.Value(0)
 
-type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.WEEK>
+export type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.WEEK>
+export type WeekScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  ROUTE.WEEK
+>
 
-interface Props {
+type Props = {
   route: WeekScreenRouteProp
+  navigation: WeekScreenNavigationProp
 }
 
-const WeekView = ({ route }: Props) => {
-  const { week }: { week: CombinedWeek } = route.params
+const WeekView: FC<Props> = ({
+  route: {
+    params: { slug }
+  }
+}) => {
   const hasCoaching = useSelector(getActiveCoaching)
 
-  const [mutate, { isLoading, isSuccess }] = useUpdateCoaching()
+  /* Queries */
+  const { data: weeks, loading: contentLoading } = useWeek(slug)
   const { data } = useGetActiveCoaching()
+  const week = weeks?.coachingWeekCollection.items.find((w) => w.slug === slug)
+
+  /* Mutations */
+  const [mutate, { isLoading, isSuccess }] = useUpdateCoaching()
 
   const startWeek = () => {
     const startedWeek = {
-      slug: week.slug,
+      slug,
       started: new Date().toISOString()
     }
-    const weeks = data?.weeks?.filter((w) => w?.slug !== week.slug)
+    const coachingWeeks = data?.weeks?.filter((w) => w?.slug !== slug)
 
     mutate({
       coaching: {
-        id: data?.id,
-        activeWeek: week.slug,
-        weeks: [...(weeks ?? []), startedWeek]
+        id: `${data?.id}`,
+        activeWeek: slug,
+        weeks: [...(coachingWeeks ?? []), startedWeek]
       }
     })
   }
 
   const endWeek = () => {
     const completedWeek = {
-      slug: week.slug,
+      slug,
       started: new Date().toISOString(),
       ended: new Date().toISOString()
     }
-    const weeks = data?.weeks?.filter((w) => w?.slug !== week.slug)
+    const coachingWeeks = data?.weeks?.filter((w) => w?.slug !== slug)
     mutate({
       coaching: {
-        id: data?.id,
-        activeWeek: week.slug,
-        weeks: [...(weeks ?? []), completedWeek]
+        id: `${data?.id}`,
+        activeWeek: slug,
+        weeks: [...(coachingWeeks ?? []), completedWeek]
       }
     })
   }
 
-  const activeWeek = data?.weeks?.find((w) => w?.slug === week.slug)
+  const activeWeek = data?.weeks?.find((w) => w?.slug === slug)
 
   return (
     <BGContainer>
-      <WeekCover yOffset={yOffset} cover={week.coverPhoto} />
-      <TopHeader yOffset={yOffset} title={week.weekName} />
+      <WeekCover yOffset={yOffset} cover={week?.coverPhoto?.url ?? ''} />
+      <TopHeader yOffset={yOffset} title={week?.weekName ?? ''} />
+
       <Container>
         <Lessons
           onScroll={Animated.event([
@@ -83,12 +98,12 @@ const WeekView = ({ route }: Props) => {
           locked={!hasCoaching}
           header={
             <>
-              <WeekViewHeader title={week.weekName} yOffset={yOffset} />
+              <WeekViewHeader title={week?.weekName ?? ''} yOffset={yOffset} />
               {hasCoaching ? (
                 <WeekActions
                   started={activeWeek?.started}
                   ended={activeWeek?.ended}
-                  isCurrentlyActive={week.slug === activeWeek?.slug}
+                  isCurrentlyActive={slug === activeWeek?.slug}
                   endWeek={endWeek}
                   startWeek={startWeek}
                   isLoading={isLoading}
@@ -101,11 +116,13 @@ const WeekView = ({ route }: Props) => {
               )}
 
               <WeekIntro
-                intro={week.intro}
-                description={week.weekDescription}
-                habitCount={week.habitCount}
-                lessonCount={week.lessonCount}
+                loading={contentLoading}
+                intro={week?.intro ?? ''}
+                description={week?.weekDescription.json ?? undefined}
+                habitCount={week?.habitCount ?? 0}
+                lessonCount={0}
               />
+
               <TitleContainer>
                 <H2>WEEK.LESSONS</H2>
               </TitleContainer>
@@ -114,18 +131,20 @@ const WeekView = ({ route }: Props) => {
           footer={<Copyright />}
         />
       </Container>
+
       <NewHabitModal />
     </BGContainer>
   )
 }
 
-export default memo(WeekView)
+export default WeekView
 
 const Container = styled.View`
   margin-top: 30px;
 `
 const TitleContainer = styled.View`
   padding: 0px 20px;
+  flex: 1;
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `
 

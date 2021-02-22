@@ -1,4 +1,4 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 import CloudSettings from '@screens/settings/CloudSettings'
 import CoachingSettings from '@screens/settings/CoachingSettings'
 import GarminScreen from '@screens/settings/GarminScreen'

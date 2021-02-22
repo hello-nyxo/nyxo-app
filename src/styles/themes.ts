@@ -25,7 +25,10 @@ export const lightTheme: DefaultTheme = {
 
   FONT_REGULAR: 'Montserrat-Regular',
   FONT_MEDIUM: 'Montserrat-Medium',
-  FONT_BOLD: 'Montserrat-Bold'
+  FONT_BOLD: 'Montserrat-Bold',
+
+  primaryBoneColer: '#E1E9EE',
+  SecondaryBoneColor: '#F2F8FC'
 }
 
 export const darkTheme: DefaultTheme = {
@@ -46,7 +49,10 @@ export const darkTheme: DefaultTheme = {
 
   FONT_REGULAR: 'Montserrat-Regular',
   FONT_MEDIUM: 'Montserrat-Medium',
-  FONT_BOLD: 'Montserrat-Bold'
+  FONT_BOLD: 'Montserrat-Bold',
+
+  primaryBoneColer: '#121212',
+  SecondaryBoneColor: '#333333'
 }
 
 export const constants = {

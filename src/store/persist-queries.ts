@@ -1,5 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { queryCache } from 'react-query'
-import AsyncStorage from '@react-native-community/async-storage'
 
 const writeToStorage = async (
   queryKey: string,

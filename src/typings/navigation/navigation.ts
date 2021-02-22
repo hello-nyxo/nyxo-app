@@ -6,8 +6,8 @@ export type RootStackParamList = {
     [ROUTE.LOGIN]: undefined
     [ROUTE.REGISTER]: undefined
   }
-  [ROUTE.WEEK]: undefined
-  [ROUTE.LESSON]: undefined
+  [ROUTE.WEEK]: { slug: string; id: string }
+  [ROUTE.LESSON]: { slug: string; id: string }
   [ROUTE.TERVEYSTALO]: { code: string }
 }
 

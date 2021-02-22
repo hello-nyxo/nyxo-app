@@ -7,7 +7,6 @@ import {
   HEADER_MIN_HEIGHT,
   WIDTH
 } from '@helpers/Dimensions'
-import { StyleProps } from '@styles/themes'
 import AnimatedFastImage from '../AnimatedFastImage/AnimatedFastImage'
 
 type Props = {
@@ -40,7 +39,7 @@ const LessonCover: FC<Props> = ({ yOffset, cover }) => {
       <CoverPhoto
         style={headerHeight(yOffset)}
         source={{
-          uri: `https:${cover}?fm=jpg&fl=progressive&w=${WIDTH * 2}`
+          uri: `${cover}?fm=jpg&fl=progressive&w=${WIDTH * 2}`
         }}
       />
     </Container>

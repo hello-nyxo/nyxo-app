@@ -21,5 +21,8 @@ declare module 'styled-components' {
     FONT_MEDIUM: string
     FONT_BOLD: string
     accent: string
+
+    primaryBoneColer: string
+    SecondaryBoneColor: string
   }
 }

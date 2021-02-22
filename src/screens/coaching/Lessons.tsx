@@ -9,12 +9,11 @@ import {
 } from '@selectors/coaching-selectors/coaching-selectors'
 import { Section } from '@typings/CoachingContentState'
 import { groupBy } from 'lodash'
-import React, { FC, memo, ReactElement } from 'react'
+import React, { FC, ReactElement } from 'react'
 import { ListRenderItem, SectionList } from 'react-native'
 import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 
@@ -41,12 +40,10 @@ const LessonList: FC<Props> = ({
 }) => {
   const { data } = useGetActiveCoaching()
   const lessons: CombinedLessonArray = useSelector(getCoachingLessonsForWeek)
-  const withData = lessons.map((lesson) => {
-    return {
-      ...lesson,
-      completed: !!data?.lessons?.find((lssn) => lesson.slug === lssn)
-    }
-  })
+  const withData = lessons.map((lesson) => ({
+    ...lesson,
+    completed: !!data?.lessons?.find((lssn) => lesson.slug === lssn)
+  }))
 
   const groupedLessons = groupBy(withData, (lesson) => lesson.section?.title)
   const sectionData = withData.map((item) => ({
@@ -55,16 +52,10 @@ const LessonList: FC<Props> = ({
     order: item.section?.order
   }))
 
-  const sections = Object.entries(groupedLessons).map((group) => {
-    return {
-      header: { ...sectionData.find((item) => item.title === group[0]) },
-      data: group[1]
-    }
-  })
-
-  if (!sectionData) {
-    return null
-  }
+  const sections = Object.entries(groupedLessons).map((group) => ({
+    header: { ...sectionData.find((item) => item.title === group[0]) },
+    data: group[1]
+  }))
 
   const renderCard: ListRenderItem<CombinedLesson> = ({ item }) => (
     <LessonListItem key={item.slug} locked={locked} lesson={item} />
@@ -98,7 +89,7 @@ const LessonList: FC<Props> = ({
   )
 }
 
-export default memo(LessonList)
+export default LessonList
 
 const StyledSectionList = styled(AnimatedSectionList).attrs(({ theme }) => ({
   style: {

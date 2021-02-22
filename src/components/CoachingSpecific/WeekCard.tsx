@@ -33,11 +33,12 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
   const handlePress = () => {
     dispatch(selectWeek(week.slug))
     navigation.navigate(ROUTE.WEEK, {
-      week
+      slug: week.slug,
+      id: week.contentId
     })
   }
 
-  const formatedIntro = week.intro ? week.intro.replace('–', '\n – ') : ''
+  const formatedIntro = week.intro ? week.intro.replace('–', '\n –') : ''
   const lessonCount = week.lessons.length
   const { habitCount } = week
   const { stage } = getStage(coaching, week.slug)

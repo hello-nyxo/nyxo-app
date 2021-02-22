@@ -1,6 +1,6 @@
 import { contentfulClient } from '@actions/coaching/content-actions'
 import { Document } from '@contentful/rich-text-types'
-import { Asset, Entry, EntryCollection } from 'contentful'
+import { EntryCollection } from 'contentful'
 import I18n from 'i18n-js'
 import { QueryResult, useQuery } from 'react-query'
 import { ILessonFields } from '@typings/generated/contentful'
@@ -43,6 +43,5 @@ const getIntroduction = async (): Promise<Introduction> => {
   }
 }
 
-export const useIntroduction = (): QueryResult<Introduction> => {
-  return useQuery('introduction', getIntroduction)
-}
+export const useIntroduction = (): QueryResult<Introduction> =>
+  useQuery('introduction', getIntroduction)

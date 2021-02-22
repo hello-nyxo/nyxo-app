@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { constants, fonts, StyleProps } from '@styles/themes'
+import { constants, fonts } from '@styles/themes'
 
 const data = [
   {
@@ -19,15 +19,13 @@ const data = [
   }
 ]
 
-const ProfileChart = () => {
-  return (
-    <PhotoContainer>
-      <Image resizeMode="contain" source={require('../../assets/chart.png')} />
-      <Explanation />
-      {/* <Svg height={300} width={300}></Svg> */}
-    </PhotoContainer>
-  )
-}
+const ProfileChart = () => (
+  <PhotoContainer>
+    <Image resizeMode="contain" source={require('../../assets/chart.png')} />
+    <Explanation />
+    {/* <Svg height={300} width={300}></Svg> */}
+  </PhotoContainer>
+)
 
 export default memo(ProfileChart)
 

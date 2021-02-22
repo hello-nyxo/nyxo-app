@@ -1,14 +1,12 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 
-const Copyright = () => {
-  return (
-    <Container>
-      <Text>© 2020 Nyxo All Rights Reserved</Text>
-    </Container>
-  )
-}
+const Copyright = () => (
+  <Container>
+    <Text>© {new Date().getFullYear()} Nyxo All Rights Reserved</Text>
+  </Container>
+)
 
 export default memo(Copyright)
 

@@ -1,8 +1,6 @@
-import React, { memo } from 'react'
-import { View } from 'react-native'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
-import TranslatedText from '../TranslatedText'
+import { fonts } from '@styles/themes'
 
 interface AuthorCardProps {
   avatarURL: string
@@ -10,24 +8,33 @@ interface AuthorCardProps {
   credentials: string
 }
 
-const LargeAuthorCard = ({ avatarURL, name, credentials }: AuthorCardProps) => {
-  return (
-    <Card>
-      <Avatar borderRadius={50} source={{ uri: `https:${avatarURL}` }} />
-      <View style={{ flex: 1 }}>
-        <Name>{name}</Name>
-        <Credentials>{credentials}</Credentials>
-      </View>
-    </Card>
-  )
-}
+const LargeAuthorCard: FC<AuthorCardProps> = ({
+  avatarURL,
+  name,
+  credentials
+}) => (
+  <Card>
+    <Avatar
+      borderRadius={50}
+      source={{ uri: `${avatarURL}?fm=jpg&fl=progressive&w=100` }}
+    />
+    <Info>
+      <Name>{name}</Name>
+      <Credentials>{credentials}</Credentials>
+    </Info>
+  </Card>
+)
 
-export default memo(LargeAuthorCard)
+export default LargeAuthorCard
 
 const Card = styled.View`
   flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
+`
+
+const Info = styled.View`
+  flex: 1;
 `
 
 const Avatar = styled.Image`
@@ -48,12 +55,4 @@ const Credentials = styled.Text`
   font-family: ${fonts.medium};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 12px;
-`
-
-const Title = styled(TranslatedText)`
-  font-family: ${fonts.medium};
-  font-size: 13px;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

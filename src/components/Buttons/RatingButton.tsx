@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
-import { rateDay } from '@actions/sleep/sleep-data-actions'
 import { fonts } from '@styles/themes'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
@@ -18,9 +17,7 @@ type Props = {
 const RatingButton: FC<Props> = ({ selected, value, title, icon, color }) => {
   const dispatch = useDispatch()
 
-  const handlePress = () => {
-    dispatch(rateDay(value))
-  }
+  const handlePress = () => {}
 
   return (
     <Container>

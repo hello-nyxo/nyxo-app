@@ -2,13 +2,13 @@ import React, { memo } from 'react'
 import { Animated } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import { IconBold } from '../iconRegular'
 import { AnimatedTranslatedText } from '../TranslatedText'
 
 type Props = {
   direction: 'LEFT' | 'RIGHT'
-  action: Function
+  action: () => void
   buttonText: string
   icon: string
   animation: any

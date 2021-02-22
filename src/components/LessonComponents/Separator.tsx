@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { constants, StyleProps } from '@styles/themes'
+import { constants } from '@styles/themes'
 
-const Separator = () => {
-  return <Line />
-}
+const Separator = (): FC => <Line />
 
 export default Separator
 

@@ -2,14 +2,14 @@ import { registerIntercomUser } from '@actions/IntercomActions'
 import {
   DarkTheme,
   DefaultTheme,
-  NavigationContainer,
-  useLinking
+  NavigationContainer
 } from '@react-navigation/native'
 import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
 import { getIsDarkMode } from '@selectors/UserSelectors'
 import Analytics from 'appcenter-analytics'
 import { readFromStorage } from 'persist-queries'
 import React, { FC, useEffect, useRef, useState } from 'react'
+import { Text } from 'react-native'
 import Intercom from 'react-native-intercom'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
@@ -34,10 +34,12 @@ const Routes: FC = () => {
   const [initialState, setInitialState] = useState()
   const routeNameRef = useRef<string>()
 
-  const { getInitialState } = useLinking(ref, {
+  const linking = {
     prefixes: [
       'https://nyxo.fi',
       'https://nyxo.app',
+      'https://nyxo.app/fi',
+      'https://*.nyxo.app',
       'https://get.nyxo.fi',
       'https://auth.nyxo.app',
       'nyxo://'
@@ -67,11 +69,11 @@ const Routes: FC = () => {
         [ROUTE.PURCHASE]: {
           path: 'purchase'
         },
-        [ROUTE.LESSON]: {
-          path: 'lesson/:slug'
+        [ROUTE.WEEK]: {
+          path: 'week/:slug'
         },
         [ROUTE.LESSON]: {
-          path: 'fi/lesson/:slug'
+          path: 'lesson/:slug'
         },
         [ROUTE.APP]: {
           screens: {
@@ -114,7 +116,7 @@ const Routes: FC = () => {
         }
       }
     }
-  })
+  }
 
   useEffect(() => {
     readQueries()
@@ -122,14 +124,6 @@ const Routes: FC = () => {
     const onUnreadChange = ({ count }: { count: number }) => {
       dispatch(notificationActions.updateIntercomNotificationCount(count))
     }
-
-    getInitialState().then((state) => {
-      if (state !== undefined) {
-        setInitialState(state)
-      }
-
-      setIsReady(true)
-    })
 
     dispatch(registerIntercomUser())
 
@@ -144,7 +138,7 @@ const Routes: FC = () => {
         onUnreadChange
       )
     }
-  }, [getInitialState])
+  }, [])
 
   const readQueries = async () => {
     await Promise.all([
@@ -153,17 +147,15 @@ const Routes: FC = () => {
     ])
   }
 
-  if (!isReady) {
-    return null
-  }
-
   return (
     <>
       <StyledStatusBar animated />
       <NavigationContainer
+        linking={linking}
         ref={ref}
         theme={isDarkMode ? DarkTheme : DefaultTheme}
         initialState={initialState}
+        fallback={<Text>Loading...</Text>}
         onStateChange={(state) => {
           const previousRouteName = routeNameRef.current
           const currentRouteName = getActiveRouteName(state)

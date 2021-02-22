@@ -1,22 +1,22 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
+import { Document } from '@contentful/rich-text-types'
 import colors from '../../styles/colors'
 import RichText from '../RichText'
 
 interface Props {
   title: string
-  description: any
+  description: Document | undefined
 }
 
 const SectionHeader = (props: Props) => {
   const { title, description } = props
-  const contentIsRightType = typeof description !== 'string'
 
   return (
     <Container>
       <SectionTitle>{title}</SectionTitle>
-      {contentIsRightType && <RichText content={description} />}
+      {description && <RichText content={description} />}
     </Container>
   )
 }

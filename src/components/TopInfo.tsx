@@ -9,7 +9,7 @@ import {
   getNotificationMessage,
   getNotificationType
 } from '@selectors/NotificationSelectors'
-import { fonts, StyleProps } from '../styles/themes'
+import { fonts } from '../styles/themes'
 import { IconBold } from './iconRegular'
 
 const { width } = Dimensions.get('window')

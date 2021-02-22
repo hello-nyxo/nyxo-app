@@ -41,10 +41,6 @@ class App extends React.Component<AppProps> {
     setI18nConfig()
   }
 
-  purchaserInfoUpdateListener = (info) => {
-    // TODO
-  }
-
   async componentDidMount() {
     SplashScreen.hide()
     this.enableAnalytics()
@@ -66,6 +62,10 @@ class App extends React.Component<AppProps> {
     Purchases.removeShouldPurchasePromoProductListener(
       this.shouldPurchasePromoProduct
     )
+  }
+
+  purchaserInfoUpdateListener = (info) => {
+    // TODO
   }
 
   handleLocalizationChange = () => {

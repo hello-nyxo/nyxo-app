@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getHabitSections } from '@selectors/habit-selectors/habit-selectors'
 import styled from 'styled-components/native'
 import { getEditMode } from '@selectors/ManualDataSelectors'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import HabitCard from '../HabitCard/HabitCard'
 import { H3 } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
@@ -27,9 +27,9 @@ const HabitList = (props: Props) => {
   const navigation = useNavigation()
   const sections = useSelector(getHabitSections)
 
-  const renderItem = ({ item, index }: any) => {
-    return <HabitCard key={index} habit={item} />
-  }
+  const renderItem = ({ item, index }: any) => (
+    <HabitCard key={index} habit={item} />
+  )
 
   const goToHabits = () => {
     navigation.navigate('Habits')
@@ -39,9 +39,8 @@ const HabitList = (props: Props) => {
     dispatch(toggleNewHabitModal())
   }
 
-  const keyExtractor = (item: any, index: number) => {
-    return `habit_${item.title}_${index}`
-  }
+  const keyExtractor = (item: any, index: number) =>
+    `habit_${item.title}_${index}`
 
   return (
     <List

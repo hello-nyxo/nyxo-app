@@ -37,6 +37,11 @@
       "persist-queries": ["./src/store/persist-queries.ts"]
     }
   },
+  "include": [
+    "node_modules/react-native-redash/lib/typescript/v1/index.d.ts",
+    "src/**/*",
+    "src/typings"
+  ],
   "exclude": [
     "node_modules",
     "babel.config.js",

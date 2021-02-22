@@ -1,5 +1,5 @@
 import serializeTransform from '@helpers/serializeTransform'
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import ApiReducer from '@reducers/api-reducer/api-reducer'
 import AuthReducer from '@reducers/auth-reducer/auth-reducer'
 import CalendarReducer from '@reducers/calendar-reducer/calendar-reducer'

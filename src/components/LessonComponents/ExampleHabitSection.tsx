@@ -1,5 +1,5 @@
 import keyExtractor from '@helpers/KeyExtractor'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import { ExampleHabit as ExampleHabitType } from '@typings/CoachingContentState'
 import React, { memo } from 'react'
 import { FlatList } from 'react-native'
@@ -27,16 +27,14 @@ const ExampleHabitSection = ({
   }: {
     item: ExampleHabitType
     index: number
-  }) => {
-    return (
-      <ExampleHabit
-        key={index}
-        title={habit.title}
-        period={habit.period}
-        description={habit.description}
-      />
-    )
-  }
+  }) => (
+    <ExampleHabit
+      key={index}
+      title={habit.title}
+      period={habit.period}
+      description={habit.description}
+    />
+  )
 
   return (
     <>

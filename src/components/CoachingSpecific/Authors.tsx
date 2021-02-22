@@ -1,14 +1,14 @@
-import React, { memo } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { AuthorCard as AuthorCardType } from '@typings/CoachingContentState'
 import AuthorCard from '../LessonComponents/AuthorCard'
 import LargeAuthorCard from '../LessonComponents/LargeAuthorCard'
 
-const AuthorsComponent = ({
-  authorCards
-}: {
+type Props = {
   authorCards?: AuthorCardType[]
-}) => {
+}
+
+const AuthorsComponent: FC<Props> = ({ authorCards }) => {
   if (!authorCards) return null
 
   const mainAuthor = authorCards[0]
@@ -16,22 +16,20 @@ const AuthorsComponent = ({
 
   const authors = authorCards
     .filter((item) => item.name !== mainAuthor.name)
-    .map((item, index) => {
-      return (
-        <AuthorCard
-          key={index}
-          avatarURL={item.avatar}
-          name={item.name}
-          credentials={item.credentials}
-        />
-      )
-    })
+    .map((item) => (
+      <AuthorCard
+        key={item.name}
+        avatarURL={item.avatar.url}
+        name={item.name}
+        credentials={item.credentials}
+      />
+    ))
 
   return (
     <AuthorContainer>
       {mainAuthor ? (
         <LargeAuthorCard
-          avatarURL={mainAuthor.avatar}
+          avatarURL={mainAuthor.avatar.url}
           name={mainAuthor.name}
           credentials={mainAuthor.credentials}
         />
@@ -45,7 +43,7 @@ const AuthorsComponent = ({
   )
 }
 
-export default memo(AuthorsComponent)
+export default AuthorsComponent
 
 const AuthorContainer = styled.View`
   margin: 30px 20px 20px;

@@ -51,7 +51,9 @@ export interface ContentLesson {
 export interface AuthorCard {
   name: string
   credentials: string
-  avatar: string
+  avatar: {
+    url: string
+  }
 }
 
 export interface Section {
