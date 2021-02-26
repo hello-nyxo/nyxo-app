@@ -10,13 +10,9 @@
 		"env": {
 			"Type": "String"
 		},
-		"apinyxoDevGraphQLAPIIdOutput": {
+		"authnyxodevUserPoolId": {
 			"Type": "String",
-			"Default": "apinyxoDevGraphQLAPIIdOutput"
-		},
-		"apinyxoDevGraphQLAPIEndpointOutput": {
-			"Type": "String",
-			"Default": "apinyxoDevGraphQLAPIEndpointOutput"
+			"Default": "authnyxodevUserPoolId"
 		}
 	},
 	"Conditions": {
@@ -41,12 +37,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"nyxoPoints",
+						"nyxoPreSignup",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"nyxoPoints",
+									"nyxoPreSignup",
 									"-",
 									{
 										"Ref": "env"
@@ -64,11 +60,8 @@
 						"REGION": {
 							"Ref": "AWS::Region"
 						},
-						"API_NYXODEV_GRAPHQLAPIIDOUTPUT": {
-							"Ref": "apinyxoDevGraphQLAPIIdOutput"
-						},
-						"API_NYXODEV_GRAPHQLAPIENDPOINTOUTPUT": {
-							"Ref": "apinyxoDevGraphQLAPIEndpointOutput"
+						"AUTH_NYXODEV_USERPOOLID": {
+							"Ref": "authnyxodevUserPoolId"
 						}
 					}
 				},
@@ -83,7 +76,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "nyxocloud-dev-20190813125556-deployment",
-					"S3Key": "amplify-builds/nyxoPoints-7857336f524c466a3470-build.zip"
+					"S3Key": "amplify-builds/nyxoPreSignup-4a3163414d5933656479-build.zip"
 				}
 			}
 		},
@@ -93,12 +86,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"nyxocloudLambdaRole1658507e",
+						"nyxocloudLambdaRolecc25f54b",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"nyxocloudLambdaRole1658507e",
+									"nyxocloudLambdaRolecc25f54b",
 									"-",
 									{
 										"Ref": "env"
@@ -187,18 +180,25 @@
 						{
 							"Effect": "Allow",
 							"Action": [
-								"appsync:Create*",
-								"appsync:StartSchemaCreation",
-								"appsync:GraphQL",
-								"appsync:Get*",
-								"appsync:List*"
+								"cognito-idp:ForgotPassword",
+								"cognito-idp:UpdateAuthEventFeedback",
+								"cognito-idp:UpdateResourceServer",
+								"cognito-idp:UpdateUserPoolClient",
+								"cognito-idp:AdminUpdateUserAttributes",
+								"cognito-idp:UpdateUserAttributes",
+								"cognito-idp:UpdateUserPoolDomain",
+								"cognito-idp:UpdateIdentityProvider",
+								"cognito-idp:UpdateGroup",
+								"cognito-idp:AdminUpdateAuthEventFeedback",
+								"cognito-idp:UpdateDeviceStatus",
+								"cognito-idp:UpdateUserPool"
 							],
 							"Resource": [
 								{
 									"Fn::Join": [
 										"",
 										[
-											"arn:aws:appsync:",
+											"arn:aws:cognito-idp:",
 											{
 												"Ref": "AWS::Region"
 											},
@@ -206,11 +206,10 @@
 											{
 												"Ref": "AWS::AccountId"
 											},
-											":apis/",
+											":userpool/",
 											{
-												"Ref": "apinyxoDevGraphQLAPIIdOutput"
-											},
-											"/*"
+												"Ref": "authnyxodevUserPoolId"
+											}
 										]
 									]
 								}

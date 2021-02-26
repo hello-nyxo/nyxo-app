@@ -8,10 +8,6 @@ import LessonCover from '@components/Lesson/LessonCover'
 import ExampleHabitSection from '@components/LessonComponents/ExampleHabitSection'
 import ReadingTime from '@components/LessonComponents/ReadingTime'
 import Tags from '@components/LessonComponents/Tags'
-import {
-  useGetActiveCoaching,
-  useUpdateCoaching
-} from '@hooks/coaching/useCoaching'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import React, { FC } from 'react'
 import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
@@ -22,6 +18,7 @@ import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import ROUTE from '@config/routes/Routes'
 import { useLesson } from '@hooks/coaching/useLesson'
+import { useGetActiveCoaching, useUpdateCoaching } from '@hooks/coaching/useCoaching'
 
 const yOffset = new Animated.Value(0)
 

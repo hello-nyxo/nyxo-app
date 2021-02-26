@@ -1,5 +1,5 @@
 import Amplify, { Auth } from 'aws-amplify'
-import awsAmplify from '../../aws-exports'
+import awsAmplify from '../aws-exports'
 
 const amplify = Amplify.configure(awsAmplify)
 
