@@ -4,14 +4,13 @@ import { convertNightValue } from '@helpers/sleep/sleep-data-helper'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getUsername } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
-import { GetState } from '@typings/GetState'
 import { AppThunk } from '@typings/redux-actions'
 import { Night } from '@typings/Sleepdata'
 import { API, graphqlOperation } from 'aws-amplify'
 
 export const syncNightsToCloud = (nights: Night[]): AppThunk => async (
   _,
-  getState: GetState
+  getState
 ) => {
   try {
     const username = getUsername(getState())

@@ -20,9 +20,9 @@ export const getTheme = createSelector(
   (user: UserState) => user.appTheme
 )
 
-export const getIsDarkMode = createSelector(getUserState, (user: UserState) => {
-  return user.appTheme ? user.appTheme.mode === 'dark' : false
-})
+export const getIsDarkMode = createSelector(getUserState, (user: UserState) =>
+  user.appTheme ? user.appTheme.mode === 'dark' : false
+)
 
 export const getTextColorOnTheme = createSelector(
   getIsDarkMode,

@@ -1,17 +1,19 @@
 import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
 import { toggleExplanationsModal } from '@actions/modal/modal-actions'
+import { WIDTH } from '@helpers/Dimensions'
 import useSleep from '@hooks/useSleep'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
 import colors from '@styles/colors'
 import { Value } from '@typings/Sleepdata'
-import React, { FC, memo } from 'react'
-import { Dimensions } from 'react-native'
+import React, { FC } from 'react'
 import Animated, {
   cond,
   set,
   stopClock,
-  useCode
+  useCode,
+  interpolate,
+  eq
 } from 'react-native-reanimated'
 import { timing, useClock, useValue } from 'react-native-redash/lib/module/v1'
 import Svg from 'react-native-svg'
@@ -28,8 +30,7 @@ import Bedtime from './clock/Slider'
 import TrackerName from './clock/TrackerName'
 import TranslatedText from './TranslatedText'
 
-const { width } = Dimensions.get('window')
-const containerSize = width - 40
+const containerSize = WIDTH - 40
 const x: number = containerSize / 2
 const y: number = x
 
@@ -49,40 +50,46 @@ const Clock: FC = () => {
     bedStart,
     bedEnd
   } = useSleep()
+  const dispatch = useDispatch()
   const date = useSelector(getSelectedDate)
   const editMode = useSelector(getEditMode)
-  const dispatch = useDispatch()
-  const hide = editMode
 
   const value = useValue<number>(1)
+  const isEditMode = useValue(editMode ? 1 : 0)
   const clock = useClock()
-  const height = value.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 20]
-  })
-  const opacity = value.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 1]
-  })
-
-  const scale = value.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.9, 1]
-  })
 
   useCode(
     () => [
       set(
         value,
-        cond(
-          editMode,
+        cond(eq(isEditMode, 1), [
           timing({ from: value, to: 1, duration: 350, clock }),
           timing({ from: value, to: 0, duration: 350, clock })
-        )
+        ])
       )
     ],
-    [editMode]
+    [isEditMode]
   )
+
+  const height = interpolate(value, {
+    inputRange: [0, 1],
+    outputRange: [0, 20]
+  })
+
+  const buttonsStyle = {
+    opacity: interpolate(value, {
+      inputRange: [0, 1],
+      outputRange: [1, 0]
+    }),
+    transform: [
+      {
+        scale: interpolate(value, {
+          inputRange: [0, 1],
+          outputRange: [0.9, 1]
+        })
+      }
+    ]
+  }
 
   const toggleEditNightMode = () => {
     stopClock(clock)
@@ -94,7 +101,7 @@ const Clock: FC = () => {
   }
 
   return (
-    <Card style={{ paddingBottom: height }}>
+    <Card>
       <Title>STAT.TITLE</Title>
       <Legend>
         <LegendItem>
@@ -171,22 +178,22 @@ const Clock: FC = () => {
             date={date}
           />
         )}
-        <AddNightButton onPress={toggleEditNightMode} hide={hide} />
-        <InfoButton onPress={toggleInfo} hide={hide} />
+        <AddNightButton style={buttonsStyle} onPress={toggleEditNightMode} />
+        <InfoButton style={buttonsStyle} onPress={toggleInfo} />
       </ClockContainer>
-      <InstructionsContainer style={{ opacity, transform: [{ scale }] }}>
-        {editMode ? (
+      <InstructionsContainer>
+        {editMode && (
           <Instructions>
             Hello, here are instruction on how to use this feature. Select night
             duration by dragging the handles
           </Instructions>
-        ) : null}
+        )}
       </InstructionsContainer>
     </Card>
   )
 }
 
-export default memo(Clock)
+export default Clock
 
 const Card = styled(Animated.View)`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};

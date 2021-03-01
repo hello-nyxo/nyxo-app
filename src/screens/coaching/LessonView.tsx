@@ -1,26 +1,27 @@
 import Authors from '@components/CoachingSpecific/Authors'
 import Copyright from '@components/CoachingSpecific/Copyright'
 import TopHeader from '@components/CoachingSpecific/TopHeader'
-import WeekViewHeader from '@components/CoachingSpecific/WeekViewHeader'
 import ExtraInfo from '@components/Lesson/ExtraInfo'
 import LessonContent from '@components/Lesson/LessonContent'
 import LessonCover from '@components/Lesson/LessonCover'
 import ExampleHabitSection from '@components/LessonComponents/ExampleHabitSection'
 import ReadingTime from '@components/LessonComponents/ReadingTime'
 import Tags from '@components/LessonComponents/Tags'
-import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import React, { FC } from 'react'
-import { getBottomSpace, isIphoneX } from 'react-native-iphone-x-helper'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import ROUTE from '@config/routes/Routes'
-import { useLesson } from '@hooks/coaching/useLesson'
-import { useGetActiveCoaching, useUpdateCoaching } from '@hooks/coaching/useCoaching'
-
-const yOffset = new Animated.Value(0)
+import { getLesson, useLesson } from '@hooks/coaching/useLesson'
+import {
+  useGetActiveCoaching,
+  useUpdateCoaching
+} from '@hooks/coaching/useCoaching'
+import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
+import { useScrollHandler } from 'react-native-redash/lib/module/v1'
+import LinearGradient from 'react-native-linear-gradient'
 
 export type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.LESSON>
 export type WeekScreenNavigationProp = StackNavigationProp<
@@ -38,10 +39,11 @@ const LessonView: FC<Props> = ({
     params: { slug }
   }
 }) => {
-  const { data: lessons, loading, error } = useLesson(slug)
+  const { data: lessons, loading } = useLesson(slug)
   const { data } = useGetActiveCoaching()
   const [mutate, { isLoading: completeLoading }] = useUpdateCoaching()
 
+  const lesson = getLesson(lessons)
   const completed = data?.lessons?.find((l) => l === slug)
 
   const markCompleted = async () => {
@@ -52,67 +54,66 @@ const LessonView: FC<Props> = ({
       }
     })
   }
-  const lesson = lessons?.lessonCollection?.items[0]
 
+  const { y: yOffset, scrollHandler } = useScrollHandler()
   return (
-    <>
+    <LessonContainer>
       <TopHeader yOffset={yOffset} title={lesson?.lessonName} />
-      <LessonCover yOffset={yOffset} cover={lesson?.cover.url} />
+      <LessonCover
+        title={lesson?.lessonName}
+        yOffset={yOffset}
+        cover={lesson?.cover?.url}
+      />
 
-      <ScrollView
-        onScroll={Animated.event([
-          { nativeEvent: { contentOffset: { y: yOffset } } }
-        ])}
-        scrollEventThrottle={16}>
-        <WeekViewHeader
-          yOffset={yOffset}
-          loading={loading}
-          title={lesson?.lessonName}
-        />
-        <Authors authorCards={lesson?.authorCardCollection?.items} />
-        <ReadingTime
-          content={lesson?.lessonContent?.json}
-          habitCount={lesson?.habitCollection?.items?.length}
-        />
-        <Tags tags={lesson?.keywords} />
-        <LessonContent lessonContent={lesson?.lessonContent?.json} />
-        <ExampleHabitSection habits={lesson?.habitCollection?.items} />
-        <ExtraInfo additionalInformation={lesson?.lessonContent?.json} />
-        <Copyright />
-      </ScrollView>
-
-      {completed ? null : (
-        <ButtonContainer>
-          <PrimaryButton
-            onPress={markCompleted}
-            title="COMPLETE"
-            loading={completeLoading}
+      <ScrollView {...scrollHandler} scrollEventThrottle={1}>
+        <Gradient />
+        <Content>
+          <ReadingTime
+            content={lesson?.lessonContent?.json}
+            habitCount={lesson?.habitCollection?.items?.length}
           />
-        </ButtonContainer>
-      )}
-    </>
+          <Tags tags={lesson?.keywords} />
+          <LessonContent
+            lessonContent={lesson?.lessonContent?.json}
+            assets={lesson?.lessonContent?.links?.assets}
+          />
+          <ExampleHabitSection habits={lesson?.habitCollection?.items} />
+          <ExtraInfo
+            additionalInformation={lesson?.additionalInformation?.json}
+          />
+          <Authors authorCards={lesson?.authorCardCollection?.items} />
+          <Copyright />
+        </Content>
+      </ScrollView>
+    </LessonContainer>
   )
 }
 
 export default LessonView
-
-const ButtonContainer = styled.View`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding-top: 20px;
-  padding-bottom: ${isIphoneX() ? getBottomSpace() : 20}px;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) =>
-    theme.SECONDARY_BACKGROUND_COLOR_TRANSPARENT};
-`
 
 const ScrollView = styled(Animated.ScrollView).attrs(() => ({
   contentContainerStyle: {
     flexGrow: 1
   }
 }))`
+  padding-top: ${HEADER_MIN_HEIGHT}px;
+`
+
+const LessonContainer = styled.View`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  flex: 1;
+`
+
+const Cover = styled.View`
+  height: ${HEADER_MAX_HEIGHT}px;
+`
+
+const Content = styled.View`
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+`
+
+const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
+  colors: theme.GRADIENT
+}))`
+  height: ${HEADER_MAX_HEIGHT}px;
 `

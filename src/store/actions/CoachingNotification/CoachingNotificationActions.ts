@@ -1,6 +1,6 @@
 import { getStateWeeks } from '@selectors/coaching-selectors'
 import { InteractedLesson } from '@typings/CoachingNotificationState'
-import { GetState } from '@typings/GetState'
+import { AppThunk } from '@typings/redux-actions'
 
 export const PUSH_TO_INCOMPLETE_LESSONS = 'PUSH_TO_INCOMPLETE_LESSONS'
 export const POP_FROM_INCOMPLETE_LESSONS = 'POP_FROM_INCOMPLETE_LESSONS'
@@ -19,9 +19,9 @@ export const popFromIncompleteLessons = (
   payload: interactedLesson
 })
 
-export const pushInteractedLesson = (lesson: InteractedLesson) => (
-  dispatch: Function,
-  getState: GetState
+export const pushInteractedLesson = (lesson: InteractedLesson): AppThunk => (
+  dispatch,
+  getState
 ) => {
   const weeks = getStateWeeks(getState())
   const weekDetail = weeks?.find((w) => w.slug === lesson.slug)

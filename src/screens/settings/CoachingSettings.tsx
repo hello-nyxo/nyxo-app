@@ -28,9 +28,9 @@ const CoachingSettings: FC = () => {
     refetch: refetchActiveMonth
   } = useGetActiveCoaching()
 
-  const renderItem: ListRenderItem<CoachingPeriod> = ({ item }) => {
-    return <CoachingMonthCard key={`${item?.id}`} month={item} />
-  }
+  const renderItem: ListRenderItem<CoachingPeriod> = ({ item }) => (
+    <CoachingMonthCard key={`${item?.id}`} month={item} />
+  )
 
   const data = months?.filter((m) => m?.id !== activeMonth?.id)
 

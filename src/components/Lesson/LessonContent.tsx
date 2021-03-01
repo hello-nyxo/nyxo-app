@@ -5,11 +5,12 @@ import RichText from '../RichText'
 
 type Props = {
   lessonContent?: Document
+  assets: any
 }
 
-const LessonContent: FC<Props> = ({ lessonContent }) => (
+const LessonContent: FC<Props> = ({ lessonContent, assets }) => (
   <Container>
-    <RichText content={lessonContent} />
+    <RichText content={lessonContent} assets={assets} />
   </Container>
 )
 

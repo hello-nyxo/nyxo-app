@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react'
+import React, { FC } from 'react'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 import {
@@ -16,29 +16,30 @@ interface Props {
 }
 
 const TopHeader: FC<Props> = ({ yOffset, title }) => {
-  const fadeIn = () => ({
+  const fadeIn = {
     opacity: yOffset.interpolate({
       inputRange: [HEADER_HALF, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
       outputRange: [0, 1],
       extrapolate: Animated.Extrapolate.CLAMP
     })
-  })
+  }
 
-  const fadeColor = () => ({
+  const fadeColor = {
     opacity: yOffset.interpolate({
       inputRange: [HEADER_HALF, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
       outputRange: [0, 1],
       extrapolate: Animated.Extrapolate.CLAMP
     })
-  })
+  }
+
   return (
     <BackButtonContainer>
-      <Background style={fadeColor()} />
+      <Background style={fadeColor} />
       <BackButton>
         <GoBack />
       </BackButton>
       <TitleContainer>
-        <WeekTitleSmall numberOfLines={3} adjustsFontSizeToFit style={fadeIn()}>
+        <WeekTitleSmall numberOfLines={3} adjustsFontSizeToFit style={fadeIn}>
           {title}
         </WeekTitleSmall>
       </TitleContainer>
@@ -47,7 +48,7 @@ const TopHeader: FC<Props> = ({ yOffset, title }) => {
   )
 }
 
-export default memo(TopHeader)
+export default TopHeader
 
 const BackButtonContainer = styled(Animated.View)`
   position: absolute;

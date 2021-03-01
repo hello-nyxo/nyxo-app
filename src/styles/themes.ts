@@ -16,9 +16,9 @@ export const lightTheme: DefaultTheme = {
   SECONDARY_BUTTON_COLOR: colors.darkBlue,
   HAIRLINE_COLOR: '#C9C9CB',
   GRADIENT: [
-    'rgba(246,246,249,0)',
-    'rgba(246,246,249,0)',
-    'rgba(246,246,249,1)'
+    'rgba(255,255,255,0)',
+    'rgba(255,255,255,0)',
+    'rgba(255,255,255,1)'
   ],
   SHADOW: `1px 1px 5px rgba(32, 33, 37, 0.1)`,
   accent: colors.darkBlue,

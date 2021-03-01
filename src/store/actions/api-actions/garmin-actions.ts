@@ -12,7 +12,6 @@ import {
 import moment from 'moment'
 import queryString from 'query-string'
 import { Linking, Platform } from 'react-native'
-import { GetState } from '@typings/GetState'
 import { AppThunk } from '@typings/redux-actions'
 import { GarminSleepObject } from '@typings/Sleep/Garmin'
 import { GarminAuthorizeResult, ResponseBase } from '@typings/state/api-state'
@@ -59,10 +58,7 @@ export const fetchSleepGarminFailure = (): ApiActions => ({
   type: FETCH_SLEEP_GARMIN_FAILURE
 })
 
-export const toggleGarmin = (): AppThunk => async (
-  dispatch,
-  getState: GetState
-) => {
+export const toggleGarmin = (): AppThunk => async (dispatch, getState) => {
   try {
     const enabled = getGarminEnabled(getState())
     if (enabled) {

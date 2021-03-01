@@ -125,6 +125,6 @@ const Card = styled.View`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: ${({ theme }) => theme.SHADOW};
   padding: 10px;
-  margin: 8px 16px;
+  margin: 0px 16px 8px;
   border-radius: 7px;
 `

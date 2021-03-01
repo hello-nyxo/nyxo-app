@@ -12,19 +12,25 @@ type Props = {
 }
 
 const WeekViewHeader: FC<Props> = ({ yOffset, title, loading }) => {
-  const titleSize = (offset: Animated.Value<number>) => ({
-    opacity: offset.interpolate({
+  const titleSize = {
+    opacity: yOffset.interpolate({
       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-      outputRange: [1, 0.2],
-      extrapolateRight: Animated.Extrapolate.CLAMP,
-      extrapolateLeft: Animated.Extrapolate.CLAMP
-    })
-  })
+      outputRange: [1, 0.2]
+    }),
+    transform: [
+      {
+        scale: yOffset.interpolate({
+          inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
+          outputRange: [1, 0.5]
+        })
+      }
+    ]
+  }
 
   return (
     <Header>
       <Gradient>
-        <WeekTitle style={titleSize(yOffset)}>{title}</WeekTitle>
+        <WeekTitle style={titleSize}>{title}</WeekTitle>
       </Gradient>
     </Header>
   )
@@ -53,7 +59,7 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
 const WeekTitle = styled(Animated.Text)`
   font-family: ${fonts.bold};
   z-index: 20;
-  font-size: 35px;
+  font-size: 30px;
   text-align: left;
   position: absolute;
   bottom: 0;

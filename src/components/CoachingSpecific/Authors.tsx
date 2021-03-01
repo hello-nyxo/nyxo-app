@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { AuthorCard as AuthorCardType } from '@typings/CoachingContentState'
+import { AuthorCardCollectionItem } from '@typings/contentful.t'
 import AuthorCard from '../LessonComponents/AuthorCard'
 import LargeAuthorCard from '../LessonComponents/LargeAuthorCard'
 
 type Props = {
-  authorCards?: AuthorCardType[]
+  authorCards?: AuthorCardCollectionItem[]
 }
 
 const AuthorsComponent: FC<Props> = ({ authorCards }) => {

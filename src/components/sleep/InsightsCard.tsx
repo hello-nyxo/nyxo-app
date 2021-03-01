@@ -122,13 +122,7 @@ const InsightsCard: FC = () => {
         <Page>
           <Row>
             <Figure>
-              <Icon
-                fill="none"
-                name="doubleBed"
-                height="20"
-                width="20"
-                stroke="black"
-              />
+              <Icon fill="none" name="doubleBed" height="20" width="20" />
               <Column>
                 <Value>{minutesToHoursString(inBedDuration)}</Value>
                 <Description>STAT.BED</Description>
@@ -230,7 +224,9 @@ const Figure = styled.View`
   margin-right: 20px;
 `
 
-const Icon = styled(IconBold).attrs(() => ({}))`
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  stroke: theme.SECONDARY_TEXT_COLOR
+}))`
   margin-right: 10px;
 `
 

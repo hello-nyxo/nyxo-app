@@ -1,8 +1,8 @@
 import { gql, QueryResult, useQuery } from '@apollo/client'
-import { Document } from '@contentful/rich-text-types'
+import { LessonCollectionItem } from '@typings/contentful.t'
 import I18n from 'i18n-js'
 
-const GET_WEEK = gql`
+const GET_LESSON = gql`
   query GetLesson($language: String!, $slug: String) {
     lessonCollection(where: { slug: $slug }, locale: $language, limit: 1) {
       items {
@@ -16,9 +16,53 @@ const GET_WEEK = gql`
         }
         lessonContent {
           json
+          links {
+            assets {
+              block {
+                sys {
+                  id
+                  spaceId
+                  environmentId
+                  publishedAt
+                  firstPublishedAt
+                  publishedVersion
+                }
+                title
+                description
+                contentType
+                fileName
+                size
+                url
+                width
+                height
+              }
+            }
+          }
         }
         additionalInformation {
           json
+          links {
+            assets {
+              block {
+                sys {
+                  id
+                  spaceId
+                  environmentId
+                  publishedAt
+                  firstPublishedAt
+                  publishedVersion
+                }
+                title
+                description
+                contentType
+                fileName
+                size
+                url
+                width
+                height
+              }
+            }
+          }
         }
         habitCollection {
           items {
@@ -49,42 +93,7 @@ const GET_WEEK = gql`
 
 type LessonData = {
   lessonCollection?: {
-    items?: {
-      lessonName?: string
-      slug?: string
-      keywords?: string[]
-      cover?: {
-        url?: string
-      }
-      lessonContent?: {
-        json?: Document
-      }
-      additionalInformation: {
-        json: Document
-      }
-      habitCollection?: {
-        items?: {
-          slug?: string
-          period?: string
-          title?: string
-          description?: {
-            json?: Document
-          }
-        }[]
-      }
-      authorCardCollection?: {
-        items?: {
-          name?: string
-          credentials?: string
-          description?: {
-            json?: Document
-          }
-          avatar?: {
-            url?: string
-          }
-        }[]
-      }
-    }[]
+    items?: LessonCollectionItem[]
   }
 }
 
@@ -98,7 +107,20 @@ export const useLesson = (
 ): QueryResult<LessonData, LessonVariables> => {
   const locale = I18n.locale === 'en' ? 'en-US' : 'fi-FI'
 
-  return useQuery<LessonData, LessonVariables>(GET_WEEK, {
+  return useQuery<LessonData, LessonVariables>(GET_LESSON, {
     variables: { language: locale, slug }
   })
+}
+
+export const getLesson = (
+  data?: LessonData
+): LessonCollectionItem | undefined => {
+  if (
+    data?.lessonCollection?.items &&
+    data?.lessonCollection?.items?.length !== 0
+  ) {
+    return data.lessonCollection.items[0]
+  }
+
+  return undefined
 }

@@ -16,14 +16,12 @@ import Copyright from '@components/CoachingSpecific/Copyright'
 import BuyCoaching from '@components/CoachingSpecific/BuyCoachingButton'
 import WeekIntro from '@components/CoachingSpecific/WeekIntro'
 import { WeekActions } from '@components/week/WeekActions'
-import WeekViewHeader from '@components/CoachingSpecific/WeekViewHeader'
 import TopHeader from '@components/CoachingSpecific/TopHeader'
 import WeekCover from '@components/CoachingSpecific/Week.Cover'
 import { useWeek } from '@hooks/coaching/useCoachingContent'
 import { StackNavigationProp } from '@react-navigation/stack'
+import { useValue } from 'react-native-redash/lib/module/v1'
 import Lessons from './Lessons'
-
-const yOffset = new Animated.Value(0)
 
 export type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.WEEK>
 export type WeekScreenNavigationProp = StackNavigationProp<
@@ -42,6 +40,7 @@ const WeekView: FC<Props> = ({
   }
 }) => {
   const hasCoaching = useSelector(getActiveCoaching)
+  const yOffset = useValue(0)
 
   /* Queries */
   const { data: weeks, loading: contentLoading } = useWeek(slug)
@@ -87,7 +86,6 @@ const WeekView: FC<Props> = ({
 
   return (
     <BGContainer>
-      <WeekCover yOffset={yOffset} cover={week?.coverPhoto?.url ?? ''} />
       <TopHeader yOffset={yOffset} title={week?.weekName ?? ''} />
 
       <Container>
@@ -98,7 +96,11 @@ const WeekView: FC<Props> = ({
           locked={!hasCoaching}
           header={
             <>
-              <WeekViewHeader title={week?.weekName ?? ''} yOffset={yOffset} />
+              <WeekCover
+                yOffset={yOffset}
+                cover={week?.coverPhoto?.url ?? ''}
+              />
+
               {hasCoaching ? (
                 <WeekActions
                   started={activeWeek?.started}

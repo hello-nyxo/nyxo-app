@@ -6,7 +6,6 @@ import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import { formatPolarSamples } from '@helpers/sleep/polar-helper'
 import moment from 'moment'
 import { authorize } from 'react-native-app-auth'
-import { GetState } from '@typings/GetState'
 import { AppThunk } from '@typings/redux-actions'
 import { PolarSleepObject } from '@typings/Sleep/Polar'
 import { PolarAuthorizeResult, ResponseBase } from '@typings/state/api-state'
@@ -53,16 +52,12 @@ export const fetchSleepPolarFailure = (): ApiActions => ({
 
 const POLAR_API = 'https://www.polaraccesslink.com/v3/users/sleep/'
 
-export const togglePolar = (): AppThunk => async (
-  dispatch,
-  getState: GetState
-) => {
+export const togglePolar = (): AppThunk => async (dispatch, getState) => {
   const enabled = getPolarEnabled(getState())
   if (enabled) {
     dispatch(revokePolarAccess())
   } else {
     await dispatch(revokePreviousSource())
-
     await dispatch(authorizePolar())
   }
 }

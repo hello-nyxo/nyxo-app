@@ -14,7 +14,7 @@ const AuthorCard: FC<Props> = ({ avatarURL, name, credentials }) => (
   <Card>
     <Avatar
       borderRadius={15}
-      source={{ uri: `${avatarURL}}?fm=jpg&fl=progressive&w=100` }}
+      source={{ uri: `${avatarURL}?fm=jpg&fl=progressive&w=100` }}
     />
     <Container>
       <Name>{name}</Name>
