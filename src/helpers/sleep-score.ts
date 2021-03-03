@@ -1,6 +1,7 @@
 import Moment from 'moment'
 import * as d3 from 'd3'
-import { getStartTimeInMinutes, isWeekend } from './time'
+import { getStartTimeInMinutes } from './time'
+import { isWeekend } from 'date-fns'
 
 /*
 Name: calculateEfficiency
@@ -77,7 +78,7 @@ function calculateJetlag(day, insights): number {
 
   const { weekDayAverage, weekendDayAverage } = insights
 
-  const goalTime = isWeekend(day)
+  const goalTime = isWeekend(new Date(day))
     ? getStartTimeInMinutes(weekendDayAverage)
     : getStartTimeInMinutes(weekDayAverage)
 

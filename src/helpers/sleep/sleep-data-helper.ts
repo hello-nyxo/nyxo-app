@@ -6,10 +6,12 @@ import {
   isBefore,
   isWithinInterval,
   startOfDay,
-  subHours
+  setMinutes,
+  subHours,
+  roundToNearestMinutes,
+  subMinutes,
+  addMinutes
 } from 'date-fns'
-import moment, { MomentInput } from 'moment'
-import { nearestMinutes } from '../time'
 
 // Find the starting time of the night
 export function findStartTime(nights: Night[], value: Value): string {
@@ -68,18 +70,22 @@ export function calculateBedtimeWindow(
     averageBedTime = -1440
   }
 
-  const bedTimeWindowCenter = nearestMinutes(
-    15,
-    moment().startOf('day').minutes(averageBedTime)
+  const bedTimeWindowCenter = roundToNearestMinutes(
+    setMinutes(startOfDay(new Date()), averageBedTime),
+    {
+      nearestTo: 15
+    }
   ).toISOString()
 
-  const bedTimeWindowStart = moment(bedTimeWindowCenter)
-    .subtract(45, 'minutes')
-    .toISOString()
+  const bedTimeWindowStart = subMinutes(
+    new Date(bedTimeWindowCenter),
+    45
+  ).toISOString()
 
-  const bedTimeWindowEnd = moment(bedTimeWindowCenter)
-    .add(45, 'minutes')
-    .toISOString()
+  const bedTimeWindowEnd = addMinutes(
+    new Date(bedTimeWindowCenter),
+    45
+  ).toISOString()
 
   const insights = {
     goToSleepWindowStart: bedTimeWindowStart,
@@ -94,9 +100,9 @@ export function getAverageOfTimes(days: Day[]): number {
   let averageBedTime = 0
   let divideBy = 0
   days.forEach((day) => {
-    const dayStarted = moment(day.date) // Beginning of the day
+    const dayStarted = new Date(day.date) // Beginning of the day
     if (day.bedStart) {
-      const bedTimeStart = moment(day.bedStart)
+      const bedTimeStart = new Date(day.bedStart)
 
       const totalDifference = bedTimeStart.diff(dayStarted, 'minutes')
 

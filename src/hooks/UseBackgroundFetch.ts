@@ -23,11 +23,11 @@ const useBackgroundFetch = (
         await savedCallback.current()
         BackgroundFetch.finish(taskId)
       },
-      (error: any) => {
-        console.warn('[js] RNBackgroundFetch failed to start')
+      (error) => {
+        console.warn('[js] RNBackgroundFetch failed to start', error)
       }
     )
-  }, [])
+  }, [minimumFetchInterval])
 }
 
 export default useBackgroundFetch

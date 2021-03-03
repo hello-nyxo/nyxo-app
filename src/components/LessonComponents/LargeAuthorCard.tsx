@@ -3,9 +3,9 @@ import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
 
 interface AuthorCardProps {
-  avatarURL: string
-  name: string
-  credentials: string
+  avatarURL?: string
+  name?: string
+  credentials?: string
 }
 
 const LargeAuthorCard: FC<AuthorCardProps> = ({

@@ -1,13 +1,12 @@
-import React, { FC, ReactNode, memo, useRef } from 'react'
-import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 import Analytics from 'appcenter-analytics'
+import React, { FC, memo, ReactNode, useRef } from 'react'
 import {
-  GestureResponderEvent,
   Animated,
+  GestureResponderEvent,
   TouchableWithoutFeedback
 } from 'react-native'
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 import styled from 'styled-components/native'
-import Intercom from 'react-native-intercom'
 
 type Props = {
   onPress: (event: GestureResponderEvent) => void
@@ -44,9 +43,6 @@ const ScalingButton: FC<Props> = ({
 
   const handlePress = (event: GestureResponderEvent) => {
     Analytics.trackEvent('Button pressed', {
-      buttonType: analyticsEvent
-    })
-    Intercom.logEvent('Button pressed', {
       buttonType: analyticsEvent
     })
     ReactNativeHapticFeedback.trigger('impactMedium', {

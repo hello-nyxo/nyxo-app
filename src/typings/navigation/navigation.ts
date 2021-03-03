@@ -9,6 +9,8 @@ export type RootStackParamList = {
   [ROUTE.WEEK]: { slug: string; id: string }
   [ROUTE.LESSON]: { slug: string; id: string }
   [ROUTE.TERVEYSTALO]: { code: string }
+  [ROUTE.ONBOARDING]: undefined
+  [ROUTE.PURCHASE]: undefined
 }
 
 export type TabParamList = {

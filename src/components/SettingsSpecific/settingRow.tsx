@@ -1,4 +1,4 @@
-import React, { FC, memo, VoidFunctionComponent } from 'react'
+import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import { constants, fonts } from '@styles/themes'
@@ -6,10 +6,9 @@ import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 
 interface Props {
-  analyticsEvent: string
-  onPress: () => VoidFunctionComponent
-  icon: string
-  children: JSX.Element[]
+  onPress?: () => void
+  icon?: string
+  children?: JSX.Element[] | JSX.Element
   badge?: number
 }
 
@@ -17,7 +16,7 @@ const SettingRow: FC<Props> = ({ badge, icon, children, onPress }) => (
   <TouchableOpacity onPress={onPress}>
     <Container>
       <IconContainer>
-        <Icon name={icon} height={25} width={25} />
+        <Icon name={`${icon}`} height={25} width={25} />
         {badge ? (
           <Badge>
             <BadgeCount>{badge}</BadgeCount>
@@ -29,7 +28,7 @@ const SettingRow: FC<Props> = ({ badge, icon, children, onPress }) => (
   </TouchableOpacity>
 )
 
-export default memo(SettingRow)
+export default SettingRow
 
 const Container = styled.View`
   margin: 0px 20px;

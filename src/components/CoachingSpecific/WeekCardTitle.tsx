@@ -7,7 +7,7 @@ import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 
 interface Props {
-  weekName: string
+  weekName?: string
   stage?: WEEK_STAGE
 }
 

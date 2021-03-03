@@ -1,17 +1,14 @@
-import { registerIntercomUser } from '@actions/IntercomActions'
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native'
-import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
 import { getIsDarkMode } from '@selectors/UserSelectors'
 import Analytics from 'appcenter-analytics'
 import { readFromStorage } from 'persist-queries'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { Text } from 'react-native'
-import Intercom from 'react-native-intercom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import Root from './routes/RootNavigator'
 import ROUTE from './routes/Routes'
@@ -27,7 +24,6 @@ function getActiveRouteName(state: any): string {
 }
 
 const Routes: FC = () => {
-  const dispatch = useDispatch()
   const isDarkMode = useSelector(getIsDarkMode)
   const ref = useRef(null)
   const [isReady, setIsReady] = useState(false)
@@ -120,24 +116,6 @@ const Routes: FC = () => {
 
   useEffect(() => {
     readQueries()
-
-    const onUnreadChange = ({ count }: { count: number }) => {
-      dispatch(notificationActions.updateIntercomNotificationCount(count))
-    }
-
-    dispatch(registerIntercomUser())
-
-    Intercom.addEventListener(
-      Intercom.Notifications.UNREAD_COUNT,
-      onUnreadChange
-    )
-
-    return () => {
-      Intercom.removeEventListener(
-        Intercom.Notifications.UNREAD_COUNT,
-        onUnreadChange
-      )
-    }
   }, [])
 
   const readQueries = async () => {
@@ -160,7 +138,6 @@ const Routes: FC = () => {
           const previousRouteName = routeNameRef.current
           const currentRouteName = getActiveRouteName(state)
           if (previousRouteName !== currentRouteName) {
-            Intercom.logEvent('viewed_screen', { currentRouteName })
             Analytics.trackEvent(`Navigated to ${currentRouteName}`)
           }
 

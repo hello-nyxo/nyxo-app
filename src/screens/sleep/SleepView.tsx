@@ -21,6 +21,7 @@ import { useFocusEffect } from '@react-navigation/core'
 import { getSelectedDate } from '@selectors/calendar-selectors'
 import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
 import { getEditMode } from '@selectors/ManualDataSelectors'
+import { subDays } from 'date-fns'
 import React, { FC, useCallback, useEffect } from 'react'
 import { ScrollView } from 'react-native'
 import { queryCache } from 'react-query'
@@ -33,12 +34,10 @@ const Sleep: FC = () => {
   const editModeOn = useSelector(getEditMode)
   const isLoadingSleepData = useSelector(getHealthKitLoading)
 
-  // useNotificationEventHandlers()
-
   useEffect(() => {
     dispatch(startup())
-    dispatch(fetchSleepData())
-  }, [])
+    dispatch(fetchSleepData(subDays(new Date(date), 1).toDateString(), date))
+  }, [dispatch])
 
   useFocusEffect(
     useCallback(() => {
@@ -52,7 +51,7 @@ const Sleep: FC = () => {
   )
 
   const checkSleepData = async () => {
-    await dispatch(fetchSleepData(date))
+    dispatch(fetchSleepData(subDays(new Date(date), 1).toDateString(), date))
   }
 
   const toggleCalendar = () => {
@@ -82,7 +81,6 @@ const Sleep: FC = () => {
               </Subtitle>
             </SubRow>
           </TitleContainer>
-          {/* <NotificationCenterLink /> */}
         </TitleRow>
         <OnboardingCard />
 
@@ -93,9 +91,6 @@ const Sleep: FC = () => {
         <Row>
           <InsightsCard />
         </Row>
-        {/* <Row>
-          <QuestionCard />
-        </Row> */}
         <SleepTimeChart />
       </ScrollView>
 

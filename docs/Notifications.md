@@ -18,7 +18,7 @@ All notification processes will be rescheduled every 15 minutes by using react-n
 
 ## Customer Support Notifications
 
-Handled by intercom, currently we can't really affect these
+TODO
 
 ## Important stuff
 

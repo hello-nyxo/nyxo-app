@@ -39,6 +39,7 @@ const LessonView: FC<Props> = ({
     params: { slug }
   }
 }) => {
+  const { y: yOffset, scrollHandler } = useScrollHandler()
   const { data: lessons, loading } = useLesson(slug)
   const { data } = useGetActiveCoaching()
   const [mutate, { isLoading: completeLoading }] = useUpdateCoaching()
@@ -55,7 +56,6 @@ const LessonView: FC<Props> = ({
     })
   }
 
-  const { y: yOffset, scrollHandler } = useScrollHandler()
   return (
     <LessonContainer>
       <TopHeader yOffset={yOffset} title={lesson?.lessonName} />

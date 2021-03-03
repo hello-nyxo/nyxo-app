@@ -5,9 +5,9 @@ import { fonts } from '@styles/themes'
 import { ImageProps } from 'react-native'
 
 type Props = {
-  avatarURL: string
-  name: string
-  credentials: string
+  avatarURL?: string
+  name?: string
+  credentials?: string
 }
 
 const AuthorCard: FC<Props> = ({ avatarURL, name, credentials }) => (

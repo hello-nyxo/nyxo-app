@@ -1,9 +1,9 @@
 import { ScaleTime } from 'd3'
-import moment from 'moment'
 import React, { FC, useMemo } from 'react'
 import { G, Rect } from 'react-native-svg'
 import { Day } from '@typings/Sleepdata'
 import colors from '../../../styles/colors'
+import { addHours } from 'date-fns'
 
 interface Props {
   data: Day[]
@@ -22,15 +22,16 @@ const TargetBars: FC<Props> = ({
   onPress,
   start
 }) => {
-  const end = moment(start).add(8, 'hours')
-  if (!start && typeof start !== 'string') return null
+  const end = addHours(new Date(start ?? new Date()), 8)
 
   const { bars } = useMemo(
     () => ({
       bars: data.map((datum) => {
-        const y = scaleY(moment(start).valueOf())
+        const y = scaleY(new Date(start ?? new Date()).valueOf())
         const x = scaleX(new Date(datum.date))
-        const height = scaleY(end.valueOf()) - scaleY(moment(start).valueOf())
+        const height =
+          scaleY(end.valueOf()) -
+          scaleY(new Date(start ?? new Date()).valueOf())
 
         if (Number.isNaN(y)) return null
 
@@ -49,8 +50,10 @@ const TargetBars: FC<Props> = ({
         )
       })
     }),
-    [data]
+    [barWidth, data, end, onPress, scaleX, scaleY, start]
   )
+
+  if (!start && typeof start !== 'string') return null
 
   return <G>{bars}</G>
 }

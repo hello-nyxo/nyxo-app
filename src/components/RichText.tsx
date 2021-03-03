@@ -11,14 +11,8 @@ import {
   MARKS
 } from '@contentful/rich-text-types'
 import { WIDTH } from '@helpers/Dimensions'
-import { AssetBlock } from '@typings/contentful.t'
-import React, {
-  FC,
-  ReactElement,
-  ReactNode,
-  useLayoutEffect,
-  useState
-} from 'react'
+import { AssetBlock } from '@typings/contentful'
+import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { Image, Linking } from 'react-native'
 import styled from 'styled-components/native'
 import colors from '../styles/colors'
@@ -70,7 +64,9 @@ const defaultInline: (type: string, node: Inline) => ReactNode = (
 
 interface Props {
   content?: Document
-  assets: any
+  assets: {
+    block: AssetBlock[]
+  }
 }
 
 const RichText: FC<Props> = ({ content, assets }) => {
@@ -80,52 +76,77 @@ const RichText: FC<Props> = ({ content, assets }) => {
 
   const options: Options = {
     renderMark: {
-      [MARKS.BOLD]: (text: ReactNode) => <Bold>{text}</Bold>,
-      [MARKS.ITALIC]: (text: ReactNode) => <Italic>{text}</Italic>,
-      [MARKS.UNDERLINE]: (text: ReactNode) => <Underline>{text}</Underline>,
-      [MARKS.CODE]: (text: ReactNode) => <Code>{text}</Code>
+      [MARKS.BOLD]: function bold(text: ReactNode) {
+        return <Bold>{text}</Bold>
+      },
+      [MARKS.ITALIC]: function italic(text: ReactNode) {
+        return <Italic>{text}</Italic>
+      },
+      [MARKS.UNDERLINE]: function underline(text: ReactNode) {
+        return <Underline>{text}</Underline>
+      },
+      [MARKS.CODE]: function code(text: ReactNode) {
+        return <Code>{text}</Code>
+      }
     },
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (_: Block | Inline, children: ReactNode) => (
-        <Paragraph>{children}</Paragraph>
-      ),
-      [BLOCKS.UL_LIST]: (node: Block | Inline, children: ReactNode) => (
-        <List node={node}>{children}</List>
-      ),
-      [BLOCKS.OL_LIST]: (node: Block | Inline, children: ReactNode) => (
-        <List node={node}>{children}</List>
-      ),
-      [BLOCKS.EMBEDDED_ASSET]: (node: Block | Inline) => (
-        <ImageBlock type="" assets={assets} node={node} />
-      ),
-      [BLOCKS.HR]: (_: Block | Inline) => <Line />,
-      [BLOCKS.LIST_ITEM]: (_: Block | Inline, children: ReactNode) => (
-        <ListItemText>{children}</ListItemText>
-      ),
-      [BLOCKS.HEADING_1]: (_: Block | Inline, children: ReactNode) => (
-        <H1>{children}</H1>
-      ),
-      [BLOCKS.HEADING_2]: (_: Block | Inline, children: ReactNode) => (
-        <H2>{children}</H2>
-      ),
-      [BLOCKS.HEADING_3]: (_: Block | Inline, children: ReactNode) => (
-        <H3>{children}</H3>
-      ),
-      [BLOCKS.HEADING_4]: (_: Block | Inline, children: ReactNode) => (
-        <H4>{children}</H4>
-      ),
-      [BLOCKS.HEADING_5]: (_: Block | Inline, children: ReactNode) => (
-        <H5>{children}</H5>
-      ),
-      [BLOCKS.HEADING_6]: (_: Block | Inline, children: ReactNode) => (
-        <H6>{children}</H6>
-      ),
-      [BLOCKS.QUOTE]: (_: Block | Inline, children: ReactNode) => (
-        <BlockQuote>{children}</BlockQuote>
-      ),
-      [INLINES.HYPERLINK]: (node: Block | Inline, children: ReactNode) => (
-        <HyperLink href={node?.data?.uri}>{children}</HyperLink>
-      ),
+      [BLOCKS.PARAGRAPH]: function paragraph(
+        _: Block | Inline,
+        children: ReactNode
+      ) {
+        return <Paragraph>{children}</Paragraph>
+      },
+      [BLOCKS.UL_LIST]: function ulList(
+        node: Block | Inline,
+        children: ReactNode
+      ) {
+        return <List node={node}>{children}</List>
+      },
+      [BLOCKS.OL_LIST]: function olList(
+        node: Block | Inline,
+        children: ReactNode
+      ) {
+        return <List node={node}>{children}</List>
+      },
+      [BLOCKS.EMBEDDED_ASSET]: function embeddedAsset(node: Block | Inline) {
+        return <ImageBlock type="" assets={assets} node={node} />
+      },
+      [BLOCKS.HR]: function hr(_: Block | Inline) {
+        return <Line />
+      },
+      [BLOCKS.LIST_ITEM]: function listItem(
+        _: Block | Inline,
+        children: ReactNode
+      ) {
+        return <ListItemText>{children}</ListItemText>
+      },
+      [BLOCKS.HEADING_1]: function h1(_: Block | Inline, children: ReactNode) {
+        return <H1>{children}</H1>
+      },
+      [BLOCKS.HEADING_2]: function h2(_: Block | Inline, children: ReactNode) {
+        return <H2>{children}</H2>
+      },
+      [BLOCKS.HEADING_3]: function h3(_: Block | Inline, children: ReactNode) {
+        return <H3>{children}</H3>
+      },
+      [BLOCKS.HEADING_4]: function h4(_: Block | Inline, children: ReactNode) {
+        return <H4>{children}</H4>
+      },
+      [BLOCKS.HEADING_5]: function h5(_: Block | Inline, children: ReactNode) {
+        return <H5>{children}</H5>
+      },
+      [BLOCKS.HEADING_6]: function h5(_: Block | Inline, children: ReactNode) {
+        return <H6>{children}</H6>
+      },
+      [BLOCKS.QUOTE]: function quote(_: Block | Inline, children: ReactNode) {
+        return <BlockQuote>{children}</BlockQuote>
+      },
+      [INLINES.HYPERLINK]: function hyperlink(
+        node: Block | Inline,
+        children: ReactNode
+      ) {
+        return <HyperLink href={node?.data?.uri}>{children}</HyperLink>
+      },
       [INLINES.EMBEDDED_ENTRY]: (node: Block | Inline) =>
         defaultInline(INLINES.EMBEDDED_ENTRY, node as Inline)
     }
@@ -145,12 +166,15 @@ const Bold = styled.Text`
   font-family: ${fonts.bold};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
+Bold.displayName = 'Bold'
 
 const Italic = styled.Text`
   font-family: ${fonts.medium};
   font-style: italic;
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
+
+Italic.displayName = 'Italic'
 
 const Underline = styled.Text`
   text-decoration: underline;
@@ -234,8 +258,8 @@ const List = ({
 
   if (!Array.isArray(children)) return null
 
-  const mapped = children?.map((child: ReactElement, index: number) => (
-    <ListItemContainer ordered={ordered} key={`${child.key}`}>
+  const mapped = children?.map((child, index: number) => (
+    <ListItemContainer ordered={ordered} key={`${index}`}>
       {ordered ? <Number>{index + 1}.</Number> : <Dot />}
       <ListItemText>{child}</ListItemText>
     </ListItemContainer>

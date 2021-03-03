@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import { register } from '@actions/auth/auth-actions'
 import { markDataOnboardingCompleted } from '@actions/onboarding/onboarding-actions'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
@@ -14,7 +13,7 @@ import { RegisterView } from '@views/RegisterView'
 import { SourceSettingsView } from '@views/SourceView'
 import React, { FC, useRef, useState } from 'react'
 import { ScrollView, Animated } from 'react-native'
-import Modal, { ReactNativeModal } from 'react-native-modal'
+import Modal from 'react-native-modal'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -178,7 +177,8 @@ export const Onboarding: FC = () => {
         <ModalContent>
           <RegisterView
             back={authModalToggle}
-            goToLogin={() => {}}
+            //FIXME
+            goToLogin={() => undefined}
             register={signUp}
           />
         </ModalContent>
@@ -245,7 +245,7 @@ const ModalContent = styled.ScrollView`
   flex: 1;
 `
 
-const StyledModal = styled(Modal)<ReactNativeModal>`
+const StyledModal = styled(Modal as unknown)`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   flex: 1;
   margin: 0px;

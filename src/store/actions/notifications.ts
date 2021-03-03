@@ -4,7 +4,6 @@ import PushNotificationIOS, {
 import { Night } from '@typings/Sleepdata'
 import translate from '@config/i18n'
 import {
-  androidChannels,
   BEDTIME_APPROACH,
   COACHING_INCOMPLETE_LESSON,
   COACHING_REMIND_LESSONS_IN_WEEK,
@@ -14,13 +13,12 @@ import moment from 'moment'
 import { Platform } from 'react-native'
 import Intercom from 'react-native-intercom'
 import { actionCreators } from '@reducers/NotificationReducer'
-import { GetState } from '@typings/GetState'
 import {
   NotificationType,
   ScheduledNotification,
   UpdateNotificationPermissionType
 } from '@typings/NotificationState'
-import { Thunk, Dispatch } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import { startOfDay } from 'date-fns'
 
 const firebaseNotifications = undefined
@@ -32,7 +30,7 @@ const {
   removeScheduledNotification
 } = actionCreators
 
-export const askForPush = (): Thunk => async (dispatch: Dispatch) => {
+export const askForPush = (): AppThunk => async (dispatch) => {
   if (Platform.OS === 'ios') {
     const permissions: PushNotificationPermissions = await PushNotificationIOS.requestPermissions(
       {
@@ -45,7 +43,7 @@ export const askForPush = (): Thunk => async (dispatch: Dispatch) => {
       await dispatch(setShouldAskNotificationPermission(false))
     }
   } else {
-    const FCMToken = await Firebase.messaging().getToken()
+    // const FCMToken = await Firebase.messaging().getToken()
     await Intercom.sendTokenToIntercom(FCMToken)
     await dispatch(setShouldAskNotificationPermission(false))
   }
@@ -54,36 +52,32 @@ export const askForPush = (): Thunk => async (dispatch: Dispatch) => {
 export const setNotification = (
   type: UpdateNotificationPermissionType,
   enabled: boolean
-): Thunk => (dispatch: Dispatch) => {
+): AppThunk => (dispatch) => {
   dispatch(updateNotificationPermission(type, enabled))
 }
 
 export const createAndroidChannels = async (): Promise<void> => {
-  const bedtimeChannel = new firebaseNotifications.Android.Channel(
-    androidChannels.BEDTIME.id,
-    androidChannels.BEDTIME.name,
-    androidChannels.BEDTIME.importance
-  ).setDescription('Channel for bedtime-related notifications')
-
-  const coachingChannel = new firebaseNotifications.Android.Channel(
-    androidChannels.COACHING.id,
-    androidChannels.COACHING.name,
-    androidChannels.COACHING.importance
-  ).setDescription('Channel for coaching-related notifications')
-
-  const channels = [bedtimeChannel, coachingChannel]
-
-  await firebaseNotifications().android.createChannels(channels)
+  // const bedtimeChannel = new firebaseNotifications.Android.Channel(
+  //   androidChannels.BEDTIME.id,
+  //   androidChannels.BEDTIME.name,
+  //   androidChannels.BEDTIME.importance
+  // ).setDescription('Channel for bedtime-related notifications')
+  // const coachingChannel = new firebaseNotifications.Android.Channel(
+  //   androidChannels.COACHING.id,
+  //   androidChannels.COACHING.name,
+  //   androidChannels.COACHING.importance
+  // ).setDescription('Channel for coaching-related notifications')
+  // const channels = [bedtimeChannel, coachingChannel]
+  // await firebaseNotifications().android.createChannels(channels)
 }
 
 /* START - HANDLE BEDTIME APPROACH NOTIFICATIONS */
-export const handleBedtimeApproachNotifications = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+export const handleBedtimeApproachNotifications = (): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   const {
     nights,
-    insights,
     notifications: {
       bedtimeApproachNotification: { enabled: bedtimeNotificationEnabled } = {
         enabled: false
@@ -138,9 +132,9 @@ export const handleBedtimeApproachNotifications = (): Thunk => async (
 
 /* START- HANDLE COACHING NOTIFICATIONS */
 
-export const handleCoachingUncompletedLessonNotifications = (): Thunk => async (
-  dispatch: Dispatch,
-  getState: GetState
+export const handleCoachingUncompletedLessonNotifications = (): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   const {
     subscriptions: { isActive: coachingActivated },
@@ -194,9 +188,9 @@ export const handleCoachingUncompletedLessonNotifications = (): Thunk => async (
   }
 }
 
-export const handleCoachingLessonsInWeekNotifications = () => async (
-  dispatch: Function,
-  getState: GetState
+export const handleCoachingLessonsInWeekNotifications = (): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   const {
     notifications: {
@@ -295,7 +289,7 @@ const isOldFireDateBehindToday = (
 
 export const cancelLocalNotifications = (
   notification: NotificationObject
-) => async (dispatch: Function) => {
+) => async (dispatch) => {
   const { userInfo, id } = notification
 
   if (Platform.OS === 'ios') {
@@ -310,7 +304,7 @@ export const cancelLocalNotifications = (
 const scheduleAndroidNotification = (
   notification: NotificationObject,
   fireDate: number
-) => async (dispatch: Function) => {
+) => async (dispatch) => {
   const { id, title, body, channelID, smallIcon, largeIcon } = notification
 
   const notificationObject = new firebaseNotifications.Notification()
@@ -337,7 +331,7 @@ const scheduleAndroidNotification = (
 const scheduleIosNotification = (
   notification: NotificationObject,
   fireDate: string
-): Thunk => async (dispatch: Dispatch) => {
+): AppThunk => async (dispatch) => {
   const { title, body, userInfo, id } = notification
   PushNotificationIOS.scheduleLocalNotification({
     userInfo,
@@ -355,7 +349,7 @@ type errorObject = {
   message: string
 }
 
-export const sendError = (error: errorObject) => async (dispatch: Function) => {
+export const sendError = (error: errorObject) => async (dispatch) => {
   if (error.message) {
     await dispatch(
       newNotification({

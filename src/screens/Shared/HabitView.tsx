@@ -110,13 +110,3 @@ const NewHabitButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `
-
-const ActiveHabits = styled.View`
-  margin: 20px;
-`
-
-const Text = styled.Text`
-  font-size: 15px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-`

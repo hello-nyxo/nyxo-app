@@ -7,11 +7,7 @@ platform :ios, '10.0'
 
 target 'Nyxo' do
 	pod 'RNPurchases', :path => '../node_modules/react-native-purchases', :inhibit_warnings => true
-
-
-
 	pod 'OpenSSL-Universal'
-	pod 'Intercom'
   use_unimodules!(exclude: ['expo-face-detector'])
 	use_flipper!
 

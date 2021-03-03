@@ -208,7 +208,7 @@ export const requestNewPassword = (username: string): AppThunk => async (
   dispatch
 ) => {
   try {
-    const forgotRes = await Auth.forgotPassword(username)
+    await Auth.forgotPassword(username)
   } catch (error) {
     await dispatch(
       notificationActions.newNotification({
@@ -225,11 +225,7 @@ export const submitNewPassword = (
   password: string
 ): AppThunk => async (dispatch) => {
   try {
-    const res = await Auth.forgotPasswordSubmit(
-      username,
-      confirmationCode,
-      password
-    )
+    await Auth.forgotPasswordSubmit(username, confirmationCode, password)
   } catch (error) {
     await dispatch(
       notificationActions.newNotification({

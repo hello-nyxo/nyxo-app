@@ -113,7 +113,7 @@ export const createHealthKitSources = (
   const noSleepTrackersInState = !hkSource
 
   if (noSleepTrackersInState) {
-    const tracker = sourceList[1] ? sourceList[1] : sourceList[0]
+    const tracker = sourceList.length > 1 ? sourceList[1] : sourceList[0]
     await dispatch(changeHealthKitSource(tracker))
   }
 }

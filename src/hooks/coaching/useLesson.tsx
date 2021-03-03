@@ -1,5 +1,5 @@
 import { gql, QueryResult, useQuery } from '@apollo/client'
-import { LessonCollectionItem } from '@typings/contentful.t'
+import { LessonCollectionItem } from '@typings/contentful'
 import I18n from 'i18n-js'
 
 const GET_LESSON = gql`

@@ -1,6 +1,6 @@
 import keyExtractor from '@helpers/KeyExtractor'
 import { fonts } from '@styles/themes'
-import { HabitCollectionItem } from '@typings/contentful.t'
+import { HabitCollectionItem } from '@typings/contentful'
 import React, { FC } from 'react'
 import { FlatList, ListRenderItem } from 'react-native'
 import styled from 'styled-components/native'

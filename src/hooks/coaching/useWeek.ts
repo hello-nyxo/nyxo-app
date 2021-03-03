@@ -1,5 +1,5 @@
 import { gql, QueryResult, useQuery } from '@apollo/client'
-import { Document } from '@contentful/rich-text-types'
+import { WeekCollectionItem } from '@typings/contentful'
 import I18n from 'i18n-js'
 
 const GET_WEEK = gql`
@@ -26,6 +26,16 @@ const GET_WEEK = gql`
             author
             chronotype
             weights
+            cover {
+              url
+            }
+            section {
+              title
+              order
+              description {
+                json
+              }
+            }
           }
         }
       }
@@ -35,26 +45,7 @@ const GET_WEEK = gql`
 
 type WeekData = {
   coachingWeekCollection: {
-    items: {
-      weekName: string
-      slug: string
-      weekDescription: {
-        json: Document
-      }
-      intro: string
-      coverPhoto: {
-        url: string
-      }
-      lessonsCollection: {
-        items: {
-          lessonName: string
-          slug: string
-          author: string
-          chronotype: string
-          weights: unknown
-        }[]
-      }
-    }[]
+    items: WeekCollectionItem[]
   }
 }
 
@@ -69,4 +60,15 @@ export const useWeek = (slug: string): QueryResult<WeekData, WeekVariables> => {
   return useQuery<WeekData, WeekVariables>(GET_WEEK, {
     variables: { language: locale, slug }
   })
+}
+
+export const getWeek = (data?: WeekData): WeekCollectionItem | undefined => {
+  if (
+    data?.coachingWeekCollection?.items &&
+    data?.coachingWeekCollection?.items?.length !== 0
+  ) {
+    return data.coachingWeekCollection.items[0]
+  }
+
+  return undefined
 }

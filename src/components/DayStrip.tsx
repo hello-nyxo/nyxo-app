@@ -1,12 +1,12 @@
 import React, { FC, useRef, useEffect, useState } from 'react'
 import { FlatList, ListRenderItem, ViewToken } from 'react-native'
 import styled, { css } from 'styled-components/native'
-import { sub, startOfDay } from 'date-fns/esm'
+import { sub, startOfDay, isSameDay } from 'date-fns'
 import { WIDTH } from '@helpers/Dimensions'
 import { useDispatch } from 'react-redux'
 import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import useCalendar from '@hooks/calendar'
-import { isSameDay } from 'date-fns'
+
 import LinearGradient from 'react-native-linear-gradient'
 import { localizedFormat } from '@config/i18n'
 

@@ -8,6 +8,7 @@ import { fetchSleepSuccess } from '@actions/sleep/health-kit-actions'
 import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
 import CONFIG from '@config/Config'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { getGoogleFitToken } from '@helpers/oauth/google-fit'
 import { formatGoogleFitData } from '@helpers/sleep/google-fit-helper'
 import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
 import { getGoogleFitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
@@ -19,13 +20,12 @@ import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
 import { endOfDay, startOfDay, subWeeks } from 'date-fns'
 import { Platform } from 'react-native'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
-import { getGoogleFitToken } from '@helpers/oauth/google-fit'
 import { v4 } from 'uuid'
 import {
+  ApiActions,
   GOOGLE_FIT_AUTHORIZE_SUCCESS,
   GOOGLE_FIT_REVOKE_SUCCESS,
-  GOOGLE_FIT_UPDATE_TOKEN,
-  ApiActions
+  GOOGLE_FIT_UPDATE_TOKEN
 } from './types'
 
 export const GOOGLE_FIT_KEYCHAIN_SERVICE = 'service.fit.google.customized'
@@ -201,12 +201,12 @@ export const readGoogleFitSleep = (
   }
 }
 
-export const registerGoogleFitDevice = async () => {
+export const registerGoogleFitDevice = async (): Promise<void> => {
   const { accessToken } = await getGoogleFitToken()
 
   const url = 'https://www.googleapis.com/fitness/v1/users/me/dataSources'
   try {
-    const call = await fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -234,7 +234,7 @@ export const registerGoogleFitDevice = async () => {
 export const recordGoogleFitSleep = (
   startDate: string,
   endDate: string
-): AppThunk => async (dispatch) => {
+): AppThunk => async () => {
   const id = v4()
 
   const url = `https://www.googleapis.com/fitness/v1/users/me/sessions/${id}`
@@ -242,7 +242,7 @@ export const recordGoogleFitSleep = (
   const { accessToken } = await getGoogleFitToken()
 
   try {
-    const call = await fetch(url, {
+    await fetch(url, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${accessToken}`,

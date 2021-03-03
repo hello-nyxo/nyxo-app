@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { AuthorCardCollectionItem } from '@typings/contentful.t'
+import { AuthorCardCollectionItem } from '@typings/contentful'
 import AuthorCard from '../LessonComponents/AuthorCard'
 import LargeAuthorCard from '../LessonComponents/LargeAuthorCard'
 
@@ -19,7 +19,7 @@ const AuthorsComponent: FC<Props> = ({ authorCards }) => {
     .map((item) => (
       <AuthorCard
         key={item.name}
-        avatarURL={item.avatar.url}
+        avatarURL={item?.avatar?.url}
         name={item.name}
         credentials={item.credentials}
       />
@@ -29,7 +29,7 @@ const AuthorsComponent: FC<Props> = ({ authorCards }) => {
     <AuthorContainer>
       {mainAuthor ? (
         <LargeAuthorCard
-          avatarURL={mainAuthor.avatar.url}
+          avatarURL={mainAuthor?.avatar?.url}
           name={mainAuthor.name}
           credentials={mainAuthor.credentials}
         />

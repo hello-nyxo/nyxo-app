@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
-import Moment from 'moment'
-import React, { useEffect, useState } from 'react'
+import { addHours, subHours } from 'date-fns'
+import React, { FC, useEffect, useState } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import appleHealthKit from 'react-native-healthkit'
 import Svg, { G, Path, Rect, Text as SvgText } from 'react-native-svg'
@@ -9,7 +9,6 @@ import EmptyState from '../EmptyState'
 
 const { width } = Dimensions.get('window')
 const PaddingSize = 20
-const TickWidth = PaddingSize * 2
 
 interface HeartRateChartProps {
   startDate: string
@@ -27,13 +26,11 @@ interface HeartRateSample {
   value: number
 }
 
-const HeartRateChart = (props: HeartRateChartProps) => {
+const HeartRateChart: FC<HeartRateChartProps> = ({ startDate, endDate }) => {
   const [hrData, setHRdata] = useState()
 
-  const timePaddedStart = Moment(props.startDate)
-    .subtract(1, 'hour')
-    .toISOString()
-  const timePaddedEnd = Moment(props.endDate).add(1, 'hour').toISOString()
+  const timePaddedStart = subHours(new Date(startDate), 1).toISOString()
+  const timePaddedEnd = addHours(new Date(endDate), 1).toISOString()
 
   async function getData(startDate: string, endDate: string) {
     const options = {
@@ -60,8 +57,8 @@ const HeartRateChart = (props: HeartRateChartProps) => {
   }
 
   useEffect(() => {
-    getData(props.startDate, props.endDate)
-  }, [])
+    getData(startDate, endDate)
+  }, [getData, startDate])
 
   if (!hrData || hrData.length === 0) {
     return <EmptyState />
@@ -121,12 +118,10 @@ const HeartRateChart = (props: HeartRateChartProps) => {
           />
         </G>
         <Rect
-          x={scaleX(new Date(props.startDate))}
+          x={scaleX(new Date(startDate))}
           y={0}
           height={chartHeight}
-          width={
-            scaleX(new Date(props.endDate)) - scaleX(new Date(props.startDate))
-          }
+          width={scaleX(new Date(endDate)) - scaleX(new Date(startDate))}
           fill={colors.inBedTransparent}
         />
 

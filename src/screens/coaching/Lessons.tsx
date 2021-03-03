@@ -2,17 +2,13 @@ import LessonListItem from '@components/LessonComponents/LessonListItem'
 import SectionHeader from '@components/LessonComponents/SectionHeader'
 import keyExtractor from '@helpers/KeyExtractor'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
-import {
-  CombinedLesson,
-  CombinedLessonArray,
-  getCoachingLessonsForWeek
-} from '@selectors/coaching-selectors/coaching-selectors'
+import { getWeek, useWeek } from '@hooks/coaching/useWeek'
 import { Section } from '@typings/CoachingContentState'
+import { LessonCollectionItem } from '@typings/contentful'
 import { groupBy } from 'lodash'
 import React, { FC, ReactElement } from 'react'
 import { ListRenderItem, SectionList } from 'react-native'
 import Animated from 'react-native-reanimated'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
@@ -23,7 +19,8 @@ type RenderSectionHeader = ({
   section: { header: Section }
 }) => React.ReactElement | null
 
-type Props = {
+type Props = SectionListProps & {
+  slug?: string
   locked?: boolean
   header?: ReactElement
   footer?: ReactElement
@@ -36,41 +33,47 @@ const LessonList: FC<Props> = ({
   header,
   footer,
   onScroll,
-  refreshControl
+  slug,
+  refreshControl,
+  ...rest
 }) => {
   const { data } = useGetActiveCoaching()
-  const lessons: CombinedLessonArray = useSelector(getCoachingLessonsForWeek)
-  const withData = lessons.map((lesson) => ({
+  const { data: weekData } = useWeek(slug ?? 'introduction')
+  const week = getWeek(weekData)
+
+  const withData = week?.lessonsCollection.items.map((lesson) => ({
     ...lesson,
     completed: !!data?.lessons?.find((lssn) => lesson.slug === lssn)
   }))
 
   const groupedLessons = groupBy(withData, (lesson) => lesson.section?.title)
-  const sectionData = withData.map((item) => ({
+  const sectionData = withData?.map((item) => ({
     title: item.section?.title,
     description: item.section?.description,
     order: item.section?.order
   }))
 
   const sections = Object.entries(groupedLessons).map((group) => ({
-    header: { ...sectionData.find((item) => item.title === group[0]) },
+    header: { ...sectionData?.find((item) => item.title === group[0]) },
     data: group[1]
   }))
 
-  const renderCard: ListRenderItem<CombinedLesson> = ({ item }) => (
-    <LessonListItem key={item.slug} locked={locked} lesson={item} />
+  const renderCard: ListRenderItem<LessonCollectionItem> = ({ item }) => (
+    <LessonListItem key={item?.slug} locked={locked} lesson={item} />
   )
 
   const renderSectionHeader: RenderSectionHeader = ({ section }) => (
     <SectionHeader
       key={`${section.header.title}`}
-      description={section.header.description}
+      description={section.header.description?.json}
       title={`${section.header.title}`}
     />
   )
 
   return (
     <StyledSectionList
+      {...rest}
+      scrollEventThrottle={16}
       onScroll={onScroll}
       refreshControl={refreshControl}
       ListHeaderComponent={header}

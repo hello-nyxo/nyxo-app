@@ -1,20 +1,19 @@
-import { WIDTH } from '@helpers/Dimensions'
 import { GetUserQuery } from '@API'
 import TranslatedText from '@components/TranslatedText'
+import { WIDTH } from '@helpers/Dimensions'
+import colors from '@styles/colors'
 import React, { FC } from 'react'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Circle } from 'react-native-svg'
 import styled from 'styled-components/native'
-import colors from '@styles/colors'
 
 const chartWidth = WIDTH - 16 * 2 - 2 * 32
-const chartHeight = chartWidth * (9 / 16)
 
 type User = Exclude<GetUserQuery['getUser'], null>
 type SleepPoints = Exclude<User['sleepPoints'], null>
 
 type Props = {
-  sleepPoints?: SleepPoints
+  sleepPoints?: SleepPoints | null
 }
 
 const Points: FC<Props> = ({
@@ -25,13 +24,12 @@ const Points: FC<Props> = ({
     timing: 0
   }
 }) => {
-  const {
-    efficiency = 0,
-    duration = 0,
-    socialJetLag = 0,
-    timing = 0
-  } = sleepPoints
-  const average = (efficiency + duration + socialJetLag + timing) / 4
+  const average =
+    ((sleepPoints?.efficiency ?? 0) +
+      (sleepPoints?.duration ?? 0) +
+      (sleepPoints?.socialJetLag ?? 0) +
+      (sleepPoints?.timing ?? 0)) /
+    4
 
   return (
     <Container>
@@ -61,7 +59,7 @@ const Points: FC<Props> = ({
 
       <Section>
         <ScoreContainer>
-          <Score>{efficiency}</Score>
+          <Score>{sleepPoints?.efficiency}</Score>
         </ScoreContainer>
         <Column>
           <ScoreTitle>POINTS.EFFICIENCY</ScoreTitle>
@@ -70,7 +68,7 @@ const Points: FC<Props> = ({
       </Section>
       <Section>
         <ScoreContainer>
-          <Score>{duration}</Score>
+          <Score>{sleepPoints?.duration}</Score>
         </ScoreContainer>
         <Column>
           <ScoreTitle>POINTS.DURATION</ScoreTitle>
@@ -80,7 +78,7 @@ const Points: FC<Props> = ({
 
       <Section>
         <ScoreContainer>
-          <Score>{socialJetLag}</Score>
+          <Score>{sleepPoints?.socialJetLag}</Score>
         </ScoreContainer>
         <Column>
           <ScoreTitle>POINTS.SOCIAL_JET_LAG</ScoreTitle>
@@ -90,7 +88,7 @@ const Points: FC<Props> = ({
 
       <Section>
         <ScoreContainer>
-          <Score>{timing}</Score>
+          <Score>{sleepPoints?.timing}</Score>
         </ScoreContainer>
         <Column>
           <ScoreTitle>POINTS.TIMING</ScoreTitle>
@@ -102,8 +100,6 @@ const Points: FC<Props> = ({
 }
 
 export default Points
-
-const calculateAverage = () => {}
 
 const Container = styled.View`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};

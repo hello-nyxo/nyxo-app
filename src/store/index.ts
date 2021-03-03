@@ -3,8 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import ApiReducer from '@reducers/api-reducer/api-reducer'
 import AuthReducer from '@reducers/auth-reducer/auth-reducer'
 import CalendarReducer from '@reducers/calendar-reducer/calendar-reducer'
-import CoachingReducer from '@reducers/coaching-reducer/coaching-reducer'
-import ContentReducer from '@reducers/content-reducer/content-reducer'
 import HabitReducer from '@reducers/habit-reducer/habit-reducer'
 import InsightsReducer from '@reducers/insight-reducer/insight-reducer'
 import LinkingReducer from '@reducers/linking/linking-reducer'
@@ -67,8 +65,6 @@ function makePersisted(
 
 const rootReducer = combineReducers({
   notifications: makePersisted('notifications', NotificationReducer, undefined),
-  coachingContent: makePersisted('coachingContent', ContentReducer, undefined),
-  coachingState: makePersisted('coachingState', CoachingReducer, undefined),
   habitState: makePersisted('habitState', HabitReducer, undefined, [
     serializeTransform
   ]),

@@ -26,7 +26,6 @@
 #import "AppCenterReactNativeAnalytics.h"
 #import "AppCenterReactNativeCrashes.h"
 
-#import "Intercom/intercom.h"
 #import <TSBackgroundFetch/TSBackgroundFetch.h>
 
 #import <UMCore/UMModuleRegistry.h>
@@ -67,7 +66,6 @@ static void InitializeFlipper(UIApplication *application) {
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
   [RNCPushNotificationIOS didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-  [Intercom setDeviceToken:deviceToken];
 }
  
 
@@ -111,7 +109,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
   [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:false];
   
     
-  [Intercom setApiKey: INTERCOM_KEY_IOS forAppId: INTERCOM_ID];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
   

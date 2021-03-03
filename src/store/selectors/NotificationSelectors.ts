@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector, OutputParametricSelector } from '@reduxjs/toolkit'
 import { State } from '@typings/State'
 import {
   NotificationState,
@@ -35,10 +35,15 @@ export const getIntercomNotificationCount = createSelector(
 
 // Create a single selector for each NotificationRow cause we are passing the title prop
 // so that memoization can work properly
-export const makeGetNotificationEnabled = () =>
+export const makeGetNotificationEnabled = (): OutputParametricSelector<
+  State,
+  NotificationPermissionType,
+  boolean,
+  (res1: NotificationState, res2: NotificationPermissionType) => boolean
+> =>
   createSelector(
     getNotificationState,
-    (_: any, title: NotificationPermissionType) => title,
+    (_: unknown, title: NotificationPermissionType) => title,
     (notification: NotificationState, title: NotificationPermissionType) => {
       if (title === NotificationPermissionType.CUSTOMER_SUPPORT_NOTIFICATION) {
         return notification.customerSupportNotification

@@ -6,6 +6,7 @@ import { SafeAreaView } from '@components/Primitives/Primitives'
 import TopInfo from '@components/TopInfo'
 import { WIDTH } from '@helpers/Dimensions'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
+import { useWeeks } from '@hooks/coaching/useWeeks'
 import colors from '@styles/colors'
 import React, { FC, memo } from 'react'
 import { RefreshControl } from 'react-native'
@@ -16,12 +17,14 @@ export const cardMargin = 5
 
 const CoachingScreen: FC = () => {
   const { data: coaching, refetch, isLoading } = useGetActiveCoaching()
+  const { data: content, error, refetch: refetchContent } = useWeeks()
+
   const dispatch = useDispatch()
 
   const refresh = async () => {
     await dispatch(updateSubscriptionStatus())
-
     refetch()
+    refetchContent()
   }
 
   return (

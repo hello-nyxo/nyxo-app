@@ -1,10 +1,8 @@
 import TabBarIcon, { TabBarIconProps } from '@components/TabBarIcon'
 import TabBarLabel from '@components/TabBarLabel'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { getIntercomNotificationCount } from '@selectors/NotificationSelectors'
 import { TabParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
 import Habits from '../../screens/Shared/HabitView'
 import CoachingNavigator from './coachingNavigator'
 import JournalNavigator from './JournalNavigator'
@@ -15,12 +13,13 @@ import SettingsNavigator from './settingsNavigator'
 const Tab = createBottomTabNavigator<TabParamList>()
 
 const TabNavigator: FC = () => {
-  const intercomNotifications = useSelector(getIntercomNotificationCount)
-
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarLabel: ({ focused, tintColor }: TabBarIconProps) => {
+        tabBarLabel: function tabBarLabel({
+          focused,
+          tintColor
+        }: TabBarIconProps) {
           return (
             <TabBarLabel
               label={`TAB.${route.name.toUpperCase()}`}
@@ -29,14 +28,12 @@ const TabNavigator: FC = () => {
             />
           )
         },
-        tabBarIcon: ({ focused, tintColor }: TabBarIconProps) => {
+        tabBarIcon: function tabBarIcon({
+          focused,
+          tintColor
+        }: TabBarIconProps) {
           return (
             <TabBarIcon
-              badgeCount={
-                route.name === ROUTE.SETTINGS
-                  ? intercomNotifications
-                  : undefined
-              }
               routeName={route.name}
               focused={focused}
               tintColor={tintColor}
@@ -45,13 +42,7 @@ const TabNavigator: FC = () => {
         }
       })}>
       <Tab.Screen name={ROUTE.JOURNAL} component={JournalNavigator} />
-      <Tab.Screen
-        name={ROUTE.COACHING}
-        component={CoachingNavigator}
-        // options={({ route }) => ({
-        //   tabBarVisible: getTabBarVisible(route)
-        // })}
-      />
+      <Tab.Screen name={ROUTE.COACHING} component={CoachingNavigator} />
       <Tab.Screen name={ROUTE.HABITS} component={Habits} />
       <Tab.Screen name={ROUTE.PROFILE} component={ProfileNavigator} />
       <Tab.Screen name={ROUTE.SETTINGS} component={SettingsNavigator} />

@@ -1,6 +1,5 @@
 ![Nyxo App](https://github.com/hello-nyxo/nyxo-website/blob/master/static/images/cover.png)
 
-
 <p align="center">
 <h1 align=center>Nyxo App – Better Sleep 💤💤💤</h1>
 </p>
@@ -10,7 +9,7 @@
 ![release](https://img.shields.io/github/v/release/hello-nyxo/nyxo-app)
 ![license](https://img.shields.io/github/license/hello-nyxo/nyxo-app)
 
---- 
+---
 
 <p align="center">
   <a href="https://apps.apple.com/us/app/nyxo-sleep-coaching/id1440417031">Download iOS</a> • <a href="https://play.google.com/store/apps/details?id=fi.nyxo.app">Download Android</a> • <a href="mailto:hello+github@nyxo.fi">Contact</a> • <a href="http://eepurl.com/g-0zKD">Nyxo Newsletter</a>
@@ -18,7 +17,9 @@
 </p>
 
 ## What is Nyxo App
+
 Nyxo is a mobile application for improving your sleep. Its built with React Native, AWS Amplify, styled-components, and Redux. Nyxo provides the following features:
+
 - Sleep tracking, with support for multiple different trackers
   - Google Fit
   - Apple Health
@@ -35,14 +36,12 @@ Nyxo is a mobile application for improving your sleep. Its built with React Nati
 The plan is to develop Nyxo further and allow contributions from everyone. If you want to for example build a new sleep visualization or add support for new sleep tracker, we will gladly welcome a pull request of that :)
 
 ## Can I help?
+
 Always!
 
 If you like the app, go give it 5 stars and a review! It helps more people find the app, and makes the developer very happy 😊
 
-
-
 If you know a language other than English, help us translate the app!
-
 
 ## Getting started
 
@@ -54,7 +53,7 @@ cd nyxo-app
 yarn
 ```
 
-__Link assets__
+**Link assets**
 
 ```shell
 react-native link
@@ -68,28 +67,27 @@ cd ios && pod install
 
 ### Setting up the environment and services
 
-__App Center__
+**App Center**
 Set up Microsoft's Visual Studio App Center for event analytics & crash reports: https://docs.microsoft.com/en-us/appcenter/sdk/getting-started/react-native
 
-__Sentry__
+**Sentry**
 Set up Sentry for React Native by executing the command. More Sentry-related information can be found at: https://docs.sentry.io/platforms/react-native/
 
-```shell 
+```shell
 sentry-wizard
 ```
 
 #### AWS-amplify
+
 We use aws-amplify for our api and authentication. We will most likely simplify the process of setting up Amplify in fresh project at some point. At the moment the worfklow for getting everything to run is following:
 
 - Get AWS account
 - See the instructions for installing amplify-cli
 - Do the following setup
 
-
-
 ### Setting up enviroment variables
 
-Nyxo configurations keys are placed in config.ts file, which then references the requirement enviroment variables from local `.env`file. Head to `docs/env-structure.md` file to learn more. The way the project is structured you should need to provide keys for all the services to make the app work. 
+Nyxo configurations keys are placed in config.ts file, which then references the requirement enviroment variables from local `.env`file. Head to `docs/env-structure.md` file to learn more. The way the project is structured you should need to provide keys for all the services to make the app work.
 
 ```
 //.env contents
@@ -115,16 +113,10 @@ GARMIN_ACCESS_TOKEN_ENDPOINT=YOUR_KEY
 GARMIN_GET_SLEEP_ENDPOINT=YOUR_KEY
 POLAR_ID=YOUR_KEY
 POLAR_TOKEN_ENDPOINT=YOUR_KEY
-INTERCOM_KEY_IOS=YOUR_KEY  // or use the key provided in env-structure.md
-INTERCOM_KEY_ANDROID=YOUR_KEY // or use the key provided in env-structure.md
-INTERCOM_ID=YOUR_KEY // or use the key provided in env-structure.md
 LINK_CODE_URL=YOUR_KEY
 ```
 
 After creating the .env file, run `yarn rnuc .env` to generate variable files.
-
-
-
 
 ## Troubleshooting
 

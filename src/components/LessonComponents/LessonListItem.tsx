@@ -1,34 +1,30 @@
-import { selectLesson } from '@actions/coaching/coaching-actions'
 import { getReadingTime } from '@helpers/reading-time'
 import { useNavigation } from '@react-navigation/core'
-import { CombinedLesson } from '@selectors/coaching-selectors/coaching-selectors'
 import ROUTE from '@config/routes/Routes'
 import React, { FC } from 'react'
 import FastImage from 'react-native-fast-image'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
 import { WeekScreenNavigationProp } from '@screens/coaching/WeekScreen'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
+import { LessonCollectionItem } from '@typings/contentful'
 
 type Props = {
-  lesson: CombinedLesson
+  lesson: LessonCollectionItem
   locked?: boolean
 }
 
 const LessonListItem: FC<Props> = ({ lesson, locked }) => {
-  const dispatch = useDispatch()
   const { navigate } = useNavigation<WeekScreenNavigationProp>()
-  const time = getReadingTime(lesson.lessonContent)
+  const time = getReadingTime(lesson.lessonContent?.json)
 
   const handlePress = () => {
     if (locked) {
-      dispatch(selectLesson(lesson.slug))
       navigate(ROUTE.LESSON, {
-        slug: lesson.slug,
-        id: lesson.contentId
+        slug: `${lesson?.slug}`,
+        id: 'id'
       })
     }
   }
@@ -65,18 +61,18 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
           <WeekImage
             resizeMode={FastImage.resizeMode.cover}
             source={{
-              uri: `https:${lesson.cover}?fm=jpg&fl=progressive&w=200`
+              uri: `${lesson.cover?.url}?fm=jpg&fl=progressive&w=200`
             }}
           />
           <Completed completed={lesson.completed}>
-            {lesson.completed ? (
+            {!!lesson.completed && (
               <IconBold
                 name="checkMark"
                 height={15}
                 width={15}
                 fill={colors.white}
               />
-            ) : null}
+            )}
           </Completed>
         </ImageContainer>
       </Container>

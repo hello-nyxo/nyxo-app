@@ -8,8 +8,10 @@ module.exports = {
     'react-native/react-native': true
   },
   extends: [
+    'react-app',
+    'react-app/jest',
     'plugin:react/recommended',
-    'airbnb',
+    'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
@@ -18,6 +20,7 @@ module.exports = {
   ],
   plugins: [
     'react',
+    'jsx-a11y',
     'react-native',
     '@typescript-eslint',
     'prettier',
@@ -36,6 +39,7 @@ module.exports = {
       'error',
       { ignoreComments: true, code: 120, ignoreStrings: true }
     ],
+    'no-param-reassign': ['error', { props: false }],
     'prettier/prettier': ['error'],
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
@@ -81,6 +85,7 @@ module.exports = {
     'import/resolver': {
       'babel-module': {}
     },
+    'import/ignore': ['react-native'],
     react: {
       version: 'detect'
     }

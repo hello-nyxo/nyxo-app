@@ -3,7 +3,7 @@ import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previ
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import { getGarminEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from '@config/Config'
-import { openAuthSessionAsync, WebBrowserResult } from 'expo-web-browser'
+import { openAuthSessionAsync } from 'expo-web-browser'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import {
   formatGarminSamples,
@@ -143,9 +143,7 @@ export const authorizeGarminIOS = (): AppThunk => async (dispatch) => {
   }
 }
 
-export const getGarminOauthVerifierAndroid = (): AppThunk => async (
-  dispatch
-) => {
+export const getGarminOauthVerifierAndroid = (): AppThunk => async () => {
   try {
     const getRequestTokenResponse = await fetch(
       CONFIG.GARMIN_CONFIG.REQUEST_TOKEN_ENDPOINT
@@ -229,10 +227,8 @@ export const getGarminAccessTokenAndroid = (
 }
 
 export const getGarminSleep = (
-  // eslint-disable-next-line unused-imports/no-unused-vars-ts
-  startDate?: string,
-  // eslint-disable-next-line unused-imports/no-unused-vars-ts
-  endDate?: string
+  _startDate?: string,
+  _endDate?: string
 ): AppThunk => async (dispatch) => {
   const { accessToken, accessTokenSecret } = ((await GetKeychainParsedValue(
     CONFIG.GARMIN_CONFIG.bundleId
@@ -248,10 +244,10 @@ export const getGarminSleep = (
 
       const combinedSleepData: GarminSleepObject[] = []
 
-      garminAPICalls.forEach((res: Response | undefined) => {
+      garminAPICalls.forEach((res) => {
         if (res) {
-          const { body } = res as any // Don't know how to properly cast this
-          body.forEach((sleep: GarminSleepObject) =>
+          const { body } = (res as unknown) as { body: GarminSleepObject[] }
+          body?.forEach((sleep: GarminSleepObject) =>
             combinedSleepData.push(sleep)
           )
         }
@@ -307,6 +303,6 @@ interface ParsedAuthorizedResponse extends queryString.ParsedQuery {
   oauth_verifier: string
 }
 
-interface OpenAuthSessionResponse extends WebBrowserResult {
+interface OpenAuthSessionResponse {
   url: string
 }

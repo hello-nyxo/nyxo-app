@@ -1,26 +1,27 @@
 import NewHabitModal from '@components//modals/HabitModal/NewHabitModal'
 import { BGContainer, H2 } from '@components//Primitives/Primitives'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
+import BuyCoaching from '@components/CoachingSpecific/BuyCoachingButton'
+import Copyright from '@components/CoachingSpecific/Copyright'
+import TopHeader from '@components/CoachingSpecific/TopHeader'
+import WeekIntro from '@components/CoachingSpecific/WeekIntro'
+import LessonCover from '@components/Lesson/LessonCover'
+import { WeekActions } from '@components/week/WeekActions'
+import ROUTE from '@config/routes/Routes'
+import { HEADER_MAX_HEIGHT } from '@helpers/Dimensions'
 import {
-  useUpdateCoaching,
-  useGetActiveCoaching
+  useGetActiveCoaching,
+  useUpdateCoaching
 } from '@hooks/coaching/useCoaching'
+import { useWeek } from '@hooks/coaching/useWeek'
+import { RouteProp } from '@react-navigation/core'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
+import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
-import Animated from 'react-native-reanimated'
+import LinearGradient from 'react-native-linear-gradient'
+import { useScrollHandler } from 'react-native-redash/lib/module/v1'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { RouteProp } from '@react-navigation/core'
-import ROUTE from '@config/routes/Routes'
-import { RootStackParamList } from '@typings/navigation/navigation'
-import Copyright from '@components/CoachingSpecific/Copyright'
-import BuyCoaching from '@components/CoachingSpecific/BuyCoachingButton'
-import WeekIntro from '@components/CoachingSpecific/WeekIntro'
-import { WeekActions } from '@components/week/WeekActions'
-import TopHeader from '@components/CoachingSpecific/TopHeader'
-import WeekCover from '@components/CoachingSpecific/Week.Cover'
-import { useWeek } from '@hooks/coaching/useCoachingContent'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { useValue } from 'react-native-redash/lib/module/v1'
 import Lessons from './Lessons'
 
 export type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.WEEK>
@@ -39,8 +40,8 @@ const WeekView: FC<Props> = ({
     params: { slug }
   }
 }) => {
+  const { y: yOffset, scrollHandler } = useScrollHandler()
   const hasCoaching = useSelector(getActiveCoaching)
-  const yOffset = useValue(0)
 
   /* Queries */
   const { data: weeks, loading: contentLoading } = useWeek(slug)
@@ -89,18 +90,16 @@ const WeekView: FC<Props> = ({
       <TopHeader yOffset={yOffset} title={week?.weekName ?? ''} />
 
       <Container>
+        <LessonCover yOffset={yOffset} cover={week?.coverPhoto?.url ?? ''} />
+
         <Lessons
-          onScroll={Animated.event([
-            { nativeEvent: { contentOffset: { y: yOffset } } }
-          ])}
+          slug={week?.slug}
+          {...scrollHandler}
           locked={!hasCoaching}
           header={
             <>
-              <WeekCover
-                yOffset={yOffset}
-                cover={week?.coverPhoto?.url ?? ''}
-              />
-
+              <Gradient />
+              <Content />
               {hasCoaching ? (
                 <WeekActions
                   started={activeWeek?.started}
@@ -155,4 +154,14 @@ const BuyCoachingContainer = styled.View`
   flex: 1;
   min-height: 100px;
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+`
+
+const Content = styled.View`
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+`
+
+const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
+  colors: theme.GRADIENT
+}))`
+  height: ${HEADER_MAX_HEIGHT}px;
 `

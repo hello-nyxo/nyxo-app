@@ -1,6 +1,8 @@
 import { Document } from '@contentful/rich-text-types'
 
 export type WeekCollectionItem = {
+  id: string
+  duration: number
   weekName: string
   slug: string
   weekDescription: {
@@ -16,6 +18,7 @@ export type WeekCollectionItem = {
 }
 
 export type LessonCollectionItem = {
+  id: string
   lessonName?: string
   slug?: string
   keywords?: string[]
@@ -23,6 +26,13 @@ export type LessonCollectionItem = {
   author: string
   cover?: {
     url?: string
+  }
+  section?: {
+    title?: string
+    order?: string
+    description: {
+      json?: Document
+    }
   }
   lessonContent?: {
     json?: Document

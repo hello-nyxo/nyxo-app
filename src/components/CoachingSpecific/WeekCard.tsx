@@ -1,4 +1,3 @@
-import { selectWeek } from '@actions/coaching/coaching-actions'
 import { useNavigation } from '@react-navigation/native'
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
@@ -7,20 +6,17 @@ import React, { FC, memo } from 'react'
 import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
-import { useDispatch } from 'react-redux'
-import {
-  CombinedWeek,
-  WEEK_STAGE
-} from '@selectors/coaching-selectors/coaching-selectors'
+import { WEEK_STAGE } from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import { constants, fonts } from '@styles/themes'
 import { CoachingPeriod } from '@hooks/coaching/useCoaching'
 import { TouchableOpacity } from 'react-native'
 import colors from '../../styles/colors'
 import WeekCardTitle from './WeekCardTitle'
+import { WeekCollectionItem } from '@typings/contentful'
 
 type Props = {
-  week: CombinedWeek
+  week: WeekCollectionItem
   cardWidth: number
   cardMargin: number
   coaching?: CoachingPeriod
@@ -28,20 +24,19 @@ type Props = {
 
 const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
   const navigation = useNavigation()
-  const dispatch = useDispatch()
 
   const handlePress = () => {
-    dispatch(selectWeek(week.slug))
     navigation.navigate(ROUTE.WEEK, {
       slug: week.slug,
-      id: week.contentId
+      id: week.id
     })
   }
 
   const formatedIntro = week.intro ? week.intro.replace('–', '\n –') : ''
-  const lessonCount = week.lessons.length
-  const { habitCount } = week
+  const lessonCount = week.lessonsCollection.items.length
+  const habitCount = 1000
   const { stage } = getStage(coaching, week.slug)
+
   return (
     <CardContainer>
       <TouchableOpacity onPress={handlePress}>
@@ -51,7 +46,7 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
           <CoverPhotoContainer>
             <CoverPhoto
               resizeMode="cover"
-              source={{ uri: `https:${week.coverPhoto}?fm=jpg&fl=progressive` }}
+              source={{ uri: `${week.coverPhoto.url}?fm=jpg&fl=progressive` }}
             />
 
             <GradientContainer>

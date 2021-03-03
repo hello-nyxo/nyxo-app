@@ -3,7 +3,6 @@ import { NightState } from '@reducers/night-reducer/night-reducer'
 import { CoachingState } from '@typings/state/coaching-state'
 import HealthKitState from '@typings/state/health-kit-state'
 import { SleepSourceState } from '@typings/state/sleep-source-state'
-import { ChallengeState } from './ChallengeState'
 import { CoachingContentState } from './CoachingContentState'
 import { CoachingNotificationState } from './CoachingNotificationState'
 import { ModalState } from './ModalState'
@@ -33,7 +32,6 @@ export interface State {
   coachingState: CoachingState
   coachingContent: CoachingContentState
   coachingNotification: CoachingNotificationState
-  challenge: ChallengeState
   habitState: HabitState
 
   // Sleep data
