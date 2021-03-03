@@ -33,13 +33,6 @@ jest.mock('react-native', () => ({
   }
 }))
 
-jest.mock('moment', () => () => ({
-  startOf: () => ({
-    toISOString: () => '2020-05-07T21:00:00.000Z'
-  }),
-  toISOString: () => '2020-05-07T21:00:00.000Z'
-}))
-
 const middlewares = [thunk]
 
 const startOfTodayString = '2020-05-07T21:00:00.000Z'

@@ -1,6 +1,6 @@
 import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
-import { startup } from '@actions/StartupActions'
+import { startup } from '@actions/startup'
 import SleepTimeChart from '@components/Charts/SleepChart'
 import Clock from '@components/Clock'
 import DayStrip from '@components/DayStrip'

@@ -9,9 +9,7 @@ import {
   COACHING_REMIND_LESSONS_IN_WEEK,
   NotificationObject
 } from '@config/push-notifications'
-import moment from 'moment'
 import { Platform } from 'react-native'
-import Intercom from 'react-native-intercom'
 import { actionCreators } from '@reducers/NotificationReducer'
 import {
   NotificationType,
@@ -19,7 +17,7 @@ import {
   UpdateNotificationPermissionType
 } from '@typings/NotificationState'
 import { AppThunk } from '@typings/redux-actions'
-import { startOfDay } from 'date-fns'
+import { addDays, isAfter, set, startOfDay } from 'date-fns'
 
 const firebaseNotifications = undefined
 const {
@@ -44,7 +42,6 @@ export const askForPush = (): AppThunk => async (dispatch) => {
     }
   } else {
     // const FCMToken = await Firebase.messaging().getToken()
-    await Intercom.sendTokenToIntercom(FCMToken)
     await dispatch(setShouldAskNotificationPermission(false))
   }
 }
@@ -98,8 +95,8 @@ export const handleBedtimeApproachNotifications = (): AppThunk => async (
     const notificationTime = new Date()
     const tonightIndex = ((n: Night[]) => {
       const index = n.findIndex((night) => {
-        const nightDate = moment(night.startDate).toDate()
-        const tonightDate = moment(today).toDate()
+        const nightDate = new Date(night.startDate)
+        const tonightDate = new Date(today)
         return (
           nightDate.getDate() === tonightDate.getDate() &&
           nightDate.getMonth() === tonightDate.getMonth() &&
@@ -113,7 +110,7 @@ export const handleBedtimeApproachNotifications = (): AppThunk => async (
     const tonightStartDate = ''
 
     if (tonightStartDate.length > 0) {
-      const startDateMS = moment(tonightStartDate).toDate().getTime()
+      const startDateMS = new Date(tonightStartDate).getTime()
       const notifyDateMS = startDateMS - MSBeforeNotify + 24 * 60 * 60 * 1000 // add 1 day miliseconds as sleepData's date is subtracted by 1 day
       const scheduledNotifyTime = new Date(notifyDateMS).toISOString()
 
@@ -163,14 +160,15 @@ export const handleCoachingUncompletedLessonNotifications = (): AppThunk => asyn
       dispatch(cancelLocalNotifications(notification))
 
       // Scheduled hour is 12pm everyday
-      const fireDate = moment()
-        .set({
-          hour: 12,
-          minute: 0,
-          second: 0,
-          millisecond: 0
-        })
-        .add(1, 'day')
+      const fireDate = addDays(
+        set(new Date(), {
+          hours: 12,
+          minutes: 0,
+          seconds: 0,
+          milliseconds: 0
+        }),
+        1
+      )
 
       if (Platform.OS === 'ios') {
         dispatch(cancelLocalNotifications(notification))
@@ -230,14 +228,15 @@ export const handleCoachingLessonsInWeekNotifications = (): AppThunk => async (
             dispatch(cancelLocalNotifications(notification))
 
             // Every 10am
-            const fireDate = moment()
-              .set({
-                hour: 10,
-                minute: 0,
-                second: 0,
-                millisecond: 0
-              })
-              .add(1, 'day')
+            const fireDate = addDays(
+              set(new Date(), {
+                hours: 10,
+                minutes: 0,
+                seconds: 0,
+                milliseconds: 0
+              }),
+              1
+            )
 
             if (Platform.OS === 'ios') {
               dispatch(
@@ -280,16 +279,12 @@ const isOldFireDateBehindToday = (
       ? scheduledNotifications[index].fireDate
       : undefined
 
-  // To check if the saved fire date is behind today. undefined value means no noti => set to true
-  // to add a new scheduled noti when true
-  return oldFireDate
-    ? moment(oldFireDate).valueOf() - moment().valueOf() < 0
-    : true
+  return oldFireDate ? isAfter(new Date(oldFireDate), new Date()) : true
 }
 
 export const cancelLocalNotifications = (
   notification: NotificationObject
-) => async (dispatch) => {
+): AppThunk => async (dispatch) => {
   const { userInfo, id } = notification
 
   if (Platform.OS === 'ios') {
@@ -304,7 +299,7 @@ export const cancelLocalNotifications = (
 const scheduleAndroidNotification = (
   notification: NotificationObject,
   fireDate: number
-) => async (dispatch) => {
+): AppThunk => async (dispatch) => {
   const { id, title, body, channelID, smallIcon, largeIcon } = notification
 
   const notificationObject = new firebaseNotifications.Notification()
@@ -323,7 +318,7 @@ const scheduleAndroidNotification = (
     addScheduledNotification({
       id,
       title,
-      fireDate: moment(fireDate).toISOString()
+      fireDate: new Date(fireDate).toISOString()
     })
   )
 }
@@ -349,7 +344,7 @@ type errorObject = {
   message: string
 }
 
-export const sendError = (error: errorObject) => async (dispatch) => {
+export const sendError = (error: errorObject): AppThunk => async (dispatch) => {
   if (error.message) {
     await dispatch(
       newNotification({

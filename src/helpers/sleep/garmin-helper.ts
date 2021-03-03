@@ -1,4 +1,3 @@
-import moment from 'moment'
 import { Night, Value } from '@typings/Sleepdata'
 import { GarminSleepObject } from '@typings/Sleep/Garmin'
 import { getNightDuration } from '@helpers/sleep/sleep'
@@ -8,15 +7,13 @@ import { captureException } from '@sentry/react-native'
 export const formatGarminSample = (
   garminSleepObject: GarminSleepObject
 ): Night[] => {
-  const startDate = moment
-    .unix(
-      garminSleepObject.startTimeInSeconds +
-        garminSleepObject.startTimeOffsetInSeconds
-    )
-    .toISOString()
-  const endDate = moment
-    .unix(moment(startDate).valueOf() + garminSleepObject.durationInSeconds)
-    .toISOString()
+  const startDate = new Date(
+    garminSleepObject.startTimeInSeconds +
+      garminSleepObject.startTimeOffsetInSeconds
+  ).toISOString()
+  const endDate = new Date(
+    startDate.valueOf() + garminSleepObject.durationInSeconds
+  ).toISOString()
   const timeInBed = getNightDuration(startDate, endDate)
 
   const inBedSample: Night = {
@@ -34,10 +31,8 @@ export const formatGarminSample = (
   Object.values(garminSleepObject.sleepLevelsMap).forEach((value) => {
     if (value) {
       value.forEach((level) => {
-        const asleepStartDate = moment
-          .unix(level.startTimeInSeconds)
-          .toISOString()
-        const asleepEndDate = moment.unix(level.endTimeInSeconds).toISOString()
+        const asleepStartDate = new Date(level.startTimeInSeconds).toISOString()
+        const asleepEndDate = new Date(level.endTimeInSeconds).toISOString()
         const timeAsleep = getNightDuration(asleepStartDate, asleepEndDate)
 
         asleepSamples.push({

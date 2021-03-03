@@ -1,7 +1,7 @@
-import moment from 'moment'
 import { Period } from '@typings/state/Periods'
 import { Period as APIPeriod, DayCompletionRecordInput } from '@API'
 import { Habit } from '@typings/state/habit-state'
+import { isSameDay, startOfDay } from 'date-fns'
 
 const lineBreakReplacer = '::line-break::'
 export const convertLineBreaks = (text: string): string =>
@@ -119,16 +119,16 @@ export const convertRemoteHabitsToLocalHabits = (
 }
 
 export const isCompletedToday = (habit: Habit): boolean => {
-  const today = moment().startOf('day').toISOString()
+  const today = startOfDay(new Date()).toISOString()
   return !!(habit.days.has(today) && habit.days.get(today) === 1)
 }
 
 export const shouldResetDayStreak = ({
   latestCompletedDate
 }: Habit): boolean => {
-  const today = moment().startOf('day')
-  const lastDate = moment(latestCompletedDate)
-  return !today.isSame(lastDate, 'day')
+  const today = startOfDay(new Date())
+  const lastDate = new Date(latestCompletedDate ?? new Date())
+  return !isSameDay(today, lastDate)
 }
 
 export const convertPeriodType = (period: Period): APIPeriod => {

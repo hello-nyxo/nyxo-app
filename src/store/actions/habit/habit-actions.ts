@@ -20,8 +20,8 @@ import { AppThunk } from '@typings/redux-actions'
 import { Habit, MutationType, UnsyncedHabit } from '@typings/state/habit-state'
 import { Period } from '@typings/state/Periods'
 import { API, graphqlOperation } from 'aws-amplify'
+import { startOfDay } from 'date-fns'
 import produce from 'immer'
-import moment from 'moment'
 import 'react-native-get-random-values'
 import { v4 } from 'uuid'
 import {
@@ -97,7 +97,7 @@ export const addHabit = (
     title: title.trim(),
     description: convertLineBreaks(description.trim()),
     days,
-    date: moment().startOf('day').toISOString(),
+    date: startOfDay(new Date()).toISOString(),
     period
   }
 
@@ -133,7 +133,7 @@ export const updateHabitDayStreak = (
 export const markTodayHabitAsCompleted = (habit: Habit): AppThunk => async (
   dispatch
 ) => {
-  const today = moment().startOf('day').toISOString()
+  const today = startOfDay(new Date()).toISOString()
   const { days, longestDayStreak = 0 } = habit
   let { dayStreak = 0 } = habit
   let dayValue = 0
@@ -195,7 +195,7 @@ const stashHabitToSync = (
       (unsynced) => unsynced.habit.id === habit.id
     )
 
-    const actionDate = moment().toISOString()
+    const actionDate = new Date().toISOString()
 
     if (!inQueue) {
       await dispatch(

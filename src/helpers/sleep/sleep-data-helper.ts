@@ -10,7 +10,9 @@ import {
   subHours,
   roundToNearestMinutes,
   subMinutes,
-  addMinutes
+  addMinutes,
+  differenceInMinutes,
+  isWeekend
 } from 'date-fns'
 
 // Find the starting time of the night
@@ -51,9 +53,9 @@ export function calculateBedtimeWindow(
   lastSevenDays.forEach((day) => {
     const dayStarted = new Date(day.date) // Beginning of the day
     if (day.bedStart) {
-      const bedTimeStart = moment(day.bedStart)
+      const bedTimeStart = new Date(day.bedStart)
 
-      const totalDifference = bedTimeStart.diff(dayStarted, 'minutes')
+      const totalDifference = differenceInMinutes(bedTimeStart, dayStarted)
       // Add difference to the average time
       averageBedTime += totalDifference
       // increment divider
@@ -104,7 +106,7 @@ export function getAverageOfTimes(days: Day[]): number {
     if (day.bedStart) {
       const bedTimeStart = new Date(day.bedStart)
 
-      const totalDifference = bedTimeStart.diff(dayStarted, 'minutes')
+      const totalDifference = differenceInMinutes(bedTimeStart, dayStarted)
 
       // Add difference to the average time
       averageBedTime += totalDifference
@@ -131,20 +133,20 @@ export function calculateSocialJetlag(
   weekendDayAverage: string
 } {
   const weekdays = lastSevenDays.filter(
-    (day: Day) => moment(day.date).day() < 6 && moment(day.date).day() > 0
+    (day: Day) => !isWeekend(new Date(day.date))
   )
-  const weekendDays = lastSevenDays.filter(
-    (day: Day) => moment(day.date).day() === 0 || moment(day.date).day() === 6
+  const weekendDays = lastSevenDays.filter((day: Day) =>
+    isWeekend(new Date(day.date))
   )
 
-  const weekDayAverage = moment()
-    .startOf('day')
-    .minutes(getAverageOfTimes(weekdays))
-    .toISOString()
-  const weekendDayAverage = moment()
-    .startOf('day')
-    .minutes(getAverageOfTimes(weekendDays))
-    .toISOString()
+  const weekDayAverage = setMinutes(
+    startOfDay(new Date()),
+    getAverageOfTimes(weekdays)
+  ).toISOString()
+  const weekendDayAverage = setMinutes(
+    startOfDay(new Date()),
+    getAverageOfTimes(weekendDays)
+  ).toISOString()
 
   const insights = {
     weekDayAverage,
@@ -175,14 +177,6 @@ export function matchDayAndNight(night: string, day: string): boolean {
   const nightStart = subHours(startOfDay(new Date(day)), 12)
   const nightEnd = addHours(startOfDay(new Date(day)), 12)
   return isWithinInterval(nightTime, { start: nightStart, end: nightEnd })
-}
-
-export function getDaysBetweenDates(
-  startDate: MomentInput,
-  endDate: MomentInput,
-  days: Day[]
-): Day[] {
-  return days.filter((d: Day) => moment(d.date).isBetween(startDate, endDate))
 }
 
 export const calculateEfficiency = (

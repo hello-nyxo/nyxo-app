@@ -9,7 +9,6 @@ import translate from '@config/i18n'
 import Purchases from 'react-native-purchases'
 import { NotificationType } from '@typings/NotificationState'
 import { AppThunk } from '@typings/redux-actions'
-import Intercom from 'react-native-intercom'
 import { areThereChangesInLocal } from '@helpers/habits'
 import { updateSubscriptionStatus } from '@actions/subscription/subscription-actions'
 import { updateEmail } from '../user/user-actions'
@@ -142,7 +141,6 @@ export const login = (
       username
     } = await Auth.signIn(loginEmail, loginPassword)
 
-    await Intercom.updateUser({ email, user_id: username })
     await Purchases.identify(username)
     await Purchases.setEmail(email)
 

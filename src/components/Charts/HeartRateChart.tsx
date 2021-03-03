@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import { addHours, subHours } from 'date-fns'
+import { addHours, format, subHours } from 'date-fns'
 import React, { FC, useEffect, useState } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import appleHealthKit from 'react-native-healthkit'
@@ -128,7 +128,7 @@ const HeartRateChart: FC<HeartRateChartProps> = ({ startDate, endDate }) => {
         {xTicks.map((tick, index) => {
           return (
             <SvgText x={scaleX(new Date(tick))} y={chartHeight} key={index}>
-              {Moment(tick).format('H')}
+              {format(new Date(tick), 'H')}
             </SvgText>
           )
         })}

@@ -72,7 +72,7 @@ export function getStartTimeInMinutes(date: string): number {
 export function toNightTime(date: string): string {
   const nightEnd = new Date(date)
   const nightStart = startOfDay(subDays(new Date(nightEnd), 1))
-  return `${format(nightStart, 'DD.MM.')} – ${format(nightStart, 'DD.MM.')}`
+  return `${format(nightStart, 'dd.MM.')} – ${format(nightStart, 'dd.MM.')}`
 }
 
 export const getTitle = (): { title: string; subtitle: string } => {

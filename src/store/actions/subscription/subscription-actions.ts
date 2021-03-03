@@ -1,6 +1,5 @@
 import CONFIG from '@config/Config'
 import ReduxAction, { AppThunk } from '@typings/redux-actions'
-import Intercom from 'react-native-intercom'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import {
   PurchaseActionTypes,
@@ -71,10 +70,6 @@ export const updateSubscriptionStatus = (): AppThunk => async (dispatch) => {
   }
 }
 
-/**
- * @async
- *  Purchases a new subscription for nyxo coaching and updates Intercom's user information to reflect this.
- */
 export const purchaseSubscription = (
   subscription: PurchasesPackage | undefined
 ): AppThunk => async (dispatch) => {
@@ -90,14 +85,6 @@ export const purchaseSubscription = (
         expirationDate,
         latestPurchaseDate
       } = purchaserInfo.entitlements.active[key]
-
-      await Intercom.updateUser({
-        custom_attributes: {
-          subscription: 'active',
-          purchase_date: latestPurchaseDate,
-          expiration_date: expirationDate || 'lifetime'
-        }
-      })
 
       dispatch(purchaseSuccess({ isActive, expirationDate }))
     }

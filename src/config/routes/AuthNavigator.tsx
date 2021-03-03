@@ -2,8 +2,6 @@ import React, { FC } from 'react'
 import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 import Login from '@screens/auth/LoginScreen'
 import Register from '@screens/auth/RegisterScreen'
-import ConfirmUser from '@screens/auth/ConfirmUser'
-import ForgotPassword from '@screens/auth/ForgotPasswordScreen'
 import ROUTE from './Routes'
 
 const Stack = createNativeStackNavigator()
@@ -20,16 +18,12 @@ const AuthNavigator: FC = () => (
       options={{ headerShown: false }}
       component={Login}
     />
-    <Stack.Screen
-      name={ROUTE.CONFIRM}
-      options={{ headerShown: false }}
-      component={ConfirmUser}
-    />
-    <Stack.Screen
+
+    {/* <Stack.Screen
       name={ROUTE.RECOVER}
       options={{ headerShown: false }}
       component={ForgotPassword}
-    />
+    /> */}
   </Stack.Navigator>
 )
 

@@ -1,4 +1,4 @@
-import Moment from 'moment'
+import { getHours, getMinutes } from 'date-fns'
 import { to12hClock } from './time'
 
 export function polarToCartesian(
@@ -83,9 +83,10 @@ export function describeReverseArc(
   return d
 }
 
-export function clockTimeToAngle(ISOStringDate: string): number {
-  const time = Moment(ISOStringDate)
-  const angle = ((to12hClock(time.hour()) + time.minute() / 60) / 12) * 360
+export function clockTimeToAngle(ISOStringDate?: string): number {
+  const time = new Date(ISOStringDate ?? new Date())
+  const angle =
+    ((to12hClock(getHours(time)) + getMinutes(time) / 60) / 12) * 360
 
   return angle
 }

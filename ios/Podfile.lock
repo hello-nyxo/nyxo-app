@@ -107,7 +107,6 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - Intercom (7.1.3)
   - libwebp (1.1.0):
     - libwebp/demux (= 1.1.0)
     - libwebp/mux (= 1.1.0)
@@ -298,9 +297,6 @@ PODS:
     - React-Core
   - react-native-get-random-values (1.5.1):
     - React-Core
-  - react-native-intercom (17.0.0):
-    - Intercom (~> 7.1.0)
-    - React
   - react-native-netinfo (5.9.10):
     - React-Core
   - react-native-safe-area-context (3.1.9):
@@ -471,7 +467,6 @@ DEPENDENCIES:
   - FlipperKit/SKIOSNetworkPlugin (~> 0.54.0)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - Intercom
   - OpenSSL-Universal
   - RCTAppleHealthKit (from `../node_modules/react-native-healthkit`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -488,7 +483,6 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-app-auth (from `../node_modules/react-native-app-auth`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
-  - react-native-intercom (from `../node_modules/react-native-intercom`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
@@ -550,7 +544,6 @@ SPEC REPOS:
     - Flipper-PeerTalk
     - Flipper-RSocket
     - FlipperKit
-    - Intercom
     - libwebp
     - OpenSSL-Universal
     - Purchases
@@ -616,8 +609,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-app-auth"
   react-native-get-random-values:
     :path: "../node_modules/react-native-get-random-values"
-  react-native-intercom:
-    :path: "../node_modules/react-native-intercom"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
@@ -737,7 +728,6 @@ SPEC CHECKSUMS:
   FlipperKit: ab353d41aea8aae2ea6daaf813e67496642f3d7d
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  Intercom: e44b10bbc38ccf6494c76f9bee4e2e3d7d007153
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   OpenSSL-Universal: ff34003318d5e1163e9529b08470708e389ffcdd
   Purchases: d8a798c9c7552fe66b550bf314a143e94ffa70c8
@@ -756,7 +746,6 @@ SPEC CHECKSUMS:
   React-jsinspector: 8e68ffbfe23880d3ee9bafa8be2777f60b25cbe2
   react-native-app-auth: 17266057a5be3e4b5d9e055aa257c43884eac027
   react-native-get-random-values: 41f0c91ac0da870e47b307e07752e9e54bc2dc7e
-  react-native-intercom: f6dcd37016f7114a6c78da31e7991350a411f088
   react-native-netinfo: 30fb89fa913c342be82a887b56e96be6d71201dd
   react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
@@ -807,6 +796,6 @@ SPEC CHECKSUMS:
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: c328e8eb985e545fdac6abb7df7916c0cc09127d
+PODFILE CHECKSUM: b9113fded355d31c89185157e8784a4bcd198456
 
 COCOAPODS: 1.10.1

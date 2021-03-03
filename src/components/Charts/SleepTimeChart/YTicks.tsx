@@ -1,43 +1,43 @@
 import { getTextColorOnTheme } from '@selectors/UserSelectors'
 import { ScaleTime } from 'd3'
-import moment from 'moment'
-import React, { memo } from 'react'
+import { format } from 'date-fns'
+import React, { memo, FC } from 'react'
 import { G, Line, Text } from 'react-native-svg'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 interface Props {
   chartWidth: number
-  scaleY: ScaleTime<any, any>
+  scaleY: ScaleTime<unknown, number>
   ticks: Date[]
 }
 
-const YTicks = (props: Props) => {
+const YTicks: FC<Props> = ({ chartWidth, scaleY, ticks }) => {
   const color = useSelector(getTextColorOnTheme)
 
-  const ticks = props.ticks.map((tick, index) => {
+  const timeTicks = ticks.map((tick, index) => {
     return (
       <G key={index}>
         <Line
           stroke={color}
           strokeWidth={0.25}
           x1={40}
-          x2={props.chartWidth}
-          y1={props.scaleY(tick)}
-          y2={props.scaleY(tick)}
+          x2={chartWidth}
+          y1={scaleY(tick)}
+          y2={scaleY(tick)}
         />
         <StyledText
           alignmentBaseline="middle"
           key={index}
           x={5}
-          y={props.scaleY(tick)}>
-          {moment(tick).format('HH:mm')}
+          y={scaleY(tick)}>
+          {format(new Date(), 'HH:mm')}
         </StyledText>
       </G>
     )
   })
 
-  return <G>{ticks}</G>
+  return <G>{timeTicks}</G>
 }
 
 export default memo(YTicks)

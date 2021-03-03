@@ -1,4 +1,4 @@
-import Moment from 'moment'
+import { setHours, setMinutes, format } from 'date-fns'
 import React, { FC, memo } from 'react'
 import { G, Text as SVGText } from 'react-native-svg'
 import styled from 'styled-components/native'
@@ -56,28 +56,25 @@ const SleepTime: FC<Props> = ({
     )
   }
 
-  const inBed = Moment()
-    .hours(0)
-    .minutes(timeInBed || 0)
-
-  const asleep = Moment()
-    .hours(0)
-    .minutes(timeAsleep || 0)
+  const inBed = setMinutes(setHours(new Date(), 0), timeInBed ?? 0)
+  const asleep = setMinutes(setHours(new Date(), 0), timeAsleep ?? 0)
 
   const timeToUseStart = sleepStart || bedStart
   const timeToUseEnd = sleepEnd || bedEnd
 
   const formattedStart = timeToUseStart
-    ? Moment(timeToUseStart).format('HH:mm')
+    ? format(new Date(timeToUseStart), 'HH:mm')
     : ''
 
-  const formattedEnd = timeToUseEnd ? Moment(timeToUseEnd).format('HH:mm') : ''
+  const formattedEnd = timeToUseEnd
+    ? format(new Date(timeToUseEnd), 'HH:mm')
+    : ''
 
-  const hourValueBed = inBed.format('H')
-  const minuteValueBed = inBed.format('mm')
+  const hourValueBed = format(inBed, 'H')
+  const minuteValueBed = format(inBed, 'mm')
 
-  const hourValueSleep = asleep.format('H')
-  const minuteValueSleep = asleep.format('mm')
+  const hourValueSleep = format(asleep, 'H')
+  const minuteValueSleep = format(asleep, 'mm')
 
   const valueToShow = timeAsleep
     ? `${hourValueSleep}:${minuteValueSleep}`

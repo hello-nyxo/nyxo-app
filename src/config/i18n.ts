@@ -1,7 +1,6 @@
 /* eslint-disable global-require */
 import { findBestAvailableLanguage } from 'react-native-localize'
 import { I18nManager } from 'react-native'
-import moment from 'moment'
 import I18n, { TranslateOptions, Scope } from 'i18n-js'
 import { memoize } from 'lodash'
 import { setLocale } from 'yup'
@@ -29,13 +28,6 @@ export const setI18nConfig = (): void => {
   // set i18n-js config
   I18n.translations = { [languageTag]: translationGetters[languageTag]() }
   I18n.locale = languageTag
-
-  if (I18n.locale.indexOf('fi') === 0) {
-    require('moment/locale/fi')
-    moment.locale('fi')
-  } else {
-    moment.locale('en')
-  }
 }
 
 const translate: any = memoize(
