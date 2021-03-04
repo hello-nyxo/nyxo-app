@@ -52,6 +52,7 @@ const WeekIntro: FC<Props> = ({
     [isLoading, animationValue]
   )
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const animatedStyle: any = {
     transform: [
       {
@@ -133,25 +134,6 @@ const Habits = styled(TranslatedText)`
   margin-right: 10px;
   font-family: ${fonts.medium};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-`
-
-const DurationRow = styled.View`
-  flex-direction: row;
-  padding: 10px 0px;
-`
-
-const Started = styled(TranslatedText)`
-  font-size: 13px;
-  margin-right: 10px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-`
-
-const Ended = styled(TranslatedText)`
-  font-size: 13px;
-  margin-right: 10px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const LessonIcon = styled(IconBold).attrs(({ theme }) => ({

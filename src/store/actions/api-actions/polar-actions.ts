@@ -115,7 +115,7 @@ export const revokePolarAccess = (): AppThunk => async (dispatch) => {
 
 export const getPolarSleep = (
   startDate: string,
-  endDate: string
+  _endDate: string
 ): AppThunk => async (dispatch) => {
   const {
     accessToken,
@@ -130,15 +130,12 @@ export const getPolarSleep = (
     try {
       if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
         // Gonna get the last 28 days
-        const polarListNightsApiCall = await fetch(
-          `${POLAR_API}2018-03-29T00:39:07+03:00`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${accessToken}`
-            }
+        const polarListNightsApiCall = await fetch(`${POLAR_API}FIXME`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${accessToken}`
           }
-        )
+        })
 
         const response = (await polarListNightsApiCall.json()) as {
           nights: Array<PolarSleepObject>

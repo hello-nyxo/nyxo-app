@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Dimensions, TouchableOpacity, View } from 'react-native'
+import React, { FC, useEffect, useState } from 'react'
+import { TouchableOpacity } from 'react-native'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
-import Modal from 'react-native-modal'
+import RNModal, { ModalProps, ReactNativeModal } from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { actionCreators } from '@reducers/NotificationReducer'
@@ -11,10 +11,9 @@ import {
 } from '@selectors/NotificationSelectors'
 import { fonts } from '../styles/themes'
 import { IconBold } from './iconRegular'
+import { WIDTH } from '@helpers/Dimensions'
 
-const { width } = Dimensions.get('window')
-
-const TopInfo = () => {
+const TopInfo: FC = () => {
   const dispatch = useDispatch()
   const message = useSelector(getNotificationMessage)
   const type = useSelector(getNotificationType)
@@ -34,7 +33,7 @@ const TopInfo = () => {
   }, [message, type])
 
   return (
-    <Modal
+    <StyledModal
       backdropOpacity={0.1}
       isVisible={show}
       swipeDirection={['up', 'left', 'right']}
@@ -46,24 +45,35 @@ const TopInfo = () => {
       onSwipeComplete={discardNotification}
       hasBackdrop
       onBackdropPress={discardNotification}
-      animationOutTiming={400}
-      style={{ margin: 0, padding: 0 }}>
+      animationOutTiming={400}>
       <Container>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <InnerContainer>
           <Text>{message}</Text>
           <TouchableOpacity onPress={discardNotification}>
             <Icon name="closeCircle" height={20} width={20} />
           </TouchableOpacity>
-        </View>
+        </InnerContainer>
       </Container>
-    </Modal>
+    </StyledModal>
   )
 }
 
 export default TopInfo
 
+const InnerContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`
+
+const StyledModal = styled(
+  RNModal as new (props: ModalProps) => ReactNativeModal
+)`
+  margin: 0px 0px;
+  padding: 0;
+`
+
 const Container = styled.View`
-  width: ${width - 20}px;
+  width: ${WIDTH - 20}px;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};

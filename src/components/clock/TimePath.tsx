@@ -1,7 +1,6 @@
-import React from 'react'
-import { Path } from 'react-native-svg'
-
 import { describeArc } from '@helpers/geometry'
+import React, { FC } from 'react'
+import { Path } from 'react-native-svg'
 
 interface TimePathProps {
   strokeWidth: number
@@ -13,22 +12,24 @@ interface TimePathProps {
   radius: number
 }
 
-const TimePath = (props: TimePathProps) => {
-  const path = describeArc(
-    props.x,
-    props.y,
-    props.radius,
-    props.startAngle,
-    props.endAngle
-  ).toString()
+const TimePath: FC<TimePathProps> = ({
+  x,
+  y,
+  radius,
+  startAngle,
+  endAngle,
+  strokeWidth,
+  color
+}) => {
+  const path = describeArc(x, y, radius, startAngle, endAngle).toString()
 
   return (
     <Path
       strokeLinecap="round"
       d={path}
       fill="none"
-      stroke={props.color}
-      strokeWidth={props.strokeWidth}
+      stroke={color}
+      strokeWidth={strokeWidth}
     />
   )
 }

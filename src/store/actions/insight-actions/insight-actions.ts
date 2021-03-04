@@ -1,5 +1,4 @@
-import { getNightsAsDays } from '@selectors/night-selectors'
-import { Thunk } from '@typings/redux-actions'
+import { AppThunk } from '@typings/redux-actions'
 import {
   CALCULATE_INSIGHT_FAILURE,
   CALCULATE_INSIGHT_START,
@@ -23,11 +22,16 @@ export const calculationFailure = (error: string): InsightActionTypes => ({
 
 /* ASYNC ACTIONS */
 
-export const calculateInsights = (): Thunk => async (dispatch, getState) => {
+export const calculateInsights = (): AppThunk => async (dispatch) => {
   dispatch(calculationStart())
-  const nights = getNightsAsDays(getState())
   try {
-    dispatch(calculationSuccess())
+    // FIXME
+
+    dispatch(
+      calculationSuccess({
+        bedTimeWindow: { start: undefined, center: undefined, end: undefined }
+      })
+    )
   } catch (error) {
     dispatch(calculationFailure(error))
   }

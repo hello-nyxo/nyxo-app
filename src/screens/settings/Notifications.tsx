@@ -1,7 +1,6 @@
-import { setNotification } from '@actions/notifications'
 import { makeGetNotificationEnabled } from '@selectors/NotificationSelectors'
 import React, { memo, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   NotificationPermissionType,
   UpdateNotificationPermissionType
@@ -28,7 +27,6 @@ export interface NotificationDataItemProps {
 }
 
 const NotificationSettings = () => {
-  const dispatch = useDispatch()
   const selectGetNotificationEnabled = useMemo(makeGetNotificationEnabled, [])
 
   const bedtimeEnabled = useSelector((state: State) =>
@@ -52,12 +50,7 @@ const NotificationSettings = () => {
     )
   )
 
-  const pressSwitch = (
-    actionType: UpdateNotificationPermissionType,
-    value: boolean
-  ) => {
-    dispatch(setNotification(actionType, value))
-  }
+  const pressSwitch = () => undefined
 
   const notificationData: NotificationDataItemProps[] = [
     {

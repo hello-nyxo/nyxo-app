@@ -4,7 +4,7 @@ import { HabitSchema } from '@config/Validation'
 import { Formik } from 'formik'
 import React, { memo, useState } from 'react'
 import { ScrollView } from 'react-native'
-import Modal from 'react-native-modal'
+import RNModal, { ModalProps, ReactNativeModal } from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { getNewHabitModal } from '@selectors/ModalSelectors'
 import styled from 'styled-components/native'
@@ -24,10 +24,6 @@ const NewHabitModal = () => {
   const dispatch = useDispatch()
 
   const closeModal = () => {
-    dispatch(toggleNewHabitModal())
-  }
-
-  const saveModal = () => {
     dispatch(toggleNewHabitModal())
   }
 
@@ -54,8 +50,6 @@ const NewHabitModal = () => {
           handleSubmit,
           handleBlur,
           values: { description, title, period },
-          touched,
-          errors,
           isValid
         }) => (
           <>
@@ -111,7 +105,9 @@ const NewHabitModal = () => {
 
 export default memo(NewHabitModal)
 
-const StyledModal = styled(Modal)`
+const StyledModal = styled(
+  RNModal as new (props: ModalProps) => ReactNativeModal
+)`
   margin: 0px 0px;
   position: absolute;
   bottom: 0;

@@ -1,9 +1,7 @@
 import { CalendarState } from '@reducers/calendar-reducer/calendar-reducer'
 import { NightState } from '@reducers/night-reducer/night-reducer'
-import { CoachingState } from '@typings/state/coaching-state'
 import HealthKitState from '@typings/state/health-kit-state'
 import { SleepSourceState } from '@typings/state/sleep-source-state'
-import { CoachingContentState } from './CoachingContentState'
 import { CoachingNotificationState } from './CoachingNotificationState'
 import { ModalState } from './ModalState'
 import { NetworkState } from './NetworkState'
@@ -29,8 +27,6 @@ export interface State {
   notifications: NotificationState
 
   // Coaching
-  coachingState: CoachingState
-  coachingContent: CoachingContentState
   coachingNotification: CoachingNotificationState
   habitState: HabitState
 

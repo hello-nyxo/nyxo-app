@@ -324,14 +324,14 @@ export const handleHabitsFromCloudWhenLoggingIn = (
     const resultHabits = convertRemoteHabitsToLocalHabits(cloudHabits)
     const habits = getHabitsMap(getState())
 
-    const promiseArray: any[] = []
+    const promiseArray = []
 
     // If user does want to merge, we replace habitState.habits with concatenated on-cloud habits and current habitState.habits.
     if (merge) {
       habits.forEach((localHabit: Habit) => {
         // go through responsed items and merging local habits to see if there is any habits in commons
         const commonIndex = cloudHabits?.findIndex(
-          (item: any) => item.title.trim() === localHabit.title.trim()
+          (item) => item?.title?.trim() === localHabit.title.trim()
         )
 
         const syncingHabit: Habit = {

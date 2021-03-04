@@ -22,7 +22,7 @@ declare module 'react-native-healthkit' {
     ): void
     getActiveEnergyBurned(
       options: unknown,
-      callback: (err: string, results: Array<any>) => void
+      callback: (err: string, results: Array<unknown>) => void
     ): void
     Constants: {
       Permissions: PermissionUnit

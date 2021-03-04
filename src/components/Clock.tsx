@@ -71,11 +71,6 @@ const Clock: FC = () => {
     [isEditMode]
   )
 
-  const height = interpolate(value, {
-    inputRange: [0, 1],
-    outputRange: [0, 20]
-  })
-
   const buttonsStyle = {
     opacity: interpolate(value, {
       inputRange: [0, 1],

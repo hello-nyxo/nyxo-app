@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import styled from 'styled-components/native'
 import { constants, fonts } from '@styles/themes'
 import colors from '../../styles/colors'
@@ -8,33 +8,36 @@ interface SourceRowProps {
   sourceId: string
   sourceName: string
   selectedSourceId?: string
-  switchSource: Function
+  switchSource: (id: string) => void
 }
 
-const SourceRow = (props: SourceRowProps) => {
-  const { sourceId, sourceName, selectedSourceId, switchSource } = props
-  let artworkUrl = null
-  const [icon, setIconUrl] = useState(
-    require('../../../assets/healthkitIcon.png')
-  )
-
-  const getArtwork = () => {
-    fetch(`http://itunes.apple.com/lookup?bundleId=${sourceId}`).then(
-      (response) => {
-        response.text().then((text) => {
-          const array = JSON.parse(text)
-          if (array.results.length !== 0) {
-            artworkUrl = array.results[0].artworkUrl60
-            setIconUrl({ uri: artworkUrl })
-          }
-        })
-      }
-    )
-  }
+const SourceRow: FC<SourceRowProps> = ({
+  sourceId,
+  sourceName,
+  selectedSourceId,
+  switchSource
+}) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const [icon, setIconUrl] = useState(require('@assets/healthkitIcon.png'))
 
   useEffect(() => {
+    const getArtwork = () => {
+      let artworkUrl = null
+      fetch(`http://itunes.apple.com/lookup?bundleId=${sourceId}`).then(
+        (response) => {
+          response.text().then((text) => {
+            const array = JSON.parse(text)
+            if (array.results.length !== 0) {
+              artworkUrl = array.results[0].artworkUrl60
+              setIconUrl({ uri: artworkUrl })
+            }
+          })
+        }
+      )
+    }
+
     getArtwork()
-  }, [])
+  }, [sourceId])
 
   const handlePress = () => {
     switchSource(sourceId)
@@ -78,8 +81,8 @@ const ImageContainer = styled.View`
   border-radius: 5px;
   overflow: hidden;
 `
-interface IconProps {
-  readonly selected?: boolean
+type IconProps = {
+  selected?: boolean
 }
 
 const Image = styled.Image`
@@ -87,7 +90,7 @@ const Image = styled.Image`
   width: 30px;
 `
 
-const Icon = styled(IconBold).attrs(({ selected, theme }: IconProps) => ({
+const Icon = styled(IconBold).attrs<IconProps>(({ selected, theme }) => ({
   fill: selected ? colors.darkBlue : theme.SECONDARY_TEXT_COLOR,
   name: selected ? 'circleCheck' : 'circleAlternate'
 }))<IconProps>``

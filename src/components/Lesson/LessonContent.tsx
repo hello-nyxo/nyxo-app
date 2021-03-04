@@ -2,10 +2,13 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { Document } from '@contentful/rich-text-types'
 import RichText from '../RichText'
+import { AssetBlock } from '@typings/contentful'
 
 type Props = {
   lessonContent?: Document
-  assets: any
+  assets?: {
+    block: AssetBlock[]
+  }
 }
 
 const LessonContent: FC<Props> = ({ lessonContent, assets }) => (

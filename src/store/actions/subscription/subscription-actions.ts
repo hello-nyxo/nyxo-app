@@ -80,11 +80,9 @@ export const purchaseSubscription = (
     }
     const { purchaserInfo } = await Purchases.purchasePackage(subscription)
     if (typeof purchaserInfo.entitlements.active[key] !== 'undefined') {
-      const {
-        isActive,
-        expirationDate,
-        latestPurchaseDate
-      } = purchaserInfo.entitlements.active[key]
+      const { isActive, expirationDate } = purchaserInfo.entitlements.active[
+        key
+      ]
 
       dispatch(purchaseSuccess({ isActive, expirationDate }))
     }

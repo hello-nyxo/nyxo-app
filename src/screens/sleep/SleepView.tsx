@@ -37,7 +37,7 @@ const Sleep: FC = () => {
   useEffect(() => {
     dispatch(startup())
     dispatch(fetchSleepData(subDays(new Date(date), 1).toDateString(), date))
-  }, [dispatch])
+  }, [date, dispatch])
 
   useFocusEffect(
     useCallback(() => {

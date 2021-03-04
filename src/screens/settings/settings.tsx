@@ -13,7 +13,12 @@ import { getTheme } from '@selectors/UserSelectors'
 import { darkTheme, lightTheme } from '@styles/themes'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC, memo } from 'react'
-import { Linking, ListRenderItem, SectionList } from 'react-native'
+import {
+  Linking,
+  ListRenderItem,
+  SectionList,
+  SectionListData
+} from 'react-native'
 import Rate, { AndroidMarket } from 'react-native-rate'
 import { useDispatch, useSelector } from 'react-redux'
 import { DefaultTheme } from 'styled-components'
@@ -160,7 +165,11 @@ const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
     )
   }
 
-  const renderSectionHeader = ({ section }: any) => {
+  const renderSectionHeader = ({
+    section
+  }: {
+    section: SectionListData<SettingItem, { title: string }>
+  }) => {
     if (section.title === 'Settings') return null
     return <SectionHeader>{section.title}</SectionHeader>
   }

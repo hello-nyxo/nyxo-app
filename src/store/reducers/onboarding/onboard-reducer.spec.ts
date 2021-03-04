@@ -3,7 +3,7 @@ import reducer, { initialState } from './onboarding-reducer'
 
 describe('Onboarding reducer', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(initialState)
+    expect(reducer(undefined, { type: 'INIT' })).toEqual(initialState)
   })
 
   it('should handle TOGGLE_RATING_MODAL', () => {

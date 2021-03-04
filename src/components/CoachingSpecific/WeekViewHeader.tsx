@@ -11,7 +11,7 @@ type Props = {
   loading: boolean
 }
 
-const WeekViewHeader: FC<Props> = ({ yOffset, title, loading }) => {
+const WeekViewHeader: FC<Props> = ({ yOffset, title }) => {
   const titleSize = {
     opacity: yOffset.interpolate({
       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],

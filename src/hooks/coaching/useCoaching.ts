@@ -84,10 +84,12 @@ export const useGetCoaching = (
   })
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useCreateCoaching = () => {
   return useMutation(createCoaching)
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useUpdateCoaching = () => {
   return useMutation(updateCoaching, {
     onSuccess: () => {
@@ -97,6 +99,7 @@ export const useUpdateCoaching = () => {
   })
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useDeleteCoaching = () => {
   return useMutation(deleteCoaching, {
     onSuccess: () => {

@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
 import { IconBold } from '../iconRegular'
@@ -14,10 +13,8 @@ type Props = {
   color: string
 }
 
-const RatingButton: FC<Props> = ({ selected, value, title, icon, color }) => {
-  const dispatch = useDispatch()
-
-  const handlePress = () => {}
+const RatingButton: FC<Props> = ({ title, icon, color }) => {
+  const handlePress = () => undefined //FIXME
 
   return (
     <Container>

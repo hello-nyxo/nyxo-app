@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
-import { View } from 'react-native'
+import { View, ViewStyle } from 'react-native'
 import styled from 'styled-components/native'
 
 type Props = {
-  style: any
+  style: ViewStyle
   minutesLong: number
 }
 
@@ -16,7 +16,6 @@ const TimerText: FC<Props> = ({ minutesLong, style }) => {
       <TimerContainer>
         <Time>{hours}</Time>
         <Time>{minutes < 10 ? `0${minutes}` : minutes}</Time>
-        {/* <Text style={styles.text}>MIN</Text> */}
       </TimerContainer>
     </View>
   )

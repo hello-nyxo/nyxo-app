@@ -39,7 +39,13 @@ const useKeyboardEvents = ({
       handleKeyboardWillHide &&
         Keyboard.removeListener('keyboardWillHide', handleKeyboardWillHide)
     }
-  }, [])
+  }, [
+    handleKeyboardDidHide,
+    handleKeyboardDidShow,
+    handleKeyboardWillHide,
+    handleKeyboardWillShow,
+    isAndroid
+  ])
 }
 
 export default useKeyboardEvents

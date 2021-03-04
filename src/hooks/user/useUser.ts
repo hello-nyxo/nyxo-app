@@ -9,6 +9,7 @@ export const useGetUser = (): QueryResult<GetUserQuery['getUser']> => {
   })
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useUpdateUser = () => {
   return useMutation(updateUserData)
 }

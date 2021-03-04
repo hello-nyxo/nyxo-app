@@ -7,13 +7,7 @@ import SettingRow from '../settingRow'
 describe('<SettingRow />', () => {
   it('should render correctly', () => {
     matchComponentToSnapshot(
-      <SettingRow
-        analyticsEvent="__test__ analyticsEvent"
-        onPress={jest.fn()}
-        icon="__test__ icon"
-        children={null}
-        badge={2}
-      />
+      <SettingRow onPress={jest.fn()} icon="__test__ icon" badge={2} />
     )
   })
 })

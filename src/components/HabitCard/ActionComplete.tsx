@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Animated } from 'react-native'
+import Animated from 'react-native-reanimated'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
@@ -11,7 +11,7 @@ type Props = {
   action: () => void
   buttonText: string
   icon: string
-  animation: any
+  animation: Animated.Node<number>
 }
 
 const ActionComplete = (props: Props) => {

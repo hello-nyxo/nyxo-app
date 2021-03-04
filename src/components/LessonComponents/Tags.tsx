@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
 import { IconBold } from '@components/iconRegular'
@@ -7,7 +7,7 @@ type Props = {
   tags?: string[]
 }
 
-const Tags = ({ tags }: Props) => {
+const Tags: FC<Props> = ({ tags }) => {
   return (
     <Container>
       {tags?.length > 0 && (

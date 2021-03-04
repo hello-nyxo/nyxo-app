@@ -7,7 +7,9 @@ import { setLocale } from 'yup'
 import { fi, enUS } from 'date-fns/locale'
 import { format } from 'date-fns'
 
-const translationGetters = {
+const translationGetters: {
+  [key: string]: () => Record<string, unknown>
+} = {
   // lazy requires (metro bundler does not support symlinks)
   fi: () => require('../translations/fi.json'),
   en: () => require('../translations/en.json')
@@ -21,7 +23,7 @@ export const setI18nConfig = (): void => {
     findBestAvailableLanguage(Object.keys(translationGetters)) || fallback
 
   // clear translation cache
-  translate.cache.clear()
+  if (translate?.cache.clear) translate.cache.clear()
   // update layout direction
   I18nManager.forceRTL(isRTL)
 
@@ -30,9 +32,10 @@ export const setI18nConfig = (): void => {
   I18n.locale = languageTag
 }
 
-const translate: any = memoize(
-  (key: Scope, config: TranslateOptions) => I18n.t(key, config),
-  (key, config) => (config ? key + JSON.stringify(config) : key)
+const translate = memoize(
+  (key: Scope, config?: TranslateOptions | undefined) => I18n.t(key, config),
+  (key: Scope, config?: TranslateOptions | undefined) =>
+    config ? key + JSON.stringify(config) : key
 )
 
 setLocale({

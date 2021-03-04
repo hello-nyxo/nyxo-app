@@ -18,7 +18,7 @@ type Props = {
 
 const { interpolate, Extrapolate } = Animated
 
-const LessonCover: FC<Props> = ({ yOffset, cover, title }) => {
+const LessonCover: FC<Props> = ({ yOffset, cover }) => {
   const titleSize = {
     opacity: interpolate(yOffset, {
       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],

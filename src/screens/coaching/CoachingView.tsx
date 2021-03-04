@@ -17,7 +17,7 @@ export const cardMargin = 5
 
 const CoachingScreen: FC = () => {
   const { data: coaching, refetch, isLoading } = useGetActiveCoaching()
-  const { data: content, error, refetch: refetchContent } = useWeeks()
+  const { refetch: refetchContent } = useWeeks()
 
   const dispatch = useDispatch()
 

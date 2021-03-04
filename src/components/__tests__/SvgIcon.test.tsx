@@ -4,7 +4,7 @@ import { matchComponentToSnapshot } from '@helpers/snapshot'
 import SvgIcon from '../SvgIcon'
 
 describe('<SvgIcon/>', () => {
-  it('it renders correctly', () => {
+  it('renders correctly', () => {
     matchComponentToSnapshot(
       <SvgIcon
         height={20}

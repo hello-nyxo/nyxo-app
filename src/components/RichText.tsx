@@ -64,7 +64,7 @@ const defaultInline: (type: string, node: Inline) => ReactNode = (
 
 interface Props {
   content?: Document
-  assets: {
+  assets?: {
     block: AssetBlock[]
   }
 }
@@ -307,13 +307,13 @@ const BlockQuote = styled.View`
 type ImageProps = {
   type: string
   node: Block | Inline
-  assets: {
+  assets?: {
     block: AssetBlock[]
   }
 }
 
 const ImageBlock: FC<ImageProps> = ({ node, assets }) => {
-  const img = assets.block.find((i) => i.sys.id === node.data.target.sys.id)
+  const img = assets?.block.find((i) => i.sys.id === node.data.target.sys.id)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useLayoutEffect(() => {

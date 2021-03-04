@@ -5,11 +5,12 @@ import { fonts } from '@styles/themes'
 import ScalingButton from './ScalingButton'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
+import { ViewStyle } from 'react-native'
 
 interface BackButtonInterface {
   title?: string
   dark?: boolean
-  contentContainerStyle?: any
+  contentContainerStyle?: ViewStyle
   route?: string
 }
 

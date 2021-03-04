@@ -1,5 +1,9 @@
 import { Period } from '@typings/state/Periods'
-import { Period as APIPeriod, DayCompletionRecordInput } from '@API'
+import {
+  Period as APIPeriod,
+  DayCompletionRecordInput,
+  ListHabitsQuery
+} from '@API'
 import { Habit } from '@typings/state/habit-state'
 import { isSameDay, startOfDay } from 'date-fns'
 
@@ -74,41 +78,31 @@ export const convertDaysToFitGraphQL = (
 }
 
 export const convertRemoteHabitsToLocalHabits = (
-  remoteHabits: any
+  remoteHabits: Exclude<
+    Exclude<ListHabitsQuery['listHabits'], null>['items'],
+    null
+  >
 ): Map<string, Habit> => {
   const resultHabits = new Map<string, Habit>() // on-device habits
-  remoteHabits.forEach((item: any) => {
+  remoteHabits?.forEach((item) => {
     // on-cloud habit
-    const {
-      id,
-      userId,
-      dayStreak,
-      longestDayStreak,
-      latestCompletedDate,
-      title,
-      description,
-      date,
-      days,
-      archived,
-      period
-    } = item
 
     // on-device habit
     const constructedHabit: Habit = {
-      id,
-      userId,
-      dayStreak,
-      longestDayStreak,
-      latestCompletedDate,
-      title,
-      description: description || '',
-      date,
-      archived: archived || false,
-      period,
+      id: item?.id,
+      userId: item?.userId,
+      dayStreak: item?.dayStreak,
+      longestDayStreak: item?.longestDayStreak,
+      latestCompletedDate: item?.latestCompletedDate,
+      title: item?.title,
+      description: item?.description || '',
+      date: item?.dayStreak,
+      archived: item?.archived || false,
+      period: item?.period,
       days: new Map()
     }
 
-    days?.forEach((day: { key: string; value: number }) => {
+    item?.days?.forEach((day: { key: string; value: number }) => {
       constructedHabit.days.set(day.key, day.value)
     })
 

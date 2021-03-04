@@ -4,7 +4,7 @@ import { matchComponentToSnapshot } from '@helpers/snapshot'
 import PerkList from './PerkList'
 
 describe('<PerkList/>', () => {
-  it('it renders correctly', () => {
+  it('renders correctly', () => {
     matchComponentToSnapshot(<PerkList />)
   })
 })

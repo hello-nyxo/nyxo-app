@@ -11,7 +11,7 @@ import translate from '@config/i18n'
 
 interface Props extends TextProps {
   children: string
-  variables?: any
+  variables?: I18n.TranslateOptions
   style?: TextStyle
   androidTranslation?: string
 }

@@ -1,7 +1,8 @@
 import { HealthKitSleepResponse, Night, Value } from '@typings/Sleepdata'
 import { parse } from 'date-fns'
+import { formatHealthKitResponse } from '../health-kit-helper'
 
-export const hkSampleMock: HealthKitSleepResponse = {
+const hkSampleMock: HealthKitSleepResponse = {
   sourceId: 'nyxo',
   sourceName: 'nyxo',
   uuid: 'test-id-1234',
@@ -10,7 +11,7 @@ export const hkSampleMock: HealthKitSleepResponse = {
   endDate: '2020-04-12 08:00:00 +0300'
 }
 
-export const expectedNight: Night = {
+const expectedNight: Night = {
   id: 'test-id-1234',
   sourceId: 'nyxo',
   sourceName: 'nyxo',
@@ -27,3 +28,9 @@ export const expectedNight: Night = {
   ).toISOString(),
   totalDuration: 420
 }
+
+describe('HealtKit helper', () => {
+  it(`formatHealthKitResponse() should handle formatting healthkit api response`, () => {
+    expect(formatHealthKitResponse(hkSampleMock)).toEqual(expectedNight)
+  })
+})

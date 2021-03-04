@@ -12,7 +12,7 @@ interface Props extends TextInputProps {
   error?: string
   fieldName: string
   icon: string
-  ref?: TextInput
+  ref: TextInput
 }
 
 const TextField: FC<Props> = ({
@@ -35,7 +35,7 @@ const TextField: FC<Props> = ({
   placeholder,
   secureTextEntry
 }) => {
-  const inputRef = useRef<TextInput | undefined>(ref)
+  const inputRef = useRef<TextInput>(ref)
 
   const onFocus = () => {
     // eslint-disable-next-line no-unused-expressions
@@ -66,7 +66,7 @@ const TextField: FC<Props> = ({
           enablesReturnKeyAutomatically={enablesReturnKeyAutomatically}
           value={value}
           clearButtonMode="while-editing"
-          placeholder={translate(placeholder)}
+          placeholder={translate(`${placeholder}`)}
           placeholderTextColor={colors.gray2}
           secureTextEntry={secureTextEntry}
         />
@@ -120,4 +120,4 @@ const InputField = styled.TextInput<InputProps>`
 const Icon = styled(IconBold).attrs<InputProps>(({ theme, error, icon }) => ({
   fill: error ? colors.red : theme.SECONDARY_TEXT_COLOR,
   name: error ? 'closeCircle' : icon
-}))``
+}))<InputProps>``

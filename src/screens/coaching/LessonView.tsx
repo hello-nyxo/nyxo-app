@@ -40,13 +40,15 @@ const LessonView: FC<Props> = ({
   }
 }) => {
   const { y: yOffset, scrollHandler } = useScrollHandler()
-  const { data: lessons, loading } = useLesson(slug)
+  const { data: lessons } = useLesson(slug)
   const { data } = useGetActiveCoaching()
-  const [mutate, { isLoading: completeLoading }] = useUpdateCoaching()
+  const [mutate] = useUpdateCoaching()
 
   const lesson = getLesson(lessons)
+  // eslint-disable-next-line unused-imports/no-unused-vars-ts
   const completed = data?.lessons?.find((l) => l === slug)
 
+  // eslint-disable-next-line unused-imports/no-unused-vars-ts
   const markCompleted = async () => {
     mutate({
       coaching: {
@@ -102,10 +104,6 @@ const ScrollView = styled(Animated.ScrollView).attrs(() => ({
 const LessonContainer = styled.View`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   flex: 1;
-`
-
-const Cover = styled.View`
-  height: ${HEADER_MAX_HEIGHT}px;
 `
 
 const Content = styled.View`

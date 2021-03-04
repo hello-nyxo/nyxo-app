@@ -6,7 +6,6 @@ import React, { FC, memo } from 'react'
 import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
-import { WEEK_STAGE } from '@selectors/coaching-selectors/coaching-selectors'
 import styled from 'styled-components/native'
 import { constants, fonts } from '@styles/themes'
 import { CoachingPeriod } from '@hooks/coaching/useCoaching'
@@ -84,18 +83,19 @@ const getStage = (coaching: CoachingPeriod, slug: string): Data => {
   const week = coaching?.weeks?.find((w) => w?.slug === slug)
   if (week) {
     if (week.ended && week.started) {
-      return { stage: WEEK_STAGE.COMPLETED }
+      return { stage: 'COMPLETED' }
     }
-    return { stage: WEEK_STAGE.ONGOING }
+    return { stage: 'ONGOING' }
   }
 
   return {
-    stage: WEEK_STAGE.UPCOMING
+    stage: 'UPCOMING'
   }
 }
+export type Stage = 'COMPLETED' | 'ONGOING' | 'UPCOMING'
 
 type Data = {
-  stage: WEEK_STAGE.COMPLETED | WEEK_STAGE.ONGOING | WEEK_STAGE.UPCOMING
+  stage: Stage
 }
 
 const Gradient = styled(LinearGradient)`

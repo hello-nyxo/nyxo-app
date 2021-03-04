@@ -49,14 +49,6 @@ const CoachingHeader: FC = () => {
 
 export default CoachingHeader
 
-const Title = styled.Text`
-  margin: 16px 16px 8px;
-  text-transform: uppercase;
-  font-size: 15px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-`
-
 const ModifyButton = styled.TouchableOpacity`
   padding: 8px 16px;
   border-radius: 20px;

@@ -74,7 +74,7 @@ export function describeReverseArc(
     radius,
     radius,
     1,
-    0,
+    largeArcFlag,
     1,
     end.x,
     end.y

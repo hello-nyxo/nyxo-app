@@ -52,23 +52,6 @@ export function getTimeInString(minutes: number): string {
   return `${format(time, 'h')} h ${format(time, 'mm')}`
 }
 
-/**
- *
- * @param {*} dateString
- */
-export function getStartTimeInMinutes(date: string): number {
-  const time = new Date(date)
-  const timeInPureMinutes = getHours(time) * 60 + getMinutes(time)
-  const periodEnd = 360 // 6 in the morning
-  const periodStart = 1080 // 6 in the evening
-  const balancer = 1440 // 24 hours in minutes
-
-  if (timeInPureMinutes < periodEnd) {
-    return timeInPureMinutes + balancer
-  }
-  return timeInPureMinutes
-}
-
 export function toNightTime(date: string): string {
   const nightEnd = new Date(date)
   const nightStart = startOfDay(subDays(new Date(nightEnd), 1))

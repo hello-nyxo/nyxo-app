@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { ChangeEvent, FC, memo } from 'react'
 import styled from 'styled-components/native'
 import { Period } from '@typings/state/Periods'
 import SetTimePeriodButtons from './SetTimePeriodButtons'
@@ -7,10 +7,10 @@ import { fonts } from '../../../styles/themes'
 
 type Props = {
   period: Period
-  setPeriod: Function
+  setPeriod: (e: string | ChangeEvent<unknown>) => void
 }
 
-const HabitModalTimeSection = ({ setPeriod, period }: Props) => (
+const HabitModalTimeSection: FC<Props> = ({ setPeriod, period }) => (
   <Section>
     <SectionTitle>HABIT.TIME_OF_DAY</SectionTitle>
     <SetTimePeriodButtons

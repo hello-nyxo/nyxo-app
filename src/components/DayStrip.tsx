@@ -76,7 +76,7 @@ const CalendarStrip: FC = () => {
     } else {
       setInit(false)
     }
-  }, [selectedDate])
+  }, [days, init, selectedDate])
 
   const getItemLayout = (_: unknown, index: number) => {
     if (index === 0) {
