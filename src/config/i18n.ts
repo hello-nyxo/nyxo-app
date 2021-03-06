@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import { findBestAvailableLanguage } from 'react-native-localize'
 import { I18nManager } from 'react-native'
 import I18n, { TranslateOptions, Scope } from 'i18n-js'

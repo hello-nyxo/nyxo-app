@@ -1,5 +1,5 @@
 import { subWeeks } from 'date-fns'
-import { matchDayAndNight } from './sleep-data-helper'
+import { matchDayAndNight } from '../sleep-data-helper'
 
 const night = new Date('2020-12-12').toISOString()
 const day = new Date('2020-12-12').toISOString()

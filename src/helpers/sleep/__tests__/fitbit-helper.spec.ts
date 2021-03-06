@@ -1,7 +1,7 @@
 import { formatFitbitSample } from '../fitbit-helper'
 
 import { Night, Value } from '@typings/Sleepdata'
-import { fitbitResponse } from '@typings/Sleep/Fitbit'
+import { fitbitResponse } from '@typings/sources/Fitbit'
 
 describe('Fitbit helper', () => {
   it(`formatFitbitResponse() should handle formatting fitbit api response`, () => {

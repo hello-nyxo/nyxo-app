@@ -9,7 +9,6 @@ const appSlice = createSlice({
   },
   reducers: {
     toggleTheme: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.theme = action.payload
     },
     setAccessToken: (state, action) => {

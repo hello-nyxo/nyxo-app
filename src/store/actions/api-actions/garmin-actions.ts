@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import CONFIG from '@config/Config'
@@ -10,7 +9,7 @@ import {
 import { getGarminEnabled } from '@selectors/api-selectors/api-selectors'
 import { captureException } from '@sentry/react-native'
 import { AppThunk } from '@typings/redux-actions'
-import { GarminSleepObject } from '@typings/Sleep/Garmin'
+import { GarminSleepObject } from '@typings/sources/Garmin'
 import { GarminAuthorizeResult, ResponseBase } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
 import { set, subDays } from 'date-fns'

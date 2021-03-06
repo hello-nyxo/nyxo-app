@@ -96,7 +96,7 @@ export const convertRemoteHabitsToLocalHabits = (
       latestCompletedDate: item?.latestCompletedDate,
       title: item?.title,
       description: item?.description || '',
-      date: item?.dayStreak,
+      date: item?.date,
       archived: item?.archived || false,
       period: item?.period,
       days: new Map()
@@ -114,7 +114,7 @@ export const convertRemoteHabitsToLocalHabits = (
 
 export const isCompletedToday = (habit: Habit): boolean => {
   const today = startOfDay(new Date()).toISOString()
-  return !!(habit.days.has(today) && habit.days.get(today) === 1)
+  return !!(habit?.days.has(today) && habit?.days.get(today) === 1)
 }
 
 export const shouldResetDayStreak = ({

@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import CONFIG from '@config/Config'
-import { OuraSleepObject } from '@typings/Sleep/Oura'
+import { OuraSleepObject } from '@typings/sources/Oura'
 import { Night, Value } from '@typings/Sleepdata'
 import { addMinutes } from 'date-fns'
 import { getNightDuration } from './sleep'

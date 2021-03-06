@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 export interface PolarSleepObject {
   polar_user: string
   date: string
@@ -22,14 +21,6 @@ export interface PolarSleepObject {
   group_duration_score: number
   group_solidity_score: number
   group_regeneration_score: number
-  hypnogram: HGSample[]
-  heart_rate_samples: HRSample[]
-}
-
-type HGSample = {
-  [U: string]: number
-}
-
-type HRSample = {
-  [U: string]: number
+  hypnogram: Record<string, number>[]
+  heart_rate_samples: Record<string, number>[]
 }

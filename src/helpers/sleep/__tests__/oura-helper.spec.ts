@@ -1,4 +1,4 @@
-import { formatOuraSample } from './oura-helper'
+import { formatOuraSample } from '../oura-helper'
 
 const mockOuraResponse = {
   summary_date: '2017-11-05',

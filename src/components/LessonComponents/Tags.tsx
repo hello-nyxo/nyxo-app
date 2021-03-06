@@ -10,7 +10,7 @@ type Props = {
 const Tags: FC<Props> = ({ tags }) => {
   return (
     <Container>
-      {tags?.length > 0 && (
+      {tags && tags?.length > 0 && (
         <>
           <TagIcon />
           {tags?.map((tag) => (

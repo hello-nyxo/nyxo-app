@@ -16,9 +16,15 @@ import {
 import { graphqlOperation, API, Auth } from 'aws-amplify'
 import { updateUserData } from '@data-fetching/remote/user'
 import { isLoggedIn } from '@helpers/auth'
-import { CoachingPeriod } from '@hooks/coaching/useCoaching'
 
-export const listCoaching = async (): Promise<Array<CoachingPeriod> | null> => {
+export type CoachingItems =
+  | Exclude<
+      Exclude<ListCoachingDatasQuery['listCoachingDatas'], null>,
+      null
+    >['items']
+  | null
+
+export const listCoaching = async (): Promise<CoachingItems | null> => {
   try {
     if (await isLoggedIn()) {
       const {
@@ -39,7 +45,7 @@ export const listCoaching = async (): Promise<Array<CoachingPeriod> | null> => {
 }
 
 export const getCoaching = async (
-  key: string,
+  _key: string,
   { id }: { id: string }
 ): Promise<GetCoachingDataQuery['getCoachingData']> => {
   try {

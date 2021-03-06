@@ -1,2 +1,2 @@
-/* eslint-disable camelcase */
-declare namespace aws_mobile {}
+declare const awsmobile: Record<string, unknown>
+export default awsmobile

@@ -6,6 +6,7 @@ import {
 } from '@API'
 import { API, Auth, graphqlOperation } from 'aws-amplify'
 import {
+  CoachingItems,
   createCoaching,
   deleteCoaching,
   getCoaching,
@@ -72,7 +73,7 @@ export const completeLessonMutation = async ({
 
 /* HOOKS */
 
-export const useListCoaching = (): QueryResult<Array<CoachingPeriod> | null> => {
+export const useListCoaching = (): QueryResult<CoachingItems | null> => {
   return useQuery('listCoaching', listCoaching)
 }
 

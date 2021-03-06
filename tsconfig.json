@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "allowJs": true,
     "module": "commonjs",
     "jsx": "react-native",
     "plugins": [

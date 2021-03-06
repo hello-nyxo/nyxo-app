@@ -1,5 +1,5 @@
-import { PolarSleepObject } from '@typings/Sleep/Polar'
-import { formatPolarSample } from './polar-helper'
+import { PolarSleepObject } from '@typings/sources/Polar'
+import { formatPolarSample } from '../polar-helper'
 
 const mockPolarResponse: PolarSleepObject = {
   polar_user: 'https://www.polaraccesslink/v3/users/1',

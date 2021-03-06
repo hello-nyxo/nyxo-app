@@ -1,6 +1,6 @@
 import CONFIG from '@config/Config'
 import { getNightDuration } from '@helpers/sleep/sleep'
-import { WithingsSleepObject } from '@typings/Sleep/Withings'
+import { WithingsSleepObject } from '@typings/sources/Withings'
 import { Night, Value } from '@typings/Sleepdata'
 import { addSeconds, subSeconds } from 'date-fns'
 

@@ -44,11 +44,12 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
               {time === 1 ? 'READING_TIME.SINGULAR' : 'READING_TIME.PLURAL'}
             </ReadingTime>
 
-            {lesson.exampleHabit?.length ? (
+            {lesson.habitCollection?.items?.length ? (
               <>
                 <StyledIcon name="taskListEdit" height={10} width={10} />
-                <HabitCount variables={{ habits: lesson.exampleHabit?.length }}>
-                  {lesson.exampleHabit?.length > 1
+                <HabitCount
+                  variables={{ habits: lesson.habitCollection?.items?.length }}>
+                  {lesson.habitCollection?.items?.length > 1
                     ? 'HABITS_COUNT_SHORT'
                     : 'HABIT_COUNT_SHORT'}
                 </HabitCount>
@@ -64,8 +65,9 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
               uri: `${lesson.cover?.url}?fm=jpg&fl=progressive&w=200`
             }}
           />
-          <Completed completed={lesson.completed}>
-            {!!lesson.completed && (
+          <Completed completed={false}>
+            {/* FIXME */}
+            {!!false && (
               <IconBold
                 name="checkMark"
                 height={15}
