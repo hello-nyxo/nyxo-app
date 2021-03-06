@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import { register } from '@actions/auth/auth-actions'
 import { markDataOnboardingCompleted } from '@actions/onboarding/onboarding-actions'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
@@ -12,9 +11,10 @@ import colors from '@styles/colors'
 import PurchaseView from '@views/PurchaseView'
 import { RegisterView } from '@views/RegisterView'
 import { SourceSettingsView } from '@views/SourceView'
-import React, { FC, useRef, useState } from 'react'
-import { ScrollView, Animated } from 'react-native'
-import Modal, { ReactNativeModal } from 'react-native-modal'
+import React, { FC, useState } from 'react'
+import Modal from 'react-native-modal'
+import Animated from 'react-native-reanimated'
+import { useScrollHandler } from 'react-native-redash/lib/module/v1'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -27,7 +27,7 @@ const images = {
 }
 
 export const Onboarding: FC = () => {
-  const scrollX = useRef(new Animated.Value(0)).current
+  const { x: scrollX, scrollHandler } = useScrollHandler()
   const { navigate } = useNavigation()
   const dispatch = useDispatch()
   const [dataModal, toggleDataModal] = useState(false)
@@ -71,12 +71,7 @@ export const Onboarding: FC = () => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          {
-            useNativeDriver: false
-          }
-        )}>
+        {...scrollHandler}>
         <Page>
           <ImageContainer>
             <Image source={images.welcome} />
@@ -178,7 +173,8 @@ export const Onboarding: FC = () => {
         <ModalContent>
           <RegisterView
             back={authModalToggle}
-            goToLogin={() => {}}
+            //FIXME
+            goToLogin={() => undefined}
             register={signUp}
           />
         </ModalContent>
@@ -241,11 +237,13 @@ const ImageContainer = styled.View`
   align-items: center;
 `
 
+const ScrollView = styled(Animated.ScrollView)``
+
 const ModalContent = styled.ScrollView`
   flex: 1;
 `
 
-const StyledModal = styled(Modal)<ReactNativeModal>`
+const StyledModal = styled(Modal as unknown)`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   flex: 1;
   margin: 0px;

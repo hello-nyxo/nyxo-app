@@ -1,8 +1,8 @@
 import keyExtractor from '@helpers/KeyExtractor'
-import { fonts, StyleProps } from '@styles/themes'
-import { ExampleHabit as ExampleHabitType } from '@typings/CoachingContentState'
-import React, { memo } from 'react'
-import { FlatList } from 'react-native'
+import { fonts } from '@styles/themes'
+import { HabitCollectionItem } from '@typings/contentful'
+import React, { FC } from 'react'
+import { FlatList, ListRenderItem } from 'react-native'
 import styled from 'styled-components/native'
 import ExampleHabit, {
   EXAMPLE_HABIT_MARGIN_LEFT,
@@ -11,40 +11,33 @@ import ExampleHabit, {
 import { H3Margin } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 
-const ExampleHabitSection = ({
-  habits
-}: {
-  habits: ExampleHabitType[] | undefined
-}) => {
+type Props = {
+  habits?: HabitCollectionItem[]
+}
+
+const ExampleHabitSection: FC<Props> = ({ habits }) => {
   if (!habits) return null
 
   const contentOffsets = habits.map(
     (_, index) => (EXAMPLE_HABIT_WIDTH + EXAMPLE_HABIT_MARGIN_LEFT) * index
   )
-  const renderHabit = ({
-    item: habit,
-    index
-  }: {
-    item: ExampleHabitType
-    index: number
-  }) => {
-    return (
-      <ExampleHabit
-        key={index}
-        title={habit.title}
-        period={habit.period}
-        description={habit.description}
-      />
-    )
-  }
+  const renderHabit: ListRenderItem<HabitCollectionItem> = ({
+    item: habit
+  }) => (
+    <ExampleHabit
+      key={`${habit?.title}`}
+      title={habit?.title}
+      period={habit?.period}
+      description={habit?.description?.json}
+    />
+  )
 
   return (
     <>
       <H3>EXAMPLE_HABITS</H3>
       <TextSmall>TRY_THIS_HABIT</TextSmall>
-      <FlatList
+      <List
         keyExtractor={keyExtractor}
-        contentContainerStyle={{ paddingVertical: 20 }}
         centerContent
         horizontal
         data={habits}
@@ -56,7 +49,15 @@ const ExampleHabitSection = ({
   )
 }
 
-export default memo(ExampleHabitSection)
+export default ExampleHabitSection
+
+const List = styled(FlatList as new () => FlatList<HabitCollectionItem>).attrs(
+  () => ({
+    contentContainerStyle: {
+      paddingVertical: 20
+    }
+  })
+)``
 
 const TextSmall = styled(TranslatedText)`
   font-family: ${fonts.medium};
@@ -64,8 +65,6 @@ const TextSmall = styled(TranslatedText)`
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   margin: 10px 20px;
 `
-
-// EXAMPLE_HABIT_EXPLANATION
 
 const H3 = styled(H3Margin)`
   margin-top: 20px;

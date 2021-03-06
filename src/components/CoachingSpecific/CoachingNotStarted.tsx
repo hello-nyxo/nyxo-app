@@ -3,7 +3,6 @@ import {
   useGetActiveCoaching
 } from '@hooks/coaching/useCoaching'
 import { useNavigation } from '@react-navigation/core'
-import { getCoachingNotStarted } from '@selectors/coaching-selectors'
 import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import TextButton from '@components/Buttons/TextButton'

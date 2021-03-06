@@ -6,7 +6,7 @@ import { Document } from '@contentful/rich-text-types'
 import { WIDTH } from '@helpers/Dimensions'
 import { fonts } from '@styles/themes'
 import { Period } from '@typings/state/Periods'
-import React, { memo, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { ScrollView } from 'react-native'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
@@ -19,21 +19,28 @@ import { getIcon } from './TopRow'
 export const EXAMPLE_HABIT_WIDTH = WIDTH - 60
 export const EXAMPLE_HABIT_MARGIN_LEFT = 20
 
-interface Props {
+type Props = {
   title?: string
   period?: string
   description?: Document
 }
 
-const ExampleHabit = (props: Props) => {
-  const { title = 'Custom Habit', period = Period.morning, description } = props
+const ExampleHabit: FC<Props> = ({
+  title = 'Custom Habit',
+  period = Period.morning,
+  description
+}) => {
   const dispatch = useDispatch()
   const [show, setShow] = useState(false)
   const [habitAdded, setHabitAdded] = useState(false)
 
   const createHabit = async () => {
     await dispatch(
-      addHabit(title, documentToPlainTextString(description), period)
+      addHabit(
+        title,
+        documentToPlainTextString(description as Document),
+        period as Period
+      )
     )
     await setHabitAdded(true)
   }
@@ -43,7 +50,6 @@ const ExampleHabit = (props: Props) => {
   }
 
   if (!title || !period || !description) return null
-
   const { color, icon } = getIcon(period)
 
   return (

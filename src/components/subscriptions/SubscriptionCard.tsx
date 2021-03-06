@@ -3,8 +3,8 @@ import styled from 'styled-components/native'
 import { IconBold } from '@components/iconRegular'
 import colors from '@styles/colors'
 import { PurchasesEntitlementInfo } from 'react-native-purchases'
-import moment from 'moment'
 import translate from '@config/i18n'
+import { format } from 'date-fns'
 
 type Props = {
   subscription?: PurchasesEntitlementInfo
@@ -30,13 +30,15 @@ const SubscriptionCard: FC<Props> = ({ subscription }) => {
       <Text>
         {translate('SUBSCRIPTION_MANAGEMENT.STARTED')}
         <BoldText>
-          {moment(originalPurchaseDate).format('DD.MM.YYYY')}
+          {format(new Date(originalPurchaseDate), 'dd.MM.yyyy')}
         </BoldText>{' '}
       </Text>
 
       <Text>
         {translate('SUBSCRIPTION_MANAGEMENT.THANK_YOU')}
-        <BoldText>{moment(expirationDate).format('DD.MM.YYYY')}</BoldText>
+        <BoldText>
+          {format(new Date(expirationDate ?? new Date()), 'dd.MM.yyyy')}
+        </BoldText>
       </Text>
       {!isSandbox && (
         <IsSandboxContainer>

@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { fonts } from '@styles/themes'
-import colors from '../../styles/colors'
+import { View, ViewStyle } from 'react-native'
+import styled from 'styled-components/native'
 
 type Props = {
-  style: any
+  style: ViewStyle
   minutesLong: number
 }
 
@@ -14,31 +13,24 @@ const TimerText: FC<Props> = ({ minutesLong, style }) => {
 
   return (
     <View style={style}>
-      <View style={styles.timerContainer}>
-        <Text style={styles.time}>{hours}:</Text>
-        {/* <Text style={styles.text}>H</Text> */}
-        <Text style={styles.time}>
-          {minutes < 10 ? `0${minutes}` : minutes}
-        </Text>
-        {/* <Text style={styles.text}>MIN</Text> */}
-      </View>
+      <TimerContainer>
+        <Time>{hours}</Time>
+        <Time>{minutes < 10 ? `0${minutes}` : minutes}</Time>
+      </TimerContainer>
     </View>
   )
 }
 export default TimerText
 
-const styles = StyleSheet.create({
-  timerContainer: {
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    flexDirection: 'row'
-  },
-  time: {
-    marginBottom: -24,
-    // color: 'black',
-    color: colors.asleepColor,
-    fontFamily: fonts.bold,
-    fontWeight: 'bold',
-    fontSize: 42
-  }
-})
+const TimerContainer = styled.View`
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: row;
+`
+
+const Time = styled.Text`
+  margin-bottom: -24px;
+  color: ${({ theme }) => theme.accent};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-size: 36px;
+`

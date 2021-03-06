@@ -1,8 +1,8 @@
-import React, { memo } from 'react'
-import { Circle, G, Line } from 'react-native-svg'
-import range from 'lodash/range'
-import styled from 'styled-components/native'
 import { polarToCartesian } from '@helpers/geometry'
+import range from 'lodash/range'
+import React, { memo } from 'react'
+import { G, Line } from 'react-native-svg'
+import styled from 'styled-components/native'
 
 type Props = {
   x: number

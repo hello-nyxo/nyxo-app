@@ -10,7 +10,7 @@ import { ThemedRefreshControl } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import { HEIGHT, SMART_TOP_PADDING } from '@helpers/Dimensions'
 import { fonts } from '@styles/themes'
-import React, { FC, memo, useEffect, useState } from 'react'
+import React, { FC, memo, useCallback, useEffect, useState } from 'react'
 import { ActivityIndicator, Linking, Platform } from 'react-native'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import { useDispatch } from 'react-redux'
@@ -31,7 +31,7 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
   const dispatch = useDispatch()
   const isIOS = Platform.OS === 'ios'
 
-  const getSubscription = async () => {
+  const getSubscription = useCallback(async () => {
     try {
       const offerings = await Purchases.getOfferings()
       if (offerings.current?.availablePackages.length !== 0) {
@@ -41,15 +41,14 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
         select(availableSubscriptions[0])
       }
       setError(false)
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
       setError(true)
     }
-  }
+  }, [availableSubscriptions])
 
   useEffect(() => {
     getSubscription()
-  }, [])
+  }, [getSubscription])
 
   const openTerms = () => {
     Linking.openURL(CONFIG.TERMS_LINK)
@@ -88,11 +87,11 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
           />
         }>
         <Header isScreen={isScreen}>
-          {isScreen ? (
+          {!!isScreen && (
             <ButtonRow>
               <GoBack />
             </ButtonRow>
-          ) : null}
+          )}
 
           <Title>BUY_COACHING</Title>
           <Subtitle>BUY_COACHING_SUBTITLE</Subtitle>

@@ -14,7 +14,7 @@ import {
 } from 'date-fns'
 import { createSelector } from 'reselect'
 
-const getNights = (state: State) => state.nights.nights
+const getNights = (state: State) => state?.nights?.nights
 
 export const getNightForSelectedDate = createSelector(
   [getNights, getSelectedDate, getSharedSource],
@@ -54,9 +54,6 @@ export const getAsleepDuration = createSelector(
 export const getMonthOfNights = createSelector(getNights, (night) => night)
 
 export const getNightsAsDays = createSelector(getNights, (nights) => {
-  // const firstDate = min([...nights?.map((night) => new Date(night.startDate))])
-  // const lastDate = max([...nights?.map((night) => new Date(night.endDate))])
-
   const days = eachDayOfInterval({
     start: subDays(new Date(), 30),
     end: new Date() // lastDate

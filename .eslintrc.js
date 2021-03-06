@@ -3,13 +3,16 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    jest: true,
+    'jest/globals': true,
     node: true,
     'react-native/react-native': true
   },
   extends: [
+    'react-app',
+    'react-app/jest',
+    'plugin:jest/recommended',
     'plugin:react/recommended',
-    'airbnb',
+    'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
@@ -18,6 +21,8 @@ module.exports = {
   ],
   plugins: [
     'react',
+    'jest',
+    'jsx-a11y',
     'react-native',
     '@typescript-eslint',
     'prettier',
@@ -36,12 +41,19 @@ module.exports = {
       'error',
       { ignoreComments: true, code: 120, ignoreStrings: true }
     ],
+    'jest/expect-expect': [
+      'error',
+      {
+        assertFunctionNames: ['matchComponentToSnapshot', 'expect']
+      }
+    ],
+    'no-param-reassign': ['error', { props: false }],
     'prettier/prettier': ['error'],
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
     'no-use-before-define': 'off',
-    'import/no-extraneous-dependencies': 'off', // FIXME: exclude test files
+    'import/no-extraneous-dependencies': 'off',
     'react/prop-types': 'off',
     'react/jsx-filename-extension': 'off',
     'react/jsx-one-expression-per-line': 'off',
@@ -81,6 +93,7 @@ module.exports = {
     'import/resolver': {
       'babel-module': {}
     },
+    'import/ignore': ['react-native'],
     react: {
       version: 'detect'
     }

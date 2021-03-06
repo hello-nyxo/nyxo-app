@@ -13,10 +13,10 @@ enum ROUTE {
   HABITS = 'Habits',
   NOTIFICATION_CENTER = 'NOTIFICATION_CENTER',
 
-  COACHING = 'Coaching',
-  COACHING_INTRODUCTION = 'COACHING_INTRODUCTION',
-  WEEK = 'CoachingWeek',
-  LESSON = 'LessonView',
+  COACHING = 'coaching',
+  COACHING_INTRODUCTION = 'introduction',
+  WEEK = 'week',
+  LESSON = 'lesson',
 
   PROFILE = 'Profile',
 

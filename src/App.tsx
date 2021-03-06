@@ -5,7 +5,10 @@ import { State } from '@typings/State'
 import * as Analytics from 'appcenter-analytics'
 import React from 'react'
 import { addEventListener, removeEventListener } from 'react-native-localize'
-import Purchases, { PurchaserInfo } from 'react-native-purchases'
+import Purchases, {
+  PurchaserInfo,
+  PurchaserInfoUpdateListener
+} from 'react-native-purchases'
 import { enableScreens } from 'react-native-screens'
 import SplashScreen from 'react-native-splash-screen'
 import { connect } from 'react-redux'
@@ -41,10 +44,6 @@ class App extends React.Component<AppProps> {
     setI18nConfig()
   }
 
-  purchaserInfoUpdateListener = (info) => {
-    console.log(info)
-  }
-
   async componentDidMount() {
     SplashScreen.hide()
     this.enableAnalytics()
@@ -66,6 +65,11 @@ class App extends React.Component<AppProps> {
     Purchases.removeShouldPurchasePromoProductListener(
       this.shouldPurchasePromoProduct
     )
+  }
+
+  purchaserInfoUpdateListener: PurchaserInfoUpdateListener = (info) => {
+    //FIXME
+    console.log(info)
   }
 
   handleLocalizationChange = () => {

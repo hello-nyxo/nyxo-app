@@ -1,10 +1,6 @@
-import { setNotification } from '@actions/notifications'
-import {
-  getScheduledNotifications,
-  makeGetNotificationEnabled
-} from '@selectors/NotificationSelectors'
+import { makeGetNotificationEnabled } from '@selectors/NotificationSelectors'
 import React, { memo, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   NotificationPermissionType,
   UpdateNotificationPermissionType
@@ -22,15 +18,17 @@ import NotificationRow from '@components/SettingsSpecific/NotificationRow'
 
 export interface NotificationDataItemProps {
   enabled: boolean
-  pressSwitch: () => void
+  pressSwitch: (
+    actionType: UpdateNotificationPermissionType,
+    value: boolean
+  ) => void
   title: NotificationPermissionType
   actionType: UpdateNotificationPermissionType
 }
 
 const NotificationSettings = () => {
-  const dispatch = useDispatch()
   const selectGetNotificationEnabled = useMemo(makeGetNotificationEnabled, [])
-  const scheduledNotifications = useSelector(getScheduledNotifications)
+
   const bedtimeEnabled = useSelector((state: State) =>
     selectGetNotificationEnabled(
       state,
@@ -52,12 +50,7 @@ const NotificationSettings = () => {
     )
   )
 
-  const pressSwitch = (
-    actionType: UpdateNotificationPermissionType,
-    value: boolean
-  ) => {
-    dispatch(setNotification(actionType, value))
-  }
+  const pressSwitch = () => undefined
 
   const notificationData: NotificationDataItemProps[] = [
     {

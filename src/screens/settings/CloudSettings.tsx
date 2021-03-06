@@ -1,5 +1,4 @@
 import { logout } from '@actions/auth/auth-actions'
-import { getConnectionId } from '@actions/linking/linking-actions'
 import GoBack, { GoBackContainer, Spacer } from '@components/Buttons/GoBack'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import SignupBottomButton from '@components/Signup/SignupBottomButton'
@@ -53,7 +52,7 @@ const CloudView: FC<Props> = ({ route }) => {
   }
 
   const refresh = async () => {
-    await dispatch(getConnectionId())
+    //FIXME
   }
 
   return (

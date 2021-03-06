@@ -1,43 +1,27 @@
-import { registerIntercomUser } from '@actions/IntercomActions'
 import {
   DarkTheme,
   DefaultTheme,
-  NavigationContainer,
-  useLinking
+  NavigationContainer
 } from '@react-navigation/native'
-import { actionCreators as notificationActions } from '@reducers/NotificationReducer'
 import { getIsDarkMode } from '@selectors/UserSelectors'
-import Analytics from 'appcenter-analytics'
 import { readFromStorage } from 'persist-queries'
-import React, { FC, useEffect, useRef, useState } from 'react'
-import Intercom from 'react-native-intercom'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { FC, useEffect, useRef } from 'react'
+import { Text } from 'react-native'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import Root from './routes/RootNavigator'
 import ROUTE from './routes/Routes'
 
-function getActiveRouteName(state: any): string {
-  const route = state.routes[state.index]
-
-  if (route.state) {
-    return getActiveRouteName(route.state)
-  }
-
-  return route.name
-}
-
 const Routes: FC = () => {
-  const dispatch = useDispatch()
   const isDarkMode = useSelector(getIsDarkMode)
   const ref = useRef(null)
-  const [isReady, setIsReady] = useState(false)
-  const [initialState, setInitialState] = useState()
-  const routeNameRef = useRef<string>()
 
-  const { getInitialState } = useLinking(ref, {
+  const linking = {
     prefixes: [
       'https://nyxo.fi',
       'https://nyxo.app',
+      'https://nyxo.app/fi',
+      'https://*.nyxo.app',
       'https://get.nyxo.fi',
       'https://auth.nyxo.app',
       'nyxo://'
@@ -47,7 +31,7 @@ const Routes: FC = () => {
         [ROUTE.TERVEYSTALO]: {
           path: 'link',
           parse: {
-            code: (code) => `${code}`
+            code: (code: string | number) => `${code}`
           }
         },
         [ROUTE.AUTH]: {
@@ -67,11 +51,11 @@ const Routes: FC = () => {
         [ROUTE.PURCHASE]: {
           path: 'purchase'
         },
-        [ROUTE.LESSON]: {
-          path: 'lesson/:slug'
+        [ROUTE.WEEK]: {
+          path: 'week/:slug'
         },
         [ROUTE.LESSON]: {
-          path: 'fi/lesson/:slug'
+          path: 'lesson/:slug'
         },
         [ROUTE.APP]: {
           screens: {
@@ -114,37 +98,11 @@ const Routes: FC = () => {
         }
       }
     }
-  })
+  }
 
   useEffect(() => {
     readQueries()
-
-    const onUnreadChange = ({ count }: { count: number }) => {
-      dispatch(notificationActions.updateIntercomNotificationCount(count))
-    }
-
-    getInitialState().then((state) => {
-      if (state !== undefined) {
-        setInitialState(state)
-      }
-
-      setIsReady(true)
-    })
-
-    dispatch(registerIntercomUser())
-
-    Intercom.addEventListener(
-      Intercom.Notifications.UNREAD_COUNT,
-      onUnreadChange
-    )
-
-    return () => {
-      Intercom.removeEventListener(
-        Intercom.Notifications.UNREAD_COUNT,
-        onUnreadChange
-      )
-    }
-  }, [getInitialState])
+  }, [])
 
   const readQueries = async () => {
     await Promise.all([
@@ -153,27 +111,14 @@ const Routes: FC = () => {
     ])
   }
 
-  if (!isReady) {
-    return null
-  }
-
   return (
     <>
       <StyledStatusBar animated />
       <NavigationContainer
+        linking={linking}
         ref={ref}
         theme={isDarkMode ? DarkTheme : DefaultTheme}
-        initialState={initialState}
-        onStateChange={(state) => {
-          const previousRouteName = routeNameRef.current
-          const currentRouteName = getActiveRouteName(state)
-          if (previousRouteName !== currentRouteName) {
-            Intercom.logEvent('viewed_screen', { currentRouteName })
-            Analytics.trackEvent(`Navigated to ${currentRouteName}`)
-          }
-
-          routeNameRef.current = currentRouteName
-        }}>
+        fallback={<Text>Loading...</Text>}>
         <Root />
       </NavigationContainer>
     </>

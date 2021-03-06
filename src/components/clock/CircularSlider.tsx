@@ -1,4 +1,3 @@
-import { interpolateHcl as interpolateGradient } from 'd3'
 import range from 'lodash/range'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
@@ -6,24 +5,10 @@ import { PanResponder, View } from 'react-native'
 import Svg, { Circle, G, Path } from 'react-native-svg'
 import colors from '../../styles/colors'
 
-function calculateArcColor(
-  index0,
-  segments,
-  gradientColorFrom,
-  gradientColorTo
-) {
-  const interpolate = interpolateGradient(gradientColorFrom, gradientColorTo)
-
-  return {
-    fromColor: interpolate(index0 / segments),
-    toColor: interpolate((index0 + 1) / segments)
-  }
-}
-
 function calculateArcCircle(
-  index0,
-  segments,
-  radius,
+  index0: number,
+  segments: number,
+  radius: number,
   startAngle0 = 0,
   angleLength0 = 2 * Math.PI
 ) {
@@ -53,7 +38,13 @@ function calculateArcCircle(
 }
 
 interface CircularSliderProps {
-  onUpdate: () => void
+  onUpdate: ({
+    startAngle,
+    angleLength
+  }: {
+    startAngle: number
+    angleLength: number
+  }) => void
   startAngle: number
   angleLength: number
   segments: number
@@ -63,19 +54,19 @@ interface CircularSliderProps {
   gradientColorTo: string
   clockFaceColor: string
   bgCircleColor: string
-  stopIcon: any
-  startIcon: any
+  stopIcon: JSX.Element
+  startIcon: JSX.Element
 }
 
 interface State {
-  circleCenterX: boolean
-  circleCenterY: boolean
+  circleCenterX: number
+  circleCenterY: number
 }
 
 export default class CircularSlider extends PureComponent<CircularSliderProps> {
-  _wakePanResponder: any
-
-  _sleepPanResponder: any
+  _wakePanResponder: PanResponder
+  _circle: Svg
+  _sleepPanResponder: PanResponder
 
   static propTypes = {
     onUpdate: PropTypes.func.isRequired,
@@ -103,18 +94,18 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
   }
 
   state: State = {
-    circleCenterX: false,
-    circleCenterY: false
+    circleCenterX: 0,
+    circleCenterY: 0
   }
 
   constructor(props: CircularSliderProps) {
     super(props)
 
     this._sleepPanResponder = PanResponder.create({
-      onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
-      onPanResponderGrant: (evt, gestureState) => this.setCircleCenter(),
-      onPanResponderMove: (evt, { moveX, moveY }) => {
+      onMoveShouldSetPanResponder: (_evt, _gestureState) => true,
+      onMoveShouldSetPanResponderCapture: (_evt, _gestureState) => true,
+      onPanResponderGrant: (_evt, _gestureState) => this.setCircleCenter(),
+      onPanResponderMove: (_evt, { moveX, moveY }) => {
         const { circleCenterX, circleCenterY } = this.state
         const { angleLength, startAngle, onUpdate } = this.props
 
@@ -140,10 +131,10 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
     })
 
     this._wakePanResponder = PanResponder.create({
-      onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
-      onPanResponderGrant: (evt, gestureState) => this.setCircleCenter(),
-      onPanResponderMove: (evt, { moveX, moveY }) => {
+      onMoveShouldSetPanResponder: (_evt, _gestureState) => true,
+      onMoveShouldSetPanResponderCapture: (_evt, _gestureState) => true,
+      onPanResponderGrant: (_evt, _gestureState) => this.setCircleCenter(),
+      onPanResponderMove: (_evt, { moveX, moveY }) => {
         const { circleCenterX, circleCenterY } = this.state
         const { angleLength, startAngle, onUpdate } = this.props
 
@@ -160,12 +151,12 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
     })
   }
 
-  onLayout = () => {
+  onLayout = (): void => {
     this.setCircleCenter()
   }
 
-  setCircleCenter = () => {
-    this._circle.measure((x, y, w, h, px, py) => {
+  setCircleCenter = (): void => {
+    this._circle.measure((_x, _y, _w, _h, px, py) => {
       const halfOfContainer = this.getContainerWidth() / 2
       this.setState({
         circleCenterX: px + halfOfContainer,
@@ -174,12 +165,12 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
     })
   }
 
-  getContainerWidth() {
+  getContainerWidth(): number {
     const { strokeWidth, radius } = this.props
     return strokeWidth + radius * 2 + 2
   }
 
-  render() {
+  render(): JSX.Element {
     const {
       startAngle,
       angleLength,
@@ -187,8 +178,7 @@ export default class CircularSlider extends PureComponent<CircularSliderProps> {
       strokeWidth,
       radius,
       gradientColorFrom,
-      gradientColorTo,
-      bgCircleColor
+      gradientColorTo
     } = this.props
 
     const containerWidth = this.getContainerWidth()

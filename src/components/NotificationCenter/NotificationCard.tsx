@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
@@ -8,18 +8,18 @@ import { H5, P } from '../Primitives/Primitives'
 type Props = {
   title: string
   description: string
-  closeFunction: Function
-  agreeFunction: Function
+  closeFunction: () => void
+  agreeFunction: () => void
   buttonText?: string
 }
 
-const NotificationCard = ({
+const NotificationCard: FC<Props> = ({
   title,
   description,
   closeFunction,
   agreeFunction,
   buttonText
-}: Props) => {
+}) => {
   const handleClose = () => {
     closeFunction()
   }

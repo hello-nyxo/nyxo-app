@@ -22,8 +22,7 @@ export const WeekActions: FC<Props> = ({
   isCurrentlyActive,
   startWeek,
   endWeek,
-  isLoading,
-  isSuccess
+  isLoading
 }) => {
   const startTime = started ? format(new Date(started), 'dd.MM') : ''
   const endTime = ended ? format(new Date(ended), 'dd.MM') : ''

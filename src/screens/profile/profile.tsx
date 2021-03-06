@@ -1,3 +1,4 @@
+import Points from '@components/points/Points'
 import {
   PageTitle,
   SafeAreaView,
@@ -8,7 +9,6 @@ import SignupBottomButton from '@components/Signup/SignupBottomButton'
 import TopInfo from '@components/TopInfo'
 import { useGetUser } from '@hooks/user/useUser'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
-import Points from '@components/points/Points'
 import React, { FC, memo } from 'react'
 import { Text } from 'react-native'
 import { useSelector } from 'react-redux'
@@ -17,9 +17,7 @@ import styled from 'styled-components/native'
 const ProfileScreen: FC = () => {
   const { data } = useGetUser()
   const loggedIn = useSelector(getAuthState)
-
   const nickname = data?.nickname
-  const coaching = data?.activeCoaching
 
   return (
     <SafeAreaView>

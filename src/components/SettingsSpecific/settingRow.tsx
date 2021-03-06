@@ -1,43 +1,34 @@
-import Analytics from 'appcenter-analytics'
-import React, { memo } from 'react'
+import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
-import { constants, fonts, StyleProps } from '@styles/themes'
+import { constants, fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 
 interface Props {
-  analyticsEvent: string
-  onPress: Function
-  icon: string
-  children: any
+  onPress?: () => void
+  icon?: string
+  children?: JSX.Element[] | JSX.Element
   badge?: number
 }
 
-const SettingRow = (props: Props) => {
-  const onPress = () => {
-    Analytics.trackEvent(props.analyticsEvent)
-    props.onPress()
-  }
+const SettingRow: FC<Props> = ({ badge, icon, children, onPress }) => (
+  <TouchableOpacity onPress={onPress}>
+    <Container>
+      <IconContainer>
+        <Icon name={`${icon}`} height={25} width={25} />
+        {badge ? (
+          <Badge>
+            <BadgeCount>{badge}</BadgeCount>
+          </Badge>
+        ) : null}
+      </IconContainer>
+      <InnerContainer>{children}</InnerContainer>
+    </Container>
+  </TouchableOpacity>
+)
 
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <Container>
-        <IconContainer>
-          <Icon name={props.icon} height={25} width={25} />
-          {props.badge ? (
-            <Badge>
-              <BadgeCount>{props.badge}</BadgeCount>
-            </Badge>
-          ) : null}
-        </IconContainer>
-        <InnerContainer>{props.children}</InnerContainer>
-      </Container>
-    </TouchableOpacity>
-  )
-}
-
-export default memo(SettingRow)
+export default SettingRow
 
 const Container = styled.View`
   margin: 0px 20px;

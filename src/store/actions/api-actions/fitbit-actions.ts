@@ -12,7 +12,7 @@ import {
   ResponseBase
 } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
-import moment from 'moment'
+import { format, isAfter, subWeeks } from 'date-fns'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
 import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 import {
@@ -179,13 +179,13 @@ export const getFitbitSleep = (): AppThunk => async (dispatch) => {
     CONFIG.FITBIT_CONFIG.bundleId
   )) as unknown) as FitbitAuthorizeResult
 
-  const startDate = moment().subtract(1, 'week').format('YYYY-MM-DD')
-  const endDate = moment().format('YYYY-MM-DD')
+  const startDate = format(subWeeks(new Date(), 1), 'YYYY-MM-DD')
+  const endDate = format(new Date(), 'YYYY-MM-DD')
 
   dispatch(fetchSleepFitbitStart())
   if (accessToken) {
     try {
-      if (moment(accessTokenExpirationDate).isAfter(moment())) {
+      if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
         const fitbitApiCall = await fetch(
           `https://api.fitbit.com/1.2/user/${user_id}/sleep/date/${startDate}/${endDate}.json`,
           {

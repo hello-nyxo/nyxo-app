@@ -1,5 +1,4 @@
-import moment from 'moment'
-import React, { FC, memo, useRef } from 'react'
+import React, { FC, memo } from 'react'
 import { Defs, G, Path, Text, TextPath, TSpan } from 'react-native-svg'
 import styled from 'styled-components/native'
 import {
@@ -9,6 +8,7 @@ import {
 } from '@helpers/geometry'
 import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
+import { format } from 'date-fns'
 
 type FallAsleepWindowProps = {
   goToSleepWindowStart?: string
@@ -28,8 +28,11 @@ const FallAsleepWindow: FC<FallAsleepWindowProps> = ({
   const startAngle = clockTimeToAngle(goToSleepWindowStart)
   const endAngle = clockTimeToAngle(goToSleepWindowEnd)
 
-  const startTime = moment(goToSleepWindowStart).format('HH:mm')
-  const endTime = moment(goToSleepWindowEnd).format('HH:mm')
+  const startTime = format(
+    new Date(goToSleepWindowStart ?? new Date()),
+    'HH:mm'
+  )
+  const endTime = format(new Date(goToSleepWindowEnd ?? new Date()), 'HH:mm')
 
   if (
     startAngle === undefined ||

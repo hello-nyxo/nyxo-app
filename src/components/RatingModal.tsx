@@ -1,6 +1,5 @@
 import { toggleRatingModal } from '@actions/modal/modal-actions'
 import { getRatingModal } from '@selectors/ModalSelectors'
-import { getIsDarkMode } from '@selectors/UserSelectors'
 import React, { memo } from 'react'
 import Modal from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
@@ -39,7 +38,6 @@ const info = [
 const RatingModal = () => {
   const dispatch = useDispatch()
   const isVisible = useSelector(getRatingModal)
-  const darkMode = useSelector(getIsDarkMode)
 
   const buttons = info.map((item) => (
     <RatingButton

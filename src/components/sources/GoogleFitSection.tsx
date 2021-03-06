@@ -11,7 +11,6 @@ import {
 import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import colors from '@styles/colors'
 import { constants } from '@styles/themes'
 
 const GoogleFitSection: FC = () => {
@@ -100,11 +99,6 @@ const Title = styled(TranslatedText)`
 `
 
 const Switch = styled.Switch``
-
-const Authorized = styled.Text`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${colors.green};
-`
 
 const Description = styled(TranslatedText)`
   margin-top: 10px;

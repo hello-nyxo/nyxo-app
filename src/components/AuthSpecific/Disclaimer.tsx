@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Linking } from 'react-native'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import CONFIG from '../../config/Config'
 
 const Disclaimer = () => {

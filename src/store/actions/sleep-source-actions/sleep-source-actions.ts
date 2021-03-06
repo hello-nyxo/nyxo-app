@@ -81,7 +81,7 @@ export const toggleHealthKit = (): AppThunk => async (dispatch, getState) => {
 export const setHealthKitAsSourceAndFetch = (): AppThunk => async (
   dispatch
 ) => {
-  await AppleHealthKit.initHealthKit(healthKitOptions, async (err, res) => {
+  await AppleHealthKit.initHealthKit(healthKitOptions, async (err) => {
     if (err) {
       captureException(err)
       await dispatch(setHealthKitStatus(false))

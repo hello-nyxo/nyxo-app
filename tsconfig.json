@@ -1,8 +1,31 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "allowJs": true,
     "module": "commonjs",
     "jsx": "react-native",
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "lint": {
+          "validProperties": [
+            "aspect-ratio",
+            "elevation",
+            "margin-vertical",
+            "margin-horizontal",
+            "padding-horizontal",
+            "padding-vertical",
+            "resize-mode",
+            "shadow-color",
+            "shadow-opacity",
+            "shadow-offset",
+            "shadow-radius",
+            "text-align-vertical",
+            "tint-color"
+          ]
+        }
+      }
+    ],
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
@@ -18,7 +41,7 @@
     "baseUrl": ".",
     "paths": {
       "@actions/*": ["./src/store/actions/*"],
-      "@reducers/*": ["./src/store/Reducers/*"],
+      "@reducers/*": ["./src/store/reducers/*"],
       "@selectors/*": ["./src/store/selectors/*"],
       "@initial-states/*": ["./src/store/initial-states/*"],
       "@components/*": ["./src/components/*"],
@@ -37,6 +60,11 @@
       "persist-queries": ["./src/store/persist-queries.ts"]
     }
   },
+  "include": [
+    "node_modules/react-native-redash/lib/typescript/v1/index.d.ts",
+    "src/**/*",
+    "src/typings"
+  ],
   "exclude": [
     "node_modules",
     "babel.config.js",

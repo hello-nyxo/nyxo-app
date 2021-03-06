@@ -93,20 +93,6 @@ export const removeLink = (): AppThunk => async (dispatch) => {
   }
 }
 
-export const getConnectionId = (): AppThunk => async (dispatch) => {
-  const { username } = await Auth.currentUserInfo()
-  try {
-    const input = {
-      id: username,
-      connectionId: null
-    }
-    // const response: any = await API.graphql(graphqlOperation(updateConnectionId, { input }));
-    // dispatch(removeLinkSuccess());
-  } catch (error) {
-    // dispatch(removeLinkFailure());
-  }
-}
-
 /* HELPERS  */
 export const validateLinkCode = async (
   code: string,

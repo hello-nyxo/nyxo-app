@@ -1,32 +1,30 @@
-/* eslint-disable camelcase */
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { getGarminEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from '@config/Config'
-import { openAuthSessionAsync, WebBrowserResult } from 'expo-web-browser'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import {
   formatGarminSamples,
   generateSleepApiCall
 } from '@helpers/sleep/garmin-helper'
-import moment from 'moment'
-import queryString from 'query-string'
-import { Linking, Platform } from 'react-native'
-import { GetState } from '@typings/GetState'
+import { getGarminEnabled } from '@selectors/api-selectors/api-selectors'
+import { captureException } from '@sentry/react-native'
 import { AppThunk } from '@typings/redux-actions'
-import { GarminSleepObject } from '@typings/Sleep/Garmin'
+import { GarminSleepObject } from '@typings/sources/Garmin'
 import { GarminAuthorizeResult, ResponseBase } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
-import { captureException } from '@sentry/react-native'
+import { set, subDays } from 'date-fns'
+import { openAuthSessionAsync } from 'expo-web-browser'
+import queryString from 'query-string'
+import { Linking, Platform } from 'react-native'
 import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 import {
+  ApiActions,
   FETCH_SLEEP_GARMIN_FAILURE,
   FETCH_SLEEP_GARMIN_START,
   FETCH_SLEEP_GARMIN_SUCCESS,
   GARMIN_AUTHORIZE_SUCCESS,
   GARMIN_REVOKE_SUCCESS,
-  GARMIN_UPDATE_TOKEN,
-  ApiActions
+  GARMIN_UPDATE_TOKEN
 } from './types'
 
 /* ACTIONS */
@@ -59,10 +57,7 @@ export const fetchSleepGarminFailure = (): ApiActions => ({
   type: FETCH_SLEEP_GARMIN_FAILURE
 })
 
-export const toggleGarmin = (): AppThunk => async (
-  dispatch,
-  getState: GetState
-) => {
+export const toggleGarmin = (): AppThunk => async (dispatch, getState) => {
   try {
     const enabled = getGarminEnabled(getState())
     if (enabled) {
@@ -147,9 +142,7 @@ export const authorizeGarminIOS = (): AppThunk => async (dispatch) => {
   }
 }
 
-export const getGarminOauthVerifierAndroid = (): AppThunk => async (
-  dispatch
-) => {
+export const getGarminOauthVerifierAndroid = (): AppThunk => async () => {
   try {
     const getRequestTokenResponse = await fetch(
       CONFIG.GARMIN_CONFIG.REQUEST_TOKEN_ENDPOINT
@@ -233,10 +226,8 @@ export const getGarminAccessTokenAndroid = (
 }
 
 export const getGarminSleep = (
-  // eslint-disable-next-line unused-imports/no-unused-vars-ts
-  startDate?: string,
-  // eslint-disable-next-line unused-imports/no-unused-vars-ts
-  endDate?: string
+  _startDate?: string,
+  _endDate?: string
 ): AppThunk => async (dispatch) => {
   const { accessToken, accessTokenSecret } = ((await GetKeychainParsedValue(
     CONFIG.GARMIN_CONFIG.bundleId
@@ -252,10 +243,10 @@ export const getGarminSleep = (
 
       const combinedSleepData: GarminSleepObject[] = []
 
-      garminAPICalls.forEach((res: Response | undefined) => {
+      garminAPICalls.forEach((res) => {
         if (res) {
-          const { body } = res as any // Don't know how to properly cast this
-          body.forEach((sleep: GarminSleepObject) =>
+          const { body } = (res as unknown) as { body: GarminSleepObject[] }
+          body?.forEach((sleep: GarminSleepObject) =>
             combinedSleepData.push(sleep)
           )
         }
@@ -283,15 +274,19 @@ const getRecent7DaysSleepApiCalls = (
   const promiseArray = []
 
   for (let i = 7; i >= 1; i -= 1) {
-    const uploadStartTimeInSeconds = moment()
-      .subtract(i, 'days')
-      .set({ hour: 16, minute: 0, second: 0, millisecond: 0 }) // set the start & end time of sleep record
-      .unix()
+    const uploadStartTimeInSeconds = set(subDays(new Date(), i), {
+      hours: 16,
+      minutes: 0,
+      seconds: 0,
+      milliseconds: 0
+    }).getTime()
 
-    const uploadEndTimeInSeconds = moment()
-      .subtract(i - 1, 'days')
-      .set({ hour: 16, minute: 0, second: 0, millisecond: 0 })
-      .unix()
+    const uploadEndTimeInSeconds = set(subDays(new Date(), i - 1), {
+      hours: 16,
+      minutes: 0,
+      seconds: 0,
+      milliseconds: 0
+    }).getTime()
 
     promiseArray.push(
       generateSleepApiCall(
@@ -311,6 +306,6 @@ interface ParsedAuthorizedResponse extends queryString.ParsedQuery {
   oauth_verifier: string
 }
 
-interface OpenAuthSessionResponse extends WebBrowserResult {
+interface OpenAuthSessionResponse {
   url: string
 }

@@ -17,7 +17,7 @@ type Props = {
   onPress: (day: Day) => void
 }
 
-const SleepBars: FC<Props> = ({ data, scaleX, scaleY, barWidth, onPress }) => {
+const SleepBars: FC<Props> = ({ data, scaleX, scaleY, barWidth }) => {
   const { bars } = useMemo(
     () => ({
       bars: data.map((date) => {
@@ -45,7 +45,7 @@ const SleepBars: FC<Props> = ({ data, scaleX, scaleY, barWidth, onPress }) => {
         })
       })
     }),
-    [data]
+    [barWidth, data, scaleX, scaleY]
   )
 
   return <G>{bars}</G>
@@ -59,4 +59,4 @@ type RectProps = {
 
 const StyledRect = styled(Rect).attrs<RectProps>(({ value }) => ({
   fill: value === Value.Asleep ? colors.darkBlue : colors.darkBlue
-}))``
+}))<RectProps>``

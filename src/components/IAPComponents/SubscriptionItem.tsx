@@ -16,7 +16,7 @@ const SubscriptionItem: FC<Props> = ({ subscription, selected, select }) => {
 
   const {
     packageType,
-    product: { price, price_string: priceString }
+    product: { price_string: priceString }
   } = subscription
 
   const selectPurchase = () => {
@@ -51,11 +51,6 @@ const Type = styled(TranslatedText)`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
-const Button = styled.TouchableOpacity`
-  flex-direction: row;
-  flex: 1;
-`
-
 const SubscriptionOption = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
@@ -87,13 +82,6 @@ const Price = styled.Text`
 const Period = styled(TranslatedText)`
   font-size: 10px;
   margin-left: 4px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.medium};
-`
-
-const Offer = styled(TranslatedText)`
-  font-size: 12px;
-  margin-top: 5px;
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-family: ${fonts.medium};
 `

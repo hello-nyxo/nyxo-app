@@ -10,18 +10,19 @@ import {
   getFormattedDateOrPlaceholder,
   minutesToHoursString
 } from '@helpers/time'
-import React, { FC, useRef } from 'react'
-import { Animated } from 'react-native'
+import React, { FC } from 'react'
+import Animated from 'react-native-reanimated'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { WIDTH } from '@helpers/Dimensions'
 import useSleep from '@hooks/useSleep'
+import { useScrollHandler } from 'react-native-redash/lib/module/v1'
 
 const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
 const InsightsCard: FC = () => {
-  const scrollX = useRef(new Animated.Value(0)).current
+  const { x: scrollX, scrollHandler } = useScrollHandler()
   const {
     bedStart,
     bedEnd,
@@ -51,13 +52,7 @@ const InsightsCard: FC = () => {
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          {
-            useNativeDriver: false
-          }
-        )}>
+        {...scrollHandler}>
         <Page>
           <Row>
             <Figure>
@@ -122,13 +117,7 @@ const InsightsCard: FC = () => {
         <Page>
           <Row>
             <Figure>
-              <Icon
-                fill="none"
-                name="doubleBed"
-                height="20"
-                width="20"
-                stroke="black"
-              />
+              <Icon fill="none" name="doubleBed" height="20" width="20" />
               <Column>
                 <Value>{minutesToHoursString(inBedDuration)}</Value>
                 <Description>STAT.BED</Description>
@@ -190,7 +179,7 @@ const InsightsCard: FC = () => {
 
 export default InsightsCard
 
-const ScrollView = styled.ScrollView`
+const ScrollView = styled(Animated.ScrollView)`
   flex: 1;
 `
 
@@ -230,7 +219,9 @@ const Figure = styled.View`
   margin-right: 20px;
 `
 
-const Icon = styled(IconBold).attrs(() => ({}))`
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  stroke: theme.SECONDARY_TEXT_COLOR
+}))`
   margin-right: 10px;
 `
 

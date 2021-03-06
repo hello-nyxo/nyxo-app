@@ -1,31 +1,31 @@
-import { selectLesson } from '@actions/coaching/coaching-actions'
 import { getReadingTime } from '@helpers/reading-time'
 import { useNavigation } from '@react-navigation/core'
-import { CombinedLesson } from '@selectors/coaching-selectors/coaching-selectors'
 import ROUTE from '@config/routes/Routes'
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import FastImage from 'react-native-fast-image'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
+import { WeekScreenNavigationProp } from '@screens/coaching/WeekScreen'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
+import { LessonCollectionItem } from '@typings/contentful'
 
 type Props = {
-  lesson: CombinedLesson
+  lesson: LessonCollectionItem
   locked?: boolean
 }
 
 const LessonListItem: FC<Props> = ({ lesson, locked }) => {
-  const dispatch = useDispatch()
-  const { navigate } = useNavigation()
-  const time = getReadingTime(lesson.lessonContent)
+  const { navigate } = useNavigation<WeekScreenNavigationProp>()
+  const time = getReadingTime(lesson.lessonContent?.json)
 
   const handlePress = () => {
-    if (!locked) {
-      dispatch(selectLesson(lesson.slug))
-      navigate(ROUTE.LESSON, {})
+    if (locked) {
+      navigate(ROUTE.LESSON, {
+        slug: `${lesson?.slug}`,
+        id: 'id'
+      })
     }
   }
 
@@ -44,11 +44,12 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
               {time === 1 ? 'READING_TIME.SINGULAR' : 'READING_TIME.PLURAL'}
             </ReadingTime>
 
-            {lesson.exampleHabit?.length ? (
+            {lesson.habitCollection?.items?.length ? (
               <>
                 <StyledIcon name="taskListEdit" height={10} width={10} />
-                <HabitCount variables={{ habits: lesson.exampleHabit?.length }}>
-                  {lesson.exampleHabit?.length > 1
+                <HabitCount
+                  variables={{ habits: lesson.habitCollection?.items?.length }}>
+                  {lesson.habitCollection?.items?.length > 1
                     ? 'HABITS_COUNT_SHORT'
                     : 'HABIT_COUNT_SHORT'}
                 </HabitCount>
@@ -61,18 +62,19 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
           <WeekImage
             resizeMode={FastImage.resizeMode.cover}
             source={{
-              uri: `https:${lesson.cover}?fm=jpg&fl=progressive&w=200`
+              uri: `${lesson.cover?.url}?fm=jpg&fl=progressive&w=200`
             }}
           />
-          <Completed completed={lesson.completed}>
-            {lesson.completed ? (
+          <Completed completed={false}>
+            {/* FIXME */}
+            {!!false && (
               <IconBold
                 name="checkMark"
                 height={15}
                 width={15}
                 fill={colors.white}
               />
-            ) : null}
+            )}
           </Completed>
         </ImageContainer>
       </Container>
@@ -80,7 +82,7 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
   )
 }
 
-export default memo(LessonListItem)
+export default LessonListItem
 
 const StyledIcon = styled(IconBold).attrs(({ theme }) => ({
   fill: theme.SECONDARY_TEXT_COLOR

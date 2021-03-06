@@ -1,7 +1,11 @@
-import moment from 'moment'
 import { Period } from '@typings/state/Periods'
-import { Period as APIPeriod, DayCompletionRecordInput } from '@API'
+import {
+  Period as APIPeriod,
+  DayCompletionRecordInput,
+  ListHabitsQuery
+} from '@API'
 import { Habit } from '@typings/state/habit-state'
+import { isSameDay, startOfDay } from 'date-fns'
 
 const lineBreakReplacer = '::line-break::'
 export const convertLineBreaks = (text: string): string =>
@@ -74,41 +78,31 @@ export const convertDaysToFitGraphQL = (
 }
 
 export const convertRemoteHabitsToLocalHabits = (
-  remoteHabits: any
+  remoteHabits: Exclude<
+    Exclude<ListHabitsQuery['listHabits'], null>['items'],
+    null
+  >
 ): Map<string, Habit> => {
   const resultHabits = new Map<string, Habit>() // on-device habits
-  remoteHabits.forEach((item: any) => {
+  remoteHabits?.forEach((item) => {
     // on-cloud habit
-    const {
-      id,
-      userId,
-      dayStreak,
-      longestDayStreak,
-      latestCompletedDate,
-      title,
-      description,
-      date,
-      days,
-      archived,
-      period
-    } = item
 
     // on-device habit
     const constructedHabit: Habit = {
-      id,
-      userId,
-      dayStreak,
-      longestDayStreak,
-      latestCompletedDate,
-      title,
-      description: description || '',
-      date,
-      archived: archived || false,
-      period,
+      id: item?.id,
+      userId: item?.userId,
+      dayStreak: item?.dayStreak,
+      longestDayStreak: item?.longestDayStreak,
+      latestCompletedDate: item?.latestCompletedDate,
+      title: item?.title,
+      description: item?.description || '',
+      date: item?.date,
+      archived: item?.archived || false,
+      period: item?.period,
       days: new Map()
     }
 
-    days?.forEach((day: { key: string; value: number }) => {
+    item?.days?.forEach((day: { key: string; value: number }) => {
       constructedHabit.days.set(day.key, day.value)
     })
 
@@ -119,16 +113,16 @@ export const convertRemoteHabitsToLocalHabits = (
 }
 
 export const isCompletedToday = (habit: Habit): boolean => {
-  const today = moment().startOf('day').toISOString()
-  return !!(habit.days.has(today) && habit.days.get(today) === 1)
+  const today = startOfDay(new Date()).toISOString()
+  return !!(habit?.days.has(today) && habit?.days.get(today) === 1)
 }
 
 export const shouldResetDayStreak = ({
   latestCompletedDate
 }: Habit): boolean => {
-  const today = moment().startOf('day')
-  const lastDate = moment(latestCompletedDate)
-  return !today.isSame(lastDate, 'day')
+  const today = startOfDay(new Date())
+  const lastDate = new Date(latestCompletedDate ?? new Date())
+  return !isSameDay(today, lastDate)
 }
 
 export const convertPeriodType = (period: Period): APIPeriod => {

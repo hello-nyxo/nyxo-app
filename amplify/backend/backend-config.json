@@ -54,6 +54,20 @@
 			"providerPlugin": "awscloudformation",
 			"service": "Lambda",
 			"dependsOn": []
+		},
+		"nyxoPreSignup": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "auth",
+					"resourceName": "nyxodev",
+					"attributes": [
+						"UserPoolId"
+					]
+				}
+			]
 		}
 	}
 }

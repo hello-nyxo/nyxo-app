@@ -1,8 +1,8 @@
 import CONFIG from '@config/Config'
 import { getNightDuration } from '@helpers/sleep/sleep'
-import { WithingsSleepObject } from '@typings/Sleep/Withings'
+import { WithingsSleepObject } from '@typings/sources/Withings'
 import { Night, Value } from '@typings/Sleepdata'
-import moment from 'moment'
+import { addSeconds, subSeconds } from 'date-fns'
 
 export const formatWithingsSample = (
   withingsSleepObject: WithingsSleepObject
@@ -11,8 +11,8 @@ export const formatWithingsSample = (
     data: { durationtosleep = 0, durationtowakeup = 0 }
   } = withingsSleepObject
 
-  const startDate = moment.unix(withingsSleepObject.startdate).toISOString()
-  const endDate = moment.unix(withingsSleepObject.enddate).toISOString()
+  const startDate = new Date(withingsSleepObject.startdate).toISOString()
+  const endDate = new Date(withingsSleepObject.enddate).toISOString()
   const timeInBed = getNightDuration(startDate, endDate)
 
   const inBedSample: Night = {
@@ -25,12 +25,14 @@ export const formatWithingsSample = (
     totalDuration: timeInBed
   }
 
-  const asleepStartDate = moment(startDate)
-    .add(durationtosleep, 'seconds')
-    .toISOString()
-  const asleepEndDate = moment(endDate)
-    .subtract(durationtowakeup, 'seconds')
-    .toISOString()
+  const asleepStartDate = addSeconds(
+    new Date(startDate),
+    durationtosleep
+  ).toISOString()
+  const asleepEndDate = subSeconds(
+    new Date(startDate),
+    durationtowakeup
+  ).toISOString()
 
   const timeAsleep = getNightDuration(asleepStartDate, asleepEndDate)
 

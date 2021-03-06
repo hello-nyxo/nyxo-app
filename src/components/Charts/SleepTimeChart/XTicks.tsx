@@ -1,5 +1,5 @@
 import { ScaleTime } from 'd3'
-import moment from 'moment'
+import { format } from 'date-fns'
 import React, { memo, FC } from 'react'
 import { G, Text } from 'react-native-svg'
 import styled from 'styled-components/native'
@@ -17,13 +17,13 @@ const XTicks: FC<Props> = ({ scaleX, chartHeight, barWidth, ticks }) => {
     const x = scaleX(tick) + barWidth / 2
 
     return (
-      <G key={`tick_${moment(tick).toISOString()}`}>
+      <G key={`tick_${new Date(tick).toISOString()}`}>
         <Day
           fontFamily={fonts.medium}
           textAnchor="middle"
           x={x}
           y={chartHeight - 5}>
-          {moment(tick).format('ddd')}
+          {format(new Date(tick), 'EEE')}
         </Day>
         <LongDate
           fontFamily={fonts.bold}
@@ -31,7 +31,7 @@ const XTicks: FC<Props> = ({ scaleX, chartHeight, barWidth, ticks }) => {
           textAnchor="middle"
           x={x}
           y={chartHeight - 20}>
-          {moment(tick).format('DD')}
+          {format(new Date(tick), 'dd')}
         </LongDate>
       </G>
     )

@@ -106,7 +106,6 @@ dependencies {
     implementation project(':appcenter')
     implementation project(':appcenter-analytics')
     implementation project(':appcenter-crashes')
-    implementation 'io.intercom.android:intercom-sdk-base:5.+'
     implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
 		
 		addUnimodulesDependencies([exclude: ['expo-face-detector','expo-permissions']])

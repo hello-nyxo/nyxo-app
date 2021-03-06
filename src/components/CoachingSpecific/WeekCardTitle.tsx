@@ -1,14 +1,14 @@
-import { WEEK_STAGE } from '@selectors/coaching-selectors'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
+import { Stage } from '@API'
 
 interface Props {
-  weekName: string
-  stage?: WEEK_STAGE
+  weekName?: string
+  stage?: Stage
 }
 
 const WeekCardTitle: FC<Props> = ({ weekName, stage }) => {
@@ -28,14 +28,14 @@ const WeekCardTitle: FC<Props> = ({ weekName, stage }) => {
 export default WeekCardTitle
 
 const getStageString = (
-  stage?: WEEK_STAGE
+  stage?: Stage
 ): { stageTitle: string; icon: string } => {
   switch (stage) {
-    case WEEK_STAGE.COMPLETED:
+    case Stage.COMPLETED:
       return { stageTitle: 'WEEK_COMPLETED', icon: 'crown' }
-    case WEEK_STAGE.ONGOING:
+    case Stage.ONGOING:
       return { stageTitle: 'ONGOING_WEEK', icon: 'targetCenter' }
-    case WEEK_STAGE.UPCOMING:
+    case Stage.PAUSED:
       return { stageTitle: 'UPCOMING_WEEK', icon: 'targetCenter' }
     default:
       return { stageTitle: 'UPCOMING_WEEK', icon: 'targetCenter' }

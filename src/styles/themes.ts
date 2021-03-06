@@ -16,16 +16,19 @@ export const lightTheme: DefaultTheme = {
   SECONDARY_BUTTON_COLOR: colors.darkBlue,
   HAIRLINE_COLOR: '#C9C9CB',
   GRADIENT: [
-    'rgba(246,246,249,0)',
-    'rgba(246,246,249,0)',
-    'rgba(246,246,249,1)'
+    'rgba(255,255,255,0)',
+    'rgba(255,255,255,0)',
+    'rgba(255,255,255,1)'
   ],
   SHADOW: `1px 1px 5px rgba(32, 33, 37, 0.1)`,
   accent: colors.darkBlue,
 
   FONT_REGULAR: 'Montserrat-Regular',
   FONT_MEDIUM: 'Montserrat-Medium',
-  FONT_BOLD: 'Montserrat-Bold'
+  FONT_BOLD: 'Montserrat-Bold',
+
+  primaryBoneColer: '#E1E9EE',
+  SecondaryBoneColor: '#F2F8FC'
 }
 
 export const darkTheme: DefaultTheme = {
@@ -46,7 +49,10 @@ export const darkTheme: DefaultTheme = {
 
   FONT_REGULAR: 'Montserrat-Regular',
   FONT_MEDIUM: 'Montserrat-Medium',
-  FONT_BOLD: 'Montserrat-Bold'
+  FONT_BOLD: 'Montserrat-Bold',
+
+  primaryBoneColer: '#121212',
+  SecondaryBoneColor: '#333333'
 }
 
 export const constants = {

@@ -4,14 +4,12 @@ import { getPolarEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from '@config/Config'
 import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
 import { formatPolarSamples } from '@helpers/sleep/polar-helper'
-import moment from 'moment'
 import { authorize } from 'react-native-app-auth'
-import { GetState } from '@typings/GetState'
 import { AppThunk } from '@typings/redux-actions'
-import { PolarSleepObject } from '@typings/Sleep/Polar'
+import { PolarSleepObject } from '@typings/sources/Polar'
 import { PolarAuthorizeResult, ResponseBase } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
-import { format } from 'date-fns'
+import { format, isAfter } from 'date-fns'
 import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 import {
   FETCH_SLEEP_POLAR_FAILURE,
@@ -53,16 +51,12 @@ export const fetchSleepPolarFailure = (): ApiActions => ({
 
 const POLAR_API = 'https://www.polaraccesslink.com/v3/users/sleep/'
 
-export const togglePolar = (): AppThunk => async (
-  dispatch,
-  getState: GetState
-) => {
+export const togglePolar = (): AppThunk => async (dispatch, getState) => {
   const enabled = getPolarEnabled(getState())
   if (enabled) {
     dispatch(revokePolarAccess())
   } else {
     await dispatch(revokePreviousSource())
-
     await dispatch(authorizePolar())
   }
 }
@@ -121,7 +115,7 @@ export const revokePolarAccess = (): AppThunk => async (dispatch) => {
 
 export const getPolarSleep = (
   startDate: string,
-  endDate: string
+  _endDate: string
 ): AppThunk => async (dispatch) => {
   const {
     accessToken,
@@ -134,22 +128,19 @@ export const getPolarSleep = (
 
   if (accessToken) {
     try {
-      if (moment(accessTokenExpirationDate).isAfter(moment())) {
+      if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
         // Gonna get the last 28 days
-        const polarListNightsApiCall = await fetch(
-          `${POLAR_API}2018-03-29T00:39:07+03:00`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${accessToken}`
-            }
+        const polarListNightsApiCall = await fetch(`${POLAR_API}FIXME`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${accessToken}`
           }
-        )
+        })
 
-        const response = await polarListNightsApiCall.json()
-        const sevenNightsSleepData = (<Array<PolarSleepObject>>response.nights)
-          .reverse()
-          .slice(7)
+        const response = (await polarListNightsApiCall.json()) as {
+          nights: Array<PolarSleepObject>
+        }
+        const sevenNightsSleepData = response?.nights.reverse().slice(7)
         const formattedResponse = formatPolarSamples(sevenNightsSleepData)
 
         await dispatch(fetchSleepSuccess(formattedResponse))
@@ -167,11 +158,11 @@ export const getPolarSleep = (
           }
         )
 
-        const response = await polarListNightsApiCall.json()
+        const response = (await polarListNightsApiCall.json()) as {
+          nights: Array<PolarSleepObject>
+        }
 
-        const sevenNightsSleepData = (<Array<PolarSleepObject>>response.nights)
-          .reverse()
-          .slice(7)
+        const sevenNightsSleepData = response?.nights?.reverse().slice(7)
 
         const formattedResponse = formatPolarSamples(sevenNightsSleepData)
         await dispatch(fetchSleepSuccess(formattedResponse))

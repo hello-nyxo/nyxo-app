@@ -3,7 +3,6 @@ import styled from 'styled-components/native'
 import { useSelector, useDispatch } from 'react-redux'
 import { linkAccount } from '@actions/linking/linking-actions'
 import { getLinkingCode, getLoading } from '@selectors/linking-selectors'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import LinkingButton from '@components/Buttons/LinkingButton'
 import LoginButton from '@components/Buttons/LoginButton'
@@ -19,12 +18,11 @@ import {
   StyledModal
 } from '@components/Primitives/Primitives'
 import { RouteProp } from '@react-navigation/core'
-import TranslatedText from '@components/TranslatedText'
-import colors from '@styles/colors'
 import LinkModule from '@components/SettingsSpecific/LinkModule'
 import ROUTE from '../../config/routes/Routes'
+import { StackNavigationProp } from '@react-navigation/stack'
 
-type TerveystaloNavigationProp = NativeStackNavigationProp<
+type TerveystaloNavigationProp = StackNavigationProp<
   RootStackParamList,
   ROUTE.TERVEYSTALO
 >
@@ -86,7 +84,7 @@ const TTWelcome: FC<Props> = ({ route }) => {
               disabled={!loggedIn}
               code={linkCode}
               loading={loading}
-              navigate={() => {}}
+              navigate={() => undefined} // FIXME
               link={handleLink}
             />
           )}
@@ -131,13 +129,6 @@ const Row = styled.View`
 
 const Explanation = styled(P)`
   line-height: 25px;
-`
-
-const ErrorContainer = styled.View``
-
-const Error = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${colors.red};
 `
 
 const ModalContent = styled.ScrollView`

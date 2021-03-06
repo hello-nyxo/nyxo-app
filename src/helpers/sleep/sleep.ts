@@ -1,55 +1,43 @@
-import Moment from 'moment'
 import { to12hClock } from '@helpers/time'
-import { Day, Night } from '@typings/Sleepdata'
-import { endOfDay, startOfDay, subDays } from 'date-fns'
+import {
+  differenceInMinutes,
+  endOfDay,
+  getHours,
+  getMinutes,
+  startOfDay,
+  subDays
+} from 'date-fns'
 
 export function getAngleAM(dateTime: string): number {
-  const time = Moment(dateTime)
+  const time = new Date(dateTime)
 
   const hourAngleAM =
-    ((to12hClock(time.hour()) + time.minute() / 60) / 12) * 360
+    ((to12hClock(getHours(time)) + getMinutes(time) / 60) / 12) * 360
 
   return hourAngleAM
 }
 
 export function getAngle(dateTime: string): number {
-  const time = Moment(dateTime)
+  const time = new Date(dateTime)
 
-  const hourAngle = ((time.hour() + time.minute() / 60) / 24) * 360
+  const hourAngle = ((getHours(time) + getMinutes(time) / 60) / 24) * 360
 
   return hourAngle
 }
 
 export function getNightDuration(start: string, end: string): number {
-  const startDate = Moment(start)
-  const endDate = Moment(end)
-
-  return endDate.diff(startDate, 'minutes')
+  return differenceInMinutes(new Date(start), new Date(end))
 }
 
 export function getDurationString(start: string, end: string): string {
-  const startDate = Moment(start)
-  const endDate = Moment(end)
+  const startDate = new Date(start)
+  const endDate = new Date(end)
 
-  let minutes = endDate.diff(startDate, 'minutes')
+  let minutes = differenceInMinutes(startDate, endDate)
   const hours = Math.floor(minutes / 60)
   minutes -= hours * 60
 
   return `${hours} h ${minutes} m`
-}
-
-export function sortDays(days: Day[]): Day[] {
-  const sorted = days.sort((a: Day, b: Day) =>
-    Moment(a.date).diff(Moment(b.date))
-  )
-  return sorted
-}
-
-export function sortNights(nights: Night[]): Night[] {
-  const sorted = nights.sort((a: Night, b: Night) =>
-    Moment(a.startDate).diff(Moment(b.startDate))
-  )
-  return sorted
 }
 
 type StartEnd = {

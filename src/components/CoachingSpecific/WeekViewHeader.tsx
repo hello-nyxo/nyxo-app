@@ -1,35 +1,42 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 
 type Props = {
   yOffset: Animated.Value<number>
   title?: string
+  loading: boolean
 }
 
 const WeekViewHeader: FC<Props> = ({ yOffset, title }) => {
-  const titleSize = (offset: Animated.Value<number>) => ({
-    opacity: offset.interpolate({
+  const titleSize = {
+    opacity: yOffset.interpolate({
       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-      outputRange: [1, 0.2],
-      extrapolateRight: Animated.Extrapolate.CLAMP,
-      extrapolateLeft: Animated.Extrapolate.CLAMP
-    })
-  })
+      outputRange: [1, 0.2]
+    }),
+    transform: [
+      {
+        scale: yOffset.interpolate({
+          inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
+          outputRange: [1, 0.5]
+        })
+      }
+    ]
+  }
 
   return (
     <Header>
       <Gradient>
-        <WeekTitle style={titleSize(yOffset)}>{title}</WeekTitle>
+        <WeekTitle style={titleSize}>{title}</WeekTitle>
       </Gradient>
     </Header>
   )
 }
 
-export default memo(WeekViewHeader)
+export default WeekViewHeader
 
 const Header = styled(Animated.View)`
   width: 100%;
@@ -52,7 +59,7 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
 const WeekTitle = styled(Animated.Text)`
   font-family: ${fonts.bold};
   z-index: 20;
-  font-size: 35px;
+  font-size: 30px;
   text-align: left;
   position: absolute;
   bottom: 0;

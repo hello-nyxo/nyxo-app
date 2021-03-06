@@ -7,25 +7,25 @@ const getHabitState = (state: State) => state.habitState
 
 export const getMergingDialogDisplayed = createSelector(
   getHabitState,
-  (habitState: HabitState) => habitState.mergingDialogDisplayed
+  (habitState: HabitState) => habitState?.mergingDialogDisplayed
 )
 
 export const getDraftEditHabit = createSelector(
   getHabitState,
-  (habitState: HabitState) => habitState.draftEditHabit
+  (habitState: HabitState) => habitState?.draftEditHabit
 )
 
 export const getHabits = createSelector(
   getHabitState,
   (habitState: HabitState) => {
-    return [...habitState.habits.values()]
+    return [...habitState?.habits.values()]
   }
 )
 
 export const getHabitsMap = createSelector(
   getHabitState,
   (habitState: HabitState) => {
-    return habitState.habits
+    return habitState?.habits
   }
 )
 

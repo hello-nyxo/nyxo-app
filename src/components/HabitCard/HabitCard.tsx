@@ -4,8 +4,7 @@ import {
   draftEditHabit,
   markTodayHabitAsCompleted
 } from '@actions/habit/habit-actions'
-import React, { memo, useRef } from 'react'
-import { Animated } from 'react-native'
+import React, { useRef } from 'react'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { useDispatch } from 'react-redux'
@@ -19,6 +18,7 @@ import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 import ActionComplete from './ActionComplete'
 import { getIcon } from './TopRow'
+import Animated, { interpolate } from 'react-native-reanimated'
 
 export const cardHeight = 100
 
@@ -62,10 +62,10 @@ const HabitCard = (props: Props) => {
   }
 
   const renderLeftActions = (
-    progress: Animated.AnimatedInterpolation,
-    dragX: Animated.AnimatedInterpolation
+    progress: Animated.Value<number>,
+    dragX: Animated.Value<number>
   ) => {
-    const animation = dragX.interpolate({
+    const animation = interpolate(dragX, {
       inputRange: [0, 100],
       outputRange: [0, 1]
     })
@@ -90,10 +90,10 @@ const HabitCard = (props: Props) => {
   }
 
   const renderRightActions = (
-    progress: Animated.AnimatedInterpolation,
-    dragX: Animated.AnimatedInterpolation
+    progress: Animated.Value<number>,
+    dragX: Animated.Value<number>
   ) => {
-    const animation = dragX.interpolate({
+    const animation = interpolate(dragX, {
       inputRange: [-150, 0],
       outputRange: [1, 0]
     })
@@ -149,7 +149,7 @@ const HabitCard = (props: Props) => {
   )
 }
 
-export default memo(HabitCard)
+export default HabitCard
 
 const Card = styled.View`
   margin: 8px 20px;

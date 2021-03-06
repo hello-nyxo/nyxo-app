@@ -15,7 +15,6 @@ import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
 import org.unimodules.core.interfaces.SingletonModule;
 import fi.nyxo.app.R;
-import io.intercom.android.sdk.Intercom;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Arrays;
@@ -58,7 +57,6 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
 		UltimateConfigModule.setBuildConfig(BuildConfig.class);
     SoLoader.init(this, /* native exopackage */ false);
-    Intercom.initialize(this, BuildConfig.INTERCOM_KEY_ANDROID, BuildConfig.INTERCOM_ID);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
 
   }

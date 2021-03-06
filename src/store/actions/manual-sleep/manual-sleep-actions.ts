@@ -4,7 +4,7 @@ import { getMainSource } from '@selectors/sleep-source-selectors/sleep-source-se
 import { AppThunk } from '@typings/redux-actions'
 import { Value } from '@typings/Sleepdata'
 import { SOURCE } from '@typings/state/sleep-source-state'
-import moment from 'moment'
+import { setHours, setMinutes, startOfDay, subDays } from 'date-fns'
 import AppleHealthKit, { SleepSample } from 'react-native-healthkit'
 import { ManualSleepActions, SET_VALUES, TOGGLE_EDIT_MODE } from './types'
 
@@ -29,19 +29,21 @@ export const addManualDataToNight = (
 ): AppThunk => async (dispatch, getState) => {
   const source = getMainSource(getState())
 
-  const startTime = moment(date)
-    .startOf('day')
-    .subtract(1, 'day')
-    .hours(nightStart.h >= 18 ? nightStart.h : nightStart.h + 24)
-    .minute(nightStart.m)
-    .toISOString()
+  const startTime = setMinutes(
+    setHours(
+      subDays(startOfDay(new Date(date)), 1),
+      nightStart.h >= 18 ? nightStart.h : nightStart.h + 24
+    ),
+    nightStart.m
+  ).toISOString()
 
-  const endTime = moment(date)
-    .startOf('day')
-    .subtract(1, 'day')
-    .hours(nightEnd.h >= 18 ? nightEnd.h : nightEnd.h + 24)
-    .minute(nightEnd.m)
-    .toISOString()
+  const endTime = setMinutes(
+    setHours(
+      subDays(startOfDay(new Date(date)), 1),
+      nightEnd.h >= 18 ? nightEnd.h : nightEnd.h + 24
+    ),
+    nightEnd.m
+  ).toISOString()
 
   if (source === SOURCE.HEALTH_KIT) {
     await createNightHealthKit(startTime, endTime)

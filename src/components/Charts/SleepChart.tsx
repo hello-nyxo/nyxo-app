@@ -1,13 +1,12 @@
 import TranslatedText from '@components/TranslatedText'
 import { getNightsAsDays } from '@selectors/night-selectors'
-import { Day } from '@typings/Sleepdata'
 import { extent, max, min, scaleTime } from 'd3'
 import { addHours, subHours } from 'date-fns'
 import React, { FC } from 'react'
 import { Dimensions, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Svg from 'react-native-svg'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import SleepBars from './SleepTimeChart/SleepBars'
 // import TargetBars from './SleepTimeChart/TargetBars'
@@ -22,14 +21,9 @@ export const paddingRight = 100
 export const chartHeight = height / 3
 
 const SleepTimeChart: FC = () => {
-  const dispatch = useDispatch()
   const data = useSelector(getNightsAsDays)
   const daysToShow = data.length
   const chartWidth = (barWidth + 10) * daysToShow + paddingLeft + paddingRight
-
-  const select = (day: Day) => {
-    // TODO
-  }
 
   const xDomain: Date[] = extent(data, (date) => new Date(date.date)) as Date[]
 
@@ -82,7 +76,7 @@ const SleepTimeChart: FC = () => {
                 data={normalizedSleepData}
               /> */}
               <SleepBars
-                onPress={select}
+                onPress={() => undefined}
                 barWidth={barWidth}
                 scaleX={scaleX}
                 scaleY={scaleY}
@@ -125,6 +119,6 @@ const Card = styled.View`
   background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
   box-shadow: ${({ theme }) => theme.SHADOW};
   padding: 10px;
-  margin: 8px 16px;
+  margin: 0px 16px 8px;
   border-radius: 7px;
 `

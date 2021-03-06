@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import TranslatedText from '../../TranslatedText'
-import { fonts, StyleProps } from '../../../styles/themes'
+import { fonts } from '../../../styles/themes'
 import { IconBold } from '../../iconRegular'
 import colors from '../../../styles/colors'
 
@@ -10,43 +10,41 @@ type Props = {
   longestDayStreak: number
 }
 
-const HabitModalStreak = ({ dayStreak, longestDayStreak }: Props) => {
-  return (
-    <>
-      <Container>
-        <Row>
-          <IndicatorText>HABIT.CURRENT_STREAK</IndicatorText>
-          <StreakHolder>
-            <StreakText>{dayStreak}</StreakText>
-            <IconBold
-              name="flame"
-              width={22}
-              height={22}
-              fill={colors.accentRed}
-            />
-          </StreakHolder>
-        </Row>
-        <Separator />
-        <Row>
-          <IndicatorText>HABIT.LONGEST_STREAK</IndicatorText>
-          <StreakHolder>
-            <StreakText>{longestDayStreak}</StreakText>
-            <IconBold
-              name="flame"
-              width={22}
-              height={22}
-              fill={colors.darkBlue}
-            />
-          </StreakHolder>
-        </Row>
-      </Container>
+const HabitModalStreak = ({ dayStreak, longestDayStreak }: Props) => (
+  <>
+    <Container>
+      <Row>
+        <IndicatorText>HABIT.CURRENT_STREAK</IndicatorText>
+        <StreakHolder>
+          <StreakText>{dayStreak}</StreakText>
+          <IconBold
+            name="flame"
+            width={22}
+            height={22}
+            fill={colors.accentRed}
+          />
+        </StreakHolder>
+      </Row>
+      <Separator />
+      <Row>
+        <IndicatorText>HABIT.LONGEST_STREAK</IndicatorText>
+        <StreakHolder>
+          <StreakText>{longestDayStreak}</StreakText>
+          <IconBold
+            name="flame"
+            width={22}
+            height={22}
+            fill={colors.darkBlue}
+          />
+        </StreakHolder>
+      </Row>
+    </Container>
 
-      <HairlineContainer>
-        <Hairline />
-      </HairlineContainer>
-    </>
-  )
-}
+    <HairlineContainer>
+      <Hairline />
+    </HairlineContainer>
+  </>
+)
 
 export default memo(HabitModalStreak)
 

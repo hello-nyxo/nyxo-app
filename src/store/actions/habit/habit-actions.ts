@@ -20,8 +20,8 @@ import { AppThunk } from '@typings/redux-actions'
 import { Habit, MutationType, UnsyncedHabit } from '@typings/state/habit-state'
 import { Period } from '@typings/state/Periods'
 import { API, graphqlOperation } from 'aws-amplify'
+import { startOfDay } from 'date-fns'
 import produce from 'immer'
-import moment from 'moment'
 import 'react-native-get-random-values'
 import { v4 } from 'uuid'
 import {
@@ -97,7 +97,7 @@ export const addHabit = (
     title: title.trim(),
     description: convertLineBreaks(description.trim()),
     days,
-    date: moment().startOf('day').toISOString(),
+    date: startOfDay(new Date()).toISOString(),
     period
   }
 
@@ -133,7 +133,7 @@ export const updateHabitDayStreak = (
 export const markTodayHabitAsCompleted = (habit: Habit): AppThunk => async (
   dispatch
 ) => {
-  const today = moment().startOf('day').toISOString()
+  const today = startOfDay(new Date()).toISOString()
   const { days, longestDayStreak = 0 } = habit
   let { dayStreak = 0 } = habit
   let dayValue = 0
@@ -195,7 +195,7 @@ const stashHabitToSync = (
       (unsynced) => unsynced.habit.id === habit.id
     )
 
-    const actionDate = moment().toISOString()
+    const actionDate = new Date().toISOString()
 
     if (!inQueue) {
       await dispatch(
@@ -324,14 +324,14 @@ export const handleHabitsFromCloudWhenLoggingIn = (
     const resultHabits = convertRemoteHabitsToLocalHabits(cloudHabits)
     const habits = getHabitsMap(getState())
 
-    const promiseArray: any[] = []
+    const promiseArray = []
 
     // If user does want to merge, we replace habitState.habits with concatenated on-cloud habits and current habitState.habits.
     if (merge) {
       habits.forEach((localHabit: Habit) => {
         // go through responsed items and merging local habits to see if there is any habits in commons
         const commonIndex = cloudHabits?.findIndex(
-          (item: any) => item.title.trim() === localHabit.title.trim()
+          (item) => item?.title?.trim() === localHabit.title.trim()
         )
 
         const syncingHabit: Habit = {

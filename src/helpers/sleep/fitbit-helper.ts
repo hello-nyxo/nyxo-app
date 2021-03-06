@@ -1,13 +1,13 @@
 import CONFIG from '@config/Config'
-import moment from 'moment'
-import { FitbitSleepObject } from '@typings/Sleep/Fitbit'
+import { FitbitSleepObject } from '@typings/sources/Fitbit'
 import { Night, Value } from '@typings/Sleepdata'
+import { addSeconds } from 'date-fns'
 
 export const formatFitbitSample = (
   fitbitObject: FitbitSleepObject
 ): Night[] => {
-  const startDate = moment(fitbitObject.startTime).toISOString()
-  const endDate = moment(fitbitObject.endTime).toISOString()
+  const startDate = new Date(fitbitObject.startTime).toISOString()
+  const endDate = new Date(fitbitObject.endTime).toISOString()
   const totalDuration = fitbitObject.timeInBed
 
   const inBedSample: Night = {
@@ -21,8 +21,11 @@ export const formatFitbitSample = (
   }
 
   const asleepSamples: Night[] = fitbitObject.levels.data.map((sample) => {
-    const start = moment(sample.dateTime).toISOString()
-    const end = moment(sample.dateTime).add(sample.seconds).toISOString()
+    const start = new Date(sample.dateTime).toISOString()
+    const end = addSeconds(
+      new Date(sample.dateTime),
+      sample.seconds
+    ).toISOString()
 
     return {
       id: `fitbit_${fitbitObject.logId}_${start}_${end}_${Value.Asleep}`,

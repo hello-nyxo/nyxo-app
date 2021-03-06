@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react'
+import React, { FC } from 'react'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 import {
@@ -9,6 +9,9 @@ import {
 } from '@helpers/Dimensions'
 import { fonts } from '@styles/themes'
 import GoBack from '../Buttons/GoBack'
+import { BlurView } from '@react-native-community/blur'
+
+const AnimatedBlurView = Animated.createAnimatedComponent(BlurView)
 
 interface Props {
   yOffset: Animated.Value<number>
@@ -16,29 +19,30 @@ interface Props {
 }
 
 const TopHeader: FC<Props> = ({ yOffset, title }) => {
-  const fadeIn = () => ({
+  const fadeIn = {
     opacity: yOffset.interpolate({
       inputRange: [HEADER_HALF, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
       outputRange: [0, 1],
       extrapolate: Animated.Extrapolate.CLAMP
     })
-  })
+  }
 
-  const fadeColor = () => ({
+  const fadeColor = {
     opacity: yOffset.interpolate({
       inputRange: [HEADER_HALF, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
       outputRange: [0, 1],
       extrapolate: Animated.Extrapolate.CLAMP
     })
-  })
+  }
+
   return (
     <BackButtonContainer>
-      <Background style={fadeColor()} />
+      <BlurViewContainer style={fadeColor} blurAmount={100} />
       <BackButton>
         <GoBack />
       </BackButton>
       <TitleContainer>
-        <WeekTitleSmall numberOfLines={3} adjustsFontSizeToFit style={fadeIn()}>
+        <WeekTitleSmall numberOfLines={2} ellipsizeMode="tail" style={fadeIn}>
           {title}
         </WeekTitleSmall>
       </TitleContainer>
@@ -47,9 +51,9 @@ const TopHeader: FC<Props> = ({ yOffset, title }) => {
   )
 }
 
-export default memo(TopHeader)
+export default TopHeader
 
-const BackButtonContainer = styled(Animated.View)`
+const BackButtonContainer = styled.View`
   position: absolute;
   z-index: 10;
   top: 0;
@@ -63,16 +67,6 @@ const BackButton = styled.View`
   flex: 1;
 `
 
-const Background = styled(Animated.View)`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  box-shadow: ${({ theme }) => theme.SHADOW};
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-`
-
 const Placeholder = styled.View`
   flex: 1;
 `
@@ -83,8 +77,21 @@ const TitleContainer = styled.View`
 
 const WeekTitleSmall = styled(Animated.Text)`
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   justify-content: center;
   font-family: ${fonts.bold};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+`
+
+const BlurViewContainer = styled(AnimatedBlurView).attrs(({ theme }) => ({
+  blurType: theme.mode === 'dark' ? 'dark' : 'light',
+  reducedTransparencyFallbackColor: theme.SECONDARY_BACKGROUND_COLOR
+}))`
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: ${({ theme }) => theme.SHADOW};
 `

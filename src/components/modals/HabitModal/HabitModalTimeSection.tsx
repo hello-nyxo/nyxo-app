@@ -1,26 +1,24 @@
-import React, { memo } from 'react'
+import React, { ChangeEvent, FC, memo } from 'react'
 import styled from 'styled-components/native'
 import { Period } from '@typings/state/Periods'
 import SetTimePeriodButtons from './SetTimePeriodButtons'
 import TranslatedText from '../../TranslatedText'
-import { StyleProps, fonts } from '../../../styles/themes'
+import { fonts } from '../../../styles/themes'
 
 type Props = {
   period: Period
-  setPeriod: Function
+  setPeriod: (e: string | ChangeEvent<unknown>) => void
 }
 
-const HabitModalTimeSection = ({ setPeriod, period }: Props) => {
-  return (
-    <Section>
-      <SectionTitle>HABIT.TIME_OF_DAY</SectionTitle>
-      <SetTimePeriodButtons
-        setTimePeriod={setPeriod}
-        currentTimePeriod={period}
-      />
-    </Section>
-  )
-}
+const HabitModalTimeSection: FC<Props> = ({ setPeriod, period }) => (
+  <Section>
+    <SectionTitle>HABIT.TIME_OF_DAY</SectionTitle>
+    <SetTimePeriodButtons
+      setTimePeriod={setPeriod}
+      currentTimePeriod={period}
+    />
+  </Section>
+)
 
 export default memo(HabitModalTimeSection)
 

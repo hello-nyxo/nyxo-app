@@ -1,17 +1,17 @@
 import { editHabit as editHabitThunk } from '@actions/habit/habit-actions'
 import { toggleEditHabitModal } from '@actions/modal/modal-actions'
 import { HabitSchema } from '@config/Validation'
+import { revertLineBreaks } from '@helpers/habits'
+import { getDraftEditHabit } from '@selectors/habit-selectors/habit-selectors'
+import { getEditHabitModal } from '@selectors/ModalSelectors'
+import { Habit } from '@typings/state/habit-state'
+import { Period } from '@typings/state/Periods'
 import { Formik, FormikValues } from 'formik'
 import React, { memo } from 'react'
 import { ScrollView } from 'react-native'
 import Modal from 'react-native-modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDraftEditHabit } from '@selectors/habit-selectors/habit-selectors'
-import { getEditHabitModal } from '@selectors/ModalSelectors'
 import styled from 'styled-components/native'
-import { Habit } from '@typings/state/habit-state'
-import { Period } from '@typings/state/Periods'
-import { revertLineBreaks } from '@helpers/habits'
 import HabitModalFieldSection from './HabitModalFieldSection'
 import HabitModalStreak from './HabitModalStreak'
 import HabitModalTimeSection from './HabitModalTimeSection'
@@ -21,6 +21,7 @@ import { descriptionMaxLength, titleMaxLength } from './NewHabitModal'
 const EditHabitModal = () => {
   const show = useSelector(getEditHabitModal)
   const habit = useSelector(getDraftEditHabit)
+  const dispatch = useDispatch()
 
   if (!habit) return null
 
@@ -31,7 +32,6 @@ const EditHabitModal = () => {
     dayStreak = 0,
     longestDayStreak = 0
   } = habit
-  const dispatch = useDispatch()
 
   const closeModal = () => {
     dispatch(toggleEditHabitModal())

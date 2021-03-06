@@ -1,18 +1,19 @@
 import { useNavigation } from '@react-navigation/native'
 import { toggleNewHabitModal } from '@actions/modal/modal-actions'
 import React, { memo, ReactElement } from 'react'
-import { SectionList } from 'react-native'
+import { SectionList, SectionListRenderItem } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import { getHabitSections } from '@selectors/habit-selectors/habit-selectors'
 import styled from 'styled-components/native'
 import { getEditMode } from '@selectors/ManualDataSelectors'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import HabitCard from '../HabitCard/HabitCard'
 import { H3 } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
+import { Habit } from '@typings/State/habit-state'
 
 type Props = {
   refreshControl?: ReactElement
@@ -27,9 +28,10 @@ const HabitList = (props: Props) => {
   const navigation = useNavigation()
   const sections = useSelector(getHabitSections)
 
-  const renderItem = ({ item, index }: any) => {
-    return <HabitCard key={index} habit={item} />
-  }
+  const renderItem: SectionListRenderItem<Habit, unknown> = ({
+    item,
+    index
+  }) => <HabitCard key={index} habit={item} />
 
   const goToHabits = () => {
     navigation.navigate('Habits')
@@ -37,10 +39,6 @@ const HabitList = (props: Props) => {
 
   const toggleModal = () => {
     dispatch(toggleNewHabitModal())
-  }
-
-  const keyExtractor = (item: any, index: number) => {
-    return `habit_${item.title}_${index}`
   }
 
   return (
@@ -65,7 +63,7 @@ const HabitList = (props: Props) => {
           </TitleRow>
         </Fill>
       )}
-      keyExtractor={keyExtractor}
+      keyExtractor={(item) => item.title}
       sections={sections}
       renderItem={renderItem}
       ListFooterComponent={() => (
@@ -82,11 +80,13 @@ const HabitList = (props: Props) => {
 
 export default memo(HabitList)
 
-const List = styled(SectionList).attrs(({ theme }) => ({
-  contentContainerStyle: {
-    backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
-  }
-}))`
+const List = styled(SectionList as new () => SectionList<Habit>).attrs(
+  ({ theme }) => ({
+    contentContainerStyle: {
+      backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
+    }
+  })
+)`
   background-color: ${colors.darkBlue};
 `
 

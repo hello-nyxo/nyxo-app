@@ -33,13 +33,6 @@ jest.mock('react-native', () => ({
   }
 }))
 
-jest.mock('moment', () => () => ({
-  startOf: () => ({
-    toISOString: () => '2020-05-07T21:00:00.000Z'
-  }),
-  toISOString: () => '2020-05-07T21:00:00.000Z'
-}))
-
 const middlewares = [thunk]
 
 const startOfTodayString = '2020-05-07T21:00:00.000Z'
@@ -87,16 +80,6 @@ describe('Synchronous habit actions should work', () => {
   afterEach(() => {
     store.clearActions()
   })
-
-  const habit: Habit = {
-    id: 'expected-habit-1',
-    title: 'Expected Habit 1',
-    description: 'Expected Habit 1',
-    date: startOfTodayString,
-    days: new Map(),
-    period: Period.morning,
-    userId: 'User1'
-  }
 
   it('addHabit should work', async () => {
     const expectedHabit: Habit = {
@@ -207,7 +190,7 @@ describe('Synchronous habit actions should work', () => {
   })
 
   it('markTodayHabitAsCompleted should work when habit has defined completion records', async () => {
-    const habit: Habit = {
+    const testHabit: Habit = {
       ...localHabit1,
       days: new Map().set(startOfTodayString, 1),
       latestCompletedDate: startOfTodayString,
@@ -215,7 +198,7 @@ describe('Synchronous habit actions should work', () => {
       longestDayStreak: 1
     }
 
-    await store.dispatch(markTodayHabitAsCompleted(habit))
+    await store.dispatch(markTodayHabitAsCompleted(testHabit))
 
     const expectedHabit: Habit = {
       ...localHabit1,

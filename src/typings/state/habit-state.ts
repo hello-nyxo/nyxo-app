@@ -11,17 +11,17 @@ export interface HabitState {
 }
 
 export interface Habit {
-  id: string
-  userId: string | null
-  dayStreak?: number
-  longestDayStreak?: number
-  latestCompletedDate?: string
-  title: string
-  description: string
-  date: string
-  days: Map<string, number>
+  id?: string
+  userId?: string | null
+  dayStreak?: number | null
+  longestDayStreak?: number | null
+  latestCompletedDate?: string | null
+  title?: string
+  description?: string
+  date?: string | null
+  days?: Map<string, number>
   archived?: boolean
-  period: Period | AmplifyPeriod
+  period?: Period | AmplifyPeriod
 }
 
 export interface UnsyncedHabit {

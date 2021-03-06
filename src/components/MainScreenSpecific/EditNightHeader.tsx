@@ -12,7 +12,7 @@ import {
 import React, { FC, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 import { P } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
@@ -38,17 +38,13 @@ export const EditNightHeader: FC = () => {
 
   return (
     <Header>
-      {editMode && (
-        <>
-          <LeftButton onPress={handleCancel}>
-            <Text>Cancel</Text>
-          </LeftButton>
-          <Title>ADD_NIGHT</Title>
-          <RightButton onPress={handleSave}>
-            <Text>Save</Text>
-          </RightButton>
-        </>
-      )}
+      <LeftButton onPress={handleCancel}>
+        <Text>Cancel</Text>
+      </LeftButton>
+      <Title>ADD_NIGHT</Title>
+      <RightButton onPress={handleSave}>
+        <Text>Save</Text>
+      </RightButton>
     </Header>
   )
 }
@@ -75,11 +71,17 @@ const Text = styled(P)`
   font-family: ${fonts.bold};
 `
 
-const LeftButton = styled.TouchableOpacity``
-const RightButton = styled.TouchableOpacity``
+const LeftButton = styled.TouchableOpacity`
+  flex: 1;
+`
+const RightButton = styled.TouchableOpacity`
+  flex: 1;
+`
 
 const Title = styled(TranslatedText)`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: 15px;
+  text-align: center;
   font-family: ${fonts.medium};
+  flex: 1;
 `

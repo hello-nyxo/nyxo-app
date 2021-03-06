@@ -1,16 +1,13 @@
 import { toggleFitbit } from '@actions/api-actions/fitbit-actions'
 import TranslatedText from '@components/TranslatedText'
-import React from 'react'
+import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import { getIsFitbitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
-import colors from '@styles/colors'
 
-const FitbitSection = () => {
+const FitbitSection: FC = () => {
   const dispatch = useDispatch()
   const isFitbitMainSource = useSelector(getIsFitbitMainSource)
-  const fitbitAuthorized = useSelector(getFitbitEnabled)
 
   const setFitbitAsSource = () => {
     dispatch(toggleFitbit())

@@ -83,7 +83,7 @@ export const RegisterView: FC<Props> = ({ register, back, goToLogin }) => {
                   autoCompleteType="password"
                   placeholder="INPUT_PASSWORD"
                   secureTextEntry
-                  error={touched.password && errors.password}
+                  error={touched.password ? errors.password : undefined}
                   icon="lockCircle"
                   onBlur={handleBlur('password')}
                   onChangeText={handleChange('password')}

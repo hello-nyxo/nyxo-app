@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { SvgCss } from 'react-native-svg'
 import styled from 'styled-components/native'
 import TerveystaloLogo from '../../../assets/terveystalo-logo.svg'
 
-const TerveystaloButton = () => {
+const TerveystaloButton: FC = () => {
   return (
     <Container>
       <SvgCss height={30} xml={TerveystaloLogo} />

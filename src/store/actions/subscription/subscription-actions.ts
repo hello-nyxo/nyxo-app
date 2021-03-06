@@ -1,16 +1,14 @@
 import CONFIG from '@config/Config'
 import ReduxAction, { AppThunk } from '@typings/redux-actions'
-import Intercom from 'react-native-intercom'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
-import { updateIntercomInformation } from '../IntercomActions'
 import {
   PurchaseActionTypes,
-  RESTORE_START,
-  RESTORE_SUCCESS,
-  RESTORE_FAILURE,
+  PURCHASE_SUBSCRIPTION_FAILURE,
   PURCHASE_SUBSCRIPTION_START,
   PURCHASE_SUBSCRIPTION_SUCCESS,
-  PURCHASE_SUBSCRIPTION_FAILURE
+  RESTORE_FAILURE,
+  RESTORE_START,
+  RESTORE_SUCCESS
 } from './types'
 
 const key = CONFIG.SUBSCRIPTION_ENTITLEMENT_KEY as string
@@ -61,17 +59,10 @@ export const updateSubscriptionStatus = (): AppThunk => async (dispatch) => {
       entitlements: { active }
     } = await Purchases.getPurchaserInfo()
     if (typeof active[key] !== 'undefined') {
-      const { expirationDate, latestPurchaseDate } = active[key]
-      await updateIntercomInformation({
-        subscription: 'not active',
-        latestPurchaseDate,
-        expirationDate
-      })
+      const { expirationDate } = active[key]
+
       dispatch(purchaseSuccess({ isActive: true, expirationDate }))
     } else {
-      await updateIntercomInformation({
-        subscription: 'not active'
-      })
       dispatch(purchaseSuccess({ isActive: false }))
     }
   } catch (error) {
@@ -79,30 +70,19 @@ export const updateSubscriptionStatus = (): AppThunk => async (dispatch) => {
   }
 }
 
-/**
- * @async
- *  Purchases a new subscription for nyxo coaching and updates Intercom's user information to reflect this.
- */
 export const purchaseSubscription = (
-  subscription: PurchasesPackage
+  subscription: PurchasesPackage | undefined
 ): AppThunk => async (dispatch) => {
   dispatch(purchaseStart())
   try {
+    if (!subscription) {
+      throw new Error('subscription was undefined')
+    }
     const { purchaserInfo } = await Purchases.purchasePackage(subscription)
     if (typeof purchaserInfo.entitlements.active[key] !== 'undefined') {
-      const {
-        isActive,
-        expirationDate,
-        latestPurchaseDate
-      } = purchaserInfo.entitlements.active[key]
-
-      await Intercom.updateUser({
-        custom_attributes: {
-          subscription: 'active',
-          purchase_date: latestPurchaseDate,
-          expiration_date: expirationDate || 'lifetime'
-        }
-      })
+      const { isActive, expirationDate } = purchaserInfo.entitlements.active[
+        key
+      ]
 
       dispatch(purchaseSuccess({ isActive, expirationDate }))
     }

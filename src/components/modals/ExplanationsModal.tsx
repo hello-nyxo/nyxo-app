@@ -5,24 +5,20 @@ import { H2 } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import getRating from '@helpers/rating'
 import { minutesToHoursString, toNightTime } from '@helpers/time'
-import moment from 'moment'
-import React, { FC } from 'react'
-import RNModal, { ReactNativeModal } from 'react-native-modal'
-import { useDispatch, useSelector } from 'react-redux'
+import { getSelectedDate } from '@selectors/calendar-selectors'
 import {
   getGoToSleepWindowEnd,
   getGoToSleepWindowStart
 } from '@selectors/insight-selectors/Insights'
 import { getExplanationsModal } from '@selectors/ModalSelectors'
-
-import styled from 'styled-components/native'
+import { getAsleepDuration, getInBedDuration } from '@selectors/night-selectors'
 import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
-import { getInBedDuration, getAsleepDuration } from '@selectors/night-selectors'
-import { getSelectedDate } from '@selectors/calendar-selectors'
 import { format, parseISO } from 'date-fns'
-
-const Modal = RNModal as any
+import React, { FC } from 'react'
+import RNModal, { ModalProps, ReactNativeModal } from 'react-native-modal'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 
 const ExplanationsModal: FC = () => {
   const dispatch = useDispatch()
@@ -52,15 +48,16 @@ const ExplanationsModal: FC = () => {
     {
       title: 'STAT.WINDOW',
       explanation: 'STAT.WINDOW_EXPLANATION',
-      figure: `${format(parseISO(windowStart), 'HH:mm')} – ${moment(
-        windowEnd
-      ).format('HH:mm')}`,
+      figure: `${format(parseISO(windowStart), 'HH:mm')} – ${format(
+        parseISO(windowEnd),
+        'HH:mm'
+      )}`,
       color: colors.fallAsleep
     },
     {
       title: 'STAT.RATING',
       explanation: 'STAT.RATING_EXPLANATION',
-      figure: <Icon color={color} name={icon} height={20} width={20} />,
+      figure: <Icon fill={color} name={icon} height={20} width={20} />,
       color
     }
   ]
@@ -112,7 +109,9 @@ const ExplanationsModal: FC = () => {
 
 export default ExplanationsModal
 
-const StyledModal = styled(Modal)<ReactNativeModal>`
+const StyledModal = styled(
+  RNModal as new (props: ModalProps) => ReactNativeModal
+)`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
   flex: 1;
   margin: 0px;
@@ -186,11 +185,6 @@ const TitleRow = styled.View`
   margin-bottom: 80px;
 `
 
-type IconProps = {
-  readonly fill?: string
-  readonly color?: string
-}
-
-const Icon = styled(IconBold).attrs<IconProps>(({ color, theme }) => ({
-  fill: color || theme.SECONDARY_TEXT_COLOR
+const Icon = styled(IconBold).attrs(({ fill, theme }) => ({
+  fill: fill || theme.SECONDARY_TEXT_COLOR
 }))``

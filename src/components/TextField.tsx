@@ -9,7 +9,7 @@ import TranslatedText from './TranslatedText'
 
 interface Props extends TextInputProps {
   value?: string
-  error?: string
+  error?: string | boolean
   fieldName: string
   icon: string
   ref?: TextInput
@@ -35,7 +35,7 @@ const TextField: FC<Props> = ({
   placeholder,
   secureTextEntry
 }) => {
-  const inputRef = useRef<TextInput | undefined>(ref)
+  const inputRef = useRef<TextInput>(ref ?? null)
 
   const onFocus = () => {
     // eslint-disable-next-line no-unused-expressions
@@ -66,7 +66,7 @@ const TextField: FC<Props> = ({
           enablesReturnKeyAutomatically={enablesReturnKeyAutomatically}
           value={value}
           clearButtonMode="while-editing"
-          placeholder={translate(placeholder)}
+          placeholder={translate(`${placeholder}`)}
           placeholderTextColor={colors.gray2}
           secureTextEntry={secureTextEntry}
         />
@@ -83,7 +83,7 @@ const Container = styled.TouchableWithoutFeedback`
 
 interface InputProps extends TextInputProps {
   readonly error?: boolean
-  readonly icon?: string
+  readonly icon?: string | boolean
 }
 
 const InputContainer = styled.View<InputProps>`
@@ -120,4 +120,4 @@ const InputField = styled.TextInput<InputProps>`
 const Icon = styled(IconBold).attrs<InputProps>(({ theme, error, icon }) => ({
   fill: error ? colors.red : theme.SECONDARY_TEXT_COLOR,
   name: error ? 'closeCircle' : icon
-}))``
+}))<InputProps>``

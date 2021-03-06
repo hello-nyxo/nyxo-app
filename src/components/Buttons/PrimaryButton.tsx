@@ -1,7 +1,6 @@
-import React, { FC, useRef } from 'react'
+import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
-import { Animated } from 'react-native'
 import colors from '../../styles/colors'
 import TranslatedText from '../TranslatedText'
 
@@ -20,36 +19,6 @@ export const PrimaryButton: FC<Props> = ({
   title,
   onPress
 }) => {
-  const scaleIn = useRef(new Animated.Value(0)).current
-
-  const pressIn = () => {
-    scaleIn.setValue(0)
-    Animated.timing(scaleIn, {
-      toValue: 1,
-      duration: 150,
-      useNativeDriver: true
-    }).start()
-  }
-
-  const pressOut = () => {
-    scaleIn.setValue(1)
-    Animated.timing(scaleIn, {
-      toValue: 0,
-      duration: 150,
-      useNativeDriver: true
-    }).start()
-  }
-
-  const transform = (animated: Animated.Value) => {
-    const interpolation = animated.interpolate({
-      inputRange: [0, 1],
-      outputRange: [1, 0.95]
-    })
-
-    return {
-      transform: [{ scale: interpolation }]
-    }
-  }
   return (
     <TouchableOpacity
       activeOpacity={0.9}
@@ -80,7 +49,8 @@ const Button = styled.View<ButtonProps>`
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  background-color: ${({ white }) => (white ? colors.white : colors.darkBlue)};
+  background-color: ${({ white, theme }) =>
+    white ? colors.white : theme.accent};
   opacity: ${({ disabled }) => (disabled ? 0.75 : 1)};
   box-shadow: 1px 1px 5px rgba(74, 90, 239, 0.4);
   align-self: center;
@@ -90,7 +60,7 @@ const ButtonText = styled(TranslatedText)<ButtonProps>`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: ${({ white }) => (white ? colors.darkBlue : colors.white)};
+  color: ${({ white, theme }) => (white ? theme.accent : colors.white)};
   font-size: 15px;
   text-align: center;
 `

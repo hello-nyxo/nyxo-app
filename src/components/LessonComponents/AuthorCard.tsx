@@ -1,25 +1,27 @@
-import React, { memo } from 'react'
+import React, { FC, memo } from 'react'
 import FastImage from 'react-native-fast-image'
 import styled from 'styled-components/native'
-import { fonts, StyleProps } from '@styles/themes'
+import { fonts } from '@styles/themes'
+import { ImageProps } from 'react-native'
 
-interface AuthorCardProps {
-  avatarURL: string
-  name: string
-  credentials: string
+type Props = {
+  avatarURL?: string
+  name?: string
+  credentials?: string
 }
 
-const AuthorCard = (props: AuthorCardProps) => {
-  return (
-    <Card>
-      <Avatar borderRadius={15} source={{ uri: `https:${props.avatarURL}` }} />
-      <Container>
-        <Name>{props.name}</Name>
-        <Credentials numberOfLines={2}>{props.credentials}</Credentials>
-      </Container>
-    </Card>
-  )
-}
+const AuthorCard: FC<Props> = ({ avatarURL, name, credentials }) => (
+  <Card>
+    <Avatar
+      borderRadius={15}
+      source={{ uri: `${avatarURL}?fm=jpg&fl=progressive&w=100` }}
+    />
+    <Container>
+      <Name>{name}</Name>
+      <Credentials numberOfLines={2}>{credentials}</Credentials>
+    </Container>
+  </Card>
+)
 
 export default memo(AuthorCard)
 
@@ -29,7 +31,7 @@ const Card = styled.View`
   margin-right: 10px;
 `
 
-const Avatar = styled(FastImage)`
+const Avatar = styled(FastImage)<ImageProps>`
   width: 30px;
   height: 30px;
   border-radius: 15px;

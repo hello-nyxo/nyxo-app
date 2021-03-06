@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { constants, StyleProps } from '@styles/themes'
+import { constants } from '@styles/themes'
+import { ViewStyle } from 'react-native'
 
-const Separator = () => {
-  return <Line />
+type Props = {
+  style?: ViewStyle
 }
+
+const Separator: FC<Props> = ({ style }) => <Line style={style} />
 
 export default Separator
 

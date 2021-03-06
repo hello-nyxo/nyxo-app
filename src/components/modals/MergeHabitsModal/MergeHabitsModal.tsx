@@ -5,7 +5,6 @@ import {
 } from '@actions/habit/habit-actions'
 import { WIDTH } from '@helpers/Dimensions'
 import React, { memo, useState } from 'react'
-import { ActivityIndicator } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getMergingDialogDisplayed } from '@selectors/habit-selectors/habit-selectors'
@@ -60,11 +59,7 @@ const MergingDialog = () => {
           </Button>
         </OptionRow>
 
-        <ActivityIndicator
-          animating={enableIndicator}
-          size="large"
-          style={{ marginTop: enableIndicator ? 15 : 0 }}
-        />
+        <ActivityIndicator animating={enableIndicator} size="large" />
       </DialogContainer>
     </OuterContainer>
   )
@@ -121,4 +116,8 @@ const DisagreeText = styled(TranslatedText)`
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   font-size: 15px;
   font-family: ${fonts.medium};
+`
+
+const ActivityIndicator = styled.ActivityIndicator`
+  margin-top: ${({ animating }) => (animating ? 15 : 0)}px;
 `

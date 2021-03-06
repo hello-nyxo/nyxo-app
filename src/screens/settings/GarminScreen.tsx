@@ -18,7 +18,7 @@ const GarminScreen: FC = () => {
     dispatch(getGarminAccessTokenAndroid(oauth_token, oauth_verifier))
 
     navigation.navigate(ROUTE.SOURCE_SETTINGS)
-  }, [])
+  }, [dispatch, navigation, route.params])
   return <></>
 }
 

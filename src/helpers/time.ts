@@ -1,18 +1,25 @@
-import { Day } from '@typings/Sleepdata'
-import { format, parseISO, setHours, setMinutes } from 'date-fns'
-import Moment from 'moment'
+import {
+  format,
+  getHours,
+  parse,
+  getMinutes,
+  startOfDay,
+  subDays,
+  parseISO,
+  setHours,
+  isWithinInterval,
+  setMinutes
+} from 'date-fns'
 import translate from '../config/i18n'
-
-type Moment = typeof Moment
 
 export function to12hClock(hour: number): number {
   return hour > 12 ? hour - 12 : hour
 }
 
-export function momentTimeToPolar(time: string): number {
-  const momentTime = Moment(time)
+export function timeToPolar(time: string): number {
+  const date = new Date(time)
   const angle =
-    ((to12hClock(momentTime.hour()) + momentTime.minute() / 60) / 12) * 360
+    ((to12hClock(getHours(date)) + getMinutes(date) / 60) / 12) * 360
 
   return angle
 }
@@ -45,73 +52,43 @@ export function getTimeInString(minutes: number): string {
   return `${format(time, 'h')} h ${format(time, 'mm')}`
 }
 
-export function isWeekend(day: Day): boolean {
-  if (Moment(day.date).day() === 0 || Moment(day.date).day() === 6) {
-    return true
-  }
-  return false
-}
-
-/**
- *
- * @param {*} dateString
- */
-export function getStartTimeInMinutes(date: string): number {
-  const timeMoment = Moment(date)
-  const timeInPureMinutes = timeMoment.hours() * 60 + timeMoment.minutes()
-  const periodEnd = 360 // 6 in the morning
-  const periodStart = 1080 // 6 in the evening
-  const balancer = 1440 // 24 hours in minutes
-
-  if (timeInPureMinutes < periodEnd) {
-    return timeInPureMinutes + balancer
-  }
-  return timeInPureMinutes
-}
-
 export function toNightTime(date: string): string {
-  const nightEnd = Moment(date)
-  const nightStart = Moment(nightEnd).subtract(1, 'days').startOf('day')
-  return `${nightStart.format('DD.MM.')} – ${nightEnd.format('DD.MM.')}`
+  const nightEnd = new Date(date)
+  const nightStart = startOfDay(subDays(new Date(nightEnd), 1))
+  return `${format(nightStart, 'dd.MM.')} – ${format(nightStart, 'dd.MM.')}`
 }
 
-export const getTitle = () => {
-  const timeFormat = 'hh:mm:ss'
-  const now = Moment()
+export const getTitle = (): { title: string; subtitle: string } => {
+  const timeFormat = 'HH:mm:ss'
+  const now = new Date()
   if (
-    now.isBetween(
-      Moment('04:00:00', timeFormat),
-      Moment('11:59:59', timeFormat)
-    )
+    isWithinInterval(now, {
+      start: parse('04:00:00', timeFormat, new Date()),
+      end: parse('11:59:59', timeFormat, new Date())
+    })
   ) {
     return { title: 'Good Morning', subtitle: 'MORNING_SUBTITLE' }
   }
   if (
-    now.isBetween(
-      Moment('12:00:00', timeFormat),
-      Moment('16:59:59', timeFormat)
-    )
+    isWithinInterval(now, {
+      start: parse('12:00:00', timeFormat, new Date()),
+      end: parse('16:59:59', timeFormat, new Date())
+    })
   ) {
     return { title: 'Good Afternoon', subtitle: 'AFTERNOON_SUBTITLE' }
   }
   if (
-    now.isBetween(
-      Moment('17:00:00', timeFormat),
-      Moment('20:59:59', timeFormat)
-    )
+    isWithinInterval(now, {
+      start: parse('17:00:00', timeFormat, new Date()),
+      end: parse('20:59:59', timeFormat, new Date())
+    })
   ) {
     return { title: 'Good Evening', subtitle: 'EVENING_SUBTITLE' }
   }
   return { title: 'Good Night', subtitle: 'NIGHT_SUBTITLE' }
 }
 
-export function nearestMinutes(interval: number, someMoment: any): string {
-  const roundedMinutes =
-    Math.round(someMoment.clone().minute() / interval) * interval
-  return someMoment.clone().minute(roundedMinutes).second(0)
-}
-
-export const formatTimer = (numberOfSeconds: number): number => {
+export const formatTimer = (numberOfSeconds: number): string => {
   const hours = Math.floor(numberOfSeconds / 3600)
   const minutes = Math.floor((numberOfSeconds - hours * 3600) / 60)
   const seconds = numberOfSeconds - hours * 3600 - minutes * 60
@@ -134,15 +111,6 @@ export const formatTimer = (numberOfSeconds: number): number => {
     return `${timerHours}:${timerMinutes}:${timerSeconds}`
   }
   return `${timerMinutes}:${timerSeconds}`
-}
-
-export function sameDay(
-  as1: string | undefined,
-  as2: string | undefined
-): boolean {
-  const s1 = Moment(as1)
-  const s2 = Moment(as2)
-  return s1.isSame(s2, 'day')
 }
 
 export function calculateMinutesFromAngle(angle: number): number {
