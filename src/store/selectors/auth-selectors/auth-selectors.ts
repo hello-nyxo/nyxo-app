@@ -8,6 +8,8 @@ export const getLoading = createSelector(
   getAuth,
   (state: AuthState) => state.loading
 )
+
+//
 export const getAuthState = createSelector(
   getAuth,
   (state: AuthState) => state.authenticated
