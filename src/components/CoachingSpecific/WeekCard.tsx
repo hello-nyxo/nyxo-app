@@ -34,7 +34,7 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
   const formatedIntro = week.intro ? week.intro.replace('–', '\n –') : ''
   const lessonCount = week.lessonsCollection.items.length
   const habitCount = 1000
-  const { stage } = getStage(coaching, week.slug)
+  const { stage } = getStage(week.slug, coaching)
 
   return (
     <CardContainer>
@@ -79,7 +79,7 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
 
 export default memo(WeekCard)
 
-const getStage = (coaching: CoachingPeriod, slug: string): Data => {
+const getStage = (slug: string, coaching?: CoachingPeriod): Data => {
   const week = coaching?.weeks?.find((w) => w?.slug === slug)
   if (week) {
     if (week.ended && week.started) {

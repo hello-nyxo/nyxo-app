@@ -49,7 +49,8 @@ const Button = styled.View<ButtonProps>`
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  background-color: ${({ white }) => (white ? colors.white : colors.darkBlue)};
+  background-color: ${({ white, theme }) =>
+    white ? colors.white : theme.accent};
   opacity: ${({ disabled }) => (disabled ? 0.75 : 1)};
   box-shadow: 1px 1px 5px rgba(74, 90, 239, 0.4);
   align-self: center;
@@ -59,7 +60,7 @@ const ButtonText = styled(TranslatedText)<ButtonProps>`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: ${({ white }) => (white ? colors.darkBlue : colors.white)};
+  color: ${({ white, theme }) => (white ? theme.accent : colors.white)};
   font-size: 15px;
   text-align: center;
 `

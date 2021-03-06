@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import colors from '@styles/colors'
 import { IconBold } from '@components/iconRegular'
 import Animated from 'react-native-reanimated'
 import { ViewStyle } from 'react-native'
@@ -13,12 +12,7 @@ type Props = {
 const AddNightButton: FC<Props> = ({ onPress, style }) => (
   <Container style={style}>
     <Touchable onPress={onPress}>
-      <IconBold
-        width={20}
-        height={20}
-        fill={colors.darkBlue}
-        name="doubleBedAdd"
-      />
+      <ThemedIcon width={20} height={20} name="doubleBedAdd" />
     </Touchable>
   </Container>
 )
@@ -34,3 +28,7 @@ const Container = styled(Animated.View)`
 const Touchable = styled.TouchableOpacity`
   padding: 5px;
 `
+
+const ThemedIcon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.accent
+}))``

@@ -1,7 +1,7 @@
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
 import { useNavigation } from '@react-navigation/native'
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import ROUTE from '../../config/routes/Routes'
 import { PrimaryButton } from '../Buttons/PrimaryButton'
@@ -50,7 +50,7 @@ const ProfileSignup: FC = () => {
   )
 }
 
-export default memo(ProfileSignup)
+export default ProfileSignup
 
 const Info = styled(P)`
   margin-bottom: 20px;

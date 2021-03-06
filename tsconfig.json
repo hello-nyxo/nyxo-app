@@ -8,17 +8,19 @@
         "name": "typescript-styled-plugin",
         "lint": {
           "validProperties": [
+            "aspect-ratio",
+            "elevation",
+            "margin-vertical",
+            "margin-horizontal",
+            "padding-horizontal",
+            "padding-vertical",
+            "resize-mode",
             "shadow-color",
             "shadow-opacity",
             "shadow-offset",
             "shadow-radius",
-            "padding-horizontal",
-            "padding-vertical",
-            "margin-vertical",
-            "margin-horizontal",
-            "tint-color",
-            "aspect-ratio",
-            "elevation"
+            "text-align-vertical",
+            "tint-color"
           ]
         }
       }

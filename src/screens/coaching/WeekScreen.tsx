@@ -87,8 +87,6 @@ const WeekView: FC<Props> = ({
 
   return (
     <BGContainer>
-      <TopHeader yOffset={yOffset} title={week?.weekName ?? ''} />
-
       <Container>
         <LessonCover yOffset={yOffset} cover={week?.coverPhoto?.url ?? ''} />
 
@@ -132,6 +130,7 @@ const WeekView: FC<Props> = ({
           footer={<Copyright />}
         />
       </Container>
+      <TopHeader yOffset={yOffset} title={week?.weekName ?? ''} />
 
       <NewHabitModal />
     </BGContainer>
@@ -140,9 +139,7 @@ const WeekView: FC<Props> = ({
 
 export default WeekView
 
-const Container = styled.View`
-  margin-top: 30px;
-`
+const Container = styled.View``
 const TitleContainer = styled.View`
   padding: 0px 20px;
   flex: 1;
@@ -153,7 +150,7 @@ const BuyCoachingContainer = styled.View`
   padding: 0px 20px;
   flex: 1;
   min-height: 100px;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
 `
 
 const Content = styled.View`

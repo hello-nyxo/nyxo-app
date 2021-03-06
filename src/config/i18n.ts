@@ -33,8 +33,9 @@ export const setI18nConfig = (): void => {
 }
 
 const translate = memoize(
-  (key: Scope, config?: TranslateOptions | undefined) => I18n.t(key, config),
-  (key: Scope, config?: TranslateOptions | undefined) =>
+  (key?: Scope, config?: TranslateOptions | undefined) =>
+    I18n.t(key ?? '', config),
+  (key?: Scope, config?: TranslateOptions | undefined) =>
     config ? key + JSON.stringify(config) : key
 )
 

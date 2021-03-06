@@ -1,11 +1,12 @@
 import { WIDTH } from '@helpers/Dimensions'
 import React, { FC } from 'react'
-import { Animated, ViewStyle } from 'react-native'
+import { ViewStyle } from 'react-native'
+import Animated, { interpolate } from 'react-native-reanimated'
 import styled from 'styled-components/native'
 
 export type Props = {
   data: Array<unknown>
-  scrollX: Animated.Value
+  scrollX: Animated.Value<number>
   style?: ViewStyle
   dotStyle?: ViewStyle
   inActiveDotOpacity?: number
@@ -37,23 +38,25 @@ export const ExpandingDot: FC<Props> = ({
           (index + 1) * width
         ]
 
-        const opacity = scrollX.interpolate({
+        const opacity = interpolate(scrollX, {
           inputRange,
           outputRange: [
             defaultProps.inActiveDotOpacity,
             1,
             defaultProps.inActiveDotOpacity
           ],
-          extrapolate: 'clamp'
+          extrapolateRight: Animated.Extrapolate.CLAMP,
+          extrapolateLeft: Animated.Extrapolate.CLAMP
         })
-        const expand = scrollX.interpolate({
+        const expand = interpolate(scrollX, {
           inputRange,
           outputRange: [
             defaultProps.dotWidth,
             defaultProps.expandingDotWidth,
             defaultProps.dotWidth
           ],
-          extrapolate: 'clamp'
+          extrapolateRight: Animated.Extrapolate.CLAMP,
+          extrapolateLeft: Animated.Extrapolate.CLAMP
         })
 
         return (

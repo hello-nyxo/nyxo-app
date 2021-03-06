@@ -658,7 +658,7 @@
 				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 940;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = Nyxo;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -1107,7 +1107,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Nyxo/Nyxo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 64;
 				DEVELOPMENT_TEAM = RPKZ2YP3VZ;
@@ -1138,7 +1138,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.sleepcircle.application;
 				PRODUCT_NAME = Nyxo;
 				PROVISIONING_PROFILE = "d1d3a31a-831f-44c7-be9d-541c01656f20";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development app.sleepcircle.application";
+				PROVISIONING_PROFILE_SPECIFIER = "Nyxo Provisioning Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Nyxo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

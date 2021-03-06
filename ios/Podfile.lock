@@ -295,6 +295,8 @@ PODS:
   - react-native-app-auth (6.0.1):
     - AppAuth (= 1.4.0)
     - React-Core
+  - react-native-blur (0.8.0):
+    - React
   - react-native-get-random-values (1.5.1):
     - React-Core
   - react-native-netinfo (5.9.10):
@@ -482,6 +484,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-app-auth (from `../node_modules/react-native-app-auth`)
+  - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -607,6 +610,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-app-auth:
     :path: "../node_modules/react-native-app-auth"
+  react-native-blur:
+    :path: "../node_modules/@react-native-community/blur"
   react-native-get-random-values:
     :path: "../node_modules/react-native-get-random-values"
   react-native-netinfo:
@@ -745,6 +750,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: b56c03e61c0dd5f5801255f2160a815f4a53d451
   React-jsinspector: 8e68ffbfe23880d3ee9bafa8be2777f60b25cbe2
   react-native-app-auth: 17266057a5be3e4b5d9e055aa257c43884eac027
+  react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-get-random-values: 41f0c91ac0da870e47b307e07752e9e54bc2dc7e
   react-native-netinfo: 30fb89fa913c342be82a887b56e96be6d71201dd
   react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94

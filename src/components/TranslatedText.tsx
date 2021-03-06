@@ -10,7 +10,7 @@ import Animated from 'react-native-reanimated'
 import translate from '@config/i18n'
 
 interface Props extends TextProps {
-  children: string
+  children?: string
   variables?: I18n.TranslateOptions
   style?: TextStyle
   androidTranslation?: string

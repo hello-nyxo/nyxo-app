@@ -10,21 +10,16 @@ import {
   PageTitle,
   SafeAreaView
 } from '@components/Primitives/Primitives'
-import {
-  getActiveHabits,
-  getArchivedHabits
-} from '@selectors/habit-selectors/habit-selectors'
+
 import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import React, { FC } from 'react'
 import { SectionList } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { Habit } from '@typings/state/habit-state'
 
 const HabitView: FC = () => {
-  const activeHabits = useSelector(getActiveHabits)
-  const archivedHabits = useSelector(getArchivedHabits)
   const dispatch = useDispatch()
 
   const renderItem = ({ item }: { item: Habit }) => {
@@ -39,12 +34,12 @@ const HabitView: FC = () => {
     {
       title: 'HABIT.ACTIVE',
       subtitle: 'HABIT.ACTIVE_SUBTITLE',
-      data: activeHabits
+      data: []
     },
     {
       title: 'HABIT.ARCHIVED',
       subtitle: 'HABIT.ARCHIVED_SUBTITLE',
-      data: archivedHabits
+      data: []
     }
   ]
 

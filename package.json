@@ -131,6 +131,7 @@
     "@contentful/rich-text-plain-text-renderer": "^14.1.2",
     "@contentful/rich-text-react-renderer": "^14.1.2",
     "@react-native-async-storage/async-storage": "^1.13.2",
+    "@react-native-community/blur": "^3.6.0",
     "@react-native-community/masked-view": "^0.1.6",
     "@react-native-community/netinfo": "^5.9.10",
     "@react-native-community/push-notification-ios": "^1.7.5-beta.0",

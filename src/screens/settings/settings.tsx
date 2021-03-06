@@ -7,7 +7,7 @@ import TopInfo from '@components/TopInfo'
 import CONFIG from '@config/Config'
 import ROUTE from '@config/routes/Routes'
 import keyExtractor from '@helpers/KeyExtractor'
-import { RouteProp } from '@react-navigation/core'
+import { CompositeNavigationProp, RouteProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { getTheme } from '@selectors/UserSelectors'
 import { darkTheme, lightTheme } from '@styles/themes'
@@ -32,9 +32,12 @@ const options = {
   openAppStoreIfInAppFails: true,
   fallbackPlatformURL: 'http://www.nyxo.app/'
 }
-type SettingsNavigationProp = StackNavigationProp<
-  RootStackParamList[ROUTE.APP][ROUTE.SETTINGS],
-  ROUTE.SETTINGS
+type SettingsNavigationProp = CompositeNavigationProp<
+  StackNavigationProp<
+    RootStackParamList[ROUTE.APP][ROUTE.SETTINGS],
+    ROUTE.SETTINGS
+  >,
+  StackNavigationProp<RootStackParamList>
 >
 
 type SettingsScreenRouteProp = RouteProp<
@@ -55,7 +58,7 @@ type SettingItem = {
   extra?: JSX.Element
 }
 
-const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
+const SettingsScreen: FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch()
   const theme = useSelector(getTheme)
 
@@ -76,23 +79,23 @@ const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
     {
       text: 'Select Tracking Source',
       icon: 'smartWatchCircleGraph',
-      action: () => navigate(ROUTE.SOURCE_SETTINGS)
+      action: () => navigation.navigate(ROUTE.SOURCE_SETTINGS)
     },
     {
       text: 'Coaching settings',
       icon: 'schoolPhysicalBold',
-      action: () => navigate(ROUTE.COACHING_SETTINGS)
+      action: () => navigation.navigate(ROUTE.COACHING_SETTINGS)
     },
 
     {
       text: 'Manage Nyxo Subscription',
       icon: 'receipt',
-      action: () => navigate(ROUTE.SUBSCRIPTION_SETTINGS)
+      action: () => navigation.navigate(ROUTE.SUBSCRIPTION_SETTINGS)
     },
     {
       text: 'Sync to backend',
       icon: 'syncCloud',
-      action: () => navigate(ROUTE.CLOUD_SETTINGS, { code: '' })
+      action: () => navigation.navigate(ROUTE.CLOUD_SETTINGS, { code: '' })
     },
     {
       text: 'Switch mode',
@@ -108,8 +111,7 @@ const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
     {
       text: 'ONBOARDING.TITLE',
       icon: 'compass',
-      analyticsEvent: 'Rewatched onboarding',
-      action: () => navigate(ROUTE.ONBOARDING)
+      action: () => navigation.push(ROUTE.ONBOARDING)
     }
   ]
 
@@ -117,13 +119,11 @@ const SettingsScreen: FC<Props> = ({ navigation: { navigate } }) => {
     {
       text: 'Send feedback',
       icon: 'envelope',
-      analyticsEvent: 'Opened Feedback Email',
       action: () => Linking.openURL('mailto:hello@nyxo.fi')
     },
     {
       text: 'Visit site',
       icon: 'browserDotCom',
-      analyticsEvent: 'Opened Website',
       action: () => Linking.openURL('https://nyxo.app/')
     },
     {
