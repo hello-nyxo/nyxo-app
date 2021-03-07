@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { CONFIG } from '@config/Config'
 import App from './src/App'
-import { persistor, store } from './src/store'
+import { persistor, store } from './src/store/store'
 
 const TOKEN = CONFIG.CONTENTFUL_SPACE_ACCESS_TOKEN
 const SPACE = CONFIG.CONTENTFUL_SPACE

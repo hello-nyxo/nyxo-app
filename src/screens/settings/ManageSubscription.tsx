@@ -1,4 +1,3 @@
-import { restorePurchase } from '@actions/subscription/subscription-actions'
 import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
 import TextButton from '@components/Buttons/TextButton'
 import {
@@ -9,15 +8,15 @@ import {
   SafeAreaView
 } from '@components/Primitives/Primitives'
 import { ActiveSubscriptions } from '@components/subscriptions/ActiveSubscriptions'
-import { getLoadingPurchase } from '@selectors/subscription-selectors/SubscriptionSelectors'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { restorePurchase } from '@reducers/subscription'
 import React, { FC, memo, useEffect, useState } from 'react'
 import { RefreshControl, ScrollView } from 'react-native'
 import Purchases, { PurchasesEntitlementInfos } from 'react-native-purchases'
-import { useDispatch, useSelector } from 'react-redux'
 
 const ManageSubscription: FC = () => {
-  const loadingPurchase = useSelector(getLoadingPurchase)
-  const dispatch = useDispatch()
+  const loadingPurchase = useAppSelector((state) => state.subscription.loading)
+  const dispatch = useAppDispatch()
 
   const [info, setEntitlements] = useState<
     PurchasesEntitlementInfos | undefined

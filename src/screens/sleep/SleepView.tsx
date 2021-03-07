@@ -1,6 +1,4 @@
-import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
-import { startup } from '@actions/startup'
 import SleepTimeChart from '@components/Charts/SleepChart'
 import Clock from '@components/Clock'
 import DayStrip from '@components/DayStrip'
@@ -13,29 +11,27 @@ import MergeHabitsModal from '@components/modals/MergeHabitsModal/MergeHabitsMod
 import { SafeAreaView } from '@components/Primitives/Primitives'
 import RatingModal from '@components/RatingModal'
 import CalendarModal from '@components/sleep/CalendarModal'
-import InsightsCard from '@components/sleep/InsightsCard'
 import { OnboardingCard } from '@components/sleep/OnboardingCard'
 import { localizedFormat } from '@config/i18n'
 import { getUserActiveCoaching } from '@hooks/coaching/useCoaching'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { useFocusEffect } from '@react-navigation/core'
-import { getSelectedDate } from '@selectors/calendar-selectors'
-import { getHealthKitLoading } from '@selectors/health-kit-selectors/health-kit-selectors'
-import { getEditMode } from '@selectors/ManualDataSelectors'
+import { toggleCalendarModal } from '@reducers/modal'
+import { updateSubscriptionStatus } from '@reducers/subscription'
 import { subDays } from 'date-fns'
 import React, { FC, useCallback, useEffect } from 'react'
 import { ScrollView } from 'react-native'
 import { queryCache } from 'react-query'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 const Sleep: FC = () => {
-  const dispatch = useDispatch()
-  const date = useSelector(getSelectedDate)
-  const editModeOn = useSelector(getEditMode)
-  const isLoadingSleepData = useSelector(getHealthKitLoading)
+  const dispatch = useAppDispatch()
+  const date = useAppSelector((state) => state.calendar.selectedDay)
+  const editModeOn = useAppSelector((state) => state.manualSleep.editMode)
+  const isLoadingSleepData = false //useAppSelector(getHealthKitLoading)
 
   useEffect(() => {
-    dispatch(startup())
+    dispatch(updateSubscriptionStatus())
     dispatch(fetchSleepData(subDays(new Date(date), 1).toDateString(), date))
   }, [date, dispatch])
 
@@ -55,7 +51,7 @@ const Sleep: FC = () => {
   }
 
   const toggleCalendar = () => {
-    dispatch(toggleCalendarModal())
+    dispatch(toggleCalendarModal(true))
   }
 
   return (
@@ -88,9 +84,7 @@ const Sleep: FC = () => {
           <Clock />
         </Row>
 
-        <Row>
-          <InsightsCard />
-        </Row>
+        <Row>{/* <InsightsCard /> */}</Row>
         <SleepTimeChart />
       </ScrollView>
 

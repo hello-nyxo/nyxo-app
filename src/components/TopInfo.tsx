@@ -1,22 +1,18 @@
+import { WIDTH } from '@helpers/Dimensions'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import React, { FC, useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import RNModal, { ModalProps, ReactNativeModal } from 'react-native-modal'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { actionCreators } from '@reducers/NotificationReducer'
-import {
-  getNotificationMessage,
-  getNotificationType
-} from '@selectors/NotificationSelectors'
 import { fonts } from '../styles/themes'
 import { IconBold } from './iconRegular'
-import { WIDTH } from '@helpers/Dimensions'
 
 const TopInfo: FC = () => {
-  const dispatch = useDispatch()
-  const message = useSelector(getNotificationMessage)
-  const type = useSelector(getNotificationType)
+  const dispatch = useAppDispatch()
+  // FIXME
+  const message = useAppSelector((state) => state.calendar.selectedDay)
+  const type = useAppSelector((state) => state.calendar.selectedDay)
   const [show, setShow] = useState(false)
 
   const discardNotification = async () => {

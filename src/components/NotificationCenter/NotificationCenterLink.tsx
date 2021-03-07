@@ -5,11 +5,11 @@ import { useNavigation } from '@react-navigation/core'
 import ROUTE from '@config/routes/Routes'
 import colors from '@styles/colors'
 import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '@hooks/redux'
 
 const NotificationCenterLink: FC = () => {
   const { navigate } = useNavigation()
-  const notificationCount = useSelector(getStaticNotificationsCount)
+  const notificationCount = useAppSelector(getStaticNotificationsCount)
 
   const handlePress = () => {
     navigate(ROUTE.NOTIFICATION_CENTER, {})

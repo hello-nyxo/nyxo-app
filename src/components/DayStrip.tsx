@@ -3,12 +3,12 @@ import { FlatList, ListRenderItem, ViewToken } from 'react-native'
 import styled, { css } from 'styled-components/native'
 import { sub, startOfDay, isSameDay } from 'date-fns'
 import { WIDTH } from '@helpers/Dimensions'
-import { useDispatch } from 'react-redux'
-import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import useCalendar from '@hooks/calendar'
 
 import LinearGradient from 'react-native-linear-gradient'
 import { localizedFormat } from '@config/i18n'
+import { useAppDispatch } from '@hooks/redux'
+import { toggleCalendarModal } from '@reducers/modal'
 
 const DAY_WIDTH = WIDTH / 2
 const FIRST_DAY_WIDTH = DAY_WIDTH * 2 - DAY_WIDTH / 2
@@ -17,14 +17,15 @@ const CalendarStrip: FC = () => {
   const { selectDate, selectedDate } = useCalendar()
   const flatListRef = useRef<FlatList>(null)
   const [init, setInit] = useState(true)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const startDate = new Date()
+
   const days = Array.from(Array(365 * 3)).map((_, index) =>
     startOfDay(sub(startDate, { days: index }))
   )
 
   const toggleCalendar = () => {
-    dispatch(toggleCalendarModal())
+    dispatch(toggleCalendarModal(true))
   }
 
   const renderItem: ListRenderItem<Date> = ({ item, index }) => (

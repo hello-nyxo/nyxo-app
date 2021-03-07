@@ -9,15 +9,15 @@ import {
   getIsGoogleFitMainSource
 } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import React, { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
 
 const GoogleFitSection: FC = () => {
-  const dispatch = useDispatch()
-  const sources = useSelector(getAllGoogleFitSources)
-  const isGoogleFitMainSource = useSelector(getIsGoogleFitMainSource)
-  const healthKitSource = useSelector(getGoogleFitSource)
+  const dispatch = useAppDispatch()
+  const sources = useAppSelector(getAllGoogleFitSources)
+  const isGoogleFitMainSource = useAppSelector(getIsGoogleFitMainSource)
+  const healthKitSource = useAppSelector(getGoogleFitSource)
 
   const onPress = (sourceId: string) => {
     const source = sources?.find((s) => s.sourceId === sourceId)

@@ -1,14 +1,14 @@
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { getIsPolarMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { togglePolar } from '@actions/api-actions/polar-actions'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
 
 const PolarSection: FC = () => {
-  const dispatch = useDispatch()
-  const isPolarMainSource = useSelector(getIsPolarMainSource)
+  const dispatch = useAppDispatch()
+  const isPolarMainSource = useAppSelector(getIsPolarMainSource)
 
   const setPolarAsSource = () => {
     dispatch(togglePolar())

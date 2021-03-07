@@ -6,11 +6,11 @@ const getAuth = (state: State) => state.auth
 
 export const getLoading = createSelector(
   getAuth,
-  (state: AuthState) => state.loading
+  (state: AuthState) => state?.loading
 )
 
 //
 export const getAuthState = createSelector(
   getAuth,
-  (state: AuthState) => state.authenticated
+  (state: AuthState) => state?.authenticated
 )

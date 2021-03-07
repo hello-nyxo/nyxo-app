@@ -1,20 +1,19 @@
+import { useAppSelector } from '@hooks/redux'
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native'
-import { getIsDarkMode } from '@selectors/UserSelectors'
 import { readFromStorage } from 'persist-queries'
 import React, { FC, useEffect, useRef } from 'react'
 import { Text } from 'react-native'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import Root from './routes/RootNavigator'
 import ROUTE from './routes/Routes'
 
 const Routes: FC = () => {
-  const isDarkMode = useSelector(getIsDarkMode)
   const ref = useRef(null)
+  const { theme } = useAppSelector((state) => state.theme.theme)
 
   const linking = {
     prefixes: [
@@ -117,7 +116,7 @@ const Routes: FC = () => {
       <NavigationContainer
         linking={linking}
         ref={ref}
-        theme={isDarkMode ? DarkTheme : DefaultTheme}
+        theme={theme === 'dark' ? DarkTheme : DefaultTheme}
         fallback={<Text>Loading...</Text>}>
         <Root />
       </NavigationContainer>

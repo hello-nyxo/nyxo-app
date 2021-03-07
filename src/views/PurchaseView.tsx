@@ -1,7 +1,3 @@
-import {
-  purchaseSubscription,
-  restorePurchase
-} from '@actions/subscription/subscription-actions'
 import GoBack from '@components/Buttons/GoBack'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import PerkList from '@components/IAPComponents/PerkList'
@@ -9,11 +5,12 @@ import SubscriptionItem from '@components/IAPComponents/SubscriptionItem'
 import { ThemedRefreshControl } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import { HEIGHT, SMART_TOP_PADDING } from '@helpers/Dimensions'
+import { useAppDispatch } from '@hooks/redux'
+import { purchaseSubscription, restorePurchase } from '@reducers/subscription'
 import { fonts } from '@styles/themes'
 import React, { FC, memo, useCallback, useEffect, useState } from 'react'
 import { ActivityIndicator, Linking, Platform } from 'react-native'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import CONFIG from '../config/Config'
 import colors from '../styles/colors'
@@ -28,7 +25,7 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
   >([])
   const [error, setError] = useState(false)
   const [selected, select] = useState<PurchasesPackage | undefined>(undefined)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const isIOS = Platform.OS === 'ios'
 
   const getSubscription = useCallback(async () => {

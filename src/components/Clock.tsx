@@ -1,23 +1,21 @@
-import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
-import { toggleExplanationsModal } from '@actions/modal/modal-actions'
 import { WIDTH } from '@helpers/Dimensions'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import useSleep from '@hooks/useSleep'
-import { getSelectedDate } from '@selectors/calendar-selectors'
-import { getEditMode } from '@selectors/ManualDataSelectors'
+import { toggleEditMode } from '@reducers/manual-sleep'
+import { toggleExplanationsModal } from '@reducers/modal'
 import colors from '@styles/colors'
 import { Value } from '@typings/Sleepdata'
 import React, { FC } from 'react'
 import Animated, {
   cond,
+  eq,
+  interpolate,
   set,
   stopClock,
-  useCode,
-  interpolate,
-  eq
+  useCode
 } from 'react-native-reanimated'
 import { timing, useClock, useValue } from 'react-native-redash/lib/module/v1'
 import Svg from 'react-native-svg'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import AddNightButton from './clock/AddNightButton'
 import ClockTimes from './clock/ClockTimes'
@@ -50,9 +48,9 @@ const Clock: FC = () => {
     bedStart,
     bedEnd
   } = useSleep()
-  const dispatch = useDispatch()
-  const date = useSelector(getSelectedDate)
-  const editMode = useSelector(getEditMode)
+  const dispatch = useAppDispatch()
+  const date = useAppSelector((state) => state.calendar.selectedDay)
+  const editMode = useAppSelector((state) => state.manualSleep.editMode)
 
   const value = useValue<number>(1)
   const isEditMode = useValue(editMode ? 1 : 0)
@@ -88,7 +86,7 @@ const Clock: FC = () => {
 
   const toggleEditNightMode = () => {
     stopClock(clock)
-    dispatch(toggleEditMode())
+    dispatch(toggleEditMode(true))
   }
 
   const toggleInfo = () => {

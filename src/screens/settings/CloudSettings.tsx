@@ -1,4 +1,3 @@
-import { logout } from '@actions/auth/auth-actions'
 import GoBack, { GoBackContainer, Spacer } from '@components/Buttons/GoBack'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import SignupBottomButton from '@components/Signup/SignupBottomButton'
@@ -10,19 +9,15 @@ import {
 } from '@components/Primitives/Primitives'
 import CodeDisclaimer from '@components/SettingsSpecific/CodeDisclaimer'
 import LinkModule from '@components/SettingsSpecific/LinkModule'
-import {
-  getAuthState,
-  getLoading
-} from '@selectors/auth-selectors/auth-selectors'
-import { getLoading as getCodeLoading } from '@selectors/linking-selectors'
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import { RefreshControl, ScrollView } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
 import colors from '@styles/colors'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import { StackNavigationProp } from '@react-navigation/stack'
 import ROUTE from '@config/routes/Routes'
 import { RouteProp } from '@react-navigation/core'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { logout } from '@reducers/auth'
 
 type CloudSettingsScreenProp = StackNavigationProp<
   RootStackParamList['App']['Settings'],
@@ -39,11 +34,10 @@ type Props = {
   route: CloudSettingsScreenRouteProp
 }
 
-const CloudView: FC<Props> = ({ route }) => {
-  const isLoggedIn = useSelector(getAuthState)
-  const linkingLoading = useSelector(getCodeLoading)
-  const logoutLoading = useSelector(getLoading)
-  const dispatch = useDispatch()
+const CloudSettings: FC<Props> = ({ route }) => {
+  const dispatch = useAppDispatch()
+  const { authenticated, loading } = useAppSelector(({ auth }) => auth)
+  const linkingLoading = useAppSelector(({ linking }) => linking.loading)
 
   const linkCode = route?.params?.code
 
@@ -62,7 +56,7 @@ const CloudView: FC<Props> = ({ route }) => {
           <RefreshControl
             tintColor={colors.darkBlue}
             onRefresh={refresh}
-            refreshing={linkingLoading}
+            refreshing={linkingLoading === 'pending'}
           />
         }
         scrollEventThrottle={16}>
@@ -74,7 +68,7 @@ const CloudView: FC<Props> = ({ route }) => {
         <Container>
           <H2>NYXO_CLOUD.TITLE</H2>
 
-          {isLoggedIn && (
+          {!!authenticated && (
             <>
               <P>SCCloudInfo</P>
               <LinkModule linkCode={linkCode} />
@@ -82,11 +76,11 @@ const CloudView: FC<Props> = ({ route }) => {
                 white
                 title="Signout"
                 onPress={handleSignOut}
-                loading={logoutLoading}
+                loading={loading === 'pending'}
               />
             </>
           )}
-          {!isLoggedIn && <SignupBottomButton />}
+          {!authenticated && <SignupBottomButton />}
         </Container>
       </ScrollView>
       <CodeDisclaimer linkCode={linkCode} />
@@ -94,4 +88,4 @@ const CloudView: FC<Props> = ({ route }) => {
   )
 }
 
-export default memo(CloudView)
+export default CloudSettings

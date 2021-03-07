@@ -1,26 +1,24 @@
-import React, { FC, useState } from 'react'
-import styled from 'styled-components/native'
-import { useSelector, useDispatch } from 'react-redux'
-import { linkAccount } from '@actions/linking/linking-actions'
-import { getLinkingCode, getLoading } from '@selectors/linking-selectors'
-import { RootStackParamList } from '@typings/navigation/navigation'
+import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
 import LinkingButton from '@components/Buttons/LinkingButton'
 import LoginButton from '@components/Buttons/LoginButton'
-import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
-import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
 import {
-  H2,
-  SafeAreaView,
-  StyledScrollView,
-  P,
   CheckBox,
   Container,
-  StyledModal
+  H2,
+  P,
+  SafeAreaView,
+  StyledModal,
+  StyledScrollView
 } from '@components/Primitives/Primitives'
-import { RouteProp } from '@react-navigation/core'
 import LinkModule from '@components/SettingsSpecific/LinkModule'
-import ROUTE from '../../config/routes/Routes'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { RouteProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
+import { linkAccount } from '@reducers/linking'
+import { RootStackParamList } from '@typings/navigation/navigation'
+import React, { FC, useState } from 'react'
+import styled from 'styled-components/native'
+import ROUTE from '../../config/routes/Routes'
 
 type TerveystaloNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -39,10 +37,9 @@ type Props = {
 
 const TTWelcome: FC<Props> = ({ route }) => {
   const [showCode, toggleShowCode] = useState(false)
-  const loggedIn = useSelector(getAuthState)
-  const loading = useSelector(getLoading)
-  const code = useSelector(getLinkingCode)
-  const dispatch = useDispatch()
+  const loggedIn = false //useAppSelector(getAuthState) FIXME
+  const { loading, code } = useAppSelector(({ linking }) => linking)
+  const dispatch = useAppDispatch()
   const linkCode = route?.params?.code
 
   const toggleLinkModule = () => {
@@ -83,7 +80,7 @@ const TTWelcome: FC<Props> = ({ route }) => {
             <LinkingButton
               disabled={!loggedIn}
               code={linkCode}
-              loading={loading}
+              loading={loading === 'pending'}
               navigate={() => undefined} // FIXME
               link={handleLink}
             />

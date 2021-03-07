@@ -12,12 +12,12 @@ import {
 } from '@helpers/time'
 import React, { FC } from 'react'
 import Animated from 'react-native-reanimated'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { WIDTH } from '@helpers/Dimensions'
 import useSleep from '@hooks/useSleep'
 import { useScrollHandler } from 'react-native-redash/lib/module/v1'
+import { useAppSelector } from '@hooks/redux'
 
 const pageWidth = WIDTH - 16 * 2 - 2 * 16
 
@@ -32,8 +32,8 @@ const InsightsCard: FC = () => {
     inBedDuration,
     asleepDuration
   } = useSleep()
-  const goToSleepWindowStart = useSelector(getGoToSleepWindowStart)
-  const goToSleepWindowEnd = useSelector(getGoToSleepWindowEnd)
+  const goToSleepWindowStart = useAppSelector(getGoToSleepWindowStart)
+  const goToSleepWindowEnd = useAppSelector(getGoToSleepWindowEnd)
   const wentToBed = getFormattedDateOrPlaceholder(bedStart, 'H:mm')
   const gotUp = getFormattedDateOrPlaceholder(bedEnd, 'H:mm')
   const fellAsleep = getFormattedDateOrPlaceholder(sleepStart, 'H:mm')

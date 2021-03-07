@@ -1,7 +1,6 @@
 import Amplify from '@aws-amplify/core'
-import { getTheme } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
-import { State } from '@typings/State'
+import { RootState } from '@store/store'
 import * as Analytics from 'appcenter-analytics'
 import React from 'react'
 import { addEventListener, removeEventListener } from 'react-native-localize'
@@ -104,8 +103,8 @@ class App extends React.Component<AppProps> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  theme: getTheme(state)
+const mapStateToProps = (state: RootState) => ({
+  theme: state.theme.theme
 })
 
 export default connect(mapStateToProps)(App)

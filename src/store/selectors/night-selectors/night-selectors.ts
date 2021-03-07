@@ -91,7 +91,7 @@ export const getBedTimeNights = createSelector(
   getNightsAsDays,
   (daysWithNights) =>
     daysWithNights
-      ? daysWithNights.filter((day) => day.inBedDuration ?? -1 > 0)
+      ? daysWithNights?.filter((day) => day.inBedDuration ?? -1 > 0)
       : []
 )
 
@@ -99,7 +99,7 @@ export const getAsleepNights = createSelector(
   getNightsAsDays,
   (daysWithNights) =>
     daysWithNights
-      ? daysWithNights.filter((day) => day.asleepDuration ?? -1 > 0)
+      ? daysWithNights?.filter((day) => day.asleepDuration ?? -1 > 0)
       : []
 )
 

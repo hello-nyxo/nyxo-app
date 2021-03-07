@@ -3,11 +3,11 @@ import { State } from '@typings/State'
 import { SleepSourceState, SOURCE } from '@typings/state/sleep-source-state'
 import CONFIG from '@config/Config'
 
-const getSleepSourcesState = (state: State) => state.sleepSources
+const getSleepSourcesState = (state: State) => state?.sleepSources
 
 export const getMainSource = createSelector(
   getSleepSourcesState,
-  (state: SleepSourceState) => state.mainSource
+  (state: SleepSourceState) => state?.mainSource
 )
 
 export const getIsHealthKitMainSource = createSelector(
@@ -47,17 +47,17 @@ export const getIsPolarMainSource = createSelector(
 
 export const getHealthKitSource = createSelector(
   getSleepSourcesState,
-  (state: SleepSourceState) => state.healthKitSource
+  (state: SleepSourceState) => state?.healthKitSource
 )
 
 export const getAllHealthKitSources = createSelector(
   getSleepSourcesState,
-  (state: SleepSourceState) => state.allHealthKitSources
+  (state: SleepSourceState) => state?.allHealthKitSources
 )
 
 export const getGoogleFitSource = createSelector(
   getSleepSourcesState,
-  (state: SleepSourceState) => state.googleFitSource
+  (state: SleepSourceState) => state?.googleFitSource
 )
 
 export const getSharedSource = createSelector(
@@ -92,5 +92,5 @@ export const getSharedSource = createSelector(
 
 export const getAllGoogleFitSources = createSelector(
   getSleepSourcesState,
-  (state: SleepSourceState) => state.allGoogleFitSources
+  (state: SleepSourceState) => state?.allGoogleFitSources
 )

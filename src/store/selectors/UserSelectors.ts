@@ -36,15 +36,15 @@ export const getTextColorOnTheme = createSelector(
 
 export const getEmail = createSelector(
   getUserState,
-  (user: UserState) => user.email
+  (user: UserState) => user?.email
 )
 
 export const getUsername = createSelector(
   getUserState,
-  (user: UserState) => user.username
+  (user: UserState) => user?.username
 )
 
 export const getSyncEnabled = createSelector(
   getUserState,
-  (user: UserState) => user.syncEnabled
+  (user: UserState) => user?.syncEnabled
 )

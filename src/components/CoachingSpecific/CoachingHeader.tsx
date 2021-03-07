@@ -3,18 +3,19 @@ import BuyCoachingButton from '@components/CoachingSpecific/BuyCoachingButton'
 import TranslatedText from '@components/TranslatedText'
 import ROUTE from '@config/routes/Routes'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
+import { useAppSelector } from '@hooks/redux'
 import { useNavigation } from '@react-navigation/native'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import colors from '@styles/colors'
 import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { Container, H3, PageTitle } from '../Primitives/Primitives'
 import CoachingNotStarted from './CoachingNotStarted'
 
 const CoachingHeader: FC = () => {
   const { data: activeMonth } = useGetActiveCoaching()
-  const hasActiveCoaching = useSelector(getActiveCoaching)
+  const hasActiveCoaching = useAppSelector(
+    (state) => state.subscription.isActive
+  )
   const { navigate } = useNavigation()
 
   const openCoachingSettings = () => {

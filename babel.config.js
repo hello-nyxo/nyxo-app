@@ -37,6 +37,7 @@ module.exports = {
           '@hooks': './src/hooks',
           '@typings': './src/typings',
           '@types': './src/Types',
+          '@store': './src/store',
           '@config': './src/config',
           '@styles': './src/styles',
           '@API': './src/API',

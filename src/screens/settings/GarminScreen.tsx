@@ -1,24 +1,41 @@
 /* eslint-disable camelcase */
 import React, { FC, useEffect } from 'react'
-import { useRoute, useNavigation } from '@react-navigation/native'
-import { useDispatch } from 'react-redux'
+import { RouteProp } from '@react-navigation/native'
 import { getGarminAccessTokenAndroid } from '@actions/api-actions/garmin-actions'
 import ROUTE from '@config/routes/Routes'
+import { useAppDispatch } from '@hooks/redux'
+import { RootStackParamList } from '@typings/navigation/navigation'
+import { StackNavigationProp } from '@react-navigation/stack'
 
-const GarminScreen: FC = () => {
-  const route = useRoute()
-  const navigation = useNavigation()
-  const dispatch = useDispatch()
+type GarminScreenProp = StackNavigationProp<
+  RootStackParamList['App']['Settings'],
+  ROUTE.CLOUD_SETTINGS
+>
+
+type GarminScreenRouteProp = RouteProp<
+  RootStackParamList['App']['Settings'],
+  ROUTE.GARMIN
+>
+
+type Props = {
+  navigation: GarminScreenProp
+  route: GarminScreenRouteProp
+}
+
+const GarminScreen: FC<Props> = ({
+  navigation,
+  route: {
+    params: { oauth_token, oauth_verifier }
+  }
+}) => {
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const { oauth_token, oauth_verifier } = route.params as {
-      oauth_token: string
-      oauth_verifier: string
-    }
     dispatch(getGarminAccessTokenAndroid(oauth_token, oauth_verifier))
 
     navigation.navigate(ROUTE.SOURCE_SETTINGS)
-  }, [dispatch, navigation, route.params])
+  }, [dispatch, navigation, oauth_token, oauth_verifier])
+
   return <></>
 }
 

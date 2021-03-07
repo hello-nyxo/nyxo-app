@@ -13,14 +13,13 @@ import {
   useUpdateCoaching
 } from '@hooks/coaching/useCoaching'
 import { useWeek } from '@hooks/coaching/useWeek'
+import { useAppSelector } from '@hooks/redux'
 import { RouteProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import { useScrollHandler } from 'react-native-redash/lib/module/v1'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import Lessons from './Lessons'
 
@@ -41,7 +40,7 @@ const WeekView: FC<Props> = ({
   }
 }) => {
   const { y: yOffset, scrollHandler } = useScrollHandler()
-  const hasCoaching = useSelector(getActiveCoaching)
+  const hasCoaching = useAppSelector((state) => state.subscription.isActive)
 
   /* Queries */
   const { data: weeks, loading: contentLoading } = useWeek(slug)

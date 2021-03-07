@@ -1,37 +1,28 @@
-import {
-  addManualDataToNight,
-  toggleEditMode
-} from '@actions/manual-sleep/manual-sleep-actions'
 import { SMART_TOP_PADDING } from '@helpers/Dimensions'
-import { getSelectedDate } from '@selectors/calendar-selectors'
-import {
-  getEditMode,
-  getEndTime,
-  getStartTime
-} from '@selectors/ManualDataSelectors'
-import React, { FC, memo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components/native'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { toggleEditMode } from '@reducers/manual-sleep'
 import { fonts } from '@styles/themes'
-import colors from '../../styles/colors'
+import React, { FC, memo } from 'react'
+import styled from 'styled-components/native'
+import colors from '@styles/colors'
 import { P } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
 
 export const EditNightHeader: FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const editMode = useSelector(getEditMode)
-  const selectedDate = useSelector(getSelectedDate)
-  const startTime = useSelector(getStartTime)
-  const endTime = useSelector(getEndTime)
+  const editMode = useAppSelector((state) => state.manualSleep.editMode)
+  const selectedDate = useAppSelector((state) => state.calendar.selectedDay)
+  const startTime = useAppSelector((state) => state.manualSleep.startTime)
+  const endTime = useAppSelector((state) => state.manualSleep.startTime)
 
   const handleSave = async () => {
-    await dispatch(addManualDataToNight(selectedDate, startTime, endTime))
-    await dispatch(toggleEditMode())
+    // await dispatch(addManualDataToNight(selectedDate, startTime, endTime))
+    await dispatch(toggleEditMode(false))
   }
 
   const handleCancel = async () => {
-    await dispatch(toggleEditMode())
+    await dispatch(toggleEditMode(false))
   }
 
   if (!editMode) return null

@@ -4,21 +4,21 @@ import {
   draftEditHabit,
   markTodayHabitAsCompleted
 } from '@actions/habit/habit-actions'
-import React, { useRef } from 'react'
+import { isCompletedToday } from '@helpers/habits'
+import { useAppDispatch } from '@hooks/redux'
+import { fonts } from '@styles/themes'
+import { Habit } from '@typings/state/habit-state'
+import React, { FC, useRef } from 'react'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
-import { useDispatch } from 'react-redux'
+import Animated, { interpolate } from 'react-native-reanimated'
+import { toggleEditHabitModal } from '@reducers/modal'
 import styled from 'styled-components/native'
-import { Habit } from '@typings/state/habit-state'
-import { toggleEditHabitModal } from '@actions/modal/modal-actions'
-import { isCompletedToday } from '@helpers/habits'
-import { fonts } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 import ActionComplete from './ActionComplete'
 import { getIcon } from './TopRow'
-import Animated, { interpolate } from 'react-native-reanimated'
 
 export const cardHeight = 100
 
@@ -26,9 +26,9 @@ type Props = {
   habit: Habit
 }
 
-const HabitCard = (props: Props) => {
+const HabitCard: FC<Props> = (props) => {
   const ref = useRef<Swipeable>(null)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { habit } = props
   const {
     habit: { period, dayStreak = 0 }

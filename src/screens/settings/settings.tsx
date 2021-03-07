@@ -1,15 +1,14 @@
-import { setTheme } from '@actions/user/user-actions'
 import { Title } from '@components/InfoRow'
 import { H2, PageTitle, SafeAreaView } from '@components/Primitives/Primitives'
 import SettingRow from '@components/SettingsSpecific/settingRow'
 import VersionInformation from '@components/SettingsSpecific/versionInformation'
-import TopInfo from '@components/TopInfo'
 import CONFIG from '@config/Config'
 import ROUTE from '@config/routes/Routes'
 import keyExtractor from '@helpers/KeyExtractor'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { getTheme } from '@selectors/UserSelectors'
+import { toggleTheme } from '@reducers/theme'
 import { darkTheme, lightTheme } from '@styles/themes'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC, memo } from 'react'
@@ -20,8 +19,6 @@ import {
   SectionListData
 } from 'react-native'
 import Rate, { AndroidMarket } from 'react-native-rate'
-import { useDispatch, useSelector } from 'react-redux'
-import { DefaultTheme } from 'styled-components'
 import styled from 'styled-components/native'
 
 const options = {
@@ -59,12 +56,12 @@ type SettingItem = {
 }
 
 const SettingsScreen: FC<Props> = ({ navigation }) => {
-  const dispatch = useDispatch()
-  const theme = useSelector(getTheme)
+  const dispatch = useAppDispatch()
+  const theme = useAppSelector((state) => state.theme.theme)
 
   const switchTheme = () => {
-    const newTheme = theme?.mode === 'dark' ? lightTheme : darkTheme
-    dispatch(setTheme(newTheme))
+    const newTheme = theme === 'dark' ? lightTheme : darkTheme
+    dispatch(toggleTheme(newTheme))
   }
 
   const rateApp = () => {
@@ -72,8 +69,7 @@ const SettingsScreen: FC<Props> = ({ navigation }) => {
     Rate.rate(options, () => undefined)
   }
 
-  const displayTheme = (t: DefaultTheme) =>
-    t?.mode === 'dark' ? 'Light' : 'Dark'
+  const displayTheme = (t: string) => (t === 'dark' ? 'Light' : 'Dark')
 
   const settings = [
     {
@@ -187,8 +183,6 @@ const SettingsScreen: FC<Props> = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <TopInfo />
-
       <SectionList
         ListHeaderComponent={<PageTitle>Settings</PageTitle>}
         sections={sections}

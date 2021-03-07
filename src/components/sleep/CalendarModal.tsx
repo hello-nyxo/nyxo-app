@@ -1,7 +1,7 @@
-import { toggleCalendarModal } from '@actions/modal/modal-actions'
 import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
 import useCalendar from '@hooks/calendar'
-import { getCalendarModal } from '@selectors/ModalSelectors'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { toggleCalendarModal } from '@reducers/modal'
 import { endOfDay, format, startOfDay, subDays, subYears } from 'date-fns'
 import React, { FC, useMemo } from 'react'
 import {
@@ -10,14 +10,13 @@ import {
   DateCallbackHandler
 } from 'react-native-calendars'
 import Modal, { ReactNativeModal } from 'react-native-modal'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 const minDate = subYears(new Date(), 3)
 
 const CalendarModal: FC = () => {
-  const isVisible = useSelector(getCalendarModal)
-  const dispatch = useDispatch()
+  const isVisible = useAppSelector(({ modal }) => modal.calendar)
+  const dispatch = useAppDispatch()
   const { selectedDate, selectDate } = useCalendar()
 
   const onDayPress: DateCallbackHandler = async ({ timestamp }) => {
@@ -28,7 +27,7 @@ const CalendarModal: FC = () => {
   }
 
   const toggleModal = () => {
-    dispatch(toggleCalendarModal())
+    dispatch(toggleCalendarModal(true))
   }
 
   const { markedDates } = useMemo(

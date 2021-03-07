@@ -1,17 +1,20 @@
-import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 export type Theme = 'light' | 'dark'
 
 type State = {
   theme: Theme
+  followSystemTheme: boolean
 }
 
-const themeSlice: CaseReducer<State, PayloadAction<string>> = createSlice({
+const initialState: State = {
+  theme: 'light',
+  followSystemTheme: false
+}
+
+const themeSlice = createSlice({
   name: 'themeSlice',
-  initialState: {
-    theme: 'light',
-    followSystemTheme: false
-  },
+  initialState,
   reducers: {
     toggleTheme: (state, action) => {
       state.theme = action.payload
@@ -22,6 +25,6 @@ const themeSlice: CaseReducer<State, PayloadAction<string>> = createSlice({
   }
 })
 
-export const { toggleTheme, setAccessToken } = themeSlice.actions
+export const { toggleTheme, toggleUseSystemTheme } = themeSlice.actions
 
 export default themeSlice.reducer

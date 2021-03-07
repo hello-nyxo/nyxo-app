@@ -1,27 +1,27 @@
-import { useNavigation } from '@react-navigation/core'
 import {
   handleHabitsFromCloudWhenLoggingIn,
   toggleMergingDialog
 } from '@actions/habit/habit-actions'
+import TranslatedText from '@components/TranslatedText'
+import ROUTE from '@config/routes/Routes'
 import { WIDTH } from '@helpers/Dimensions'
-import React, { memo, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { useNavigation } from '@react-navigation/core'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getMergingDialogDisplayed } from '@selectors/habit-selectors/habit-selectors'
 import { getUsername } from '@selectors/UserSelectors'
+import React, { memo, useState } from 'react'
 import styled from 'styled-components/native'
-import ROUTE from '@config/routes/Routes'
-import TranslatedText from '@components/TranslatedText'
 import { fonts } from '../../../styles/themes'
 
 const MergingDialog = () => {
   const navigation = useNavigation()
-  const dispatch = useDispatch()
-  const mergeDialogDisplayed = useSelector(getMergingDialogDisplayed)
+  const dispatch = useAppDispatch()
+  const mergeDialogDisplayed = useAppSelector(getMergingDialogDisplayed)
+  const username = useAppSelector(getUsername)
+  const loggedIn = useAppSelector(getAuthState)
 
   const [enableIndicator, setEnableIndicator] = useState(false)
-  const username = useSelector(getUsername) as string
-  const loggedIn = useSelector(getAuthState)
 
   if (!mergeDialogDisplayed) return null
 

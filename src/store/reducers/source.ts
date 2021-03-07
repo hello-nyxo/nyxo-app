@@ -1,22 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const appSlice = createSlice({
-  name: 'appSlice',
-  initialState: {
-    theme: 'light',
-    followSystemTheme: true,
-    accessToken: undefined
-  },
+type State = {
+  source:
+    | 'health-kit'
+    | 'google-fit'
+    | 'fitbit'
+    | 'garming'
+    | 'withings'
+    | 'oura'
+    | undefined
+}
+
+const initialState: State = {
+  source: undefined
+}
+
+const sourceSlice = createSlice({
+  name: 'sourceSlice',
+  initialState,
   reducers: {
-    toggleTheme: (state, action) => {
-      state.theme = action.payload
-    },
-    setAccessToken: (state, action) => {
-      state.accessToken = action.payload
+    setSource: (state, action) => {
+      state.source = action.payload
     }
   }
 })
 
-export const { toggleTheme, setAccessToken } = appSlice.actions
+export const { setSource } = sourceSlice.actions
 
-export default appSlice.reducer
+export default sourceSlice.reducer

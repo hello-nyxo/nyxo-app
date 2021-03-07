@@ -1,16 +1,16 @@
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
 import ROUTE from '@config/routes/Routes'
+import { useAppSelector } from '@hooks/redux'
 import { useNavigation } from '@react-navigation/core'
 import { getDataOnboardingCompleted } from '@selectors/OnboardingSelectors'
 import React, { FC } from 'react'
 import { Pressable } from 'react-native'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 export const OnboardingCard: FC = () => {
   const { navigate } = useNavigation()
-  const onboardingCompleted = useSelector(getDataOnboardingCompleted)
+  const onboardingCompleted = useAppSelector(getDataOnboardingCompleted)
 
   if (onboardingCompleted) return null
 

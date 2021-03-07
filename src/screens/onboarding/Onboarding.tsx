@@ -1,13 +1,15 @@
-import { register } from '@actions/auth/auth-actions'
-import { markDataOnboardingCompleted } from '@actions/onboarding/onboarding-actions'
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import { ExpandingDot } from '@components/micro-interactions/FlatListPageIndicator'
 import { H2, SafeAreaView } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import ROUTE from '@config/routes/Routes'
 import { HEIGHT, WIDTH } from '@helpers/Dimensions'
-import { useNavigation } from '@react-navigation/core'
-import colors from '@styles/colors'
+import { useAppDispatch } from '@hooks/redux'
+import { RouteProp } from '@react-navigation/core'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { register } from '@reducers/auth'
+import { toggleIntroductionCompleted } from '@reducers/onboarding'
+import { RootStackParamList } from '@typings/navigation/navigation'
 import PurchaseView from '@views/PurchaseView'
 import { RegisterView } from '@views/RegisterView'
 import { SourceSettingsView } from '@views/SourceView'
@@ -15,7 +17,6 @@ import React, { FC, useState } from 'react'
 import Modal from 'react-native-modal'
 import Animated from 'react-native-reanimated'
 import { useScrollHandler } from 'react-native-redash/lib/module/v1'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 
 const images = {
@@ -26,16 +27,29 @@ const images = {
   devices: require('@assets/onboarding/devices.png')
 }
 
-export const Onboarding: FC = () => {
+type OnboardingNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  ROUTE.ONBOARDING
+>
+
+type OnboardingScreenRouteProp = RouteProp<RootStackParamList, ROUTE.ONBOARDING>
+
+type Props = {
+  navigation: OnboardingNavigationProp
+  route: OnboardingScreenRouteProp
+}
+
+export const Onboarding: FC<Props> = ({ navigation: { navigate } }) => {
   const { x: scrollX, scrollHandler } = useScrollHandler()
-  const { navigate } = useNavigation()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const [dataModal, toggleDataModal] = useState(false)
   const [purchaseModal, togglePurchaseModal] = useState(false)
   const [authModal, toggleAuthModal] = useState(false)
 
-  const signUp = async (email: string, password: string) => {
-    await dispatch(register(email, password, authModalToggle))
+  const signUp = (email: string, password: string) => {
+    dispatch(register({ email, password })).then(() => {
+      authModalToggle()
+    })
   }
 
   const skip = () => {
@@ -43,7 +57,7 @@ export const Onboarding: FC = () => {
   }
 
   const done = () => {
-    dispatch(markDataOnboardingCompleted())
+    dispatch(toggleIntroductionCompleted(true))
     navigate(ROUTE.APP)
   }
 
@@ -70,7 +84,6 @@ export const Onboarding: FC = () => {
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={16}
         {...scrollHandler}>
         <Page>
           <ImageContainer>
@@ -208,7 +221,7 @@ const Page = styled.View`
 
 const Title = styled(H2)`
   text-align: center;
-  color: ${colors.darkBlue};
+  color: ${({ theme }) => theme.accent};
 `
 
 const Text = styled(TranslatedText)`
@@ -221,7 +234,7 @@ const Text = styled(TranslatedText)`
 `
 
 const Line = styled.View`
-  background-color: ${colors.darkBlue};
+  background-color: ${({ theme }) => theme.accent};
   height: 0px;
   width: 100%;
 `

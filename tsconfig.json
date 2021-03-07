@@ -54,6 +54,7 @@
       "@typings/*": ["./src/typings/*"],
       "@types/*": ["./src/Types/*"],
       "@styles/*": ["./src/styles/*"],
+      "@store/*": ["./src/store/*"],
       "@config/*": ["./src/config/*"],
       "@assets/*": ["./assets/*"],
       "@API": ["./src/API.ts"],
