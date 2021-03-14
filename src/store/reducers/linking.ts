@@ -1,5 +1,5 @@
 import CONFIG from '@config/Config'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { API, graphqlOperation } from '@aws-amplify/api'
 import Auth from '@aws-amplify/auth'
 import { updateConnectionId } from '@graphql/custom/mutations'
@@ -63,12 +63,25 @@ const linkingSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(linkAccount.fulfilled, (state, action) => {
-      state.code = action.payload
+    builder.addCase(linkAccount.pending, (state) => {
+      state.loading = 'pending'
     })
-    builder.addCase(removeLink.fulfilled, (state, action) => {
-      state.code = action.payload
+    builder.addCase(linkAccount.rejected, (state) => {
+      state.loading = 'idle'
     })
+    builder.addCase(
+      linkAccount.fulfilled,
+      (state, action: PayloadAction<string>) => {
+        state.code = action.payload
+        state.loading = 'idle'
+      }
+    )
+    builder.addCase(
+      removeLink.fulfilled,
+      (state, action: PayloadAction<undefined>) => {
+        state.code = action.payload
+      }
+    )
   }
 })
 

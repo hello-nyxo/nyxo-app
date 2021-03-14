@@ -1,10 +1,9 @@
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
 import { getWithingsEnabled } from '@selectors/api-selectors/api-selectors'
 import { captureException } from '@sentry/react-native'
 import CONFIG from '@config/Config'
-import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatWithingsSamples } from '@helpers/sleep/withings-helper'
 import { authorize, refresh, RefreshResult } from 'react-native-app-auth'
 import { AppThunk } from '@typings/redux-actions'
@@ -87,7 +86,7 @@ export const authorizeWithings = (): AppThunk => async (dispatch) => {
       tokenAdditionalParameters: { userid }
     })
 
-    await SetKeychainKeyValue(key, value, CONFIG.WITHINGS_CONFIG.bundleId)
+    await setKeychainValue(key, value, CONFIG.WITHINGS_CONFIG.bundleId)
 
     dispatch(
       withingsAuthorizeSuccess({
@@ -101,7 +100,7 @@ export const authorizeWithings = (): AppThunk => async (dispatch) => {
 }
 
 export const refreshWithingsToken = (): AppThunk => async (dispatch) => {
-  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await getKeychainParsedValue(
     CONFIG.WITHINGS_CONFIG.bundleId
   )) as unknown) as WithingsAuthorizeResult
 
@@ -128,7 +127,7 @@ export const refreshWithingsToken = (): AppThunk => async (dispatch) => {
         additionalParameters: { userid: user_id }
       })
 
-      await SetKeychainKeyValue(key, value, CONFIG.WITHINGS_CONFIG.bundleId)
+      await setKeychainValue(key, value, CONFIG.WITHINGS_CONFIG.bundleId)
 
       dispatch(
         withingsAuthorizeSuccess({
@@ -157,7 +156,7 @@ export const getWithingsSleep = (
   const {
     accessToken,
     accessTokenExpirationDate
-  } = ((await GetKeychainParsedValue(
+  } = ((await getKeychainParsedValue(
     CONFIG.WITHINGS_CONFIG.bundleId
   )) as unknown) as WithingsAuthorizeResult
 
@@ -184,7 +183,6 @@ export const getWithingsSleep = (
 
         const response = await withingsApiCall.json()
         const formattedResponse = formatWithingsSamples(response.body.series)
-        await dispatch(syncNightsToCloud(formattedResponse))
         await dispatch(fetchSleepSuccess(formattedResponse))
         await dispatch(fetchSleepWithingsSuccess())
       } else {

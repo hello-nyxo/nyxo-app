@@ -7,6 +7,8 @@ import calendarReducer from './calendar'
 import subscriptionReducer from './subscription'
 import modalReducer from './modal'
 import authReducer from './auth'
+import sourceReducer from './source'
+import nightsReducer from './nights'
 
 const rootReducer = combineReducers({
   theme: themeReducer,
@@ -16,7 +18,9 @@ const rootReducer = combineReducers({
   calendar: calendarReducer,
   subscription: subscriptionReducer,
   modal: modalReducer,
-  auth: authReducer
+  auth: authReducer,
+  source: sourceReducer,
+  nights: nightsReducer
 })
 
 export default rootReducer

@@ -1,6 +1,6 @@
 import { minutesToHoursString } from '@helpers/time'
 import { useAppSelector } from '@hooks/redux'
-import { getAsleepDuration, getInBedDuration } from '@selectors/night-selectors'
+import { getAsleepDuration, getInBedDuration } from '@reducers/nights'
 import { fonts } from '@styles/themes'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'

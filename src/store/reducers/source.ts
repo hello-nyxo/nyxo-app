@@ -1,26 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+export type Source =
+  | 'health-kit'
+  | 'google-fit'
+  | 'fitbit'
+  | 'polar'
+  | 'garmin'
+  | 'withings'
+  | 'oura'
 
 type State = {
-  source:
-    | 'health-kit'
-    | 'google-fit'
-    | 'fitbit'
-    | 'garming'
-    | 'withings'
-    | 'oura'
-    | undefined
+  source: Source | undefined
+  subSource: SubSource | undefined
+}
+
+export type SubSource = {
+  sourceName: string
+  sourceId: string
 }
 
 const initialState: State = {
-  source: undefined
+  source: undefined,
+  subSource: undefined
 }
 
 const sourceSlice = createSlice({
   name: 'sourceSlice',
   initialState,
   reducers: {
-    setSource: (state, action) => {
+    setSource: (state, action: PayloadAction<Source>) => {
       state.source = action.payload
+    },
+    setSubSource: (state, action: PayloadAction<SubSource>) => {
+      state.subSource = action.payload
     }
   }
 })

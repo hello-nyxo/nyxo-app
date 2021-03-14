@@ -7,7 +7,6 @@ import TranslatedText from '@components/TranslatedText'
 import { RegisterSchema } from '@config/Validation'
 import { WIDTH } from '@helpers/Dimensions'
 import { useAppSelector } from '@hooks/redux'
-import { getLoading } from '@selectors/auth-selectors/auth-selectors'
 import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
 import { Formik } from 'formik'
@@ -22,7 +21,7 @@ type Props = {
 }
 
 export const RegisterView: FC<Props> = ({ register, back, goToLogin }) => {
-  const loading = useAppSelector(getLoading)
+  const loading = useAppSelector(({ auth }) => auth.loading === 'pending')
 
   const signUp = async (email: string, password: string) => {
     await register(email, password)

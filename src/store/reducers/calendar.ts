@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createSelector } from '@reduxjs/toolkit'
+import { RootState } from '@store/store'
 
 type State = {
   selectedDay: string
@@ -21,3 +22,8 @@ const calendarSlice = createSlice({
 export const { setSelectedDay } = calendarSlice.actions
 
 export default calendarSlice.reducer
+
+export const getSelectedDate = createSelector(
+  (state: RootState) => state.calendar.selectedDay,
+  (date) => date
+)

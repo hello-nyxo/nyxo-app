@@ -7,7 +7,7 @@ import TranslatedText from '@components/TranslatedText'
 import { LoginSchema } from '@config/Validation'
 import { WIDTH } from '@helpers/Dimensions'
 import { useAppSelector } from '@hooks/redux'
-import { getLoading } from '@selectors/auth-selectors/auth-selectors'
+
 import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
 import { Formik } from 'formik'
@@ -22,7 +22,7 @@ type Props = {
 }
 
 const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
-  const loading = useAppSelector(getLoading)
+  const loading = useAppSelector(({ auth }) => auth.loading)
 
   const submit = ({ email, password }: { email: string; password: string }) => {
     login(email, password)
@@ -89,7 +89,7 @@ const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
             </Container>
 
             <BottomButton
-              loading={loading}
+              loading={loading === 'pending'}
               disabled={!isValid || (!touched.email && !touched.password)}
               onPress={handleSubmit}
               title="BUTTON_SIGNIN"

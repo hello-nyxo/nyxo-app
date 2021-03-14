@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { useNavigation } from '@react-navigation/core'
 import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getMergingDialogDisplayed } from '@selectors/habit-selectors/habit-selectors'
-import { getUsername } from '@selectors/UserSelectors'
 import React, { memo, useState } from 'react'
 import styled from 'styled-components/native'
 import { fonts } from '../../../styles/themes'
@@ -18,7 +17,7 @@ const MergingDialog = () => {
   const navigation = useNavigation()
   const dispatch = useAppDispatch()
   const mergeDialogDisplayed = useAppSelector(getMergingDialogDisplayed)
-  const username = useAppSelector(getUsername)
+  const username = useAppSelector(({ auth }) => auth.email)
   const loggedIn = useAppSelector(getAuthState)
 
   const [enableIndicator, setEnableIndicator] = useState(false)

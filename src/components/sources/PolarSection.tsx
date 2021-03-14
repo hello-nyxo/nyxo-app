@@ -1,6 +1,5 @@
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
-import { getIsPolarMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { togglePolar } from '@actions/api-actions/polar-actions'
@@ -8,7 +7,9 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux'
 
 const PolarSection: FC = () => {
   const dispatch = useAppDispatch()
-  const isPolarMainSource = useAppSelector(getIsPolarMainSource)
+  const isPolarMainSource = useAppSelector(
+    ({ source }) => source.source === 'polar'
+  )
 
   const setPolarAsSource = () => {
     dispatch(togglePolar())

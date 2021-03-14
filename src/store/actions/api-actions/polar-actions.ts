@@ -2,7 +2,7 @@ import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previ
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import { getPolarEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from '@config/Config'
-import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatPolarSamples } from '@helpers/sleep/polar-helper'
 import { authorize } from 'react-native-app-auth'
 import { AppThunk } from '@typings/redux-actions'
@@ -81,7 +81,7 @@ export const authorizePolar = (): AppThunk => async (dispatch) => {
       tokenAdditionalParameters: { x_user_id }
     })
 
-    await SetKeychainKeyValue(key, value, CONFIG.POLAR_CONFIG.bundleId)
+    await setKeychainValue(key, value, CONFIG.POLAR_CONFIG.bundleId)
 
     dispatch(
       polarAuthorizeSuccess({
@@ -97,7 +97,7 @@ export const revokePolarAccess = (): AppThunk => async (dispatch) => {
     const {
       accessToken,
       tokenAdditionalParameters: { x_user_id: userid }
-    } = ((await GetKeychainParsedValue(
+    } = ((await getKeychainParsedValue(
       CONFIG.POLAR_CONFIG.bundleId
     )) as unknown) as PolarAuthorizeResult
 
@@ -120,7 +120,7 @@ export const getPolarSleep = (
   const {
     accessToken,
     accessTokenExpirationDate
-  } = ((await GetKeychainParsedValue(
+  } = ((await getKeychainParsedValue(
     CONFIG.POLAR_CONFIG.bundleId
   )) as unknown) as PolarAuthorizeResult
 

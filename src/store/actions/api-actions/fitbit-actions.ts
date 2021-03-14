@@ -1,7 +1,7 @@
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import CONFIG from '@config/Config'
-import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatFitbitSamples } from '@helpers/sleep/fitbit-helper'
 import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'
 import { captureException } from '@sentry/react-native'
@@ -92,7 +92,7 @@ export const authorizeFitbit = (): AppThunk => async (dispatch) => {
       tokenAdditionalParameters: { user_id }
     })
 
-    await SetKeychainKeyValue(key, value, CONFIG.FITBIT_CONFIG.bundleId)
+    await setKeychainValue(key, value, CONFIG.FITBIT_CONFIG.bundleId)
 
     await dispatch(
       fitbitAuthorizeSuccess({
@@ -106,7 +106,7 @@ export const authorizeFitbit = (): AppThunk => async (dispatch) => {
 }
 
 export const refreshFitbitToken = (): AppThunk => async (dispatch) => {
-  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await getKeychainParsedValue(
     CONFIG.FITBIT_CONFIG.bundleId
   )) as unknown) as FitbitAuthorizeResult
 
@@ -132,7 +132,7 @@ export const refreshFitbitToken = (): AppThunk => async (dispatch) => {
         tokenAdditionalParameters: { user_id }
       })
 
-      await SetKeychainKeyValue(key, value, CONFIG.FITBIT_CONFIG.bundleId)
+      await setKeychainValue(key, value, CONFIG.FITBIT_CONFIG.bundleId)
 
       dispatch(
         fitbitAuthorizeSuccess({
@@ -150,7 +150,7 @@ export const refreshFitbitToken = (): AppThunk => async (dispatch) => {
 }
 
 export const revokeFitbitAccess = (): AppThunk => async (dispatch) => {
-  const { accessToken } = ((await GetKeychainParsedValue(
+  const { accessToken } = ((await getKeychainParsedValue(
     CONFIG.FITBIT_CONFIG.bundleId
   )) as unknown) as FitbitAuthorizeResult
 
@@ -175,7 +175,7 @@ export const getFitbitSleep = (): AppThunk => async (dispatch) => {
     accessTokenExpirationDate,
     // eslint-disable-next-line camelcase
     tokenAdditionalParameters: { user_id }
-  } = ((await GetKeychainParsedValue(
+  } = ((await getKeychainParsedValue(
     CONFIG.FITBIT_CONFIG.bundleId
   )) as unknown) as FitbitAuthorizeResult
 

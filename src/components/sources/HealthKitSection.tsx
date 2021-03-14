@@ -6,11 +6,6 @@ import EmptyState from '@components/EmptyState'
 import SourceRow from '@components/SettingsSpecific/SourceRow'
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
-import {
-  getAllHealthKitSources,
-  getHealthKitSource,
-  getIsHealthKitMainSource
-} from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
@@ -18,7 +13,9 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux'
 const HealthKitSection: FC = () => {
   const dispatch = useAppDispatch()
   const sources = useAppSelector(getAllHealthKitSources)
-  const isHealthKitMainSource = useAppSelector(getIsHealthKitMainSource)
+  const isHealthKitMainSource = useAppSelector(
+    ({ source }) => source.source === 'health-kit'
+  )
   const healthKitSource = useAppSelector(getHealthKitSource)
 
   const onPress = (sourceId: string) => {

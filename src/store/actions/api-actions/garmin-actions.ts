@@ -1,7 +1,7 @@
 import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import CONFIG from '@config/Config'
-import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import {
   formatGarminSamples,
   generateSleepApiCall
@@ -128,7 +128,7 @@ export const authorizeGarminIOS = (): AppThunk => async (dispatch) => {
       accessTokenSecret
     })
 
-    await SetKeychainKeyValue(key, value, CONFIG.GARMIN_CONFIG.bundleId)
+    await setKeychainValue(key, value, CONFIG.GARMIN_CONFIG.bundleId)
 
     await dispatch(
       garminAuthorizeSuccess({
@@ -153,7 +153,7 @@ export const getGarminOauthVerifierAndroid = (): AppThunk => async () => {
       oauth_token_secret
     } = await getRequestTokenResponse.json()
 
-    const { accessToken, accessTokenSecret } = ((await GetKeychainParsedValue(
+    const { accessToken, accessTokenSecret } = ((await getKeychainParsedValue(
       CONFIG.GARMIN_CONFIG.bundleId
     )) as unknown) as GarminAuthorizeResult
 
@@ -164,7 +164,7 @@ export const getGarminOauthVerifierAndroid = (): AppThunk => async () => {
       accessTokenSecret
     })
 
-    await SetKeychainKeyValue(key, value, CONFIG.GARMIN_CONFIG.bundleId)
+    await setKeychainValue(key, value, CONFIG.GARMIN_CONFIG.bundleId)
 
     const callbackUri = 'nyxo://garmin'
 
@@ -183,7 +183,7 @@ export const getGarminAccessTokenAndroid = (
   try {
     const {
       oauthTokenSecret: oauth_token_secret
-    } = ((await GetKeychainParsedValue(
+    } = ((await getKeychainParsedValue(
       CONFIG.GARMIN_CONFIG.bundleId
     )) as unknown) as GarminAuthorizeResult
 
@@ -211,7 +211,7 @@ export const getGarminAccessTokenAndroid = (
       oauthTokenSecret: oauth_token_secret
     })
 
-    await SetKeychainKeyValue(key, value, CONFIG.GARMIN_CONFIG.bundleId)
+    await setKeychainValue(key, value, CONFIG.GARMIN_CONFIG.bundleId)
 
     await dispatch(
       garminAuthorizeSuccess({
@@ -229,7 +229,7 @@ export const getGarminSleep = (
   _startDate?: string,
   _endDate?: string
 ): AppThunk => async (dispatch) => {
-  const { accessToken, accessTokenSecret } = ((await GetKeychainParsedValue(
+  const { accessToken, accessTokenSecret } = ((await getKeychainParsedValue(
     CONFIG.GARMIN_CONFIG.bundleId
   )) as unknown) as GarminAuthorizeResult
 

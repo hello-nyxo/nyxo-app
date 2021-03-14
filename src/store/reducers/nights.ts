@@ -1,8 +1,6 @@
 import { matchDayAndNight } from '@helpers/sleep/sleep-data-helper'
-import { getSelectedDate } from '@selectors/calendar-selectors'
-import { getSharedSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
-import { Night, Value } from '@typings/Sleepdata'
-import { State } from '@typings/State'
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '@store/store'
 import { deviation, max, mean, min } from 'd3'
 import {
   addMilliseconds,
@@ -12,16 +10,59 @@ import {
   startOfDay,
   subDays
 } from 'date-fns'
-import { createSelector } from 'reselect'
+import { getSelectedDate } from './calendar'
 
-const getNights = (state: State) => state?.nights?.nights
+export type Night = {
+  id: string
+  source?: string
+  sourceId: string
+  sourceName: string
+  value: 'INBED' | 'ASLEEP' | 'AWAKE'
+  startDate: string
+  endDate: string
+  totalDuration: number
+}
+
+type State = Array<Night>
+
+const initialState: State = []
+
+const nightsSlice = createSlice({
+  name: 'nightsSlice',
+  initialState,
+  reducers: {
+    addNights: (state, action: PayloadAction<Array<Night>>) => {
+      const nights: Night[] = []
+      state.forEach((night) => {
+        if (nights.find((n) => n.id === night.id)) {
+          return
+        }
+        nights.push(night)
+      })
+
+      action.payload.forEach((night) => {
+        if (nights.find((n) => n.id === night.id)) {
+          return
+        }
+        nights.push(night)
+      })
+      state.splice(0, state.length, ...nights)
+    }
+  }
+})
+
+export const { addNights } = nightsSlice.actions
+
+export default nightsSlice.reducer
+
+const getNights = (state: RootState) => state.nights
 
 export const getNightForSelectedDate = createSelector(
-  [getNights, getSelectedDate, getSharedSource],
+  [getNights, getSelectedDate, (state) => state.source.source],
   (nights, selectedDate, tracker) => {
     return nights
       .filter((night) => {
-        return night.sourceId === tracker.sourceId
+        return night.sourceId === tracker
       })
       .filter((night) => {
         return matchDayAndNight(night.startDate, selectedDate)
@@ -33,7 +74,7 @@ export const getInBedDuration = createSelector(
   [getNightForSelectedDate],
   (nights: Night[]) =>
     nights
-      .filter((night) => night.value === Value.InBed)
+      .filter((night) => night.value === 'INBED')
       .reduce(
         (accumulator, currentValue) => accumulator + currentValue.totalDuration,
         0
@@ -44,7 +85,7 @@ export const getAsleepDuration = createSelector(
   [getNightForSelectedDate],
   (nights: Night[]) =>
     nights
-      .filter((night) => night.value === Value.Asleep)
+      .filter((night) => night.value === 'ASLEEP')
       .reduce(
         (accumulator, currentValue) => accumulator + currentValue.totalDuration,
         0

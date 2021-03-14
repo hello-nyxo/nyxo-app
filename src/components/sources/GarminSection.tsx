@@ -1,6 +1,5 @@
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
-import { getIsGarminMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { toggleGarmin } from '@actions/api-actions/garmin-actions'
@@ -8,7 +7,9 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux'
 
 const GarminSection: FC = () => {
   const dispatch = useAppDispatch()
-  const isGarminMainSource = useAppSelector(getIsGarminMainSource)
+  const isGarminMainSource = useAppSelector(
+    ({ source }) => source.source === 'garmin'
+  )
 
   const setGarminAsSource = async () => {
     dispatch(toggleGarmin())

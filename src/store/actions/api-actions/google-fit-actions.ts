@@ -5,13 +5,11 @@ import {
   updateGoogleFitSources
 } from '@actions/sleep-source-actions/sleep-source-actions'
 import { fetchSleepSuccess } from '@actions/sleep/health-kit-actions'
-import { syncNightsToCloud } from '@actions/sleep/night-cloud-actions'
 import CONFIG from '@config/Config'
-import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { getGoogleFitToken } from '@helpers/oauth/google-fit'
 import { formatGoogleFitData } from '@helpers/sleep/google-fit-helper'
 import { getGoogleFitEnabled } from '@selectors/api-selectors/api-selectors'
-import { getGoogleFitSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import { captureException } from '@sentry/react-native'
 import { AppThunk } from '@typings/redux-actions'
 import { Night } from '@typings/Sleepdata'
@@ -85,7 +83,7 @@ export const authorizeGoogleFit = (): AppThunk => async (dispatch) => {
       accessToken
     })
 
-    await SetKeychainKeyValue(key, value, GOOGLE_FIT_KEYCHAIN_SERVICE)
+    await setKeychainValue(key, value, GOOGLE_FIT_KEYCHAIN_SERVICE)
 
     dispatch(
       googleFitAuthorizeSuccess({
@@ -108,7 +106,7 @@ export const authorizeGoogleFit = (): AppThunk => async (dispatch) => {
 export const refreshGoogleFitToken = (): AppThunk<
   Promise<string | null>
 > => async (dispatch): Promise<string | null> => {
-  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await getKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
   )) as unknown) as GoogleFitResponse
 
@@ -133,7 +131,7 @@ export const refreshGoogleFitToken = (): AppThunk<
         accessToken
       })
 
-      await SetKeychainKeyValue(key, value, GOOGLE_FIT_KEYCHAIN_SERVICE)
+      await setKeychainValue(key, value, GOOGLE_FIT_KEYCHAIN_SERVICE)
 
       return accessToken
     } catch (error) {
@@ -151,7 +149,7 @@ export const refreshGoogleFitToken = (): AppThunk<
 }
 
 export const revokeGoogleFitAccess = (): AppThunk => async (dispatch) => {
-  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await getKeychainParsedValue(
     GOOGLE_FIT_KEYCHAIN_SERVICE
   )) as unknown) as GoogleFitResponse
 
@@ -192,7 +190,6 @@ export const readGoogleFitSleep = (
     const response = await googleApiCall.json()
 
     const formatted = await formatGoogleFitData(response.session)
-    await dispatch(syncNightsToCloud(formatted))
     await dispatch(createGoogleFitSources(formatted))
     await dispatch(fetchSleepSuccess(formatted))
   } catch (error) {

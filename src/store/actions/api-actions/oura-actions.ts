@@ -3,7 +3,7 @@ import { setMainSource } from '@actions/sleep-source-actions/sleep-source-action
 import { getOuraEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from '@config/Config'
 import { format, isAfter } from 'date-fns'
-import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatOuraSamples } from '@helpers/sleep/oura-helper'
 import { authorize, refresh } from 'react-native-app-auth'
 import { AppThunk } from '@typings/redux-actions'
@@ -82,7 +82,7 @@ export const authorizeOura = (): AppThunk => async (dispatch) => {
       accessToken
     })
 
-    await SetKeychainKeyValue(key, value, CONFIG.OURA_CONFIG.bundleId)
+    await setKeychainValue(key, value, CONFIG.OURA_CONFIG.bundleId)
 
     dispatch(
       ouraAuthorizeSuccess({
@@ -97,7 +97,7 @@ export const authorizeOura = (): AppThunk => async (dispatch) => {
 }
 
 export const refreshOuraToken = (): AppThunk => async (dispatch) => {
-  const { refreshToken: oldToken } = ((await GetKeychainParsedValue(
+  const { refreshToken: oldToken } = ((await getKeychainParsedValue(
     CONFIG.OURA_CONFIG.bundleId
   )) as unknown) as OuraAuthorizeResult
 
@@ -117,7 +117,7 @@ export const refreshOuraToken = (): AppThunk => async (dispatch) => {
         accessToken
       })
 
-      await SetKeychainKeyValue(key, value, CONFIG.OURA_CONFIG.bundleId)
+      await setKeychainValue(key, value, CONFIG.OURA_CONFIG.bundleId)
 
       dispatch(
         ouraAuthorizeSuccess({
@@ -146,7 +146,7 @@ export const getOuraSleep = (
   const {
     accessToken,
     accessTokenExpirationDate
-  } = ((await GetKeychainParsedValue(
+  } = ((await getKeychainParsedValue(
     CONFIG.OURA_CONFIG.bundleId
   )) as unknown) as OuraAuthorizeResult
 

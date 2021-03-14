@@ -14,7 +14,6 @@ import {
   getHabitsMap,
   getUnsyncedHabits
 } from '@selectors/habit-selectors/habit-selectors'
-import { getUsername } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
 import { AppThunk } from '@typings/redux-actions'
 import { Habit, MutationType, UnsyncedHabit } from '@typings/state/habit-state'
@@ -229,7 +228,7 @@ const syncHabit = (
   mutationType: MutationType,
   habit: Habit
 ): AppThunk => async (dispatch, getState) => {
-  const username = getUsername(getState())
+  const { username } = getState()
   const loggedIn = getAuthState(getState())
 
   if (loggedIn) {

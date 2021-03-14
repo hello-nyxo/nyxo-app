@@ -1,5 +1,5 @@
 import CONFIG from '@config/Config'
-import { GetKeychainParsedValue, SetKeychainKeyValue } from '@helpers/Keychain'
+import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { captureException } from '@sentry/react-native'
 import { GoogleFitResponse } from '@typings/State/api-state'
 import { isAfter } from 'date-fns'
@@ -14,7 +14,7 @@ export const getGoogleFitToken = async (): Promise<GoogleFitResponse> => {
       accessToken,
       accessTokenExpirationDate,
       refreshToken: oldToken
-    } = ((await GetKeychainParsedValue(
+    } = ((await getKeychainParsedValue(
       GOOGLE_FIT_KEYCHAIN_SERVICE
     )) as unknown) as GoogleFitResponse
 
@@ -49,7 +49,7 @@ export const getGoogleFitToken = async (): Promise<GoogleFitResponse> => {
       accessToken
     })
 
-    await SetKeychainKeyValue(
+    await setKeychainValue(
       GOOGLE_FIT_KEYCHAIN_SERVICE,
       value,
       GOOGLE_FIT_KEYCHAIN_SERVICE

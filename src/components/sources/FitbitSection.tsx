@@ -1,13 +1,14 @@
 import { toggleFitbit } from '@actions/api-actions/fitbit-actions'
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
-import { getIsFitbitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 
 const FitbitSection: FC = () => {
   const dispatch = useAppDispatch()
-  const isFitbitMainSource = useAppSelector(getIsFitbitMainSource)
+  const isFitbitMainSource = useAppSelector(
+    ({ source }) => source.source === 'fitbit'
+  )
 
   const setFitbitAsSource = () => {
     dispatch(toggleFitbit())

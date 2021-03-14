@@ -1,6 +1,5 @@
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
-import { getIsWithingsMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
 import { toggleWithings } from '@actions/api-actions/withings-actions'
 import { constants } from '@styles/themes'
@@ -8,7 +7,9 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux'
 
 const WithingsSection: FC = () => {
   const dispatch = useAppDispatch()
-  const isWithingsMainSource = useAppSelector(getIsWithingsMainSource)
+  const isWithingsMainSource = useAppSelector(
+    ({ source }) => source.source === 'polar'
+  )
 
   const setWithingsAsSource = () => {
     dispatch(toggleWithings())
