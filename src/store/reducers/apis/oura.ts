@@ -12,43 +12,35 @@ type State = {
   loading: 'idle' | 'pending'
   authorized: boolean
   accessTokenExpirationDate: string | undefined
-  userID: string | undefined
 }
 
 const initialState: State = {
   loading: 'idle',
   authorized: false,
-  accessTokenExpirationDate: undefined,
-  userID: undefined
+  accessTokenExpirationDate: undefined
 }
 
 type Response = {
-  userID: string
   accessTokenExpirationDate: string
 }
 
 type Arguments = undefined
 
-export interface FitbitAuthorizeResult extends AuthorizeResult {
-  refreshToken: string
-  tokenAdditionalParameters: {
-    user_id: string
-  }
-}
+export type OuraAuthorizeResult = AuthorizeResult
 
-export const authorizeFitbit = createAsyncThunk<Response, Arguments>(
-  'fitbit/authorize',
+export const authorizeOura = createAsyncThunk<Response, Arguments>(
+  'oura/authorize',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await authorize(CONFIG.FITBIT_CONFIG)
+      const response = await authorize(CONFIG.OURA_CONFIG)
 
       await setKeychainValue(
-        CONFIG.FITBIT_CONFIG.bundleId,
+        CONFIG.OURA_CONFIG.bundleId,
         JSON.stringify({
           refreshToken: response.refreshToken,
           accessToken: response.accessToken
         }),
-        CONFIG.FITBIT_CONFIG.bundleId
+        CONFIG.OURA_CONFIG.bundleId
       )
 
       if (typeof response?.tokenAdditionalParameters?.user_id === 'undefined') {
@@ -65,17 +57,17 @@ export const authorizeFitbit = createAsyncThunk<Response, Arguments>(
   }
 )
 
-export const revokeFitbitAccess = createAsyncThunk<boolean, Arguments>(
-  'fitbit/revoke',
+export const revokeOuraAccess = createAsyncThunk<boolean, Arguments>(
+  'oura/revoke',
   async (_, { rejectWithValue }) => {
     try {
-      const fitbit = await getKeychainParsedValue<FitbitAuthorizeResult>(
-        CONFIG.FITBIT_CONFIG.bundleId
+      const oura = await getKeychainParsedValue<OuraAuthorizeResult>(
+        CONFIG.OURA_CONFIG.bundleId
       )
 
-      if (fitbit) {
-        await revoke(CONFIG.FITBIT_CONFIG, {
-          tokenToRevoke: fitbit?.accessToken,
+      if (oura) {
+        await revoke(CONFIG.OURA_CONFIG, {
+          tokenToRevoke: oura?.accessToken,
           includeBasicAuth: true
         })
         return false
@@ -88,26 +80,26 @@ export const revokeFitbitAccess = createAsyncThunk<boolean, Arguments>(
   }
 )
 
-export const refreshToken = createAsyncThunk<
+export const refreshOuraToken = createAsyncThunk<
   { accessTokenExpirationDate: string },
   Arguments
->('fitbit/refresh', async (_, { rejectWithValue }) => {
+>('oura/refresh', async (_, { rejectWithValue }) => {
   try {
-    const fitbit = await getKeychainParsedValue<FitbitAuthorizeResult>(
-      CONFIG.FITBIT_CONFIG.bundleId
+    const oura = await getKeychainParsedValue<OuraAuthorizeResult>(
+      CONFIG.OURA_CONFIG.bundleId
     )
-    if (fitbit?.accessToken) {
-      const response = await refresh(CONFIG.FITBIT_CONFIG, {
-        refreshToken: fitbit?.accessToken
+    if (oura?.accessToken) {
+      const response = await refresh(CONFIG.OURA_CONFIG, {
+        refreshToken: oura?.accessToken
       })
 
       await setKeychainValue(
-        CONFIG.FITBIT_CONFIG.bundleId,
+        CONFIG.OURA_CONFIG.bundleId,
         JSON.stringify({
           refreshToken: response.refreshToken,
           accessToken: response.accessToken
         }),
-        CONFIG.FITBIT_CONFIG.bundleId
+        CONFIG.OURA_CONFIG.bundleId
       )
 
       return {
@@ -120,53 +112,50 @@ export const refreshToken = createAsyncThunk<
   }
 })
 
-const fitbitSlice = createSlice({
-  name: 'fitbitSlice',
+const ouraSlice = createSlice({
+  name: 'ouraSlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     // Authorize
-    builder.addCase(authorizeFitbit.fulfilled, (state, action) => {
+    builder.addCase(authorizeOura.fulfilled, (state, action) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = action.payload.accessTokenExpirationDate
-      state.userID = action.payload.userID
       state.authorized = true
     })
-    builder.addCase(authorizeFitbit.pending, (state) => {
+    builder.addCase(authorizeOura.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(authorizeFitbit.rejected, (state) => {
+    builder.addCase(authorizeOura.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = true
     })
     // Revoke
-    builder.addCase(revokeFitbitAccess.fulfilled, (state) => {
+    builder.addCase(revokeOuraAccess.fulfilled, (state) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = undefined
-      state.userID = undefined
       state.authorized = false
     })
-    builder.addCase(revokeFitbitAccess.pending, (state) => {
+    builder.addCase(revokeOuraAccess.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(revokeFitbitAccess.rejected, (state) => {
+    builder.addCase(revokeOuraAccess.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = true
     })
     // Refresh
-    builder.addCase(refreshToken.fulfilled, (state) => {
+    builder.addCase(refreshOuraToken.fulfilled, (state) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = undefined
     })
-    builder.addCase(refreshToken.pending, (state) => {
+    builder.addCase(refreshOuraToken.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(refreshToken.rejected, (state) => {
+    builder.addCase(refreshOuraToken.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = false
-      state.userID = undefined
     })
   }
 })
 
-export default fitbitSlice.reducer
+export default ouraSlice.reducer

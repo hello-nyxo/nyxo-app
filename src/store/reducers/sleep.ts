@@ -58,7 +58,7 @@ export const fetchWithings = createAsyncThunk<Response, Arguments>(
 
 export const fetchFitbit = createAsyncThunk<Response, Arguments>(
   'fitbit/fetch',
-  async ({ startDate, endDate }, { rejectWithValue, dispatch }) => {
+  async ({ startDate, endDate }, { dispatch }) => {
     const start = format(new Date(startDate), 'YYYY-MM-DD')
     const end = format(new Date(endDate), 'YYYY-MM-DD')
     const accessToken = undefined
@@ -84,7 +84,7 @@ const sleepSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // Fetch Withings
-    builder.addCase(fetchWithings.fulfilled, (state, action) => {
+    builder.addCase(fetchWithings.fulfilled, (state) => {
       state.loading = 'idle'
     })
     builder.addCase(fetchWithings.pending, (state) => {
@@ -94,7 +94,7 @@ const sleepSlice = createSlice({
       state.loading = 'idle'
     })
     // Fetch Fitbit
-    builder.addCase(fetchFitbit.fulfilled, (state, action) => {
+    builder.addCase(fetchFitbit.fulfilled, (state) => {
       state.loading = 'idle'
     })
     builder.addCase(fetchFitbit.pending, (state) => {
@@ -107,58 +107,3 @@ const sleepSlice = createSlice({
 })
 
 export default sleepSlice.reducer
-
-// export const getFitbitSleep = (): AppThunk => async (dispatch) => {
-//     const {
-//       accessToken,
-//       accessTokenExpirationDate,
-//       // eslint-disable-next-line camelcase
-//       tokenAdditionalParameters: { user_id }
-//     } = ((await getKeychainParsedValue(
-//       CONFIG.FITBIT_CONFIG.bundleId
-//     )) as unknown) as FitbitAuthorizeResult
-
-//     const startDate = format(subWeeks(new Date(), 1), 'YYYY-MM-DD')
-//     const endDate = format(new Date(), 'YYYY-MM-DD')
-
-//     dispatch(fetchSleepFitbitStart())
-//     if (accessToken) {
-//       try {
-//         if (isAfter(new Date(accessTokenExpirationDate), new Date())) {
-//           const fitbitApiCall = await fetch(
-//             `https://api.fitbit.com/1.2/user/${user_id}/sleep/date/${startDate}/${endDate}.json`,
-//             {
-//               method: 'GET',
-//               headers: {
-//                 Authorization: `Bearer ${accessToken}`,
-//                 'Content-Type': 'application/json'
-//               }
-//             }
-//           )
-//           const response = await fitbitApiCall.json()
-//           const formattedResponse = formatFitbitSamples(response.sleep)
-//           await dispatch(fetchSleepSuccess(formattedResponse))
-//           await dispatch(fetchSleepFitbitSuccess())
-//         } else {
-//           const freshToken = await dispatch(refreshFitbitToken())
-//           const fitbitApiCall = await fetch(
-//             `https://api.fitbit.com/1.2/user/${user_id}/sleep/date/${startDate}/${endDate}.json`,
-//             {
-//               method: 'GET',
-//               headers: {
-//                 Authorization: `Bearer ${freshToken}`,
-//                 'Content-Type': 'application/json'
-//               }
-//             }
-//           )
-//           const response = await fitbitApiCall.json()
-//           const formattedResponse = formatFitbitSamples(response.sleep)
-//           await dispatch(fetchSleepSuccess(formattedResponse))
-//           await dispatch(fetchSleepFitbitSuccess())
-//         }
-//       } catch (error) {
-//         captureException(error)
-//         dispatch(fetchSleepFitbitFailure())
-//       }
-//     }
-//   }

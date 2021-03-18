@@ -8,7 +8,6 @@ import {
   convertRemoteHabitsToLocalHabits,
   shouldResetDayStreak
 } from '@helpers/habits'
-import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import {
   getHabits,
   getHabitsMap,
@@ -186,7 +185,9 @@ const stashHabitToSync = (
   habit: Habit,
   mutationType: MutationType
 ): AppThunk => async (dispatch, getState) => {
-  const loggedIn = getAuthState(getState())
+  const {
+    auth: { authenticated: loggedIn }
+  } = getState()
   const unsyncedHabits = getUnsyncedHabits(getState())
 
   if (loggedIn) {

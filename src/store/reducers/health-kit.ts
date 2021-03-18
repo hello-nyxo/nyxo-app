@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import appleHealthKit from 'react-native-healthkit'
+import appleHealthKit, { SleepSample } from 'react-native-healthkit'
 
 const healthKitOptions = {
   permissions: {
@@ -37,11 +37,44 @@ export const initHealthKit = createAsyncThunk(
   }
 )
 
+type FetchArguments = {
+  startDate: string
+  endDate: string
+}
+
+export const fetchHealthKit = createAsyncThunk<FetchArguments>(
+  'healthKit/fetch',
+  async ({ startDate, endDate }, { rejectWithValue }) => {
+    try {
+      const result = new Promise<Array<SleepSample>>((resolve, reject) => {
+        appleHealthKit.getSleepSamples(
+          {
+            startDate,
+            endDate
+          },
+          async (error: string, response: Array<SleepSample>) => {
+            if (error) {
+              reject(error)
+            } else {
+              resolve(response)
+            }
+          }
+        )
+      })
+
+      return result
+    } catch (error) {
+      return rejectWithValue(undefined)
+    }
+  }
+)
+
 const healthKitSlice = createSlice({
   name: 'healthKitSlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // Init
     builder.addCase(
       initHealthKit.fulfilled,
       (state, action: PayloadAction<boolean>) => {
@@ -54,6 +87,16 @@ const healthKitSlice = createSlice({
     })
     builder.addCase(initHealthKit.rejected, (state) => {
       state.inited = false
+      state.loading = 'idle'
+    })
+    // Fetch
+    builder.addCase(fetchHealthKit.fulfilled, (state) => {
+      state.loading = 'idle'
+    })
+    builder.addCase(fetchHealthKit.pending, (state) => {
+      state.loading = 'pending'
+    })
+    builder.addCase(fetchHealthKit.rejected, (state) => {
       state.loading = 'idle'
     })
   }

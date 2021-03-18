@@ -1,16 +1,14 @@
-import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { getOuraEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from '@config/Config'
-import { format, isAfter } from 'date-fns'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatOuraSamples } from '@helpers/sleep/oura-helper'
-import { authorize, refresh } from 'react-native-app-auth'
+import { getOuraEnabled } from '@selectors/api-selectors/api-selectors'
+import { captureException } from '@sentry/react-native'
 import { AppThunk } from '@typings/redux-actions'
 import { OuraAuthorizeResult, ResponseBase } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
-import { captureException } from '@sentry/react-native'
-import { fetchSleepSuccess } from '../sleep/health-kit-actions'
+import { format, isAfter } from 'date-fns'
+import { authorize, refresh } from 'react-native-app-auth'
 import {
   ApiActions,
   FETCH_SLEEP_OURA_FAILURE,

@@ -1,7 +1,3 @@
-import {
-  changeHealthKitSource,
-  toggleHealthKit
-} from '@actions/sleep-source-actions/sleep-source-actions'
 import EmptyState from '@components/EmptyState'
 import SourceRow from '@components/SettingsSpecific/SourceRow'
 import TranslatedText from '@components/TranslatedText'
@@ -9,24 +5,26 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { initHealthKit } from '@reducers/health-kit'
+import { setSubSource } from '@reducers/source'
 
 const HealthKitSection: FC = () => {
   const dispatch = useAppDispatch()
-  const sources = useAppSelector(getAllHealthKitSources)
+  const sources = []
   const isHealthKitMainSource = useAppSelector(
     ({ source }) => source.source === 'health-kit'
   )
-  const healthKitSource = useAppSelector(getHealthKitSource)
+  const healthKitSource = useAppSelector(({ source }) => source.subSource)
 
   const onPress = (sourceId: string) => {
     const source = sources?.find((s) => s.sourceId === sourceId)
     if (source) {
-      dispatch(changeHealthKitSource(source))
+      dispatch(setSubSource(source))
     }
   }
 
   const setHealthKitAsMainSource = () => {
-    dispatch(toggleHealthKit())
+    dispatch(initHealthKit())
   }
 
   const mapped = sources?.map((item) => (

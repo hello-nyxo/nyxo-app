@@ -1,5 +1,3 @@
-import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
-import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import CONFIG from '@config/Config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatFitbitSamples } from '@helpers/sleep/fitbit-helper'
@@ -14,7 +12,6 @@ import {
 import { SOURCE } from '@typings/state/sleep-source-state'
 import { format, isAfter, subWeeks } from 'date-fns'
 import { authorize, refresh, revoke } from 'react-native-app-auth'
-import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 import {
   ApiActions,
   FETCH_SLEEP_FITBIT_FAILURE,

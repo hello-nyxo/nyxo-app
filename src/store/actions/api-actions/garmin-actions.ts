@@ -1,4 +1,3 @@
-import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import CONFIG from '@config/Config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
@@ -16,7 +15,6 @@ import { set, subDays } from 'date-fns'
 import { openAuthSessionAsync } from 'expo-web-browser'
 import queryString from 'query-string'
 import { Linking, Platform } from 'react-native'
-import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 import {
   ApiActions,
   FETCH_SLEEP_GARMIN_FAILURE,

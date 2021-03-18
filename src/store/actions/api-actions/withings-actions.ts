@@ -1,4 +1,3 @@
-import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import { getWithingsEnabled } from '@selectors/api-selectors/api-selectors'
 import { captureException } from '@sentry/react-native'
@@ -10,7 +9,6 @@ import { AppThunk } from '@typings/redux-actions'
 import { ResponseBase, WithingsAuthorizeResult } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
 import { format, isAfter, subWeeks } from 'date-fns'
-import { fetchSleepSuccess } from '../sleep/health-kit-actions'
 import {
   FETCH_SLEEP_WITHINGS_FAILURE,
   FETCH_SLEEP_WITHINGS_START,

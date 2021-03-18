@@ -1,7 +1,5 @@
-/* eslint-disable camelcase */
 import React, { FC, useEffect } from 'react'
 import { RouteProp } from '@react-navigation/native'
-import { getGarminAccessTokenAndroid } from '@actions/api-actions/garmin-actions'
 import ROUTE from '@config/routes/Routes'
 import { useAppDispatch } from '@hooks/redux'
 import { RootStackParamList } from '@typings/navigation/navigation'
@@ -31,8 +29,7 @@ const GarminScreen: FC<Props> = ({
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getGarminAccessTokenAndroid(oauth_token, oauth_verifier))
-
+    // dispatch(getGarminAccessTokenAndroid(oauth_token, oauth_verifier))
     navigation.navigate(ROUTE.SOURCE_SETTINGS)
   }, [dispatch, navigation, oauth_token, oauth_verifier])
 

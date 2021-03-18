@@ -8,14 +8,13 @@ import UserInfo from '@components/ProfileSpecific/Userinfo'
 import SignupBottomButton from '@components/Signup/SignupBottomButton'
 import { useAppSelector } from '@hooks/redux'
 import { useGetUser } from '@hooks/user/useUser'
-import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import React, { FC, memo } from 'react'
 import { Text } from 'react-native'
 import styled from 'styled-components/native'
 
 const ProfileScreen: FC = () => {
   const { data } = useGetUser()
-  const loggedIn = useAppSelector(getAuthState)
+  const loggedIn = useAppSelector((state) => state.auth.authenticated)
   const nickname = data?.nickname
 
   return (

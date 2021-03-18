@@ -1,7 +1,6 @@
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import { toggleWithings } from '@actions/api-actions/withings-actions'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 
@@ -12,7 +11,7 @@ const WithingsSection: FC = () => {
   )
 
   const setWithingsAsSource = () => {
-    dispatch(toggleWithings())
+    // dispatch(toggleWithings())
   }
 
   return (

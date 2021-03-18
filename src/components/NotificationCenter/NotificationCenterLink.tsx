@@ -4,7 +4,6 @@ import { IconBold } from '@components/iconRegular'
 import { useNavigation } from '@react-navigation/core'
 import ROUTE from '@config/routes/Routes'
 import colors from '@styles/colors'
-import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
 import { useAppSelector } from '@hooks/redux'
 
 const NotificationCenterLink: FC = () => {
@@ -18,11 +17,9 @@ const NotificationCenterLink: FC = () => {
   return (
     <Button onPress={handlePress}>
       <IconBold name="alarmBell" fill="black" height="25" width="25" />
-      {notificationCount > 0 && (
+      {0 > 0 && (
         <NotificationCountContainer>
-          <NotificationCount adjustsFontSizeToFit>
-            {notificationCount}
-          </NotificationCount>
+          <NotificationCount adjustsFontSizeToFit>{0}</NotificationCount>
         </NotificationCountContainer>
       )}
     </Button>

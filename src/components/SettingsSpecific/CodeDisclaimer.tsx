@@ -1,6 +1,5 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { constants, fonts } from '@styles/themes'
 import TranslatedText from '../TranslatedText'
 import { useAppSelector } from '@hooks/redux'
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const CodeDisclaimer = ({ linkCode }: Props) => {
-  const loggedIn = useAppSelector(getAuthState)
+  const loggedIn = useAppSelector(({ auth }) => auth.authenticated)
 
   return (
     <>

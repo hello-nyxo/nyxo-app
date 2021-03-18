@@ -36,6 +36,6 @@ const sourceSlice = createSlice({
   }
 })
 
-export const { setSource } = sourceSlice.actions
+export const { setSource, setSubSource } = sourceSlice.actions
 
 export default sourceSlice.reducer

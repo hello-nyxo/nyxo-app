@@ -9,6 +9,11 @@ import modalReducer from './modal'
 import authReducer from './auth'
 import sourceReducer from './source'
 import nightsReducer from './nights'
+import sleepReducer from './sleep'
+
+import fitbitReducer from './apis/fitbit'
+import ouraReducer from './apis/oura'
+import healthKitReducer from './health-kit'
 
 const rootReducer = combineReducers({
   theme: themeReducer,
@@ -20,7 +25,11 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   auth: authReducer,
   source: sourceReducer,
-  nights: nightsReducer
+  nights: nightsReducer,
+  sleep: sleepReducer,
+  fitbit: fitbitReducer,
+  oura: ouraReducer,
+  healthKit: healthKitReducer
 })
 
 export default rootReducer

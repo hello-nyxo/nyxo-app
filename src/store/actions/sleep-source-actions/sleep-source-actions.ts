@@ -1,19 +1,15 @@
-import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
-import { setHealthKitStatus } from '@actions/sleep/health-kit-actions'
-import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
-import AppleHealthKit from 'react-native-healthkit'
-import { getIsHealthKitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import { captureException } from '@sentry/react-native'
 import { AppThunk } from '@typings/redux-actions'
 import { SOURCE, SUB_SOURCE } from '@typings/state/sleep-source-state'
 import { subDays } from 'date-fns'
-import { captureException } from '@sentry/react-native'
+import AppleHealthKit from 'react-native-healthkit'
 import {
-  SET_MAIN_SOURCE,
-  CHANGE_HEALTH_KIT_SOURCE,
-  UPDATE_HEALTH_KIT_SOURCES,
   CHANGE_GOOGLE_FIT_SOURCE,
+  CHANGE_HEALTH_KIT_SOURCE,
+  SET_MAIN_SOURCE,
+  SleepSourceActions,
   UPDATE_GOOGLE_FIT_SOURCES,
-  SleepSourceActions
+  UPDATE_HEALTH_KIT_SOURCES
 } from './types'
 
 const PERMS = AppleHealthKit.Constants.Permissions

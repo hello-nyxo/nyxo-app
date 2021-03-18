@@ -1,5 +1,4 @@
 import GoBack, { GoBackContainer } from '@components/Buttons/GoBack'
-import EmptyState from '@components/EmptyState'
 import EnablePushCheck from '@components/MainScreenSpecific/EnablePushCheck'
 import HelpInfo from '@components/MainScreenSpecific/HelpInfo'
 import {
@@ -10,13 +9,10 @@ import {
   StyledScrollView
 } from '@components/Primitives/Primitives'
 import React, { FC } from 'react'
-import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
+
 import styled from 'styled-components/native'
-import { useAppSelector } from '@hooks/redux'
 
 const NotificationCenter: FC = () => {
-  const notificationCount = useAppSelector(getStaticNotificationsCount)
-
   return (
     <SafeAreaView>
       <StyledScrollView>
@@ -26,28 +22,17 @@ const NotificationCenter: FC = () => {
         <Container>
           <TitleRow>
             <H1>NOTIFICATION_CENTER.TITLE</H1>
-            {notificationCount > 0 && (
-              <NotificationCount>( {notificationCount} )</NotificationCount>
-            )}
           </TitleRow>
         </Container>
 
         <HelpInfo />
         <EnablePushCheck />
-
-        {notificationCount === 0 && <EmptyState />}
       </StyledScrollView>
     </SafeAreaView>
   )
 }
 
 export default NotificationCenter
-
-const NotificationCount = styled.Text`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  font-size: 25px;
-`
 
 const TitleRow = styled(Row)`
   margin-bottom: 30px;

@@ -1,6 +1,5 @@
 import BackToAppButton from '@components/Buttons/BackToAppButton'
 import BottomButton from '@components/Buttons/BottomButton'
-import MergingDialog from '@components/modals/MergeHabitsModal/MergeHabitsModal'
 import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import Input from '@components/TextField'
 import TranslatedText from '@components/TranslatedText'
@@ -98,7 +97,6 @@ const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
         )}
       </Formik>
       <BackToAppButton back={back} />
-      <MergingDialog />
     </SafeAreaView>
   )
 }

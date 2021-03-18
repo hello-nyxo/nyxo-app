@@ -1,11 +1,9 @@
-import { getShouldAskForPermission } from '@selectors/NotificationSelectors'
 import NotificationCard from '@components/NotificationCenter/NotificationCard'
 import React, { FC } from 'react'
-import { actionCreators } from '@reducers/NotificationReducer'
-import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { useAppDispatch } from '@hooks/redux'
 
 const EnablePushCheck: FC = () => {
-  const show = useAppSelector(getShouldAskForPermission)
+  const show = false //FIXME
   const dispatch = useAppDispatch()
 
   if (!show) {
@@ -16,9 +14,7 @@ const EnablePushCheck: FC = () => {
     // dispatch(askForPush())
   }
 
-  const hidePushCheck = () => {
-    dispatch(actionCreators.setShouldAskNotificationPermission(false))
-  }
+  const hidePushCheck = () => {}
 
   return (
     <NotificationCard

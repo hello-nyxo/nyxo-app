@@ -1,24 +1,22 @@
-import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import { getPolarEnabled } from '@selectors/api-selectors/api-selectors'
 import CONFIG from '@config/Config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatPolarSamples } from '@helpers/sleep/polar-helper'
-import { authorize } from 'react-native-app-auth'
+import { getPolarEnabled } from '@selectors/api-selectors/api-selectors'
 import { AppThunk } from '@typings/redux-actions'
 import { PolarSleepObject } from '@typings/sources/Polar'
 import { PolarAuthorizeResult, ResponseBase } from '@typings/state/api-state'
 import { SOURCE } from '@typings/state/sleep-source-state'
 import { format, isAfter } from 'date-fns'
-import { fetchSleepSuccess } from '../sleep/health-kit-actions'
+import { authorize } from 'react-native-app-auth'
 import {
+  ApiActions,
   FETCH_SLEEP_POLAR_FAILURE,
   FETCH_SLEEP_POLAR_START,
   FETCH_SLEEP_POLAR_SUCCESS,
   POLAR_AUTHORIZE_SUCCESS,
   POLAR_REVOKE_SUCCESS,
-  POLAR_UPDATE_TOKEN,
-  ApiActions
+  POLAR_UPDATE_TOKEN
 } from './types'
 
 export const polarAuthorizeSuccess = (payload: ResponseBase): ApiActions => ({

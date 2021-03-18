@@ -1,4 +1,3 @@
-import { fetchSleepData } from '@actions/sleep/sleep-data-actions'
 import useCalendar from '@hooks/calendar'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { toggleCalendarModal } from '@reducers/modal'
@@ -23,7 +22,7 @@ const CalendarModal: FC = () => {
     selectDate(new Date(timestamp))
     const startDate = startOfDay(subDays(timestamp, 1)).toISOString()
     const endDate = endOfDay(timestamp).toISOString()
-    dispatch(fetchSleepData(startDate, endDate))
+    // dispatch(fetchSle(startDate, endDate)) FIXME
   }
 
   const toggleModal = () => {
@@ -42,12 +41,11 @@ const CalendarModal: FC = () => {
   )
 
   const getMonthData: DateCallbackHandler = ({ month, year }) => {
-    dispatch(
-      fetchSleepData(
-        new Date(year, month - 1, 1).toISOString(),
-        new Date(year, month - 1, 0).toISOString()
-      )
-    )
+    dispatch()
+    // fetchSleepData(
+    //   new Date(year, month - 1, 1).toISOString(),
+    //   new Date(year, month - 1, 0).toISOString()
+    // ) FIXME
   }
 
   return (

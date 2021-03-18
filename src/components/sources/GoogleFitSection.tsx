@@ -1,4 +1,3 @@
-import { changeGoogleFitSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import EmptyState from '@components/EmptyState'
 import SourceRow from '@components/SettingsSpecific/SourceRow'
 import TranslatedText from '@components/TranslatedText'
@@ -6,20 +5,20 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
-import { setSource } from '@reducers/source'
+import { setSource, setSubSource } from '@reducers/source'
 
 const GoogleFitSection: FC = () => {
   const dispatch = useAppDispatch()
-  const sources = useAppSelector(({ source }) => source.subSource)
+  const sources = []
   const isGoogleFitMainSource = useAppSelector(
     ({ source }) => source.source === 'google-fit'
   )
-  const healthKitSource = useAppSelector(getGoogleFitSource)
+  const subSource = useAppSelector(({ source }) => source.subSource)
 
   const onPress = (sourceId: string) => {
     const source = sources?.find((s) => s.sourceId === sourceId)
     if (source) {
-      dispatch(changeGoogleFitSource(source))
+      dispatch(setSubSource(source))
     }
   }
 
@@ -32,7 +31,7 @@ const GoogleFitSection: FC = () => {
       key={item.sourceId}
       sourceId={item.sourceId}
       sourceName={item.sourceName}
-      selectedSourceId={healthKitSource?.sourceId}
+      selectedSourceId={subSource?.sourceId}
       switchSource={onPress}
     />
   ))

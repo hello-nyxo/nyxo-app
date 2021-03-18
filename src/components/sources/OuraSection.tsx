@@ -1,6 +1,6 @@
 import TranslatedText from '@components/TranslatedText'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
-import { setSource } from '@reducers/source'
+import { authorizeOura } from '@reducers/apis/oura'
 import { constants } from '@styles/themes'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
@@ -12,7 +12,7 @@ const OuraSection: FC = () => {
   )
 
   const setOuraAsSource = () => {
-    dispatch(setSource('oura'))
+    dispatch(authorizeOura())
   }
 
   return (

@@ -1,10 +1,8 @@
-import { revokePreviousSource } from '@actions/sleep-source-actions/revoke-previous-source'
 import {
   changeGoogleFitSource,
   setMainSource,
   updateGoogleFitSources
 } from '@actions/sleep-source-actions/sleep-source-actions'
-import { fetchSleepSuccess } from '@actions/sleep/health-kit-actions'
 import CONFIG from '@config/Config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { getGoogleFitToken } from '@helpers/oauth/google-fit'
