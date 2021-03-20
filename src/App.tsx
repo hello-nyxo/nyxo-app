@@ -1,8 +1,7 @@
 import Amplify from '@aws-amplify/core'
 import * as Sentry from '@sentry/react-native'
-import { RootState } from '@store/store'
 import * as Analytics from 'appcenter-analytics'
-import React from 'react'
+import React, { FC, useEffect } from 'react'
 import { addEventListener, removeEventListener } from 'react-native-localize'
 import Purchases, {
   PurchaserInfo,
@@ -10,14 +9,12 @@ import Purchases, {
 } from 'react-native-purchases'
 import { enableScreens } from 'react-native-screens'
 import SplashScreen from 'react-native-splash-screen'
-import { connect } from 'react-redux'
-import { DefaultTheme } from 'styled-components'
 import { ThemeProvider } from 'styled-components/native'
 import amplify from './config/Amplify'
 import AppWithNavigationState from './config/AppNavigation'
 import CONFIG from './config/Config'
 import { setI18nConfig } from './config/i18n'
-import { darkTheme, lightTheme } from './styles/themes'
+import { lightTheme } from './styles/themes'
 
 if (!__DEV__) {
   Sentry.init({
@@ -28,55 +25,40 @@ if (!__DEV__) {
 enableScreens()
 Amplify.configure(amplify)
 
-interface AppProps {
-  theme: DefaultTheme
-}
-
 type MakePurchasePromise = Promise<{
   productIdentifier: string
   purchaserInfo: PurchaserInfo
 }>
 
-class App extends React.Component<AppProps> {
-  constructor(props: AppProps) {
-    super(props)
+export const App: FC = () => {
+  useEffect(() => {
     setI18nConfig()
-  }
-
-  async componentDidMount() {
     SplashScreen.hide()
-    this.enableAnalytics()
-    addEventListener('change', this.handleLocalizationChange)
+    addEventListener('change', handleLocalizationChange)
     Purchases.setDebugLogsEnabled(true)
     Purchases.setup(CONFIG.REVENUE_CAT)
+    Purchases.addPurchaserInfoUpdateListener(purchaserInfoUpdateListener)
+    Purchases.addShouldPurchasePromoProductListener(shouldPurchasePromoProduct)
 
-    Purchases.addPurchaserInfoUpdateListener(this.purchaserInfoUpdateListener)
-    Purchases.addShouldPurchasePromoProductListener(
-      this.shouldPurchasePromoProduct
-    )
-  }
+    return () => {
+      removeEventListener('change', handleLocalizationChange)
+      Purchases.removePurchaserInfoUpdateListener(purchaserInfoUpdateListener)
+      Purchases.removeShouldPurchasePromoProductListener(
+        shouldPurchasePromoProduct
+      )
+    }
+  }, [])
 
-  componentWillUnmount() {
-    removeEventListener('change', this.handleLocalizationChange)
-    Purchases.removePurchaserInfoUpdateListener(
-      this.purchaserInfoUpdateListener
-    )
-    Purchases.removeShouldPurchasePromoProductListener(
-      this.shouldPurchasePromoProduct
-    )
-  }
-
-  purchaserInfoUpdateListener: PurchaserInfoUpdateListener = (info) => {
+  const purchaserInfoUpdateListener: PurchaserInfoUpdateListener = (info) => {
     //FIXME
     console.log(info)
   }
 
-  handleLocalizationChange = () => {
+  const handleLocalizationChange = () => {
     setI18nConfig()
-    this.forceUpdate()
   }
 
-  shouldPurchasePromoProduct = async (
+  const shouldPurchasePromoProduct = async (
     deferredPurchase: () => MakePurchasePromise
   ) => {
     try {
@@ -86,25 +68,16 @@ class App extends React.Component<AppProps> {
     }
   }
 
-  enableAnalytics = async () => {
+  const enableAnalytics = async () => {
     await Analytics.setEnabled(true)
     Analytics.trackEvent('Opened app')
   }
 
-  render() {
-    const { theme } = this.props
-    const appTheme = theme && theme.mode === 'dark' ? darkTheme : lightTheme
-
-    return (
-      <ThemeProvider theme={appTheme}>
-        <AppWithNavigationState />
-      </ThemeProvider>
-    )
-  }
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <AppWithNavigationState />
+    </ThemeProvider>
+  )
 }
 
-const mapStateToProps = (state: RootState) => ({
-  theme: state.theme.theme
-})
-
-export default connect(mapStateToProps)(App)
+export default App

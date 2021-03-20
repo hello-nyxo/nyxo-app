@@ -60,7 +60,7 @@ export const logout = createAsyncThunk(
 )
 
 export const refreshAuthStatus = createAsyncThunk(
-  'auth/logout',
+  'auth/refresh',
   async (_, { rejectWithValue }) => {
     try {
       const user = await Auth.currentUserInfo()
@@ -75,7 +75,7 @@ export const refreshAuthStatus = createAsyncThunk(
 )
 
 export const register = createAsyncThunk<Response, Arguments>(
-  'auth/login',
+  'auth/register',
   async ({ email, password }, { rejectWithValue, dispatch }) => {
     try {
       await Auth.signUp({

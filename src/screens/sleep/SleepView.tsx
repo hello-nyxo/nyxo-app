@@ -24,7 +24,9 @@ import styled from 'styled-components/native'
 const Sleep: FC = () => {
   const dispatch = useAppDispatch()
   const date = useAppSelector((state) => state.calendar.selectedDay)
-  const loadingSleep = useAppSelector(({ sleep }) => sleep.loading)
+  const loadingSleep = useAppSelector(
+    ({ sleep }) => sleep.loading === 'pending'
+  )
   const editModeOn = useAppSelector((state) => state.manualSleep.editMode)
 
   useEffect(() => {

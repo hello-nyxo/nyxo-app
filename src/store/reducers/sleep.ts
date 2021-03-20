@@ -58,23 +58,28 @@ export const fetchWithings = createAsyncThunk<Response, Arguments>(
 
 export const fetchFitbit = createAsyncThunk<Response, Arguments>(
   'fitbit/fetch',
-  async ({ startDate, endDate }, { dispatch }) => {
-    const start = format(new Date(startDate), 'YYYY-MM-DD')
-    const end = format(new Date(endDate), 'YYYY-MM-DD')
-    const accessToken = undefined
+  async ({ startDate, endDate }, { dispatch, rejectWithValue }) => {
+    try {
+      const start = format(new Date(startDate), 'YYYY-MM-DD')
+      const end = format(new Date(endDate), 'YYYY-MM-DD')
+      const accessToken = undefined
+      const user_id = ''
 
-    const call = await fetch(
-      `https://api.fitbit.com/1.2/user/${user_id}/sleep/date/${start}/${end}.json`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
+      const call = await fetch(
+        `https://api.fitbit.com/1.2/user/${user_id}/sleep/date/${start}/${end}.json`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    )
-    const { sleep } = await call.json()
-    dispatch(addNights(formatFitbitSamples(sleep)))
+      )
+      const { sleep } = await call.json()
+      dispatch(addNights(formatFitbitSamples(sleep)))
+    } catch (error) {
+      rejectWithValue(undefined)
+    }
   }
 )
 

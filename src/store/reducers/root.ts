@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from '@reduxjs/toolkit'
 import themeReducer from './theme'
 import onboardingReducer from './onboarding'
 import linkingReducer from './linking'

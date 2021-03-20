@@ -12,14 +12,12 @@ type State = {
   loading: 'idle' | 'pending'
   authorized: boolean
   accessTokenExpirationDate: string | undefined
-  userID: string | undefined
 }
 
 const initialState: State = {
   loading: 'idle',
   authorized: false,
-  accessTokenExpirationDate: undefined,
-  userID: undefined
+  accessTokenExpirationDate: undefined
 }
 
 type Response = {
@@ -29,15 +27,15 @@ type Response = {
 
 type Arguments = undefined
 
-export interface FitbitAuthorizeResult extends AuthorizeResult {
+export interface WithingsAuthorizeResult extends AuthorizeResult {
   refreshToken: string
   tokenAdditionalParameters: {
     user_id: string
   }
 }
 
-export const authorizeFitbit = createAsyncThunk<Response, Arguments>(
-  'fitbit/authorize',
+export const authorizeWithings = createAsyncThunk<Response, Arguments>(
+  'withings/authorize',
   async (_, { rejectWithValue }) => {
     try {
       const response = await authorize(CONFIG.FITBIT_CONFIG)
@@ -65,11 +63,11 @@ export const authorizeFitbit = createAsyncThunk<Response, Arguments>(
   }
 )
 
-export const revokeFitbitAccess = createAsyncThunk<boolean, Arguments>(
-  'fitbit/revoke',
+export const revokeWithingsAccess = createAsyncThunk<boolean, Arguments>(
+  'withings/revoke',
   async (_, { rejectWithValue }) => {
     try {
-      const fitbit = await getKeychainParsedValue<FitbitAuthorizeResult>(
+      const fitbit = await getKeychainParsedValue<WithingsAuthorizeResult>(
         CONFIG.FITBIT_CONFIG.bundleId
       )
 
@@ -88,12 +86,12 @@ export const revokeFitbitAccess = createAsyncThunk<boolean, Arguments>(
   }
 )
 
-export const refreshFitbitToken = createAsyncThunk<
+export const refreshWithingsToken = createAsyncThunk<
   { accessTokenExpirationDate: string },
   Arguments
->('fitbit/refresh', async (_, { rejectWithValue }) => {
+>('withings/refresh', async (_, { rejectWithValue }) => {
   try {
-    const fitbit = await getKeychainParsedValue<FitbitAuthorizeResult>(
+    const fitbit = await getKeychainParsedValue<WithingsAuthorizeResult>(
       CONFIG.FITBIT_CONFIG.bundleId
     )
     if (fitbit?.accessToken) {
@@ -126,45 +124,42 @@ const fitbitSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // Authorize
-    builder.addCase(authorizeFitbit.fulfilled, (state, action) => {
+    builder.addCase(authorizeWithings.fulfilled, (state, action) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = action.payload.accessTokenExpirationDate
-      state.userID = action.payload.userID
       state.authorized = true
     })
-    builder.addCase(authorizeFitbit.pending, (state) => {
+    builder.addCase(authorizeWithings.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(authorizeFitbit.rejected, (state) => {
+    builder.addCase(authorizeWithings.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = true
     })
     // Revoke
-    builder.addCase(revokeFitbitAccess.fulfilled, (state) => {
+    builder.addCase(revokeWithingsAccess.fulfilled, (state) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = undefined
-      state.userID = undefined
       state.authorized = false
     })
-    builder.addCase(revokeFitbitAccess.pending, (state) => {
+    builder.addCase(revokeWithingsAccess.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(revokeFitbitAccess.rejected, (state) => {
+    builder.addCase(revokeWithingsAccess.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = true
     })
     // Refresh
-    builder.addCase(refreshFitbitToken.fulfilled, (state) => {
+    builder.addCase(refreshWithingsToken.fulfilled, (state) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = undefined
     })
-    builder.addCase(refreshFitbitToken.pending, (state) => {
+    builder.addCase(refreshWithingsToken.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(refreshFitbitToken.rejected, (state) => {
+    builder.addCase(refreshWithingsToken.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = false
-      state.userID = undefined
     })
   }
 })

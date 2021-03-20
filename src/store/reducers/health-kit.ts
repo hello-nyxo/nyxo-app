@@ -21,7 +21,7 @@ export const initHealthKit = createAsyncThunk(
   'healthKit/init',
   async (_, { rejectWithValue }) => {
     try {
-      const init = new Promise<boolean>((resolve, reject) => {
+      const init = await new Promise<boolean>((resolve, reject) => {
         appleHealthKit.initHealthKit(healthKitOptions, (err) => {
           if (err) {
             reject()
@@ -30,6 +30,7 @@ export const initHealthKit = createAsyncThunk(
           }
         })
       })
+
       return init
     } catch (error) {
       return rejectWithValue(undefined)
@@ -42,27 +43,28 @@ type FetchArguments = {
   endDate: string
 }
 
-export const fetchHealthKit = createAsyncThunk<FetchArguments>(
+export const fetchHealthKit = createAsyncThunk<void, FetchArguments>(
   'healthKit/fetch',
   async ({ startDate, endDate }, { rejectWithValue }) => {
     try {
-      const result = new Promise<Array<SleepSample>>((resolve, reject) => {
-        appleHealthKit.getSleepSamples(
-          {
-            startDate,
-            endDate
-          },
-          async (error: string, response: Array<SleepSample>) => {
-            if (error) {
-              reject(error)
-            } else {
-              resolve(response)
+      const result = await new Promise<Array<SleepSample>>(
+        (resolve, reject) => {
+          appleHealthKit.getSleepSamples(
+            {
+              startDate,
+              endDate
+            },
+            async (error: string, response: Array<SleepSample>) => {
+              if (error) {
+                reject(error)
+              } else {
+                resolve(response)
+              }
             }
-          }
-        )
-      })
-
-      return result
+          )
+        }
+      )
+      return undefined
     } catch (error) {
       return rejectWithValue(undefined)
     }

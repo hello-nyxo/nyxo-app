@@ -13,7 +13,7 @@ import ROUTE from './routes/Routes'
 
 const Routes: FC = () => {
   const ref = useRef(null)
-  const { theme } = useAppSelector((state) => state.theme.theme)
+  const { theme } = useAppSelector((state) => state.theme)
 
   const linking = {
     prefixes: [

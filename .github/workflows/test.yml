@@ -13,6 +13,5 @@ jobs:
       - run: yarn install --frozen-lockfile --non-interactive
       - run: yarn lint
       - run: yarn test
-      - run: yarn build-storybook
         env:
           CI: true
