@@ -1,7 +1,7 @@
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import { getWithingsEnabled } from '@selectors/api-selectors/api-selectors'
 import { captureException } from '@sentry/react-native'
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatWithingsSamples } from '@helpers/sleep/withings-helper'
 import { authorize, refresh, RefreshResult } from 'react-native-app-auth'

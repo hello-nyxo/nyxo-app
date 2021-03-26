@@ -1,5 +1,5 @@
 import { editHabit as editHabitThunk } from '@actions/habit/habit-actions'
-import { HabitSchema } from '@config/Validation'
+import { HabitSchema } from '@config/validation'
 import { revertLineBreaks } from '@helpers/habits'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { toggleEditHabitModal } from '@reducers/modal'

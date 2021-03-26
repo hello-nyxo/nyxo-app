@@ -2,7 +2,7 @@ import { setHours, setMinutes, format } from 'date-fns'
 import React, { FC, memo } from 'react'
 import { G, Text as SVGText } from 'react-native-svg'
 import styled from 'styled-components/native'
-import translate from '../../config/i18n'
+import translate from '@config/i18n'
 import colors from '../../styles/colors'
 
 type Props = {

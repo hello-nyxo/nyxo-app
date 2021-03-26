@@ -12,7 +12,7 @@ import SplashScreen from 'react-native-splash-screen'
 import { ThemeProvider } from 'styled-components/native'
 import amplify from './config/Amplify'
 import AppWithNavigationState from './config/AppNavigation'
-import CONFIG from './config/Config'
+import CONFIG from './config/config'
 import { setI18nConfig } from './config/i18n'
 import { lightTheme } from './styles/themes'
 

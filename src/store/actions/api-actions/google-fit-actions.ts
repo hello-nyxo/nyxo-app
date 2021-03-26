@@ -3,7 +3,7 @@ import {
   setMainSource,
   updateGoogleFitSources
 } from '@actions/sleep-source-actions/sleep-source-actions'
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { getGoogleFitToken } from '@helpers/oauth/google-fit'
 import { formatGoogleFitData } from '@helpers/sleep/google-fit-helper'

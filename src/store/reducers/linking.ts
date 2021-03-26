@@ -1,4 +1,4 @@
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { API, graphqlOperation } from '@aws-amplify/api'
 import Auth from '@aws-amplify/auth'

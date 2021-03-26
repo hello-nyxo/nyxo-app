@@ -1,4 +1,4 @@
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { captureException } from '@sentry/react-native'
 import { GoogleFitResponse } from '@typings/State/api-state'

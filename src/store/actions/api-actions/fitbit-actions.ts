@@ -1,4 +1,4 @@
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import { formatFitbitSamples } from '@helpers/sleep/fitbit-helper'
 import { getFitbitEnabled } from '@selectors/api-selectors/api-selectors'

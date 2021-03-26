@@ -1,5 +1,5 @@
 import { addHabit } from '@actions/habit/habit-actions'
-import { HabitSchema } from '@config/Validation'
+import { HabitSchema } from '@config/validation'
 import { Formik } from 'formik'
 import React, { memo, useState } from 'react'
 import { ScrollView } from 'react-native'

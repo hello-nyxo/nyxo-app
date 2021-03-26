@@ -1,5 +1,5 @@
 import { setMainSource } from '@actions/sleep-source-actions/sleep-source-actions'
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 import {
   formatGarminSamples,

@@ -2,7 +2,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import React, { FC } from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import { CONFIG } from '@config/Config'
+import { CONFIG } from '@config/config'
 import App from './App'
 import { persistor, store } from '@store/store'
 

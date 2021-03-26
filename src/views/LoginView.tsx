@@ -3,7 +3,7 @@ import BottomButton from '@components/Buttons/BottomButton'
 import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import Input from '@components/TextField'
 import TranslatedText from '@components/TranslatedText'
-import { LoginSchema } from '@config/Validation'
+import { LoginSchema } from '@config/validation'
 import { WIDTH } from '@helpers/Dimensions'
 import { useAppSelector } from '@hooks/redux'
 

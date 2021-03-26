@@ -2,7 +2,7 @@ import { Title } from '@components/InfoRow'
 import { H2, PageTitle, SafeAreaView } from '@components/Primitives/Primitives'
 import SettingRow from '@components/SettingsSpecific/settingRow'
 import VersionInformation from '@components/SettingsSpecific/versionInformation'
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import ROUTE from '@config/routes/Routes'
 import keyExtractor from '@helpers/KeyExtractor'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
@@ -97,7 +97,7 @@ const SettingsScreen: FC<Props> = ({ navigation }) => {
       text: 'Switch mode',
       icon: 'astronomyMoon',
       theme: displayTheme(theme),
-      action: () => switchTheme()
+      action: () => navigation.push(ROUTE.THEME)
     },
     {
       text: 'RATE_APP',

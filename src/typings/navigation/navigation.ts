@@ -32,5 +32,6 @@ export type SettingsStackParamList = {
   [ROUTE.COACHING_SETTINGS]: undefined
   [ROUTE.SUBSCRIPTION_SETTINGS]: undefined
   [ROUTE.SOURCE_SETTINGS]: undefined
+  [ROUTE.THEME]: undefined
   [ROUTE.GARMIN]: { oauth_token: string; oauth_verifier: string }
 }

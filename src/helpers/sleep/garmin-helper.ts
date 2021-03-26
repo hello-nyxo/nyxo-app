@@ -1,7 +1,7 @@
 import { Night, Value } from '@typings/Sleepdata'
 import { GarminSleepObject } from '@typings/sources/Garmin'
 import { getNightDuration } from '@helpers/sleep/sleep'
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { captureException } from '@sentry/react-native'
 
 export const formatGarminSample = (

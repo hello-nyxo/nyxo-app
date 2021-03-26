@@ -12,7 +12,7 @@ import React, { FC, memo, useCallback, useEffect, useState } from 'react'
 import { ActivityIndicator, Linking, Platform } from 'react-native'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import styled from 'styled-components/native'
-import CONFIG from '../config/Config'
+import CONFIG from '../config/config'
 import colors from '../styles/colors'
 
 type Props = {

@@ -27,7 +27,8 @@ enum ROUTE {
   SUBSCRIPTION_SETTINGS = 'SubscriptionSettings',
   PURCHASE = 'PurchaseView',
   TERVEYSTALO = 'Terveystalo',
-  GARMIN = 'Garmin'
+  GARMIN = 'Garmin',
+  THEME = 'THEME'
 }
 
 export default ROUTE

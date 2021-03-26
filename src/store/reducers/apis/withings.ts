@@ -5,7 +5,7 @@ import {
   refresh
 } from 'react-native-app-auth'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
 
 type State = {

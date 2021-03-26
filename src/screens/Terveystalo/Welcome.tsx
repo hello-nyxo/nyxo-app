@@ -18,7 +18,7 @@ import { linkAccount } from '@reducers/linking'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC, useState } from 'react'
 import styled from 'styled-components/native'
-import ROUTE from '../../config/routes/Routes'
+import ROUTE from '@config/routes/Routes'
 
 type TerveystaloNavigationProp = StackNavigationProp<
   RootStackParamList,

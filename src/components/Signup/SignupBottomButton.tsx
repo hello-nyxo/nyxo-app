@@ -3,7 +3,7 @@ import TranslatedText from '@components/TranslatedText'
 import { useNavigation } from '@react-navigation/native'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import ROUTE from '../../config/routes/Routes'
+import ROUTE from '@config/routes/Routes'
 import { PrimaryButton } from '../Buttons/PrimaryButton'
 import { Container, P } from '../Primitives/Primitives'
 

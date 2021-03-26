@@ -1,8 +1,8 @@
-import { toggleFitbit } from '@actions/api-actions/fitbit-actions'
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { authorizeFitbit } from '@reducers/apis/fitbit'
 
 const FitbitSection: FC = () => {
   const dispatch = useAppDispatch()
@@ -11,7 +11,7 @@ const FitbitSection: FC = () => {
   )
 
   const setFitbitAsSource = () => {
-    dispatch(toggleFitbit())
+    dispatch(authorizeFitbit())
   }
 
   return (
