@@ -3,6 +3,8 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { Switch } from '@components/Primitives/Primitives'
+import { authorizeWithings } from '@reducers/apis/withings'
 
 const WithingsSection: FC = () => {
   const dispatch = useAppDispatch()
@@ -11,7 +13,7 @@ const WithingsSection: FC = () => {
   )
 
   const setWithingsAsSource = () => {
-    // dispatch(toggleWithings())
+    dispatch(authorizeWithings())
   }
 
   return (
@@ -19,9 +21,7 @@ const WithingsSection: FC = () => {
       <TitleRow>
         <Column>
           <LogoAndTitle>
-            <Logo
-              source={require('../../../assets/appIcons/withings-icon.png')}
-            />
+            <Logo source={require('@assets/appIcons/withings-icon.png')} />
             <Title>SOURCE.WITHINGS</Title>
           </LogoAndTitle>
           <Description>SOURCE.WITHINGS_DESCRIPTION</Description>
@@ -64,8 +64,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const Logo = styled.Image`
   height: 25px;

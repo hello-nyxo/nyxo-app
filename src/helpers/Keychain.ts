@@ -13,6 +13,23 @@ export type Token = {
   accessToken: string
 }
 
+export const savAccessToken = async <T>(
+  key: string,
+  service: string,
+  tokenData: T
+): Promise<false | Result> => {
+  try {
+    return await setGenericPassword(key, JSON.stringify(tokenData), {
+      accessControl: ACCESS_CONTROL.USER_PRESENCE,
+      accessible: ACCESSIBLE.WHEN_UNLOCKED,
+      service
+    })
+  } catch (error) {
+    captureException(error)
+    return error
+  }
+}
+
 export const setKeychainValue = async (
   key: string,
   value: string,

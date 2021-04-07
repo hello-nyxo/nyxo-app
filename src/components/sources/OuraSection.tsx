@@ -1,3 +1,4 @@
+import { Switch } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { authorizeOura } from '@reducers/apis/oura'
@@ -60,8 +61,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const OuraLogo = styled.Image`
   height: 25px;

@@ -6,7 +6,8 @@ import {
 } from 'react-native-app-auth'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import CONFIG from '@config/config'
-import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
+import { setSource } from '@reducers/source'
+import { getAccess, setAccess } from '@helpers/oauth/token'
 
 type State = {
   loading: 'idle' | 'pending'
@@ -36,20 +37,17 @@ export interface WithingsAuthorizeResult extends AuthorizeResult {
 
 export const authorizeWithings = createAsyncThunk<Response, Arguments>(
   'withings/authorize',
-  async (_, { rejectWithValue }) => {
+  async (_, { dispatch, rejectWithValue }) => {
     try {
-      const response = await authorize(CONFIG.FITBIT_CONFIG)
-
-      await setKeychainValue(
-        CONFIG.FITBIT_CONFIG.bundleId,
-        JSON.stringify({
-          refreshToken: response.refreshToken,
-          accessToken: response.accessToken
-        }),
-        CONFIG.FITBIT_CONFIG.bundleId
-      )
+      dispatch(setSource('withings'))
+      const response = await authorize(CONFIG.WITHINGS_CONFIG)
+      setAccess('withings', {
+        refreshToken: response.refreshToken,
+        accessToken: response.accessToken
+      })
 
       if (typeof response?.tokenAdditionalParameters?.user_id === 'undefined') {
+        dispatch(setSource(undefined))
         return rejectWithValue(false)
       }
 
@@ -58,6 +56,7 @@ export const authorizeWithings = createAsyncThunk<Response, Arguments>(
         accessTokenExpirationDate: response.accessTokenExpirationDate
       }
     } catch (error) {
+      dispatch(setSource(undefined))
       return rejectWithValue(false)
     }
   }
@@ -65,20 +64,19 @@ export const authorizeWithings = createAsyncThunk<Response, Arguments>(
 
 export const revokeWithingsAccess = createAsyncThunk<boolean, Arguments>(
   'withings/revoke',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
-      const fitbit = await getKeychainParsedValue<WithingsAuthorizeResult>(
-        CONFIG.FITBIT_CONFIG.bundleId
-      )
+      const withings = await getAccess('withings')
 
-      if (fitbit) {
+      if (withings) {
         await revoke(CONFIG.FITBIT_CONFIG, {
-          tokenToRevoke: fitbit?.accessToken,
+          tokenToRevoke: withings?.accessToken,
           includeBasicAuth: true
         })
         return false
       }
 
+      dispatch(setSource(undefined))
       return rejectWithValue(false)
     } catch (error) {
       return rejectWithValue(true)
@@ -91,22 +89,16 @@ export const refreshWithingsToken = createAsyncThunk<
   Arguments
 >('withings/refresh', async (_, { rejectWithValue }) => {
   try {
-    const fitbit = await getKeychainParsedValue<WithingsAuthorizeResult>(
-      CONFIG.FITBIT_CONFIG.bundleId
-    )
-    if (fitbit?.accessToken) {
+    const withings = await getAccess('withings')
+    if (withings) {
       const response = await refresh(CONFIG.FITBIT_CONFIG, {
-        refreshToken: fitbit?.accessToken
+        refreshToken: withings?.accessToken
       })
 
-      await setKeychainValue(
-        CONFIG.FITBIT_CONFIG.bundleId,
-        JSON.stringify({
-          refreshToken: response.refreshToken,
-          accessToken: response.accessToken
-        }),
-        CONFIG.FITBIT_CONFIG.bundleId
-      )
+      await setAccess('withings', {
+        refreshToken: response.refreshToken,
+        accessToken: response.accessToken
+      })
 
       return {
         accessTokenExpirationDate: response.accessTokenExpirationDate
@@ -118,8 +110,8 @@ export const refreshWithingsToken = createAsyncThunk<
   }
 })
 
-const fitbitSlice = createSlice({
-  name: 'fitbitSlice',
+const withingsSlice = createSlice({
+  name: 'withingsSlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -164,4 +156,4 @@ const fitbitSlice = createSlice({
   }
 })
 
-export default fitbitSlice.reducer
+export default withingsSlice.reducer

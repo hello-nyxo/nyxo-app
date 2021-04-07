@@ -20,7 +20,7 @@ export const paddingRight = 100
 export const chartHeight = height / 3
 
 const SleepTimeChart: FC = () => {
-  const data = useAppSelector((state) => state.night ?? [])
+  const data = useAppSelector((state) => state.nights ?? [])
   const daysToShow = data.length
   const chartWidth = (barWidth + 10) * daysToShow + paddingLeft + paddingRight
 

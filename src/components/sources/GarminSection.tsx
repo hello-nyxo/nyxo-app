@@ -3,6 +3,8 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { Switch } from '@components/Primitives/Primitives'
+import { authorizeGarmin } from '@reducers/apis/garmin'
 
 const GarminSection: FC = () => {
   const dispatch = useAppDispatch()
@@ -11,7 +13,7 @@ const GarminSection: FC = () => {
   )
 
   const setGarminAsSource = async () => {
-    // dispatch(toggleGarmin())
+    dispatch(authorizeGarmin())
   }
 
   return (
@@ -19,9 +21,7 @@ const GarminSection: FC = () => {
       <TitleRow>
         <Column>
           <LogoAndTitle>
-            <Logo
-              source={require('../../../assets/appIcons/garmin-icon.png')}
-            />
+            <Logo source={require('@assets/appIcons/garmin-icon.png')} />
             <Title>SOURCE.GARMIN</Title>
           </LogoAndTitle>
           <Description>SOURCE.GARMIN_DESCRIPTION</Description>
@@ -61,8 +61,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const Logo = styled.Image`
   height: 25px;

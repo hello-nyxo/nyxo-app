@@ -15,9 +15,6 @@ const client = new ApolloClient({
     authorization: `Bearer ${TOKEN}`,
     'Content-Language': 'en-us'
   },
-  opts: {
-    credentials: 'same-origin'
-  },
   cache: new InMemoryCache()
 })
 

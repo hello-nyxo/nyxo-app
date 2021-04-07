@@ -16,6 +16,17 @@ type Props = {
   locked?: boolean
 }
 
+const getFirstAuthor = (lesson?: LessonCollectionItem) => {
+  if (
+    lesson?.authorCardCollection?.items &&
+    lesson?.authorCardCollection?.items?.length > 0
+  ) {
+    return lesson.authorCardCollection?.items[0].name
+  } else {
+    return 'Pietari Nurmi'
+  }
+}
+
 const LessonListItem: FC<Props> = ({ lesson, locked }) => {
   const { navigate } = useNavigation<WeekScreenNavigationProp>()
   const time = getReadingTime(lesson.lessonContent?.json)
@@ -29,8 +40,7 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
     }
   }
 
-  const author =
-    (lesson?.authorCards && lesson?.authorCards[0]?.name) ?? 'Pietari Nurmi'
+  const author = getFirstAuthor(lesson)
 
   return (
     <Touchable onPress={handlePress}>

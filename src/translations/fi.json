@@ -769,5 +769,11 @@
     "SAVE_COACHING_PROGRESS": "Tallenna valmennuksen edistyminen pilveen",
     "ACCESS_FROM_COMPUTER": "Pääset käsiksi aunidataan ja valmennussisältöön pöytäkoneelta tai tabletilta",
     "SHARE": "Jaa edistyksesi univalmentajan kanssa"
+  },
+
+  "THEME": {
+    "TITLE": "Teema",
+    "FOLLOW_SYSTEM_THEME": "Noudata järjestelmäteemaa",
+    "DARK": "Käytä tummaa teemaa"
   }
 }

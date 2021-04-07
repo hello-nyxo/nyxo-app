@@ -6,6 +6,7 @@ import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { setSource, setSubSource } from '@reducers/source'
+import { Switch } from '@components/Primitives/Primitives'
 
 const GoogleFitSection: FC = () => {
   const dispatch = useAppDispatch()
@@ -93,8 +94,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const Description = styled(TranslatedText)`
   margin-top: 10px;

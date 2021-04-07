@@ -133,5 +133,5 @@ const LoginButton = styled(TranslatedText)`
   font-family: ${fonts.medium};
   text-align: center;
   font-size: 15px;
-  color: ${colors.darkBlue};
+  color: ${({ theme }) => theme.accent};
 `

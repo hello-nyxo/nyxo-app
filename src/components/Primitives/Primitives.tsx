@@ -220,3 +220,10 @@ export const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 export const ThemedRefreshControl = styled.RefreshControl.attrs(() => ({
   tintColor: colors.darkBlue
 }))``
+
+export const Switch = styled.Switch.attrs(({ theme }) => ({
+  trackColor: {
+    false: theme.SECONDARY_BACKGROUND_COLOR,
+    true: theme.accent
+  }
+}))``

@@ -15,7 +15,6 @@ import { AssetBlock } from '@typings/contentful'
 import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { Image, Linking } from 'react-native'
 import styled from 'styled-components/native'
-import colors from '../styles/colors'
 import { constants, fonts } from '../styles/themes'
 import { IconBold } from './iconRegular'
 
@@ -169,7 +168,7 @@ const Bold = styled.Text`
 Bold.displayName = 'Bold'
 
 const Italic = styled.Text`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   font-style: italic;
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
@@ -178,12 +177,12 @@ Italic.displayName = 'Italic'
 
 const Underline = styled.Text`
   text-decoration: underline;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Code = styled.Text`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
@@ -191,7 +190,7 @@ const Paragraph = styled.Text`
   font-size: 15px;
   line-height: 25px;
   margin-bottom: 20px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
@@ -244,7 +243,7 @@ const Line = styled.View`
 `
 
 const Link = styled(Paragraph)`
-  color: ${colors.darkBlue};
+  color: ${({ theme }) => theme.accent};
 `
 
 const List = ({
@@ -294,7 +293,7 @@ const ListItemText = styled.Text`
   font-size: 15px;
   flex: 1;
   line-height: 25px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 

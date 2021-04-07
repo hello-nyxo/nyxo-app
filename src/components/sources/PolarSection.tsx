@@ -3,6 +3,8 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { Switch } from '@components/Primitives/Primitives'
+import { authorizePolar } from '@reducers/apis/polar'
 
 const PolarSection: FC = () => {
   const dispatch = useAppDispatch()
@@ -11,7 +13,7 @@ const PolarSection: FC = () => {
   )
 
   const setPolarAsSource = () => {
-    // dispatch(togglePolar())
+    dispatch(authorizePolar())
   }
 
   return (
@@ -19,9 +21,7 @@ const PolarSection: FC = () => {
       <TitleRow>
         <Column>
           <LogoAndTitle>
-            <Logo
-              source={require('../../../assets/appIcons/polar-app-icon.png')}
-            />
+            <Logo source={require('@assets/appIcons/polar-app-icon.png')} />
             <Title>SOURCE.POLAR</Title>
           </LogoAndTitle>
           <Description>SOURCE.POLAR_DESCRIPTION</Description>
@@ -61,8 +61,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const Logo = styled.Image`
   height: 25px;

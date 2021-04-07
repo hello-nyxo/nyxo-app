@@ -6,7 +6,9 @@ import {
 } from 'react-native-app-auth'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import CONFIG from '@config/config'
-import { getKeychainParsedValue, setKeychainValue } from '@helpers/Keychain'
+import { setKeychainValue } from '@helpers/Keychain'
+import { setSource } from '@reducers/source'
+import { getAccess, Oura, setAccess } from '@helpers/oauth/token'
 
 type State = {
   loading: 'idle' | 'pending'
@@ -30,28 +32,22 @@ export type OuraAuthorizeResult = AuthorizeResult
 
 export const authorizeOura = createAsyncThunk<Response, Arguments>(
   'oura/authorize',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
+      dispatch(setSource('oura'))
+
       const response = await authorize(CONFIG.OURA_CONFIG)
 
-      await setKeychainValue(
-        CONFIG.OURA_CONFIG.bundleId,
-        JSON.stringify({
-          refreshToken: response.refreshToken,
-          accessToken: response.accessToken
-        }),
-        CONFIG.OURA_CONFIG.bundleId
-      )
-
-      if (typeof response?.tokenAdditionalParameters?.user_id === 'undefined') {
-        return rejectWithValue(false)
-      }
+      await setAccess<Oura>('oura', {
+        refreshToken: response.refreshToken,
+        accessToken: response.accessToken
+      })
 
       return {
-        userID: response?.tokenAdditionalParameters?.user_id,
         accessTokenExpirationDate: response.accessTokenExpirationDate
       }
     } catch (error) {
+      dispatch(setSource(undefined))
       return rejectWithValue(false)
     }
   }
@@ -61,9 +57,7 @@ export const revokeOuraAccess = createAsyncThunk<boolean, Arguments>(
   'oura/revoke',
   async (_, { rejectWithValue }) => {
     try {
-      const oura = await getKeychainParsedValue<OuraAuthorizeResult>(
-        CONFIG.OURA_CONFIG.bundleId
-      )
+      const oura = await getAccess<Oura>('oura')
 
       if (oura) {
         await revoke(CONFIG.OURA_CONFIG, {
@@ -85,10 +79,9 @@ export const refreshOuraToken = createAsyncThunk<
   Arguments
 >('oura/refresh', async (_, { rejectWithValue }) => {
   try {
-    const oura = await getKeychainParsedValue<OuraAuthorizeResult>(
-      CONFIG.OURA_CONFIG.bundleId
-    )
-    if (oura?.accessToken) {
+    const oura = await getAccess<Oura>('oura')
+
+    if (oura) {
       const response = await refresh(CONFIG.OURA_CONFIG, {
         refreshToken: oura?.accessToken
       })

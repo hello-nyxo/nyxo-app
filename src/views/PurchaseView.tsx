@@ -9,7 +9,7 @@ import { useAppDispatch } from '@hooks/redux'
 import { purchaseSubscription, restorePurchase } from '@reducers/subscription'
 import { fonts } from '@styles/themes'
 import React, { FC, memo, useCallback, useEffect, useState } from 'react'
-import { ActivityIndicator, Linking, Platform } from 'react-native'
+import { Linking, Platform } from 'react-native'
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import styled from 'styled-components/native'
 import CONFIG from '../config/config'
@@ -111,7 +111,7 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
           </>
         ) : (
           <>
-            <ActivityIndicator size="large" color={colors.darkBlue} />
+            <ActivityIndicator size="large" />
             <Fetching>FETCHING_SUBS</Fetching>
           </>
         )}
@@ -213,3 +213,7 @@ const Fetching = styled(TranslatedText)`
 const Terms = styled.View`
   padding-bottom: 135px;
 `
+
+const ActivityIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
+  tintColor: theme.accent
+}))``

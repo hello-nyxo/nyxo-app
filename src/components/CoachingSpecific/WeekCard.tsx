@@ -33,7 +33,10 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
 
   const formatedIntro = week.intro ? week.intro.replace('–', '\n –') : ''
   const lessonCount = week.lessonsCollection.items.length
-  const habitCount = 1000
+  const habitCount = week.lessonsCollection.items.reduce(
+    (acc, curr) => acc + (curr?.habitCollection?.items?.length ?? 1),
+    0
+  )
   const { stage } = getStage(week.slug, coaching)
 
   return (

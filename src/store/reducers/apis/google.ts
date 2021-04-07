@@ -6,52 +6,49 @@ import {
 } from 'react-native-app-auth'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import CONFIG from '@config/config'
-import { Fitbit, getAccess, setAccess } from '@helpers/oauth/token'
+import { Platform } from 'react-native'
+import { getAccess, Google, setAccess } from '@helpers/oauth/token'
 
 type State = {
   loading: 'idle' | 'pending'
   authorized: boolean
   accessTokenExpirationDate: string | undefined
-  userID: string | undefined
 }
 
 const initialState: State = {
   loading: 'idle',
   authorized: false,
-  accessTokenExpirationDate: undefined,
-  userID: undefined
+  accessTokenExpirationDate: undefined
 }
 
 type Response = {
-  userID: string
   accessTokenExpirationDate: string
 }
 
 type Arguments = undefined
 
-export interface FitbitAuthorizeResult extends AuthorizeResult {
+export interface GoogleFitAuthorizeResult extends AuthorizeResult {
   refreshToken: string
-  tokenAdditionalParameters: {
-    user_id: string
-  }
+  accessToken: string
 }
 
-export const authorizeFitbit = createAsyncThunk<Response, Arguments>(
-  'fitbit/authorize',
+export const authorizeGoogleFit = createAsyncThunk<Response, Arguments>(
+  'googleFit/authorize',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await authorize(CONFIG.FITBIT_CONFIG)
-      await setAccess('fitbit', {
+      const config =
+        Platform.OS === 'android'
+          ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
+          : CONFIG.GOOOGLE_FIT_GONFIG_IOS
+
+      const response = await authorize(config)
+
+      await setAccess('google', {
         refreshToken: response.refreshToken,
         accessToken: response.accessToken
       })
 
-      if (typeof response?.tokenAdditionalParameters?.user_id === 'undefined') {
-        return rejectWithValue(false)
-      }
-
       return {
-        userID: response?.tokenAdditionalParameters?.user_id,
         accessTokenExpirationDate: response.accessTokenExpirationDate
       }
     } catch (error) {
@@ -60,17 +57,24 @@ export const authorizeFitbit = createAsyncThunk<Response, Arguments>(
   }
 )
 
-export const revokeFitbitAccess = createAsyncThunk<boolean, Arguments>(
-  'fitbit/revoke',
+export const revokeGoogleFitAccess = createAsyncThunk<boolean, Arguments>(
+  'googleFit/revoke',
   async (_, { rejectWithValue }) => {
     try {
-      const fitbit = await getAccess<Fitbit>('fitbit')
-      if (fitbit) {
-        await revoke(CONFIG.FITBIT_CONFIG, {
-          tokenToRevoke: fitbit?.accessToken,
-          includeBasicAuth: true
-        })
-        return false
+      const access = await getAccess<Google>('google')
+      if (access) {
+        const config =
+          Platform.OS === 'android'
+            ? CONFIG.GOOOGLE_FIT_GONFIG_ANDROID
+            : CONFIG.GOOOGLE_FIT_GONFIG_IOS
+
+        if (access?.accessToken) {
+          await revoke(config, {
+            tokenToRevoke: access?.accessToken,
+            includeBasicAuth: true
+          })
+          return false
+        }
       }
 
       return rejectWithValue(false)
@@ -80,18 +84,18 @@ export const revokeFitbitAccess = createAsyncThunk<boolean, Arguments>(
   }
 )
 
-export const refreshFitbitToken = createAsyncThunk<
+export const refreshGoogleFitToken = createAsyncThunk<
   { accessTokenExpirationDate: string },
   Arguments
->('fitbit/refresh', async (_, { rejectWithValue }) => {
+>('googleFit/refresh', async (_, { rejectWithValue }) => {
   try {
-    const fitbit = await getAccess<Fitbit>('fitbit')
-    if (fitbit) {
-      const response = await refresh(CONFIG.FITBIT_CONFIG, {
-        refreshToken: fitbit?.accessToken
+    const access = await getAccess<Google>('google')
+    if (access) {
+      const response = await refresh(CONFIG.GOOOGLE_FIT_GONFIG_ANDROID, {
+        refreshToken: access?.accessToken
       })
 
-      await setAccess('fitbit', {
+      await setAccess<Google>('google', {
         refreshToken: response.refreshToken,
         accessToken: response.accessToken
       })
@@ -106,53 +110,50 @@ export const refreshFitbitToken = createAsyncThunk<
   }
 })
 
-const fitbitSlice = createSlice({
-  name: 'fitbitSlice',
+const googleFitSlice = createSlice({
+  name: 'googleFitSlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     // Authorize
-    builder.addCase(authorizeFitbit.fulfilled, (state, action) => {
+    builder.addCase(authorizeGoogleFit.fulfilled, (state, action) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = action.payload.accessTokenExpirationDate
-      state.userID = action.payload.userID
       state.authorized = true
     })
-    builder.addCase(authorizeFitbit.pending, (state) => {
+    builder.addCase(authorizeGoogleFit.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(authorizeFitbit.rejected, (state) => {
+    builder.addCase(authorizeGoogleFit.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = true
     })
     // Revoke
-    builder.addCase(revokeFitbitAccess.fulfilled, (state) => {
+    builder.addCase(revokeGoogleFitAccess.fulfilled, (state) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = undefined
-      state.userID = undefined
       state.authorized = false
     })
-    builder.addCase(revokeFitbitAccess.pending, (state) => {
+    builder.addCase(revokeGoogleFitAccess.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(revokeFitbitAccess.rejected, (state) => {
+    builder.addCase(revokeGoogleFitAccess.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = true
     })
     // Refresh
-    builder.addCase(refreshFitbitToken.fulfilled, (state) => {
+    builder.addCase(refreshGoogleFitToken.fulfilled, (state) => {
       state.loading = 'idle'
       state.accessTokenExpirationDate = undefined
     })
-    builder.addCase(refreshFitbitToken.pending, (state) => {
+    builder.addCase(refreshGoogleFitToken.pending, (state) => {
       state.loading = 'pending'
     })
-    builder.addCase(refreshFitbitToken.rejected, (state) => {
+    builder.addCase(refreshGoogleFitToken.rejected, (state) => {
       state.loading = 'idle'
       state.authorized = false
-      state.userID = undefined
     })
   }
 })
 
-export default fitbitSlice.reducer
+export default googleFitSlice.reducer

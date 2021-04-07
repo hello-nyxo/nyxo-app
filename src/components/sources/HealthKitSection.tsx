@@ -5,34 +5,34 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
-import { initHealthKit } from '@reducers/health-kit'
-import { setSubSource } from '@reducers/source'
+import { initHealthKit } from '@reducers/apis/health-kit'
+import { setSource, setSubSource } from '@reducers/source'
+import { Switch } from '@components/Primitives/Primitives'
 
 const HealthKitSection: FC = () => {
   const dispatch = useAppDispatch()
-  const sources = []
-  const isHealthKitMainSource = useAppSelector(
-    ({ source }) => source.source === 'health-kit'
+  const { source, subSource, subSources } = useAppSelector(
+    (state) => state.source
   )
-  const healthKitSource = useAppSelector(({ source }) => source.subSource)
 
   const onPress = (sourceId: string) => {
-    const source = sources?.find((s) => s.sourceId === sourceId)
+    const selectedSource = subSources?.find((s) => s.sourceId === sourceId)
     if (source) {
-      dispatch(setSubSource(source))
+      dispatch(setSubSource(selectedSource))
     }
   }
 
   const setHealthKitAsMainSource = () => {
     dispatch(initHealthKit())
+    dispatch(setSource('health-kit'))
   }
 
-  const mapped = sources?.map((item) => (
+  const mapped = subSources?.map((s) => (
     <SourceRow
-      key={item.sourceId}
-      sourceId={item.sourceId}
-      sourceName={item.sourceName}
-      selectedSourceId={healthKitSource?.sourceId}
+      key={s.sourceId}
+      sourceId={s.sourceId}
+      sourceName={s.sourceName}
+      selectedSourceId={subSource?.sourceId}
       switchSource={onPress}
     />
   ))
@@ -42,12 +42,12 @@ const HealthKitSection: FC = () => {
       <TitleRow>
         <Title>SOURCE.HEALTH_KIT</Title>
         <Switch
-          value={isHealthKitMainSource}
+          value={source === 'health-kit'}
           onValueChange={setHealthKitAsMainSource}
         />
       </TitleRow>
       <Description>SOURCE.HEALTH_KIT_DESCRIPTION</Description>
-      {isHealthKitMainSource && (
+      {source === 'health-kit' && (
         <>
           <SourceTitle>SOURCE.AVAILABLE_HEALTHKIT</SourceTitle>
           <Sources>{mapped ?? <EmptyState />}</Sources>
@@ -85,8 +85,6 @@ const SourceTitle = styled(TranslatedText)`
   font-size: 15px;
   margin: 16px 0px 8px;
 `
-
-const Switch = styled.Switch``
 
 const Description = styled(TranslatedText)`
   font-size: 13px;

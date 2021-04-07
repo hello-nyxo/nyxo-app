@@ -6,15 +6,7 @@ import { toggleExplanationsModal } from '@reducers/modal'
 import colors from '@styles/colors'
 import { Value } from '@typings/Sleepdata'
 import React, { FC } from 'react'
-import Animated, {
-  cond,
-  eq,
-  interpolate,
-  set,
-  stopClock,
-  useCode
-} from 'react-native-reanimated'
-import { timing, useClock, useValue } from 'react-native-redash/lib/module/v1'
+import Animated from 'react-native-reanimated'
 import Svg from 'react-native-svg'
 import styled from 'styled-components/native'
 import AddNightButton from './clock/AddNightButton'
@@ -52,40 +44,7 @@ const Clock: FC = () => {
   const date = useAppSelector((state) => state.calendar.selectedDay)
   const editMode = useAppSelector((state) => state.manualSleep.editMode)
 
-  const value = useValue<number>(1)
-  const isEditMode = useValue(editMode ? 1 : 0)
-  const clock = useClock()
-
-  useCode(
-    () => [
-      set(
-        value,
-        cond(eq(isEditMode, 1), [
-          timing({ from: value, to: 1, duration: 350, clock }),
-          timing({ from: value, to: 0, duration: 350, clock })
-        ])
-      )
-    ],
-    [isEditMode]
-  )
-
-  const buttonsStyle = {
-    opacity: interpolate(value, {
-      inputRange: [0, 1],
-      outputRange: [1, 0]
-    }),
-    transform: [
-      {
-        scale: interpolate(value, {
-          inputRange: [0, 1],
-          outputRange: [0.9, 1]
-        })
-      }
-    ]
-  }
-
   const toggleEditNightMode = () => {
-    stopClock(clock)
     dispatch(toggleEditMode(true))
   }
 
@@ -171,8 +130,8 @@ const Clock: FC = () => {
             date={date}
           />
         )}
-        <AddNightButton style={buttonsStyle} onPress={toggleEditNightMode} />
-        <InfoButton style={buttonsStyle} onPress={toggleInfo} />
+        <AddNightButton onPress={toggleEditNightMode} />
+        <InfoButton onPress={toggleInfo} />
       </ClockContainer>
       <InstructionsContainer>
         {editMode && (

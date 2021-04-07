@@ -13,7 +13,9 @@ import sleepReducer from './sleep'
 
 import fitbitReducer from './apis/fitbit'
 import ouraReducer from './apis/oura'
-import healthKitReducer from './health-kit'
+import healthKitReducer from './apis/health-kit'
+import withingsReducer from './apis/withings'
+import polarReducer from './apis/polar'
 
 const rootReducer = combineReducers({
   theme: themeReducer,
@@ -29,7 +31,9 @@ const rootReducer = combineReducers({
   sleep: sleepReducer,
   fitbit: fitbitReducer,
   oura: ouraReducer,
-  healthKit: healthKitReducer
+  withings: withingsReducer,
+  healthKit: healthKitReducer,
+  polar: polarReducer
 })
 
 export default rootReducer

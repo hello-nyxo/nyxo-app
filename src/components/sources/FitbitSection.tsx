@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { authorizeFitbit } from '@reducers/apis/fitbit'
+import { Switch } from '@components/Primitives/Primitives'
 
 const FitbitSection: FC = () => {
   const dispatch = useAppDispatch()
@@ -58,8 +59,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const FitbitLogo = styled.Image`
   height: 25px;

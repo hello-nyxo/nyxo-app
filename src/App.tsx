@@ -1,7 +1,7 @@
 import Amplify from '@aws-amplify/core'
+import { useTheme } from '@hooks/useTheme'
 import * as Sentry from '@sentry/react-native'
-import * as Analytics from 'appcenter-analytics'
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import { addEventListener, removeEventListener } from 'react-native-localize'
 import Purchases, {
   PurchaserInfo,
@@ -9,12 +9,18 @@ import Purchases, {
 } from 'react-native-purchases'
 import { enableScreens } from 'react-native-screens'
 import SplashScreen from 'react-native-splash-screen'
-import { ThemeProvider } from 'styled-components/native'
+import styled, { ThemeProvider } from 'styled-components/native'
 import amplify from './config/Amplify'
-import AppWithNavigationState from './config/AppNavigation'
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer
+} from '@react-navigation/native'
 import CONFIG from './config/config'
 import { setI18nConfig } from './config/i18n'
-import { lightTheme } from './styles/themes'
+import { darkTheme, lightTheme } from './styles/themes'
+import ROUTE from '@config/routes/Routes'
+import Root from '@config/routes/RootNavigator'
 
 if (!__DEV__) {
   Sentry.init({
@@ -30,7 +36,71 @@ type MakePurchasePromise = Promise<{
   purchaserInfo: PurchaserInfo
 }>
 
+const linking = {
+  prefixes: [
+    'https://nyxo.fi',
+    'https://nyxo.app',
+    'https://nyxo.app/fi',
+    'https://*.nyxo.app',
+    'https://get.nyxo.fi',
+    'https://auth.nyxo.app',
+    'nyxo://'
+  ],
+  config: {
+    screens: {
+      [ROUTE.TERVEYSTALO]: {
+        path: 'link',
+        parse: {
+          code: (code: string | number) => `${code}`
+        }
+      },
+      [ROUTE.PURCHASE]: {
+        path: 'purchase'
+      },
+      [ROUTE.WEEK]: {
+        path: 'week/:slug'
+      },
+      [ROUTE.LESSON]: {
+        path: 'lesson/:slug'
+      },
+      [ROUTE.APP]: {
+        screens: {
+          [ROUTE.SETTINGS]: {
+            screens: {
+              [ROUTE.CLOUD_SETTINGS]: {
+                path: 'join'
+              }
+            }
+          }
+        }
+      },
+      [ROUTE.APP]: {
+        path: 'app',
+        screens: {
+          [ROUTE.SETTINGS]: {
+            path: 'settings',
+            screens: {
+              [ROUTE.CLOUD_SETTINGS]: {
+                path: 'cloud'
+              },
+              [ROUTE.GARMIN]: {
+                path: 'garmin'
+              },
+              [ROUTE.SOURCE_SETTINGS]: {
+                path: 'callback'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 export const App: FC = () => {
+  const theme = useTheme()
+  const ref = useRef(null)
+
   useEffect(() => {
     setI18nConfig()
     SplashScreen.hide()
@@ -51,7 +121,6 @@ export const App: FC = () => {
 
   const purchaserInfoUpdateListener: PurchaserInfoUpdateListener = (info) => {
     //FIXME
-    console.log(info)
   }
 
   const handleLocalizationChange = () => {
@@ -68,16 +137,22 @@ export const App: FC = () => {
     }
   }
 
-  const enableAnalytics = async () => {
-    await Analytics.setEnabled(true)
-    Analytics.trackEvent('Opened app')
-  }
-
   return (
-    <ThemeProvider theme={lightTheme}>
-      <AppWithNavigationState />
+    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+      <StyledStatusBar animated />
+      <NavigationContainer
+        linking={linking}
+        ref={ref}
+        theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Root />
+      </NavigationContainer>
     </ThemeProvider>
   )
 }
 
 export default App
+
+const StyledStatusBar = styled.StatusBar.attrs(({ theme }) => ({
+  barStyle: theme.mode === 'dark' ? 'light-content' : 'dark-content',
+  backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
+}))``

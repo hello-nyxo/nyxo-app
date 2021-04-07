@@ -9,16 +9,14 @@ import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import { SafeAreaView } from '@components/Primitives/Primitives'
 import RatingModal from '@components/RatingModal'
 import CalendarModal from '@components/sleep/CalendarModal'
+import InsightsCard from '@components/sleep/InsightsCard'
 import { OnboardingCard } from '@components/sleep/OnboardingCard'
 import { localizedFormat } from '@config/i18n'
-import { getUserActiveCoaching } from '@hooks/coaching/useCoaching'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
-import { useFocusEffect } from '@react-navigation/core'
 import { toggleCalendarModal } from '@reducers/modal'
 import { updateSubscriptionStatus } from '@reducers/subscription'
-import React, { FC, useCallback, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { ScrollView } from 'react-native'
-import { queryCache } from 'react-query'
 import styled from 'styled-components/native'
 
 const Sleep: FC = () => {
@@ -33,17 +31,6 @@ const Sleep: FC = () => {
     dispatch(updateSubscriptionStatus())
     // dispatch(fetchSleepData(subDays(new Date(date), 1).toDateString(), date))
   }, [date, dispatch])
-
-  useFocusEffect(
-    useCallback(() => {
-      async function preFetch() {
-        await queryCache.prefetchQuery('userActiveCoaching', () =>
-          getUserActiveCoaching()
-        )
-      }
-      preFetch()
-    }, [])
-  )
 
   const checkSleepData = async () => {
     // dispatch(fetchSleepData(subDays(new Date(date), 1).toDateString(), date))
@@ -83,7 +70,9 @@ const Sleep: FC = () => {
           <Clock />
         </Row>
 
-        <Row>{/* <InsightsCard /> */}</Row>
+        <Row>
+          <InsightsCard />
+        </Row>
         <SleepTimeChart />
       </ScrollView>
 

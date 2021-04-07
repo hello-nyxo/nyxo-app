@@ -1,16 +1,13 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { IconBold } from '@components/iconRegular'
-import Animated from 'react-native-reanimated'
-import { ViewStyle } from 'react-native'
 
 type Props = {
   onPress: () => void
-  style: Animated.AnimateStyle<ViewStyle>
 }
 
-const AddNightButton: FC<Props> = ({ onPress, style }) => (
-  <Container style={style}>
+const AddNightButton: FC<Props> = ({ onPress }) => (
+  <Container>
     <Touchable onPress={onPress}>
       <ThemedIcon width={20} height={20} name="doubleBedAdd" />
     </Touchable>
@@ -19,7 +16,7 @@ const AddNightButton: FC<Props> = ({ onPress, style }) => (
 
 export default AddNightButton
 
-const Container = styled(Animated.View)`
+const Container = styled.View`
   position: absolute;
   bottom: 25px;
   left: 35px;

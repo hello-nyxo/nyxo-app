@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit'
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '@store/store'
 
 type State = {
@@ -13,7 +13,7 @@ const calendarSlice = createSlice({
   name: 'calendarSlice',
   initialState,
   reducers: {
-    setSelectedDay: (state, action) => {
+    setSelectedDay: (state, action: PayloadAction<string>) => {
       state.selectedDay = action.payload
     }
   }

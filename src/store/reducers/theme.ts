@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type Theme = 'light' | 'dark'
 
@@ -16,10 +16,10 @@ const themeSlice = createSlice({
   name: 'themeSlice',
   initialState,
   reducers: {
-    toggleTheme: (state, action) => {
+    toggleTheme: (state, action: PayloadAction<'light' | 'dark'>) => {
       state.theme = action.payload
     },
-    toggleUseSystemTheme: (state, action) => {
+    toggleUseSystemTheme: (state, action: PayloadAction<boolean>) => {
       state.followSystemTheme = action.payload
     }
   }

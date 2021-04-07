@@ -64,6 +64,9 @@ export const fetchHealthKit = createAsyncThunk<void, FetchArguments>(
           )
         }
       )
+
+      console.log(result)
+
       return undefined
     } catch (error) {
       return rejectWithValue(undefined)

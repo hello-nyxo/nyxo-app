@@ -7,10 +7,13 @@ export type Source =
   | 'garmin'
   | 'withings'
   | 'oura'
+  | undefined
 
 type State = {
   source: Source | undefined
   subSource: SubSource | undefined
+
+  subSources: Array<SubSource>
 }
 
 export type SubSource = {
@@ -20,17 +23,19 @@ export type SubSource = {
 
 const initialState: State = {
   source: undefined,
-  subSource: undefined
+  subSource: undefined,
+
+  subSources: []
 }
 
 const sourceSlice = createSlice({
   name: 'sourceSlice',
   initialState,
   reducers: {
-    setSource: (state, action: PayloadAction<Source>) => {
+    setSource: (state, action: PayloadAction<Source | undefined>) => {
       state.source = action.payload
     },
-    setSubSource: (state, action: PayloadAction<SubSource>) => {
+    setSubSource: (state, action: PayloadAction<SubSource | undefined>) => {
       state.subSource = action.payload
     }
   }

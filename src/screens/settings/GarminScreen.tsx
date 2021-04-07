@@ -29,7 +29,7 @@ const GarminScreen: FC<Props> = ({
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    // dispatch(getGarminAccessTokenAndroid(oauth_token, oauth_verifier))
+    // dispatch(getGarminAccessTokenAndroid(oauth_token, oauth_verifier)) FIXME
     navigation.navigate(ROUTE.SOURCE_SETTINGS)
   }, [dispatch, navigation, oauth_token, oauth_verifier])
 
