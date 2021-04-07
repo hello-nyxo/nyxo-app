@@ -1,29 +1,23 @@
-import React, { FC } from 'react'
-import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 import Login from '@screens/auth/LoginScreen'
 import Register from '@screens/auth/RegisterScreen'
-import ROUTE from './Routes'
+import { RootStackParamList } from '@typings/navigation/navigation'
+import React, { FC } from 'react'
+import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList['Auth']>()
 
 const AuthNavigator: FC = () => (
   <Stack.Navigator>
     <Stack.Screen
-      name={ROUTE.REGISTER}
+      name="Register"
       options={{ headerShown: false }}
       component={Register}
     />
     <Stack.Screen
-      name={ROUTE.LOGIN}
+      name="Login"
       options={{ headerShown: false }}
       component={Login}
     />
-
-    {/* <Stack.Screen
-      name={ROUTE.RECOVER}
-      options={{ headerShown: false }}
-      component={ForgotPassword}
-    /> */}
   </Stack.Navigator>
 )
 

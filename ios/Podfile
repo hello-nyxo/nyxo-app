@@ -6,11 +6,10 @@ require_relative '../node_modules/react-native-unimodules/cocoapods.rb'
 platform :ios, '10.0'
 
 target 'Nyxo' do
-	pod 'RNPurchases', :path => '../node_modules/react-native-purchases', :inhibit_warnings => true
 	pod 'OpenSSL-Universal'
-  use_unimodules!(exclude: ['expo-face-detector'])
-	use_flipper!
-
+	pod 'RNPurchases', :path => '../node_modules/react-native-purchases', :inhibit_warnings => true
+  	use_unimodules!(exclude: ['expo-face-detector'])
+	  use_flipper!({ 'Flipper' => '0.74.0' })
 
 	target 'NyxoTests' do
     inherit! :complete

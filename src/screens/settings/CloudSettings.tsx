@@ -14,19 +14,18 @@ import { RefreshControl, ScrollView } from 'react-native'
 import colors from '@styles/colors'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import { StackNavigationProp } from '@react-navigation/stack'
-import ROUTE from '@config/routes/Routes'
 import { RouteProp } from '@react-navigation/core'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { logout } from '@reducers/auth'
 
 type CloudSettingsScreenProp = StackNavigationProp<
   RootStackParamList['App']['Settings'],
-  ROUTE.CLOUD_SETTINGS
+  'Cloud'
 >
 
 type CloudSettingsScreenRouteProp = RouteProp<
   RootStackParamList['App']['Settings'],
-  ROUTE.CLOUD_SETTINGS
+  'Cloud'
 >
 
 type Props = {

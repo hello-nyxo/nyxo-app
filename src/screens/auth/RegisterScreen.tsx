@@ -1,4 +1,3 @@
-import ROUTE from '@config/routes/Routes'
 import { useAppDispatch } from '@hooks/redux'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { register } from '@reducers/auth'
@@ -7,8 +6,8 @@ import { RegisterView } from '@views/RegisterView'
 import React, { FC, memo } from 'react'
 
 type RegisterScreenNavigationProp = StackNavigationProp<
-  RootStackParamList[ROUTE.AUTH],
-  ROUTE.REGISTER
+  RootStackParamList['Auth'],
+  'Register'
 >
 
 type Props = {
@@ -25,11 +24,11 @@ const Register: FC<Props> = ({ navigation }) => {
   }
 
   const goToLogin = () => {
-    navigation.navigate(ROUTE.LOGIN)
+    navigation.navigate('Login')
   }
 
   const back = () => {
-    navigation.navigate(ROUTE.APP)
+    navigation.navigate('App')
   }
 
   return <RegisterView goToLogin={goToLogin} register={signup} back={back} />

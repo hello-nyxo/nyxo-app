@@ -6,7 +6,6 @@ import TopHeader from '@components/CoachingSpecific/TopHeader'
 import WeekIntro from '@components/CoachingSpecific/WeekIntro'
 import LessonCover from '@components/Lesson/LessonCover'
 import { WeekActions } from '@components/week/WeekActions'
-import ROUTE from '@config/routes/Routes'
 import { HEADER_MAX_HEIGHT } from '@helpers/Dimensions'
 import {
   useGetActiveCoaching,
@@ -23,10 +22,10 @@ import { useScrollHandler } from 'react-native-redash/lib/module/v1'
 import styled from 'styled-components/native'
 import Lessons from './Lessons'
 
-export type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.WEEK>
+export type WeekScreenRouteProp = RouteProp<RootStackParamList, 'Week'>
 export type WeekScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  ROUTE.WEEK
+  'Week'
 >
 
 type Props = {

@@ -19,7 +19,6 @@ import {
 import CONFIG from './config/config'
 import { setI18nConfig } from './config/i18n'
 import { darkTheme, lightTheme } from './styles/themes'
-import ROUTE from '@config/routes/Routes'
 import Root from '@config/routes/RootNavigator'
 
 if (!__DEV__) {
@@ -48,45 +47,32 @@ const linking = {
   ],
   config: {
     screens: {
-      [ROUTE.TERVEYSTALO]: {
+      Terveystalo: {
         path: 'link',
         parse: {
           code: (code: string | number) => `${code}`
         }
       },
-      [ROUTE.PURCHASE]: {
+      Purchase: {
         path: 'purchase'
       },
-      [ROUTE.WEEK]: {
+      Week: {
         path: 'week/:slug'
       },
-      [ROUTE.LESSON]: {
+      Lesson: {
         path: 'lesson/:slug'
       },
-      [ROUTE.APP]: {
+      App: {
         screens: {
-          [ROUTE.SETTINGS]: {
+          Settings: {
             screens: {
-              [ROUTE.CLOUD_SETTINGS]: {
+              Cloud: {
                 path: 'join'
-              }
-            }
-          }
-        }
-      },
-      [ROUTE.APP]: {
-        path: 'app',
-        screens: {
-          [ROUTE.SETTINGS]: {
-            path: 'settings',
-            screens: {
-              [ROUTE.CLOUD_SETTINGS]: {
-                path: 'cloud'
               },
-              [ROUTE.GARMIN]: {
+              Garmin: {
                 path: 'garmin'
               },
-              [ROUTE.SOURCE_SETTINGS]: {
+              Sources: {
                 path: 'callback'
               }
             }

@@ -1,6 +1,5 @@
 import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import TextButton from '@components/Buttons/TextButton'
-import ROUTE from '@config/routes/Routes'
 import { isLoggedIn } from '@helpers/auth'
 import {
   useCreateCoaching,
@@ -24,11 +23,11 @@ const CoachingNotStarted: FC = () => {
   if (!hasActiveCoaching) return null
 
   const openIntroduction = () => {
-    navigate(ROUTE.COACHING_INTRODUCTION)
+    navigate('Introduction')
   }
 
   const openLogin = () => {
-    navigate(ROUTE.AUTH, { screen: ROUTE.REGISTER })
+    navigate('Auth', { screen: 'Register' })
   }
 
   const startCoaching = () => {

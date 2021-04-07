@@ -2,20 +2,20 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React, { FC } from 'react'
 import CoachingIntroduction from '@screens/coaching/CoachingIntroduction'
 import Coaching from '@screens/coaching/CoachingView'
-import ROUTE from './Routes'
+import { RootStackParamList } from '@typings/navigation/navigation'
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator<RootStackParamList['App']['Coaching']>()
 
 const CoachingNavigator: FC = () => {
   return (
     <Stack.Navigator mode="modal">
       <Stack.Screen
-        name={ROUTE.COACHING}
+        name="CoachingScreen"
         component={Coaching}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name={ROUTE.COACHING_INTRODUCTION}
+        name="Introduction"
         component={CoachingIntroduction}
         options={{ headerShown: false }}
       />

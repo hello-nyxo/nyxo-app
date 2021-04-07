@@ -2,7 +2,6 @@ import { PrimaryButton } from '@components/Buttons/PrimaryButton'
 import { ExpandingDot } from '@components/micro-interactions/FlatListPageIndicator'
 import { H2, SafeAreaView } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
-import ROUTE from '@config/routes/Routes'
 import { HEIGHT, WIDTH } from '@helpers/Dimensions'
 import { useAppDispatch } from '@hooks/redux'
 import { RouteProp } from '@react-navigation/core'
@@ -29,10 +28,10 @@ const images = {
 
 type OnboardingNavigationProp = StackNavigationProp<
   RootStackParamList,
-  ROUTE.ONBOARDING
+  'Onboarding'
 >
 
-type OnboardingScreenRouteProp = RouteProp<RootStackParamList, ROUTE.ONBOARDING>
+type OnboardingScreenRouteProp = RouteProp<RootStackParamList, 'Onboarding'>
 
 type Props = {
   navigation: OnboardingNavigationProp
@@ -53,12 +52,12 @@ export const Onboarding: FC<Props> = ({ navigation: { navigate } }) => {
   }
 
   const skip = () => {
-    navigate(ROUTE.APP)
+    navigate('App')
   }
 
   const done = () => {
     dispatch(toggleIntroductionCompleted(true))
-    navigate(ROUTE.APP)
+    navigate('App')
   }
 
   const dataModalToggle = () => {

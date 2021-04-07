@@ -615,6 +615,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				035AC62F4491730AD465FF17 /* [CP] Copy Pods Resources */,
+				36C6519DE7C6B36F90A05B85 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -639,6 +640,7 @@
 				5B6E854A21406B9A0013E7B5 /* Embed Watch Content */,
 				6C3BA05A2308A4078CE786D2 /* [CP] Copy Pods Resources */,
 				2D37A87543474FAB8DD0A526 /* Upload Debug Symbols to Sentry */,
+				7F81BEB684042902CF65CD24 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -844,6 +846,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
 		};
+		36C6519DE7C6B36F90A05B85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nyxo-NyxoTests/Pods-Nyxo-NyxoTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo-NyxoTests/Pods-Nyxo-NyxoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5BBCCCD22472B0940047CD86 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -877,6 +897,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F81BEB684042902CF65CD24 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyxo/Pods-Nyxo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BF842D7B9E4CC79A1B9C718D /* [CP] Check Pods Manifest.lock */ = {

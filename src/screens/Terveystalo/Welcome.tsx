@@ -18,17 +18,13 @@ import { linkAccount } from '@reducers/linking'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC, useState } from 'react'
 import styled from 'styled-components/native'
-import ROUTE from '@config/routes/Routes'
 
 type TerveystaloNavigationProp = StackNavigationProp<
   RootStackParamList,
   ROUTE.TERVEYSTALO
 >
 
-type TerveystaloScreenRouteProp = RouteProp<
-  RootStackParamList,
-  ROUTE.TERVEYSTALO
->
+type TerveystaloScreenRouteProp = RouteProp<RootStackParamList, 'Terveystalo'>
 
 type Props = {
   navigation: TerveystaloNavigationProp
@@ -54,7 +50,7 @@ const TTWelcome: FC<Props> = ({ route }) => {
     <SafeAreaView>
       <StyledScrollView>
         <GoBackContainer>
-          <GoBack route={ROUTE.SLEEP} />
+          <GoBack route="App" />
         </GoBackContainer>
         <Container>
           <H2>TERVEYSTALO.WELCOME</H2>

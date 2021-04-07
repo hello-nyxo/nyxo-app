@@ -6,7 +6,7 @@ import { getWeek, useWeek } from '@hooks/coaching/useWeek'
 import { LessonCollectionItem } from '@typings/contentful'
 import groupBy from 'lodash/groupBy'
 import React, { FC, ReactElement } from 'react'
-import { ListRenderItem, SectionList, SectionListProps } from 'react-native'
+import { ListRenderItem, SectionList } from 'react-native'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 import { Document } from '@contentful/rich-text-types'
@@ -26,7 +26,7 @@ type RenderSectionHeader = ({
   section: { header: Section }
 }) => React.ReactElement | null
 
-type Props = SectionListProps<any, any> & {
+type Props = {
   slug?: string
   locked?: boolean
   header?: ReactElement

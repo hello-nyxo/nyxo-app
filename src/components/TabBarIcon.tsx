@@ -1,4 +1,3 @@
-import ROUTE from '@config/routes/Routes'
 import React, { FC } from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
@@ -7,20 +6,15 @@ import { IconBold } from './iconRegular'
 export type TabBarIconProps = {
   focused: boolean
   tintColor: string
-  routeName:
-    | ROUTE.JOURNAL
-    | ROUTE.COACHING
-    | ROUTE.HABITS
-    | ROUTE.PROFILE
-    | ROUTE.SETTINGS
+  routeName: 'Sleep' | 'Coaching' | 'Habits' | 'Profile' | 'Settings'
 }
 
 const tabBarIcons = {
-  [ROUTE.JOURNAL]: 'clockBold',
-  [ROUTE.COACHING]: 'schoolPhysicalBold',
-  [ROUTE.HABITS]: 'checklist',
-  [ROUTE.PROFILE]: 'userBold',
-  [ROUTE.SETTINGS]: 'settingsBold'
+  Sleep: 'clockBold',
+  Coaching: 'schoolPhysicalBold',
+  Habits: 'checklist',
+  Profile: 'userBold',
+  Settings: 'settingsBold'
 }
 
 const TabBarIcon: FC<TabBarIconProps> = ({ focused, routeName }) => {

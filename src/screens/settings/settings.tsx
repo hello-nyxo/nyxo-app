@@ -3,13 +3,10 @@ import { H2, PageTitle, SafeAreaView } from '@components/Primitives/Primitives'
 import SettingRow from '@components/SettingsSpecific/settingRow'
 import VersionInformation from '@components/SettingsSpecific/versionInformation'
 import CONFIG from '@config/config'
-import ROUTE from '@config/routes/Routes'
 import keyExtractor from '@helpers/KeyExtractor'
-import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { useAppSelector } from '@hooks/redux'
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { toggleTheme } from '@reducers/theme'
-import { darkTheme, lightTheme } from '@styles/themes'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC, memo } from 'react'
 import {
@@ -30,16 +27,13 @@ const options = {
   fallbackPlatformURL: 'http://www.nyxo.app/'
 }
 type SettingsNavigationProp = CompositeNavigationProp<
-  StackNavigationProp<
-    RootStackParamList[ROUTE.APP][ROUTE.SETTINGS],
-    ROUTE.SETTINGS
-  >,
+  StackNavigationProp<RootStackParamList['App']['Settings'], 'SettingsScreen'>,
   StackNavigationProp<RootStackParamList>
 >
 
 type SettingsScreenRouteProp = RouteProp<
-  RootStackParamList[ROUTE.APP][ROUTE.SETTINGS],
-  ROUTE.SETTINGS
+  RootStackParamList['App']['Settings'],
+  'SettingsScreen'
 >
 
 type Props = {
@@ -56,13 +50,7 @@ type SettingItem = {
 }
 
 const SettingsScreen: FC<Props> = ({ navigation }) => {
-  const dispatch = useAppDispatch()
   const theme = useAppSelector((state) => state.theme.theme)
-
-  const switchTheme = () => {
-    const newTheme = theme === 'dark' ? lightTheme : darkTheme
-    dispatch(toggleTheme(newTheme))
-  }
 
   const rateApp = () => {
     // FIXME
@@ -75,29 +63,29 @@ const SettingsScreen: FC<Props> = ({ navigation }) => {
     {
       text: 'Select Tracking Source',
       icon: 'smartWatchCircleGraph',
-      action: () => navigation.navigate(ROUTE.SOURCE_SETTINGS)
+      action: () => navigation.navigate('Sources')
     },
     {
       text: 'Coaching settings',
       icon: 'schoolPhysicalBold',
-      action: () => navigation.navigate(ROUTE.COACHING_SETTINGS)
+      action: () => navigation.navigate('Coaching')
     },
 
     {
       text: 'Manage Nyxo Subscription',
       icon: 'receipt',
-      action: () => navigation.navigate(ROUTE.SUBSCRIPTION_SETTINGS)
+      action: () => navigation.navigate('Subscription')
     },
     {
       text: 'Sync to backend',
       icon: 'syncCloud',
-      action: () => navigation.navigate(ROUTE.CLOUD_SETTINGS, { code: '' })
+      action: () => navigation.navigate('Cloud', { code: '' })
     },
     {
       text: 'Switch mode',
       icon: 'astronomyMoon',
       theme: displayTheme(theme),
-      action: () => navigation.push(ROUTE.THEME)
+      action: () => navigation.push('Theme')
     },
     {
       text: 'RATE_APP',
@@ -107,7 +95,7 @@ const SettingsScreen: FC<Props> = ({ navigation }) => {
     {
       text: 'ONBOARDING.TITLE',
       icon: 'compass',
-      action: () => navigation.push(ROUTE.ONBOARDING)
+      action: () => navigation.push('Onboarding')
     }
   ]
 

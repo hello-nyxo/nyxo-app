@@ -3,7 +3,6 @@ import {
   toggleMergingDialog
 } from '@actions/habit/habit-actions'
 import TranslatedText from '@components/TranslatedText'
-import ROUTE from '@config/routes/Routes'
 import { WIDTH } from '@helpers/Dimensions'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { useNavigation } from '@react-navigation/core'
@@ -26,7 +25,7 @@ const MergingDialog = () => {
 
   const close = () => {
     dispatch(toggleMergingDialog(false))
-    navigation.navigate(ROUTE.SLEEP, {})
+    navigation.navigate('Sleep')
   }
 
   const disagree = async () => {

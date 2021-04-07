@@ -1,6 +1,5 @@
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
-import ROUTE from '@config/routes/Routes'
 import { useAppSelector } from '@hooks/redux'
 import { useNavigation } from '@react-navigation/core'
 
@@ -17,7 +16,7 @@ export const OnboardingCard: FC = () => {
   if (onboardingCompleted) return null
 
   const startOnboarding = () => {
-    navigate(ROUTE.ONBOARDING)
+    navigate('Onboarding')
   }
 
   return (

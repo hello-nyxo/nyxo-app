@@ -1,6 +1,5 @@
 import { getReadingTime } from '@helpers/reading-time'
 import { useNavigation } from '@react-navigation/core'
-import ROUTE from '@config/routes/Routes'
 import React, { FC } from 'react'
 import FastImage from 'react-native-fast-image'
 import styled from 'styled-components/native'
@@ -33,7 +32,7 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
 
   const handlePress = () => {
     if (locked) {
-      navigate(ROUTE.LESSON, {
+      navigate('Lesson', {
         slug: `${lesson?.slug}`,
         id: 'id'
       })

@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { IconBold } from '@components/iconRegular'
 import { useNavigation } from '@react-navigation/core'
-import ROUTE from '@config/routes/Routes'
 import { useAppSelector } from '@hooks/redux'
 
 const NotificationCenterLink: FC = () => {
@@ -10,7 +9,7 @@ const NotificationCenterLink: FC = () => {
   const notificationCount = useAppSelector(getStaticNotificationsCount)
 
   const handlePress = () => {
-    navigate(ROUTE.NOTIFICATION_CENTER, {})
+    navigate('Notifications', {})
   }
 
   return (

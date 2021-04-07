@@ -13,7 +13,6 @@ import styled from 'styled-components/native'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import ROUTE from '@config/routes/Routes'
 import { getLesson, useLesson } from '@hooks/coaching/useLesson'
 import {
   useGetActiveCoaching,
@@ -23,10 +22,10 @@ import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
 import { useScrollHandler } from 'react-native-redash/lib/module/v1'
 import LinearGradient from 'react-native-linear-gradient'
 
-export type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.LESSON>
+export type WeekScreenRouteProp = RouteProp<RootStackParamList, 'Lesson'>
 export type WeekScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  ROUTE.LESSON
+  'Lesson'
 >
 
 type Props = {

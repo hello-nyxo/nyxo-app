@@ -8,7 +8,6 @@ import Welcome from '@screens/Terveystalo/Welcome'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
 import AuthNavigator from './AuthNavigator'
-import ROUTE from './Routes'
 import TabNavigator from './TabNavigator'
 
 const RootStack = createNativeStackNavigator<RootStackParamList>()
@@ -16,37 +15,37 @@ const RootStack = createNativeStackNavigator<RootStackParamList>()
 const Root: FC = () => (
   <RootStack.Navigator>
     <RootStack.Screen
-      name={ROUTE.APP}
+      name="App"
       options={{ headerShown: false }}
       component={TabNavigator}
     />
     <RootStack.Screen
-      name={ROUTE.AUTH}
+      name="Auth"
       options={{ headerShown: false }}
       component={AuthNavigator}
     />
     <RootStack.Screen
-      name={ROUTE.WEEK}
+      name="Week"
       component={CoachingWeek}
       options={{ headerShown: false }}
     />
     <RootStack.Screen
-      name={ROUTE.LESSON}
+      name="Lesson"
       component={LessonView}
       options={{ headerShown: false }}
     />
     <RootStack.Screen
-      name={ROUTE.PURCHASE}
+      name="Purchase"
       component={PurchaseScreen}
       options={{ headerShown: false }}
     />
     <RootStack.Screen
-      name={ROUTE.TERVEYSTALO}
+      name="Terveystalo"
       component={Welcome}
       options={{ headerShown: false }}
     />
     <RootStack.Screen
-      name={ROUTE.ONBOARDING}
+      name="Onboarding"
       component={Onboarding}
       options={{
         headerShown: false,
