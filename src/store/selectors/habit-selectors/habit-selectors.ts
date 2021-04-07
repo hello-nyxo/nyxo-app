@@ -1,6 +1,6 @@
-import { createSelector } from 'reselect'
-import { HabitState, Habit } from '@typings/state/habit-state'
+import { createSelector } from '@reduxjs/toolkit'
 import { State } from '@typings/State'
+import { Habit, HabitState } from '@typings/state/habit-state'
 import { Period } from '@typings/state/Periods'
 
 const getHabitState = (state: State) => state.habitState

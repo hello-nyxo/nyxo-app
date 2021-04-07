@@ -1,5 +1,6 @@
 import TranslatedText from '@components/TranslatedText'
 import { useAppSelector } from '@hooks/redux'
+import { getNightsAsDays } from '@reducers/nights'
 import { extent, max, min, scaleTime } from 'd3'
 import { addHours, subHours } from 'date-fns'
 import React, { FC } from 'react'
@@ -20,7 +21,7 @@ export const paddingRight = 100
 export const chartHeight = height / 3
 
 const SleepTimeChart: FC = () => {
-  const data = useAppSelector((state) => state.nights ?? [])
+  const data = useAppSelector(getNightsAsDays)
   const daysToShow = data.length
   const chartWidth = (barWidth + 10) * daysToShow + paddingLeft + paddingRight
 
