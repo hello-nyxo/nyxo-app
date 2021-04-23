@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type State = {
   editMode: boolean
@@ -14,12 +14,18 @@ const manualSleepSlice = createSlice({
   name: 'manualSleepSlice',
   initialState,
   reducers: {
-    toggleEditMode: (state, action) => {
+    toggleEditMode: (state, action: PayloadAction<boolean>) => {
       state.editMode = action.payload
     },
-    setSleep: (state, action) => {
-      state.startTime = action.payload
-      state.endTime = action.payload
+    setSleep: (
+      state,
+      action: PayloadAction<{
+        startTime?: { h: number; m: number }
+        endTime?: { h: number; m: number }
+      }>
+    ) => {
+      state.startTime = action.payload.startTime
+      state.endTime = action.payload.endTime
     }
   }
 })

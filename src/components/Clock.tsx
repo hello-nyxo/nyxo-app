@@ -17,7 +17,6 @@ import MinuteSticks from './clock/MinuteSticks'
 import SleepArc from './clock/SleepArc'
 import SleepTime from './clock/SleepTime'
 import Bedtime from './clock/Slider'
-import TrackerName from './clock/TrackerName'
 import TranslatedText from './TranslatedText'
 
 const containerSize = WIDTH - 40
@@ -106,7 +105,6 @@ const Clock: FC = () => {
             y={y}
             radius={inBedRadius}
           />
-          <TrackerName x={x} y={y} />
 
           {!editMode && (
             <SleepTime

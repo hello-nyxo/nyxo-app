@@ -27,6 +27,7 @@ def enableHermes = project.ext.react.get("enableHermes", true);
 
 
 android {
+    ndkVersion rootProject.ext.ndkVersion
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
@@ -37,8 +38,8 @@ android {
         applicationId "fi.nyxo.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 84
-        versionName "1.5.1"
+        versionCode 100
+        versionName "2.0"
         multiDexEnabled true
         manifestPlaceholders = [
             appAuthRedirectScheme: 'fi.nyxo.app'
@@ -85,7 +86,7 @@ android {
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
-                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+                        defaultConfig.versionCode * 1000 + versionCodes.get(abi)
             }
         }
     }

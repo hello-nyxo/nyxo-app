@@ -3,11 +3,7 @@ import Clock from '@components/Clock'
 import DayStrip from '@components/DayStrip'
 import { IconBold } from '@components/iconRegular'
 import { EditNightHeader } from '@components/MainScreenSpecific/EditNightHeader'
-import ExplanationsModal from '@components/modals/ExplanationsModal'
-import EditHabitModal from '@components/modals/HabitModal/EditHabitModal'
-import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import { SafeAreaView } from '@components/Primitives/Primitives'
-import RatingModal from '@components/RatingModal'
 import CalendarModal from '@components/sleep/CalendarModal'
 import InsightsCard from '@components/sleep/InsightsCard'
 import { OnboardingCard } from '@components/sleep/OnboardingCard'
@@ -29,6 +25,9 @@ const Sleep: FC = () => {
 
   useEffect(() => {
     dispatch(updateSubscriptionStatus())
+  })
+
+  useEffect(() => {
     // dispatch(fetchSleepData(subDays(new Date(date), 1).toDateString(), date))
   }, [date, dispatch])
 
@@ -77,11 +76,6 @@ const Sleep: FC = () => {
       </ScrollView>
 
       <CalendarModal />
-
-      <RatingModal />
-      <ExplanationsModal />
-      <NewHabitModal />
-      <EditHabitModal />
     </SafeAreaView>
   )
 }

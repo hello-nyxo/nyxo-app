@@ -9,15 +9,22 @@ target 'Nyxo' do
 	pod 'OpenSSL-Universal'
 	pod 'RNPurchases', :path => '../node_modules/react-native-purchases', :inhibit_warnings => true
   	use_unimodules!(exclude: ['expo-face-detector'])
-	  use_flipper!({ 'Flipper' => '0.74.0' })
-
+	
 	target 'NyxoTests' do
-    inherit! :complete
-    # Pods for testing
-  end
+    	inherit! :complete
+  	end
 
 	config = use_native_modules!
-	use_react_native!(:path => config["reactNativePath"]) 
+	use_react_native!(
+		:path => config[:reactNativePath],
+		:hermes_enabled => true
+	)
+
+	use_flipper!()
+	
+	post_install do |installer|
+		react_native_post_install(installer)
+	end
 end 
 
 

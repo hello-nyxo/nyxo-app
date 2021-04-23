@@ -18,7 +18,7 @@ const CoachingNotStarted: FC = () => {
   )
   const { navigate } = useNavigation()
   const { data: coaching } = useGetActiveCoaching()
-  const [mutate, { isLoading }] = useCreateCoaching()
+  const { mutate, isLoading } = useCreateCoaching()
 
   if (!hasActiveCoaching) return null
 

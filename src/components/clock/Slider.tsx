@@ -42,7 +42,7 @@ const Bedtime: FC<Props> = ({ clockSize }) => {
       (startAngle + angleLength) % (2 * Math.PI)
     )
 
-    dispatch(setSleep({ bedtime, waketime }))
+    dispatch(setSleep({ startTime: bedtime, endTime: waketime }))
   }
 
   const bedtime = calculateTimeFromAngle(startA, true)

@@ -20,6 +20,9 @@ import CONFIG from './config/config'
 import { setI18nConfig } from './config/i18n'
 import { darkTheme, lightTheme } from './styles/themes'
 import Root from '@config/routes/RootNavigator'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 if (!__DEV__) {
   Sentry.init({
@@ -124,15 +127,17 @@ export const App: FC = () => {
   }
 
   return (
-    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-      <StyledStatusBar animated />
-      <NavigationContainer
-        linking={linking}
-        ref={ref}
-        theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Root />
-      </NavigationContainer>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+        <StyledStatusBar animated />
+        <NavigationContainer
+          linking={linking}
+          ref={ref}
+          theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Root />
+        </NavigationContainer>
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
 

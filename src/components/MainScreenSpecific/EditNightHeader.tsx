@@ -12,17 +12,17 @@ export const EditNightHeader: FC = () => {
   const dispatch = useAppDispatch()
 
   const editMode = useAppSelector((state) => state.manualSleep.editMode)
-  const selectedDate = useAppSelector((state) => state.calendar.selectedDay)
-  const startTime = useAppSelector((state) => state.manualSleep.startTime)
-  const endTime = useAppSelector((state) => state.manualSleep.startTime)
+  // const selectedDate = useAppSelector((state) => state.calendar.selectedDay)
+  // const startTime = useAppSelector((state) => state.manualSleep.startTime)
+  // const endTime = useAppSelector((state) => state.manualSleep.startTime)
 
-  const handleSave = async () => {
+  const handleSave = () => {
     // await dispatch(addManualDataToNight(selectedDate, startTime, endTime))
-    await dispatch(toggleEditMode(false))
+    dispatch(toggleEditMode(false))
   }
 
-  const handleCancel = async () => {
-    await dispatch(toggleEditMode(false))
+  const handleCancel = () => {
+    dispatch(toggleEditMode(false))
   }
 
   if (!editMode) return null
