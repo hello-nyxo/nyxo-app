@@ -59,13 +59,13 @@ interface TimeProps {
 const Time = styled(TranslatedText)<TimeProps>`
   font-size: 11px;
   color: ${(props: TimeProps) => props.accent};
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   margin: 0px 20px 0px 10px;
 `
 
 export const Streak = styled(TranslatedText)`
   margin-left: 10px;
   font-size: 12px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `

@@ -1,6 +1,5 @@
 import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
-import { fonts } from '../styles/themes'
 import { IconBold } from './iconRegular'
 import TranslatedText from './TranslatedText'
 
@@ -30,10 +29,10 @@ const Text = styled(TranslatedText)`
   margin-top: 10px;
   font-size: 17px;
   text-align: center;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))``

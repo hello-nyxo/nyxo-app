@@ -26,5 +26,5 @@ const TrackerName: FC<Props> = ({ x, y }) => {
 export default React.memo(TrackerName)
 
 const ThemedText = styled(Text).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))``

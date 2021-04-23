@@ -15,8 +15,8 @@ export default TerveystaloButton
 
 const Container = styled.TouchableOpacity`
   padding: 10px;
-  border-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  border-color: ${({ theme }) => theme.buttonPrimary};
   border-width: 1px;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `

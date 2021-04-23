@@ -123,6 +123,6 @@ const Container = styled.SafeAreaView`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   flex: 1;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   justify-content: space-between;
 `

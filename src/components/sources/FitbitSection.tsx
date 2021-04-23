@@ -56,8 +56,8 @@ const LogoAndTitle = styled.View`
 
 const Title = styled(TranslatedText)`
   font-size: 15px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const FitbitLogo = styled.Image`
@@ -69,6 +69,6 @@ const FitbitLogo = styled.Image`
 const Description = styled(TranslatedText)`
   margin-top: 10px;
   font-size: 13px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `

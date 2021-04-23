@@ -36,5 +36,5 @@ const MinuteSticks = ({ x, y, radius }: Props) => {
 export default memo(MinuteSticks)
 
 const ThemedLine = styled(Line).attrs(({ theme }) => ({
-  stroke: theme.SECONDARY_TEXT_COLOR
+  stroke: theme.textSecondary
 }))``

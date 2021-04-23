@@ -4,7 +4,6 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import styled from 'styled-components/native'
 import { StyledModal } from '@components/Primitives/Primitives'
 import { WIDTH } from '@helpers/Dimensions'
-import { fonts } from '../../../styles/themes'
 import { IconBold } from '../../iconRegular'
 
 interface Props {
@@ -60,7 +59,7 @@ const Container = styled.View`
   width: ${WIDTH - 20}px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   border-radius: 15px;
   position: absolute;
   left: 10px;
@@ -76,12 +75,12 @@ const Row = styled.View`
 `
 
 const Text = styled.Text`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 15px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   flex: 1;
 `
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``

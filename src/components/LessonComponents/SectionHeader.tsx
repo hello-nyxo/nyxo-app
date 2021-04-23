@@ -1,6 +1,5 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
-import { fonts } from '@styles/themes'
 import { Document } from '@contentful/rich-text-types'
 import colors from '../../styles/colors'
 import RichText from '../RichText'
@@ -24,7 +23,7 @@ const SectionHeader = (props: Props) => {
 export default memo(SectionHeader)
 
 const SectionTitle = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 18px;
   color: ${colors.darkBlue};
   margin-bottom: 15px;
@@ -32,5 +31,5 @@ const SectionTitle = styled.Text`
 
 const Container = styled.View`
   padding: 20px 20px;
-  background: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background: ${({ theme }) => theme.bgPrimary};
 `

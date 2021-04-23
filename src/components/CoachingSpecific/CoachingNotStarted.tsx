@@ -69,24 +69,24 @@ const Container = styled.View`
   margin: 16px;
   padding: 20px 20px;
   border-radius: 7px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
 `
 
 const Title = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 17px;
   text-align: center;
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   margin-bottom: 10px;
 `
 
 const Explainer = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 15px;
   text-align: center;
   margin-bottom: 20px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
 `
 
 const Spacer = styled.View`

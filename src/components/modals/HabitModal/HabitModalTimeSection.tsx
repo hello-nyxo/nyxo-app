@@ -3,7 +3,6 @@ import styled from 'styled-components/native'
 import { Period } from '@typings/state/Periods'
 import SetTimePeriodButtons from './SetTimePeriodButtons'
 import TranslatedText from '../../TranslatedText'
-import { fonts } from '../../../styles/themes'
 
 type Props = {
   period: Period
@@ -29,7 +28,7 @@ const Section = styled.View`
 
 const SectionTitle = styled(TranslatedText)`
   font-size: 15px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.bold};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.bold};
   opacity: 0.6;
 `

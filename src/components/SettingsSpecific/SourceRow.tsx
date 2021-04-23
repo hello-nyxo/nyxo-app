@@ -71,7 +71,7 @@ const ListItemContainer = styled.View`
 const ListItem = styled.TouchableOpacity`
   padding: 10px 0px;
   border-bottom-width: ${constants.hairlineWidth}px;
-  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.hairline};
 `
 
 const ImageContainer = styled.View`
@@ -90,19 +90,19 @@ const Image = styled.Image`
 `
 
 const Icon = styled(IconBold).attrs<IconProps>(({ selected, theme }) => ({
-  fill: selected ? theme.accent : theme.SECONDARY_TEXT_COLOR,
+  fill: selected ? theme.accent : theme.textSecondary,
   name: selected ? 'circleCheck' : 'circleAlternate'
 }))<IconProps>``
 
 const SourceName = styled.Text`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const SubTitle = styled.Text`
   font-size: 12px;
   margin-top: 5px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const SourceRowContainer = styled.View`

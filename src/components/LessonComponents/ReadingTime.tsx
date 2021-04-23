@@ -39,15 +39,15 @@ export default memo(ReadingTime)
 
 const ReadTime = styled(TranslatedText)`
   margin: 0px 25px 0px 5px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 13px;
 `
 
 const HabitCount = styled(TranslatedText)`
   margin: 0px 5px 0px 5px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 13px;
 `
 
@@ -56,12 +56,12 @@ const Container = styled.View`
   align-items: center;
   padding: 10px;
   flex-direction: row;
-  border-top-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-top-color: ${({ theme }) => theme.hairline};
   border-top-width: 1px;
-  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.hairline};
   border-bottom-width: 1px;
 `
 
 const StyledIcon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))``

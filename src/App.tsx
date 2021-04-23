@@ -19,7 +19,7 @@ import {
 import CONFIG from './config/config'
 import { setI18nConfig } from './config/i18n'
 import { darkTheme, lightTheme } from './styles/themes'
-import Root from '@config/routes/RootNavigator'
+import Root from '@config/navigation/root'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 const queryClient = new QueryClient()
@@ -145,5 +145,5 @@ export default App
 
 const StyledStatusBar = styled.StatusBar.attrs(({ theme }) => ({
   barStyle: theme.mode === 'dark' ? 'light-content' : 'dark-content',
-  backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
+  backgroundColor: theme.bgPrimary
 }))``

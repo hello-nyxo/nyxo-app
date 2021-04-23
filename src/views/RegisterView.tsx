@@ -8,7 +8,6 @@ import { RegisterSchema } from '@config/validation'
 import { WIDTH } from '@helpers/Dimensions'
 import { useAppSelector } from '@hooks/redux'
 import colors from '@styles/colors'
-import { fonts } from '@styles/themes'
 import { Formik } from 'formik'
 import React, { FC } from 'react'
 import { ScrollView } from 'react-native'
@@ -110,8 +109,8 @@ export const RegisterView: FC<Props> = ({ register, back, goToLogin }) => {
 }
 
 const PasswordRequirement = styled(TranslatedText)`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.medium};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 13px;
 `
 
@@ -130,7 +129,7 @@ const TitleRow = styled.View`
 `
 
 const LoginButton = styled(TranslatedText)`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   text-align: center;
   font-size: 15px;
   color: ${({ theme }) => theme.accent};

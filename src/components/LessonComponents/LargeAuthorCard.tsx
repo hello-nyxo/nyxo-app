@@ -46,13 +46,13 @@ const Avatar = styled.Image`
 `
 
 const Name = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 17px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Credentials = styled.Text`
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 12px;
 `

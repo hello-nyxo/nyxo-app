@@ -8,7 +8,6 @@ import { ThemeScreen } from '@screens/settings/Theme'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
 import { createNativeStackNavigator } from 'react-native-screens/native-stack'
-import ROUTE from './Routes'
 
 const Stack = createNativeStackNavigator<
   RootStackParamList['App']['Settings']
@@ -18,42 +17,37 @@ const SettingsNavigator: FC = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={ROUTE.SETTINGS}
+        name="SettingsScreen"
         component={Settings}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name={ROUTE.SOURCE_SETTINGS}
+        name="Sources"
         component={SetSource}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name={ROUTE.CLOUD_SETTINGS}
+        name="Cloud"
         component={CloudSettings}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
-        name="NotificationSettings"
-        component={NotificationSettings}
-        options={{ headerShown: false }}
-      /> */}
       <Stack.Screen
-        name={ROUTE.COACHING_SETTINGS}
+        name="Coaching"
         component={CoachingSettings}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name={ROUTE.THEME}
+        name="Theme"
         component={ThemeScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name={ROUTE.SUBSCRIPTION_SETTINGS}
+        name="Subscription"
         component={ManageSubscription}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name={ROUTE.GARMIN}
+        name="Garmin"
         component={GarminScreen}
         options={{ headerShown: false }}
       />

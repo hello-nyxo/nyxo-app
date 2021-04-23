@@ -37,7 +37,7 @@ const UnderLine = styled.Text`
 `
 
 const DisclaimerText = styled.Text`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.medium};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.medium};
   line-height: 25px;
 `

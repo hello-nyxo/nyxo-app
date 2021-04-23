@@ -31,13 +31,13 @@ const Container = styled.View`
   right: 0;
   padding: 10px;
   border-top-width: ${constants.hairlineWidth};
-  border-top-color: ${({ theme }) => theme.HAIRLINE_COLOR};
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  border-top-color: ${({ theme }) => theme.hairline};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 const Code = styled(TranslatedText)`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 13px;
   text-align: center;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `

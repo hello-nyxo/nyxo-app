@@ -110,7 +110,7 @@ const Task = styled.View`
 
 const Point = styled(P)`
   font-size: 17px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   margin: 0px;
   padding: 0px;
 `

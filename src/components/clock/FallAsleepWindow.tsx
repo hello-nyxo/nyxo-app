@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import { Defs, G, Path, Text, TextPath, TSpan } from 'react-native-svg'
 import styled from 'styled-components/native'
 import {
@@ -6,8 +6,6 @@ import {
   describeArc,
   describeReverseArc
 } from '@helpers/geometry'
-import { fonts } from '@styles/themes'
-import colors from '../../styles/colors'
 import { format } from 'date-fns'
 
 type FallAsleepWindowProps = {
@@ -61,11 +59,7 @@ const FallAsleepWindow: FC<FallAsleepWindowProps> = ({
         </Defs>
         <Backdrop d={textPath} fill="none" strokeOpacity={1} strokeWidth="20" />
 
-        <Text
-          fill={colors.fallAsleep}
-          fontSize="15"
-          fontWeight="bold"
-          fontFamily={fonts.bold}>
+        <Time fontSize="15" fontWeight="bold">
           <TextPath
             href="#textPath"
             startOffset="50%"
@@ -75,21 +69,29 @@ const FallAsleepWindow: FC<FallAsleepWindowProps> = ({
               {time}
             </TSpan>
           </TextPath>
-        </Text>
+        </Time>
       </G>
-      <Path
+      <BedTimePath
         d={path}
         fill="transparent"
         strokeLinecap="round"
-        stroke={colors.bedTimeColor}
         strokeWidth={5}
       />
     </G>
   )
 }
 
-export default memo(FallAsleepWindow)
+export default FallAsleepWindow
 
 const Backdrop = styled(Path).attrs(({ theme }) => ({
-  stroke: theme.SECONDARY_BACKGROUND_COLOR
+  stroke: theme.bgSecondary,
+  fill: theme.accentSecondary
+}))``
+
+const Time = styled(Text).attrs(({ theme }) => ({
+  fontFamily: theme.bold
+}))``
+
+const BedTimePath = styled(Path).attrs(({ theme }) => ({
+  stroke: theme.accentSecondary
 }))``

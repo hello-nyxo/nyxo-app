@@ -1,4 +1,3 @@
-import { fonts } from '@styles/themes'
 import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
@@ -30,7 +29,7 @@ const Container = styled.View`
 `
 
 const ButtonText = styled(TranslatedText)`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
   padding: 5px;
   color: ${colors.darkBlue};

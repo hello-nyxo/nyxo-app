@@ -38,11 +38,11 @@ export const Spacer = styled.View`
 `
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``
 
 const Background = styled.View`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   padding: 20px;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@ const Background = styled.View`
   overflow: hidden;
   max-width: 40px;
   max-height: 40px;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
 `
 
 export const GoBackContainer = styled.View`

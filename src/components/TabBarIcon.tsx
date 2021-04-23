@@ -33,5 +33,5 @@ const TabBarIcon: FC<TabBarIconProps> = ({ focused, routeName }) => {
 export default TabBarIcon
 
 const TabIcon = styled(IconBold).attrs(({ theme, focused }) => ({
-  fill: focused ? theme.accent : theme.SECONDARY_TEXT_COLOR
+  fill: focused ? theme.accent : theme.textSecondary
 }))``

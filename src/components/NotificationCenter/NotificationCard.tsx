@@ -50,8 +50,8 @@ export default NotificationCard
 
 const Container = styled.View`
   margin: 0px 20px 20px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   padding: 20px;
   border-radius: 10px;
   flex: 1;
@@ -71,7 +71,7 @@ const TitleRow = styled.View`
 const CloseButton = styled.TouchableOpacity``
 
 const CloseIcon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR,
+  fill: theme.textSecondary,
   height: 20,
   width: 20,
   name: 'closeCircle'
@@ -81,7 +81,7 @@ const Button = styled.TouchableOpacity``
 
 const ButtonText = styled(TranslatedText)`
   font-size: 15px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   color: ${colors.darkBlue};
   text-align: center;
   margin: 20px 0px 0px;

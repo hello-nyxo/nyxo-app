@@ -60,9 +60,9 @@ const List = styled(FlatList as new () => FlatList<HabitCollectionItem>).attrs(
 )``
 
 const TextSmall = styled(TranslatedText)`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 13px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
   margin: 10px 20px;
 `
 

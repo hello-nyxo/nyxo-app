@@ -32,7 +32,7 @@ const Container = styled.View`
 `
 
 const TagIcon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR,
+  fill: theme.textPrimary,
   height: 12,
   width: 12,
   name: 'tag'
@@ -41,12 +41,12 @@ const TagIcon = styled(IconBold).attrs(({ theme }) => ({
 `
 
 const Tag = styled.Text`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   padding: 5px;
   border-radius: 5px;
   margin: 0px 5px 5px 0px;
   text-transform: uppercase;
   font-size: 12px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `

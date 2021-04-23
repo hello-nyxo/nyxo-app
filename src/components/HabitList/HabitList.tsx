@@ -2,7 +2,6 @@ import { useAppDispatch } from '@hooks/redux'
 import { useNavigation } from '@react-navigation/native'
 import { toggleNewHabitModal } from '@reducers/modal'
 import { getHabitSections } from '@selectors/habit-selectors/habit-selectors'
-import { fonts } from '@styles/themes'
 import { Habit } from '@typings/State/habit-state'
 import React, { FC, memo, ReactElement } from 'react'
 import { SectionList, SectionListRenderItem } from 'react-native'
@@ -79,7 +78,7 @@ export default memo(HabitList)
 const List = styled(SectionList as new () => SectionList<Habit>).attrs(
   ({ theme }) => ({
     contentContainerStyle: {
-      backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
+      backgroundColor: theme.bgPrimary
     }
   })
 )`
@@ -87,7 +86,7 @@ const List = styled(SectionList as new () => SectionList<Habit>).attrs(
 `
 
 const Fill = styled.View`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   width: 100%;
 `
 
@@ -108,7 +107,7 @@ const NewHabitButton = styled.TouchableOpacity`
 `
 
 const ShowAllText = styled(TranslatedText)`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   color: ${colors.darkBlue};
 `
 

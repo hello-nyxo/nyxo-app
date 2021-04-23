@@ -35,7 +35,7 @@ const PerkList: FC = () => {
 export default PerkList
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))`
   margin-right: 10px;
 `
@@ -52,7 +52,7 @@ const Perk = styled.View`
 `
 
 const PerkText = styled(TranslatedText)`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.medium};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 15px;
 `

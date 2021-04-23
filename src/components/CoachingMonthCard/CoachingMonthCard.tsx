@@ -154,8 +154,8 @@ const CoachingMonthCard: FC<Props> = ({ month, actionsEnabled = true }) => {
 export default CoachingMonthCard
 
 const Container = styled.View`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   padding: 10px;
   border-radius: 10px;
   margin: 10px 16px;
@@ -164,8 +164,8 @@ const Container = styled.View`
 const Title = styled.Text`
   font-size: 17px;
   text-transform: uppercase;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 16px;
 `
 
@@ -186,14 +186,14 @@ const Row = styled.View`
 
 const Started = styled.Text`
   font-size: 13px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Stat = styled(TranslatedText)`
   font-size: 13px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Text = styled(TranslatedText)`
@@ -201,15 +201,15 @@ const Text = styled(TranslatedText)`
   line-height: 16px;
   text-transform: uppercase;
   margin-bottom: 4px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const CalendarIcon = styled(IconBold).attrs(({ theme }) => ({
   name: 'calendar',
   height: 13,
   width: 13,
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))`
   margin-right: 8px;
 `
@@ -236,9 +236,9 @@ const Action = styled(RectButton)`
 `
 
 const ButtonText = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  color: ${({ theme }) => theme.buttonPrimary};
   font-size: 17px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.medium};
 `
 
 type StripeProps = {
@@ -257,7 +257,7 @@ const Stripe = styled.View<StripeProps>`
 const Icon = styled(IconBold).attrs(({ theme }) => ({
   height: 15,
   width: 15,
-  fill: theme.SECONDARY_TEXT_COLOR,
+  fill: theme.textSecondary,
   name: 'bookLamp'
 }))`
   margin-right: 8px;

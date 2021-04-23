@@ -41,8 +41,8 @@ const Avatar = styled(FastImage)<ImageProps>`
 
 const Name = styled.Text`
   font-size: 12px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Container = styled.View`
@@ -50,7 +50,7 @@ const Container = styled.View`
 `
 
 const Credentials = styled.Text`
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 11px;
 `

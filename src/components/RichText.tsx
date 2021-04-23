@@ -15,7 +15,7 @@ import { AssetBlock } from '@typings/contentful'
 import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { Image, Linking } from 'react-native'
 import styled from 'styled-components/native'
-import { constants, fonts } from '../styles/themes'
+import { constants } from '../styles/themes'
 import { IconBold } from './iconRegular'
 
 const HyperLink = ({
@@ -162,84 +162,84 @@ const Container = styled.View``
 
 const Bold = styled.Text`
   font-size: 15px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 Bold.displayName = 'Bold'
 
 const Italic = styled.Text`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.medium};
   font-style: italic;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 Italic.displayName = 'Italic'
 
 const Underline = styled.Text`
   text-decoration: underline;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Code = styled.Text`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Paragraph = styled.Text`
   font-size: 15px;
   line-height: 25px;
   margin-bottom: 20px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const H1 = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 28px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 20px;
 `
 
 const H2 = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 25px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 20px;
 `
 
 const H3 = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 20px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 20px;
 `
 
 const H4 = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 20px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 20px;
 `
 
 const H5 = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 18px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 20px;
 `
 
 const H6 = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 20px;
 `
 
 const Line = styled.View`
   width: 100%;
   height: ${constants.hairlineWidth}px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Link = styled(Paragraph)`
@@ -270,15 +270,15 @@ const List = ({
 const Number = styled.Text`
   font-size: 15px;
   line-height: 25px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Dot = styled(IconBold).attrs(({ theme }) => ({
   height: '8',
   name: 'circle',
   width: '8',
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``
 
 const ListItemContainer = styled.View`
@@ -293,13 +293,13 @@ const ListItemText = styled.Text`
   font-size: 15px;
   flex: 1;
   line-height: 25px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const BlockQuote = styled.View`
   padding-left: 10px;
-  border-left-color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  border-left-color: ${({ theme }) => theme.textSecondary};
   border-left-width: 2px;
 `
 
@@ -338,22 +338,22 @@ const ImageBlock: FC<ImageProps> = ({ node, assets }) => {
 }
 
 const ImageContainer = styled.View`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   margin: 30px -20px;
   padding: 0px 0px 20px;
   flex: 1;
 `
 const ImageTitle = styled.Text`
   margin: 10px 20px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 17px;
 `
 
 const ImageDescription = styled.Text`
   margin: 0px 20px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 14px;
 `
 

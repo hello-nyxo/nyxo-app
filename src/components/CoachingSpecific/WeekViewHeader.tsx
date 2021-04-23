@@ -3,7 +3,6 @@ import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
-import { fonts } from '@styles/themes'
 
 type Props = {
   yOffset: Animated.Value<number>
@@ -46,7 +45,7 @@ const Header = styled(Animated.View)`
 `
 
 const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
-  colors: theme.GRADIENT
+  colors: theme.gradient
 }))`
   position: absolute;
   left: 0;
@@ -57,7 +56,7 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
 `
 
 const WeekTitle = styled(Animated.Text)`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   z-index: 20;
   font-size: 30px;
   text-align: left;
@@ -65,5 +64,5 @@ const WeekTitle = styled(Animated.Text)`
   bottom: 0;
   left: 20px;
   right: 20px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `

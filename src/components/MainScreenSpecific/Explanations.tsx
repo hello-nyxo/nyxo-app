@@ -1,7 +1,6 @@
 import { minutesToHoursString } from '@helpers/time'
 import { useAppSelector } from '@hooks/redux'
 import { getAsleepDuration, getInBedDuration } from '@reducers/nights'
-import { fonts } from '@styles/themes'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
@@ -67,13 +66,13 @@ const Column = styled.View``
 const Title = styled.Text`
   text-transform: uppercase;
   font-size: 12px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Figure = styled.Text`
   text-transform: uppercase;
   font-size: 15px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `

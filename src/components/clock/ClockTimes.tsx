@@ -46,9 +46,9 @@ const ClockTimes: FC<Props> = ({ x, y, radius }) => {
 export default memo(ClockTimes)
 
 const ThemedText = styled(SVGText).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``
 
 const ThemedLine = styled(Line).attrs(({ theme }) => ({
-  stroke: theme.SECONDARY_TEXT_COLOR
+  stroke: theme.textSecondary
 }))``

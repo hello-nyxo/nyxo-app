@@ -86,29 +86,29 @@ const StyledModal = styled(Modal)<ReactNativeModal>`
 const Container = styled.View`
   justify-content: space-between;
   padding: 20px 20px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 export const ThemedCalendar = styled(Calendar).attrs(({ theme }) => ({
   theme: {
-    backgroundColor: theme.SECONDARY_BACKGROUND_COLOR,
-    calendarBackground: theme.SECONDARY_BACKGROUND_COLOR,
+    backgroundColor: theme.bgSecondary,
+    calendarBackground: theme.bgSecondary,
     textSectionTitleColor: '#b6c1cd',
     textSectionTitleDisabledColor: '#d9e1e8',
-    selectedDayBackgroundColor: theme.PRIMARY_BUTTON_COLOR,
+    selectedDayBackgroundColor: theme.buttonPrimary,
     selectedDayTextColor: '#ffffff',
-    todayTextColor: theme.PRIMARY_BUTTON_COLOR,
-    dayTextColor: theme.SECONDARY_TEXT_COLOR,
+    todayTextColor: theme.buttonPrimary,
+    dayTextColor: theme.textSecondary,
     textDisabledColor: '#d9e1e8',
     dotColor: '#00adf5',
     selectedDotColor: '#ffffff',
-    arrowColor: theme.PRIMARY_BUTTON_COLOR,
-    disabledArrowColor: theme.SECONDARY_BACKGROUND_COLOR,
-    monthTextColor: theme.SECONDARY_TEXT_COLOR,
+    arrowColor: theme.buttonPrimary,
+    disabledArrowColor: theme.bgSecondary,
+    monthTextColor: theme.textSecondary,
     indicatorColor: 'blue',
-    textDayFontFamily: theme.FONT_MEDIUM,
-    textMonthFontFamily: theme.FONT_MEDIUM,
-    textDayHeaderFontFamily: theme.FONT_MEDIUM,
+    textDayFontFamily: theme.medium,
+    textMonthFontFamily: theme.medium,
+    textDayHeaderFontFamily: theme.medium,
     textMonthFontWeight: 'bold',
     textDayHeaderFontWeight: '300',
     textDayFontSize: 16,

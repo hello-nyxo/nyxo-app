@@ -17,7 +17,7 @@ import styled from 'styled-components/native'
 
 const Sleep: FC = () => {
   const dispatch = useAppDispatch()
-  const date = useAppSelector((state) => state.calendar.selectedDay)
+  const date = useAppSelector(({ calendar }) => calendar.selectedDay)
   const loadingSleep = useAppSelector(
     ({ sleep }) => sleep.loading === 'pending'
   )
@@ -91,17 +91,17 @@ const Row = styled.View`
 
 const Title = styled.Text`
   text-transform: capitalize;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 34px;
   margin-bottom: 5px;
 `
 
 const Subtitle = styled.Text`
   text-transform: capitalize;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 13px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const TitleRow = styled.View`
@@ -112,7 +112,7 @@ const TitleRow = styled.View`
 `
 
 const RefreshControl = styled.RefreshControl.attrs(({ theme }) => ({
-  tintColor: theme.SECONDARY_TEXT_COLOR
+  tintColor: theme.textSecondary
 }))``
 
 const TitleContainer = styled.View``
@@ -126,7 +126,7 @@ const CalendarIcon = styled(IconBold).attrs(({ theme }) => ({
   name: 'calendar',
   height: 13,
   width: 13,
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))`
   margin-right: 4px;
 `

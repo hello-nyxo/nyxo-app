@@ -47,19 +47,19 @@ export default SubscriptionItem
 const Type = styled(TranslatedText)`
   margin: 8px 0px;
   font-size: 13px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const SubscriptionOption = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   border-radius: 8px;
   margin: 8px 8px;
   min-height: 100px;
   elevation: 3;
   padding: 8px;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
 `
 
 const PriceRow = styled.View`
@@ -70,26 +70,26 @@ const PriceRow = styled.View`
 const Point = styled(TranslatedText)`
   font-size: 12px;
   margin-top: 5px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.bold};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.bold};
 `
 
 const Price = styled.Text`
   font-size: 17px;
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   color: ${({ theme }) => theme.accent};
 `
 const Period = styled(TranslatedText)`
   font-size: 10px;
   margin-left: 4px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.medium};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.medium};
 `
 
 const Selected = styled.View`
   height: 20px;
   width: 20px;
-  background-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  background-color: ${({ theme }) => theme.hairline};
   border-radius: 20px;
   justify-content: center;
   margin-right: 8px;

@@ -115,7 +115,7 @@ const SleepTime: FC<Props> = ({
 export default memo(SleepTime)
 
 const ThemedText = styled(SVGText).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))``
 
 const StartText = styled(SVGText).attrs(({ theme }) => ({

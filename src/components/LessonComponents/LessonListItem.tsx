@@ -94,22 +94,22 @@ const LessonListItem: FC<Props> = ({ lesson, locked }) => {
 export default LessonListItem
 
 const StyledIcon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))`
   margin-right: 5px;
 `
 
 const HabitCount = styled(TranslatedText)`
   margin: 0px 5px 0px 5px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 12px;
 `
 
 const Touchable = styled.TouchableOpacity`
   padding: 16px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   margin: 8px 16px;
   border-radius: 8px;
 `
@@ -117,26 +117,26 @@ const Touchable = styled.TouchableOpacity`
 const Container = styled.View`
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 const Author = styled.Text`
   font-size: 13px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const LessonName = styled.Text`
   font-size: 15px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 5px;
 `
 
 const ReadingTime = styled(TranslatedText)`
   font-size: 12px;
   margin-right: 10px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 interface CompletedProps {

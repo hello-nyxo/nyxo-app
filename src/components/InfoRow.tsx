@@ -26,19 +26,19 @@ const Row = styled.View`
   align-items: center;
   justify-content: space-between;
   border-bottom-width: ${constants.hairlineWidth}px;
-  border-bottom-color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  border-bottom-color: ${({ theme }) => theme.textSecondary};
 `
 
 export const Title = styled(TranslatedText)`
   text-align: center;
   font-size: 17px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Figure = styled.Text`
   text-align: center;
   font-size: 17px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `

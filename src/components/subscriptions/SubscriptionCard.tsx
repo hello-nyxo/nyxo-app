@@ -58,22 +58,22 @@ const Container = styled.View`
   border-color: ${colors.darkBlueTransparent};
   border-width: 3px;
   border-radius: 10px;
-  box-shadow: ${({ theme }) => theme.SHADOW};
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const Text = styled.Text`
   margin-bottom: 10px;
   font-size: 15px;
   line-height: 25px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const IsSandboxContainer = styled.View`
   margin: 25px 0px 0px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  border-color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  border-color: ${({ theme }) => theme.textSecondary};
   border-width: 1px;
   padding: 10px 20px;
   border-radius: 10px;
@@ -83,13 +83,13 @@ const IsSandboxContainer = styled.View`
 const IsSandbox = styled.Text`
   margin-left: 10px;
   font-size: 15px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const SandboxIcon = styled(IconBold).attrs(({ theme }) => ({
   name: 'shovel',
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))`
   height: 20px;
 `
@@ -102,7 +102,7 @@ const TitleRow = styled.View`
 `
 
 const Title = styled.Text`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 19px;
   color: ${colors.darkBlue};
   text-transform: uppercase;
@@ -110,7 +110,7 @@ const Title = styled.Text`
 
 const Type = styled.Text`
   font-size: 10px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   color: ${colors.darkBlue};
 `
 
@@ -118,6 +118,6 @@ const BoldText = styled.Text`
   margin-bottom: 10px;
   font-size: 15px;
   line-height: 25px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `

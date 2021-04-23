@@ -6,7 +6,6 @@ import getRating from '@helpers/rating'
 import { toNightTime } from '@helpers/time'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import colors from '@styles/colors'
-import { fonts } from '@styles/themes'
 import { format, parseISO } from 'date-fns'
 import React, { FC } from 'react'
 import RNModal, { ModalProps, ReactNativeModal } from 'react-native-modal'
@@ -104,7 +103,7 @@ export default ExplanationsModal
 const StyledModal = styled(
   RNModal as new (props: ModalProps) => ReactNativeModal
 )`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   flex: 1;
   margin: 0px;
 `
@@ -134,8 +133,8 @@ const Row = styled.View`
 
 const ExplanationText = styled(TranslatedText)`
   font-size: 13px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
   margin-top: 10px;
   margin-left: 20px;
 `
@@ -148,15 +147,15 @@ const Title = styled(TranslatedText)`
   text-transform: uppercase;
   font-size: 15px;
   margin-bottom: 5px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Figure = styled.Text`
   text-transform: uppercase;
   font-size: 15px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Container = styled.ScrollView`
@@ -167,8 +166,8 @@ const Container = styled.ScrollView`
 const SubTitle = styled(TranslatedText)`
   text-transform: uppercase;
   font-size: 15px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const TitleRow = styled.View`
@@ -178,5 +177,5 @@ const TitleRow = styled.View`
 `
 
 const Icon = styled(IconBold).attrs(({ fill, theme }) => ({
-  fill: fill || theme.SECONDARY_TEXT_COLOR
+  fill: fill || theme.textSecondary
 }))``

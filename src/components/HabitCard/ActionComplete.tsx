@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 import Animated from 'react-native-reanimated'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
-import { fonts } from '@styles/themes'
 import { IconBold } from '../iconRegular'
 import { AnimatedTranslatedText } from '../TranslatedText'
 
@@ -43,12 +42,12 @@ const ActionComplete = (props: Props) => {
 export default memo(ActionComplete)
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``
 
 const ButtonText = styled(AnimatedTranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-  font-family: ${fonts.bold};
+  color: ${({ theme }) => theme.textPrimary};
+  font-family: ${({ theme }) => theme.bold};
   margin: 0px 5px;
 `
 

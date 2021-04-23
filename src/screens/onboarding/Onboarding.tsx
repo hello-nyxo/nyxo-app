@@ -210,7 +210,7 @@ export const Onboarding: FC<Props> = ({ navigation: { navigate } }) => {
 }
 
 const Container = styled(SafeAreaView)`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 const Page = styled.View`
@@ -225,8 +225,8 @@ const Title = styled(H2)`
 
 const Text = styled(TranslatedText)`
   text-align: center;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 15px;
   line-height: 28px;
   margin-bottom: 32px;
@@ -256,7 +256,7 @@ const ModalContent = styled.ScrollView`
 `
 
 const StyledModal = styled(Modal as unknown)`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   flex: 1;
   margin: 0px;
 `
@@ -269,8 +269,8 @@ const SkipContainer = styled.View`
 const SkipButton = styled.TouchableOpacity``
 
 const SkipButtonText = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Image = styled.Image.attrs(() => ({

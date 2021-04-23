@@ -42,7 +42,7 @@ const Button = styled.View`
 `
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``
 
 interface TextProps {
@@ -51,6 +51,6 @@ interface TextProps {
 const Text = styled(TranslatedText)<TextProps>`
   margin-left: 5px;
   font-size: 15px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `

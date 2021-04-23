@@ -25,19 +25,19 @@ const CoachingSectionHeader: FC<Props> = ({
 export default CoachingSectionHeader
 
 const SectionHeader = styled.View`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   padding: 30px 20px 20px;
 `
 
 const SectionTitle = styled(TranslatedText)`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 22px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Subtitle = styled(TranslatedText)`
   margin-top: 5px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 13px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
 `

@@ -46,11 +46,11 @@ const Container = styled.View`
   width: 100%;
   overflow: hidden;
   position: absolute;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
-  colors: theme.GRADIENT
+  colors: theme.gradient
 }))`
   position: absolute;
   left: 0;

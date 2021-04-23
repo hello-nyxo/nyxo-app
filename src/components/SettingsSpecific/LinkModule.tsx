@@ -115,17 +115,17 @@ const Container = styled.View`
 `
 
 const CodeInput = styled.TextInput.attrs(({ theme }) => ({
-  placeholderTextColor: theme.PRIMARY_TEXT_COLOR
+  placeholderTextColor: theme.textPrimary
 }))`
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 17px;
   flex: 1;
   min-height: 50px;
   border-radius: 5px;
   padding: 10px 20px;
   margin-bottom: 20px;
-  border-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-color: ${({ theme }) => theme.hairline};
   border-width: ${constants.hairlineWidth}px;
 `
 
@@ -142,8 +142,8 @@ const LinkCodeRow = styled.View`
 `
 
 const LinkCode = styled.Text`
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 17px;
   flex: 1;
 `
@@ -151,7 +151,7 @@ const LinkCode = styled.Text`
 const RemoveButton = styled.TouchableOpacity``
 
 const RemoveButtonIcon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``
 
 const CodeSuggestionContainer = styled.View`
@@ -163,7 +163,7 @@ const CodeSuggestionContainer = styled.View`
 `
 
 const CodeSuggestion = styled(TranslatedText)`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   color: ${colors.red};
   font-size: 15px;
   flex: 1;

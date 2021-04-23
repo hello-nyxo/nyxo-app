@@ -146,8 +146,8 @@ const Clock: FC = () => {
 export default Clock
 
 const Card = styled(Animated.View)`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   border-radius: 7px;
   margin-top: 8px;
   flex: 1;
@@ -164,12 +164,12 @@ const ClockContainer = styled.View`
 `
 
 const Title = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
   position: absolute;
   top: 10px;
   left: 16px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Legend = styled.View`
@@ -202,8 +202,8 @@ const LegendText = styled(TranslatedText)`
   font-size: 10px;
   margin-bottom: 2px;
   width: 45px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.medium};
 `
 
 const InstructionsContainer = styled(Animated.View)`
@@ -215,6 +215,6 @@ const InstructionsContainer = styled(Animated.View)`
 const Instructions = styled(Animated.Text)`
   text-align: center;
   font-size: 13px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `

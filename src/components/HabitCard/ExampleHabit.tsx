@@ -5,7 +5,6 @@ import { documentToPlainTextString } from '@contentful/rich-text-plain-text-rend
 import { Document } from '@contentful/rich-text-types'
 import { WIDTH } from '@helpers/Dimensions'
 import { useAppDispatch } from '@hooks/redux'
-import { fonts } from '@styles/themes'
 import { Period } from '@typings/state/Periods'
 import React, { FC, memo, useState } from 'react'
 import { ScrollView } from 'react-native'
@@ -97,7 +96,7 @@ const Habit = styled.View`
   margin-left: 20px;
   flex: 1;
   width: ${WIDTH - 60}px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   box-shadow: 1px 1px 15px rgba(32, 33, 37, 0.1);
   border-radius: 5px;
 `
@@ -105,22 +104,22 @@ const Habit = styled.View`
 const TimePeriod = styled(TranslatedText)`
   font-size: 13px;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
   margin-left: 10px;
 `
 
 const Title = styled.Text`
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 21px;
   margin: 10px 0px;
 `
 
 const ModalTitle = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   margin: 30px 0px 40px;
   font-size: 21px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Row = styled.View`
@@ -131,8 +130,8 @@ const Row = styled.View`
 const Icon = styled(IconBold)``
 
 const ReadMore = styled(TranslatedText)`
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 15px;
   margin-left: 10px;
 `
@@ -150,14 +149,14 @@ const Buttons = styled.View`
 `
 
 const QuestionIcon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR
+  fill: theme.textSecondary
 }))``
 
 const AddHabit = styled.TouchableOpacity``
 
 const AddHabitText = styled(TranslatedText)`
   color: ${colors.darkBlue};
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
   text-align: right;
 `

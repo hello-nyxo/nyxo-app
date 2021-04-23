@@ -103,7 +103,7 @@ export default LessonList
 
 const StyledSectionList = styled(AnimatedSectionList).attrs(({ theme }) => ({
   style: {
-    backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
+    backgroundColor: theme.bgPrimary
   }
 }))``
 

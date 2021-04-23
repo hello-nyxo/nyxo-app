@@ -3,7 +3,6 @@ import { format } from 'date-fns'
 import React, { memo, FC } from 'react'
 import { G, Text } from 'react-native-svg'
 import styled from 'styled-components/native'
-import { fonts } from '../../../styles/themes'
 
 type Props = {
   scaleX: ScaleTime<number, number>
@@ -18,15 +17,10 @@ const XTicks: FC<Props> = ({ scaleX, chartHeight, barWidth, ticks }) => {
 
     return (
       <G key={`tick_${new Date(tick).toISOString()}`}>
-        <Day
-          fontFamily={fonts.medium}
-          textAnchor="middle"
-          x={x}
-          y={chartHeight - 5}>
+        <Day textAnchor="middle" x={x} y={chartHeight - 5}>
           {format(new Date(tick), 'EEE')}
         </Day>
         <LongDate
-          fontFamily={fonts.bold}
           fontWeight="bold"
           textAnchor="middle"
           x={x}
@@ -41,11 +35,13 @@ const XTicks: FC<Props> = ({ scaleX, chartHeight, barWidth, ticks }) => {
 }
 
 const Day = styled(Text).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary,
+  fontFamily: theme.medium
 }))``
 
 const LongDate = styled(Text).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary,
+  fontFamily: theme.bold
 }))``
 
 export default memo(XTicks)

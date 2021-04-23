@@ -18,7 +18,7 @@ const UserInfo = () => {
 export default memo(UserInfo)
 
 const Email = styled.Text`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 14px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
 `

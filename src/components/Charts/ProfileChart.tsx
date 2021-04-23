@@ -17,7 +17,7 @@ const PhotoContainer = styled.View`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.hairline};
   border-bottom-width: ${constants.hairlineWidth}px;
 `
 
@@ -29,5 +29,5 @@ const Image = styled.Image`
 `
 
 const Explanation = styled.Text`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
 `

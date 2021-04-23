@@ -52,5 +52,5 @@ const ButtonContainer = styled.View<RatingButtonProps>`
 `
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``

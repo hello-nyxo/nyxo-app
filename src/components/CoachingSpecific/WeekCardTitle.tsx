@@ -57,14 +57,14 @@ const Title = styled(TranslatedText)`
   margin-left: 5px;
   text-transform: uppercase;
   font-size: 12px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   color: ${({ theme }) => theme.accent};
 `
 
 const Theme = styled.Text`
   font-size: 21px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({

@@ -31,6 +31,6 @@ const TimerContainer = styled.View`
 const Time = styled.Text`
   margin-bottom: -24px;
   color: ${({ theme }) => theme.accent};
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 36px;
 `

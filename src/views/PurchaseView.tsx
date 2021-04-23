@@ -131,11 +131,11 @@ const PurchaseView: FC<Props> = ({ isScreen }) => {
 export default memo(PurchaseView)
 
 const BG = styled.View`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const Scrollable = styled.ScrollView`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const Subscriptions = styled.View`
@@ -173,41 +173,41 @@ const ButtonRow = styled.View`
 const Title = styled(TranslatedText)`
   font-size: 25px;
   margin-top: 20px;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
   text-align: center;
 `
 
 const Subtitle = styled(TranslatedText)`
   font-size: 15px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   text-align: center;
   margin: 20px 50px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Renew = styled(TranslatedText)`
   text-align: justify;
   font-size: 12px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
   margin: 30px 20px;
 `
 
 const TermsButton = styled(TranslatedText)`
   font-size: 13px;
   margin: 8px 0px;
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   color: ${({ theme }) => theme.accent};
   text-align: center;
 `
 
 const Fetching = styled(TranslatedText)`
   text-align: center;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   margin: 20px;
   font-size: 15px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Terms = styled.View`

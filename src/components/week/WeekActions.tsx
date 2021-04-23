@@ -64,7 +64,7 @@ export const WeekActions: FC<Props> = ({
 }
 
 const Container = styled.View`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   padding: 32px 16px 8px;
   flex: 0;
 
@@ -79,13 +79,13 @@ const DurationRow = styled.View`
 const Started = styled(TranslatedText)`
   font-size: 13px;
   margin-right: 10px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Ended = styled(TranslatedText)`
   font-size: 13px;
   margin-right: 10px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `

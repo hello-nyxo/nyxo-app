@@ -197,17 +197,17 @@ const Page = styled.View`
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   border-radius: 7px;
   margin: 8px 0px;
   padding: 10px 16px;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
 `
 
 const Title = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 10px;
 `
 
@@ -220,20 +220,20 @@ const Figure = styled.View`
 `
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  stroke: theme.SECONDARY_TEXT_COLOR
+  stroke: theme.textSecondary
 }))`
   margin-right: 10px;
 `
 
 const Value = styled.Text`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  color: ${({ theme }) => theme.textPrimary};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 15px;
 `
 
 const Description = styled(TranslatedText)`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_REGULAR};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.regular};
   font-size: 13px;
 `
 

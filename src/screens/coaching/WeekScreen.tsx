@@ -141,22 +141,22 @@ const Container = styled.View``
 const TitleContainer = styled.View`
   padding: 0px 20px;
   flex: 1;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const BuyCoachingContainer = styled.View`
   padding: 0px 20px;
   flex: 1;
   min-height: 100px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 const Content = styled.View`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
-  colors: theme.GRADIENT
+  colors: theme.gradient
 }))`
   height: ${HEADER_MAX_HEIGHT}px;
 `

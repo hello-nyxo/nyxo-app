@@ -155,8 +155,8 @@ const DateContainer = styled.Text<DayProps>`
           text-align: center;
         `}
 
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const PressableContainer = styled.TouchableWithoutFeedback``
@@ -172,11 +172,11 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
           'rgba(0,0,0,1)'
         ]
       : [
-          'rgba(246,246,249,1)',
-          'rgba(246,246,249,0)',
-          'rgba(246,246,249,0)',
-          'rgba(246,246,249,0)',
-          'rgba(246,246,249,1)'
+          'rgba(255,255,255,1)',
+          'rgba(255,255,255,0)',
+          'rgba(255,255,255,0)',
+          'rgba(255,255,255,0)',
+          'rgba(255,255,255,1)'
         ],
   locations: [0, 0.25, 0.5, 0.75, 1],
   start: { x: 0, y: 0 },

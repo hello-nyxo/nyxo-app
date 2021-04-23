@@ -2,7 +2,6 @@ import React, { memo, useEffect, useState } from 'react'
 import DeviceInfo from 'react-native-device-info'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
-import { fonts } from '@styles/themes'
 
 const VersionInformation = () => {
   const [version, setVersion] = useState('')
@@ -40,5 +39,5 @@ const VersionText = styled.Text`
   text-align: center;
   color: ${colors.gray2};
   margin-bottom: 5px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
 `

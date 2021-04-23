@@ -105,8 +105,8 @@ const Gradient = styled(LinearGradient)`
 `
 const Info = styled(TranslatedText)`
   margin-left: 10px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const CardContainer = styled.View`
@@ -116,14 +116,14 @@ const CardContainer = styled.View`
 const LessonIcon = styled(IconBold).attrs(({ theme }) => ({
   height: 15,
   width: 15,
-  fill: theme.SECONDARY_TEXT_COLOR,
+  fill: theme.textSecondary,
   name: 'bookLamp'
 }))``
 
 const HabitIcon = styled(IconBold).attrs(({ theme }) => ({
   height: 15,
   width: 15,
-  fill: theme.SECONDARY_TEXT_COLOR,
+  fill: theme.textSecondary,
   name: 'checklist'
 }))`
   margin-left: 20px;
@@ -132,7 +132,7 @@ const HabitIcon = styled(IconBold).attrs(({ theme }) => ({
 const CalendarIcon = styled(IconBold).attrs(({ theme }) => ({
   height: 15,
   width: 15,
-  fill: theme.SECONDARY_TEXT_COLOR,
+  fill: theme.textSecondary,
   name: 'calendar'
 }))`
   margin-left: 20px;
@@ -145,7 +145,7 @@ const Card = styled.View`
 `
 
 const Border = styled.View`
-  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.hairline};
   border-bottom-width: ${constants.hairlineWidth}px;
   margin: 20px 10px 0px;
 `
@@ -174,7 +174,7 @@ const GradientContainer = styled.View`
 const Intro = styled(Animated.Text)`
   margin-top: 5px;
   font-size: 13px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   color: ${colors.white};
 `
 

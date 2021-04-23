@@ -79,5 +79,5 @@ const SleepArc: FC<Props> = ({
 export default SleepArc
 
 const ThemedPath = styled(Path).attrs(({ theme }) => ({
-  stroke: theme.SECONDARY_BACKGROUND_COLOR
+  stroke: theme.bgSecondary
 }))``

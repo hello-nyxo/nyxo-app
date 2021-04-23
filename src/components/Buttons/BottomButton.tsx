@@ -48,7 +48,7 @@ const ButtonContainer = styled.View<ButtonProps>`
 const ButtonText = styled(TranslatedText)<ButtonProps>`
   opacity: ${({ disabled }) => (disabled ? 0.2 : 1)};
   color: ${colors.white};
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   text-align: center;
   font-size: 17px;
 `

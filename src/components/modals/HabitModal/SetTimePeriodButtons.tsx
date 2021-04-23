@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import colors from '../../../styles/colors'
-import { fonts } from '../../../styles/themes'
 import { IconBold } from '../../iconRegular'
 import TranslatedText from '../../TranslatedText'
 
@@ -98,7 +97,7 @@ const ButtonContainer = styled.TouchableOpacity<ButtonProps>`
 
 const ButtonText = styled(TranslatedText)<ButtonProps>`
   text-align: center;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   color: ${(props: ButtonProps) =>
     props.active ? props.accentColor : colors.gray2};
   font-size: 15px;

@@ -103,7 +103,7 @@ const Action = styled(RectButton)`
 `
 
 const ButtonText = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  color: ${({ theme }) => theme.buttonPrimary};
   font-size: 17px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.medium};
 `

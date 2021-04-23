@@ -57,7 +57,7 @@ const Button = styled.View<ButtonProps>`
 `
 
 const ButtonText = styled(TranslatedText)<ButtonProps>`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   text-transform: uppercase;
   letter-spacing: 1px;
   color: ${({ white, theme }) => (white ? theme.accent : colors.white)};

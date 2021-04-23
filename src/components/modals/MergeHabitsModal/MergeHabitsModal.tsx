@@ -10,7 +10,6 @@ import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import { getMergingDialogDisplayed } from '@selectors/habit-selectors/habit-selectors'
 import React, { memo, useState } from 'react'
 import styled from 'styled-components/native'
-import { fonts } from '../../../styles/themes'
 
 const MergingDialog = () => {
   const navigation = useNavigation()
@@ -81,13 +80,13 @@ const DialogContainer = styled.View`
   border-radius: 15px;
   width: ${WIDTH * 0.9}px;
   padding: 20px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 const Description = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 15px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
 `
 
 const OptionRow = styled.View`
@@ -105,15 +104,15 @@ const Button = styled.TouchableOpacity`
 `
 
 const AgreeText = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 15px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
 `
 
 const DisagreeText = styled(TranslatedText)`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 15px;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
 `
 
 const ActivityIndicator = styled.ActivityIndicator`

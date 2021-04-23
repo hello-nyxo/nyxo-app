@@ -1,5 +1,11 @@
 import CONFIG from '@config/config'
-import { getAccess } from '@helpers/oauth/token'
+import {
+  Garmin,
+  getAccess,
+  Google,
+  Polar,
+  Withings
+} from '@helpers/oauth/token'
 import { formatFitbitSamples } from '@helpers/sleep/fitbit-helper'
 import {
   formatGarminSample,
@@ -33,7 +39,7 @@ export const fetchWithings = createAsyncThunk<Response, Arguments>(
   'withings/fetch',
   async ({ startDate, endDate }, { rejectWithValue, dispatch }) => {
     try {
-      const withings = await getAccess('withings')
+      const withings = await getAccess<Withings>('withings')
       if (withings) {
         const start = format(new Date(startDate), 'YYYY-MM-DD')
         const end = format(new Date(endDate), 'YYYY-MM-DD')
@@ -79,13 +85,13 @@ export const fetchGarmin = createAsyncThunk<
   'fitbit/fetch',
   async ({ startDate }, { dispatch, rejectWithValue, getState }) => {
     try {
-      const garmin = await getAccess('garmin')
+      const garmin = await getAccess<Garmin>('garmin')
       if (garmin) {
         const response = await fetch(CONFIG.GARMIN_CONFIG.GET_SLEEP_ENDPOINT, {
           method: 'POST',
           body: JSON.stringify({
             accessToken: garmin.accessToken,
-            accessTokenSecret,
+            accessTokenSecret: garmin.accessTokenSecret,
             uploadStartTimeInSeconds,
             uploadEndTimeInSeconds
           })
@@ -144,7 +150,7 @@ export const fetchPolar = createAsyncThunk<Response, Arguments>(
   'polar/fetch',
   async ({ startDate }, { dispatch, rejectWithValue }) => {
     try {
-      const token = await getAccess('polar')
+      const token = await getAccess<Polar>('polar')
 
       if (token) {
         const response: PolarSleepObject = await fetch(
@@ -171,7 +177,7 @@ export const fetchPolar = createAsyncThunk<Response, Arguments>(
 export const fetchGoogleFit = createAsyncThunk<Response, Arguments>(
   'google/fetch',
   async ({ startDate, endDate }, { dispatch }) => {
-    const access = await getAccess('google')
+    const access = await getAccess<Google>('google')
     if (access) {
       const googleApiCall = await fetch(
         `https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=${startDate}&endTime=${endDate}`,

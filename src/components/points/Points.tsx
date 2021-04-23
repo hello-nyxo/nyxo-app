@@ -102,9 +102,9 @@ const Points: FC<Props> = ({
 export default Points
 
 const Container = styled.View`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   padding: 16px;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   border-radius: 7px;
   margin: 16px;
 `
@@ -112,20 +112,20 @@ const Container = styled.View`
 const ScoreTitle = styled(TranslatedText)`
   font-size: 15px;
   margin-bottom: 4px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const Explanation = styled(TranslatedText)`
   font-size: 13px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Section = styled.View`
   flex-direction: row;
   border-top-width: 1px;
-  border-top-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-top-color: ${({ theme }) => theme.hairline};
   padding: 16px 0px;
   align-items: center;
 `
@@ -137,16 +137,16 @@ const Column = styled.View`
 
 const Score = styled.Text`
   font-size: 25px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Title = styled(TranslatedText)`
   font-size: 22px;
   text-align: center;
   margin-bottom: 32px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const PointsContainer = styled.View`
@@ -161,8 +161,8 @@ const TotalPoints = styled.Text`
   margin-bottom: 32px;
   font-size: 60px;
   text-align: center;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const ChartContainer = styled.View`
@@ -172,7 +172,7 @@ const ChartContainer = styled.View`
 `
 
 const ThemedCircle = styled(Circle).attrs(({ theme }) => ({
-  fill: theme.SECONDARY_BACKGROUND_COLOR
+  fill: theme.bgSecondary
 }))``
 
 const ScoreContainer = styled.View``
@@ -181,7 +181,7 @@ const Progress = styled(AnimatedCircularProgress).attrs(({ theme }) => ({
   rotation: 250,
   arcSweepAngle: 225,
   tintColor: colors.darkBlue,
-  backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
+  backgroundColor: theme.bgPrimary,
   lineCap: 'round'
 }))`
   position: absolute;

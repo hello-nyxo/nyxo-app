@@ -37,5 +37,5 @@ const ButtonContainer = styled.View<ButtonProps>`
 `
 
 const ThemedIcon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))<ButtonProps>``

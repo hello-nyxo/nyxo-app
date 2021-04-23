@@ -104,9 +104,9 @@ const ScrollContainer = styled.View`
 `
 
 const Title = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-bottom: 10px;
 `
 
@@ -116,8 +116,8 @@ const YTicksContainer = styled(Svg)`
 
 const Card = styled.View`
   margin-top: 8px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   padding: 10px;
   margin: 0px 16px 8px;
   border-radius: 7px;

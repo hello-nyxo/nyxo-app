@@ -12,9 +12,9 @@ const Card: FC<Props> = ({ children }) => (
 export default memo(Card)
 
 const CardContainer = styled.View`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   padding: 8px;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   z-index: 1;
   flex: 1;
   border-radius: 7px;

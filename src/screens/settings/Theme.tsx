@@ -62,7 +62,7 @@ const Row = styled.View`
 
 const Label = styled(TranslatedText)`
   flex: 1;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 15px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `

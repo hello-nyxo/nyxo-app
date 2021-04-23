@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
 import styled from 'styled-components/native'
 import TranslatedText from '../../TranslatedText'
-import { fonts } from '../../../styles/themes'
 import { IconBold } from '../../iconRegular'
 import colors from '../../../styles/colors'
 
@@ -60,9 +59,9 @@ const Row = styled.View`
 `
 
 const IndicatorText = styled(TranslatedText)`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
   opacity: 0.5;
 `
 
@@ -72,9 +71,9 @@ const StreakHolder = styled.View`
 `
 
 const StreakText = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 17px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   margin-right: 10px;
 `
 
@@ -91,5 +90,5 @@ const HairlineContainer = styled.View`
 const Hairline = styled.View`
   height: 1px;
   flex: 1;
-  background-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  background-color: ${({ theme }) => theme.hairline};
 `

@@ -39,5 +39,5 @@ const YTicks: FC<Props> = ({ chartWidth, scaleY, ticks }) => {
 export default memo(YTicks)
 
 const StyledText = styled(Text).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``

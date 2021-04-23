@@ -2,7 +2,6 @@ import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
 import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native'
 import translate from '@config/i18n'
-import { fonts } from '@styles/themes'
 import { TextLengthIndicator } from '../../TextIndicator/TextLengthIndicator'
 import TranslatedText from '../../TranslatedText'
 
@@ -63,18 +62,18 @@ const FieldIndicatorRow = styled.View`
 `
 
 const FieldIndicatorText = styled(TranslatedText)`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const InputField = styled.TextInput.attrs(({ theme }) => ({
-  placeholderTextColor: theme.SECONDARY_TEXT_COLOR
+  placeholderTextColor: theme.textSecondary
 }))`
   margin-top: 10px;
-  font-family: ${fonts.domine};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 18px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   max-height: ${18 * 10}px;
   text-align-vertical: top;
 `

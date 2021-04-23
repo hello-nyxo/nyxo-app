@@ -63,7 +63,7 @@ const ModifyContainer = styled.View`
 `
 
 const ButtonText = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   color: ${colors.darkBlue};
   font-size: 15px;
 `

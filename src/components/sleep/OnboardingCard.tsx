@@ -36,9 +36,9 @@ export const OnboardingCard: FC = () => {
 const Container = styled.View`
   margin: 16px 16px;
   padding: 16px 16px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   border-radius: 5px;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   flex-direction: row;
   align-items: center;
 `
@@ -49,7 +49,7 @@ const TextContainer = styled.View`
 `
 
 const Title = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   color: ${({ theme }) => theme.accent};
   font-size: 15px;
   margin-bottom: 8px;
@@ -57,8 +57,8 @@ const Title = styled(TranslatedText)`
 
 const Text = styled(TranslatedText)`
   text-align: left;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 15px;
   line-height: 20px;
 `

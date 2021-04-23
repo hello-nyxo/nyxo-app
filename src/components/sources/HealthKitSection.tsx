@@ -62,7 +62,7 @@ export default HealthKitSection
 const Container = styled.View`
   padding: 20px 20px;
   border-bottom-width: ${constants.hairlineWidth}px;
-  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.hairline};
   margin-bottom: 20px;
 `
 
@@ -75,19 +75,19 @@ const TitleRow = styled.View`
 `
 
 const Title = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const SourceTitle = styled(TranslatedText)`
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 15px;
   margin: 16px 0px 8px;
 `
 
 const Description = styled(TranslatedText)`
   font-size: 13px;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `

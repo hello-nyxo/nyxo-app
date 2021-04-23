@@ -101,16 +101,16 @@ const ScrollView = styled(Animated.ScrollView).attrs(() => ({
 `
 
 const LessonContainer = styled.View`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   flex: 1;
 `
 
 const Content = styled.View`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
-  colors: theme.GRADIENT
+  colors: theme.gradient
 }))`
   height: ${HEADER_MAX_HEIGHT}px;
 `

@@ -65,7 +65,7 @@ const Button = styled.View<ButtonProps>`
 `
 
 const ButtonText = styled(TranslatedText)<ButtonProps>`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   color: ${(props) => (props.white ? colors.darkBlue : colors.white)};
   font-size: 15px;
   text-transform: uppercase;

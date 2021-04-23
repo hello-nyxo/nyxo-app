@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
-import { constants, fonts } from '@styles/themes'
+import { constants } from '@styles/themes'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 
@@ -35,7 +35,7 @@ const Container = styled.View`
   padding: 20px 0px;
   flex-direction: row;
   border-bottom-width: ${constants.hairlineWidth}px;
-  border-bottom-color: ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom-color: ${({ theme }) => theme.hairline};
 `
 
 const InnerContainer = styled.View`
@@ -46,7 +46,7 @@ const InnerContainer = styled.View`
 `
 
 const Icon = styled(IconBold).attrs(({ theme }) => ({
-  fill: theme.PRIMARY_TEXT_COLOR
+  fill: theme.textPrimary
 }))``
 
 const IconContainer = styled.View`
@@ -68,6 +68,6 @@ const Badge = styled.View`
 const BadgeCount = styled.Text`
   color: white;
   text-align: center;
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 10px;
 `

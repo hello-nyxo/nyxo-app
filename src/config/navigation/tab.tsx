@@ -13,10 +13,10 @@ import {
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import CoachingNavigator from './coachingNavigator'
-import SleepNavigator from './SleepNavigator'
-import ProfileNavigator from './profileNavigator'
-import SettingsNavigator from './settingsNavigator'
+import CoachingNavigator from './coaching'
+import SleepNavigator from './sleep'
+import ProfileNavigator from './profile'
+import SettingsNavigator from './settings'
 
 const Tab = createBottomTabNavigator<RootStackParamList['App']>()
 
@@ -84,7 +84,7 @@ export default TabNavigator
 
 const BlurViewTabBar = styled(BlurView).attrs(({ theme }) => ({
   blurType: theme.mode === 'dark' ? 'dark' : 'light',
-  reducedTransparencyFallbackColor: theme.SECONDARY_BACKGROUND_COLOR
+  reducedTransparencyFallbackColor: theme.bgSecondary
 }))`
   position: absolute;
   left: 0;

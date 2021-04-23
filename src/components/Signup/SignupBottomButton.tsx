@@ -53,7 +53,7 @@ export default ProfileSignup
 
 const Info = styled(P)`
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const SignupContainer = styled(Container)`
@@ -61,7 +61,7 @@ const SignupContainer = styled(Container)`
 `
 const LoginButton = styled(TranslatedText)`
   margin-top: 30px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
   text-align: center;
   font-size: 15px;
   color: ${({ theme }) => theme.accent};
@@ -85,7 +85,7 @@ const Perk = styled.View`
 `
 
 const PerkText = styled(TranslatedText)`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 15px;
 `

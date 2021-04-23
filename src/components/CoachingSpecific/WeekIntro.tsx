@@ -101,7 +101,7 @@ const WeekIntro: FC<Props> = ({
 export default WeekIntro
 
 const Container = styled.View`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   border-radius: 8px;
 `
 
@@ -110,17 +110,17 @@ const Description = styled(PN)`
 `
 
 const Card = styled.View`
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   border-radius: 8px;
   padding: 16px;
   margin: 16px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 const Intro = styled.Text`
   margin: 10px 0px 5px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${fonts.bold};
+  color: ${({ theme }) => theme.textSecondary};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
 `
 
@@ -132,14 +132,14 @@ const Information = styled.View`
 const Habits = styled(TranslatedText)`
   font-size: 13px;
   margin-right: 10px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const LessonIcon = styled(IconBold).attrs(({ theme }) => ({
   height: 15,
   width: 15,
-  fill: theme.SECONDARY_TEXT_COLOR,
+  fill: theme.textSecondary,
   name: 'bookLamp'
 }))`
   margin-right: 10px;
@@ -148,7 +148,7 @@ const LessonIcon = styled(IconBold).attrs(({ theme }) => ({
 const HabitIcon = styled(IconBold).attrs(({ theme }) => ({
   height: 15,
   width: 15,
-  fill: theme.SECONDARY_TEXT_COLOR,
+  fill: theme.textSecondary,
   name: 'checklist'
 }))`
   margin-right: 10px;

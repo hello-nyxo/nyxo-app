@@ -16,16 +16,16 @@ export const IntroduceCoaching: FC = () => (
 )
 
 const SubTitle = styled(TranslatedText)`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 17px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
   margin-bottom: 10px;
 `
 
 const MiniText = styled(TranslatedText)`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 15px;
   line-height: 20px;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
   margin-bottom: 10px;
 `

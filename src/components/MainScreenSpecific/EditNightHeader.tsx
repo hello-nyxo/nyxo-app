@@ -1,7 +1,6 @@
 import { SMART_TOP_PADDING } from '@helpers/Dimensions'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { toggleEditMode } from '@reducers/manual-sleep'
-import { fonts } from '@styles/themes'
 import React, { FC, memo } from 'react'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
@@ -44,12 +43,12 @@ export default memo(EditNightHeader)
 
 const Header = styled.View`
   position: absolute;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   left: 0px;
   right: 0px;
   top: 0;
   z-index: 30;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -59,7 +58,7 @@ const Header = styled.View`
 const Text = styled(P)`
   color: ${colors.darkBlue};
   font-size: 15px;
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
 `
 
 const LeftButton = styled.TouchableOpacity`
@@ -70,9 +69,9 @@ const RightButton = styled.TouchableOpacity`
 `
 
 const Title = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 15px;
   text-align: center;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   flex: 1;
 `

@@ -2,7 +2,6 @@ import React, { FC, memo } from 'react'
 import { GestureResponderEvent } from 'react-native'
 import styled from 'styled-components/native'
 import TranslatedText from '../../TranslatedText'
-import { fonts } from '../../../styles/themes'
 import colors from '../../../styles/colors'
 
 type Props = {
@@ -57,23 +56,23 @@ interface ButtonProps {
 }
 
 const CancelText = styled(TranslatedText)<ButtonProps>`
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 15px;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   color: ${({ primary, theme }) =>
-    primary ? colors.darkBlue : theme.PRIMARY_TEXT_COLOR};
+    primary ? colors.darkBlue : theme.textPrimary};
 `
 
 const Title = styled(TranslatedText)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 15px;
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   text-align: center;
 `
 
 const FormattedTitle = styled.Text`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 15px;
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   text-align: center;
 `

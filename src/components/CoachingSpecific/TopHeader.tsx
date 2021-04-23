@@ -7,7 +7,6 @@ import {
   HEADER_MIN_HEIGHT,
   SMART_TOP_PADDING
 } from '@helpers/Dimensions'
-import { fonts } from '@styles/themes'
 import GoBack from '../Buttons/GoBack'
 import { BlurView } from '@react-native-community/blur'
 
@@ -79,13 +78,13 @@ const WeekTitleSmall = styled(Animated.Text)`
   text-align: center;
   font-size: 14px;
   justify-content: center;
-  font-family: ${fonts.bold};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.bold};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const BlurViewContainer = styled(AnimatedBlurView).attrs(({ theme }) => ({
   blurType: theme.mode === 'dark' ? 'dark' : 'light',
-  reducedTransparencyFallbackColor: theme.SECONDARY_BACKGROUND_COLOR
+  reducedTransparencyFallbackColor: theme.bgSecondary
 }))`
   position: absolute;
   opacity: 0;
@@ -93,5 +92,5 @@ const BlurViewContainer = styled(AnimatedBlurView).attrs(({ theme }) => ({
   right: 0;
   top: 0;
   bottom: 0;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
 `

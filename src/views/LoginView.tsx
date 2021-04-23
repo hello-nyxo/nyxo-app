@@ -122,7 +122,7 @@ const Circle = styled.View`
 
 const Register = styled(TranslatedText)`
   text-align: center;
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 15px;
   color: ${colors.darkBlue};
   margin-top: 30px;

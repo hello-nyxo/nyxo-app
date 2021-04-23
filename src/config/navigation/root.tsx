@@ -9,8 +9,8 @@ import { PurchaseScreen } from '@screens/onboarding/PurchaseScreen'
 import Welcome from '@screens/Terveystalo/Welcome'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
-import AuthNavigator from './AuthNavigator'
-import TabNavigator from './TabNavigator'
+import AuthNavigator from './auth'
+import TabNavigator from './tab'
 
 const RootStack = createStackNavigator<RootStackParamList>()
 

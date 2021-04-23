@@ -9,7 +9,9 @@ export type RootStackParamList = {
       Introduction: undefined
     }
     Habits: undefined
-    Profile: undefined
+    Profile: {
+      User: undefined
+    }
     Settings: {
       SettingsScreen: undefined
       Cloud: { code?: string | undefined | null }

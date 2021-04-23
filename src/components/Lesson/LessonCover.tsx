@@ -58,11 +58,11 @@ const Container = styled(Animated.View)`
   top: 0;
   bottom: 0;
   height: ${HEADER_MAX_HEIGHT}px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 `
 
 const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
-  colors: theme.GRADIENT
+  colors: theme.gradient
 }))`
   position: absolute;
   left: 0;
@@ -73,7 +73,7 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
 `
 
 const Overlay = styled(Animated.View)`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   position: absolute;
   left: 0;
   right: 0;
@@ -90,7 +90,7 @@ const CoverPhoto = styled(AnimatedFastImage)`
 `
 
 const WeekTitle = styled(Animated.Text)`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.medium};
   z-index: 20;
   font-size: 30px;
   text-align: center;
@@ -98,5 +98,5 @@ const WeekTitle = styled(Animated.Text)`
   bottom: 0;
   left: 20px;
   right: 20px;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textPrimary};
 `

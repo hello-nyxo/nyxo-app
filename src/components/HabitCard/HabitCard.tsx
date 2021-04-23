@@ -154,7 +154,7 @@ export default HabitCard
 const Card = styled.View`
   margin: 8px 20px;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
 
   box-shadow: 1px 3px 2px rgba(32, 33, 37, 0.2);
   flex-direction: row;
@@ -187,7 +187,7 @@ const PeriodIndicator = styled(TranslatedText)<TimeProps>`
   font-size: 11px;
   text-transform: uppercase;
   color: ${({ accent }) => accent};
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
 `
 
 interface TitleHolderProps {
@@ -195,11 +195,11 @@ interface TitleHolderProps {
 }
 
 const TitleHolder = styled.Text<TitleHolderProps>`
-  font-family: ${fonts.medium};
+  font-family: ${({ theme }) => theme.medium};
   font-size: 15px;
   text-decoration: ${({ completedToday }) =>
     completedToday ? 'line-through' : 'none'};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const DayStreakContainer = styled.View`
@@ -210,8 +210,8 @@ const DayStreakContainer = styled.View`
 const DayStreak = styled.Text`
   margin-left: 5px;
   font-size: 12px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textSecondary};
 `
 
 const Separator = styled.View`

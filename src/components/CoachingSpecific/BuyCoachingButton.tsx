@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/core'
 import React, { FC, useEffect, useState } from 'react'
 import Purchases from 'react-native-purchases'
 import styled from 'styled-components/native'
-import { fonts } from '@styles/themes'
 import colors from '@styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
@@ -94,7 +93,7 @@ const Button = styled.TouchableOpacity`
   border-radius: 5px;
   background-color: ${({ theme }) => theme.accent};
   padding: 20px;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadowPrimary};
   flex-direction: row;
 `
 
@@ -102,14 +101,14 @@ const Text = styled(TranslatedText)`
   flex: 1;
   font-size: 18px;
   color: ${colors.white};
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
 `
 
 const MiniText = styled(TranslatedText)`
   flex: 1;
   font-size: 11px;
   color: ${colors.white};
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
 `
 const PriceContainer = styled.View`
   margin-right: 15px;
@@ -118,13 +117,13 @@ const PriceContainer = styled.View`
 
 const Price = styled.Text`
   color: ${colors.white};
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 20px;
 `
 
 const Monthly = styled(TranslatedText)`
   color: ${colors.white};
-  font-family: ${fonts.bold};
+  font-family: ${({ theme }) => theme.bold};
   font-size: 11px;
 `
 

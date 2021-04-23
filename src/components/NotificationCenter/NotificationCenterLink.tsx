@@ -27,7 +27,7 @@ const NotificationCenterLink: FC = () => {
 export default NotificationCenterLink
 
 const Button = styled.TouchableOpacity`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   width: 50px;
   height: 50px;
   border-radius: 50px;
@@ -50,6 +50,6 @@ const NotificationCountContainer = styled.View`
 const NotificationCount = styled.Text`
   font-size: 9px;
   color: white;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.medium};
   text-align: center;
 `

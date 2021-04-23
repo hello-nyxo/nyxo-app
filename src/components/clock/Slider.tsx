@@ -111,7 +111,7 @@ const TimeContainer = styled.View`
 const BedTimeText = styled.Text`
   color: ${colors.darkBlue};
   font-size: 15px;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.bold};
 `
 const TimeHeader = styled.View`
   position: absolute;

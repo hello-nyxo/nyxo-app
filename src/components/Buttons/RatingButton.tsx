@@ -42,8 +42,8 @@ const Text = styled(TranslatedText)`
   margin-top: 5px;
   text-align: center;
   font-size: 15px;
-  font-family: ${fonts.medium};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.medium};
+  color: ${({ theme }) => theme.textPrimary};
 `
 
 const ButtonContents = styled.View`
