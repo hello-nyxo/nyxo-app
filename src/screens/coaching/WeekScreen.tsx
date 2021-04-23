@@ -47,7 +47,7 @@ const WeekView: FC<Props> = ({
   const week = weeks?.coachingWeekCollection.items.find((w) => w.slug === slug)
 
   /* Mutations */
-  const [mutate, { isLoading, isSuccess }] = useUpdateCoaching()
+  const { mutate, isLoading, isSuccess } = useUpdateCoaching()
 
   const startWeek = () => {
     const startedWeek = {

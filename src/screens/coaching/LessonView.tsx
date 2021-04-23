@@ -41,7 +41,7 @@ const LessonView: FC<Props> = ({
   const { y: yOffset, scrollHandler } = useScrollHandler()
   const { data: lessons } = useLesson(slug)
   const { data } = useGetActiveCoaching()
-  const [mutate] = useUpdateCoaching()
+  const { mutate } = useUpdateCoaching()
 
   const lesson = getLesson(lessons)
   // eslint-disable-next-line unused-imports/no-unused-vars-ts
