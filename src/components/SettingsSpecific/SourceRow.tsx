@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import styled from 'styled-components/native'
 import { constants, fonts } from '@styles/themes'
-import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 
 interface SourceRowProps {
@@ -91,7 +90,7 @@ const Image = styled.Image`
 `
 
 const Icon = styled(IconBold).attrs<IconProps>(({ selected, theme }) => ({
-  fill: selected ? colors.darkBlue : theme.SECONDARY_TEXT_COLOR,
+  fill: selected ? theme.accent : theme.SECONDARY_TEXT_COLOR,
   name: selected ? 'circleCheck' : 'circleAlternate'
 }))<IconProps>``
 

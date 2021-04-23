@@ -1,9 +1,9 @@
-import React, { FC, memo } from 'react'
-import { useDispatch } from 'react-redux'
-import styled from 'styled-components/native'
-import { toggleRatingModal } from '@actions/modal/modal-actions'
 import getRating from '@helpers/rating'
+import { useAppDispatch } from '@hooks/redux'
+import { toggleRatingModal } from '@reducers/modal'
 import { Day } from '@typings/Sleepdata'
+import React, { FC, memo } from 'react'
+import styled from 'styled-components/native'
 import ScalingButton from '../Buttons/ScalingButton'
 import { IconBold } from '../iconRegular'
 
@@ -14,10 +14,10 @@ type Props = {
 
 const NightRating: FC<Props> = ({ day: { rating = 0 }, x }) => {
   const { icon, color } = getRating(rating)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const openModal = () => {
-    dispatch(toggleRatingModal())
+    dispatch(toggleRatingModal(true))
   }
   return (
     <Container x={x}>

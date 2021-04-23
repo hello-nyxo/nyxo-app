@@ -1,7 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { IconBold } from '@components/iconRegular'
 import TranslatedText from '@components/TranslatedText'
-import ROUTE from '@config/routes/Routes'
 import React, { FC, memo } from 'react'
 import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
@@ -25,7 +24,7 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
   const navigation = useNavigation()
 
   const handlePress = () => {
-    navigation.navigate(ROUTE.WEEK, {
+    navigation.navigate('Week', {
       slug: week.slug,
       id: week.id
     })
@@ -33,7 +32,10 @@ const WeekCard: FC<Props> = ({ cardWidth, cardMargin, week, coaching }) => {
 
   const formatedIntro = week.intro ? week.intro.replace('–', '\n –') : ''
   const lessonCount = week.lessonsCollection.items.length
-  const habitCount = 1000
+  const habitCount = week.lessonsCollection.items.reduce(
+    (acc, curr) => acc + (curr?.habitCollection?.items?.length ?? 1),
+    0
+  )
   const { stage } = getStage(week.slug, coaching)
 
   return (

@@ -4,11 +4,11 @@ import RichText from '@components/RichText'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 import { Document } from '@contentful/rich-text-types'
 import { WIDTH } from '@helpers/Dimensions'
+import { useAppDispatch } from '@hooks/redux'
 import { fonts } from '@styles/themes'
 import { Period } from '@typings/state/Periods'
 import React, { FC, memo, useState } from 'react'
 import { ScrollView } from 'react-native'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
@@ -30,7 +30,7 @@ const ExampleHabit: FC<Props> = ({
   period = Period.morning,
   description
 }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const [show, setShow] = useState(false)
   const [habitAdded, setHabitAdded] = useState(false)
 

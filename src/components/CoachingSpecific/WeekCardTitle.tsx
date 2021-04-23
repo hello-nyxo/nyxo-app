@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
-import colors from '../../styles/colors'
 import { IconBold } from '../iconRegular'
 import TranslatedText from '../TranslatedText'
 import { Stage } from '@API'
@@ -16,7 +15,7 @@ const WeekCardTitle: FC<Props> = ({ weekName, stage }) => {
   return (
     <Container>
       <Row>
-        <IconBold name={icon} fill={colors.darkBlue} height={10} width={10} />
+        <Icon name={icon} height={10} width={10} />
         <Title numberOfLines={2}>{stageTitle}</Title>
       </Row>
 
@@ -59,7 +58,7 @@ const Title = styled(TranslatedText)`
   text-transform: uppercase;
   font-size: 12px;
   font-family: ${fonts.medium};
-  color: ${colors.darkBlue};
+  color: ${({ theme }) => theme.accent};
 `
 
 const Theme = styled.Text`
@@ -67,3 +66,7 @@ const Theme = styled.Text`
   font-family: ${fonts.bold};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
+
+const Icon = styled(IconBold).attrs(({ theme }) => ({
+  fill: theme.accent
+}))``

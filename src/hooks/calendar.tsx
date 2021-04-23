@@ -1,7 +1,6 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { setSelectedDate } from '@actions/calendar-actions/calendar-actions'
-import { getSelectedDate } from '@selectors/calendar-selectors'
 import { startOfDay } from 'date-fns'
+import { setSelectedDay } from '@reducers/calendar'
+import { useAppDispatch, useAppSelector } from './redux'
 
 type Calendar = {
   selectedDate: string
@@ -9,11 +8,11 @@ type Calendar = {
 }
 
 const useCalendar = (): Calendar => {
-  const dispatch = useDispatch()
-  const selectedDate = useSelector(getSelectedDate)
+  const dispatch = useAppDispatch()
+  const selectedDate = useAppSelector((state) => state.calendar.selectedDay)
 
   const selectDate = (date: Date) => {
-    dispatch(setSelectedDate(startOfDay(date).toISOString()))
+    dispatch(setSelectedDay(startOfDay(date).toISOString()))
   }
 
   return {

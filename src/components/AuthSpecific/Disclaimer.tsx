@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Linking } from 'react-native'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
-import CONFIG from '../../config/Config'
+import CONFIG from '@config/config'
 
 const Disclaimer = () => {
   const openTerms = () => {

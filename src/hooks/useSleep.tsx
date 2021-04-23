@@ -1,9 +1,3 @@
-import { useSelector } from 'react-redux'
-import {
-  getGoToSleepWindowEnd,
-  getGoToSleepWindowStart
-} from '@selectors/insight-selectors/Insights'
-import { getNightForSelectedDate } from '@selectors/night-selectors'
 import { Night, Value } from '@typings/Sleepdata'
 import {
   calculateTotalSleep,
@@ -28,9 +22,9 @@ type Hook = {
 }
 
 const useSleep = (): Hook => {
-  const windowStart = useSelector(getGoToSleepWindowStart)
-  const windowEnd = useSelector(getGoToSleepWindowEnd)
-  const night = useSelector(getNightForSelectedDate)
+  const windowStart = new Date() //useAppSelector(getGoToSleepWindowStart)
+  const windowEnd = new Date() //useAppSelector(getGoToSleepWindowEnd)
+  const night = [] //useAppSelector(getNightForSelectedDate)
 
   const inBedDuration = calculateTotalSleep(night, Value.InBed)
   const asleepDuration = calculateTotalSleep(night, Value.Asleep)

@@ -1,12 +1,9 @@
 import { addHabit } from '@actions/habit/habit-actions'
-import { toggleNewHabitModal } from '@actions/modal/modal-actions'
-import { HabitSchema } from '@config/Validation'
+import { HabitSchema } from '@config/validation'
 import { Formik } from 'formik'
 import React, { memo, useState } from 'react'
 import { ScrollView } from 'react-native'
 import RNModal, { ModalProps, ReactNativeModal } from 'react-native-modal'
-import { useDispatch, useSelector } from 'react-redux'
-import { getNewHabitModal } from '@selectors/ModalSelectors'
 import styled from 'styled-components/native'
 import { Period } from '@typings/state/Periods'
 import BottomButton from '../../Buttons/BottomButton'
@@ -14,17 +11,19 @@ import HabitModalFieldSection from './HabitModalFieldSection'
 import HabitModalTimeSection from './HabitModalTimeSection'
 import HabitModalTopInfo from './HabitModalTopInfo'
 import HabitModalTopRow from './HabitModalTopRow'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { toggleNewHabitModal } from '@reducers/modal'
 
 export const titleMaxLength = 100
 export const descriptionMaxLength = 1000
 
 const NewHabitModal = () => {
   const [message, setMessage] = useState('')
-  const show = useSelector(getNewHabitModal)
-  const dispatch = useDispatch()
+  const show = useAppSelector(({ modal }) => modal.newHabit)
+  const dispatch = useAppDispatch()
 
   const closeModal = () => {
-    dispatch(toggleNewHabitModal())
+    dispatch(toggleNewHabitModal(false))
   }
 
   const resetMessage = () => {

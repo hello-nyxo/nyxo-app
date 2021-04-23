@@ -1,16 +1,12 @@
-import { setTheme } from '@actions/user/user-actions'
 import { Title } from '@components/InfoRow'
 import { H2, PageTitle, SafeAreaView } from '@components/Primitives/Primitives'
 import SettingRow from '@components/SettingsSpecific/settingRow'
 import VersionInformation from '@components/SettingsSpecific/versionInformation'
-import TopInfo from '@components/TopInfo'
-import CONFIG from '@config/Config'
-import ROUTE from '@config/routes/Routes'
+import CONFIG from '@config/config'
 import keyExtractor from '@helpers/KeyExtractor'
+import { useAppSelector } from '@hooks/redux'
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { getTheme } from '@selectors/UserSelectors'
-import { darkTheme, lightTheme } from '@styles/themes'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC, memo } from 'react'
 import {
@@ -20,8 +16,6 @@ import {
   SectionListData
 } from 'react-native'
 import Rate, { AndroidMarket } from 'react-native-rate'
-import { useDispatch, useSelector } from 'react-redux'
-import { DefaultTheme } from 'styled-components'
 import styled from 'styled-components/native'
 
 const options = {
@@ -33,16 +27,13 @@ const options = {
   fallbackPlatformURL: 'http://www.nyxo.app/'
 }
 type SettingsNavigationProp = CompositeNavigationProp<
-  StackNavigationProp<
-    RootStackParamList[ROUTE.APP][ROUTE.SETTINGS],
-    ROUTE.SETTINGS
-  >,
+  StackNavigationProp<RootStackParamList['App']['Settings'], 'SettingsScreen'>,
   StackNavigationProp<RootStackParamList>
 >
 
 type SettingsScreenRouteProp = RouteProp<
-  RootStackParamList[ROUTE.APP][ROUTE.SETTINGS],
-  ROUTE.SETTINGS
+  RootStackParamList['App']['Settings'],
+  'SettingsScreen'
 >
 
 type Props = {
@@ -59,49 +50,42 @@ type SettingItem = {
 }
 
 const SettingsScreen: FC<Props> = ({ navigation }) => {
-  const dispatch = useDispatch()
-  const theme = useSelector(getTheme)
-
-  const switchTheme = () => {
-    const newTheme = theme?.mode === 'dark' ? lightTheme : darkTheme
-    dispatch(setTheme(newTheme))
-  }
+  const theme = useAppSelector((state) => state.theme.theme)
 
   const rateApp = () => {
     // FIXME
     Rate.rate(options, () => undefined)
   }
 
-  const displayTheme = (t: DefaultTheme) =>
-    t?.mode === 'dark' ? 'Light' : 'Dark'
+  const displayTheme = (t: string) => (t === 'dark' ? 'Light' : 'Dark')
 
   const settings = [
     {
       text: 'Select Tracking Source',
       icon: 'smartWatchCircleGraph',
-      action: () => navigation.navigate(ROUTE.SOURCE_SETTINGS)
+      action: () => navigation.navigate('Sources')
     },
     {
       text: 'Coaching settings',
       icon: 'schoolPhysicalBold',
-      action: () => navigation.navigate(ROUTE.COACHING_SETTINGS)
+      action: () => navigation.navigate('Coaching')
     },
 
     {
       text: 'Manage Nyxo Subscription',
       icon: 'receipt',
-      action: () => navigation.navigate(ROUTE.SUBSCRIPTION_SETTINGS)
+      action: () => navigation.navigate('Subscription')
     },
     {
       text: 'Sync to backend',
       icon: 'syncCloud',
-      action: () => navigation.navigate(ROUTE.CLOUD_SETTINGS, { code: '' })
+      action: () => navigation.navigate('Cloud', { code: '' })
     },
     {
       text: 'Switch mode',
       icon: 'astronomyMoon',
       theme: displayTheme(theme),
-      action: () => switchTheme()
+      action: () => navigation.push('Theme')
     },
     {
       text: 'RATE_APP',
@@ -111,7 +95,7 @@ const SettingsScreen: FC<Props> = ({ navigation }) => {
     {
       text: 'ONBOARDING.TITLE',
       icon: 'compass',
-      action: () => navigation.push(ROUTE.ONBOARDING)
+      action: () => navigation.push('Onboarding')
     }
   ]
 
@@ -187,8 +171,6 @@ const SettingsScreen: FC<Props> = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <TopInfo />
-
       <SectionList
         ListHeaderComponent={<PageTitle>Settings</PageTitle>}
         sections={sections}

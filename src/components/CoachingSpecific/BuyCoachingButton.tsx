@@ -1,4 +1,3 @@
-import ROUTE from '@config/routes/Routes'
 import { useNavigation } from '@react-navigation/core'
 import React, { FC, useEffect, useState } from 'react'
 import Purchases from 'react-native-purchases'
@@ -30,7 +29,7 @@ const BuyCoaching: FC = () => {
   }, [])
 
   const moveToPurchase = () => {
-    navigation.navigate(ROUTE.PURCHASE)
+    navigation.navigate('Purchase')
   }
 
   return (

@@ -1,22 +1,46 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+export type Source =
+  | 'health-kit'
+  | 'google-fit'
+  | 'fitbit'
+  | 'polar'
+  | 'garmin'
+  | 'withings'
+  | 'oura'
+  | undefined
 
-const appSlice = createSlice({
-  name: 'appSlice',
-  initialState: {
-    theme: 'light',
-    followSystemTheme: true,
-    accessToken: undefined
-  },
+type State = {
+  source: Source | undefined
+  subSource: SubSource | undefined
+
+  subSources: Array<SubSource>
+}
+
+export type SubSource = {
+  sourceName: string
+  sourceId: string
+}
+
+const initialState: State = {
+  source: undefined,
+  subSource: undefined,
+
+  subSources: []
+}
+
+const sourceSlice = createSlice({
+  name: 'sourceSlice',
+  initialState,
   reducers: {
-    toggleTheme: (state, action) => {
-      state.theme = action.payload
+    setSource: (state, action: PayloadAction<Source | undefined>) => {
+      state.source = action.payload
     },
-    setAccessToken: (state, action) => {
-      state.accessToken = action.payload
+    setSubSource: (state, action: PayloadAction<SubSource | undefined>) => {
+      state.subSource = action.payload
     }
   }
 })
 
-export const { toggleTheme, setAccessToken } = appSlice.actions
+export const { setSource, setSubSource } = sourceSlice.actions
 
-export default appSlice.reducer
+export default sourceSlice.reducer

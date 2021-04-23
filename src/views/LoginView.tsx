@@ -1,19 +1,17 @@
 import BackToAppButton from '@components/Buttons/BackToAppButton'
 import BottomButton from '@components/Buttons/BottomButton'
-import MergingDialog from '@components/modals/MergeHabitsModal/MergeHabitsModal'
 import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import Input from '@components/TextField'
-import TopInfo from '@components/TopInfo'
 import TranslatedText from '@components/TranslatedText'
-import { LoginSchema } from '@config/Validation'
+import { LoginSchema } from '@config/validation'
 import { WIDTH } from '@helpers/Dimensions'
-import { getLoading } from '@selectors/auth-selectors/auth-selectors'
+import { useAppSelector } from '@hooks/redux'
+
 import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
 import { Formik } from 'formik'
 import React, { FC, memo } from 'react'
 import { ScrollView } from 'react-native'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 type Props = {
@@ -23,7 +21,7 @@ type Props = {
 }
 
 const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
-  const loading = useSelector(getLoading)
+  const loading = useAppSelector(({ auth }) => auth.loading)
 
   const submit = ({ email, password }: { email: string; password: string }) => {
     login(email, password)
@@ -31,7 +29,6 @@ const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
 
   return (
     <SafeAreaView>
-      <TopInfo />
       <Circle />
       <Formik
         initialValues={{ email: '', password: '' }}
@@ -91,7 +88,7 @@ const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
             </Container>
 
             <BottomButton
-              loading={loading}
+              loading={loading === 'pending'}
               disabled={!isValid || (!touched.email && !touched.password)}
               onPress={handleSubmit}
               title="BUTTON_SIGNIN"
@@ -100,7 +97,6 @@ const SignInScreen: FC<Props> = ({ back, goToRegister, login }) => {
         )}
       </Formik>
       <BackToAppButton back={back} />
-      <MergingDialog />
     </SafeAreaView>
   )
 }

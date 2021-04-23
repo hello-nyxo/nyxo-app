@@ -10,16 +10,15 @@ import {
   BottomTabBarOptions,
   LabelPosition
 } from '@react-navigation/bottom-tabs/lib/typescript/src/types'
-import { TabParamList } from '@typings/navigation/navigation'
+import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import CoachingNavigator from './coachingNavigator'
-import JournalNavigator from './JournalNavigator'
+import SleepNavigator from './SleepNavigator'
 import ProfileNavigator from './profileNavigator'
-import ROUTE from './Routes'
 import SettingsNavigator from './settingsNavigator'
 
-const Tab = createBottomTabNavigator<TabParamList>()
+const Tab = createBottomTabNavigator<RootStackParamList['App']>()
 
 const TabBar: FC<BottomTabBarProps<BottomTabBarOptions>> = (props) => (
   <BlurViewTabBar blurAmount={100}>
@@ -73,10 +72,10 @@ const TabNavigator: FC = () => {
           )
         }
       })}>
-      <Tab.Screen name={ROUTE.JOURNAL} component={JournalNavigator} />
-      <Tab.Screen name={ROUTE.COACHING} component={CoachingNavigator} />
-      <Tab.Screen name={ROUTE.PROFILE} component={ProfileNavigator} />
-      <Tab.Screen name={ROUTE.SETTINGS} component={SettingsNavigator} />
+      <Tab.Screen name="Sleep" component={SleepNavigator} />
+      <Tab.Screen name="Coaching" component={CoachingNavigator} />
+      <Tab.Screen name="Profile" component={ProfileNavigator} />
+      <Tab.Screen name="Settings" component={SettingsNavigator} />
     </Tab.Navigator>
   )
 }

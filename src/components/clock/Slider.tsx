@@ -1,7 +1,5 @@
 import React, { FC, useState } from 'react'
 import { View } from 'react-native'
-import { useDispatch } from 'react-redux'
-import { setValues } from '@actions/manual-sleep/manual-sleep-actions'
 import {
   calculateEndTimeFromAngle,
   calculateMinutesFromAngle,
@@ -10,10 +8,12 @@ import {
   roundAngleToFives
 } from '@helpers/time'
 import styled from 'styled-components/native'
-import { icons } from '../../../assets/svgs'
-import colors from '../../styles/colors'
+import { icons } from '@assets/svgs'
+import colors from '@styles/colors'
 import CircularSlider from './CircularSlider'
 import TimerText from './TimerText'
+import { useAppDispatch } from '@hooks/redux'
+import { setSleep } from '@reducers/manual-sleep'
 
 type Props = {
   clockSize: number
@@ -22,7 +22,7 @@ type Props = {
 }
 
 const Bedtime: FC<Props> = ({ clockSize }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const [startA, setStartAngle] = useState((Math.PI * 10) / 6)
   const [angleL, setAngleLength] = useState((Math.PI * 7) / 6)
 
@@ -42,7 +42,7 @@ const Bedtime: FC<Props> = ({ clockSize }) => {
       (startAngle + angleLength) % (2 * Math.PI)
     )
 
-    dispatch(setValues(bedtime, waketime))
+    dispatch(setSleep({ startTime: bedtime, endTime: waketime }))
   }
 
   const bedtime = calculateTimeFromAngle(startA, true)

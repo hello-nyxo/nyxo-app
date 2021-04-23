@@ -22,8 +22,6 @@ const WeekCarousel: FC<Props> = ({
 }) => {
   const { data, error } = useWeeks()
 
-  console.log(data, error)
-
   const renderWeekCard: ListRenderItem<WeekCollectionItem> = ({ item }) => {
     return (
       <WeekCard

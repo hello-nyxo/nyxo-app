@@ -3,15 +3,22 @@ import SectionHeader from '@components/LessonComponents/SectionHeader'
 import keyExtractor from '@helpers/KeyExtractor'
 import { useGetActiveCoaching } from '@hooks/coaching/useCoaching'
 import { getWeek, useWeek } from '@hooks/coaching/useWeek'
-import { Section } from '@typings/CoachingContentState'
 import { LessonCollectionItem } from '@typings/contentful'
-import { groupBy } from 'lodash'
+import groupBy from 'lodash/groupBy'
 import React, { FC, ReactElement } from 'react'
 import { ListRenderItem, SectionList } from 'react-native'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
+import { Document } from '@contentful/rich-text-types'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
+
+type Section = {
+  title: string
+  description: {
+    json: Document
+  }
+}
 
 type RenderSectionHeader = ({
   section: { header }
@@ -19,7 +26,7 @@ type RenderSectionHeader = ({
   section: { header: Section }
 }) => React.ReactElement | null
 
-type Props = SectionListProps & {
+type Props = {
   slug?: string
   locked?: boolean
   header?: ReactElement
@@ -72,7 +79,6 @@ const LessonList: FC<Props> = ({
 
   return (
     <StyledSectionList
-      {...rest}
       scrollEventThrottle={16}
       onScroll={onScroll}
       refreshControl={refreshControl}
@@ -88,6 +94,7 @@ const LessonList: FC<Props> = ({
       sections={sections}
       renderSectionHeader={renderSectionHeader}
       renderItem={renderCard}
+      {...rest}
     />
   )
 }

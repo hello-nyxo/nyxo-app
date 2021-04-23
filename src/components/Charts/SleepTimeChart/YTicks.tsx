@@ -1,9 +1,7 @@
-import { getTextColorOnTheme } from '@selectors/UserSelectors'
 import { ScaleTime } from 'd3'
 import { format } from 'date-fns'
 import React, { memo, FC } from 'react'
 import { G, Line, Text } from 'react-native-svg'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 interface Props {
@@ -13,8 +11,6 @@ interface Props {
 }
 
 const YTicks: FC<Props> = ({ chartWidth, scaleY, ticks }) => {
-  const color = useSelector(getTextColorOnTheme)
-
   const timeTicks = ticks.map((tick, index) => {
     return (
       <G key={index}>

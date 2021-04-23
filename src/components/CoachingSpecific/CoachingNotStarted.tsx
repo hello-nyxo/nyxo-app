@@ -1,33 +1,33 @@
+import { PrimaryButton } from '@components/Buttons/PrimaryButton'
+import TextButton from '@components/Buttons/TextButton'
+import { isLoggedIn } from '@helpers/auth'
 import {
   useCreateCoaching,
   useGetActiveCoaching
 } from '@hooks/coaching/useCoaching'
+import { useAppSelector } from '@hooks/redux'
 import { useNavigation } from '@react-navigation/core'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
-import { PrimaryButton } from '@components/Buttons/PrimaryButton'
-import TextButton from '@components/Buttons/TextButton'
-import ROUTE from '@config/routes/Routes'
-import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
-import { isLoggedIn } from '@helpers/auth'
+import React, { FC } from 'react'
+import styled from 'styled-components/native'
 import TranslatedText from '../TranslatedText'
 
 const CoachingNotStarted: FC = () => {
-  const hasActiveCoaching = useSelector(getActiveCoaching)
+  const hasActiveCoaching = useAppSelector(
+    (state) => state.subscription.isActive
+  )
   const { navigate } = useNavigation()
   const { data: coaching } = useGetActiveCoaching()
-  const [mutate, { isLoading }] = useCreateCoaching()
+  const { mutate, isLoading } = useCreateCoaching()
 
   if (!hasActiveCoaching) return null
 
   const openIntroduction = () => {
-    navigate(ROUTE.COACHING_INTRODUCTION)
+    navigate('Introduction')
   }
 
   const openLogin = () => {
-    navigate(ROUTE.AUTH, { screen: ROUTE.REGISTER })
+    navigate('Auth', { screen: 'Register' })
   }
 
   const startCoaching = () => {

@@ -11,7 +11,6 @@ import { Night } from '@typings/Sleepdata'
 import { SUB_SOURCE } from '@typings/state/sleep-source-state'
 import { Platform } from 'react-native'
 import AppleHealthKit, { SleepSample } from 'react-native-healthkit'
-import { syncNightsToCloud } from './night-cloud-actions'
 import { fetchSleepData } from './sleep-data-actions'
 import {
   FETCH_SLEEP_HEALTH_KIT_FAILURE,
@@ -140,7 +139,6 @@ export const fetchSleepFromHealthKit = (
         const formattedData: Night[] = response?.map((nightObject) =>
           formatHealthKitResponse(nightObject)
         )
-        await dispatch(syncNightsToCloud(formattedData))
         await dispatch(fetchSleepSuccess(formattedData))
       }
     )

@@ -1,8 +1,8 @@
-import { toggleRatingModal } from '@actions/modal/modal-actions'
-import { getRatingModal } from '@selectors/ModalSelectors'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { toggleRatingModal } from '@reducers/modal'
 import React, { memo } from 'react'
 import Modal from 'react-native-modal'
-import { useDispatch, useSelector } from 'react-redux'
+
 import styled from 'styled-components/native'
 import colors from '../styles/colors'
 import RatingButton from './Buttons/RatingButton'
@@ -36,8 +36,8 @@ const info = [
 ]
 
 const RatingModal = () => {
-  const dispatch = useDispatch()
-  const isVisible = useSelector(getRatingModal)
+  const dispatch = useAppDispatch()
+  const isVisible = useAppSelector((state) => state.modal.rating)
 
   const buttons = info.map((item) => (
     <RatingButton
@@ -51,11 +51,11 @@ const RatingModal = () => {
   ))
 
   const toggleModal = () => {
-    dispatch(toggleRatingModal())
+    dispatch(toggleRatingModal(false))
   }
 
   const closeModal = () => {
-    dispatch(toggleRatingModal())
+    dispatch(toggleRatingModal(false))
   }
 
   return (

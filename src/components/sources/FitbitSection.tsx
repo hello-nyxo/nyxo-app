@@ -1,16 +1,18 @@
-import { toggleFitbit } from '@actions/api-actions/fitbit-actions'
 import TranslatedText from '@components/TranslatedText'
 import React, { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getIsFitbitMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import styled from 'styled-components/native'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { authorizeFitbit } from '@reducers/apis/fitbit'
+import { Switch } from '@components/Primitives/Primitives'
 
 const FitbitSection: FC = () => {
-  const dispatch = useDispatch()
-  const isFitbitMainSource = useSelector(getIsFitbitMainSource)
+  const dispatch = useAppDispatch()
+  const isFitbitMainSource = useAppSelector(
+    ({ source }) => source.source === 'fitbit'
+  )
 
   const setFitbitAsSource = () => {
-    dispatch(toggleFitbit())
+    dispatch(authorizeFitbit())
   }
 
   return (
@@ -57,8 +59,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const FitbitLogo = styled.Image`
   height: 25px;

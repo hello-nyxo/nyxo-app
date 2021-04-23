@@ -1,14 +1,14 @@
-import { login } from '@actions/auth/auth-actions'
-import ROUTE from '@config/routes/Routes'
+import { useAppDispatch } from '@hooks/redux'
+import { CompositeNavigationProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
+import { login } from '@reducers/auth'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import LoginView from '@views/LoginView'
 import React, { FC, memo } from 'react'
-import { useDispatch } from 'react-redux'
 
-type RegisterScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'Profile'
+type RegisterScreenNavigationProp = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList['Auth'], 'Register'>,
+  StackNavigationProp<RootStackParamList>
 >
 
 type Props = {
@@ -16,18 +16,20 @@ type Props = {
 }
 
 const Register: FC<Props> = ({ navigation }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleLogin = async (email: string, password: string) => {
-    dispatch(login(email, password, back))
+    dispatch(login({ email, password })).then(() => {
+      back()
+    })
   }
 
   const goToRegister = () => {
-    navigation.navigate(ROUTE.REGISTER)
+    navigation.navigate('Register')
   }
 
   const back = () => {
-    navigation.navigate(ROUTE.APP)
+    navigation.navigate('App')
   }
 
   return (

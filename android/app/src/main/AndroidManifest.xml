@@ -59,7 +59,6 @@
       <data android:scheme="nyxo" android:host="callback"/>
     </intent-filter>
     </activity>
-		<activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 		<service android:name="com.xebia.activityrecognition.DetectionService" />
 		<service android:name=".MainMessagingService" android:enabled="true" android:exported="true">
 			<intent-filter>

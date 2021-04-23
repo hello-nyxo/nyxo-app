@@ -3,17 +3,15 @@ import BackToAppButton from '@components/Buttons/BackToAppButton'
 import BottomButton from '@components/Buttons/BottomButton'
 import { Container, H1, SafeAreaView } from '@components/Primitives/Primitives'
 import SCTextInput from '@components/TextField'
-import TopInfo from '@components/TopInfo'
 import TranslatedText from '@components/TranslatedText'
-import { RegisterSchema } from '@config/Validation'
+import { RegisterSchema } from '@config/validation'
 import { WIDTH } from '@helpers/Dimensions'
-import { getLoading } from '@selectors/auth-selectors/auth-selectors'
+import { useAppSelector } from '@hooks/redux'
 import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
 import { Formik } from 'formik'
 import React, { FC } from 'react'
 import { ScrollView } from 'react-native'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 type Props = {
@@ -23,7 +21,7 @@ type Props = {
 }
 
 export const RegisterView: FC<Props> = ({ register, back, goToLogin }) => {
-  const loading = useSelector(getLoading)
+  const loading = useAppSelector(({ auth }) => auth.loading === 'pending')
 
   const signUp = async (email: string, password: string) => {
     await register(email, password)
@@ -53,7 +51,6 @@ export const RegisterView: FC<Props> = ({ register, back, goToLogin }) => {
         }) => (
           <>
             <Container>
-              <TopInfo />
               <ScrollView>
                 <TitleRow>
                   <H1>TITLE_REGISTER</H1>
@@ -136,5 +133,5 @@ const LoginButton = styled(TranslatedText)`
   font-family: ${fonts.medium};
   text-align: center;
   font-size: 15px;
-  color: ${colors.darkBlue};
+  color: ${({ theme }) => theme.accent};
 `

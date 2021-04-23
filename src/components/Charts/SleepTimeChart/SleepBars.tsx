@@ -3,7 +3,7 @@ import React, { FC, useMemo } from 'react'
 import { G, Rect } from 'react-native-svg'
 import styled from 'styled-components/native'
 import { Day, Night, Value } from '@typings/Sleepdata'
-import colors from '../../../styles/colors'
+import colors from '@styles/colors'
 
 type Props = {
   data: {
@@ -57,6 +57,6 @@ type RectProps = {
   value: Value
 }
 
-const StyledRect = styled(Rect).attrs<RectProps>(({ value }) => ({
-  fill: value === Value.Asleep ? colors.darkBlue : colors.darkBlue
+const StyledRect = styled(Rect).attrs<RectProps>(({ value, theme }) => ({
+  fill: value === Value.Asleep ? theme.accent : colors.darkBlue
 }))<RectProps>``

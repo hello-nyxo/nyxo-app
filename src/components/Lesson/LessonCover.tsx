@@ -1,14 +1,9 @@
+import AnimatedFastImage from '@components/AnimatedFastImage/AnimatedFastImage'
+import { HEADER_DELTA, HEADER_MAX_HEIGHT, WIDTH } from '@helpers/Dimensions'
 import React, { FC } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
-import {
-  HEADER_DELTA,
-  HEADER_MAX_HEIGHT,
-  HEADER_MIN_HEIGHT,
-  WIDTH
-} from '@helpers/Dimensions'
-import AnimatedFastImage from '@components/AnimatedFastImage/AnimatedFastImage'
 
 type Props = {
   yOffset: Animated.Value<number>
@@ -19,21 +14,6 @@ type Props = {
 const { interpolate, Extrapolate } = Animated
 
 const LessonCover: FC<Props> = ({ yOffset, cover }) => {
-  const titleSize = {
-    opacity: interpolate(yOffset, {
-      inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-      outputRange: [1, 0.2]
-    }),
-    transform: [
-      {
-        scale: interpolate(yOffset, {
-          inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-          outputRange: [1, 0.5]
-        })
-      }
-    ]
-  }
-
   const headerStyle = {
     transform: [
       {

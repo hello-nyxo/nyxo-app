@@ -1,4 +1,4 @@
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { FitbitSleepObject } from '@typings/sources/Fitbit'
 import { Night, Value } from '@typings/Sleepdata'
 import { addSeconds } from 'date-fns'

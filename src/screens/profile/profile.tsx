@@ -6,22 +6,19 @@ import {
 } from '@components/Primitives/Primitives'
 import UserInfo from '@components/ProfileSpecific/Userinfo'
 import SignupBottomButton from '@components/Signup/SignupBottomButton'
-import TopInfo from '@components/TopInfo'
+import { useAppSelector } from '@hooks/redux'
 import { useGetUser } from '@hooks/user/useUser'
-import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import React, { FC, memo } from 'react'
 import { Text } from 'react-native'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 const ProfileScreen: FC = () => {
   const { data } = useGetUser()
-  const loggedIn = useSelector(getAuthState)
+  const loggedIn = useAppSelector((state) => state.auth.authenticated)
   const nickname = data?.nickname
 
   return (
     <SafeAreaView>
-      <TopInfo />
       <StyledScrollView>
         <Container>
           <PageTitle {...(nickname && { as: Text })}>

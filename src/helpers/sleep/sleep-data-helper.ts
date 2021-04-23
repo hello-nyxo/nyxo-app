@@ -18,7 +18,7 @@ import {
 // Find the starting time of the night
 export function findStartTime(nights: Night[], value: Value): string {
   const nightStartTime = nights
-    .filter((n: Night) => n.value === value)
+    ?.filter((n: Night) => n.value === value)
     .reduce((previousValue: Night, currentValue: Night) =>
       isBefore(
         new Date(previousValue.startDate),
@@ -32,7 +32,7 @@ export function findStartTime(nights: Night[], value: Value): string {
 // Find the endit time of the night
 export function findEndTime(nights: Night[], value: Value): string {
   const nightStartTime = nights
-    .filter((n: Night) => n.value === value)
+    ?.filter((n: Night) => n.value === value)
     .reduce((previousValue: Night, currentValue: Night) =>
       isAfter(new Date(previousValue.endDate), new Date(currentValue.endDate))
         ? previousValue
@@ -161,7 +161,7 @@ export function calculateSocialJetlag(
  * @param {*} value value for filtering, e.g. INBED, ASLEEP
  */
 export function calculateTotalSleep(night: Night[], value: Value): number {
-  const filteredNightData = night.filter((n: Night) => n.value === value)
+  const filteredNightData = night?.filter((n: Night) => n.value === value)
 
   const totalDuration = filteredNightData.reduce(
     (acc, n) => acc + n.totalDuration,

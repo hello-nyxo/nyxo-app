@@ -1,7 +1,7 @@
 import { Night, Value } from '@typings/Sleepdata'
 import { GarminSleepObject } from '@typings/sources/Garmin'
 import { getNightDuration } from '@helpers/sleep/sleep'
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import { captureException } from '@sentry/react-native'
 
 export const formatGarminSample = (
@@ -17,7 +17,7 @@ export const formatGarminSample = (
   const timeInBed = getNightDuration(startDate, endDate)
 
   const inBedSample: Night = {
-    id: `garming_${startDate}_${endDate}_${Value.InBed}`,
+    id: `garmin_${startDate}_${endDate}_${Value.InBed}`,
     sourceId: 'com.garmin.connect.mobile',
     sourceName: 'Garmin',
     value: Value.InBed,
@@ -36,7 +36,7 @@ export const formatGarminSample = (
         const timeAsleep = getNightDuration(asleepStartDate, asleepEndDate)
 
         asleepSamples.push({
-          id: `garming_${startDate}_${endDate}_${Value.Asleep}`,
+          id: `garmin_${startDate}_${endDate}_${Value.Asleep}`,
           sourceId: 'com.garmin.connect.mobile',
           sourceName: 'Garmin',
           value: Value.Asleep,

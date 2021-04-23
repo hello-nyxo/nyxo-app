@@ -1,9 +1,10 @@
 import { findBestAvailableLanguage } from 'react-native-localize'
 import { I18nManager } from 'react-native'
 import I18n, { TranslateOptions, Scope } from 'i18n-js'
-import { memoize } from 'lodash'
+import memoize from 'lodash/memoize'
 import { setLocale } from 'yup'
-import { fi, enUS } from 'date-fns/locale'
+import fi from 'date-fns/locale/fi'
+import enUS from 'date-fns/locale/en-US'
 import { format } from 'date-fns'
 
 const translationGetters: {

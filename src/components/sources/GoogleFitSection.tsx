@@ -1,33 +1,30 @@
-import { toggleGoogleFit } from '@actions/api-actions/google-fit-actions'
-import { changeGoogleFitSource } from '@actions/sleep-source-actions/sleep-source-actions'
 import EmptyState from '@components/EmptyState'
 import SourceRow from '@components/SettingsSpecific/SourceRow'
 import TranslatedText from '@components/TranslatedText'
-import {
-  getAllGoogleFitSources,
-  getGoogleFitSource,
-  getIsGoogleFitMainSource
-} from '@selectors/sleep-source-selectors/sleep-source-selectors'
 import React, { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import { constants } from '@styles/themes'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { setSource, setSubSource } from '@reducers/source'
+import { Switch } from '@components/Primitives/Primitives'
 
 const GoogleFitSection: FC = () => {
-  const dispatch = useDispatch()
-  const sources = useSelector(getAllGoogleFitSources)
-  const isGoogleFitMainSource = useSelector(getIsGoogleFitMainSource)
-  const healthKitSource = useSelector(getGoogleFitSource)
+  const dispatch = useAppDispatch()
+  const sources = []
+  const isGoogleFitMainSource = useAppSelector(
+    ({ source }) => source.source === 'google-fit'
+  )
+  const subSource = useAppSelector(({ source }) => source.subSource)
 
   const onPress = (sourceId: string) => {
     const source = sources?.find((s) => s.sourceId === sourceId)
     if (source) {
-      dispatch(changeGoogleFitSource(source))
+      dispatch(setSubSource(source))
     }
   }
 
   const setGoogleFitAsSource = () => {
-    dispatch(toggleGoogleFit())
+    dispatch(setSource('google-fit'))
   }
 
   const mapped = sources?.map((item) => (
@@ -35,7 +32,7 @@ const GoogleFitSection: FC = () => {
       key={item.sourceId}
       sourceId={item.sourceId}
       sourceName={item.sourceName}
-      selectedSourceId={healthKitSource?.sourceId}
+      selectedSourceId={subSource?.sourceId}
       switchSource={onPress}
     />
   ))
@@ -97,8 +94,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const Description = styled(TranslatedText)`
   margin-top: 10px;

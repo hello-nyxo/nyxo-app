@@ -2,27 +2,22 @@ import React, { FC } from 'react'
 import styled from 'styled-components/native'
 import { IconBold } from '@components/iconRegular'
 import { useNavigation } from '@react-navigation/core'
-import ROUTE from '@config/routes/Routes'
-import colors from '@styles/colors'
-import { getStaticNotificationsCount } from '@selectors/notification-selectors/notification-selectors'
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '@hooks/redux'
 
 const NotificationCenterLink: FC = () => {
   const { navigate } = useNavigation()
-  const notificationCount = useSelector(getStaticNotificationsCount)
+  const notificationCount = useAppSelector(getStaticNotificationsCount)
 
   const handlePress = () => {
-    navigate(ROUTE.NOTIFICATION_CENTER, {})
+    navigate('Notifications', {})
   }
 
   return (
     <Button onPress={handlePress}>
       <IconBold name="alarmBell" fill="black" height="25" width="25" />
-      {notificationCount > 0 && (
+      {0 > 0 && (
         <NotificationCountContainer>
-          <NotificationCount adjustsFontSizeToFit>
-            {notificationCount}
-          </NotificationCount>
+          <NotificationCount adjustsFontSizeToFit>{0}</NotificationCount>
         </NotificationCountContainer>
       )}
     </Button>
@@ -44,7 +39,7 @@ const NotificationCountContainer = styled.View`
   top: 0;
   right: 0;
   position: absolute;
-  background-color: ${colors.darkBlue};
+  background-color: ${({ theme }) => theme.accent};
   height: 20px;
   width: 20px;
   border-radius: 30px;

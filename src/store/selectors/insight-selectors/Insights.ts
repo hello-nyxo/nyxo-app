@@ -1,7 +1,7 @@
 import { clockTimeToAngle } from '@helpers/geometry'
-import { createSelector } from 'reselect'
-import { InsightState } from '@typings/state/insight-state'
+import { createSelector } from '@reduxjs/toolkit'
 import { State } from '@typings/State'
+import { InsightState } from '@typings/state/insight-state'
 import { set } from 'date-fns'
 
 const getInsights = (state: State) => state.insights

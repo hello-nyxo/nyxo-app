@@ -1,4 +1,3 @@
-import { toggleNewHabitModal } from '@actions/modal/modal-actions'
 import CoachingSectionHeader from '@components/CoachingSpecific/CoachingSectionHeader'
 import EmptyState from '@components/EmptyState'
 import HabitCard from '@components/HabitCard/HabitCard'
@@ -14,20 +13,21 @@ import {
 import NewHabitModal from '@components/modals/HabitModal/NewHabitModal'
 import React, { FC } from 'react'
 import { SectionList } from 'react-native'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { Habit } from '@typings/state/habit-state'
+import { useAppDispatch } from '@hooks/redux'
+import { toggleNewHabitModal } from '@reducers/modal'
 
 const HabitView: FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const renderItem = ({ item }: { item: Habit }) => {
     return <HabitCard key={item.id} habit={item} />
   }
 
   const toggleModal = () => {
-    dispatch(toggleNewHabitModal())
+    dispatch(toggleNewHabitModal(true))
   }
 
   const sections = [

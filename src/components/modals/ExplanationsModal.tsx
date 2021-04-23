@@ -1,36 +1,28 @@
-import { toggleExplanationsModal } from '@actions/modal/modal-actions'
 import { IconBold } from '@components/iconRegular'
 import { CloseModalButton } from '@components/modals/CloseModalButton'
 import { H2 } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
 import getRating from '@helpers/rating'
-import { minutesToHoursString, toNightTime } from '@helpers/time'
-import { getSelectedDate } from '@selectors/calendar-selectors'
-import {
-  getGoToSleepWindowEnd,
-  getGoToSleepWindowStart
-} from '@selectors/insight-selectors/Insights'
-import { getExplanationsModal } from '@selectors/ModalSelectors'
-import { getAsleepDuration, getInBedDuration } from '@selectors/night-selectors'
+import { toNightTime } from '@helpers/time'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
 import { format, parseISO } from 'date-fns'
 import React, { FC } from 'react'
 import RNModal, { ModalProps, ReactNativeModal } from 'react-native-modal'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 const ExplanationsModal: FC = () => {
-  const dispatch = useDispatch()
-  const isVisible = useSelector(getExplanationsModal)
-  const inbed = minutesToHoursString(useSelector(getInBedDuration))
-  const asleep = minutesToHoursString(useSelector(getAsleepDuration))
-  const rating = 2 // = useSelector(getSelectedDayRating)
+  const dispatch = useAppDispatch()
+  const isVisible = useAppSelector((state) => state.modal.explanations)
+  const inbed = '' //minutesToHoursString(useAppSelector(getInBedDuration))
+  const asleep = '' //minutesToHoursString(useAppSelector(getAsleepDuration))
+  const rating = 2 // = useAppSelector(getSelectedDayRating)
   const { color, icon } = getRating(rating)
-  const date = useSelector(getSelectedDate)
+  const date = useAppSelector((state) => state.calendar.selectedDay)
   const formattedDate = toNightTime(date)
-  const windowStart = useSelector(getGoToSleepWindowStart)
-  const windowEnd = useSelector(getGoToSleepWindowEnd)
+  const windowStart = new Date().toISOString() // useAppSelector(getGoToSleepWindowStart)
+  const windowEnd = new Date().toISOString() //useAppSelector(getGoToSleepWindowEnd)
 
   const stats = [
     {

@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
-import { getEmail } from '@selectors/UserSelectors'
+
 import { fonts } from '@styles/themes'
 import { Container } from '../Primitives/Primitives'
+import { useAppSelector } from '@hooks/redux'
 
 const UserInfo = () => {
-  const email = useSelector(getEmail)
+  const email = useAppSelector(({ auth }) => auth.email)
 
   return (
     <Container>

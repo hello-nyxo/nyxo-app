@@ -6,28 +6,26 @@ import TopHeader from '@components/CoachingSpecific/TopHeader'
 import WeekIntro from '@components/CoachingSpecific/WeekIntro'
 import LessonCover from '@components/Lesson/LessonCover'
 import { WeekActions } from '@components/week/WeekActions'
-import ROUTE from '@config/routes/Routes'
 import { HEADER_MAX_HEIGHT } from '@helpers/Dimensions'
 import {
   useGetActiveCoaching,
   useUpdateCoaching
 } from '@hooks/coaching/useCoaching'
 import { useWeek } from '@hooks/coaching/useWeek'
+import { useAppSelector } from '@hooks/redux'
 import { RouteProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { getActiveCoaching } from '@selectors/subscription-selectors/SubscriptionSelectors'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import { useScrollHandler } from 'react-native-redash/lib/module/v1'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import Lessons from './Lessons'
 
-export type WeekScreenRouteProp = RouteProp<RootStackParamList, ROUTE.WEEK>
+export type WeekScreenRouteProp = RouteProp<RootStackParamList, 'Week'>
 export type WeekScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  ROUTE.WEEK
+  'Week'
 >
 
 type Props = {
@@ -41,7 +39,7 @@ const WeekView: FC<Props> = ({
   }
 }) => {
   const { y: yOffset, scrollHandler } = useScrollHandler()
-  const hasCoaching = useSelector(getActiveCoaching)
+  const hasCoaching = useAppSelector((state) => state.subscription.isActive)
 
   /* Queries */
   const { data: weeks, loading: contentLoading } = useWeek(slug)

@@ -8,13 +8,11 @@ import {
   convertRemoteHabitsToLocalHabits,
   shouldResetDayStreak
 } from '@helpers/habits'
-import { getAuthState } from '@selectors/auth-selectors/auth-selectors'
 import {
   getHabits,
   getHabitsMap,
   getUnsyncedHabits
 } from '@selectors/habit-selectors/habit-selectors'
-import { getUsername } from '@selectors/UserSelectors'
 import * as Sentry from '@sentry/react-native'
 import { AppThunk } from '@typings/redux-actions'
 import { Habit, MutationType, UnsyncedHabit } from '@typings/state/habit-state'
@@ -187,7 +185,9 @@ const stashHabitToSync = (
   habit: Habit,
   mutationType: MutationType
 ): AppThunk => async (dispatch, getState) => {
-  const loggedIn = getAuthState(getState())
+  const {
+    auth: { authenticated: loggedIn }
+  } = getState()
   const unsyncedHabits = getUnsyncedHabits(getState())
 
   if (loggedIn) {
@@ -229,7 +229,7 @@ const syncHabit = (
   mutationType: MutationType,
   habit: Habit
 ): AppThunk => async (dispatch, getState) => {
-  const username = getUsername(getState())
+  const { username } = getState()
   const loggedIn = getAuthState(getState())
 
   if (loggedIn) {

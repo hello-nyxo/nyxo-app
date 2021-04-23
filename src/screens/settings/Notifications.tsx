@@ -1,6 +1,5 @@
 import { makeGetNotificationEnabled } from '@selectors/NotificationSelectors'
 import React, { memo, useMemo } from 'react'
-import { useSelector } from 'react-redux'
 import {
   NotificationPermissionType,
   UpdateNotificationPermissionType
@@ -15,6 +14,7 @@ import {
   StyledScrollView
 } from '@components/Primitives/Primitives'
 import NotificationRow from '@components/SettingsSpecific/NotificationRow'
+import { useAppSelector } from '@hooks/redux'
 
 export interface NotificationDataItemProps {
   enabled: boolean
@@ -29,21 +29,21 @@ export interface NotificationDataItemProps {
 const NotificationSettings = () => {
   const selectGetNotificationEnabled = useMemo(makeGetNotificationEnabled, [])
 
-  const bedtimeEnabled = useSelector((state: State) =>
+  const bedtimeEnabled = useAppSelector((state: State) =>
     selectGetNotificationEnabled(
       state,
       NotificationPermissionType.BEDTIME_APPROACH_NOTIFICATION
     )
   )
 
-  const coachingEnabled = useSelector((state: State) =>
+  const coachingEnabled = useAppSelector((state: State) =>
     selectGetNotificationEnabled(
       state,
       NotificationPermissionType.COACHING_NEW_NOTIFICATION
     )
   )
 
-  const customerSupportEnabled = useSelector((state: State) =>
+  const customerSupportEnabled = useAppSelector((state: State) =>
     selectGetNotificationEnabled(
       state,
       NotificationPermissionType.CUSTOMER_SUPPORT_NOTIFICATION

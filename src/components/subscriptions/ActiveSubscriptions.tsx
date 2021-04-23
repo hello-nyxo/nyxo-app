@@ -1,7 +1,7 @@
 import { IconBold } from '@components/iconRegular'
 import { H3 } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
-import CONFIG from '@config/Config'
+import CONFIG from '@config/config'
 import colors from '@styles/colors'
 import React, { FC, useEffect, useState } from 'react'
 import { Linking, Platform } from 'react-native'

@@ -1,19 +1,18 @@
+import { useAppDispatch } from '@hooks/redux'
 import { useNavigation } from '@react-navigation/native'
-import { toggleNewHabitModal } from '@actions/modal/modal-actions'
-import React, { memo, ReactElement } from 'react'
+import { toggleNewHabitModal } from '@reducers/modal'
+import { getHabitSections } from '@selectors/habit-selectors/habit-selectors'
+import { fonts } from '@styles/themes'
+import { Habit } from '@typings/State/habit-state'
+import React, { FC, memo, ReactElement } from 'react'
 import { SectionList, SectionListRenderItem } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { useDispatch, useSelector } from 'react-redux'
-import { getHabitSections } from '@selectors/habit-selectors/habit-selectors'
 import styled from 'styled-components/native'
-import { getEditMode } from '@selectors/ManualDataSelectors'
-import { fonts } from '@styles/themes'
+import colors from '../../styles/colors'
 import HabitCard from '../HabitCard/HabitCard'
+import { IconBold } from '../iconRegular'
 import { H3 } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
-import colors from '../../styles/colors'
-import { IconBold } from '../iconRegular'
-import { Habit } from '@typings/State/habit-state'
 
 type Props = {
   refreshControl?: ReactElement
@@ -21,12 +20,10 @@ type Props = {
   header?: ReactElement
 }
 
-const HabitList = (props: Props) => {
-  const editMode = useSelector(getEditMode)
-  const { refreshControl, footer, header } = props
-  const dispatch = useDispatch()
+const HabitList: FC<Props> = ({ refreshControl, footer, header }) => {
+  const dispatch = useAppDispatch()
   const navigation = useNavigation()
-  const sections = useSelector(getHabitSections)
+  const sections = useAppSelector(getHabitSections)
 
   const renderItem: SectionListRenderItem<Habit, unknown> = ({
     item,
@@ -38,12 +35,11 @@ const HabitList = (props: Props) => {
   }
 
   const toggleModal = () => {
-    dispatch(toggleNewHabitModal())
+    dispatch(toggleNewHabitModal(true))
   }
 
   return (
     <List
-      scrollEnabled={!editMode}
       refreshControl={refreshControl}
       ListHeaderComponent={() => (
         <Fill>

@@ -1,15 +1,15 @@
 import { minutesToHoursString } from '@helpers/time'
-import { getAsleepDuration, getInBedDuration } from '@selectors/night-selectors'
+import { useAppSelector } from '@hooks/redux'
+import { getAsleepDuration, getInBedDuration } from '@reducers/nights'
 import { fonts } from '@styles/themes'
 import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import colors from '../../styles/colors'
 
 const Explanations: FC = () => {
-  const inbed = minutesToHoursString(useSelector(getInBedDuration))
-  const asleep = minutesToHoursString(useSelector(getAsleepDuration))
-  // const window = useSelector(getGoToSleepWindowCenter)
+  const inbed = minutesToHoursString(useAppSelector(getInBedDuration))
+  const asleep = minutesToHoursString(useAppSelector(getAsleepDuration))
+  // const window = useAppSelector(getGoToSleepWindowCenter)
 
   const stats = [
     { title: 'sleep', figure: inbed, color: colors.darkBlue },

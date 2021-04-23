@@ -1,23 +1,13 @@
-import { toggleEditMode } from '@actions/manual-sleep/manual-sleep-actions'
-import { toggleExplanationsModal } from '@actions/modal/modal-actions'
 import { WIDTH } from '@helpers/Dimensions'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import useSleep from '@hooks/useSleep'
-import { getSelectedDate } from '@selectors/calendar-selectors'
-import { getEditMode } from '@selectors/ManualDataSelectors'
+import { toggleEditMode } from '@reducers/manual-sleep'
+import { toggleExplanationsModal } from '@reducers/modal'
 import colors from '@styles/colors'
 import { Value } from '@typings/Sleepdata'
 import React, { FC } from 'react'
-import Animated, {
-  cond,
-  set,
-  stopClock,
-  useCode,
-  interpolate,
-  eq
-} from 'react-native-reanimated'
-import { timing, useClock, useValue } from 'react-native-redash/lib/module/v1'
+import Animated from 'react-native-reanimated'
 import Svg from 'react-native-svg'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 import AddNightButton from './clock/AddNightButton'
 import ClockTimes from './clock/ClockTimes'
@@ -27,7 +17,6 @@ import MinuteSticks from './clock/MinuteSticks'
 import SleepArc from './clock/SleepArc'
 import SleepTime from './clock/SleepTime'
 import Bedtime from './clock/Slider'
-import TrackerName from './clock/TrackerName'
 import TranslatedText from './TranslatedText'
 
 const containerSize = WIDTH - 40
@@ -50,45 +39,12 @@ const Clock: FC = () => {
     bedStart,
     bedEnd
   } = useSleep()
-  const dispatch = useDispatch()
-  const date = useSelector(getSelectedDate)
-  const editMode = useSelector(getEditMode)
-
-  const value = useValue<number>(1)
-  const isEditMode = useValue(editMode ? 1 : 0)
-  const clock = useClock()
-
-  useCode(
-    () => [
-      set(
-        value,
-        cond(eq(isEditMode, 1), [
-          timing({ from: value, to: 1, duration: 350, clock }),
-          timing({ from: value, to: 0, duration: 350, clock })
-        ])
-      )
-    ],
-    [isEditMode]
-  )
-
-  const buttonsStyle = {
-    opacity: interpolate(value, {
-      inputRange: [0, 1],
-      outputRange: [1, 0]
-    }),
-    transform: [
-      {
-        scale: interpolate(value, {
-          inputRange: [0, 1],
-          outputRange: [0.9, 1]
-        })
-      }
-    ]
-  }
+  const dispatch = useAppDispatch()
+  const date = useAppSelector((state) => state.calendar.selectedDay)
+  const editMode = useAppSelector((state) => state.manualSleep.editMode)
 
   const toggleEditNightMode = () => {
-    stopClock(clock)
-    dispatch(toggleEditMode())
+    dispatch(toggleEditMode(true))
   }
 
   const toggleInfo = () => {
@@ -149,7 +105,6 @@ const Clock: FC = () => {
             y={y}
             radius={inBedRadius}
           />
-          <TrackerName x={x} y={y} />
 
           {!editMode && (
             <SleepTime
@@ -173,8 +128,8 @@ const Clock: FC = () => {
             date={date}
           />
         )}
-        <AddNightButton style={buttonsStyle} onPress={toggleEditNightMode} />
-        <InfoButton style={buttonsStyle} onPress={toggleInfo} />
+        <AddNightButton onPress={toggleEditNightMode} />
+        <InfoButton onPress={toggleInfo} />
       </ClockContainer>
       <InstructionsContainer>
         {editMode && (

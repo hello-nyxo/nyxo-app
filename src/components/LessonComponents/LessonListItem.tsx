@@ -1,6 +1,5 @@
 import { getReadingTime } from '@helpers/reading-time'
 import { useNavigation } from '@react-navigation/core'
-import ROUTE from '@config/routes/Routes'
 import React, { FC } from 'react'
 import FastImage from 'react-native-fast-image'
 import styled from 'styled-components/native'
@@ -16,21 +15,31 @@ type Props = {
   locked?: boolean
 }
 
+const getFirstAuthor = (lesson?: LessonCollectionItem) => {
+  if (
+    lesson?.authorCardCollection?.items &&
+    lesson?.authorCardCollection?.items?.length > 0
+  ) {
+    return lesson.authorCardCollection?.items[0].name
+  } else {
+    return 'Pietari Nurmi'
+  }
+}
+
 const LessonListItem: FC<Props> = ({ lesson, locked }) => {
   const { navigate } = useNavigation<WeekScreenNavigationProp>()
   const time = getReadingTime(lesson.lessonContent?.json)
 
   const handlePress = () => {
     if (locked) {
-      navigate(ROUTE.LESSON, {
+      navigate('Lesson', {
         slug: `${lesson?.slug}`,
         id: 'id'
       })
     }
   }
 
-  const author =
-    (lesson?.authorCards && lesson?.authorCards[0]?.name) ?? 'Pietari Nurmi'
+  const author = getFirstAuthor(lesson)
 
   return (
     <Touchable onPress={handlePress}>

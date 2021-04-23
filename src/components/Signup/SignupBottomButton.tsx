@@ -3,7 +3,6 @@ import TranslatedText from '@components/TranslatedText'
 import { useNavigation } from '@react-navigation/native'
 import React, { FC } from 'react'
 import styled from 'styled-components/native'
-import ROUTE from '../../config/routes/Routes'
 import { PrimaryButton } from '../Buttons/PrimaryButton'
 import { Container, P } from '../Primitives/Primitives'
 
@@ -26,10 +25,10 @@ const ProfileSignup: FC = () => {
   const navigation = useNavigation()
 
   const navigate = () => {
-    navigation.navigate(ROUTE.AUTH, { screen: ROUTE.REGISTER })
+    navigation.navigate('Auth', { screen: 'Register' })
   }
   const navigateToSignIn = () => {
-    navigation.navigate(ROUTE.AUTH, { screen: ROUTE.LOGIN })
+    navigation.navigate('Auth', { screen: 'Login' })
   }
 
   return (

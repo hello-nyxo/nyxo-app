@@ -1,17 +1,19 @@
-import { toggleOura } from '@actions/api-actions/oura-actions'
+import { Switch } from '@components/Primitives/Primitives'
 import TranslatedText from '@components/TranslatedText'
-import { getIsOuraMainSource } from '@selectors/sleep-source-selectors/sleep-source-selectors'
+import { useAppDispatch, useAppSelector } from '@hooks/redux'
+import { authorizeOura } from '@reducers/apis/oura'
 import { constants } from '@styles/themes'
 import React, { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 const OuraSection: FC = () => {
-  const dispatch: FC = useDispatch()
-  const isOuraMainSource = useSelector(getIsOuraMainSource)
+  const dispatch: FC = useAppDispatch()
+  const isOuraMainSource = useAppSelector(
+    ({ source }) => source.source === 'oura'
+  )
 
   const setOuraAsSource = () => {
-    dispatch(toggleOura())
+    dispatch(authorizeOura())
   }
 
   return (
@@ -59,8 +61,6 @@ const Title = styled(TranslatedText)`
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
-
-const Switch = styled.Switch``
 
 const OuraLogo = styled.Image`
   height: 25px;

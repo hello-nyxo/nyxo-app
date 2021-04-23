@@ -6,7 +6,6 @@ import {
   ThemedRefreshControl
 } from '@components/Primitives/Primitives'
 import { H2 } from '@components/Primitives/Types'
-import ROUTE from '@config/routes/Routes'
 import {
   CoachingPeriod,
   useGetActiveCoaching,
@@ -48,7 +47,7 @@ const CoachingSettings: FC = () => {
         ListHeaderComponent={() => (
           <>
             <GoBackContainer>
-              <GoBack route={ROUTE.SETTINGS} />
+              <GoBack route={'Settings'} />
             </GoBackContainer>
             <Container>
               <H2>COACHING.SETTINGS.TITLE</H2>
