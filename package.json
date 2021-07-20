@@ -148,7 +148,7 @@
     "oauth-signature": "^1.5.0",
     "query-string": "^7.0.0",
     "react": "17.0.1",
-    "react-native": "0.64.0",
+    "react-native": "0.64.1",
     "react-native-app-auth": "^6.2.0",
     "react-native-background-fetch": "^4.0.2",
     "react-native-calendars": "^1.1255.0",
