@@ -166,7 +166,7 @@
     "react-native-modal": "^11.5.3",
     "react-native-purchases": "^4.1.1",
     "react-native-rate": "^1.1.10",
-    "react-native-reanimated": "^1.13.2",
+    "react-native-reanimated": "^2.10.0",
     "react-native-redash": "^16.0.8",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.0",
