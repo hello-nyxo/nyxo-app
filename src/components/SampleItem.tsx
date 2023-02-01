@@ -2,13 +2,16 @@ import {
   HKCategorySample,
   HKCategoryTypeIdentifier,
 } from '@kingstinct/react-native-healthkit';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {formatRelative} from 'date-fns';
 import React from 'react';
 import styled from 'styled-components/native';
 import {useHRStatistics} from '../hooks/useHeartRate';
+import {AppParams} from '../navigation/RootStack';
 
 type Props = {
   sample: HKCategorySample<HKCategoryTypeIdentifier.sleepAnalysis>;
+  navigation: NativeStackNavigationProp<AppParams>;
 };
 
 const sleepValueMap = {
@@ -20,13 +23,20 @@ const sleepValueMap = {
   5: 'rem',
 };
 
-export const SampleItem = ({sample}: Props) => {
+export const SampleItem = ({sample, navigation}: Props) => {
   const hr = useHRStatistics({from: sample.startDate, to: sample.endDate});
 
   console.log(hr.data?.maximumQuantity);
 
+  const navigate = () => {
+    navigation.navigate('Night', {
+      start: sample.startDate,
+      end: sample.endDate,
+    });
+  };
+
   return (
-    <Container>
+    <Container onPress={navigate}>
       <Text>{sleepValueMap[sample.value]}</Text>
       <Text>{sample.sourceRevision?.source.name}</Text>
       <Text>From: {formatRelative(sample.startDate, new Date())}</Text>
@@ -38,7 +48,7 @@ export const SampleItem = ({sample}: Props) => {
   );
 };
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   padding: 8px 16px;
   background-color: white;
   margin: 8px;

@@ -74,9 +74,12 @@ PODS:
   - fmt (6.2.1)
   - glog (0.3.5)
   - hermes-engine (0.70.6)
-  - kingstinct-react-native-healthkit (5.3.0):
+  - kingstinct-react-native-healthkit (5.4.0):
     - React
   - libevent (2.1.12)
+  - MMKV (1.2.15):
+    - MMKVCore (~> 1.2.15)
+  - MMKVCore (1.2.15)
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -304,7 +307,10 @@ PODS:
   - React-jsinspector (0.70.6)
   - React-logger (0.70.6):
     - glog
-  - react-native-safe-area-context (4.4.1):
+  - react-native-mmkv (2.6.1):
+    - MMKV (>= 1.2.13)
+    - React-Core
+  - react-native-safe-area-context (4.5.0):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -403,7 +409,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.18.2):
+  - RNScreens (3.19.0):
     - React-Core
     - React-RCTImage
   - SocketRocket (0.6.0)
@@ -459,6 +465,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -490,6 +497,8 @@ SPEC REPOS:
     - FlipperKit
     - fmt
     - libevent
+    - MMKV
+    - MMKVCore
     - OpenSSL-Universal
     - SocketRocket
     - YogaKit
@@ -539,6 +548,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-mmkv:
+    :path: "../node_modules/react-native-mmkv"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -590,8 +601,10 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 2af7b7a59128f250adfd86f15aa1d5a2ecd39995
-  kingstinct-react-native-healthkit: 3a06248dccd0df5b435ca4eb1f702e64318d700a
+  kingstinct-react-native-healthkit: 0ecf6315c271c7cdc7be26dcf8ef5e7d4d018068
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
+  MMKV: 7f34558bbb5a33b0eaefae2de4b6a20a2ffdad6f
+  MMKVCore: ddf41b9d9262f058419f9ba7598719af56c02cd3
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
   RCTRequired: e1866f61af7049eb3d8e08e8b133abd38bc1ca7a
@@ -608,7 +621,8 @@ SPEC CHECKSUMS:
   React-jsiexecutor: b4a65947391c658450151275aa406f2b8263178f
   React-jsinspector: 60769e5a0a6d4b32294a2456077f59d0266f9a8b
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
-  react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
+  react-native-mmkv: 28af0c2a3dc9495c2cea80f9d41444e096c2a1ef
+  react-native-safe-area-context: 39c2d8be3328df5d437ac1700f4f3a4f75716acc
   React-perflogger: 8c79399b0500a30ee8152d0f9f11beae7fc36595
   React-RCTActionSheet: 7316773acabb374642b926c19aef1c115df5c466
   React-RCTAnimation: 5341e288375451297057391227f691d9b2326c3d
@@ -622,7 +636,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 15437b576139df27635400de0599d9844f1ab817
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
   RNReanimated: ce445c233a6ff5600223484a88ad5704945d972a
-  RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
+  RNScreens: ea4cd3a853063cda19a4e3c28d2e52180c80f4eb
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

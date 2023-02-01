@@ -3,7 +3,7 @@ import Healthkit, {
   HKCategoryTypeIdentifier,
 } from '@kingstinct/react-native-healthkit';
 import {format, subDays} from 'date-fns';
-import {useQuery} from 'react-query';
+import {useQuery} from '@tanstack/react-query';
 import {groupBy, reduce} from 'lodash';
 
 type Sample = HKCategorySample<HKCategoryTypeIdentifier.sleepAnalysis>;

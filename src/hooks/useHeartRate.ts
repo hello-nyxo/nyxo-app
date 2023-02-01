@@ -2,7 +2,7 @@ import Healthkit, {
   HKQuantityTypeIdentifier,
   HKStatisticsOptions,
 } from '@kingstinct/react-native-healthkit';
-import {useQuery} from 'react-query';
+import {useQuery} from '@tanstack/react-query';
 
 export const useHRForInterval = ({from, to}: {from: Date; to: Date}) => {
   return useQuery(['hr', from, to], async () => {

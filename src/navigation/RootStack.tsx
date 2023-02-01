@@ -1,15 +1,23 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
+import {Timeline} from '../views/Timeline';
+import {Night} from '../views/Night';
 
-const Stack = createNativeStackNavigator<>();
+export type AppParams = {
+  Main: undefined;
+  Night: {
+    start: Date;
+    end: Date;
+  };
+};
 
-const;
+const Stack = createNativeStackNavigator<AppParams>();
 
-const RootStackNavigation = createNativeStackNavigator();
-
-export const StackNavigator = () => {
+export const Navigation = () => {
   return (
-    <Stack.Navigator screenOptions>
-      <Stack.Screen />
+    <Stack.Navigator>
+      <Stack.Screen name="Main" component={Timeline} />
+      <Stack.Screen name="Night" component={Night} />
     </Stack.Navigator>
   );
 };

@@ -3,6 +3,7 @@ import Healthkit, {
   HKCategoryTypeIdentifier,
   HKQuantityTypeIdentifier,
 } from '@kingstinct/react-native-healthkit';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
 import React from 'react';
 import {
   Button,
@@ -14,9 +15,14 @@ import styled from 'styled-components/native';
 import {SampleItem} from '../components/SampleItem';
 import {SectionTitle} from '../components/SectionTitle';
 import {useSleep} from '../hooks/useSleep';
+import {AppParams} from '../navigation/RootStack';
 import {createHeartRate, createSleep} from '../utils/healthkit';
 
-export const Timeline = () => {
+type Props = {
+  navigation: NativeStackNavigationProp<AppParams>;
+};
+
+export const Timeline = ({navigation}: Props) => {
   const sleep = useSleep();
 
   const requestAccess = () => {
@@ -36,7 +42,7 @@ export const Timeline = () => {
 
   const renderItem: SectionListRenderItem<
     HKCategorySample<HKCategoryTypeIdentifier.sleepAnalysis>
-  > = ({item}) => <SampleItem sample={item} />;
+  > = ({item}) => <SampleItem sample={item} navigation={navigation} />;
 
   return (
     <Container>
@@ -66,7 +72,9 @@ export const Timeline = () => {
   );
 };
 
-const Container = styled.View``;
+const Container = styled.View`
+  flex: 1;
+`;
 
 const List = styled(SectionList as new () => SectionList)`
   background-color: #f4f4f4;

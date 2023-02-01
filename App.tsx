@@ -9,11 +9,12 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 
+import {NavigationContainer} from '@react-navigation/native';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {QueryClient, QueryClientProvider} from 'react-query';
-import {Timeline} from './src/views/Timeline';
+import {Navigation} from './src/navigation/RootStack';
 
 const queryClient = new QueryClient();
 
@@ -26,14 +27,13 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={backgroundStyle}>
+      <NavigationContainer>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={backgroundStyle.backgroundColor}
         />
-
-        <Timeline />
-      </SafeAreaView>
+        <Navigation />
+      </NavigationContainer>
     </QueryClientProvider>
   );
 };
