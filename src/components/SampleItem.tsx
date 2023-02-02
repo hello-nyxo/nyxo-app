@@ -6,6 +6,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {formatRelative} from 'date-fns';
 import React from 'react';
 import styled from 'styled-components/native';
+import {H3, Paragraph} from 'tamagui';
 import {useHRStatistics} from '../hooks/useHeartRate';
 import {AppParams} from '../navigation/RootStack';
 
@@ -37,13 +38,18 @@ export const SampleItem = ({sample, navigation}: Props) => {
 
   return (
     <Container onPress={navigate}>
-      <Text>{sleepValueMap[sample.value]}</Text>
-      <Text>{sample.sourceRevision?.source.name}</Text>
-      <Text>From: {formatRelative(sample.startDate, new Date())}</Text>
-      <Text>To: {formatRelative(sample.endDate, new Date())}</Text>
-      <Text>Avg HR: {hr.data?.averageQuantity?.quantity.toFixed(0)}</Text>
-      <Text>Min HR: {hr.data?.minimumQuantity?.quantity}</Text>
-      <Text>Max HR: {hr.data?.maximumQuantity?.quantity}</Text>
+      <Title>Sleep</Title>
+      <H3>{sleepValueMap[sample.value]}</H3>
+      <Paragraph>{sample.sourceRevision?.source.name}</Paragraph>
+      <Paragraph>
+        From: {formatRelative(sample.startDate, new Date())}
+      </Paragraph>
+      <Paragraph>To: {formatRelative(sample.endDate, new Date())}</Paragraph>
+      <Paragraph>
+        Avg HR: {hr.data?.averageQuantity?.quantity.toFixed(0)}
+      </Paragraph>
+      <Paragraph>Min HR: {hr.data?.minimumQuantity?.quantity}</Paragraph>
+      <Paragraph>Max HR: {hr.data?.maximumQuantity?.quantity}</Paragraph>
     </Container>
   );
 };
@@ -56,4 +62,6 @@ const Container = styled.TouchableOpacity`
   box-shadow: 0px 3px 4px rgba(69, 69, 69, 0.08);
 `;
 
-const Text = styled.Text``;
+const Title = styled.Text`
+  font-family: 'Inter';
+`;

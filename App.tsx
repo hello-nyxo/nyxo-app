@@ -11,12 +11,20 @@
 import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native';
+import {LinkingOptions, NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {Navigation} from './src/navigation/RootStack';
+import {AppLinking, Navigation} from './src/navigation/RootStack';
+import {ThemeProvider} from 'styled-components/native';
 
 const queryClient = new QueryClient();
+
+const linking: LinkingOptions<ReactNavigation.RootParamList> = {
+  prefixes: ['nyxo://'],
+  config: {
+    screens: AppLinking,
+  },
+};
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -27,13 +35,15 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <Navigation />
-      </NavigationContainer>
+      <ThemeProvider theme={{mode: 'light'}}>
+        <NavigationContainer linking={linking}>
+          <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={backgroundStyle.backgroundColor}
+          />
+          <Navigation />
+        </NavigationContainer>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };
