@@ -40,7 +40,7 @@ export const SampleItem = ({sample, navigation}: Props) => {
     <Container onPress={navigate}>
       <Title>Sleep</Title>
       <H3>{sleepValueMap[sample.value]}</H3>
-      <Paragraph>{sample.sourceRevision?.source.name}</Paragraph>
+      {/* <Paragraph>{sample.sourceRevision?.source.name}</Paragraph>
       <Paragraph>
         From: {formatRelative(sample.startDate, new Date())}
       </Paragraph>
@@ -49,7 +49,7 @@ export const SampleItem = ({sample, navigation}: Props) => {
         Avg HR: {hr.data?.averageQuantity?.quantity.toFixed(0)}
       </Paragraph>
       <Paragraph>Min HR: {hr.data?.minimumQuantity?.quantity}</Paragraph>
-      <Paragraph>Max HR: {hr.data?.maximumQuantity?.quantity}</Paragraph>
+      <Paragraph>Max HR: {hr.data?.maximumQuantity?.quantity}</Paragraph> */}
     </Container>
   );
 };

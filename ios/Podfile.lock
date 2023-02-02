@@ -16,6 +16,8 @@ PODS:
     - ExpoModulesCore
   - ExpoKeepAwake (11.0.1):
     - ExpoModulesCore
+  - ExpoLinearGradient (12.0.1):
+    - ExpoModulesCore
   - ExpoModulesCore (1.1.1):
     - React-Core
     - ReactCommon/turbomodule/core
@@ -399,7 +401,7 @@ PODS:
     - React-jsi (= 0.70.6)
     - React-logger (= 0.70.6)
     - React-perflogger (= 0.70.6)
-  - RNReanimated (2.13.0):
+  - RNReanimated (2.14.4):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -444,6 +446,7 @@ DEPENDENCIES:
   - EXFont (from `../node_modules/expo-font/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
+  - ExpoLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
@@ -547,6 +550,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo"
   ExpoKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
+  ExpoLinearGradient:
+    :path: "../node_modules/expo-linear-gradient/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core"
   FBLazyVector:
@@ -635,6 +640,7 @@ SPEC CHECKSUMS:
   EXFont: 319606bfe48c33b5b5063fb0994afdc496befe80
   Expo: b9fa98bf260992312ee3c424400819fb9beadafe
   ExpoKeepAwake: 69b59d0a8d2b24de9f82759c39b3821fec030318
+  ExpoLinearGradient: b40c2133ad57ae105b1b12a319e314463c817f6b
   ExpoModulesCore: 485dff3a59b036a33b6050c0a5aea3cf1037fdd1
   FBLazyVector: 48289402952f4f7a4e235de70a9a590aa0b79ef4
   FBReactNativeSpec: dd1186fd05255e3457baa2f4ca65e94c2cd1e3ac
@@ -684,7 +690,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: c75ceef7aa60a33b2d5731ebe5800ddde40cefc4
   React-runtimeexecutor: 15437b576139df27635400de0599d9844f1ab817
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
-  RNReanimated: ce445c233a6ff5600223484a88ad5704945d972a
+  RNReanimated: 6668b0587bebd4b15dd849b99e5a9c70fc12ed95
   RNScreens: ea4cd3a853063cda19a4e3c28d2e52180c80f4eb
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc

@@ -16,6 +16,8 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {AppLinking, Navigation} from './src/navigation/RootStack';
 import {ThemeProvider} from 'styled-components/native';
+import {TamaguiProvider} from 'tamagui';
+import {config} from './tamagui.config';
 
 const queryClient = new QueryClient();
 
@@ -34,17 +36,19 @@ const App = () => {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={{mode: 'light'}}>
-        <NavigationContainer linking={linking}>
-          <StatusBar
-            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-            backgroundColor={backgroundStyle.backgroundColor}
-          />
-          <Navigation />
-        </NavigationContainer>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <TamaguiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={{mode: 'light'}}>
+          <NavigationContainer linking={linking}>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              backgroundColor={backgroundStyle.backgroundColor}
+            />
+            <Navigation />
+          </NavigationContainer>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </TamaguiProvider>
   );
 };
 
