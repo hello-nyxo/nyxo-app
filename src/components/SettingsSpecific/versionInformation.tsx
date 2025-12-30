@@ -1,20 +1,12 @@
-import React, { memo, useEffect, useState } from 'react'
-import DeviceInfo from 'react-native-device-info'
+import React, { memo } from 'react'
+import * as Application from 'expo-application'
 import styled from 'styled-components/native'
 import colors from '@styles/colors'
 import { fonts } from '@styles/themes'
 
 const VersionInformation = () => {
-  const [version, setVersion] = useState('')
-
-  useEffect(() => {
-    async function updateVersion() {
-      const readableVersion = await DeviceInfo.getReadableVersion()
-
-      await setVersion(readableVersion)
-    }
-    updateVersion()
-  }, [])
+  const version = Application.nativeApplicationVersion || '1.0.0'
+  const buildNumber = Application.nativeBuildVersion || '1'
 
   return (
     <Container>
@@ -22,7 +14,7 @@ const VersionInformation = () => {
         Nyxo © Copyright {new Date().getFullYear()}.{'\n'}
         All rights reserved.
       </VersionText>
-      <VersionText>Version {version}</VersionText>
+      <VersionText>Version {version} ({buildNumber})</VersionText>
     </Container>
   )
 }

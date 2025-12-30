@@ -1,4 +1,4 @@
-import { findBestAvailableLanguage } from 'react-native-localize'
+import * as Localization from 'expo-localization'
 import { I18nManager } from 'react-native'
 import I18n, { TranslateOptions, Scope } from 'i18n-js'
 import memoize from 'lodash/memoize'
@@ -13,6 +13,24 @@ const translationGetters: {
   // lazy requires (metro bundler does not support symlinks)
   fi: () => require('../translations/fi.json'),
   en: () => require('../translations/en.json')
+}
+
+const findBestAvailableLanguage = (
+  availableLanguages: string[]
+): { languageTag: string; isRTL: boolean } | undefined => {
+  const locales = Localization.getLocales()
+
+  for (const locale of locales) {
+    const languageTag = locale.languageCode
+    if (languageTag && availableLanguages.includes(languageTag)) {
+      return {
+        languageTag,
+        isRTL: locale.textDirection === 'rtl'
+      }
+    }
+  }
+
+  return undefined
 }
 
 export const setI18nConfig = (): void => {

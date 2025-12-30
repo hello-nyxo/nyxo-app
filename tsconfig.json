@@ -1,37 +1,11 @@
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "target": "esnext",
-    "allowJs": true,
-    "module": "commonjs",
-    "jsx": "react-native",
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin",
-        "lint": {
-          "validProperties": [
-            "aspect-ratio",
-            "elevation",
-            "margin-vertical",
-            "margin-horizontal",
-            "padding-horizontal",
-            "padding-vertical",
-            "resize-mode",
-            "shadow-color",
-            "shadow-opacity",
-            "shadow-offset",
-            "shadow-radius",
-            "text-align-vertical",
-            "tint-color"
-          ]
-        }
-      }
-    ],
+    "strict": true,
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "sourceMap": true,
-    "noEmitHelpers": true,
-    "importHelpers": true,
-    "strict": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -62,9 +36,9 @@
     }
   },
   "include": [
-    "node_modules/react-native-redash/lib/typescript/v1/index.d.ts",
-    "src/**/*",
-    "src/typings"
+    "**/*.ts",
+    "**/*.tsx",
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",

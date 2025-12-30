@@ -1,11 +1,10 @@
-import Analytics from 'appcenter-analytics'
+import * as Haptics from 'expo-haptics'
 import React, { FC, memo, ReactNode, useRef } from 'react'
 import {
   Animated,
   GestureResponderEvent,
   TouchableWithoutFeedback
 } from 'react-native'
-import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 import styled from 'styled-components/native'
 
 type Props = {
@@ -42,11 +41,9 @@ const ScalingButton: FC<Props> = ({
   }
 
   const handlePress = (event: GestureResponderEvent) => {
-    Analytics.trackEvent('Button pressed', {
-      buttonType: analyticsEvent
-    })
-    ReactNativeHapticFeedback.trigger('impactMedium', {
-      enableVibrateFallback: true
+    // Analytics can be added with a different service like Sentry or Amplitude
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {
+      // Haptics may not be available
     })
 
     onPress(event)

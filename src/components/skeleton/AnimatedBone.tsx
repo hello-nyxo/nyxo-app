@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import Animated from 'react-native-reanimated'
 
-import LinearGradient from 'react-native-linear-gradient'
+import { LinearGradient } from 'expo-linear-gradient'
 import styled from 'styled-components/native'
 import { ViewStyle } from 'react-native'
 

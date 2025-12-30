@@ -1,7 +1,7 @@
 import { getReadingTime } from '@helpers/reading-time'
 import { useNavigation } from '@react-navigation/core'
 import React, { FC } from 'react'
-import FastImage from 'react-native-fast-image'
+import { Image as FastImage } from 'expo-image'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
 import { WeekScreenNavigationProp } from '@screens/coaching/WeekScreen'
