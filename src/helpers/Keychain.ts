@@ -1,16 +1,20 @@
 import { captureException } from '@sentry/react-native'
-import {
-  ACCESSIBLE,
-  ACCESS_CONTROL,
-  getGenericPassword,
-  Result,
-  setGenericPassword,
-  UserCredentials
-} from 'react-native-keychain'
+import * as SecureStore from 'expo-secure-store'
 
 export type Token = {
   refreshToken: string
   accessToken: string
+}
+
+export type Result = {
+  service: string
+  storage: string
+}
+
+export type UserCredentials = {
+  username: string
+  password: string
+  service: string
 }
 
 export const savAccessToken = async <T>(
@@ -19,14 +23,12 @@ export const savAccessToken = async <T>(
   tokenData: T
 ): Promise<false | Result> => {
   try {
-    return await setGenericPassword(key, JSON.stringify(tokenData), {
-      accessControl: ACCESS_CONTROL.USER_PRESENCE,
-      accessible: ACCESSIBLE.WHEN_UNLOCKED,
-      service
-    })
+    const storageKey = `${service}_${key}`
+    await SecureStore.setItemAsync(storageKey, JSON.stringify(tokenData))
+    return { service, storage: storageKey }
   } catch (error) {
     captureException(error)
-    return error
+    return false
   }
 }
 
@@ -36,14 +38,12 @@ export const setKeychainValue = async (
   service: string
 ): Promise<false | Result> => {
   try {
-    return await setGenericPassword(key, value, {
-      accessControl: ACCESS_CONTROL.USER_PRESENCE,
-      accessible: ACCESSIBLE.WHEN_UNLOCKED,
-      service
-    })
+    const storageKey = `${service}_${key}`
+    await SecureStore.setItemAsync(storageKey, value)
+    return { service, storage: storageKey }
   } catch (error) {
     captureException(error)
-    return error
+    return false
   }
 }
 
@@ -51,16 +51,18 @@ export const getKeychainKeyValue = async (
   service: string
 ): Promise<UserCredentials | boolean> => {
   try {
-    const credential = await getGenericPassword({
-      service,
-      accessControl: ACCESS_CONTROL.USER_PRESENCE,
-      accessible: ACCESSIBLE.WHEN_UNLOCKED
-    })
-
-    return credential
+    const value = await SecureStore.getItemAsync(service)
+    if (value) {
+      return {
+        username: service,
+        password: value,
+        service
+      }
+    }
+    return false
   } catch (error) {
     captureException(error)
-    return error
+    return false
   }
 }
 

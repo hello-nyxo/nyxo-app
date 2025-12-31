@@ -1,14 +1,9 @@
-import Amplify from '@aws-amplify/core'
+import { Amplify } from 'aws-amplify'
 import { useTheme } from '@hooks/useTheme'
 import * as Sentry from '@sentry/react-native'
-import React, { FC, useEffect, useRef } from 'react'
-import { addEventListener, removeEventListener } from 'react-native-localize'
-import Purchases, {
-  PurchaserInfo,
-  PurchaserInfoUpdateListener
-} from 'react-native-purchases'
-import { enableScreens } from 'react-native-screens'
-import SplashScreen from 'react-native-splash-screen'
+import React, { FC, useEffect, useRef, useCallback } from 'react'
+import * as Localization from 'expo-localization'
+import * as SplashScreen from 'expo-splash-screen'
 import styled, { ThemeProvider } from 'styled-components/native'
 import amplify from './config/Amplify'
 import {
@@ -16,13 +11,26 @@ import {
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native'
-import CONFIG from './config/config'
+import CONFIG from './config/Config'
 import { setI18nConfig } from './config/i18n'
 import { darkTheme, lightTheme } from './styles/themes'
 import Root from '@config/routes/RootNavigator'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { StatusBar } from 'expo-status-bar'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { StyleSheet } from 'react-native'
 
-const queryClient = new QueryClient()
+// Keep splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync()
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 2
+    }
+  }
+})
 
 if (!__DEV__) {
   Sentry.init({
@@ -30,13 +38,7 @@ if (!__DEV__) {
   })
 }
 
-enableScreens()
 Amplify.configure(amplify)
-
-type MakePurchasePromise = Promise<{
-  productIdentifier: string
-  purchaserInfo: PurchaserInfo
-}>
 
 const linking = {
   prefixes: [
@@ -90,60 +92,51 @@ export const App: FC = () => {
   const theme = useTheme()
   const ref = useRef(null)
 
-  useEffect(() => {
-    setI18nConfig()
-    SplashScreen.hide()
-    addEventListener('change', handleLocalizationChange)
-    Purchases.setDebugLogsEnabled(true)
-    Purchases.setup(CONFIG.REVENUE_CAT)
-    Purchases.addPurchaserInfoUpdateListener(purchaserInfoUpdateListener)
-    Purchases.addShouldPurchasePromoProductListener(shouldPurchasePromoProduct)
-
-    return () => {
-      removeEventListener('change', handleLocalizationChange)
-      Purchases.removePurchaserInfoUpdateListener(purchaserInfoUpdateListener)
-      Purchases.removeShouldPurchasePromoProductListener(
-        shouldPurchasePromoProduct
-      )
-    }
+  const onLayoutRootView = useCallback(async () => {
+    await SplashScreen.hideAsync()
   }, [])
 
-  const purchaserInfoUpdateListener: PurchaserInfoUpdateListener = (info) => {
-    //FIXME
-  }
-
-  const handleLocalizationChange = () => {
+  useEffect(() => {
     setI18nConfig()
-  }
+    onLayoutRootView()
 
-  const shouldPurchasePromoProduct = async (
-    deferredPurchase: () => MakePurchasePromise
-  ) => {
-    try {
-      deferredPurchase()
-    } catch (error) {
-      Sentry.captureException(error)
-    }
-  }
+    // RevenueCat setup would go here
+    // Purchases.configure({ apiKey: CONFIG.REVENUE_CAT })
+  }, [onLayoutRootView])
+
+  const handleLocalizationChange = useCallback(() => {
+    setI18nConfig()
+  }, [])
+
+  useEffect(() => {
+    // Listen for locale changes
+    // Expo Localization doesn't have a listener, but the app will re-render on changes
+  }, [handleLocalizationChange])
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-        <StyledStatusBar animated />
-        <NavigationContainer
-          linking={linking}
-          ref={ref}
-          theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Root />
-        </NavigationContainer>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <GestureHandlerRootView style={styles.container}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+          <StatusBar
+            style={theme === 'dark' ? 'light' : 'dark'}
+            backgroundColor={theme === 'dark' ? darkTheme.PRIMARY_BACKGROUND_COLOR : lightTheme.PRIMARY_BACKGROUND_COLOR}
+          />
+          <NavigationContainer
+            linking={linking}
+            ref={ref}
+            theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+            <Root />
+          </NavigationContainer>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   )
 }
 
-export default App
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
-const StyledStatusBar = styled.StatusBar.attrs(({ theme }) => ({
-  barStyle: theme.mode === 'dark' ? 'light-content' : 'dark-content',
-  backgroundColor: theme.PRIMARY_BACKGROUND_COLOR
-}))``
+export default App

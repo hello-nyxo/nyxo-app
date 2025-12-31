@@ -1,39 +1,46 @@
 import React, { FC } from 'react'
-import LinearGradient from 'react-native-linear-gradient'
-import Animated from 'react-native-reanimated'
+import { LinearGradient } from 'expo-linear-gradient'
+import Animated, {
+  SharedValue,
+  useAnimatedStyle,
+  interpolate,
+  Extrapolation
+} from 'react-native-reanimated'
 import styled from 'styled-components/native'
-import FastImage from 'react-native-fast-image'
+import { Image } from 'expo-image'
 import {
   HEADER_MAX_HEIGHT,
   HEADER_MIN_HEIGHT,
   WIDTH
 } from '@helpers/Dimensions'
-import AnimatedFastImage from '../AnimatedFastImage/AnimatedFastImage'
 
 type Props = {
   cover: string
-  yOffset: Animated.Value<number>
+  yOffset: SharedValue<number>
 }
 
+const AnimatedImage = Animated.createAnimatedComponent(Image)
+
 const Cover: FC<Props> = ({ cover, yOffset }) => {
-  const headerHeight = (offset: Animated.Value<number>) => ({
-    opacity: offset.interpolate({
-      inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-      outputRange: [1, 0],
-      extrapolateRight: Animated.Extrapolate.CLAMP,
-      extrapolateLeft: Animated.Extrapolate.CLAMP
-    })
+  const animatedStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      yOffset.value,
+      [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
+      [1, 0],
+      Extrapolation.CLAMP
+    )
+    return { opacity }
   })
 
   return (
     <Container>
       <Gradient />
       <CoverPhoto
-        style={headerHeight(yOffset)}
+        style={animatedStyle}
         source={{
-          uri: `${cover}?fm=jpg&fl=progressive&w=${WIDTH * 2}`,
-          priority: FastImage.priority.normal
+          uri: `${cover}?fm=jpg&fl=progressive&w=${WIDTH * 2}`
         }}
+        priority="normal"
       />
     </Container>
   )
@@ -60,7 +67,7 @@ const Gradient = styled(LinearGradient).attrs(({ theme }) => ({
   bottom: 0;
 `
 
-const CoverPhoto = styled(AnimatedFastImage)`
+const CoverPhoto = styled(AnimatedImage)`
   z-index: 0;
   width: 100%;
   height: 100%;

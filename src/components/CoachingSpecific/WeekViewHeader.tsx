@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import LinearGradient from 'react-native-linear-gradient'
+import { LinearGradient } from 'expo-linear-gradient'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'

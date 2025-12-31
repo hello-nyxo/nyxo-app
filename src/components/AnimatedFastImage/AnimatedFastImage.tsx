@@ -1,6 +1,6 @@
-import FastImage from 'react-native-fast-image'
+import { Image } from 'expo-image'
 import Animated from 'react-native-reanimated'
 
-const AnimatedFastImage = Animated.createAnimatedComponent(FastImage)
+const AnimatedFastImage = Animated.createAnimatedComponent(Image)
 
 export default AnimatedFastImage

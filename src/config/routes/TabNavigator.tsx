@@ -1,18 +1,15 @@
 import TabBarIcon from '@components/TabBarIcon'
 import TabBarLabel from '@components/TabBarLabel'
-import { BlurView } from '@react-native-community/blur'
+import { BlurView } from 'expo-blur'
 import {
   BottomTabBar,
   BottomTabBarProps,
   createBottomTabNavigator
 } from '@react-navigation/bottom-tabs'
-import {
-  BottomTabBarOptions,
-  LabelPosition
-} from '@react-navigation/bottom-tabs/lib/typescript/src/types'
 import { RootStackParamList } from '@typings/navigation/navigation'
 import React, { FC } from 'react'
-import styled from 'styled-components/native'
+import { StyleSheet, View } from 'react-native'
+import { useTheme } from '@hooks/useTheme'
 import CoachingNavigator from './coachingNavigator'
 import SleepNavigator from './SleepNavigator'
 import ProfileNavigator from './profileNavigator'
@@ -20,57 +17,46 @@ import SettingsNavigator from './settingsNavigator'
 
 const Tab = createBottomTabNavigator<RootStackParamList['App']>()
 
-const TabBar: FC<BottomTabBarProps<BottomTabBarOptions>> = (props) => (
-  <BlurViewTabBar blurAmount={100}>
-    <BottomTabBar {...props} />
-  </BlurViewTabBar>
-)
+const TabBar: FC<BottomTabBarProps> = (props) => {
+  const theme = useTheme()
+
+  return (
+    <View style={styles.tabBarContainer}>
+      <BlurView
+        intensity={100}
+        tint={theme === 'dark' ? 'dark' : 'light'}
+        style={StyleSheet.absoluteFill}
+      />
+      <BottomTabBar {...props} />
+    </View>
+  )
+}
 
 const TabNavigator: FC = () => {
   return (
     <Tab.Navigator
-      tabBar={TabBar}
-      tabBarOptions={{
-        tabStyle: {
-          backgroundColor: 'transparent'
-        },
-        style: {
-          backgroundColor: 'transparent'
-        }
-      }}
+      tabBar={(props) => <TabBar {...props} />}
       screenOptions={({ route }) => ({
-        tabBarLabel: function tabBarLabel({
-          focused,
-          color
-        }: {
-          focused: boolean
-          color: string
-          position: LabelPosition
-        }) {
-          return (
-            <TabBarLabel
-              label={`TAB.${route.name.toUpperCase()}`}
-              focused={focused}
-              tintColor={color}
-            />
-          )
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: 'transparent',
+          borderTopWidth: 0,
+          elevation: 0
         },
-        tabBarIcon: function tabBarIcon({
-          focused,
-          color
-        }: {
-          focused: boolean
-          color: string
-          size: number
-        }) {
-          return (
-            <TabBarIcon
-              routeName={route.name}
-              focused={focused}
-              tintColor={color}
-            />
-          )
-        }
+        tabBarLabel: ({ focused, color }) => (
+          <TabBarLabel
+            label={`TAB.${route.name.toUpperCase()}`}
+            focused={focused}
+            tintColor={color}
+          />
+        ),
+        tabBarIcon: ({ focused, color }) => (
+          <TabBarIcon
+            routeName={route.name}
+            focused={focused}
+            tintColor={color}
+          />
+        )
       })}>
       <Tab.Screen name="Sleep" component={SleepNavigator} />
       <Tab.Screen name="Coaching" component={CoachingNavigator} />
@@ -82,12 +68,11 @@ const TabNavigator: FC = () => {
 
 export default TabNavigator
 
-const BlurViewTabBar = styled(BlurView).attrs(({ theme }) => ({
-  blurType: theme.mode === 'dark' ? 'dark' : 'light',
-  reducedTransparencyFallbackColor: theme.SECONDARY_BACKGROUND_COLOR
-}))`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-`
+const styles = StyleSheet.create({
+  tabBarContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0
+  }
+})

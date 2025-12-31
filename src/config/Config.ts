@@ -1,28 +1,36 @@
-import config from 'react-native-ultimate-config'
+import Constants from 'expo-constants'
+
+// Environment variables from app.config.js extra field or .env
+const expoConfig = Constants.expoConfig?.extra || {}
+
+// Fallback values for development
+const getEnvVar = (key: string, fallback = ''): string => {
+  return expoConfig[key] || process.env[key] || fallback
+}
 
 export const CONFIG = {
-  REVENUE_CAT: config.REVENUE_CAT,
+  REVENUE_CAT: getEnvVar('REVENUE_CAT'),
 
-  SENTRY_DSN: config.SENTRY_DSN,
-  CONTENTFUL_SPACE: config.CONTENTFUL_SPACE,
-  CONTENTFUL_SPACE_ACCESS_TOKEN: config.CONTENTFUL_ACCESS_TOKEN,
+  SENTRY_DSN: getEnvVar('SENTRY_DSN'),
+  CONTENTFUL_SPACE: getEnvVar('CONTENTFUL_SPACE'),
+  CONTENTFUL_SPACE_ACCESS_TOKEN: getEnvVar('CONTENTFUL_ACCESS_TOKEN'),
 
   FITBIT_CONFIG: {
     bundleId: 'com.fitbit.FitbitMobilet',
-    clientId: config.FITBIT_ID,
+    clientId: getEnvVar('FITBIT_ID'),
     clientSecret: '',
     redirectUrl: 'nyxo://callback',
     scopes: ['activity', 'sleep'],
     serviceConfiguration: {
       authorizationEndpoint: 'https://www.fitbit.com/oauth2/authorize',
-      tokenEndpoint: config.FITBIT_TOKEN_ENDPOINT,
-      revocationEndpoint: config.FITBIT_REVOCATION_ENDPOINT
+      tokenEndpoint: getEnvVar('FITBIT_TOKEN_ENDPOINT'),
+      revocationEndpoint: getEnvVar('FITBIT_REVOCATION_ENDPOINT')
     }
   },
 
   OURA_CONFIG: {
     bundleId: 'com.ouraring.oura',
-    clientId: config.OURA_ID,
+    clientId: getEnvVar('OURA_ID'),
     clientSecret: '',
     redirectUrl: 'nyxo://callback',
     scopes: ['personal', 'daily'],
@@ -32,14 +40,14 @@ export const CONFIG = {
     },
     serviceConfiguration: {
       authorizationEndpoint: 'https://cloud.ouraring.com/oauth/authorize',
-      tokenEndpoint: config.OURA_TOKEN_ENDPOINT
+      tokenEndpoint: getEnvVar('OURA_TOKEN_ENDPOINT')
     }
   },
 
   GOOOGLE_FIT_GONFIG_ANDROID: {
     issuer: 'https://accounts.google.com',
-    clientId: config.GOOGLE_FIT_ID_ANDROID,
-    redirectUrl: config.GOOGLE_FIT_URL_ANDROID,
+    clientId: getEnvVar('GOOGLE_FIT_ID_ANDROID'),
+    redirectUrl: getEnvVar('GOOGLE_FIT_URL_ANDROID'),
     scopes: [
       'openid',
       'profile',
@@ -52,8 +60,8 @@ export const CONFIG = {
 
   GOOOGLE_FIT_GONFIG_IOS: {
     issuer: 'https://accounts.google.com',
-    clientId: config.GOOGLE_FIT_ID_IOS,
-    redirectUrl: config.GOOGLE_FIT_URL_IOS,
+    clientId: getEnvVar('GOOGLE_FIT_ID_IOS'),
+    redirectUrl: getEnvVar('GOOGLE_FIT_URL_IOS'),
     scopes: [
       'openid',
       'profile',
@@ -66,39 +74,39 @@ export const CONFIG = {
 
   WITHINGS_CONFIG: {
     bundleId: 'com.withings.wiScaleNG',
-    clientId: config.WITHINGS_ID,
+    clientId: getEnvVar('WITHINGS_ID'),
     clientSecret: '',
     redirectUrl: 'nyxo://callback',
     scopes: ['user.activity'],
     serviceConfiguration: {
       authorizationEndpoint:
         'https://account.withings.com/oauth2_user/authorize2',
-      tokenEndpoint: config.WITHINGS_TOKEN_ENDPOINT,
-      revocationEndpoint: config.WITHINGS_REVOCATION_ENDPOINT
+      tokenEndpoint: getEnvVar('WITHINGS_TOKEN_ENDPOINT'),
+      revocationEndpoint: getEnvVar('WITHINGS_REVOCATION_ENDPOINT')
     }
   },
 
   GARMIN_CONFIG: {
     bundleId: 'com.garmin.connect.mobile',
     redirectUrl: 'nyxo://callback',
-    REQUEST_TOKEN_ENDPOINT: config.GARMIN_REQUEST_TOKEN_ENDPOINT,
-    ACCESS_TOKEN_ENDPOINT: config.GARMIN_ACCESS_TOKEN_ENDPOINT,
-    GET_SLEEP_ENDPOINT: config.GARMIN_GET_SLEEP_ENDPOINT
+    REQUEST_TOKEN_ENDPOINT: getEnvVar('GARMIN_REQUEST_TOKEN_ENDPOINT'),
+    ACCESS_TOKEN_ENDPOINT: getEnvVar('GARMIN_ACCESS_TOKEN_ENDPOINT'),
+    GET_SLEEP_ENDPOINT: getEnvVar('GARMIN_GET_SLEEP_ENDPOINT')
   },
 
   POLAR_CONFIG: {
     bundleId: 'com.polar.mobile',
-    clientId: config.POLAR_ID,
+    clientId: getEnvVar('POLAR_ID'),
     clientSecret: '',
     redirectUrl: 'nyxo://callback',
     scopes: ['accesslink.read_all'],
     serviceConfiguration: {
       authorizationEndpoint: 'https://flow.polar.com/oauth2/authorization',
-      tokenEndpoint: config.POLAR_TOKEN_ENDPOINT
+      tokenEndpoint: getEnvVar('POLAR_TOKEN_ENDPOINT')
     }
   },
 
-  LINK_VALIDATION_URL: config.LINK_CODE_URL,
+  LINK_VALIDATION_URL: getEnvVar('LINK_CODE_URL'),
 
   PRIVACY_LINK: 'https://nyxo.app/privacy/',
   TERMS_LINK: 'https://nyxo.app/terms/',

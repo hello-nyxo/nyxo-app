@@ -20,7 +20,7 @@ import {
 } from '@hooks/coaching/useCoaching'
 import { HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT } from '@helpers/Dimensions'
 import { useScrollHandler } from 'react-native-redash/lib/module/v1'
-import LinearGradient from 'react-native-linear-gradient'
+import { LinearGradient } from 'expo-linear-gradient'
 
 export type WeekScreenRouteProp = RouteProp<RootStackParamList, 'Lesson'>
 export type WeekScreenNavigationProp = StackNavigationProp<

@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react'
-import FastImage from 'react-native-fast-image'
+import { Image as FastImage } from 'expo-image'
 import styled from 'styled-components/native'
 import { fonts } from '@styles/themes'
 import { ImageProps } from 'react-native'
