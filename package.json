@@ -182,7 +182,7 @@
     "redux-batched-actions": "^0.5.0",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "serialize-javascript": "^5.0.1",
+    "serialize-javascript": "^7.0.5",
     "styled-components": "^5.2.3",
     "uuid": "^8.3.2",
     "yup": "^0.32.9"
