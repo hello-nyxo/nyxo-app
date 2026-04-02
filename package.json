@@ -144,7 +144,7 @@
     "formik": "^2.2.6",
     "graphql": "^15.5.0",
     "i18n-js": "^3.8.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "oauth-signature": "^1.5.0",
     "query-string": "^7.0.0",
     "react": "17.0.1",
