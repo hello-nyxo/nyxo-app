@@ -1,4 +1,86 @@
 {
-  "name": "Nyxo",
-  "displayName": "Nyxo"
+  "expo": {
+    "name": "Nyxo",
+    "slug": "nyxo",
+    "version": "2.0.0",
+    "scheme": "nyxo",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "icon": "./assets/images/icon.png",
+    "ios": {
+      "bundleIdentifier": "fi.nyxo.app",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "fi.nyxo.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B0820",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "android.permission.health.READ_SLEEP",
+        "android.permission.health.WRITE_SLEEP",
+        "android.permission.health.READ_HEART_RATE",
+        "android.permission.health.WRITE_HEART_RATE",
+        "android.permission.health.READ_RESTING_HEART_RATE",
+        "android.permission.health.WRITE_RESTING_HEART_RATE",
+        "android.permission.health.READ_HEART_RATE_VARIABILITY",
+        "android.permission.health.WRITE_HEART_RATE_VARIABILITY",
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.WRITE_STEPS",
+        "android.permission.health.READ_ACTIVE_CALORIES_BURNED",
+        "android.permission.health.WRITE_ACTIVE_CALORIES_BURNED"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 96,
+          "backgroundColor": "#0B0820"
+        }
+      ],
+      [
+        "@kingstinct/react-native-healthkit",
+        {
+          "NSHealthShareUsageDescription": "Nyxo reads your sleep, heart rate and activity to show how your days shape your nights.",
+          "NSHealthUpdateUsageDescription": "Nyxo saves sample data in development builds.",
+          "background": false
+        }
+      ],
+      "react-native-health-connect",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 26
+          }
+        }
+      ],
+      "expo-asset",
+      "expo-image",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/PlusJakartaSans-Bold.ttf",
+            "./assets/fonts/PlusJakartaSans-ExtraBold.ttf",
+            "./assets/fonts/PlusJakartaSans-Medium.ttf",
+            "./assets/fonts/PlusJakartaSans-SemiBold.ttf",
+            "./assets/fonts/SourceSerif4-Italic.ttf",
+            "./assets/fonts/SourceSerif4-Regular.ttf",
+            "./assets/fonts/SourceSerif4-SemiBold.ttf"
+          ]
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
 }

@@ -1,0 +1,47 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
+/* 1rem = 16pt, as in Tailwind. Nyxo has one look: night. Colors mirror src/ui/theme.ts. */
+:root {
+  font-size: 16px;
+}
+
+@layer theme {
+  @theme {
+    --color-night: #0b0820;
+    --color-surface: #161230;
+    --color-raised: #221b45;
+    --color-line: rgb(255 255 255 / 0.08);
+    --color-ink: #f3f1ff;
+    --color-ink-2: rgb(243 241 255 / 0.64);
+    --color-ink-3: rgb(243 241 255 / 0.4);
+    --color-brand: #4a5aef;
+    --color-brand-light: #8c97ff;
+    --color-mint: #4aefd5;
+    --color-wake: #dd956e;
+
+    /* Sleep stages */
+    --color-awake: #dd956e;
+    --color-rem: #5fc8f5;
+    --color-core: #6f7dff;
+    --color-deep: #3b35c9;
+    --color-asleep: #6f7dff;
+    --color-in-bed: #463f78;
+
+    /* Habit periods */
+    --color-morning: #f5a623;
+    --color-afternoon: #4a9aef;
+    --color-evening: #7c5cfc;
+
+    /* Plus Jakarta Sans for the interface, Source Serif 4 for reading */
+    --font-ui: PlusJakartaSans-Medium;
+    --font-ui-strong: PlusJakartaSans-SemiBold;
+    --font-title: PlusJakartaSans-Bold;
+    --font-display: PlusJakartaSans-ExtraBold;
+    --font-read: SourceSerif4-Regular;
+    --font-read-italic: SourceSerif4-Italic;
+    --font-read-strong: SourceSerif4-SemiBold;
+  }
+}
