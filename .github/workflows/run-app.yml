@@ -1,0 +1,105 @@
+name: 'run-app'
+# Builds the app for iOS and Android, launches it on a simulator/emulator,
+# checks it stays alive, and uploads a screenshot + logs as artifacts.
+on:
+  push:
+  workflow_dispatch:
+
+concurrency:
+  group: run-app-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          cache: yarn
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: yarn install --frozen-lockfile --non-interactive
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Build release APK (JS bundled)
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon --console=plain
+      - name: Launch on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          arch: x86_64
+          target: default
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: |
+            adb install -r android/app/build/outputs/apk/release/app-release.apk
+            adb logcat -c
+            adb shell am start -W -n com.nyxo/.MainActivity
+            sleep 30
+            adb exec-out screencap -p > android-screenshot.png
+            adb logcat -d > android-logcat.txt
+            adb shell pidof com.nyxo || (echo "::error::App is not running"; grep -E "FATAL|ReactNativeJS" android-logcat.txt | tail -50; exit 1)
+            ! grep -q "FATAL EXCEPTION" android-logcat.txt || (echo "::error::App crashed"; grep -A30 "FATAL EXCEPTION" android-logcat.txt; exit 1)
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-run
+          path: |
+            android-screenshot.png
+            android-logcat.txt
+            android/app/build/outputs/apk/release/app-release.apk
+
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          cache: yarn
+      - run: yarn install --frozen-lockfile --non-interactive
+      - name: Install pods
+        working-directory: ios
+        env:
+          NO_FLIPPER: '1'
+        run: pod install
+      - name: Build for simulator (Release, JS bundled)
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild -workspace Nyxo.xcworkspace -scheme Nyxo -configuration Release \
+            -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build CODE_SIGNING_ALLOWED=NO build | tee xcodebuild.log | grep -E "error:|warning: .*deprecated|\*\* BUILD" || true
+          test -d build/Build/Products/Release-iphonesimulator/Nyxo.app || (grep -B5 -A5 "error:" xcodebuild.log | head -100; exit 1)
+      - name: Launch on simulator
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c "import json,sys; d=json.load(sys.stdin)['devices']; print(next(x['udid'] for k in sorted(d, reverse=True) if 'iOS' in k for x in d[k] if x['name'].startswith('iPhone')))")
+          echo "Using simulator $UDID"
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+          APP=ios/build/Build/Products/Release-iphonesimulator/Nyxo.app
+          BUNDLE_ID=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Info.plist")
+          xcrun simctl install "$UDID" "$APP"
+          xcrun simctl spawn "$UDID" log stream --level debug --predicate "process == \"Nyxo\"" > ios-log.txt 2>&1 &
+          xcrun simctl launch "$UDID" "$BUNDLE_ID"
+          sleep 30
+          xcrun simctl io "$UDID" screenshot ios-screenshot.png
+          xcrun simctl spawn "$UDID" launchctl list | grep -q "$BUNDLE_ID" || (echo "::error::App is not running"; tail -80 ios-log.txt; exit 1)
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-run
+          path: |
+            ios-screenshot.png
+            ios-log.txt
+            ios/xcodebuild.log
