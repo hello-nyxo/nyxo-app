@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-type Props = {};
-
 export const Night = () => {
   return (
     <Container>

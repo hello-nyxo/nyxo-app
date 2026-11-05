@@ -7,6 +7,8 @@ import {ScrollView} from 'react-native';
 import {TabScreenProps} from '../types/navigation';
 
 export const Settings = ({}: TabScreenProps<'Settings'>) => {
+  // TODO: wire to a "Connect Apple Health" button once Settings UI exists
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const requestAccess = () => {
     Healthkit.requestAuthorization(
       [

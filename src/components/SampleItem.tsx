@@ -3,10 +3,9 @@ import {
   HKCategoryTypeIdentifier,
 } from '@kingstinct/react-native-healthkit';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {formatRelative} from 'date-fns';
 import React from 'react';
 import styled from 'styled-components/native';
-import {H3, Paragraph} from 'tamagui';
+import {H3} from 'tamagui';
 import {useHRStatistics} from '../hooks/useHeartRate';
 import {AppParams} from '../navigation/RootStack';
 

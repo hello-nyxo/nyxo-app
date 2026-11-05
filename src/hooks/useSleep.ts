@@ -6,9 +6,8 @@ import {format, subDays} from 'date-fns';
 import {useQuery} from '@tanstack/react-query';
 import {groupBy, reduce} from 'lodash';
 
-type Sample = HKCategorySample<HKCategoryTypeIdentifier.sleepAnalysis>;
-
-const sleepValueMap = {
+// HealthKit sleepAnalysis category values -> labels (for upcoming sleep stage UI)
+export const sleepValueMap = {
   0: 'in bed',
   1: 'asleep',
   2: 'awake',

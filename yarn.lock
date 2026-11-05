@@ -2821,7 +2821,7 @@
     "@tamagui/compose-refs" "^1.2.2"
     "@tamagui/core" "^1.2.2"
 
-"@tamagui/font-inter@^1.2.2":
+"@tamagui/font-inter@1.2.2", "@tamagui/font-inter@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@tamagui/font-inter/-/font-inter-1.2.2.tgz#3ffc53705a12e02b853fcf207096fa81cb87ddfc"
   integrity sha512-+ox+R7c+fGQ2FRiPy4R+CMmbEfQMQXV4hqD0zQfEv5pWn9O4M4FJnYJ8VqMcaGdGgvz4i4FnNqYRP3Jf5VyLAw==
@@ -3010,7 +3010,7 @@
   resolved "https://registry.yarnpkg.com/@tamagui/proxy-worm/-/proxy-worm-1.2.2.tgz#b36d998e18b92521de310c97c66b6b62f4121283"
   integrity sha512-swaVscGnLOrC3owSbk4IwVsqWg+6PHcQ1NOaDsDZ+DmrAAQsCNAaG6lizvwhJ7np7uAsGKxd/+ZFp0nSI/VuGg==
 
-"@tamagui/react-native-media-driver@^1.2.2":
+"@tamagui/react-native-media-driver@1.2.2", "@tamagui/react-native-media-driver@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@tamagui/react-native-media-driver/-/react-native-media-driver-1.2.2.tgz#8eb338923d6e5356375613437a5898ef810497d8"
   integrity sha512-P3wtrJSYXdiFXD9IqTdFOiWyFdx2fgog0WomXh43d50Vphi9RZVS0D8QVCLHlQxfYp+rlPA7KAPo64IT3FcyaQ==
@@ -3113,7 +3113,7 @@
     "@tamagui/use-constant" "^1.2.2"
     "@tamagui/use-controllable-state" "^1.2.2"
 
-"@tamagui/shorthands@^1.2.2":
+"@tamagui/shorthands@1.2.2", "@tamagui/shorthands@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@tamagui/shorthands/-/shorthands-1.2.2.tgz#1f3a6bb208666d4cbeb637d8d431272ded87966c"
   integrity sha512-k42ip9NTvhRgQLG9eIQV0Qn18mwjY1EnZHcH0HTiw2DPLdcwbOVWIdESYDBnYiDaiDRcJott5IURl+Cofpn+aA==
