@@ -5,11 +5,11 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12.x'
+          node-version-file: '.node-version'
       - run: yarn install --frozen-lockfile --non-interactive
       - run: yarn lint
       - run: yarn test

@@ -20,17 +20,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
-ios/builds/
-ios/build/
-ios/Vendor
-ios/Pods
-ios/sentry.properties
-ios/Intercom.framework
-ios/fastlane/
-ios/GoogleService-Info
-ios/AppCenter-Config.plist
-ios/assets
+ios/.xcode.env.local
 
 # Android/IntelliJ
 #
@@ -40,40 +30,13 @@ build/
 local.properties
 *.iml
 *.hprof
-android/app/src/main/res/raw/
-raw
-android/keystores/
-android/app/src/main/res
-android/fastlane
-android/app/src/main/assets/
-android/app/src/main/resources/
-android/app/client_secret.json
-android/fastlane/
-
-
-# fastlane specific
-fastlane/report.xml
-
-
-# deliver temporary files
-fastlane/Preview.html
-
-# snapshot generated screenshots
-fastlane/screenshots
-
-# scan temporary files
-fastlane/test_output
-
-# Fastlane builds
-builds/*
+.cxx/
 
 # node.js
 #
 node_modules/
-.jest/
 npm-debug.log
 yarn-error.log
-coverage
 
 # BUCK
 buck-out/
@@ -88,66 +51,14 @@ buck-out/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/
 
-*/fastlane/report.xml
-*/fastlane/Preview.html
-*/fastlane/screenshots
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
 
 # Bundle artifact
 *.jsbundle
 
-# CocoaPods
-ios/Pods/
-#amplify
-amplify/\#current-cloud-backend
-amplify/.config/local-*
-amplify/mock-data
-amplify/backend/amplify-meta.json
-amplify/backend/awscloudformation
-amplify/backend/hosting
-amplify/team-provider-info.json
-build/
-dist/
-aws-exports.js
-awsconfiguration.json
-amplifyconfiguration.json
-amplify-gradle-config.json
-amplifyxc.config
-.secrets
-.env
-sentry.properties
-android/.project
-android/debug.keystore
-android/.settings/org.eclipse.buildship.core.prefs
-ios/Nyxo/GoogleService-Info.plist
-android/app/google-services.json
-android/app/.settings/org.eclipse.jdt.core.prefs
-android/app/.settings/org.eclipse.buildship.core.prefs
-ios/Nyxo/AppCenter-Config.plist
-rnuc.xcconfig
-android/app/.project
-
-ios/GoogleService-Info.plist
-android/debug.keystore.properties
-android/release.keystore.properties
-android/app/release.keystore.properties
-android/app/debug.keystore.properties
-
-#amplify
-amplify/\#current-cloud-backend
-amplify/.config/local-*
-amplify/logs
-amplify/mock-data
-amplify/backend/amplify-meta.json
-amplify/backend/awscloudformation
-amplify/backend/.temp
-build/
-dist/
-node_modules/
-aws-exports.js
-awsconfiguration.json
-amplifyconfiguration.json
-amplify-build-config.json
-amplify-gradle-config.json
-amplifytools.xcconfig
-.secret-*
-amplify/team-provider-info.json
+# Ruby / CocoaPods
+/ios/Pods/
+/vendor/bundle/

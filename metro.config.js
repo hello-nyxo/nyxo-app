@@ -6,15 +6,15 @@
  */
 
 module.exports = {
+  resolver: {
+    resolverMainFields: ['react-native', 'browser', 'main'],
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
-        inlineRequires: true
-      }
-    })
+        inlineRequires: true,
+      },
+    }),
   },
-  resolver: {
-    blacklistRE: /#current-cloud-backend\/.*/
-  }
-}
+};
