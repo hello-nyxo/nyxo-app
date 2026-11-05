@@ -1,6 +1,6 @@
 import Purchases, { PurchasesPackage } from 'react-native-purchases'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import CONFIG from '@config/config'
+import CONFIG from '@config/Config'
 
 const key = CONFIG.SUBSCRIPTION_ENTITLEMENT_KEY as string
 

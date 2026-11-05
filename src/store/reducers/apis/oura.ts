@@ -5,7 +5,7 @@ import {
   refresh
 } from 'react-native-app-auth'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import CONFIG from '@config/config'
+import CONFIG from '@config/Config'
 import { setKeychainValue } from '@helpers/Keychain'
 import { setSource } from '@reducers/source'
 import { getAccess, Oura, setAccess } from '@helpers/oauth/token'

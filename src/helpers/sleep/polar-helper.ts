@@ -1,7 +1,7 @@
 import { Value } from '@typings/Sleepdata'
 import { getNightDuration } from '@helpers/sleep/sleep'
 import { PolarSleepObject } from '@typings/sources/Polar'
-import CONFIG from '@config/config'
+import CONFIG from '@config/Config'
 import { Night } from '@reducers/nights'
 
 export const formatPolarSample = (

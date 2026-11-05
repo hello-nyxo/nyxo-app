@@ -9,7 +9,7 @@ import { PrimaryButton } from '../Buttons/PrimaryButton'
 import { IconBold } from '../iconRegular'
 import { H3, H5, P } from '../Primitives/Primitives'
 import TranslatedText from '../TranslatedText'
-import { CodeSchema } from '@config/validation'
+import { CodeSchema } from '@config/Validation'
 import { useAppDispatch, useAppSelector } from '@hooks/redux'
 import { removeLink, linkAccount } from '@reducers/linking'
 

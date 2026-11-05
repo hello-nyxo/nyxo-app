@@ -1,4 +1,4 @@
-import CONFIG from '@config/config'
+import CONFIG from '@config/Config'
 import { getAccess } from '@helpers/oauth/token'
 import { formatFitbitSamples } from '@helpers/sleep/fitbit-helper'
 import {

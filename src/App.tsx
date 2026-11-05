@@ -16,7 +16,7 @@ import {
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native'
-import CONFIG from './config/config'
+import CONFIG from './config/Config'
 import { setI18nConfig } from './config/i18n'
 import { darkTheme, lightTheme } from './styles/themes'
 import Root from '@config/routes/RootNavigator'

@@ -1,4 +1,4 @@
-import CONFIG from '@config/config'
+import CONFIG from '@config/Config'
 import { getNightDuration } from '@helpers/sleep/sleep'
 import { WithingsSleepObject } from '@typings/sources/Withings'
 import { Night, Value } from '@typings/Sleepdata'

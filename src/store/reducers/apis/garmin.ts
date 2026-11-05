@@ -1,4 +1,4 @@
-import CONFIG from '@config/config'
+import CONFIG from '@config/Config'
 import { Garmin, getAccess, setAccess } from '@helpers/oauth/token'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { openAuthSessionAsync } from 'expo-web-browser'

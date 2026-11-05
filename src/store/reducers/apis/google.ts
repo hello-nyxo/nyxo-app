@@ -5,7 +5,7 @@ import {
   refresh
 } from 'react-native-app-auth'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import CONFIG from '@config/config'
+import CONFIG from '@config/Config'
 import { Platform } from 'react-native'
 import { getAccess, Google, setAccess } from '@helpers/oauth/token'
 
